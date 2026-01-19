@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Foodie on 酒中仙</title><link>https://hanguangwu.github.io/tags/foodie/</link><description>Recent content in Foodie on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sun, 18 Jan 2026 18:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/tags/foodie/index.xml" rel="self" type="application/rss+xml"/><item><title>吃货指南</title><link>https://hanguangwu.github.io/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 18 Jan 2026 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;这里暂时收纳了一些介绍中国菜肴的GitHub仓库，日后我要结合学过的《中国饮食文化》课程等做一份适合自己的全球食谱！还可以考虑抗炎、「轻断食」等方面。&lt;/p&gt;
+&lt;p&gt;作为一个吃货，未来可期！&lt;/p&gt;
+&lt;h2 id="吃啥好呢"&gt;吃啥好呢
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/jonssonyan/what-to-eat" target="_blank" rel="noopener"
+&gt;GitHub-Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个性化菜谱推荐与收藏系统，支持多条件定制、国际化、第三方登录，助你轻松解决“今天吃什么”的难题。&lt;/p&gt;
+&lt;h3 id="主要功能"&gt;主要功能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;🍽️ 个性化菜谱推荐：支持饮食偏好、口味、烹饪时间、难度等多条件定制&lt;/li&gt;
+&lt;li&gt;⭐ 菜谱收藏夹：一键收藏、管理你的专属菜谱&lt;/li&gt;
+&lt;li&gt;🏷️ 用户称号系统：根据收藏数量自动授予等级称号&lt;/li&gt;
+&lt;li&gt;🌍 国际化支持：中英文切换，界面友好&lt;/li&gt;
+&lt;li&gt;🔒 第三方登录：支持 Google 登录&lt;/li&gt;
+&lt;li&gt;📝 更新日志与反馈：随时查看历史变更，欢迎提出建议&lt;/li&gt;
+&lt;li&gt;📱 移动端适配：良好的移动端体验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-一饭封神"&gt;🍳 一饭封神
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/liu-ziting/what-to-eat" target="_blank" rel="noopener"
+&gt;GitHub-Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="http://eat.lz-t.top/" title="http://eat.lz-t.top"
+target="_blank" rel="noopener"
+&gt;eat.lz-t.top&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;Vibe Coding&lt;/strong&gt;&lt;br&gt;
+通过 Kiro 编辑器，实现了从需求分析、架构设计到代码实现的全流程开发。 &lt;a class="link" href="https://github.com/liu-ziting/what-to-eat/blob/master/README_EN.md" target="_blank" rel="noopener"
+&gt;English&lt;/a&gt; | 中文&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等功能。&lt;/p&gt;
+&lt;h3 id="-核心功能"&gt;🚀 核心功能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;智能菜谱生成&lt;/strong&gt; - 基于食材和菜系偏好生成专业菜谱&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;营养分析&lt;/strong&gt; - 详细营养成分分析和健康评分&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI 效果图&lt;/strong&gt; - 一键生成精美菜品图片&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;酒水搭配&lt;/strong&gt; - 专业侍酒师推荐&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;酱汁设计&lt;/strong&gt; - 定制化调料配方&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;收藏管理&lt;/strong&gt; - 保存和管理喜爱的菜谱&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;料理占卜&lt;/strong&gt; - 趣味性饮食运势&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置管理&lt;/strong&gt; - 动态配置 AI 模型参数，支持多服务商切换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-技术栈"&gt;🛠️ 技术栈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;前端框架：&lt;/strong&gt; Vue 3.4 + TypeScript 5.3+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;样式方案：&lt;/strong&gt; Tailwind CSS 3.4+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;构建工具：&lt;/strong&gt; Vite 5.0+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI 服务：&lt;/strong&gt; OpenAI 标准&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;部署平台：&lt;/strong&gt; Vercel + Netlify&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="程序员做饭指南"&gt;程序员做饭指南
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Anduin2017/HowToCook" target="_blank" rel="noopener"
+&gt;GitHub-Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最近宅在家做饭，作为程序员，我偶尔在网上找找菜谱和做法。但是这些菜谱往往写法千奇百怪，经常中间莫名出来一些材料。对于习惯了形式语言的程序员来说极其不友好。&lt;/p&gt;
+&lt;p&gt;所以，我计划自己搜寻菜谱并结合实际做菜的经验，准备用更清晰精准的描述来整理常见菜的做法，以方便程序员在家做饭。&lt;/p&gt;
+&lt;p&gt;同样，我希望它是一个由社区驱动和维护的开源项目，使更多人能够一起做一个有趣的仓库。所以非常欢迎大家贡献它~&lt;/p&gt;
+&lt;p&gt;程序员在家做饭方法指南。Programmer&amp;rsquo;s guide about how to cook at home (Simplified Chinese only).&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://cook.aiursoft.com/" title="https://cook.aiursoft.com"
+target="_blank" rel="noopener"
+&gt;cook.aiursoft.com&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="本地部署"&gt;本地部署
+&lt;/h3&gt;&lt;p&gt;如果需要在本地部署菜谱 Web 服务，可以在安装 Docker 后运行下面命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker pull ghcr.io/anduin2017/how-to-cook:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -d -p 5000:80 ghcr.io/anduin2017/how-to-cook:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如需下载 PDF 版本，可以在浏览器中访问 &lt;a class="link" href="https://cook.aiursoft.com/document.pdf" target="_blank" rel="noopener"
+&gt;/document.pdf&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
