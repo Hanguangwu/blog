@@ -1,4 +1,358 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hanguangwu</title><link>https://hanguangwu.github.io/en/</link><description>Recent content on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 10 Jan 2026 22:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/en/index.xml" rel="self" type="application/rss+xml"/><item><title>Video Downloader VidBee</title><link>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</link><pubDate>Sat, 10 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</guid><description>&lt;h1 id="video-downloader-vidbee"&gt;Video Downloader VidBee
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hanguangwu</title><link>https://hanguangwu.github.io/en/</link><description>Recent content on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 19 Jan 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/en/index.xml" rel="self" type="application/rss+xml"/><item><title>How to be a CEO of a start-up?</title><link>https://hanguangwu.github.io/en/p/how-to-be-a-ceo-of-a-start-up/</link><pubDate>Mon, 19 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/how-to-be-a-ceo-of-a-start-up/</guid><description>&lt;h1 id="how-to-start-a-startup"&gt;How to Start a Startup
+&lt;/h1&gt;&lt;h2 id="introdution"&gt;Introdution
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/kuchin/awesome-ceo" target="_blank" rel="noopener"
+&gt;A curated and opinionated list of resources for startup founders and leaders of high-growth companies&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A list of courses are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CS 183B: How to Start a Startup&lt;/li&gt;
+&lt;li&gt;CS 183C: Technology-enabled Blitzscaling&lt;/li&gt;
+&lt;li&gt;CS 183E: Effective Leadership in High-Tech&lt;/li&gt;
+&lt;li&gt;CS 183F Startup School: The First 100 Days&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="awesome-ceo"&gt;Awesome CEO
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/kuchin/awesome-ceo" target="_blank" rel="noopener"
+&gt;A curated and opinionated list of resources for startup founders and leaders of high-growth companies&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="fundraising"&gt;Fundraising
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising" target="_blank" rel="noopener"
+&gt;A Guide to Seed Fundraising&lt;/a&gt; - YCombinator &lt;br&gt;
+Very good starting point.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.lennysnewsletter.com/p/a-playbook-for-fundraising?triedSigningIn=true" target="_blank" rel="noopener"
+&gt;A Playbook for Fundraising&lt;/a&gt; - Lenny Rachitsky &lt;a class="link" href="https://twitter.com/lennysan" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt; &lt;br&gt;
+Great summary.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.docsend.com/index/startup-fundraising/" target="_blank" rel="noopener"
+&gt;The Startup Fundraising Playbook&lt;/a&gt; - Dropbox&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://medium.com/@zebulgar/how-to-raise-money-before-launch-a3544ef4dba6" target="_blank" rel="noopener"
+&gt;How to raise money before launch&lt;/a&gt; - Khosla Ventures 💰&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.mentava.com/blog/how-i-got-50-high-profile-angel-investors-to-join-our-seed-round" target="_blank" rel="noopener"
+&gt;How I got 50 high-profile angel investors to join our seed round&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://medium.com/point-nine-news/what-does-it-take-to-raise-capital-in-saas-in-2022-7ebe55c86e3e" target="_blank" rel="noopener"
+&gt;What does it take to raise capital, in SaaS, in 2022?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://noise.beehiiv.com/p/how-to-raise-money-for-your-startup" target="_blank" rel="noopener"
+&gt;How to Raise Money for Your Startup&lt;/a&gt; - Alex Banks &lt;a class="link" href="https://twitter.com/thealexbanks" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/youtube"
+loading="lazy"
+alt="youtube"
+&gt; &lt;a class="link" href="https://www.ted.com/talks/david_s_rose_how_to_pitch_to_a_vc" target="_blank" rel="noopener"
+&gt;How to pitch to a VC&lt;/a&gt; - David S. Rose &lt;a class="link" href="https://twitter.com/davidsrose" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bothsidesofthetable.com/how-to-talk-about-valuation-when-a-vc-asks-7376f5721226" target="_blank" rel="noopener"
+&gt;How to Talk About Valuation When a VC Asks&lt;/a&gt; - Mark Suster &lt;a class="link" href="https://twitter.com/msuster" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.linkedin.com/posts/adityaagarwal3_the-single-hardest-question-at-the-pre-seed-activity-7021553572609744896-XEue/" target="_blank" rel="noopener"
+&gt;Pre-seed and seed founder&amp;rsquo;s hardest question&lt;/a&gt; - Aditya Agarwal &lt;a class="link" href="https://twitter.com/adityaag" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;br&gt;
+The single hardest question at the pre-seed and seed stage for a founder is knowing whether to persist on the current product or to move on to the next idea.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.indexventures.com/rewardingtalent/how-much-and-who-gets-it" target="_blank" rel="noopener"
+&gt;Option grants at seed round&lt;/a&gt; - Index Ventures&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.linkedin.com/posts/herwigspringer_founder-investor-venturecapital-activity-7000525239516319744-iDS_/" target="_blank" rel="noopener"
+&gt;How Startup Funding Works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://future.a16z.com/ipos-and-beyond-a-guide-to-exit-options-for-companies/" target="_blank" rel="noopener"
+&gt;IPOs and Beyond: A Guide to Exit Options for Companies&lt;/a&gt; - a16z&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.quora.com/What-would-a-CTO-compensation-equity-be-for-a-small-startup" target="_blank" rel="noopener"
+&gt;What would a CTO equity be for a small startup?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://danluu.com/startup-options/" target="_blank" rel="noopener"
+&gt;Options vs Cash&lt;/a&gt; - Dan Luu &lt;a class="link" href="https://twitter.com/danluu" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.samaltman.com/how-to-invest-in-startups" target="_blank" rel="noopener"
+&gt;How To Invest In Startups&lt;/a&gt; - Sam Altman &lt;a class="link" href="https://twitter.com/sama" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="fundraising-tools"&gt;Fundraising tools
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.capboard.io/en/captable/equity-dilution-calculator" target="_blank" rel="noopener"
+&gt;Startup Equity Dilution Calculator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://smartasset.com/infographic/startup" target="_blank" rel="noopener"
+&gt;Startup Economics Calculator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="angels-directories"&gt;Angels directories
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://angels.firstround.com" target="_blank" rel="noopener"
+&gt;First Round Capital&lt;/a&gt; 💰&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://signal.nfx.com" target="_blank" rel="noopener"
+&gt;NFX list&lt;/a&gt; 💰&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://funden.com" target="_blank" rel="noopener"
+&gt;funden&lt;/a&gt; 💰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="startup-decks"&gt;Startup decks
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://piktochart.com/blog/startup-pitch-decks-what-you-can-learn/" target="_blank" rel="noopener"
+&gt;30 Legendary Startup Pitch Decks and What You Can Learn From Them&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.alexanderjarvis.com/pitch-deck-collection-from-vc-funded-startups/" target="_blank" rel="noopener"
+&gt;Pitch deck collection from VC funded startups&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://startupdecks.co/decks/" target="_blank" rel="noopener"
+&gt;Startup decks collection&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="entrepreneurship"&gt;Entrepreneurship
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.quora.com/What-are-the-things-startups-have-to-get-right" target="_blank" rel="noopener"
+&gt;What are the things startups have to get right?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hackernoon.com/85-things-i-learned-being-a-ceo-4c25fc1c7b99" target="_blank" rel="noopener"
+&gt;85 Things I learned being a CEO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.ycombinator.com/the-second-job-of-a-startup-ceo/" target="_blank" rel="noopener"
+&gt;What’s the Second Job of a Startup CEO?&lt;/a&gt; - Y Combinator&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.slideshare.net/laurenthaug/things-i-will-tell-my-kids-if-they-become-entrepreneurs" target="_blank" rel="noopener"
+&gt;Things I will tell my kids if they become entrepreneurs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.quora.com/What-do-VCs-really-look-for-when-making-investments" target="_blank" rel="noopener"
+&gt;What do VCs really look for when making investments?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.quora.com/As-an-employee-of-a-startup-how-do-you-know-when-to-quit" target="_blank" rel="noopener"
+&gt;As an employee of a startup, how do you know when to quit?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.ycombinator.com/ycs-series-a-diligence-checklist/" target="_blank" rel="noopener"
+&gt;YC’s Series A Diligence Checklist&lt;/a&gt; - Y Combinator&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://playbook.samaltman.com" target="_blank" rel="noopener"
+&gt;Startup Playbook&lt;/a&gt; - Sam Altman &lt;a class="link" href="https://twitter.com/sama" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://startupclass.samaltman.com" target="_blank" rel="noopener"
+&gt;Startup Class&lt;/a&gt; - Sam Altman&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://leanstack.com/leancanvas" target="_blank" rel="noopener"
+&gt;Lean Canvas&lt;/a&gt; + &lt;a class="link" href="https://miro.com/templates/lean-canvas/" target="_blank" rel="noopener"
+&gt;Miro template&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.figmafinder.com/figma-pitch-deck" target="_blank" rel="noopener"
+&gt;Open Source Pitch Deck Templates for Figma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/github"
+loading="lazy"
+alt="github"
+&gt; &lt;a class="link" href="https://github.com/fikrikarim/companies-with-successful-pivot" target="_blank" rel="noopener"
+&gt;List of startups that had successful pivots&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="product"&gt;Product
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.mindtheproduct.com/product-is-hard-by-marty-cagan/" target="_blank" rel="noopener"
+&gt;Product is Hard&lt;/a&gt; - Marty Cagan &lt;a class="link" href="https://twitter.com/cagan" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt; &lt;br&gt;
+Solutions need to be: &lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;Valuable – Something that our customers will choose to use&lt;/li&gt;
+&lt;li&gt;Usable – Easy to figure out how to use&lt;/li&gt;
+&lt;li&gt;Feasible – Buildable using the technology stack and skills we have&lt;/li&gt;
+&lt;li&gt;Viable – Workable for our stakeholders within our budget, legal, ethical, and reputational constraints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://capitalandgrowth.org/answers/Article/3143488/How-to-Find-Profitable-Business-Ideas" target="_blank" rel="noopener"
+&gt;Red Oceans: How to Find Profitable Startup Ideas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.lemonade.com/blog/creative-thinking-hacks/" target="_blank" rel="noopener"
+&gt;The Secrets Of Creative Thinking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bothsidesofthetable.com/most-startups-should-be-deer-hunters-7fdecf58f4f6" target="_blank" rel="noopener"
+&gt;Most Startups Should Be Deer Hunters&lt;/a&gt; - Mark Suster &lt;a class="link" href="https://twitter.com/msuster" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://review.firstround.com/8-product-hurdles-every-founder-must-clear-this-pm-turned-founder-shares-his-playbooks" target="_blank" rel="noopener"
+&gt;8 Product Hurdles Every Founder Must Clear&lt;/a&gt; - First Round Capital&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="product-market-fit"&gt;Product-Market Fit
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://a16z.com/2017/02/18/12-things-about-product-market-fit-2/" target="_blank" rel="noopener"
+&gt;12 Things About Product-Market Fit&lt;/a&gt; - a16z&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="sales"&gt;Sales
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://stripe.com/en-in/guides/atlas/starting-sales" target="_blank" rel="noopener"
+&gt;Your first 10 customers&lt;/a&gt; - Stripe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="marketing"&gt;Marketing
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.linkedin.com/posts/kevinleeme_marketing-growth-business-activity-7002752700526256129-5Wsi/" target="_blank" rel="noopener"
+&gt;Get creative with your marketing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.devmarketingguide.com" target="_blank" rel="noopener"
+&gt;Developer Marketing Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.google.com/spreadsheets/d/1tAiya71mDQgtwn_F9-mNQhuc7GdsQ5e2_BeG69Cb82A/edit#gid=0" target="_blank" rel="noopener"
+&gt;Top Resources for Startup Marketing and PR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://saasemailmarketing.net" target="_blank" rel="noopener"
+&gt;SaaS Email Marketing Handbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.lennysnewsletter.com/p/how-todays-fastest-growing-b2b-businesses" target="_blank" rel="noopener"
+&gt;How today&amp;rsquo;s fastest growing B2B businesses found their first ten customers&lt;/a&gt; - Lenny Rachitsky &lt;a class="link" href="https://twitter.com/lennysan" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="management"&gt;Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.quora.com/What-makes-for-a-successful-CEO-and-CTO-relationship-in-a-startup" target="_blank" rel="noopener"
+&gt;What makes for a successful CEO and CTO relationship in a startup?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="http://www.paulgraham.com/makersschedule.html" target="_blank" rel="noopener"
+&gt;Maker&amp;rsquo;s Schedule, Manager&amp;rsquo;s Schedule&lt;/a&gt; - Paul Graham &lt;a class="link" href="https://twitter.com/paulg" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.officevibe.com/blog/secret-to-discussing-pay-with-employees" target="_blank" rel="noopener"
+&gt;The Secret To Discussing Pay With Employees&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/github"
+loading="lazy"
+alt="github"
+&gt; &lt;a class="link" href="https://github.com/LappleApple/awesome-leading-and-managing" target="_blank" rel="noopener"
+&gt;Awesome Leading and Managing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://delian.io/lessons-3" target="_blank" rel="noopener"
+&gt;Lessons from Keith Rabois: How to be an Effective Executive&lt;/a&gt; - Keith Rabois &lt;a class="link" href="https://twitter.com/rabois" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.doist.com/context-switching/" target="_blank" rel="noopener"
+&gt;How Context Switching Sabotages Your Productivity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://casnocha.com/reid-hoffman-lessons" target="_blank" rel="noopener"
+&gt;10,000 Hours with Reid Hoffman: What I Learned&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hbr.org/2019/05/7-ways-to-set-up-a-new-hire-for-success" target="_blank" rel="noopener"
+&gt;7 Ways to Set Up a New Hire for Success&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://danluu.com/people-matter/" target="_blank" rel="noopener"
+&gt;Individuals matter&lt;/a&gt; - Dan Luu &lt;a class="link" href="https://twitter.com/danluu" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://cutlefish.substack.com/p/tbm-2752-mandate-levels" target="_blank" rel="noopener"
+&gt;Mandate Levels&lt;/a&gt; - John Cutler &lt;a class="link" href="https://twitter.com/johncutlefish" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://twitter.com/nathanbarry/status/1520442729397858304" target="_blank" rel="noopener"
+&gt;10 ideas for building great culture in a distributed (remote) team&lt;/a&gt; - Nathan Barry &lt;a class="link" href="https://twitter.com/nathanbarry" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.sequoiacap.com/adapting-to-endure-2022/" target="_blank" rel="noopener"
+&gt;Adapting to Endure / Crisis management&lt;/a&gt; - Sequoia Capital&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hiring"&gt;Hiring
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://delian.io/lessons-2" target="_blank" rel="noopener"
+&gt;Lessons from Keith Rabois: How to Interview an Executive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://delian.io/lessons-5" target="_blank" rel="noopener"
+&gt;Lessons from Keith Rabois: How to Become a Magnet for Talent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://about.gitlab.com/handbook/hiring/talent-acquisition-framework/" target="_blank" rel="noopener"
+&gt;GitLab Talent Acquisition Framework&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="finance"&gt;Finance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://about.gitlab.com/handbook/finance/financial-planning-and-analysis/" target="_blank" rel="noopener"
+&gt;Financial Planning &amp;amp; Analysis&lt;/a&gt; - GitLab&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://medium.com/engineering-operations/a-framework-for-balancing-and-budgeting-engineering-resourcing-d0cce0e6911c" target="_blank" rel="noopener"
+&gt;Framework for balancing and budgeting engineering resourcing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.infoentrepreneurs.org/en/guides/negotiate-the-right-deal-with-suppliers/" target="_blank" rel="noopener"
+&gt;Negotiate the right deal with suppliers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://strategicdynamicsfirm.com/strategic-procurements-10-commandments-managing-hospital-buying-process/" target="_blank" rel="noopener"
+&gt;Strategic Procurements 10 Commandments for Managing the Buying Process&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="books"&gt;Books
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B00DQ845EA" target="_blank" rel="noopener"
+&gt;The Hard Thing About Hard Things&lt;/a&gt; - Ben Horowitz &lt;br&gt;
+Practical advice on how to handle the toughest challenges while building and leading a startup, from laying off employees to dealing with personal crises. How to cultivate a strong company culture and lead with empathy and humility.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B00J6YBOFQ" target="_blank" rel="noopener"
+&gt;Zero to One: Notes on Startups, or How to Build the Future&lt;/a&gt; - Peter Thiel &lt;br&gt;
+A framework for identifying and developing disruptive ideas that can create new markets and transform industries. A contrarian view on how to build truly innovative startups.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B07WF972WK" target="_blank" rel="noopener"
+&gt;The 7 Habits of Highly Effective People&lt;/a&gt; - Stephen Covey &lt;br&gt;
+The title is misleading - because of it I was avoiding this book for years. It&amp;rsquo;s actually very smart and actionable: principles of personal responsibility, proactive action, and continuous improvement. An approach to achieving success and fulfillment, developing strong personal relationships, cultivating a growth mindset, and aligning your actions with a clear sense of purpose.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B00V1XGKJK" target="_blank" rel="noopener"
+&gt;First Things First&lt;/a&gt; - Stephen Covey &lt;br&gt;
+Time management and productivity guide. How to overcome procrastination and achieve your most important goals, while balancing your work and personal life, and focusing on the things that truly matter in the long term.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B08HZ5XY7X" target="_blank" rel="noopener"
+&gt;The Cold Start Problem: How to Start and Scale Network Effects&lt;/a&gt; - Andrew Chen &lt;a class="link" href="https://twitter.com/andrewchen" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt; &lt;br&gt;
+A framework for building a new network effect startup. Strategies and tactics that successful network effect startups have used to overcome the challenges of building a user base from scratch.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B07D23CFGR" target="_blank" rel="noopener"
+&gt;Atomic Habits: An Easy &amp;amp; Proven Way to Build Good Habits &amp;amp; Break Bad Ones&lt;/a&gt; - James Clear &lt;br&gt;
+A framework for building and maintaining good habits and breaking bad ones. How to make small, incremental changes in your daily routines that can lead to long-term success and personal growth.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B00555X8OA" target="_blank" rel="noopener"
+&gt;Thinking, Fast and Slow&lt;/a&gt; - Daniel Kahneman &lt;br&gt;
+A framework for improving your decision-making abilities. Our automatic, intuitive &amp;ldquo;fast&amp;rdquo; thinking often leads to errors and biases, while our more deliberate and analytical &amp;ldquo;slow&amp;rdquo; thinking can help us make better decisions and avoid common pitfalls.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B01H4G2J1U" target="_blank" rel="noopener"
+&gt;The Mom Test: How to talk to customers &amp;amp; learn if your business is a good idea when everyone is lying to you&lt;/a&gt; - Rob Fitzpatrick &lt;a class="link" href="https://twitter.com/robfitz" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt; &lt;br&gt;
+A framework for conducting effective customer interviews and building products that people actually want to use. How to validate your ideas without relying on false positives or biased feedback.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://amzn.com/dp/B00DQ97TWO" target="_blank" rel="noopener"
+&gt;Disciplined Entrepreneurship: 24 Steps to a Successful Startup&lt;/a&gt; - Bill Aulet &lt;a class="link" href="https://twitter.com/BillAulet" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt; &lt;br&gt;
+A framework for developing and testing innovative business ideas, from identifying customer needs and segmenting markets, to prototyping and testing solutions, to launching and scaling a successful venture.&lt;/li&gt;
+&lt;li&gt;📕 &lt;a class="link" href="https://docs.google.com/document/d/18FiJbYn53fTtPmphfdCKT2TMWH-8Y2L-MLqDk-MFV4s/preview" target="_blank" rel="noopener"
+&gt;Mochary Method Curriculum&lt;/a&gt; - Matt Mochary &lt;a class="link" href="https://twitter.com/mattmochary" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="more-links"&gt;More links
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.nfx.com" target="_blank" rel="noopener"
+&gt;The Founder Library&lt;/a&gt; - NfX&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://foundr.com/articles" target="_blank" rel="noopener"
+&gt;Advices from founders&lt;/a&gt; - foundr&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.learnwithsherpa.com" target="_blank" rel="noopener"
+&gt;Learn with Sherpa&lt;/a&gt; - Alex Lieberman &lt;a class="link" href="https://twitter.com/businessbarista" target="_blank" rel="noopener"
+&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/twitter"
+loading="lazy"
+alt="twitter"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/github"
+loading="lazy"
+alt="github"
+&gt; &lt;a class="link" href="https://github.com/Ibexoft/awesome-startup-tools-list" target="_blank" rel="noopener"
+&gt;Awesome startup tools list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://socialize-md.vercel.app/api/badge/github"
+loading="lazy"
+alt="github"
+&gt; &lt;a class="link" href="https://github.com/KrishMunot/awesome-startup" target="_blank" rel="noopener"
+&gt;Awesome books, videos, courses and resources about making a startup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://learningloop.notion.site/learningloop/Go-To-Startup-Resources-28954916f3ad4445be7e713554bc6a8b" target="_blank" rel="noopener"
+&gt;Go-To Startup Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="other"&gt;Other
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kuchin/awesome-cto" target="_blank" rel="noopener"
+&gt;Awesome CTO&lt;/a&gt; &lt;em&gt;(GitHub)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kuchin/awesome-tpm" target="_blank" rel="noopener"
+&gt;Awesome TPM&lt;/a&gt; &lt;em&gt;(GitHub)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="license"&gt;License
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg"
+loading="lazy"
+alt="CC0"
+&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Video Downloader VidBee</title><link>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</link><pubDate>Sat, 10 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</guid><description>&lt;h1 id="video-downloader-vidbee"&gt;Video Downloader VidBee
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;VidBee is a modern, open-source video downloader that lets you download videos and audios from 1000+ websites worldwide. Built with Electron and powered by yt-dlp, VidBee offers a clean, intuitive interface with powerful features for all your downloading needs, including RSS auto-download automation that automatically subscribes to feeds and downloads new videos from your favorite creators in the background.&lt;/p&gt;
 &lt;h2 id="-getting-started"&gt;👋🏻 Getting Started
