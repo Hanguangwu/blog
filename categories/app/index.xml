@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>https://hanguangwu.github.io/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 10 Jan 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>加速神器——Xget</title><link>https://hanguangwu.github.io/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>https://hanguangwu.github.io/blog/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 10 Jan 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>加速神器——Xget</title><link>https://hanguangwu.github.io/blog/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/xixu-me/xget" target="_blank" rel="noopener"
 &gt;Ultra-high-performance, secure, all-in-one acceleration engine for developer resources&lt;/a&gt;&lt;/p&gt;
@@ -4921,7 +4921,7 @@ A: 检查 URL 路径格式，确认平台前缀正确使用。&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;开源性质声明&lt;/strong&gt;：本存储库为开源项目，作者与贡献者不承担提供技术支持、错误修复或持续维护的义务。外部贡献的合并不代表对特定用途或效果的承诺与背书&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;名称使用规范&lt;/strong&gt;：严禁任何可能暗示作者或贡献者提供商业合作、技术支持、担保或背书的表述。涉及存储库名称或作者标识的使用应遵循相关法律法规及通用规范&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;免责声明更新&lt;/strong&gt;：本免责声明可能随存储库发展或法律环境变化进行更新修订。使用者继续使用、复制、分发或修改本存储库即视为接受最新版本的免责声明&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>https://hanguangwu.github.io/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
+&lt;/ul&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
 &lt;/h1&gt;&lt;p&gt;在手写数字识别的实践中，很多同学会遇到模型权重与 Web 应用不兼容的问题，最常见的就是通道数不匹配、模型结构冲突导致的运行报错。今天这篇博客，我们就来完整走一遍流程 —— 从从头训练兼容的&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;权重文件，到搭建一个无需前端经验的 Gradio Web 识别工具，全程避坑，确保最终成果可以直接落地使用。&lt;/p&gt;
 &lt;h2 id="第一部分从头训练-mnist-模型生成兼容权重文件cnn_model_basicpth"&gt;第一部分：从头训练 MNIST 模型，生成兼容权重文件&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;
 &lt;/h2&gt;&lt;p&gt;我们的核心目标是训练出一个与后续 Web 应用完全兼容的模型权重，彻底解决&lt;code&gt;expected 1 channels, but got 3 channels&lt;/code&gt;这类兼容性错误，同时保证模型具备较高的识别准确率。&lt;/p&gt;
@@ -5816,7 +5816,7 @@ loading="lazy"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>https://hanguangwu.github.io/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
+&lt;/div&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>https://hanguangwu.github.io/blog/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
 &lt;/h1&gt;&lt;p&gt;🌈谷粒-Chrome插件英雄榜, 为优秀的Chrome插件写一本中文说明书, 让Chrome插件英雄们造福人类~
 ChromeAppHeroes, Write a Chinese manual for the excellent Chrome plugin, let the Chrome plugin heroes benefit the human~&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/zhaoolee/ChromeAppHeroes/master/README/17106763830728faCQ0DR.png"
@@ -6629,7 +6629,7 @@ alt="谷粒VI设计.png"
 &gt;Chrome扩展资源站点推荐&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="chrome扩展程序相关网站推荐"&gt;Chrome扩展程序相关网站推荐
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.chajian5.com/" target="_blank" rel="noopener"
-&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>https://hanguangwu.github.io/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
+&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>https://hanguangwu.github.io/blog/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;一个通过与 AI 结对编程，将想法变为现实的终极工作站&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/tukuaiai/vibe-coding-cn" target="_blank" rel="noopener"
 &gt;来源——GitHub Repo&lt;/a&gt;&lt;/p&gt;
@@ -7551,7 +7551,7 @@ alt="谷粒VI设计.png"
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/details&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>https://hanguangwu.github.io/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
+&lt;/details&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>https://hanguangwu.github.io/blog/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p align="center"&gt;
 🚀&lt;a href="https://mineru.net/?source=github"&gt;MinerU 官网入口→✅ 免装在线版 ✅ 全功能客户端 ✅ 开发者API在线调用，省去部署麻烦，多种产品形态一键get，速冲！&lt;/a&gt;
@@ -7822,7 +7822,7 @@ alt="HuggingFace"
 &gt;Magic-Doc (Fast speed ppt/pptx/doc/docx/pdf extraction tool)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://github.com/MigoXLab/dingo" target="_blank" rel="noopener"
 &gt;Dingo: A Comprehensive AI Data Quality Evaluation Tool&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>https://hanguangwu.github.io/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
+&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>https://hanguangwu.github.io/blog/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
 &lt;/h1&gt;&lt;p&gt;本工具中的一些特色功能值得深入研究一下，比如热键控制、手势控制等。&lt;/p&gt;
 &lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://xiaoyi.vc/screenbox.html" target="_blank" rel="noopener"
@@ -7854,7 +7854,7 @@ alt="HuggingFace"
 &gt;https://www.123pan.com/s/c8zA-mZ5N3.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;微软商店：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://apps.microsoft.com/store/detail/9NTSNMSVCB5L" target="_blank" rel="noopener"
-&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>https://hanguangwu.github.io/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
+&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>https://hanguangwu.github.io/blog/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://feijiqun.github.io/" title="https://feijiqun.github.io"
 target="_blank" rel="noopener"
 &gt;专注于“电报群 / 飞机群 / Telegram群组”的高质量导航平台。我们精心整理全球范围内的热门 Telegram 群组与频道，涵盖学习、资源、娱乐、投资等各大分类，并支持关键词智能搜索与标签筛选，让你不错过每一个优质社群。&lt;/a&gt;&lt;/p&gt;
@@ -15390,7 +15390,7 @@ target="_blank" rel="noopener"
 &lt;/table&gt;
 &lt;h2 id="-合作请联系-newlinkauditbot-1"&gt;📨 合作请联系 &lt;a class="link" href="https://t.me/NewLinkAuditBot" target="_blank" rel="noopener"
 &gt;@NewLinkAuditBot&lt;/a&gt;
-&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>https://hanguangwu.github.io/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
+&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>https://hanguangwu.github.io/blog/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank" rel="noopener"
 &gt;GitHub-MAS&lt;/a&gt;&lt;/p&gt;
@@ -15439,7 +15439,7 @@ loading="lazy"
 &lt;p&gt;选择“3”：TSForge是一款由MAS团队开发的工具，能够绕过微软的在线验证机制，实现Windows和Office的永久激活。&lt;/p&gt;
 &lt;p&gt;选择“4”：采用 KMS38 激活方式，激活 Windows/Server 到2038年，无需联网。&lt;/p&gt;
 &lt;p&gt;选择“5”： 采用 Online KMS 激活方式，激活 Windows/Server/Office 一次180天，到期自动续，需要联网。&lt;/p&gt;
-&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>https://hanguangwu.github.io/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
+&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>https://hanguangwu.github.io/blog/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="http://jb.ide.to/" target="_blank" rel="noopener"
 &gt;颠覆所有——一键激活所有 JetBrains 产品&lt;/a&gt;&lt;/p&gt;
@@ -15598,7 +15598,7 @@ alt="image.png"
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>https://hanguangwu.github.io/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
+&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>https://hanguangwu.github.io/blog/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Raphire/Win11Debloat" target="_blank" rel="noopener"
 &gt;A simple, lightweight PowerShell script to remove pre-installed apps, disable telemetry, as well as perform various other changes to customize, declutter and improve your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.&lt;/a&gt;&lt;/p&gt;
@@ -15679,7 +15679,7 @@ loading="lazy"
 alt="Win11Debloat"
 &gt;&lt;/p&gt;
 &lt;p&gt;建議您在使用 Win11Debloat 應用程式之前先建立還原點，以防遇到問題。&lt;/p&gt;
-&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>https://hanguangwu.github.io/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
+&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>https://hanguangwu.github.io/blog/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;由于沉浸式翻译存在安全问题，这里推荐FluentRead。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://fluent.thinkstu.com/" target="_blank" rel="noopener"
@@ -15769,7 +15769,7 @@ alt="流畅阅读（FluentRead）.webp"
 &lt;li&gt;配置指南&lt;/li&gt;
 &lt;li&gt;使用教程&lt;/li&gt;
 &lt;li&gt;常见问题&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>https://hanguangwu.github.io/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
+&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>https://hanguangwu.github.io/blog/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;随着数字时代的到来，越来越多的人开始使用电子设备进行笔记和创作。作为一款专注于手写体验的笔记软件，&lt;strong&gt;RNote&lt;/strong&gt;以其独特的设计理念和强大功能，成为众多用户心中的优选。本文将从软件特点、使用体验、设计理念等方面，为大家全面介绍RNote，希望能够帮助你更好地了解和使用这款高效的手写笔记工具。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/flxzt/rnote" target="_blank" rel="noopener"

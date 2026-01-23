@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on Hanguangwu</title><link>https://hanguangwu.github.io/en/categories/app/</link><description>Recent content in APP on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 10 Jan 2026 22:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/en/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>Video Downloader VidBee</title><link>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</link><pubDate>Sat, 10 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/video-downloader-vidbee/</guid><description>&lt;h1 id="video-downloader-vidbee"&gt;Video Downloader VidBee
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/categories/app/</link><description>Recent content in APP on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 10 Jan 2026 22:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>Video Downloader VidBee</title><link>https://hanguangwu.github.io/blog/en/p/video-downloader-vidbee/</link><pubDate>Sat, 10 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/video-downloader-vidbee/</guid><description>&lt;h1 id="video-downloader-vidbee"&gt;Video Downloader VidBee
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;VidBee is a modern, open-source video downloader that lets you download videos and audios from 1000+ websites worldwide. Built with Electron and powered by yt-dlp, VidBee offers a clean, intuitive interface with powerful features for all your downloading needs, including RSS auto-download automation that automatically subscribes to feeds and downloads new videos from your favorite creators in the background.&lt;/p&gt;
 &lt;h2 id="-getting-started"&gt;👋🏻 Getting Started
@@ -128,7 +128,7 @@
 &gt;Tailwind CSS&lt;/a&gt; - Utility-first CSS framework&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://ui.shadcn.com/" target="_blank" rel="noopener"
 &gt;shadcn/ui&lt;/a&gt; - Beautifully designed components&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Free Domain From DigitalPlat</title><link>https://hanguangwu.github.io/en/p/free-domain-from-digitalplat/</link><pubDate>Sat, 10 Jan 2026 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/free-domain-from-digitalplat/</guid><description>&lt;h1 id="free-domain"&gt;Free Domain
+&lt;/ul&gt;</description></item><item><title>Free Domain From DigitalPlat</title><link>https://hanguangwu.github.io/blog/en/p/free-domain-from-digitalplat/</link><pubDate>Sat, 10 Jan 2026 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/free-domain-from-digitalplat/</guid><description>&lt;h1 id="free-domain"&gt;Free Domain
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/DigitalPlatDev/FreeDomain" target="_blank" rel="noopener"
 &gt;DigitalPlat FreeDomain: Free Domain For Everyone&lt;/a&gt;&lt;/p&gt;
@@ -157,7 +157,7 @@ target="_blank" rel="noopener"
 &lt;p&gt;📝 &lt;a class="link" href="./documents/tutorial/index.md" &gt;Read our tutorial&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id="-trusted-by-thousands"&gt;🌟 Trusted by Thousands
-&lt;/h3&gt;&lt;p&gt;With over 400,000 domains already registered, DigitalPlat FreeDomain is a trusted choice for individuals and organizations alike. Join our growing community and claim your own free domain today!&lt;/p&gt;</description></item><item><title>Awesome-Selfhosted Toolkits</title><link>https://hanguangwu.github.io/en/p/awesome-selfhosted-toolkits/</link><pubDate>Thu, 08 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/awesome-selfhosted-toolkits/</guid><description>&lt;h1 id="awesome-selfhosted"&gt;Awesome-Selfhosted
+&lt;/h3&gt;&lt;p&gt;With over 400,000 domains already registered, DigitalPlat FreeDomain is a trusted choice for individuals and organizations alike. Join our growing community and claim your own free domain today!&lt;/p&gt;</description></item><item><title>Awesome-Selfhosted Toolkits</title><link>https://hanguangwu.github.io/blog/en/p/awesome-selfhosted-toolkits/</link><pubDate>Thu, 08 Jan 2026 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/awesome-selfhosted-toolkits/</guid><description>&lt;h1 id="awesome-selfhosted"&gt;Awesome-Selfhosted
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;Self-hosting is the practice of hosting and managing applications on your own server(s) instead of consuming from &lt;a class="link" href="https://www.gnu.org/philosophy/who-does-that-server-really-serve.html" target="_blank" rel="noopener"
 &gt;SaaSS&lt;/a&gt; providers.&lt;/p&gt;
@@ -4665,7 +4665,7 @@ target="_blank" rel="noopener"
 &gt;theme.park&lt;/a&gt; - A collection of themes/skins for 50 selfhosted apps! (&lt;a class="link" href="https://github.com/GilbN/theme.park/" target="_blank" rel="noopener"
 &gt;Source Code&lt;/a&gt;) &lt;code&gt;MIT&lt;/code&gt; &lt;code&gt;CSS&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;</description></item><item><title>APP Ideas</title><link>https://hanguangwu.github.io/en/p/app-ideas/</link><pubDate>Wed, 31 Dec 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/app-ideas/</guid><description>&lt;h1 id="ledger-app-ideas-collection"&gt;:ledger: App Ideas Collection
+&lt;hr&gt;</description></item><item><title>APP Ideas</title><link>https://hanguangwu.github.io/blog/en/p/app-ideas/</link><pubDate>Wed, 31 Dec 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/app-ideas/</guid><description>&lt;h1 id="ledger-app-ideas-collection"&gt;:ledger: App Ideas Collection
 &lt;/h1&gt;&lt;p&gt;Have you ever wanted to build something but you had no idea what to do? Just as authors sometimes have &amp;ldquo;writers block&amp;rdquo; it&amp;rsquo;s also true for developers. This list is intended to solve this issue once and for all! 👍&lt;/p&gt;
 &lt;p&gt;These applications are:&lt;/p&gt;
 &lt;ul&gt;
@@ -5203,7 +5203,7 @@ required to complete them.&lt;/p&gt;
 &lt;td&gt;3-Advanced&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Windows player Screenbox</title><link>https://hanguangwu.github.io/en/p/windows-player-screenbox/</link><pubDate>Fri, 26 Dec 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/windows-player-screenbox/</guid><description>&lt;h1 id="screenbox"&gt;Screenbox
+&lt;/table&gt;</description></item><item><title>Windows player Screenbox</title><link>https://hanguangwu.github.io/blog/en/p/windows-player-screenbox/</link><pubDate>Fri, 26 Dec 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/windows-player-screenbox/</guid><description>&lt;h1 id="screenbox"&gt;Screenbox
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/huynhsontung/Screenbox" target="_blank" rel="noopener"
 &gt;GitHub-Repo-Screenbox&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Screenbox is a modern video player that cares about performance and ease of use on a wide range of device types. It features a beautiful, friendly user interface that is fast and lightweight. Screenbox is available on Windows 10 version 1903 and up, Windows 11, and Xbox consoles.&lt;/p&gt;
@@ -5265,7 +5265,7 @@ alt="Crowdin"
 &lt;li&gt;Copy over any missing files from the &lt;code&gt;en-US&lt;/code&gt; folder.&lt;/li&gt;
 &lt;li&gt;Translate the &lt;code&gt;.resw&lt;/code&gt; and &lt;code&gt;.md&lt;/code&gt; files in the directory.&lt;/li&gt;
 &lt;li&gt;Once you&amp;rsquo;re done, commit your changes, push to GitHub, and make a pull request.&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>Microsoft Activation Scripts (MAS)</title><link>https://hanguangwu.github.io/en/p/microsoft-activation-scripts-mas/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/microsoft-activation-scripts-mas/</guid><description>&lt;h1 id="microsoft-activation-scripts-mas"&gt;Microsoft Activation Scripts (MAS)
+&lt;/ol&gt;</description></item><item><title>Microsoft Activation Scripts (MAS)</title><link>https://hanguangwu.github.io/blog/en/p/microsoft-activation-scripts-mas/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/microsoft-activation-scripts-mas/</guid><description>&lt;h1 id="microsoft-activation-scripts-mas"&gt;Microsoft Activation Scripts (MAS)
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank" rel="noopener"
 &gt;microsoft&amp;ndash;activation&amp;ndash;scripts-mas&lt;/a&gt;&lt;/p&gt;
@@ -5335,7 +5335,7 @@ alt="Crowdin"
 &gt;Download Original Windows &amp;amp; Office&lt;/a&gt;
 &lt;/h3&gt;&lt;h3 id="homepage--httpsmassgravedev"&gt;Homepage - &lt;a class="link" href="https://massgrave.dev/" target="_blank" rel="noopener"
 &gt;https://massgrave.dev/&lt;/a&gt;
-&lt;/h3&gt;</description></item><item><title>How to use Win11Debloat to declutter and improve your Windows experience</title><link>https://hanguangwu.github.io/en/p/how-to-use-win11debloat-to-declutter-and-improve-your-windows-experience/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/how-to-use-win11debloat-to-declutter-and-improve-your-windows-experience/</guid><description>&lt;h1 id="win11debloat"&gt;Win11Debloat
+&lt;/h3&gt;</description></item><item><title>How to use Win11Debloat to declutter and improve your Windows experience</title><link>https://hanguangwu.github.io/blog/en/p/how-to-use-win11debloat-to-declutter-and-improve-your-windows-experience/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/how-to-use-win11debloat-to-declutter-and-improve-your-windows-experience/</guid><description>&lt;h1 id="win11debloat"&gt;Win11Debloat
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Raphire/Win11Debloat" target="_blank" rel="noopener"
 &gt;GitHub-Win11Debloat&lt;/a&gt;&lt;/p&gt;
@@ -5820,7 +5820,7 @@ alt="Win11Debloat Menu"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- AD2F1837.myHP
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/blockquote&gt;</description></item><item><title>RNote Introduction</title><link>https://hanguangwu.github.io/en/p/rnote-introduction/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/rnote-introduction/</guid><description>&lt;h1 id="vector-based-drawing-apprnote"&gt;Vector-based Drawing APP——Rnote
+&lt;/div&gt;&lt;/blockquote&gt;</description></item><item><title>RNote Introduction</title><link>https://hanguangwu.github.io/blog/en/p/rnote-introduction/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/rnote-introduction/</guid><description>&lt;h1 id="vector-based-drawing-apprnote"&gt;Vector-based Drawing APP——Rnote
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/flxzt/rnote" target="_blank" rel="noopener"
 &gt;GitHub-RNote&lt;/a&gt;&lt;/p&gt;
@@ -6077,7 +6077,7 @@ alt="Suits"
 &gt;&lt;img src="https://raw.githubusercontent.com/flxzt/rnote/main/misc/drawings/natureza_gato.png"
 loading="lazy"
 alt="Nature’s cat"
-&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>GitHub-Build_Your_Own_X</title><link>https://hanguangwu.github.io/en/p/github-build_your_own_x/</link><pubDate>Sun, 12 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/en/p/github-build_your_own_x/</guid><description>&lt;h2 id="build-your-own-x"&gt;Build your own X
+&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>GitHub-Build_Your_Own_X</title><link>https://hanguangwu.github.io/blog/en/p/github-build_your_own_x/</link><pubDate>Sun, 12 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/github-build_your_own_x/</guid><description>&lt;h2 id="build-your-own-x"&gt;Build your own X
 &lt;/h2&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener"
 &gt;This repository&lt;/a&gt; is a compilation of well-written, step-by-step guides for re-creating our favorite technologies from scratch.&lt;/p&gt;
