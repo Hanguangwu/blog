@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roadmap on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/tags/roadmap/</link><description>Recent content in Roadmap on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 29 Jan 2026 13:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/tags/roadmap/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub Awesome Roadmaps</title><link>https://hanguangwu.github.io/blog/en/p/github-awesome-roadmaps/</link><pubDate>Thu, 29 Jan 2026 13:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/github-awesome-roadmaps/</guid><description>&lt;h1 id="awesome-roadmaps"&gt;Awesome Roadmaps
+&lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;A curated list of roadmaps, mostly about software development, which give you a clear route to improve your knowledge or skills.&lt;/p&gt;
+&lt;h2 id="programming-language"&gt;Programming Language
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/salmer/CppDeveloperRoadmap" target="_blank" rel="noopener"
+&gt;C++ Developer Roadmap&lt;/a&gt; - Roadmap focuses on general competencies and skills about C++ in 2024 &lt;a class="link" href="https://github.com/salmer/CppDeveloperRoadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Alikhll/golang-developer-roadmap" target="_blank" rel="noopener"
+&gt;Go Developer Roadmap&lt;/a&gt; - Roadmap to becoming a Go developer in 2021 &lt;a class="link" href="https://github.com/Alikhll/golang-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2021-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/s4kibs4mi/java-developer-roadmap" target="_blank" rel="noopener"
+&gt;Java Developer Roadmap&lt;/a&gt; - Roadmap to becoming a Java developer in 2025 &lt;a class="link" href="https://github.com/s4kibs4mi/java-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2025-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aliyr/Nodejs-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;Nodejs Developer Roadmap&lt;/a&gt; - Roadmap to becoming a Node.js developer in 2021 &lt;a class="link" href="https://github.com/aliyr/Nodejs-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-yellow2021-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/thecodeholic/php-developer-roadmap" target="_blank" rel="noopener"
+&gt;PHP Developer roadmap&lt;/a&gt; - Following this path will guarantee to Become a PHP Developer in 2021 &lt;a class="link" href="https://github.com/thecodeholic/php-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2021-green.svg"&gt;&lt;/a&gt; &lt;a class="link" href="https://github.com/thecodeholic/php-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/anshulrgoyal/rust-web-developer-roadmap" target="_blank" rel="noopener"
+&gt;Rust Web Developer Roadmap&lt;/a&gt; - Roadmap to becoming a Rust Web developer in 2022 &lt;a class="link" href="https://github.com/anshulrgoyal/rust-web-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2022-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="web-development"&gt;Web Development
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sulco/angular-developer-roadmap" target="_blank" rel="noopener"
+&gt;Angular Developer Roadmap&lt;/a&gt; - Roadmap to becoming an Angular developer &lt;a class="link" href="https://github.com/sulco/angular-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2018-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/saifaustcse/angular-developer-roadmap" target="_blank" rel="noopener"
+&gt;Angular Developer Roadmap 2&lt;/a&gt; - Roadmap to becoming an Angular developer in 2024 &lt;a class="link" href="https://github.com/saifaustcse/angular-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MoienTajik/AspNetCore-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;ASP.Net Core Developer Roadmap&lt;/a&gt; - Roadmap to becoming an ASP .NET Core developer in 2025 &lt;a class="link" href="https://github.com/MoienTajik/AspNetCore-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2025-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kamranahmedse/developer-roadmap" target="_blank" rel="noopener"
+&gt;Developer Roadmap&lt;/a&gt; - Community driven roadmaps, articles and resources for developers &lt;a class="link" href="https://github.com/kamranahmedse/developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2022-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sadanandpai/frontend-learning-kit/blob/main/public/2024_FE_roadmap.pdf" target="_blank" rel="noopener"
+&gt;Frontend development roadmap&lt;/a&gt; - Frontend development interview checklist &amp;amp; roadmap &lt;a class="link" href="https://github.com/sadanandpai/frontend-learning-kit/blob/main/public/2024_FE_roadmap.pdf" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Hasnayeen/laravel-developer-roadmap" target="_blank" rel="noopener"
+&gt;Laravel Developer Roadmap&lt;/a&gt; - Roadmap to becoming an Laravel developer in 2024 &lt;a class="link" href="https://github.com/Hasnayeen/laravel-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/adam-golab/react-developer-roadmap" target="_blank" rel="noopener"
+&gt;React Developer Roadmap&lt;/a&gt; - Roadmap to becoming a React developer in 2019 &lt;a class="link" href="https://github.com/adam-golab/react-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2019-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/flaviocopes/vue-developer-roadmap" target="_blank" rel="noopener"
+&gt;Vue Developer Roadmap&lt;/a&gt; - Roadmap to becoming a Vue.js developer in 2019 &lt;a class="link" href="https://github.com/flaviocopes/vue-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2019-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="mobile-development"&gt;Mobile Development
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mobile-roadmap/android-developer-roadmap" target="_blank" rel="noopener"
+&gt;Android Developer Roadmap&lt;/a&gt; - Roadmap to becoming an Android developer in 2020 &lt;a class="link" href="https://github.com/mobile-roadmap/android-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2020-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/olexale/flutter_roadmap" target="_blank" rel="noopener"
+&gt;Flutter Developer Roadmap&lt;/a&gt; - Roadmap for creating hybrid apps using Google&amp;rsquo;s Flutter SDK &lt;a class="link" href="https://github.com/olexale/flutter_roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/BohdanOrlov/iOS-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;iOS Developer Roadmap&lt;/a&gt; - Roadmap to becoming an iOS developer in 2020 &lt;a class="link" href="https://github.com/BohdanOrlov/iOS-Developer-Roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2020-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="game-development"&gt;Game Development
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/utilForever/game-developer-roadmap" target="_blank" rel="noopener"
+&gt;Game Developer Roadmap&lt;/a&gt; - Roadmap to becoming a game developer in 2022 &lt;a class="link" href="https://github.com/utilForever/game-developer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2022-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/miloyip/game-programmer" target="_blank" rel="noopener"
+&gt;Game Programming Roadmap&lt;/a&gt; - Roadmap to becoming a game programmer &lt;a class="link" href="https://github.com/miloyip/game-programmer" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2019-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ai--machine-learning--data-science"&gt;AI / Machine Learning / Data Science
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AMAI-GmbH/AI-Expert-Roadmap" target="_blank" rel="noopener"
+&gt;AI Expert Roadmap&lt;/a&gt; - Roadmap to becoming an Artificial Intelligence Expert in 2022 &lt;a class="link" href="https://github.com/AMAI-GmbH/AI-Expert-Roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2022-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" target="_blank" rel="noopener"
+&gt;Deep Learning Reading Roadmap&lt;/a&gt; - Roadmap through seminal deep learning papers &lt;a class="link" href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2022-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/instillai/deep-learning-roadmap" target="_blank" rel="noopener"
+&gt;Deep Learning Roadmap&lt;/a&gt; - Roadmap to getting started with deep learning &lt;a class="link" href="https://github.com/instillai/deep-learning-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2020-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/datastacktv/data-engineer-roadmap" target="_blank" rel="noopener"
+&gt;Data Engineer Roadmap&lt;/a&gt; - Roadmap to becoming a data engineer in 2021 &lt;a class="link" href="https://github.com/datastacktv/data-engineer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2021-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/boringPpl/data-science-roadmap" target="_blank" rel="noopener"
+&gt;Data Science Roadmap&lt;/a&gt; - Roadmap to becoming a data scientist &lt;a class="link" href="https://github.com/boringPpl/data-science-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2020-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MrMimic/data-scientist-roadmap" target="_blank" rel="noopener"
+&gt;Data Scientist Roadmap&lt;/a&gt; - Roadmap of tutorials for those interested in data science &lt;a class="link" href="https://github.com/MrMimic/data-scientist-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/graykode/nlp-roadmap" target="_blank" rel="noopener"
+&gt;NLP Roadmap&lt;/a&gt; - Roadmap for Natural Language Processing learning in 2019 &lt;a class="link" href="https://github.com/graykode/nlp-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2019-yellowgreen.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="miscellaneous"&gt;Miscellaneous
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fityanos/awesome-quality-assurance-roadmap" target="_blank" rel="noopener"
+&gt;Awesome Quality Assurance Roadmap&lt;/a&gt; - Roadmap for QA and software testing learning curve which you might need to start the journey &lt;a class="link" href="https://github.com/fityanos/awesome-quality-assurance-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2021-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Sundowndev/hacker-roadmap" target="_blank" rel="noopener"
+&gt;Hacker Roadmap&lt;/a&gt; - Roadmap for amateur pen testers and a collection of hacking tools, resources and references &lt;a class="link" href="https://github.com/Sundowndev/hacker-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2023-yellow.svg"&gt;&lt;/a&gt;❗.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AlaaAttya/software-architect-roadmap" target="_blank" rel="noopener"
+&gt;Software Architect Roadmap&lt;/a&gt; - Roadmap for becoming a software architect &lt;a class="link" href="https://github.com/AlaaAttya/software-architect-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2018-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stemmlerjs/software-design-and-architecture-roadmap" target="_blank" rel="noopener"
+&gt;Software Design and Architecture Roadmap&lt;/a&gt; - A software design and architecture roadmap for any developer &lt;a class="link" href="https://github.com/stemmlerjs/software-design-and-architecture-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2019-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mohsenshafiei/system-design-master-plan" target="_blank" rel="noopener"
+&gt;System Design Roadmap&lt;/a&gt; - Roadmap to learn system design and architecture &lt;a class="link" href="https://github.com/mohsenshafiei/system-design-master-plan" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/togiberlin/ui-ux-designer-roadmap" target="_blank" rel="noopener"
+&gt;UI/UX Designer Roadmap&lt;/a&gt; - Roadmap on becoming a UI/UX designer in 2017 &lt;a class="link" href="https://github.com/togiberlin/ui-ux-designer-roadmap" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2017-yellow.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/IlIllII/collecobrary" target="_blank" rel="noopener"
+&gt;University Degree Roadmap&lt;/a&gt; - Roadmap for taking online university courses in various degree subjects &lt;a class="link" href="https://github.com/IlIllII/collecobrary" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Roadmap-2024-green.svg"&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="articles"&gt;Articles
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://medium.com/mindorks/a-roadmap-to-become-a-better-android-developer-3038cf7f8c8d" target="_blank" rel="noopener"
+&gt;A Roadmap To Become A Better Android Developer&lt;/a&gt; - A collection of articles to provide a proper roadmap to become a better Android Developer &lt;img src="https://img.shields.io/badge/Medium-000000?logo=medium"&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.scaler.com/blog/java-full-stack-developer-roadmap/" target="_blank" rel="noopener"
+&gt;Java Full Stack Developer Roadmap&lt;/a&gt; - Discover all the tech career roadmaps and latest market trends in the tech job market &lt;img src="https://img.shields.io/badge/Java-0000FF"&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.appliedaicourse.com/blog/data-analytics-roadmap/" target="_blank" rel="noopener"
+&gt;Data Analytics Roadmap&lt;/a&gt; - Unlock success with this comprehensive roadmap: your guide to mastering analytics skills and career growth!&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

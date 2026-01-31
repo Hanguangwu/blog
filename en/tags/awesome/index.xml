@@ -1,0 +1,1593 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Awesome on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/tags/awesome/</link><description>Recent content in Awesome on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 29 Jan 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/tags/awesome/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub Awesome list</title><link>https://hanguangwu.github.io/blog/en/p/github-awesome-list/</link><pubDate>Thu, 29 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/github-awesome-list/</guid><description>&lt;h1 id="awesome-list"&gt;Awesome-list
+&lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome" target="_blank" rel="noopener"
+&gt;Top Repository in GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="platforms"&gt;Platforms
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-nodejs#readme" target="_blank" rel="noopener"
+&gt;Node.js&lt;/a&gt; - Async non-blocking event-driven JavaScript runtime built on Chrome&amp;rsquo;s V8 JavaScript engine.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bcoe/awesome-cross-platform-nodejs#readme" target="_blank" rel="noopener"
+&gt;Cross-Platform&lt;/a&gt; - Writing cross-platform code on Node.js.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dypsilon/frontend-dev-bookmarks#readme" target="_blank" rel="noopener"
+&gt;Frontend Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vsouza/awesome-ios#readme" target="_blank" rel="noopener"
+&gt;iOS&lt;/a&gt; - Mobile operating system for Apple phones and tablets.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/JStumpp/awesome-android#readme" target="_blank" rel="noopener"
+&gt;Android&lt;/a&gt; - Mobile operating system developed by Google.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/weblancaster/awesome-IoT-hybrid#readme" target="_blank" rel="noopener"
+&gt;IoT &amp;amp; Hybrid Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-electron#readme" target="_blank" rel="noopener"
+&gt;Electron&lt;/a&gt; - Cross-platform native desktop apps using JavaScript/HTML/CSS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/busterc/awesome-cordova#readme" target="_blank" rel="noopener"
+&gt;Cordova&lt;/a&gt; - JavaScript API for hybrid apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jondot/awesome-react-native#readme" target="_blank" rel="noopener"
+&gt;React Native&lt;/a&gt; - JavaScript framework for writing natively rendering mobile apps for iOS and Android.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/XamSome/awesome-xamarin#readme" target="_blank" rel="noopener"
+&gt;Xamarin&lt;/a&gt; - Mobile app development IDE, testing, and distribution.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/inputsh/awesome-linux#readme" target="_blank" rel="noopener"
+&gt;Linux&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Friz-zy/awesome-linux-containers#readme" target="_blank" rel="noopener"
+&gt;Containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zoidbergwill/awesome-ebpf#readme" target="_blank" rel="noopener"
+&gt;eBPF&lt;/a&gt; - Virtual machine that allows you to write more efficient and powerful tracing and monitoring for Linux systems.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/PandaFoss/Awesome-Arch#readme" target="_blank" rel="noopener"
+&gt;Arch-based Projects&lt;/a&gt; - Linux distributions and projects based on Arch Linux.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AppImage/awesome-appimage#readme" target="_blank" rel="noopener"
+&gt;AppImage&lt;/a&gt; - Package apps in a single file that works on various mainstream Linux distributions.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aorumbayev/awesome-omarchy#readme" target="_blank" rel="noopener"
+&gt;Omarchy&lt;/a&gt; - Opinionated Arch Linux and Hyprland desktop environment from the creator of Ruby on Rails.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;macOS - Operating system for Apple&amp;rsquo;s Mac computers.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/agarrharr/awesome-macos-screensavers#readme" target="_blank" rel="noopener"
+&gt;Screensavers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jaywcjlove/awesome-mac#readme" target="_blank" rel="noopener"
+&gt;Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/serhii-londar/open-source-mac-os-apps#readme" target="_blank" rel="noopener"
+&gt;Open Source Apps&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/yenchenlin/awesome-watchos#readme" target="_blank" rel="noopener"
+&gt;watchOS&lt;/a&gt; - Operating system for the Apple Watch.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/deephacks/awesome-jvm#readme" target="_blank" rel="noopener"
+&gt;JVM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mailtoharshit/awesome-salesforce#readme" target="_blank" rel="noopener"
+&gt;Salesforce&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/donnemartin/awesome-aws#readme" target="_blank" rel="noopener"
+&gt;Amazon Web Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/0pandadev/awesome-windows#readme" target="_blank" rel="noopener"
+&gt;Windows&lt;/a&gt; - Consumer desktop operating system.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hlaueriksson/awesome-powertoys-run-plugins#readme" target="_blank" rel="noopener"
+&gt;PowerToys Run Plugins&lt;/a&gt; - Community plugins for the Windows quick launcher.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ipfs/awesome-ipfs#readme" target="_blank" rel="noopener"
+&gt;IPFS&lt;/a&gt; - P2P hypermedia protocol.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fuse-compound/awesome-fuse#readme" target="_blank" rel="noopener"
+&gt;Fuse&lt;/a&gt; - Mobile development tools.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ianstormtaylor/awesome-heroku#readme" target="_blank" rel="noopener"
+&gt;Heroku&lt;/a&gt; - Cloud platform as a service.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/thibmaek/awesome-raspberry-pi#readme" target="_blank" rel="noopener"
+&gt;Raspberry Pi&lt;/a&gt; - Credit card-sized computer aimed at teaching kids programming, but capable of a lot more.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/JesseTG/awesome-qt#readme" target="_blank" rel="noopener"
+&gt;Qt&lt;/a&gt; - Cross-platform GUI app framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fregante/Awesome-WebExtensions#readme" target="_blank" rel="noopener"
+&gt;WebExtensions&lt;/a&gt; - Cross-browser extension system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vitalets/awesome-smart-tv#readme" target="_blank" rel="noopener"
+&gt;Smart TV&lt;/a&gt; - Create apps for different TV platforms.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Kazhnuz/awesome-gnome#readme" target="_blank" rel="noopener"
+&gt;GNOME&lt;/a&gt; - Simple and distraction-free desktop environment for Linux.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/francoism90/awesome-kde#readme" target="_blank" rel="noopener"
+&gt;KDE&lt;/a&gt; - A free software community dedicated to creating an open and user-friendly computing experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/quozd/awesome-dotnet#readme" target="_blank" rel="noopener"
+&gt;.NET&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/thangchung/awesome-dotnet-core#readme" target="_blank" rel="noopener"
+&gt;Core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ironcev/awesome-roslyn#readme" target="_blank" rel="noopener"
+&gt;Roslyn&lt;/a&gt; - Open-source compilers and code analysis APIs for C# and VB.NET languages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/miguelmota/awesome-amazon-alexa#readme" target="_blank" rel="noopener"
+&gt;Amazon Alexa&lt;/a&gt; - Virtual home assistant.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jonleibowitz/awesome-digitalocean#readme" target="_blank" rel="noopener"
+&gt;DigitalOcean&lt;/a&gt; - Cloud computing platform designed for developers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Solido/awesome-flutter#readme" target="_blank" rel="noopener"
+&gt;Flutter&lt;/a&gt; - Google&amp;rsquo;s mobile SDK for building native iOS and Android apps from a single codebase written in Dart.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/frenck/awesome-home-assistant#readme" target="_blank" rel="noopener"
+&gt;Home Assistant&lt;/a&gt; - Open source home automation that puts local control and privacy first.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/victorshinya/awesome-ibmcloud#readme" target="_blank" rel="noopener"
+&gt;IBM Cloud&lt;/a&gt; - Cloud platform for developers and companies.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jthegedus/awesome-firebase#readme" target="_blank" rel="noopener"
+&gt;Firebase&lt;/a&gt; - App development platform built on Google Cloud.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fkromer/awesome-ros2#readme" target="_blank" rel="noopener"
+&gt;Robot Operating System 2.0&lt;/a&gt; - Set of software libraries and tools that help you build robot apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/adafruit/awesome-adafruitio#readme" target="_blank" rel="noopener"
+&gt;Adafruit IO&lt;/a&gt; - Visualize and store data from any device.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/irazasyed/awesome-cloudflare#readme" target="_blank" rel="noopener"
+&gt;Cloudflare&lt;/a&gt; - CDN, DNS, DDoS protection, and security for your site.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ravirupareliya/awesome-actions-on-google#readme" target="_blank" rel="noopener"
+&gt;Actions on Google&lt;/a&gt; - Developer platform for Google Assistant.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/agucova/awesome-esp#readme" target="_blank" rel="noopener"
+&gt;ESP&lt;/a&gt; - Low-cost microcontrollers with WiFi and broad IoT applications.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/denolib/awesome-deno#readme" target="_blank" rel="noopener"
+&gt;Deno&lt;/a&gt; - A secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/balintkissdev/awesome-dos#readme" target="_blank" rel="noopener"
+&gt;DOS&lt;/a&gt; - Operating system for x86-based personal computers that was popular during the 1980s and early 1990s.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nix-community/awesome-nix#readme" target="_blank" rel="noopener"
+&gt;Nix&lt;/a&gt; - Package manager for Linux and other Unix systems that makes package management reliable and reproducible.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stn1slv/awesome-integration#readme" target="_blank" rel="noopener"
+&gt;Integration&lt;/a&gt; - Linking together different IT systems (components) to functionally cooperate as a whole.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/naimo84/awesome-nodered#readme" target="_blank" rel="noopener"
+&gt;Node-RED&lt;/a&gt; - A programming tool for wiring together hardware devices, APIs, and online services.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zenitysec/awesome-low-code#readme" target="_blank" rel="noopener"
+&gt;Low Code&lt;/a&gt; - Allowing business professionals to address their needs on their own with little to no coding skills.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/riderx/awesome-capacitor#readme" target="_blank" rel="noopener"
+&gt;Capacitor&lt;/a&gt; - Cross-platform open source runtime for building Web Native apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Esri/awesome-arcgis-developer#readme" target="_blank" rel="noopener"
+&gt;ArcGIS Developer&lt;/a&gt; - Mapping and location analysis platform for developers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dotintent/awesome-ble#readme" target="_blank" rel="noopener"
+&gt;Bluetooth Low Energy&lt;/a&gt; - Low-power wireless communication protocol ideal for IoT, wearables, and other battery-powered applications.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MartinZikmund/awesome-uno-platform#readme" target="_blank" rel="noopener"
+&gt;Uno Platform&lt;/a&gt; - Open-source .NET UI platform for building cross-platform apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/GoogleCloudPlatform/awesome-google-cloud#readme" target="_blank" rel="noopener"
+&gt;Google Cloud&lt;/a&gt; - Cloud computing services by Google.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/xavidop/awesome-firebase-genkit#readme" target="_blank" rel="noopener"
+&gt;Firebase Genkit&lt;/a&gt; - An open-source framework for building AI-powered apps and features.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/shano/awesome-backstage#readme" target="_blank" rel="noopener"
+&gt;Backstage&lt;/a&gt; - Open-source platform for building Internal Developer Portals that unify tools and workflows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="programming-languages"&gt;Programming Languages
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sorrycc/awesome-javascript#readme" target="_blank" rel="noopener"
+&gt;JavaScript&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/wbinnssmith/awesome-promises#readme" target="_blank" rel="noopener"
+&gt;Promises&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/standard/awesome-standard#readme" target="_blank" rel="noopener"
+&gt;Standard Style&lt;/a&gt; - Style guide and linter.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bolshchikov/js-must-watch#readme" target="_blank" rel="noopener"
+&gt;Must Watch Talks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/loverajoel/jstips#readme" target="_blank" rel="noopener"
+&gt;Tips&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Kikobeats/awesome-network-js#readme" target="_blank" rel="noopener"
+&gt;Network Layer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/parro-it/awesome-micro-npm-packages#readme" target="_blank" rel="noopener"
+&gt;Micro npm Packages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/feross/awesome-mad-science#readme" target="_blank" rel="noopener"
+&gt;Mad Science npm Packages&lt;/a&gt; - Impossible sounding projects that exist.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/maxogden/maintenance-modules#readme" target="_blank" rel="noopener"
+&gt;Maintenance Modules&lt;/a&gt; - For npm packages.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-npm#readme" target="_blank" rel="noopener"
+&gt;npm&lt;/a&gt; - Package manager.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/avajs/awesome-ava#readme" target="_blank" rel="noopener"
+&gt;AVA&lt;/a&gt; - Test runner.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dustinspecker/awesome-eslint#readme" target="_blank" rel="noopener"
+&gt;ESLint&lt;/a&gt; - Linter.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stoeffel/awesome-fp-js#readme" target="_blank" rel="noopener"
+&gt;Functional Programming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-observables#readme" target="_blank" rel="noopener"
+&gt;Observables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RyanZim/awesome-npm-scripts#readme" target="_blank" rel="noopener"
+&gt;npm scripts&lt;/a&gt; - Task runner.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/30-seconds/30-seconds-of-code#readme" target="_blank" rel="noopener"
+&gt;30 Seconds of Code&lt;/a&gt; - Code snippets you can understand in 30 seconds.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Richienb/awesome-ponyfills#readme" target="_blank" rel="noopener"
+&gt;Ponyfills&lt;/a&gt; - Like polyfills but without overriding native APIs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/matteocrippa/awesome-swift#readme" target="_blank" rel="noopener"
+&gt;Swift&lt;/a&gt; - Apple&amp;rsquo;s compiled programming language that is secure, modern, programmer-friendly, and fast.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hsavit1/Awesome-Swift-Education#readme" target="_blank" rel="noopener"
+&gt;Education&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/uraimo/Awesome-Swift-Playgrounds#readme" target="_blank" rel="noopener"
+&gt;Playgrounds&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vinta/awesome-python#readme" target="_blank" rel="noopener"
+&gt;Python&lt;/a&gt; - General-purpose programming language designed for readability.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/timofurrer/awesome-asyncio#readme" target="_blank" rel="noopener"
+&gt;Asyncio&lt;/a&gt; - Asynchronous I/O in Python 3.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/faroit/awesome-python-scientific-audio#readme" target="_blank" rel="noopener"
+&gt;Scientific Audio&lt;/a&gt; - Scientific research in audio/music.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/adafruit/awesome-circuitpython#readme" target="_blank" rel="noopener"
+&gt;CircuitPython&lt;/a&gt; - A version of Python for microcontrollers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/krzjoa/awesome-python-data-science#readme" target="_blank" rel="noopener"
+&gt;Data Science&lt;/a&gt; - Data analysis and machine learning.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/typeddjango/awesome-python-typing#readme" target="_blank" rel="noopener"
+&gt;Typing&lt;/a&gt; - Optional static typing for Python.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mcauser/awesome-micropython#readme" target="_blank" rel="noopener"
+&gt;MicroPython&lt;/a&gt; - A lean and efficient implementation of Python 3 for microcontrollers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rust-unofficial/awesome-rust#readme" target="_blank" rel="noopener"
+&gt;Rust&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pest-parser/awesome-pest#readme" target="_blank" rel="noopener"
+&gt;Pest&lt;/a&gt; - Parser generator.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/krispo/awesome-haskell#readme" target="_blank" rel="noopener"
+&gt;Haskell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/passy/awesome-purescript#readme" target="_blank" rel="noopener"
+&gt;PureScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/avelino/awesome-go#readme" target="_blank" rel="noopener"
+&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lauris/awesome-scala#readme" target="_blank" rel="noopener"
+&gt;Scala&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tindzk/awesome-scala-native#readme" target="_blank" rel="noopener"
+&gt;Scala Native&lt;/a&gt; - Optimizing ahead-of-time compiler for Scala based on LLVM.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/markets/awesome-ruby#readme" target="_blank" rel="noopener"
+&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/razum2um/awesome-clojure#readme" target="_blank" rel="noopener"
+&gt;Clojure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hantuzun/awesome-clojurescript#readme" target="_blank" rel="noopener"
+&gt;ClojureScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/h4cc/awesome-elixir#readme" target="_blank" rel="noopener"
+&gt;Elixir&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sporto/awesome-elm#readme" target="_blank" rel="noopener"
+&gt;Elm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/drobakowski/awesome-erlang#readme" target="_blank" rel="noopener"
+&gt;Erlang&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/svaksha/Julia.jl#readme" target="_blank" rel="noopener"
+&gt;Julia&lt;/a&gt; - High-level dynamic programming language designed to address the needs of high-performance numerical analysis and computational science.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/LewisJEllis/awesome-lua#readme" target="_blank" rel="noopener"
+&gt;Lua&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/inputsh/awesome-c#readme" target="_blank" rel="noopener"
+&gt;C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fffaraz/awesome-cpp#readme" target="_blank" rel="noopener"
+&gt;C/C++&lt;/a&gt; - General-purpose language with a bias toward system programming and embedded, resource-constrained software.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/qinwf/awesome-R#readme" target="_blank" rel="noopener"
+&gt;R&lt;/a&gt; - Functional programming language and environment for statistical computing and graphics.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/iamericfletcher/awesome-r-learning-resources#readme" target="_blank" rel="noopener"
+&gt;Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dlang-community/awesome-d#readme" target="_blank" rel="noopener"
+&gt;D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/CodyReichert/awesome-cl#readme" target="_blank" rel="noopener"
+&gt;Common Lisp&lt;/a&gt; - Powerful dynamic multiparadigm language that facilitates iterative and interactive development.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/GustavBertram/awesome-common-lisp-learning#readme" target="_blank" rel="noopener"
+&gt;Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hachiojipm/awesome-perl#readme" target="_blank" rel="noopener"
+&gt;Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kdabir/awesome-groovy#readme" target="_blank" rel="noopener"
+&gt;Groovy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/yissachar/awesome-dart#readme" target="_blank" rel="noopener"
+&gt;Dart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/akullpp/awesome-java#readme" target="_blank" rel="noopener"
+&gt;Java&lt;/a&gt; - Popular secure object-oriented language designed for flexibility to &amp;ldquo;write once, run anywhere&amp;rdquo;.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eleventigers/awesome-rxjava#readme" target="_blank" rel="noopener"
+&gt;RxJava&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hstsethi/awesome-j2me#readme" target="_blank" rel="noopener"
+&gt;J2ME&lt;/a&gt; - Java specification designed for old keypad phones and PDAs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/KotlinBy/awesome-kotlin#readme" target="_blank" rel="noopener"
+&gt;Kotlin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ocaml-community/awesome-ocaml#readme" target="_blank" rel="noopener"
+&gt;OCaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/seancoyne/awesome-coldfusion#readme" target="_blank" rel="noopener"
+&gt;ColdFusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rabbiabram/awesome-fortran#readme" target="_blank" rel="noopener"
+&gt;Fortran&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ziadoz/awesome-php#readme" target="_blank" rel="noopener"
+&gt;PHP&lt;/a&gt; - Server-side scripting language.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jakoch/awesome-composer#readme" target="_blank" rel="noopener"
+&gt;Composer&lt;/a&gt; - Package manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Fr0sT-Brutal/awesome-pascal#readme" target="_blank" rel="noopener"
+&gt;Pascal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ahkscript/awesome-AutoHotkey#readme" target="_blank" rel="noopener"
+&gt;AutoHotkey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/J2TeaM/awesome-AutoIt#readme" target="_blank" rel="noopener"
+&gt;AutoIt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/veelenga/awesome-crystal#readme" target="_blank" rel="noopener"
+&gt;Crystal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sfischer13/awesome-frege#readme" target="_blank" rel="noopener"
+&gt;Frege&lt;/a&gt; - Haskell for the JVM.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/onqtam/awesome-cmake#readme" target="_blank" rel="noopener"
+&gt;CMake&lt;/a&gt; - Build, test, and package software.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/robinrodricks/awesome-actionscript3#readme" target="_blank" rel="noopener"
+&gt;ActionScript 3&lt;/a&gt; - Object-oriented language targeting Adobe AIR.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sfischer13/awesome-eta#readme" target="_blank" rel="noopener"
+&gt;Eta&lt;/a&gt; - Functional programming language for the JVM.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/joaomilho/awesome-idris#readme" target="_blank" rel="noopener"
+&gt;Idris&lt;/a&gt; - General purpose pure functional programming language with dependent types influenced by Haskell and ML.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ohenley/awesome-ada#readme" target="_blank" rel="noopener"
+&gt;Ada/SPARK&lt;/a&gt; - Modern programming language designed for large, long-lived apps where reliability and efficiency are essential.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ebraminio/awesome-qsharp#readme" target="_blank" rel="noopener"
+&gt;Q#&lt;/a&gt; - Domain-specific programming language used for expressing quantum algorithms.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/koolamusic/awesome-imba#readme" target="_blank" rel="noopener"
+&gt;Imba&lt;/a&gt; - Programming language inspired by Ruby and Python and compiles to performant JavaScript.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/desiderantes/awesome-vala#readme" target="_blank" rel="noopener"
+&gt;Vala&lt;/a&gt; - Programming language designed to take full advantage of the GLib and GNOME ecosystems, while preserving the speed of C code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/coq-community/awesome-coq#readme" target="_blank" rel="noopener"
+&gt;Coq&lt;/a&gt; - Formal language and environment for programming and specification which facilitates interactive development of machine-checked proofs.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vlang/awesome-v#readme" target="_blank" rel="noopener"
+&gt;V&lt;/a&gt; - Simple, fast, safe, compiled language for developing maintainable software.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MystenLabs/awesome-move#readme" target="_blank" rel="noopener"
+&gt;Move&lt;/a&gt; - Domain-specific programming language for writing safe smart contracts.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/angrykoala/awesome-esolangs#readme" target="_blank" rel="noopener"
+&gt;Esolangs&lt;/a&gt; - Programming languages designed for experimentation or as jokes rather than actual use.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sancarn/awesome-vba#readme" target="_blank" rel="noopener"
+&gt;VBA&lt;/a&gt; - An event-driven version of Visual Basic 6.0 built into most Microsoft Office apps for automation and scripting.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fsprojects/awesome-fsharp#readme" target="_blank" rel="noopener"
+&gt;F#&lt;/a&gt; - A .NET-based language with focus on functional programming.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href="https://vshymanskyy.github.io/StandWithUkraine"&gt;
+&lt;img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg"&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;br&gt;
+&lt;h2 id="front-end-development"&gt;Front-End Development
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/addyosmani/es6-tools#readme" target="_blank" rel="noopener"
+&gt;ES6 Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/davidsonfellipe/awesome-wpo#readme" target="_blank" rel="noopener"
+&gt;Web Performance Optimization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lvwzhen/tools#readme" target="_blank" rel="noopener"
+&gt;Web Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awesome-css-group/awesome-css#readme" target="_blank" rel="noopener"
+&gt;CSS&lt;/a&gt; - Style sheet language that specifies how HTML elements are displayed on screen.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/addyosmani/critical-path-css-tools#readme" target="_blank" rel="noopener"
+&gt;Critical-Path Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/davidtheclark/scalable-css-reading-list#readme" target="_blank" rel="noopener"
+&gt;Scalability&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AllThingsSmitty/must-watch-css#readme" target="_blank" rel="noopener"
+&gt;Must-Watch Talks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AllThingsSmitty/css-protips#readme" target="_blank" rel="noopener"
+&gt;Protips&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/troxler/awesome-css-frameworks#readme" target="_blank" rel="noopener"
+&gt;Frameworks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/enaqx/awesome-react#readme" target="_blank" rel="noopener"
+&gt;React&lt;/a&gt; - JavaScript library for building user interfaces.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/expede/awesome-relay#readme" target="_blank" rel="noopener"
+&gt;Relay&lt;/a&gt; - Framework for building data-driven React apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/glauberfc/awesome-react-hooks#readme" target="_blank" rel="noopener"
+&gt;React Hooks&lt;/a&gt; - Lets you use state and other React features without writing a class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/web-padawan/awesome-web-components#readme" target="_blank" rel="noopener"
+&gt;Web Components&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Granze/awesome-polymer#readme" target="_blank" rel="noopener"
+&gt;Polymer&lt;/a&gt; - JavaScript library to develop Web Components.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/PatrickJS/awesome-angular#readme" target="_blank" rel="noopener"
+&gt;Angular&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sadcitizen/awesome-backbone#readme" target="_blank" rel="noopener"
+&gt;Backbone&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/diegocard/awesome-html5#readme" target="_blank" rel="noopener"
+&gt;HTML5&lt;/a&gt; - Markup language used for websites &amp;amp; web apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/willianjusten/awesome-svg#readme" target="_blank" rel="noopener"
+&gt;SVG&lt;/a&gt; - XML-based vector image format.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/raphamorim/awesome-canvas#readme" target="_blank" rel="noopener"
+&gt;Canvas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dnbard/awesome-knockout#readme" target="_blank" rel="noopener"
+&gt;KnockoutJS&lt;/a&gt; - JavaScript library.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/petk/awesome-dojo#readme" target="_blank" rel="noopener"
+&gt;Dojo Toolkit&lt;/a&gt; - JavaScript toolkit.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/NoahBuscher/Inspire#readme" target="_blank" rel="noopener"
+&gt;Inspiration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ember-community-russia/awesome-ember#readme" target="_blank" rel="noopener"
+&gt;Ember&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/wasabeef/awesome-android-ui#readme" target="_blank" rel="noopener"
+&gt;Android UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cjwirth/awesome-ios-ui#readme" target="_blank" rel="noopener"
+&gt;iOS UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Urigo/awesome-meteor#readme" target="_blank" rel="noopener"
+&gt;Meteor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sturobson/BEM-resources#readme" target="_blank" rel="noopener"
+&gt;BEM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/afonsopacifer/awesome-flexbox#readme" target="_blank" rel="noopener"
+&gt;Flexbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/deanhume/typography#readme" target="_blank" rel="noopener"
+&gt;Web Typography&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/brunopulis/awesome-a11y#readme" target="_blank" rel="noopener"
+&gt;Web Accessibility&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sachin1092/awesome-material#readme" target="_blank" rel="noopener"
+&gt;Material Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/wbkd/awesome-d3#readme" target="_blank" rel="noopener"
+&gt;D3&lt;/a&gt; - Library for producing dynamic, interactive data visualizations.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jonathandion/awesome-emails#readme" target="_blank" rel="noopener"
+&gt;Emails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/petk/awesome-jquery#readme" target="_blank" rel="noopener"
+&gt;jQuery&lt;/a&gt; - Easy to use JavaScript library for DOM manipulation.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AllThingsSmitty/jquery-tips-everyone-should-know#readme" target="_blank" rel="noopener"
+&gt;Tips&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/notthetup/awesome-webaudio#readme" target="_blank" rel="noopener"
+&gt;Web Audio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pazguille/offline-first#readme" target="_blank" rel="noopener"
+&gt;Offline-First&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/agarrharr/awesome-static-website-services#readme" target="_blank" rel="noopener"
+&gt;Static Website Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cyclejs-community/awesome-cyclejs#readme" target="_blank" rel="noopener"
+&gt;Cycle.js&lt;/a&gt; - Functional and reactive JavaScript framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dok/awesome-text-editing#readme" target="_blank" rel="noopener"
+&gt;Text Editing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fliptheweb/motion-ui-design#readme" target="_blank" rel="noopener"
+&gt;Motion UI Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vuejs/awesome-vue#readme" target="_blank" rel="noopener"
+&gt;Vue.js&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sadcitizen/awesome-marionette#readme" target="_blank" rel="noopener"
+&gt;Marionette.js&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aurelia-contrib/awesome-aurelia#readme" target="_blank" rel="noopener"
+&gt;Aurelia&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zingchart/awesome-charting#readme" target="_blank" rel="noopener"
+&gt;Charting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/candelibas/awesome-ionic#readme" target="_blank" rel="noopener"
+&gt;Ionic Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ChromeDevTools/awesome-chrome-devtools#readme" target="_blank" rel="noopener"
+&gt;Chrome DevTools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jdrgomes/awesome-postcss#readme" target="_blank" rel="noopener"
+&gt;PostCSS&lt;/a&gt; - CSS tool.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nikgraf/awesome-draft-js#readme" target="_blank" rel="noopener"
+&gt;Draft.js&lt;/a&gt; - Rich text editor framework for React.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TalAter/awesome-service-workers#readme" target="_blank" rel="noopener"
+&gt;Service Workers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TalAter/awesome-progressive-web-apps#readme" target="_blank" rel="noopener"
+&gt;Progressive Web Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/choojs/awesome-choo#readme" target="_blank" rel="noopener"
+&gt;choo&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/brillout/awesome-redux#readme" target="_blank" rel="noopener"
+&gt;Redux&lt;/a&gt; - State container for JavaScript apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/browserify/awesome-browserify#readme" target="_blank" rel="noopener"
+&gt;Browserify&lt;/a&gt; - Module bundler.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Famolus/awesome-sass#readme" target="_blank" rel="noopener"
+&gt;Sass&lt;/a&gt; - CSS preprocessor.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/websemantics/awesome-ant-design#readme" target="_blank" rel="noopener"
+&gt;Ant Design&lt;/a&gt; - Enterprise-class UI design language.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/LucasBassetti/awesome-less#readme" target="_blank" rel="noopener"
+&gt;Less&lt;/a&gt; - CSS preprocessor.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sjfricke/awesome-webgl#readme" target="_blank" rel="noopener"
+&gt;WebGL&lt;/a&gt; - JavaScript API for rendering 3D graphics.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/preactjs/awesome-preact#readme" target="_blank" rel="noopener"
+&gt;Preact&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jbmoelker/progressive-enhancement-resources#readme" target="_blank" rel="noopener"
+&gt;Progressive Enhancement&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/unicodeveloper/awesome-nextjs#readme" target="_blank" rel="noopener"
+&gt;Next.js&lt;/a&gt; - Framework for server-rendered React apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/web-padawan/awesome-lit#readme" target="_blank" rel="noopener"
+&gt;lit&lt;/a&gt; - Library for building web components with a declarative template system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/automata/awesome-jamstack#readme" target="_blank" rel="noopener"
+&gt;JAMstack&lt;/a&gt; - Modern web development architecture based on client-side JavaScript, reusable APIs, and prebuilt markup.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/henrikwirth/awesome-wordpress-gatsby#readme" target="_blank" rel="noopener"
+&gt;WordPress-Gatsby&lt;/a&gt; - Web development technology stack with WordPress as a back end and Gatsby as a front end.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/myshov/awesome-mobile-web-development#readme" target="_blank" rel="noopener"
+&gt;Mobile Web Development&lt;/a&gt; - Creating a great mobile web experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lauthieb/awesome-storybook#readme" target="_blank" rel="noopener"
+&gt;Storybook&lt;/a&gt; - Development environment for UI components.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AdrienTorris/awesome-blazor#readme" target="_blank" rel="noopener"
+&gt;Blazor&lt;/a&gt; - .NET web framework using C#/Razor and HTML that runs in the browser with WebAssembly.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/csabapalfi/awesome-pagespeed-metrics#readme" target="_blank" rel="noopener"
+&gt;PageSpeed Metrics&lt;/a&gt; - Metrics to help understand page speed and user experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aniftyco/awesome-tailwindcss#readme" target="_blank" rel="noopener"
+&gt;Tailwind CSS&lt;/a&gt; - Utility-first CSS framework for rapid UI development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/seed-rs/awesome-seed-rs#readme" target="_blank" rel="noopener"
+&gt;Seed&lt;/a&gt; - Rust framework for creating web apps running in WebAssembly.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pajaydev/awesome-web-performance-budget#readme" target="_blank" rel="noopener"
+&gt;Web Performance Budget&lt;/a&gt; - Techniques to ensure certain performance metrics for a website.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sergey-pimenov/awesome-web-animation#readme" target="_blank" rel="noopener"
+&gt;Web Animation&lt;/a&gt; - Animations in the browser with JavaScript, CSS, SVG, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jetli/awesome-yew#readme" target="_blank" rel="noopener"
+&gt;Yew&lt;/a&gt; - Rust framework inspired by Elm and React for creating multi-threaded frontend web apps with WebAssembly.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nadunindunil/awesome-material-ui#readme" target="_blank" rel="noopener"
+&gt;Material-UI&lt;/a&gt; - Material Design React components for faster and easier web development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/componently-com/awesome-building-blocks-for-web-apps#readme" target="_blank" rel="noopener"
+&gt;Building Blocks for Web Apps&lt;/a&gt; - Standalone features to be integrated into web apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TheComputerM/awesome-svelte#readme" target="_blank" rel="noopener"
+&gt;Svelte&lt;/a&gt; - App framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/klaufel/awesome-design-systems#readme" target="_blank" rel="noopener"
+&gt;Design systems&lt;/a&gt; - Collection of reusable components, guided by rules that ensure consistency and speed.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/innocenzi/awesome-inertiajs#readme" target="_blank" rel="noopener"
+&gt;Inertia.js&lt;/a&gt; - Make single-page apps without building an API.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mdbootstrap/awesome-mdbootstrap#readme" target="_blank" rel="noopener"
+&gt;MDBootstrap&lt;/a&gt; - Templates, layouts, components, and widgets to rapidly build websites.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/master-co/awesome-master-css#readme" target="_blank" rel="noopener"
+&gt;Master CSS&lt;/a&gt; - A virtual CSS language with enhanced syntax.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/shopify/awesome-hydrogen#readme" target="_blank" rel="noopener"
+&gt;Hydrogen&lt;/a&gt; - Edge-first framework for building Shopify storefronts with React.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/thoughtspile/awesome-tiny-js#readme" target="_blank" rel="noopener"
+&gt;Tiny JS&lt;/a&gt; - Frontend libraries that fit into 2 kB with dependencies.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/joewdavies/awesome-frontend-gis#readme" target="_blank" rel="noopener"
+&gt;Frontend GIS&lt;/a&gt; - Geographic Information Systems (GIS) for web browsers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mikbry/awesome-webgpu#readme" target="_blank" rel="noopener"
+&gt;WebGPU&lt;/a&gt; - JavaScript API for rendering and compute on GPUs.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/idematos/awesome-webassembly#readme" target="_blank" rel="noopener"
+&gt;WebAssembly&lt;/a&gt; - A portable binary format for running code efficiently across platforms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="back-end-development"&gt;Back-End Development
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mjhea0/awesome-flask#readme" target="_blank" rel="noopener"
+&gt;Flask&lt;/a&gt; - Python framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/veggiemonk/awesome-docker#readme" target="_blank" rel="noopener"
+&gt;Docker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/iJackUA/awesome-vagrant#readme" target="_blank" rel="noopener"
+&gt;Vagrant&lt;/a&gt; - Automation virtual machine environment.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/uralbash/awesome-pyramid#readme" target="_blank" rel="noopener"
+&gt;Pyramid&lt;/a&gt; - Python framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/PerfectCarl/awesome-play1#readme" target="_blank" rel="noopener"
+&gt;Play1 Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/friendsofcake/awesome-cakephp#readme" target="_blank" rel="noopener"
+&gt;CakePHP&lt;/a&gt; - PHP framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sitepoint-editors/awesome-symfony#readme" target="_blank" rel="noopener"
+&gt;Symfony&lt;/a&gt; - PHP framework.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pehapkari/awesome-symfony-education#readme" target="_blank" rel="noopener"
+&gt;Education&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/chiraggude/awesome-laravel#readme" target="_blank" rel="noopener"
+&gt;Laravel&lt;/a&gt; - PHP framework.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fukuball/Awesome-Laravel-Education#readme" target="_blank" rel="noopener"
+&gt;Education&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/livewire/awesome-tall-stack#readme" target="_blank" rel="noopener"
+&gt;TALL Stack&lt;/a&gt; - Full-stack development solution featuring libraries built by the Laravel community.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gramantin/awesome-rails#readme" target="_blank" rel="noopener"
+&gt;Rails&lt;/a&gt; - Web app framework for Ruby.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hothero/awesome-rails-gem#readme" target="_blank" rel="noopener"
+&gt;Gems&lt;/a&gt; - Packages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/phalcon/awesome-phalcon#readme" target="_blank" rel="noopener"
+&gt;Phalcon&lt;/a&gt; - PHP framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/phanan/htaccess#readme" target="_blank" rel="noopener"
+&gt;Useful &lt;code&gt;.htaccess&lt;/code&gt; Snippets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fcambus/nginx-resources#readme" target="_blank" rel="noopener"
+&gt;nginx&lt;/a&gt; - Web server.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stve/awesome-dropwizard#readme" target="_blank" rel="noopener"
+&gt;Dropwizard&lt;/a&gt; - Java framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ramitsurana/awesome-kubernetes#readme" target="_blank" rel="noopener"
+&gt;Kubernetes&lt;/a&gt; - Open-source platform that automates Linux container operations.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/unicodeveloper/awesome-lumen#readme" target="_blank" rel="noopener"
+&gt;Lumen&lt;/a&gt; - PHP micro-framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pmuens/awesome-serverless#readme" target="_blank" rel="noopener"
+&gt;Serverless Framework&lt;/a&gt; - Serverless computing and serverless architectures.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/PhantomYdn/awesome-wicket#readme" target="_blank" rel="noopener"
+&gt;Apache Wicket&lt;/a&gt; - Java web app framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vert-x3/vertx-awesome#readme" target="_blank" rel="noopener"
+&gt;Vert.x&lt;/a&gt; - Toolkit for building reactive apps on the JVM.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/shuaibiyy/awesome-terraform#readme" target="_blank" rel="noopener"
+&gt;Terraform&lt;/a&gt; - Tool for building, changing, and versioning infrastructure.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vapor-community/awesome-vapor#readme" target="_blank" rel="noopener"
+&gt;Vapor&lt;/a&gt; - Server-side development in Swift.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ucg8j/awesome-dash#readme" target="_blank" rel="noopener"
+&gt;Dash&lt;/a&gt; - Python web app framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mjhea0/awesome-fastapi#readme" target="_blank" rel="noopener"
+&gt;FastAPI&lt;/a&gt; - Python web app framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kolomied/awesome-cdk#readme" target="_blank" rel="noopener"
+&gt;CDK&lt;/a&gt; - Open-source software development framework for defining cloud infrastructure in code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kdeldycke/awesome-iam#readme" target="_blank" rel="noopener"
+&gt;IAM&lt;/a&gt; - User accounts, authentication and authorization.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nekofar/awesome-slim#readme" target="_blank" rel="noopener"
+&gt;Slim&lt;/a&gt; - PHP framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gofiber/awesome-fiber#readme" target="_blank" rel="noopener"
+&gt;Fiber&lt;/a&gt; - Web framework built on top of Fasthttp, the fastest HTTP engine for Go.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DevOpsHiveHQ/awesome-kustomize#readme" target="_blank" rel="noopener"
+&gt;Kustomize&lt;/a&gt; - Kubernetes native declarative configuration management tool.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/virtualroot/awesome-opentofu#readme" target="_blank" rel="noopener"
+&gt;OpenTofu&lt;/a&gt; - Open-source infrastructure as code tool.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/reflex-dev/awesome-reflex#readme" target="_blank" rel="noopener"
+&gt;Reflex&lt;/a&gt; - Python web framework for building both your frontend and backend with no JavaScript.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="computer-science"&gt;Computer Science
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/prakhar1989/awesome-courses#readme" target="_blank" rel="noopener"
+&gt;University Courses&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/academic/awesome-datascience#readme" target="_blank" rel="noopener"
+&gt;Data Science&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/siboehm/awesome-learn-datascience#readme" target="_blank" rel="noopener"
+&gt;Tutorials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/josephmisiti/awesome-machine-learning#readme" target="_blank" rel="noopener"
+&gt;Machine Learning&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ujjwalkarn/Machine-Learning-Tutorials#readme" target="_blank" rel="noopener"
+&gt;Tutorials&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/arbox/machine-learning-with-ruby#readme" target="_blank" rel="noopener"
+&gt;ML with Ruby&lt;/a&gt; - Learning, implementing, and applying Machine Learning using Ruby.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/likedan/Awesome-CoreML-Models#readme" target="_blank" rel="noopener"
+&gt;Core ML Models&lt;/a&gt; - Models for Apple&amp;rsquo;s machine learning framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/h2oai/awesome-h2o#readme" target="_blank" rel="noopener"
+&gt;H2O&lt;/a&gt; - Open source distributed machine learning platform written in Java with APIs in R, Python, and Scala.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/SE-ML/awesome-seml#readme" target="_blank" rel="noopener"
+&gt;Software Engineering for Machine Learning&lt;/a&gt; - From experiment to production-level machine learning.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/georgezouq/awesome-ai-in-finance#readme" target="_blank" rel="noopener"
+&gt;AI in Finance&lt;/a&gt; - Solving problems in finance with machine learning.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/n2cholas/awesome-jax#readme" target="_blank" rel="noopener"
+&gt;JAX&lt;/a&gt; - Automatic differentiation and XLA compilation brought together for high-performance machine learning research.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/altamiracorp/awesome-xai#readme" target="_blank" rel="noopener"
+&gt;XAI&lt;/a&gt; - Providing insight, explanations, and interpretability to machine learning methods.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/edobashira/speech-language-processing#readme" target="_blank" rel="noopener"
+&gt;Speech and Natural Language Processing&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dav009/awesome-spanish-nlp#readme" target="_blank" rel="noopener"
+&gt;Spanish&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/arbox/nlp-with-ruby#readme" target="_blank" rel="noopener"
+&gt;NLP with Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/seriousran/awesome-qa#readme" target="_blank" rel="noopener"
+&gt;Question Answering&lt;/a&gt; - The science of asking and answering in natural language with a machine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/accelerated-text/awesome-nlg#readme" target="_blank" rel="noopener"
+&gt;Natural Language Generation&lt;/a&gt; - Generation of text used in data-to-text, conversational agents, and narrative generation applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/theimpossibleastronaut/awesome-linguistics#readme" target="_blank" rel="noopener"
+&gt;Linguistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sobolevn/awesome-cryptography#readme" target="_blank" rel="noopener"
+&gt;Cryptography&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pFarb/awesome-crypto-papers#readme" target="_blank" rel="noopener"
+&gt;Papers&lt;/a&gt; - Theory basics for using cryptography by non-cryptographers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jbhuang0604/awesome-computer-vision#readme" target="_blank" rel="noopener"
+&gt;Computer Vision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ChristosChristofidis/awesome-deep-learning#readme" target="_blank" rel="noopener"
+&gt;Deep Learning&lt;/a&gt; - Neural networks.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jtoy/awesome-tensorflow#readme" target="_blank" rel="noopener"
+&gt;TensorFlow&lt;/a&gt; - Library for machine intelligence.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aaronhma/awesome-tensorflow-js#readme" target="_blank" rel="noopener"
+&gt;TensorFlow.js&lt;/a&gt; - WebGL-accelerated machine learning JavaScript library for training and deploying models.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/margaretmz/awesome-tensorflow-lite#readme" target="_blank" rel="noopener"
+&gt;TensorFlow Lite&lt;/a&gt; - Framework that optimizes TensorFlow models for on-device machine learning.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/terryum/awesome-deep-learning-papers#readme" target="_blank" rel="noopener"
+&gt;Papers&lt;/a&gt; - The most cited deep learning papers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/guillaume-chevalier/awesome-deep-learning-resources#readme" target="_blank" rel="noopener"
+&gt;Education&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kjw0612/awesome-deep-vision#readme" target="_blank" rel="noopener"
+&gt;Deep Vision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ossu/computer-science#readme" target="_blank" rel="noopener"
+&gt;Open Source Society University&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lucasviola/awesome-functional-programming#readme" target="_blank" rel="noopener"
+&gt;Functional Programming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dspinellis/awesome-msr#readme" target="_blank" rel="noopener"
+&gt;Empirical Software Engineering&lt;/a&gt; - Evidence-based research on software systems.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/analysis-tools-dev/static-analysis#readme" target="_blank" rel="noopener"
+&gt;Static Analysis &amp;amp; Code Quality&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/harpribot/awesome-information-retrieval#readme" target="_blank" rel="noopener"
+&gt;Information Retrieval&lt;/a&gt; - Learn to develop your own search engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/desireevl/awesome-quantum-computing#readme" target="_blank" rel="noopener"
+&gt;Quantum Computing&lt;/a&gt; - Computing that utilizes quantum mechanics and qubits on quantum computers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mostafatouny/awesome-theoretical-computer-science#readme" target="_blank" rel="noopener"
+&gt;Theoretical Computer Science&lt;/a&gt; - The interplay of computer science and pure mathematics, distinguished by its emphasis on mathematical rigour and technique.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jyguyomarch/awesome-conversational-ai#readme" target="_blank" rel="noopener"
+&gt;Conversational AI&lt;/a&gt; - Build awesome chatbots and digital assistants.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/steven2358/awesome-generative-ai#readme" target="_blank" rel="noopener"
+&gt;Generative AI&lt;/a&gt; - Automatically generates a wide range of unique content in text, image, and audio format.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Renaller/awesome-position-based-quantum-cryptography#readme" target="_blank" rel="noopener"
+&gt;Position-Based Quantum Cryptography&lt;/a&gt; - Theory on quantum cryptography that utilizes special relativistic constraints to achieve quantum-security under certain conditions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="big-data"&gt;Big Data
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/0xnr/awesome-bigdata#readme" target="_blank" rel="noopener"
+&gt;Big Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awesomedata/awesome-public-datasets#readme" target="_blank" rel="noopener"
+&gt;Public Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/youngwookim/awesome-hadoop#readme" target="_blank" rel="noopener"
+&gt;Hadoop&lt;/a&gt; - Framework for distributed storage and processing of very large data sets.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/igorbarinov/awesome-data-engineering#readme" target="_blank" rel="noopener"
+&gt;Data Engineering&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/manuzhang/awesome-streaming#readme" target="_blank" rel="noopener"
+&gt;Streaming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awesome-spark/awesome-spark#readme" target="_blank" rel="noopener"
+&gt;Apache Spark&lt;/a&gt; - Unified engine for large-scale data processing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ambster-public/awesome-qlik#readme" target="_blank" rel="noopener"
+&gt;Qlik&lt;/a&gt; - Business intelligence platform for data visualization, analytics, and reporting apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sduff/awesome-splunk#readme" target="_blank" rel="noopener"
+&gt;Splunk&lt;/a&gt; - Platform for searching, monitoring, and analyzing structured and unstructured machine-generated big data in real time.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/briatte/awesome-network-analysis#readme" target="_blank" rel="noopener"
+&gt;Network Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="theory"&gt;Theory
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/papers-we-love/papers-we-love#readme" target="_blank" rel="noopener"
+&gt;Papers We Love&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/JanVanRyswyck/awesome-talks#readme" target="_blank" rel="noopener"
+&gt;Talks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tayllan/awesome-algorithms#readme" target="_blank" rel="noopener"
+&gt;Algorithms&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gaerae/awesome-algorithms-education#readme" target="_blank" rel="noopener"
+&gt;Education&lt;/a&gt; - Learning and practicing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/enjalot/algovis#readme" target="_blank" rel="noopener"
+&gt;Algorithm Visualizations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/owainlewis/awesome-artificial-intelligence#readme" target="_blank" rel="noopener"
+&gt;Artificial Intelligence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/marcobiedermann/search-engine-optimization#readme" target="_blank" rel="noopener"
+&gt;Search Engine Optimization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lnishan/awesome-competitive-programming#readme" target="_blank" rel="noopener"
+&gt;Competitive Programming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rossant/awesome-math#readme" target="_blank" rel="noopener"
+&gt;Math&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/passy/awesome-recursion-schemes#readme" target="_blank" rel="noopener"
+&gt;Recursion Schemes&lt;/a&gt; - Traversing nested data structures.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/erwanlemerrer/awesome-audit-algorithms#readme" target="_blank" rel="noopener"
+&gt;Audit Algorithms&lt;/a&gt; - Algorithmic audits of algorithms.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/YuzheSHI/awesome-agi-cocosci#readme" target="_blank" rel="noopener"
+&gt;AGI &amp;amp; CoCoSci&lt;/a&gt; - The reciprocation of Artificial General Intelligence (AGI) and Computational Cognitive Sciences (CoCoSci).&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sellisd/awesome-complexity#readme" target="_blank" rel="noopener"
+&gt;Complex Systems&lt;/a&gt; - The scientific field studying systems with multiple interacting parts and emergent properties.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gokayfem/awesome-vlm-architectures#readme" target="_blank" rel="noopener"
+&gt;VLM Architectures&lt;/a&gt; - Vision Language Model architectures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="books"&gt;Books
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/EbookFoundation/free-programming-books#readme" target="_blank" rel="noopener"
+&gt;Free Programming Books&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dariubs/GoBooks#readme" target="_blank" rel="noopener"
+&gt;Go Books&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RomanTsegelskyi/rbooks#readme" target="_blank" rel="noopener"
+&gt;R Books&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hackerkid/Mind-Expanding-Books#readme" target="_blank" rel="noopener"
+&gt;Mind Expanding Books&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TalAter/awesome-book-authoring#readme" target="_blank" rel="noopener"
+&gt;Book Authoring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sger/ElixirBooks#readme" target="_blank" rel="noopener"
+&gt;Elixir Books&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="editors"&gt;Editors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dreikanter/sublime-bookmarks#readme" target="_blank" rel="noopener"
+&gt;Sublime Text&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mhinz/vim-galore#readme" target="_blank" rel="noopener"
+&gt;Vim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rockerBOO/awesome-neovim#readme" target="_blank" rel="noopener"
+&gt;Neovim&lt;/a&gt; - Vim-fork focused on extensibility and usability.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/emacs-tw/awesome-emacs#readme" target="_blank" rel="noopener"
+&gt;Emacs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mehcode/awesome-atom#readme" target="_blank" rel="noopener"
+&gt;Atom&lt;/a&gt; - Open-source and hackable text editor.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/viatsko/awesome-vscode#readme" target="_blank" rel="noopener"
+&gt;Visual Studio Code&lt;/a&gt; - Cross-platform open-source text editor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="gaming"&gt;Gaming
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ellisonleao/magictools#readme" target="_blank" rel="noopener"
+&gt;Game Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hzoo/awesome-gametalks#readme" target="_blank" rel="noopener"
+&gt;Game Talks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/godotengine/awesome-godot#readme" target="_blank" rel="noopener"
+&gt;Godot&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/michelpereira/awesome-open-source-games#readme" target="_blank" rel="noopener"
+&gt;Open Source Games&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RyanNielson/awesome-unity#readme" target="_blank" rel="noopener"
+&gt;Unity&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hkirat/awesome-chess#readme" target="_blank" rel="noopener"
+&gt;Chess&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/love2d-community/awesome-love2d#readme" target="_blank" rel="noopener"
+&gt;LÖVE&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/pico-8/awesome-PICO-8#readme" target="_blank" rel="noopener"
+&gt;PICO-8&lt;/a&gt; - Fantasy console.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gbdev/awesome-gbdev#readme" target="_blank" rel="noopener"
+&gt;Game Boy Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ConstructCommunity/awesome-construct#readme" target="_blank" rel="noopener"
+&gt;Construct 2&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stetso/awesome-gideros#readme" target="_blank" rel="noopener"
+&gt;Gideros&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bs-community/awesome-minecraft#readme" target="_blank" rel="noopener"
+&gt;Minecraft&lt;/a&gt; - Sandbox video game.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tomodachi94/awesome-computercraft#readme" target="_blank" rel="noopener"
+&gt;ComputerCraft&lt;/a&gt; - Minecraft mod that adds programmable computers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/leomaurodesenv/game-datasets#readme" target="_blank" rel="noopener"
+&gt;Game Datasets&lt;/a&gt; - Materials and datasets for Artificial Intelligence in games.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Dvergar/awesome-haxe-gamedev#readme" target="_blank" rel="noopener"
+&gt;Haxe Game Development&lt;/a&gt; - A high-level strongly typed programming language used to produce cross-platform native code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rafaskb/awesome-libgdx#readme" target="_blank" rel="noopener"
+&gt;libGDX&lt;/a&gt; - Java game framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/playcanvas/awesome-playcanvas#readme" target="_blank" rel="noopener"
+&gt;PlayCanvas&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/radek-sprta/awesome-game-remakes#readme" target="_blank" rel="noopener"
+&gt;Game Remakes&lt;/a&gt; - Actively maintained open-source game remakes.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/flame-engine/awesome-flame#readme" target="_blank" rel="noopener"
+&gt;Flame&lt;/a&gt; - Game engine for Flutter.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mhxion/awesome-discord-communities#readme" target="_blank" rel="noopener"
+&gt;Discord Communities&lt;/a&gt; - Chat with friends and communities.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tobiasvl/awesome-chip-8#readme" target="_blank" rel="noopener"
+&gt;CHIP-8&lt;/a&gt; - Virtual computer game machine from the 70s.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/michelpereira/awesome-games-of-coding#readme" target="_blank" rel="noopener"
+&gt;Games of Coding&lt;/a&gt; - Learn a programming language by making games.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/strift/awesome-esports#readme" target="_blank" rel="noopener"
+&gt;Esports&lt;/a&gt; - Video games played as a sport.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/notpresident35/awesome-learn-gamedev#readme" target="_blank" rel="noopener"
+&gt;Learn Gamedev&lt;/a&gt; - The craft of video game creation.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stevinz/awesome-game-engine-dev#readme" target="_blank" rel="noopener"
+&gt;Game Engine Development&lt;/a&gt; - Building software to speed up game creation.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bytecauldron/awesome-gamemaker#readme" target="_blank" rel="noopener"
+&gt;GameMaker&lt;/a&gt; - Game engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vhladiienko/awesome-game-production#readme" target="_blank" rel="noopener"
+&gt;Game Production&lt;/a&gt; - Leading the process of designing, developing, testing and distributing a video game from concept to release.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Symbitic/awesome-babylonjs#readme" target="_blank" rel="noopener"
+&gt;Babylon.js&lt;/a&gt; - Game engine for cross-platform web and native game development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awesome-roblox/awesome-roblox#readme" target="_blank" rel="noopener"
+&gt;Roblox&lt;/a&gt; - Immersive platform for hosting millions of diverse experiences.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="development-environment"&gt;Development Environment
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/quick-look-plugins#readme" target="_blank" rel="noopener"
+&gt;Quick Look Plugins&lt;/a&gt; - For macOS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jondot/awesome-devenv#readme" target="_blank" rel="noopener"
+&gt;Dev Env&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/webpro/awesome-dotfiles#readme" target="_blank" rel="noopener"
+&gt;Dotfiles&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/alebcay/awesome-shell#readme" target="_blank" rel="noopener"
+&gt;Shell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jorgebucaran/awsm.fish#readme" target="_blank" rel="noopener"
+&gt;Fish&lt;/a&gt; - User-friendly shell.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/agarrharr/awesome-cli-apps#readme" target="_blank" rel="noopener"
+&gt;Command-Line Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/unixorn/awesome-zsh-plugins#readme" target="_blank" rel="noopener"
+&gt;ZSH Plugins&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/phillipadsmith/awesome-github#readme" target="_blank" rel="noopener"
+&gt;GitHub&lt;/a&gt; - Hosting service for Git repositories.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stefanbuck/awesome-browser-extensions-for-github#readme" target="_blank" rel="noopener"
+&gt;Browser Extensions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tiimgreen/github-cheat-sheet#readme" target="_blank" rel="noopener"
+&gt;Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/matchai/awesome-pinned-gists#readme" target="_blank" rel="noopener"
+&gt;Pinned Gists&lt;/a&gt; - Dynamic pinned gists for your GitHub profile.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/arslanbilal/git-cheat-sheet#readme" target="_blank" rel="noopener"
+&gt;Git Cheat Sheet &amp;amp; Git Flow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/git-tips/tips#readme" target="_blank" rel="noopener"
+&gt;Git Tips&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stevemao/awesome-git-addons#readme" target="_blank" rel="noopener"
+&gt;Git Add-ons&lt;/a&gt; - Enhance the &lt;code&gt;git&lt;/code&gt; CLI.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/compscilauren/awesome-git-hooks#readme" target="_blank" rel="noopener"
+&gt;Git Hooks&lt;/a&gt; - Scripts for automating tasks during &lt;code&gt;git&lt;/code&gt; workflows.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/moul/awesome-ssh#readme" target="_blank" rel="noopener"
+&gt;SSH&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tvvocold/FOSS-for-Dev#readme" target="_blank" rel="noopener"
+&gt;FOSS for Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bnb/awesome-hyper#readme" target="_blank" rel="noopener"
+&gt;Hyper&lt;/a&gt; - Cross-platform terminal app built on web technologies.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/janikvonrotz/awesome-powershell#readme" target="_blank" rel="noopener"
+&gt;PowerShell&lt;/a&gt; - Cross-platform object-oriented shell.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/alfred-workflows/awesome-alfred-workflows#readme" target="_blank" rel="noopener"
+&gt;Alfred Workflows&lt;/a&gt; - Productivity app for macOS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/k4m4/terminals-are-sexy#readme" target="_blank" rel="noopener"
+&gt;Terminals Are Sexy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sdras/awesome-actions#readme" target="_blank" rel="noopener"
+&gt;GitHub Actions&lt;/a&gt; - Create tasks to automate your workflow and share them with others on GitHub.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/michaelbrusegard/awesome-wezterm#readme" target="_blank" rel="noopener"
+&gt;WezTerm&lt;/a&gt; - Powerful cross-platform terminal emulator.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="entertainment"&gt;Entertainment
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-scifi#readme" target="_blank" rel="noopener"
+&gt;Science Fiction&lt;/a&gt; - Scifi.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RichardLitt/awesome-fantasy#readme" target="_blank" rel="noopener"
+&gt;Fantasy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ayr-ton/awesome-geek-podcasts#readme" target="_blank" rel="noopener"
+&gt;Podcasts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zudochkin/awesome-newsletters#readme" target="_blank" rel="noopener"
+&gt;Email Newsletters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/victorlaerte/awesome-it-quotes#readme" target="_blank" rel="noopener"
+&gt;IT Quotes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="databases"&gt;Databases
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/numetriclabz/awesome-db#readme" target="_blank" rel="noopener"
+&gt;Database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/shlomi-noach/awesome-mysql#readme" target="_blank" rel="noopener"
+&gt;MySQL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dahlia/awesome-sqlalchemy#readme" target="_blank" rel="noopener"
+&gt;SQLAlchemy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mark-rushakoff/awesome-influxdb#readme" target="_blank" rel="noopener"
+&gt;InfluxDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/neueda/awesome-neo4j#readme" target="_blank" rel="noopener"
+&gt;Neo4j&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ramnes/awesome-mongodb#readme" target="_blank" rel="noopener"
+&gt;MongoDB&lt;/a&gt; - NoSQL database.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/d3viant0ne/awesome-rethinkdb#readme" target="_blank" rel="noopener"
+&gt;RethinkDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mohataher/awesome-tinkerpop#readme" target="_blank" rel="noopener"
+&gt;TinkerPop&lt;/a&gt; - Graph computing framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dhamaniasad/awesome-postgres#readme" target="_blank" rel="noopener"
+&gt;PostgreSQL&lt;/a&gt; - Object-relational database.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/quangv/awesome-couchdb#readme" target="_blank" rel="noopener"
+&gt;CouchDB&lt;/a&gt; - Document-oriented NoSQL database.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rayokota/awesome-hbase#readme" target="_blank" rel="noopener"
+&gt;HBase&lt;/a&gt; - Distributed, scalable, big data store.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/erictleung/awesome-nosql-guides#readme" target="_blank" rel="noopener"
+&gt;NoSQL Guides&lt;/a&gt; - Help on using non-relational, distributed, open-source, and horizontally scalable databases.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mgramin/awesome-db-tools#readme" target="_blank" rel="noopener"
+&gt;Database Tools&lt;/a&gt; - Everything that makes working with databases easier.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vaticle/typedb-awesome#readme" target="_blank" rel="noopener"
+&gt;TypeDB&lt;/a&gt; - Logical database to organize large and complex networks of data as one body of knowledge.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Anant/awesome-cassandra#readme" target="_blank" rel="noopener"
+&gt;Cassandra&lt;/a&gt; - Open-source, distributed, wide column store, NoSQL database management system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/taosdata/awesome-tdengine#readme" target="_blank" rel="noopener"
+&gt;TDengine&lt;/a&gt; - An open-source time-series database with high-performance, scalability, and SQL support.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lyqht/awesome-supabase#readme" target="_blank" rel="noopener"
+&gt;Supabase&lt;/a&gt; - An open-source alternative to Firebase.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/benallfree/awesome-pocketbase#readme" target="_blank" rel="noopener"
+&gt;PocketBase&lt;/a&gt; - An open-source, Go-based backend in one file.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tyaga001/awesome-neon#readme" target="_blank" rel="noopener"
+&gt;Neon&lt;/a&gt; - An open-source alternative to AWS Aurora.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="media"&gt;Media
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/brabadu/awesome-fonts#readme" target="_blank" rel="noopener"
+&gt;Fonts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/chrissimpkins/codeface#readme" target="_blank" rel="noopener"
+&gt;Codeface&lt;/a&gt; - Text editor fonts.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/neutraltone/awesome-stock-resources#readme" target="_blank" rel="noopener"
+&gt;Stock Resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/davisonio/awesome-gif#readme" target="_blank" rel="noopener"
+&gt;GIF&lt;/a&gt; - Image format known for animated images.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ciconia/awesome-music#readme" target="_blank" rel="noopener"
+&gt;Music&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/44bits/awesome-opensource-documents#readme" target="_blank" rel="noopener"
+&gt;Open Source Documents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/willianjusten/awesome-audio-visualization#readme" target="_blank" rel="noopener"
+&gt;Audio Visualization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ebu/awesome-broadcasting#readme" target="_blank" rel="noopener"
+&gt;Broadcasting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Siilwyn/awesome-pixel-art#readme" target="_blank" rel="noopener"
+&gt;Pixel Art&lt;/a&gt; - Pixel-level digital art.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/transitive-bullshit/awesome-ffmpeg#readme" target="_blank" rel="noopener"
+&gt;FFmpeg&lt;/a&gt; - Cross-platform solution to record, convert and stream audio and video.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/notlmn/awesome-icons#readme" target="_blank" rel="noopener"
+&gt;Icons&lt;/a&gt; - Downloadable SVG/PNG/font icon projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stingalleman/awesome-audiovisual#readme" target="_blank" rel="noopener"
+&gt;Audiovisual&lt;/a&gt; - Lighting, audio and video in professional environments.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mfkl/awesome-vlc#readme" target="_blank" rel="noopener"
+&gt;VLC&lt;/a&gt; - Cross-platform media player software and streaming server.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Mo-way/awesome-aoip#readme" target="_blank" rel="noopener"
+&gt;Audio Over IP&lt;/a&gt; - Reliably transmit uncompressed, low-latency audio over an IP (layer 3) network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="learn"&gt;Learn
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/therebelrobot/awesome-workshopper#readme" target="_blank" rel="noopener"
+&gt;CLI Workshoppers&lt;/a&gt; - Interactive tutorials.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/karlhorky/learn-to-program#readme" target="_blank" rel="noopener"
+&gt;Learn to Program&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/matteofigus/awesome-speaking#readme" target="_blank" rel="noopener"
+&gt;Speaking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lucasviola/awesome-tech-videos#readme" target="_blank" rel="noopener"
+&gt;Tech Videos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hangtwenty/dive-into-machine-learning#readme" target="_blank" rel="noopener"
+&gt;Dive into Machine Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/watson/awesome-computer-history#readme" target="_blank" rel="noopener"
+&gt;Computer History&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/HollyAdele/awesome-programming-for-kids#readme" target="_blank" rel="noopener"
+&gt;Programming for Kids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RahulBirCodes/awesome-steam#readme" target="_blank" rel="noopener"
+&gt;STEAM&lt;/a&gt; - Supplements for specific science, technology, engineering, arts, and math (STEAM) courses across all grade levels.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/yrgo/awesome-educational-games#readme" target="_blank" rel="noopener"
+&gt;Educational Games&lt;/a&gt; - Learn while playing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/micromata/awesome-javascript-learning#readme" target="_blank" rel="noopener"
+&gt;JavaScript Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/micromata/awesome-css-learning#readme" target="_blank" rel="noopener"
+&gt;CSS Learning&lt;/a&gt; - Mainly about CSS – the language and the modules.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dend/awesome-product-management#readme" target="_blank" rel="noopener"
+&gt;Product Management&lt;/a&gt; - Learn how to be a better product manager.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/liuchong/awesome-roadmaps#readme" target="_blank" rel="noopener"
+&gt;Roadmaps&lt;/a&gt; - Gives you a clear route to improve your knowledge and skills.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/JoseDeFreitas/awesome-youtubers#readme" target="_blank" rel="noopener"
+&gt;YouTubers&lt;/a&gt; - Watch video tutorials from YouTubers that teach you about technology.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dribdat/awesome-hackathon#readme" target="_blank" rel="noopener"
+&gt;Hackathon&lt;/a&gt; - Running fun and productive hackathons.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/PanXProject/awesome-certificates#readme" target="_blank" rel="noopener"
+&gt;Certificates&lt;/a&gt; - Free computer science certifications to showcase your knowledge.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="security"&gt;Security
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/paragonie/awesome-appsec#readme" target="_blank" rel="noopener"
+&gt;Application Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sbilly/awesome-security#readme" target="_blank" rel="noopener"
+&gt;Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/apsdehal/awesome-ctf#readme" target="_blank" rel="noopener"
+&gt;CTF&lt;/a&gt; - Capture The Flag.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/brootware/awesome-cyber-security-university#readme" target="_blank" rel="noopener"
+&gt;Cyber Security University&lt;/a&gt; - Free educational resources that focus on learning by doing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rshipp/awesome-malware-analysis#readme" target="_blank" rel="noopener"
+&gt;Malware Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ashishb/android-security-awesome#readme" target="_blank" rel="noopener"
+&gt;Android Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/carpedm20/awesome-hacking#readme" target="_blank" rel="noopener"
+&gt;Hacking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/daviddias/awesome-hacking-locations#readme" target="_blank" rel="noopener"
+&gt;Hacking Spots&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/paralax/awesome-honeypots#readme" target="_blank" rel="noopener"
+&gt;Honeypots&lt;/a&gt; - Deception trap, designed to entice an attacker into attempting to compromise the information systems in an organization.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/meirwah/awesome-incident-response#readme" target="_blank" rel="noopener"
+&gt;Incident Response&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jaredthecoder/awesome-vehicle-security#readme" target="_blank" rel="noopener"
+&gt;Vehicle Security and Car Hacking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/qazbnm456/awesome-web-security#readme" target="_blank" rel="noopener"
+&gt;Web Security&lt;/a&gt; - Security of web apps &amp;amp; services.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fabacab/awesome-lockpicking#readme" target="_blank" rel="noopener"
+&gt;Lockpicking&lt;/a&gt; - The art of unlocking a lock by manipulating its components without the key.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fabacab/awesome-cybersecurity-blueteam#readme" target="_blank" rel="noopener"
+&gt;Cybersecurity Blue Team&lt;/a&gt; - Groups of individuals who identify security flaws in information technology systems.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cpuu/awesome-fuzzing#readme" target="_blank" rel="noopener"
+&gt;Fuzzing&lt;/a&gt; - Automated software testing technique that involves feeding pseudo-randomly generated input data.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fkie-cad/awesome-embedded-and-iot-security#readme" target="_blank" rel="noopener"
+&gt;Embedded and IoT Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bakke92/awesome-gdpr#readme" target="_blank" rel="noopener"
+&gt;GDPR&lt;/a&gt; - Regulation on data protection and privacy for all individuals within EU.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TaptuIT/awesome-devsecops#readme" target="_blank" rel="noopener"
+&gt;DevSecOps&lt;/a&gt; - Integration of security practices into &lt;a class="link" href="https://en.wikipedia.org/wiki/DevOps" target="_blank" rel="noopener"
+&gt;DevOps&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dhondta/awesome-executable-packing#readme" target="_blank" rel="noopener"
+&gt;Executable Packing&lt;/a&gt; - Packing and unpacking executable formats.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Karneades/awesome-malware-persistence#readme" target="_blank" rel="noopener"
+&gt;Malware Persistence&lt;/a&gt; - Techniques that adversaries use to keep access to systems across restarts.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kareniel/awesome-evm-security#readme" target="_blank" rel="noopener"
+&gt;EVM Security&lt;/a&gt; - Understanding the Ethereum Virtual Machine security ecosystem.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/n0kovo/awesome-password-cracking#readme" target="_blank" rel="noopener"
+&gt;Password Cracking&lt;/a&gt; - The process of recovering passwords from data that has been stored in or transmitted by a system in scrambled form.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Karneades/awesome-security-card-games#readme" target="_blank" rel="noopener"
+&gt;Security Card Games&lt;/a&gt; - Train your skills and discuss various security topics.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/satta/awesome-suricata#readme" target="_blank" rel="noopener"
+&gt;Suricata&lt;/a&gt; - Intrusion detection/prevention system and network security monitoring engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/FonduAI/awesome-prompt-injection#readme" target="_blank" rel="noopener"
+&gt;Prompt Injection&lt;/a&gt; - A type of vulnerability that specifically targets machine learning models.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/infosecB/awesome-detection-engineering#readme" target="_blank" rel="noopener"
+&gt;Detection Engineering&lt;/a&gt; - Design, build, and operate detective cybersecurity controls.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jacobdjwilson/awesome-annual-security-reports#readme" target="_blank" rel="noopener"
+&gt;Annual Security Reports&lt;/a&gt; - Exploring cybersecurity trends, insights, and challenges.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TupleType/awesome-cicd-attacks#readme" target="_blank" rel="noopener"
+&gt;CI/CD Attacks&lt;/a&gt; - Offensive research of systems and processes related to developing and deploying code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cerberauth/awesome-openid-connect#readme" target="_blank" rel="noopener"
+&gt;OpenID Connect&lt;/a&gt; - Identity standard and authentication protocol built on OAuth 2.0 for user identity assertion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="content-management-systems"&gt;Content Management Systems
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/umbraco-community/awesome-umbraco#readme" target="_blank" rel="noopener"
+&gt;Umbraco&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/refinerycms-contrib/awesome-refinerycms#readme" target="_blank" rel="noopener"
+&gt;Refinery CMS&lt;/a&gt; - Ruby on Rails CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/springload/awesome-wagtail#readme" target="_blank" rel="noopener"
+&gt;Wagtail&lt;/a&gt; - Django CMS focused on flexibility and user experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/drmonkeyninja/awesome-textpattern#readme" target="_blank" rel="noopener"
+&gt;Textpattern&lt;/a&gt; - Lightweight PHP-based CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nirgn975/awesome-drupal#readme" target="_blank" rel="noopener"
+&gt;Drupal&lt;/a&gt; - Extensible PHP-based CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/craftcms/awesome#readme" target="_blank" rel="noopener"
+&gt;Craft CMS&lt;/a&gt; - Content-first CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MartinMiles/Awesome-Sitecore#readme" target="_blank" rel="noopener"
+&gt;Sitecore&lt;/a&gt; - .NET digital marketing platform that combines CMS with tools for managing multiple websites.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/wernerkrauss/awesome-silverstripe-cms#readme" target="_blank" rel="noopener"
+&gt;Silverstripe CMS&lt;/a&gt; - PHP MVC framework that serves as a classic or headless CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/directus-community/awesome-directus#readme" target="_blank" rel="noopener"
+&gt;Directus&lt;/a&gt; - A real-time API and app dashboard for managing SQL database content.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/collective/awesome-plone#readme" target="_blank" rel="noopener"
+&gt;Plone&lt;/a&gt; - Open source Python CMS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DanailMinchev/awesome-payload#readme" target="_blank" rel="noopener"
+&gt;Payload&lt;/a&gt; - Next.js native and open source headless CMS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="hardware"&gt;Hardware
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Kiloreux/awesome-robotics#readme" target="_blank" rel="noopener"
+&gt;Robotics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/HQarroum/awesome-iot#readme" target="_blank" rel="noopener"
+&gt;Internet of Things&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kitspace/awesome-electronics#readme" target="_blank" rel="noopener"
+&gt;Electronics&lt;/a&gt; - For electronic engineers and hobbyists.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rabschi/awesome-beacon#readme" target="_blank" rel="noopener"
+&gt;Bluetooth Beacons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gitfrage/guitarspecs#readme" target="_blank" rel="noopener"
+&gt;Electric Guitar Specifications&lt;/a&gt; - Checklist for building your own electric guitar.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/beardicus/awesome-plotters#readme" target="_blank" rel="noopener"
+&gt;Plotters&lt;/a&gt; - Computer-controlled drawing machines and other visual art robots.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/protontypes/awesome-robotic-tooling#readme" target="_blank" rel="noopener"
+&gt;Robotic Tooling&lt;/a&gt; - Free and open tools for professional robotic development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/szenergy/awesome-lidar#readme" target="_blank" rel="noopener"
+&gt;LIDAR&lt;/a&gt; - Sensor for measuring distances by illuminating the target with laser light.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/delftopenhardware/awesome-open-hardware#readme" target="_blank" rel="noopener"
+&gt;Open Hardware&lt;/a&gt; - Open-source hardware projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rickstaa/awesome-adsb#readme" target="_blank" rel="noopener"
+&gt;ADS-B&lt;/a&gt; - Technology broadcasting aircraft&amp;rsquo;s identity, position, and data periodically.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Matthias84/awesome-flying-fpv#readme" target="_blank" rel="noopener"
+&gt;Flying FPV&lt;/a&gt; - Open hardware and software related to drones / UAVs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="business"&gt;Business
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/opencompany/awesome-open-company#readme" target="_blank" rel="noopener"
+&gt;Open Companies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mmccaff/PlacesToPostYourStartup#readme" target="_blank" rel="noopener"
+&gt;Places to Post Your Startup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/domenicosolazzo/awesome-okr#readme" target="_blank" rel="noopener"
+&gt;OKR Methodology&lt;/a&gt; - Goal setting &amp;amp; communication best practices.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mezod/awesome-indie#readme" target="_blank" rel="noopener"
+&gt;Indie&lt;/a&gt; - Independent developer businesses.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cjbarber/ToolsOfTheTrade#readme" target="_blank" rel="noopener"
+&gt;Tools of the Trade&lt;/a&gt; - Tools used by companies on Hacker News.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nglgzz/awesome-clean-tech#readme" target="_blank" rel="noopener"
+&gt;Clean Tech&lt;/a&gt; - Fighting climate change with technology.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/wardley-maps-community/awesome-wardley-maps#readme" target="_blank" rel="noopener"
+&gt;Wardley Maps&lt;/a&gt; - Provides high situational awareness to help improve strategic planning and decision making.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/RayBB/awesome-social-enterprise#readme" target="_blank" rel="noopener"
+&gt;Social Enterprise&lt;/a&gt; - Building an organization primarily focused on social impact that is at least partially self-funded.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kdeldycke/awesome-engineering-team-management#readme" target="_blank" rel="noopener"
+&gt;Engineering Team Management&lt;/a&gt; - How to transition from software development to engineering management.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/agamm/awesome-developer-first#readme" target="_blank" rel="noopener"
+&gt;Developer-First Products&lt;/a&gt; - Products that target developers as the user.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kdeldycke/awesome-billing#readme" target="_blank" rel="noopener"
+&gt;Billing&lt;/a&gt; - Payments, invoicing, pricing, accounting, marketplace, fraud, and business intelligence.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aleixmorgadas/awesome-engineering-strategy#readme" target="_blank" rel="noopener"
+&gt;Engineering Strategy&lt;/a&gt; - How to design and execute engineering strategies for tech leadership.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="work"&gt;Work
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/matiassingers/awesome-slack#readme" target="_blank" rel="noopener"
+&gt;Slack&lt;/a&gt; - Team collaboration.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/filipelinhares/awesome-slack#readme" target="_blank" rel="noopener"
+&gt;Communities&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lukasz-madon/awesome-remote-job#readme" target="_blank" rel="noopener"
+&gt;Remote Jobs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jyguyomarch/awesome-productivity#readme" target="_blank" rel="noopener"
+&gt;Productivity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tramcar/awesome-job-boards#readme" target="_blank" rel="noopener"
+&gt;Niche Job Boards&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DopplerHQ/awesome-interview-questions#readme" target="_blank" rel="noopener"
+&gt;Programming Interviews&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/joho/awesome-code-review#readme" target="_blank" rel="noopener"
+&gt;Code Review&lt;/a&gt; - Reviewing code.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/j0hnm4r5/awesome-creative-technology#readme" target="_blank" rel="noopener"
+&gt;Creative Technology&lt;/a&gt; - Businesses &amp;amp; groups that specialize in combining computing, design, art, and user experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lodthe/awesome-internships#readme" target="_blank" rel="noopener"
+&gt;Internships&lt;/a&gt; - CV writing guides and companies that hire interns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="networking"&gt;Networking
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sdnds-tw/awesome-sdn#readme" target="_blank" rel="noopener"
+&gt;Software-Defined Networking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/caesar0301/awesome-pcaptools#readme" target="_blank" rel="noopener"
+&gt;PCAPTools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/rtckit/awesome-rtc#readme" target="_blank" rel="noopener"
+&gt;Real-Time Communications&lt;/a&gt; - Network protocols for near simultaneous exchange of media and data.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eozer/awesome-snmp#readme" target="_blank" rel="noopener"
+&gt;SNMP&lt;/a&gt; - A protocol for collecting, modifying, and organizing information about managed devices on IP networks.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/secdev/awesome-scapy#readme" target="_blank" rel="noopener"
+&gt;Scapy&lt;/a&gt; - Python-based interactive packet manipulation.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/seifrajhi/awesome-cilium#readme" target="_blank" rel="noopener"
+&gt;Cilium&lt;/a&gt; - Provides networking and security capabilities for containerized apps, microservices, and virtual machines.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="decentralized-systems"&gt;Decentralized Systems
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/igorbarinov/awesome-bitcoin#readme" target="_blank" rel="noopener"
+&gt;Bitcoin&lt;/a&gt; - Bitcoin services and tools for software developers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vhpoet/awesome-ripple#readme" target="_blank" rel="noopener"
+&gt;Ripple&lt;/a&gt; - Open source distributed settlement network.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/machinomy/awesome-non-financial-blockchain#readme" target="_blank" rel="noopener"
+&gt;Non-Financial Blockchain&lt;/a&gt; - Non-financial blockchain applications.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hyperupcall/awesome-mastodon#readme" target="_blank" rel="noopener"
+&gt;Mastodon&lt;/a&gt; - Open source decentralized microblogging network.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ttumiel/Awesome-Ethereum#readme" target="_blank" rel="noopener"
+&gt;Ethereum&lt;/a&gt; - Distributed computing platform for smart contract development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/steven2358/awesome-blockchain-ai#readme" target="_blank" rel="noopener"
+&gt;Blockchain AI&lt;/a&gt; - Blockchain projects for artificial intelligence and machine learning.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DanailMinchev/awesome-eosio#readme" target="_blank" rel="noopener"
+&gt;EOSIO&lt;/a&gt; - A decentralized operating system supporting industrial-scale apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/chainstack/awesome-corda#readme" target="_blank" rel="noopener"
+&gt;Corda&lt;/a&gt; - Open source blockchain platform designed for business.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/msmolyakov/awesome-waves#readme" target="_blank" rel="noopener"
+&gt;Waves&lt;/a&gt; - Open source blockchain platform and development toolset for Web 3.0 apps and decentralized solutions.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/substrate-developer-hub/awesome-substrate#readme" target="_blank" rel="noopener"
+&gt;Substrate&lt;/a&gt; - Framework for writing scalable, upgradeable blockchains in Rust.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/golemfactory/awesome-golem#readme" target="_blank" rel="noopener"
+&gt;Golem&lt;/a&gt; - Open source peer-to-peer marketplace for computing resources.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/friedger/awesome-stacks-chain#readme" target="_blank" rel="noopener"
+&gt;Stacks&lt;/a&gt; - A smart contract platform secured by Bitcoin.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aorumbayev/awesome-algorand#readme" target="_blank" rel="noopener"
+&gt;Algorand&lt;/a&gt; - An open-source, proof of stake blockchain and smart contract computing platform.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zolagonano/awesome-zeronet#readme" target="_blank" rel="noopener"
+&gt;ZeroNet&lt;/a&gt; - A decentralized web-like network of peer-to-peer users.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cosmos/awesome-cosmos#readme" target="_blank" rel="noopener"
+&gt;Cosmos SDK&lt;/a&gt; - Modular framework for building app-specific blockchains in Go.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/polycarbohydrate/awesome-tor#readme" target="_blank" rel="noopener"
+&gt;Tor&lt;/a&gt; - A free overlay network for enabling anonymous communication.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/atblueprints/awesome-atproto#readme" target="_blank" rel="noopener"
+&gt;ATProto&lt;/a&gt; - Open, decentralized network for building social apps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="health-and-social-science"&gt;Health and Social Science
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/caufieldjh/awesome-bioie#readme" target="_blank" rel="noopener"
+&gt;Biomedical Information Extraction&lt;/a&gt; - How to extract information from unstructured biomedical data and text.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eselkin/awesome-computational-neuroscience#readme" target="_blank" rel="noopener"
+&gt;Computational Neuroscience&lt;/a&gt; - A multidisciplinary science which uses computational approaches to study the nervous system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/folkswhocode/awesome-diversity#readme" target="_blank" rel="noopener"
+&gt;Diversity&lt;/a&gt; - Creating a more inclusive and diverse tech community.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/maehr/awesome-digital-history#readme" target="_blank" rel="noopener"
+&gt;Digital History&lt;/a&gt; - Computer-aided scientific investigation of history.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/KimberlyMunoz/empathy-in-engineering#readme" target="_blank" rel="noopener"
+&gt;Empathy in Engineering&lt;/a&gt; - Building and promoting more compassionate engineering cultures.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kakoni/awesome-healthcare#readme" target="_blank" rel="noopener"
+&gt;Healthcare&lt;/a&gt; - Open source healthcare software for facilities, providers, developers, policy experts, and researchers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/humanetech-community/awesome-humane-tech#readme" target="_blank" rel="noopener"
+&gt;Humane Technology&lt;/a&gt; - Open source projects that help improve society.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dreamingechoes/awesome-mental-health#readme" target="_blank" rel="noopener"
+&gt;Mental Health&lt;/a&gt; - Mental health awareness and self-care in the software industry.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/analyticalmonk/awesome-neuroscience#readme" target="_blank" rel="noopener"
+&gt;Neuroscience&lt;/a&gt; - Study of the nervous system and brain.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dh-tech/awesome-digital-humanities#readme" target="_blank" rel="noopener"
+&gt;Digital Humanities&lt;/a&gt; - Software for humanities scholars using quantitative or computational methods.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/IAmCoder/awesome-lucid-dreams#readme" target="_blank" rel="noopener"
+&gt;Lucid Dreams&lt;/a&gt; - A dream where one becomes aware they are dreaming.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/NPACore/awesome-neuroimaging#readme" target="_blank" rel="noopener"
+&gt;Neuroimaging&lt;/a&gt; - Software for analyzing brain data from living subjects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cvyl/awesome-transgender#readme" target="_blank" rel="noopener"
+&gt;Transgender&lt;/a&gt; - Someone whose gender identity differs from their assigned birth sex.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="events"&gt;Events
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/danvoyce/awesome-creative-tech-events#readme" target="_blank" rel="noopener"
+&gt;Creative Tech Events&lt;/a&gt; - Events around the globe for creative coding, tech, design, music, arts and cool stuff.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ildoc/awesome-italy-events#readme" target="_blank" rel="noopener"
+&gt;Events in Italy&lt;/a&gt; - Tech-related events in Italy.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awkward/awesome-netherlands-events#readme" target="_blank" rel="noopener"
+&gt;Events in the Netherlands&lt;/a&gt; - Tech-related events in the Netherlands.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="testing"&gt;Testing
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/TheJambo/awesome-testing#readme" target="_blank" rel="noopener"
+&gt;Testing&lt;/a&gt; - Software testing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mojoaxel/awesome-regression-testing#readme" target="_blank" rel="noopener"
+&gt;Visual Regression Testing&lt;/a&gt; - Ensures changes did not break the functionality or style.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/christian-bromann/awesome-selenium#readme" target="_blank" rel="noopener"
+&gt;Selenium&lt;/a&gt; - Open-source browser automation framework and ecosystem.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/SrinivasanTarget/awesome-appium#readme" target="_blank" rel="noopener"
+&gt;Appium&lt;/a&gt; - Test automation tool for apps.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-tap#readme" target="_blank" rel="noopener"
+&gt;TAP&lt;/a&gt; - Test Anything Protocol.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aliesbelik/awesome-jmeter#readme" target="_blank" rel="noopener"
+&gt;JMeter&lt;/a&gt; - Load testing and performance measurement tool.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/grafana/awesome-k6#readme" target="_blank" rel="noopener"
+&gt;k6&lt;/a&gt; - Open-source, developer-centric performance monitoring and load testing solution.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mxschmitt/awesome-playwright#readme" target="_blank" rel="noopener"
+&gt;Playwright&lt;/a&gt; - Node.js library to automate Chromium, Firefox and WebKit with a single API.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/fityanos/awesome-quality-assurance-roadmap#readme" target="_blank" rel="noopener"
+&gt;Quality Assurance Roadmap&lt;/a&gt; - How to start &amp;amp; build a career in software testing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aliesbelik/awesome-gatling#readme" target="_blank" rel="noopener"
+&gt;Gatling&lt;/a&gt; - Open-source load and performance testing framework based on Scala, Akka, and Netty.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/coderabbitai/awesome-coderabbit#readme" target="_blank" rel="noopener"
+&gt;CodeRabbit&lt;/a&gt; - AI-powered code review platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="miscellaneous"&gt;Miscellaneous
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/writing-resources/awesome-scientific-writing#readme" target="_blank" rel="noopener"
+&gt;Scientific Writing&lt;/a&gt; - Distraction-free scientific writing with Markdown, reStructuredText and Jupyter notebooks.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/burningtree/awesome-json#readme" target="_blank" rel="noopener"
+&gt;JSON&lt;/a&gt; - Text based data interchange format.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tmcw/awesome-geojson#readme" target="_blank" rel="noopener"
+&gt;GeoJSON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jdorfman/awesome-json-datasets#readme" target="_blank" rel="noopener"
+&gt;Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/secretGeek/awesomeCSV#readme" target="_blank" rel="noopener"
+&gt;CSV&lt;/a&gt; - A text file format that stores tabular data and uses a comma to separate values.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/AchoArnold/discount-for-student-dev#readme" target="_blank" rel="noopener"
+&gt;Discounts for Student Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kyleterry/awesome-radio#readme" target="_blank" rel="noopener"
+&gt;Radio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome#readme" target="_blank" rel="noopener"
+&gt;Awesome&lt;/a&gt; - Recursion illustrated.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/0xnr/awesome-analytics#readme" target="_blank" rel="noopener"
+&gt;Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/marmelab/awesome-rest#readme" target="_blank" rel="noopener"
+&gt;REST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cicdops/awesome-ciandcd#readme" target="_blank" rel="noopener"
+&gt;Continuous Integration and Continuous Delivery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mmcgrana/services-engineering#readme" target="_blank" rel="noopener"
+&gt;Services Engineering&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ripienaar/free-for-dev#readme" target="_blank" rel="noopener"
+&gt;Free for Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cyberglot/awesome-answers#readme" target="_blank" rel="noopener"
+&gt;Answers&lt;/a&gt; - Stack Overflow, Quora, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/diessica/awesome-sketch#readme" target="_blank" rel="noopener"
+&gt;Sketch&lt;/a&gt; - Design app for macOS.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/melvin0008/awesome-projects-boilerplates#readme" target="_blank" rel="noopener"
+&gt;Boilerplate Projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/matiassingers/awesome-readme#readme" target="_blank" rel="noopener"
+&gt;Readme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MyHoneyBadger/awesome-github-wiki#readme" target="_blank" rel="noopener"
+&gt;GitHub Wiki&lt;/a&gt; - Comprehensive documentation on GitHub beyond README.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/NARKOZ/guides#readme" target="_blank" rel="noopener"
+&gt;Design and Development Guides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kilimchoi/engineering-blogs#readme" target="_blank" rel="noopener"
+&gt;Software Engineering Blogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/awesome-selfhosted/awesome-selfhosted#readme" target="_blank" rel="noopener"
+&gt;Self Hosted&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DataDaoDe/awesome-foss-apps#readme" target="_blank" rel="noopener"
+&gt;FOSS Production Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/alferov/awesome-gulp#readme" target="_blank" rel="noopener"
+&gt;Gulp&lt;/a&gt; - Task runner.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/amas#readme" target="_blank" rel="noopener"
+&gt;AMA&lt;/a&gt; - Ask Me Anything.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stoeffel/awesome-ama-answers#readme" target="_blank" rel="noopener"
+&gt;Answers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ibaaj/awesome-OpenSourcePhotography#readme" target="_blank" rel="noopener"
+&gt;Open Source Photography&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eug/awesome-opengl#readme" target="_blank" rel="noopener"
+&gt;OpenGL&lt;/a&gt; - Cross-platform API for rendering 2D and 3D graphics.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/chentsulin/awesome-graphql#readme" target="_blank" rel="noopener"
+&gt;GraphQL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/APA-Technology-Division/urban-and-regional-planning-resources#readme" target="_blank" rel="noopener"
+&gt;Urban &amp;amp; Regional Planning&lt;/a&gt; - Concerning the built environment and communities.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/CUTR-at-USF/awesome-transit#readme" target="_blank" rel="noopener"
+&gt;Transit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/emptymalei/awesome-research#readme" target="_blank" rel="noopener"
+&gt;Research Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/javierluraschi/awesome-dataviz#readme" target="_blank" rel="noopener"
+&gt;Data Visualization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mfornos/awesome-microservices#readme" target="_blank" rel="noopener"
+&gt;Microservices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jagracey/Awesome-Unicode#readme" target="_blank" rel="noopener"
+&gt;Unicode&lt;/a&gt; - Unicode standards, quirks, packages and resources.
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Codepoints/awesome-codepoints#readme" target="_blank" rel="noopener"
+&gt;Code Points&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/MunGell/awesome-for-beginners#readme" target="_blank" rel="noopener"
+&gt;Beginner-Friendly Projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gamontal/awesome-katas#readme" target="_blank" rel="noopener"
+&gt;Katas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/drewrwilson/toolsforactivism#readme" target="_blank" rel="noopener"
+&gt;Tools for Activism&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dylanrees/citizen-science#readme" target="_blank" rel="noopener"
+&gt;Citizen Science&lt;/a&gt; - For community-based and non-institutional scientists.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hobbyquaker/awesome-mqtt#readme" target="_blank" rel="noopener"
+&gt;MQTT&lt;/a&gt; - &amp;ldquo;Internet of Things&amp;rdquo; connectivity protocol.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cristianoliveira/awesome4girls#readme" target="_blank" rel="noopener"
+&gt;For Girls&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vorpaljs/awesome-vorpal#readme" target="_blank" rel="noopener"
+&gt;Vorpal&lt;/a&gt; - Node.js CLI framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/vinjn/awesome-vulkan#readme" target="_blank" rel="noopener"
+&gt;Vulkan&lt;/a&gt; - Low-overhead, cross-platform 3D graphics and compute API.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/egeerardyn/awesome-LaTeX#readme" target="_blank" rel="noopener"
+&gt;LaTeX&lt;/a&gt; - Typesetting language.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/antontarasenko/awesome-economics#readme" target="_blank" rel="noopener"
+&gt;Economics&lt;/a&gt; - An economist&amp;rsquo;s starter kit.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sublimino/awesome-funny-markov#readme" target="_blank" rel="noopener"
+&gt;Funny Markov Chains&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/danielecook/Awesome-Bioinformatics#readme" target="_blank" rel="noopener"
+&gt;Bioinformatics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hsiaoyi0504/awesome-cheminformatics#readme" target="_blank" rel="noopener"
+&gt;Cheminformatics&lt;/a&gt; - Informatics techniques applied to problems in chemistry.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Siddharth11/Colorful#readme" target="_blank" rel="noopener"
+&gt;Colorful&lt;/a&gt; - Choose your next color scheme.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/scholtzm/awesome-steam#readme" target="_blank" rel="noopener"
+&gt;Steam&lt;/a&gt; - Digital distribution platform.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hackerkid/bots#readme" target="_blank" rel="noopener"
+&gt;Bots&lt;/a&gt; - Building bots.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dastergon/awesome-sre#readme" target="_blank" rel="noopener"
+&gt;Site Reliability Engineering&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/xen0l/awesome-dtrace#readme" target="_blank" rel="noopener"
+&gt;DTrace&lt;/a&gt; - Dynamic tracing framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/bvolpato/awesome-userscripts#readme" target="_blank" rel="noopener"
+&gt;Userscripts&lt;/a&gt; - Enhance your browsing experience.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/tobiasbueschel/awesome-pokemon#readme" target="_blank" rel="noopener"
+&gt;Pokémon&lt;/a&gt; - Pokémon and Pokémon GO.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/exAspArk/awesome-chatops#readme" target="_blank" rel="noopener"
+&gt;ChatOps&lt;/a&gt; - Managing technical and business operations through a chat.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/kdeldycke/awesome-falsehood#readme" target="_blank" rel="noopener"
+&gt;Falsehood&lt;/a&gt; - Falsehoods programmers believe in.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/heynickc/awesome-ddd#readme" target="_blank" rel="noopener"
+&gt;Domain-Driven Design&lt;/a&gt; - Software development approach for complex needs by connecting the implementation to an evolving model.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/woop/awesome-quantified-self#readme" target="_blank" rel="noopener"
+&gt;Quantified Self&lt;/a&gt; - Self-tracking through technology.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hbokh/awesome-saltstack#readme" target="_blank" rel="noopener"
+&gt;SaltStack&lt;/a&gt; - Python-based config management system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nicolesaidy/awesome-web-design#readme" target="_blank" rel="noopener"
+&gt;Web Design&lt;/a&gt; - For digital designers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/terkelg/awesome-creative-coding#readme" target="_blank" rel="noopener"
+&gt;Creative Coding&lt;/a&gt; - Programming something expressive instead of something functional.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/aviaryan/awesome-no-login-web-apps#readme" target="_blank" rel="noopener"
+&gt;No-Login Web Apps&lt;/a&gt; - Web apps that work without login.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/johnjago/awesome-free-software#readme" target="_blank" rel="noopener"
+&gt;Free Software&lt;/a&gt; - Free as in freedom.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/podo/awesome-framer#readme" target="_blank" rel="noopener"
+&gt;Framer&lt;/a&gt; - Prototyping interactive UI designs.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/BubuAnabelas/awesome-markdown#readme" target="_blank" rel="noopener"
+&gt;Markdown&lt;/a&gt; - Markup language.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mislavcimpersak/awesome-dev-fun#readme" target="_blank" rel="noopener"
+&gt;Dev Fun&lt;/a&gt; - Funny developer projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DavidLambauer/awesome-magento2#readme" target="_blank" rel="noopener"
+&gt;Magento 2&lt;/a&gt; - Open Source eCommerce built with PHP.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/xiaohanyu/awesome-tikz#readme" target="_blank" rel="noopener"
+&gt;TikZ&lt;/a&gt; - Graph drawing packages for TeX/LaTeX/ConTeXt.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/johnjago/awesome-ad-free#readme" target="_blank" rel="noopener"
+&gt;Ad-Free&lt;/a&gt; - Ad-free alternatives.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/roaldnefs/awesome-prometheus#readme" target="_blank" rel="noopener"
+&gt;Prometheus&lt;/a&gt; - Open-source monitoring system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/homematic-community/awesome-homematic#readme" target="_blank" rel="noopener"
+&gt;Homematic&lt;/a&gt; - Smart home devices.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sfischer13/awesome-ledger#readme" target="_blank" rel="noopener"
+&gt;Ledger&lt;/a&gt; - Double-entry accounting on the command-line.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/thomasbnt/awesome-web-monetization#readme" target="_blank" rel="noopener"
+&gt;Web Monetization&lt;/a&gt; - A free open web standard service that allows you to send money directly in your browser.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/johnjago/awesome-uncopyright#readme" target="_blank" rel="noopener"
+&gt;Uncopyright&lt;/a&gt; - Public domain works.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Zheaoli/awesome-coins#readme" target="_blank" rel="noopener"
+&gt;Crypto Currency Tools &amp;amp; Algorithms&lt;/a&gt; - Digital currency where encryption is used to regulate the generation of units and verify transfers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/zachflower/awesome-open-source-supporters#readme" target="_blank" rel="noopener"
+&gt;Open Source Supporters&lt;/a&gt; - Companies that offer their tools and services for free to open source projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/robinstickel/awesome-design-principles#readme" target="_blank" rel="noopener"
+&gt;Design Principles&lt;/a&gt; - Create better and more consistent designs and experiences.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/johnjago/awesome-theravada#readme" target="_blank" rel="noopener"
+&gt;Theravada&lt;/a&gt; - Teachings from the Theravada Buddhist tradition.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/inspectit-labs/awesome-inspectit#readme" target="_blank" rel="noopener"
+&gt;inspectIT&lt;/a&gt; - Open source Java app performance management tool.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nayafia/awesome-maintainers#readme" target="_blank" rel="noopener"
+&gt;Open Source Maintainers&lt;/a&gt; - The experience of being an open source maintainer.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/xxczaki/awesome-calculators#readme" target="_blank" rel="noopener"
+&gt;Calculators&lt;/a&gt; - Calculators for every platform.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ZYSzys/awesome-captcha#readme" target="_blank" rel="noopener"
+&gt;Captcha&lt;/a&gt; - A type of challenge–response test used in computing to determine whether or not the user is human.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/markusschanta/awesome-jupyter#readme" target="_blank" rel="noopener"
+&gt;Jupyter&lt;/a&gt; - Create and share documents that contain code, equations, visualizations and narrative text.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/andrewda/awesome-frc#readme" target="_blank" rel="noopener"
+&gt;FIRST Robotics Competition&lt;/a&gt; - International high school robotics championship.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/karlhorky/awesome-speakers#readme" target="_blank" rel="noopener"
+&gt;Speakers&lt;/a&gt; - Conference and meetup speakers in the programming and design community.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/edm00se/awesome-board-games#readme" target="_blank" rel="noopener"
+&gt;Board Games&lt;/a&gt; - Table-top gaming fun for all.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/uraimo/awesome-software-patreons#readme" target="_blank" rel="noopener"
+&gt;Software Patreons&lt;/a&gt; - Fund individual programmers or the development of open source projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ecohealthalliance/awesome-parasite#readme" target="_blank" rel="noopener"
+&gt;Parasite&lt;/a&gt; - Parasites and host-pathogen interactions.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jzarca01/awesome-food#readme" target="_blank" rel="noopener"
+&gt;Food&lt;/a&gt; - Food-related projects on GitHub.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/alexk111/awesome-bitcoin-payment-processors#readme" target="_blank" rel="noopener"
+&gt;Bitcoin Payment Processors&lt;/a&gt; - Start accepting Bitcoin.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/nschloe/awesome-scientific-computing#readme" target="_blank" rel="noopener"
+&gt;Scientific Computing&lt;/a&gt; - Solving complex scientific problems using computers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ScaleLeap/awesome-amazon-seller#readme" target="_blank" rel="noopener"
+&gt;Amazon Sellers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/brycejohnston/awesome-agriculture#readme" target="_blank" rel="noopener"
+&gt;Agriculture&lt;/a&gt; - Open source technology for farming and gardening.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ttt30ga/awesome-product-design#readme" target="_blank" rel="noopener"
+&gt;Product Design&lt;/a&gt; - Design a product from the initial concept to production.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/catalinmiron/awesome-prisma#readme" target="_blank" rel="noopener"
+&gt;Prisma&lt;/a&gt; - Turn your database into a GraphQL API.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/simskij/awesome-software-architecture#readme" target="_blank" rel="noopener"
+&gt;Software Architecture&lt;/a&gt; - The discipline of designing and building software.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stevesong/awesome-connectivity-info#readme" target="_blank" rel="noopener"
+&gt;Connectivity Data and Reports&lt;/a&gt; - Better understand who has access to telecommunication and internet infrastructure and on what terms.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/stackshareio/awesome-stacks#readme" target="_blank" rel="noopener"
+&gt;Stacks&lt;/a&gt; - Tech stacks for building different apps and features.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cytodata/awesome-cytodata#readme" target="_blank" rel="noopener"
+&gt;Cytodata&lt;/a&gt; - Image-based profiling of biological phenotypes for computational biologists.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/davisonio/awesome-irc#readme" target="_blank" rel="noopener"
+&gt;IRC&lt;/a&gt; - Open source messaging protocol.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/cenoura/awesome-ads#readme" target="_blank" rel="noopener"
+&gt;Advertising&lt;/a&gt; - Advertising and programmatic media for websites.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/philsturgeon/awesome-earth#readme" target="_blank" rel="noopener"
+&gt;Earth&lt;/a&gt; - Find ways to resolve the climate crisis.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gruhn/awesome-naming#readme" target="_blank" rel="noopener"
+&gt;Naming&lt;/a&gt; - Naming things in computer science done right.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/iipc/awesome-web-archiving#readme" target="_blank" rel="noopener"
+&gt;Web Archiving&lt;/a&gt; - An effort to preserve the Web for future generations.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/schlessera/awesome-wp-cli#readme" target="_blank" rel="noopener"
+&gt;WP-CLI&lt;/a&gt; - Command-line interface for WordPress.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mourarthur/awesome-credit-modeling#readme" target="_blank" rel="noopener"
+&gt;Credit Modeling&lt;/a&gt; - Methods for classifying credit applicants into risk classes.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/ansible-community/awesome-ansible#readme" target="_blank" rel="noopener"
+&gt;Ansible&lt;/a&gt; - A Python-based, open-source IT configuration management and automation platform.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/keller-mark/awesome-biological-visualizations#readme" target="_blank" rel="noopener"
+&gt;Biological Visualizations&lt;/a&gt; - Interactive visualization of biological data on the web.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/make-github-pseudonymous-again/awesome-qr-code#readme" target="_blank" rel="noopener"
+&gt;QR Code&lt;/a&gt; - A type of matrix barcode that can be used to store and share a small amount of information.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sdassow/awesome-veganism#readme" target="_blank" rel="noopener"
+&gt;Veganism&lt;/a&gt; - Making the plant-based lifestyle easy and accessible.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mbiesiad/awesome-translations#readme" target="_blank" rel="noopener"
+&gt;Translations&lt;/a&gt; - The transfer of the meaning of a text from one language to another.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dersvenhesse/awesome-scriptable#readme" target="_blank" rel="noopener"
+&gt;Scriptable&lt;/a&gt; - An iOS app for automation in JavaScript.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/msub2/awesome-webxr#readme" target="_blank" rel="noopener"
+&gt;WebXR&lt;/a&gt; - Enables immersive virtual reality and augmented reality content on the web.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/atkirtland/awesome-computational-geometry#readme" target="_blank" rel="noopener"
+&gt;Computational Geometry&lt;/a&gt; - Computational approaches for problems in geometry.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/osmlab/awesome-openstreetmap#readme" target="_blank" rel="noopener"
+&gt;OpenStreetMap&lt;/a&gt; - An open data mapping project utilized by many apps and devices.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/inoue0426/awesome-computational-biology#readme" target="_blank" rel="noopener"
+&gt;Computational Biology&lt;/a&gt; - Computational approaches applied to problems in biology.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/readthedocs-examples/awesome-read-the-docs#readme" target="_blank" rel="noopener"
+&gt;Read the Docs&lt;/a&gt; - Example documentation projects to inspire and help bootstrap new documentation projects.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mcanouil/awesome-quarto#readme" target="_blank" rel="noopener"
+&gt;Quarto&lt;/a&gt; - Scientific and technical open-source publishing system built on Pandoc.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hallvaaw/awesome-biological-image-analysis#readme" target="_blank" rel="noopener"
+&gt;Biological Image Analysis&lt;/a&gt; - Interpreting biological phenomena using images.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-chatgpt#readme" target="_blank" rel="noopener"
+&gt;ChatGPT&lt;/a&gt; - Artificial intelligence chatbot developed by OpenAI.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sindresorhus/awesome-whisper#readme" target="_blank" rel="noopener"
+&gt;Whisper&lt;/a&gt; - Open-source AI-powered speech recognition system developed by OpenAI.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/shi-rudo/awesome-stock-trading#readme" target="_blank" rel="noopener"
+&gt;Stock Trading&lt;/a&gt; - Purchase and sale of equities of publicly traded companies to generate profits.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/airscripts/awesome-steam-deck#readme" target="_blank" rel="noopener"
+&gt;Steam Deck&lt;/a&gt; - A handheld gaming computer developed by Valve.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lunohodov/awesome-astrophotography#readme" target="_blank" rel="noopener"
+&gt;Astrophotography&lt;/a&gt; - Photography of astronomical objects, celestial events, or areas of the night sky.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/dstdev/awesome-hpc#readme" target="_blank" rel="noopener"
+&gt;HPC&lt;/a&gt; - High Performance Computing.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/FoxFil/awesome-geocaching#readme" target="_blank" rel="noopener"
+&gt;Geocaching&lt;/a&gt; - Outdoor treasure-hunting activity that uses GPS-enabled devices.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/slevithan/awesome-regex#readme" target="_blank" rel="noopener"
+&gt;Regex&lt;/a&gt; - Specialized language for matching patterns in text.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/lutzh/awesome-event-driven-architecture#readme" target="_blank" rel="noopener"
+&gt;Event-Driven Architecture&lt;/a&gt; - A software architecture approach where services collaborate by publishing and subscribing to events.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/idematos/awesome-permacomputing#readme" target="_blank" rel="noopener"
+&gt;Permacomputing&lt;/a&gt; - Resilient and regenerative computing practices inspired by permaculture.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/donBarbos/awesome-standards#readme" target="_blank" rel="noopener"
+&gt;Standards&lt;/a&gt; - Standards and proposals that define and enhance software, languages, and related technologies.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/hesreallyhim/awesome-claude-code#readme" target="_blank" rel="noopener"
+&gt;Claude Code&lt;/a&gt; - Terminal-based AI coding assistant by Anthropic.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Piebald-AI/awesome-gemini-cli#readme" target="_blank" rel="noopener"
+&gt;Gemini CLI&lt;/a&gt; - Terminal-based AI coding assistant by Google.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eminyagiz42/awesome-sap-commerce#readme" target="_blank" rel="noopener"
+&gt;SAP Commerce&lt;/a&gt; - An e-commerce platform built with Java, Spring MVC, and Angular.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/sampart/awesome-tech-ethics#readme" target="_blank" rel="noopener"
+&gt;Tech Ethics&lt;/a&gt; - Mitigating and avoiding the potential negative effects of technology on society.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/Code-and-Sorts/awesome-copilot-agents#readme" target="_blank" rel="noopener"
+&gt;Copilot Agents&lt;/a&gt; - AI pair programming assistant by GitHub that provides code suggestions and completions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="related"&gt;Related
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/topics/awesome" target="_blank" rel="noopener"
+&gt;All Awesome Lists&lt;/a&gt; - All the Awesome lists on GitHub.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://awesomelists.top" target="_blank" rel="noopener"
+&gt;Awesome Search&lt;/a&gt; - Quick search for Awesome lists.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/basharovV/StumbleUponAwesome" target="_blank" rel="noopener"
+&gt;StumbleUponAwesome&lt;/a&gt; - Discover random pages from the Awesome dataset using a browser extension.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/umutphp/awesome-cli" target="_blank" rel="noopener"
+&gt;Awesome CLI&lt;/a&gt; - A simple command-line tool to dive into Awesome lists.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.trackawesomelist.com" target="_blank" rel="noopener"
+&gt;Track Awesome List&lt;/a&gt; - View the latest updates of Awesome lists.&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
