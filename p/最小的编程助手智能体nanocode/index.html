@@ -1,0 +1,1196 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍最小的编程助手智能体nanocode。"><title>最小的编程助手智能体nanocode</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="最小的编程助手智能体nanocode"><meta property='og:description' content="本文介绍最小的编程助手智能体nanocode。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='GitHub'><meta property='article:tag' content='nanocode'><meta property='article:published_time' content='2026-01-31T21:34:25-08:00'><meta property='article:modified_time' content='2026-01-31T21:34:25-08:00'><meta name=twitter:title content="最小的编程助手智能体nanocode"><meta name=twitter:description content="本文介绍最小的编程助手智能体nanocode。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#简介>简介</a></li><li><a href=#特色>特色</a></li><li><a href=#使用方式>使用方式</a><ol><li><a href=#配置-openrouter>配置 OpenRouter</a></li></ol></li><li><a href=#命令>命令</a></li><li><a href=#工具>工具</a></li><li><a href=#使用示例>使用示例</a></li><li><a href=#源码解析>源码解析</a></li></ol><ol><li><a href=#前言-1>前言</a></li><li><a href=#简介-1>简介</a></li><li><a href=#特色-1>特色</a></li><li><a href=#使用方式-1>使用方式</a><ol><li><a href=#配置-openrouter-1>配置 OpenRouter</a></li></ol></li><li><a href=#命令-1>命令</a></li><li><a href=#工具-1>工具</a></li><li><a href=#使用示例-1>使用示例</a></li><li><a href=#源码>源码</a></li><li><a href=#一代码整体功能总结>一、代码整体功能总结</a></li><li><a href=#二分模块详细解析>二、分模块详细解析</a><ol><li><a href=#1-头部配置与常量定义>1. 头部配置与常量定义</a></li><li><a href=#2-工具实现模块核心工具函数>2. 工具实现模块（核心工具函数）</a><ol><li><a href=#1read读取文件内容附带行号支持偏移限制>（1）<code>read()</code>：读取文件内容（附带行号，支持偏移/限制）</a></li><li><a href=#2write向文件写入内容覆盖写入>（2）<code>write()</code>：向文件写入内容（覆盖写入）</a></li><li><a href=#3edit替换文件中的指定字符串>（3）<code>edit()</code>：替换文件中的指定字符串</a></li><li><a href=#4glob按模式查找文件按修改时间倒序排序>（4）<code>glob()</code>：按模式查找文件（按修改时间倒序排序）</a></li><li><a href=#5grep按正则表达式检索文件内容>（5）<code>grep()</code>：按正则表达式检索文件内容</a></li><li><a href=#6bash执行shell命令带超时控制实时输出>（6）<code>bash()</code>：执行Shell命令（带超时控制，实时输出）</a></li></ol></li><li><a href=#3-工具配置与辅助函数模块>3. 工具配置与辅助函数模块</a><ol><li><a href=#1tools字典工具元信息配置>（1）<code>TOOLS</code>字典：工具元信息配置</a></li><li><a href=#2run_tool工具执行封装带异常捕获>（2）<code>run_tool()</code>：工具执行封装（带异常捕获）</a></li><li><a href=#3make_schema生成ai-api可识别的工具schema>（3）<code>make_schema()</code>：生成AI API可识别的工具Schema</a></li><li><a href=#4call_api调用ai-api发送请求获取响应>（4）<code>call_api()</code>：调用AI API（发送请求，获取响应）</a></li></ol></li><li><a href=#4-终端格式辅助函数>4. 终端格式辅助函数</a></li><li><a href=#5-主函数main程序入口与核心循环>5. 主函数<code>main()</code>：程序入口与核心循环</a></li><li><a href=#6-程序入口>6. 程序入口</a></li></ol></li><li><a href=#三整体分析核心亮点与设计思路>三、整体分析（核心亮点与设计思路）</a><ol><li><a href=#1-核心设计亮点>1. 核心设计亮点</a></li><li><a href=#2-潜在局限性>2. 潜在局限性</a></li><li><a href=#3-整体架构梳理>3. 整体架构梳理</a></li><li><a href=#总结>总结</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/app/>APP
+</a><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/llm/>LLM</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/>最小的编程助手智能体nanocode</a></h2><h3 class=article-subtitle>本文介绍最小的编程助手智能体nanocode。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 31, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 16 分钟</time></div></footer></div></header><section class=article-content><h1 id=最小的编程助手智能体nanocode>最小的编程助手智能体nanocode</h1><h2 id=前言>前言</h2><p>今天听了一场“function call is all you need”的AI 编程演讲，演讲者从一个大语言模型和一个Bash命令行工具开始增加文件读写等功能，然后搭建一个编程助手智能体。这让我觉得很神奇，后续也就知道了nanocode这个项目。这里详细解释一下nanocode的源码，方便我开发自己的编程助手智能体。</p><h2 id=简介>简介</h2><p><a class=link href=https://github.com/1rgs/nanocode target=_blank rel=noopener>Minimal Claude Code alternative. Single Python file, zero dependencies, ~250 lines.</a></p><p>Built using Claude Code, then used to build itself.</p><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260131190600886.png loading=lazy></p><h2 id=特色>特色</h2><ul><li>Full agentic loop with tool use</li><li>Tools: <code>read</code>, <code>write</code>, <code>edit</code>, <code>glob</code>, <code>grep</code>, <code>bash</code></li><li>Conversation history</li><li>Colored terminal output</li></ul><h2 id=使用方式>使用方式</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>ANTHROPIC_API_KEY</span><span class=o>=</span><span class=s2>&#34;your-key&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置-openrouter>配置 OpenRouter</h3><p>Use <a class=link href=https://openrouter.ai/ target=_blank rel=noopener>OpenRouter</a> to access any model:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>OPENROUTER_API_KEY</span><span class=o>=</span><span class=s2>&#34;your-key&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><p>To use a different model:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>OPENROUTER_API_KEY</span><span class=o>=</span><span class=s2>&#34;your-key&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>MODEL</span><span class=o>=</span><span class=s2>&#34;openai/gpt-5.2&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h2 id=命令>命令</h2><ul><li><code>/c</code> - Clear conversation</li><li><code>/q</code> or <code>exit</code> - Quit</li></ul><h2 id=工具>工具</h2><div class=table-wrapper><table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody><tr><td><code>read</code></td><td>Read file with line numbers, offset/limit</td></tr><tr><td><code>write</code></td><td>Write content to file</td></tr><tr><td><code>edit</code></td><td>Replace string in file (must be unique)</td></tr><tr><td><code>glob</code></td><td>Find files by pattern, sorted by mtime</td></tr><tr><td><code>grep</code></td><td>Search files for regex</td></tr><tr><td><code>bash</code></td><td>Run shell command</td></tr></tbody></table></div><h2 id=使用示例>使用示例</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>────────────────────────────────────────
+</span></span><span class=line><span class=cl>❯ what files are here?
+</span></span><span class=line><span class=cl>────────────────────────────────────────
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>⏺ Glob(**/*.py)
+</span></span><span class=line><span class=cl>  ⎿  nanocode.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>⏺ There&#39;s one Python file: nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h2 id=源码解析>源码解析</h2><h1 id=轻量级编程助手智能体-nanocode>轻量级编程助手智能体 nanocode</h1><h2 id=前言-1>前言</h2><p>今日我聆听了一场主题为“function call is all you need”（函数调用即是全部所需）的AI编程演讲。演讲者以一款大语言模型和一个Bash命令行工具为基础，逐步为其拓展文件读写等核心功能，最终搭建出一套完整的编程助手智能体。这场演讲令人深受启发，也让我后续了解到了nanocode这个优秀项目。在此，我将对nanocode的源码进行详细解析，以便为我后续开发专属编程助手智能体提供参考与借鉴。</p><h2 id=简介-1>简介</h2><p><a class=link href=https://github.com/1rgs/nanocode target=_blank rel=noopener>一款轻量级 Claude Code 替代方案。仅含单个 Python 文件，零外部依赖，代码量约 250 行。</a></p><p>该项目基于 Claude Code 构建开发，而后又借助其自身完成了进一步的迭代优化。</p><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260131190600886.png loading=lazy></p><h2 id=特色-1>特色</h2><ul><li>具备完整的工具调用智能体循环流程</li><li>内置工具：<code>read</code>（读取文件）、<code>write</code>（写入文件）、<code>edit</code>（编辑文件）、<code>glob</code>（文件匹配）、<code>grep</code>（内容检索）、<code>bash</code>（执行Shell命令）</li><li>支持对话历史记录</li><li>终端输出带有彩色高亮效果</li></ul><h2 id=使用方式-1>使用方式</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>ANTHROPIC_API_KEY</span><span class=o>=</span><span class=s2>&#34;你的API密钥&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置-openrouter-1>配置 OpenRouter</h3><p>可使用 <a class=link href=https://openrouter.ai/ target=_blank rel=noopener>OpenRouter</a> 调用各类模型：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>OPENROUTER_API_KEY</span><span class=o>=</span><span class=s2>&#34;你的API密钥&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><p>指定其他模型使用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>export</span> <span class=nv>OPENROUTER_API_KEY</span><span class=o>=</span><span class=s2>&#34;你的API密钥&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>MODEL</span><span class=o>=</span><span class=s2>&#34;openai/gpt-5.2&#34;</span>
+</span></span><span class=line><span class=cl>python nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h2 id=命令-1>命令</h2><ul><li><code>/c</code> - 清空当前对话历史</li><li><code>/q</code> 或 <code>exit</code> - 退出程序</li></ul><h2 id=工具-1>工具</h2><div class=table-wrapper><table><thead><tr><th>工具</th><th>描述</th></tr></thead><tbody><tr><td><code>read</code></td><td>读取文件内容并附带行号，支持设置偏移量/读取限制</td></tr><tr><td><code>write</code></td><td>向文件中写入指定内容</td></tr><tr><td><code>edit</code></td><td>替换文件中的指定字符串（该字符串必须具有唯一性）</td></tr><tr><td><code>glob</code></td><td>按照指定模式查找文件，结果按文件修改时间排序</td></tr><tr><td><code>grep</code></td><td>按照正则表达式检索文件内容</td></tr><tr><td><code>bash</code></td><td>执行Shell命令</td></tr></tbody></table></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>❯ how many files in this folder?
+</span></span><span class=line><span class=cl>────────────────────────────────────────────────────────────────────────────────
+</span></span><span class=line><span class=cl>⏺ Error: Expecting value: line 1 column 1 (char 0)
+</span></span></code></pre></td></tr></table></div></div><h2 id=使用示例-1>使用示例</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>────────────────────────────────────────
+</span></span><span class=line><span class=cl>❯ 这里有哪些文件？
+</span></span><span class=line><span class=cl>────────────────────────────────────────
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>⏺ 执行文件匹配(**/*.py)
+</span></span><span class=line><span class=cl>  ⎿  nanocode.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>⏺ 当前目录下存在一个Python文件：nanocode.py
+</span></span></code></pre></td></tr></table></div></div><h2 id=源码>源码</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python3</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;nanocode - minimal claude code alternative&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>glob</span> <span class=k>as</span> <span class=nn>globlib</span><span class=o>,</span> <span class=nn>json</span><span class=o>,</span> <span class=nn>os</span><span class=o>,</span> <span class=nn>re</span><span class=o>,</span> <span class=nn>subprocess</span><span class=o>,</span> <span class=nn>urllib.request</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>OPENROUTER_KEY</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;OPENROUTER_API_KEY&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>API_URL</span> <span class=o>=</span> <span class=s2>&#34;https://openrouter.ai/api/v1/messages&#34;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s2>&#34;https://api.anthropic.com/v1/messages&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;MODEL&#34;</span><span class=p>,</span> <span class=s2>&#34;anthropic/claude-opus-4.5&#34;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s2>&#34;claude-opus-4-5&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ANSI colors</span>
+</span></span><span class=line><span class=cl><span class=n>RESET</span><span class=p>,</span> <span class=n>BOLD</span><span class=p>,</span> <span class=n>DIM</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[0m&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[1m&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[2m&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>BLUE</span><span class=p>,</span> <span class=n>CYAN</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>YELLOW</span><span class=p>,</span> <span class=n>RED</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[34m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[36m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[32m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[33m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[31m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Tool implementations ---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>read</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>lines</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>offset</span> <span class=o>=</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;offset&#34;</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>limit</span> <span class=o>=</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;limit&#34;</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>lines</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>selected</span> <span class=o>=</span> <span class=n>lines</span><span class=p>[</span><span class=n>offset</span> <span class=p>:</span> <span class=n>offset</span> <span class=o>+</span> <span class=n>limit</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>offset</span> <span class=o>+</span> <span class=n>idx</span> <span class=o>+</span> <span class=mi>1</span><span class=si>:</span><span class=s2>4</span><span class=si>}</span><span class=s2>| </span><span class=si>{</span><span class=n>line</span><span class=si>}</span><span class=s2>&#34;</span> <span class=k>for</span> <span class=n>idx</span><span class=p>,</span> <span class=n>line</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>selected</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>write</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>],</span> <span class=s2>&#34;w&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;content&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;ok&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>edit</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>old</span><span class=p>,</span> <span class=n>new</span> <span class=o>=</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;old&#34;</span><span class=p>],</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;new&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>old</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>text</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=s2>&#34;error: old_string not found&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>count</span> <span class=o>=</span> <span class=n>text</span><span class=o>.</span><span class=n>count</span><span class=p>(</span><span class=n>old</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;all&#34;</span><span class=p>)</span> <span class=ow>and</span> <span class=n>count</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;error: old_string appears </span><span class=si>{</span><span class=n>count</span><span class=si>}</span><span class=s2> times, must be unique (use all=true)&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>replacement</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=n>old</span><span class=p>,</span> <span class=n>new</span><span class=p>)</span> <span class=k>if</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;all&#34;</span><span class=p>)</span> <span class=k>else</span> <span class=n>text</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=n>old</span><span class=p>,</span> <span class=n>new</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>],</span> <span class=s2>&#34;w&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>replacement</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;ok&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>glob</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>pattern</span> <span class=o>=</span> <span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;path&#34;</span><span class=p>,</span> <span class=s2>&#34;.&#34;</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;/&#34;</span> <span class=o>+</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;pat&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;//&#34;</span><span class=p>,</span> <span class=s2>&#34;/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>files</span> <span class=o>=</span> <span class=n>globlib</span><span class=o>.</span><span class=n>glob</span><span class=p>(</span><span class=n>pattern</span><span class=p>,</span> <span class=n>recursive</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>files</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>files</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>f</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>getmtime</span><span class=p>(</span><span class=n>f</span><span class=p>)</span> <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isfile</span><span class=p>(</span><span class=n>f</span><span class=p>)</span> <span class=k>else</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>reverse</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>files</span><span class=p>)</span> <span class=ow>or</span> <span class=s2>&#34;none&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>grep</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>pattern</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;pat&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>hits</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>filepath</span> <span class=ow>in</span> <span class=n>globlib</span><span class=o>.</span><span class=n>glob</span><span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;path&#34;</span><span class=p>,</span> <span class=s2>&#34;.&#34;</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;/**&#34;</span><span class=p>,</span> <span class=n>recursive</span><span class=o>=</span><span class=kc>True</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>line_num</span><span class=p>,</span> <span class=n>line</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=n>filepath</span><span class=p>),</span> <span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>pattern</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>line</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                    <span class=n>hits</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>filepath</span><span class=si>}</span><span class=s2>:</span><span class=si>{</span><span class=n>line_num</span><span class=si>}</span><span class=s2>:</span><span class=si>{</span><span class=n>line</span><span class=o>.</span><span class=n>rstrip</span><span class=p>()</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>hits</span><span class=p>[:</span><span class=mi>50</span><span class=p>])</span> <span class=ow>or</span> <span class=s2>&#34;none&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>bash</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>proc</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>Popen</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>args</span><span class=p>[</span><span class=s2>&#34;cmd&#34;</span><span class=p>],</span> <span class=n>shell</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>stdout</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>PIPE</span><span class=p>,</span> <span class=n>stderr</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>STDOUT</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span><span class=o>=</span><span class=kc>True</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_lines</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>line</span> <span class=o>=</span> <span class=n>proc</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>readline</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>line</span> <span class=ow>and</span> <span class=n>proc</span><span class=o>.</span><span class=n>poll</span><span class=p>()</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>line</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>DIM</span><span class=si>}</span><span class=s2>│ </span><span class=si>{</span><span class=n>line</span><span class=o>.</span><span class=n>rstrip</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>flush</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>output_lines</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>proc</span><span class=o>.</span><span class=n>wait</span><span class=p>(</span><span class=n>timeout</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>TimeoutExpired</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>proc</span><span class=o>.</span><span class=n>kill</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>output_lines</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>(timed out after 30s)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>output_lines</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=ow>or</span> <span class=s2>&#34;(empty)&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Tool definitions: (description, schema, function) ---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>TOOLS</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;read&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Read file with line numbers (file path, not directory)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;offset&#34;</span><span class=p>:</span> <span class=s2>&#34;number?&#34;</span><span class=p>,</span> <span class=s2>&#34;limit&#34;</span><span class=p>:</span> <span class=s2>&#34;number?&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>read</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;write&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Write content to file&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>write</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;edit&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Replace old with new in file (old must be unique unless all=true)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;old&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;new&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;all&#34;</span><span class=p>:</span> <span class=s2>&#34;boolean?&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>edit</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;glob&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Find files by pattern, sorted by mtime&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;pat&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string?&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>glob</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;grep&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Search files for regex pattern&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;pat&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string?&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>grep</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;bash&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Run shell command&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;cmd&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>bash</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_tool</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>TOOLS</span><span class=p>[</span><span class=n>name</span><span class=p>][</span><span class=mi>2</span><span class=p>](</span><span class=n>args</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>err</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;error: </span><span class=si>{</span><span class=n>err</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>make_schema</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>name</span><span class=p>,</span> <span class=p>(</span><span class=n>description</span><span class=p>,</span> <span class=n>params</span><span class=p>,</span> <span class=n>_fn</span><span class=p>)</span> <span class=ow>in</span> <span class=n>TOOLS</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=n>properties</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>        <span class=n>required</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>param_name</span><span class=p>,</span> <span class=n>param_type</span> <span class=ow>in</span> <span class=n>params</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>is_optional</span> <span class=o>=</span> <span class=n>param_type</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>base_type</span> <span class=o>=</span> <span class=n>param_type</span><span class=o>.</span><span class=n>rstrip</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>properties</span><span class=p>[</span><span class=n>param_name</span><span class=p>]</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;integer&#34;</span> <span class=k>if</span> <span class=n>base_type</span> <span class=o>==</span> <span class=s2>&#34;number&#34;</span> <span class=k>else</span> <span class=n>base_type</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>is_optional</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>required</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>param_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>result</span><span class=o>.</span><span class=n>append</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;name&#34;</span><span class=p>:</span> <span class=n>name</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;description&#34;</span><span class=p>:</span> <span class=n>description</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;input_schema&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;object&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;properties&#34;</span><span class=p>:</span> <span class=n>properties</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;required&#34;</span><span class=p>:</span> <span class=n>required</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>result</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>call_api</span><span class=p>(</span><span class=n>messages</span><span class=p>,</span> <span class=n>system_prompt</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>request</span> <span class=o>=</span> <span class=n>urllib</span><span class=o>.</span><span class=n>request</span><span class=o>.</span><span class=n>Request</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>API_URL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span><span class=o>=</span><span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;model&#34;</span><span class=p>:</span> <span class=n>MODEL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;max_tokens&#34;</span><span class=p>:</span> <span class=mi>8192</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;system&#34;</span><span class=p>:</span> <span class=n>system_prompt</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;messages&#34;</span><span class=p>:</span> <span class=n>messages</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;tools&#34;</span><span class=p>:</span> <span class=n>make_schema</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>headers</span><span class=o>=</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;Content-Type&#34;</span><span class=p>:</span> <span class=s2>&#34;application/json&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;anthropic-version&#34;</span><span class=p>:</span> <span class=s2>&#34;2023-06-01&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=o>**</span><span class=p>({</span><span class=s2>&#34;Authorization&#34;</span><span class=p>:</span> <span class=sa>f</span><span class=s2>&#34;Bearer </span><span class=si>{</span><span class=n>OPENROUTER_KEY</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>}</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=p>{</span><span class=s2>&#34;x-api-key&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;ANTHROPIC_API_KEY&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)}),</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>response</span> <span class=o>=</span> <span class=n>urllib</span><span class=o>.</span><span class=n>request</span><span class=o>.</span><span class=n>urlopen</span><span class=p>(</span><span class=n>request</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=n>response</span><span class=o>.</span><span class=n>read</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>separator</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=s1>&#39;─&#39;</span> <span class=o>*</span> <span class=nb>min</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>get_terminal_size</span><span class=p>()</span><span class=o>.</span><span class=n>columns</span><span class=p>,</span> <span class=mi>80</span><span class=p>)</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>render_markdown</span><span class=p>(</span><span class=n>text</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&#34;\*\*(.+?)\*\*&#34;</span><span class=p>,</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}</span><span class=se>\\</span><span class=s2>1</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}</span><span class=s2>nanocode</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=n>MODEL</span><span class=si>}</span><span class=s2> (</span><span class=si>{</span><span class=s1>&#39;OpenRouter&#39;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s1>&#39;Anthropic&#39;</span><span class=si>}</span><span class=s2>) | </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>messages</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>system_prompt</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;Concise coding assistant. cwd: </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>()</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>separator</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=n>user_input</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}{</span><span class=n>BLUE</span><span class=si>}</span><span class=s2>❯</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> &#34;</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>separator</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>user_input</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>user_input</span> <span class=ow>in</span> <span class=p>(</span><span class=s2>&#34;/q&#34;</span><span class=p>,</span> <span class=s2>&#34;exit&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>user_input</span> <span class=o>==</span> <span class=s2>&#34;/c&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>GREEN</span><span class=si>}</span><span class=s2>⏺ Cleared conversation</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;user&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>user_input</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># agentic loop: keep calling API until no more tool calls</span>
+</span></span><span class=line><span class=cl>            <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>response</span> <span class=o>=</span> <span class=n>call_api</span><span class=p>(</span><span class=n>messages</span><span class=p>,</span> <span class=n>system_prompt</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>content_blocks</span> <span class=o>=</span> <span class=n>response</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;content&#34;</span><span class=p>,</span> <span class=p>[])</span>
+</span></span><span class=line><span class=cl>                <span class=n>tool_results</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>block</span> <span class=ow>in</span> <span class=n>content_blocks</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;type&#34;</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;text&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=si>{</span><span class=n>CYAN</span><span class=si>}</span><span class=s2>⏺</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> </span><span class=si>{</span><span class=n>render_markdown</span><span class=p>(</span><span class=n>block</span><span class=p>[</span><span class=s1>&#39;text&#39;</span><span class=p>])</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;type&#34;</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;tool_use&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_name</span> <span class=o>=</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;name&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_args</span> <span class=o>=</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;input&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=n>arg_preview</span> <span class=o>=</span> <span class=nb>str</span><span class=p>(</span><span class=nb>list</span><span class=p>(</span><span class=n>tool_args</span><span class=o>.</span><span class=n>values</span><span class=p>())[</span><span class=mi>0</span><span class=p>])[:</span><span class=mi>50</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                            <span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=si>{</span><span class=n>GREEN</span><span class=si>}</span><span class=s2>⏺ </span><span class=si>{</span><span class=n>tool_name</span><span class=o>.</span><span class=n>capitalize</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>(</span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=n>arg_preview</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>)&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                        <span class=n>result</span> <span class=o>=</span> <span class=n>run_tool</span><span class=p>(</span><span class=n>tool_name</span><span class=p>,</span> <span class=n>tool_args</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=n>result_lines</span> <span class=o>=</span> <span class=n>result</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=n>preview</span> <span class=o>=</span> <span class=n>result_lines</span><span class=p>[</span><span class=mi>0</span><span class=p>][:</span><span class=mi>60</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>preview</span> <span class=o>+=</span> <span class=sa>f</span><span class=s2>&#34; ... +</span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=si>}</span><span class=s2> lines&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=k>elif</span> <span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=o>&gt;</span> <span class=mi>60</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>preview</span> <span class=o>+=</span> <span class=s2>&#34;...&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>DIM</span><span class=si>}</span><span class=s2>⎿  </span><span class=si>{</span><span class=n>preview</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_results</span><span class=o>.</span><span class=n>append</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;tool_result&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;tool_use_id&#34;</span><span class=p>:</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;id&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>result</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                            <span class=p>}</span>
+</span></span><span class=line><span class=cl>                        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;assistant&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>content_blocks</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=ow>not</span> <span class=n>tool_results</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>break</span>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;user&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>tool_results</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=p>(</span><span class=ne>KeyboardInterrupt</span><span class=p>,</span> <span class=ne>EOFError</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>err</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>RED</span><span class=si>}</span><span class=s2>⏺ Error: </span><span class=si>{</span><span class=n>err</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=一代码整体功能总结>一、代码整体功能总结</h2><p>这份代码实现了一个<strong>轻量级、零外部依赖（仅使用Python内置库）的AI编程助手智能体</strong>，核心能力是通过调用Anthropic或OpenRouter的API，结合内置的6种实用工具（文件读写、查找、检索、Shell命令执行等），完成交互式的编程辅助任务。它的核心亮点是「完整的智能体工具调用循环」——AI会根据用户需求自动选择工具执行，再根据工具返回结果继续处理，直到完成任务，全程在终端以彩色输出提升可读性。</p><h2 id=二分模块详细解析>二、分模块详细解析</h2><p>我们按照代码的逻辑结构，拆分为以下几个核心模块进行解释：</p><h3 id=1-头部配置与常量定义>1. 头部配置与常量定义</h3><p>这部分是程序的初始化准备，负责读取环境变量、配置API信息和终端彩色输出样式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python3</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;nanocode - minimal claude code alternative&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 导入内置依赖库，无需额外安装</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>glob</span> <span class=k>as</span> <span class=nn>globlib</span><span class=o>,</span> <span class=nn>json</span><span class=o>,</span> <span class=nn>os</span><span class=o>,</span> <span class=nn>re</span><span class=o>,</span> <span class=nn>subprocess</span><span class=o>,</span> <span class=nn>urllib.request</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 读取环境变量，配置API相关参数</span>
+</span></span><span class=line><span class=cl><span class=c1># 读取OpenRouter API密钥（优先使用OpenRouter，无则使用Anthropic）</span>
+</span></span><span class=line><span class=cl><span class=n>OPENROUTER_KEY</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;OPENROUTER_API_KEY&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># 确定API请求地址：有OpenRouter密钥则用OpenRouter，否则用Anthropic</span>
+</span></span><span class=line><span class=cl><span class=n>API_URL</span> <span class=o>=</span> <span class=s2>&#34;https://openrouter.ai/api/v1/messages&#34;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s2>&#34;https://api.anthropic.com/v1/messages&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># 确定使用的模型：优先从环境变量读取，无则默认对应平台的高性能模型</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;MODEL&#34;</span><span class=p>,</span> <span class=s2>&#34;anthropic/claude-opus-4.5&#34;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s2>&#34;claude-opus-4-5&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 定义ANSI终端转义序列，实现彩色输出和格式控制</span>
+</span></span><span class=line><span class=cl><span class=n>RESET</span><span class=p>,</span> <span class=n>BOLD</span><span class=p>,</span> <span class=n>DIM</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[0m&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[1m&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[2m&#34;</span>  <span class=c1># 重置、加粗、暗淡</span>
+</span></span><span class=line><span class=cl><span class=n>BLUE</span><span class=p>,</span> <span class=n>CYAN</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>YELLOW</span><span class=p>,</span> <span class=n>RED</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[34m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[36m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[32m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[33m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[31m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>关键说明：<code>os.environ.get()</code> 用于安全读取系统环境变量，避免直接访问不存在的环境变量抛出异常；ANSI转义序列是终端的通用格式，用于让输出内容有不同颜色和样式，提升用户体验。</li></ul><h3 id=2-工具实现模块核心工具函数>2. 工具实现模块（核心工具函数）</h3><p>这部分实现了6个核心工具的具体逻辑，对应<code>TOOLS</code>配置中的功能，是智能体能够操作文件和执行命令的核心。</p><h4 id=1read读取文件内容附带行号支持偏移限制>（1）<code>read()</code>：读取文件内容（附带行号，支持偏移/限制）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>read</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 打开文件并按行读取所有内容</span>
+</span></span><span class=line><span class=cl>    <span class=n>lines</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 获取偏移量（默认从第0行开始）和读取限制（默认读取全部）</span>
+</span></span><span class=line><span class=cl>    <span class=n>offset</span> <span class=o>=</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;offset&#34;</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>limit</span> <span class=o>=</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;limit&#34;</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>lines</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 截取指定范围的行</span>
+</span></span><span class=line><span class=cl>    <span class=n>selected</span> <span class=o>=</span> <span class=n>lines</span><span class=p>[</span><span class=n>offset</span> <span class=p>:</span> <span class=n>offset</span> <span class=o>+</span> <span class=n>limit</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 拼接结果，附带行号（格式：4位数字| 行内容），提升可读性</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>offset</span> <span class=o>+</span> <span class=n>idx</span> <span class=o>+</span> <span class=mi>1</span><span class=si>:</span><span class=s2>4</span><span class=si>}</span><span class=s2>| </span><span class=si>{</span><span class=n>line</span><span class=si>}</span><span class=s2>&#34;</span> <span class=k>for</span> <span class=n>idx</span><span class=p>,</span> <span class=n>line</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>selected</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：<code>args</code>是字典，必须包含<code>path</code>（文件路径），可选<code>offset</code>（起始行偏移）、<code>limit</code>（读取行数）。</li><li>返回：带行号的文件内容字符串。</li></ul><h4 id=2write向文件写入内容覆盖写入>（2）<code>write()</code>：向文件写入内容（覆盖写入）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>write</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 以&#34;w&#34;（写入模式）打开文件，不存在则创建，存在则覆盖</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>],</span> <span class=s2>&#34;w&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;content&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;ok&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：<code>args</code>必须包含<code>path</code>（文件路径）、<code>content</code>（要写入的内容）。</li><li>注意：使用<code>with</code>语句自动关闭文件，避免资源泄露；该方法是<strong>覆盖写入</strong>，会清空文件原有内容。</li></ul><h4 id=3edit替换文件中的指定字符串>（3）<code>edit()</code>：替换文件中的指定字符串</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>edit</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 读取文件全部内容</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>old</span><span class=p>,</span> <span class=n>new</span> <span class=o>=</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;old&#34;</span><span class=p>],</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;new&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 校验1：旧字符串是否存在</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>old</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>text</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=s2>&#34;error: old_string not found&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>count</span> <span class=o>=</span> <span class=n>text</span><span class=o>.</span><span class=n>count</span><span class=p>(</span><span class=n>old</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 校验2：未指定all=true时，旧字符串必须唯一（避免误替换）</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;all&#34;</span><span class=p>)</span> <span class=ow>and</span> <span class=n>count</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;error: old_string appears </span><span class=si>{</span><span class=n>count</span><span class=si>}</span><span class=s2> times, must be unique (use all=true)&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 执行替换：all=true则替换所有，否则只替换第1次出现</span>
+</span></span><span class=line><span class=cl>    <span class=n>replacement</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=n>old</span><span class=p>,</span> <span class=n>new</span><span class=p>)</span> <span class=k>if</span> <span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;all&#34;</span><span class=p>)</span> <span class=k>else</span> <span class=n>text</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=n>old</span><span class=p>,</span> <span class=n>new</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 写入替换后的内容（覆盖原文件）</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;path&#34;</span><span class=p>],</span> <span class=s2>&#34;w&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>replacement</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;ok&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：必须包含<code>path</code>、<code>old</code>（待替换字符串）、<code>new</code>（新字符串），可选<code>all</code>（是否替换所有匹配项）。</li><li>核心逻辑：先做合法性校验，再执行替换，最后覆盖写入，保证替换操作的安全性。</li></ul><h4 id=4glob按模式查找文件按修改时间倒序排序>（4）<code>glob()</code>：按模式查找文件（按修改时间倒序排序）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>glob</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 拼接文件查找模式（处理路径中的双斜杠，转为单斜杠）</span>
+</span></span><span class=line><span class=cl>    <span class=n>pattern</span> <span class=o>=</span> <span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;path&#34;</span><span class=p>,</span> <span class=s2>&#34;.&#34;</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;/&#34;</span> <span class=o>+</span> <span class=n>args</span><span class=p>[</span><span class=s2>&#34;pat&#34;</span><span class=p>])</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;//&#34;</span><span class=p>,</span> <span class=s2>&#34;/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 递归查找符合模式的所有文件/目录</span>
+</span></span><span class=line><span class=cl>    <span class=n>files</span> <span class=o>=</span> <span class=n>globlib</span><span class=o>.</span><span class=n>glob</span><span class=p>(</span><span class=n>pattern</span><span class=p>,</span> <span class=n>recursive</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 排序：按文件修改时间（mtime）倒序，非文件（目录）排最后</span>
+</span></span><span class=line><span class=cl>    <span class=n>files</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>files</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>f</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>getmtime</span><span class=p>(</span><span class=n>f</span><span class=p>)</span> <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isfile</span><span class=p>(</span><span class=n>f</span><span class=p>)</span> <span class=k>else</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>reverse</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 返回结果：换行分隔文件路径，无结果返回&#34;none&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>files</span><span class=p>)</span> <span class=ow>or</span> <span class=s2>&#34;none&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：必须包含<code>pat</code>（查找模式，如<code>**/*.py</code>），可选<code>path</code>（起始路径，默认当前目录）。</li><li>关键：<code>globlib.glob(recursive=True)</code>支持递归查找（<code>**</code>表示所有子目录），排序逻辑保证最新修改的文件优先展示。</li></ul><h4 id=5grep按正则表达式检索文件内容>（5）<code>grep()</code>：按正则表达式检索文件内容</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>grep</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 编译正则表达式模式，提升匹配效率</span>
+</span></span><span class=line><span class=cl>    <span class=n>pattern</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>args</span><span class=p>[</span><span class=s2>&#34;pat&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>hits</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 递归遍历所有文件/目录</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>filepath</span> <span class=ow>in</span> <span class=n>globlib</span><span class=o>.</span><span class=n>glob</span><span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;path&#34;</span><span class=p>,</span> <span class=s2>&#34;.&#34;</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;/**&#34;</span><span class=p>,</span> <span class=n>recursive</span><span class=o>=</span><span class=kc>True</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 按行读取文件，检索匹配内容</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>line_num</span><span class=p>,</span> <span class=n>line</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=n>filepath</span><span class=p>),</span> <span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>pattern</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>line</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 记录：文件路径:行号:匹配行内容（去除末尾换行符）</span>
+</span></span><span class=line><span class=cl>                    <span class=n>hits</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>filepath</span><span class=si>}</span><span class=s2>:</span><span class=si>{</span><span class=n>line_num</span><span class=si>}</span><span class=s2>:</span><span class=si>{</span><span class=n>line</span><span class=o>.</span><span class=n>rstrip</span><span class=p>()</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>  <span class=c1># 忽略无法读取的文件（如目录、权限不足文件）</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 返回前50条匹配结果，避免结果过多溢出</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>hits</span><span class=p>[:</span><span class=mi>50</span><span class=p>])</span> <span class=ow>or</span> <span class=s2>&#34;none&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：必须包含<code>pat</code>（正则表达式模式），可选<code>path</code>（起始路径）。</li><li>核心：结合<code>glob</code>遍历文件，用正则表达式匹配行内容，返回带位置信息的匹配结果，最多返回50条。</li></ul><h4 id=6bash执行shell命令带超时控制实时输出>（6）<code>bash()</code>：执行Shell命令（带超时控制，实时输出）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>bash</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 启动子进程执行Shell命令，捕获标准输出/错误输出</span>
+</span></span><span class=line><span class=cl>    <span class=n>proc</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>Popen</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>args</span><span class=p>[</span><span class=s2>&#34;cmd&#34;</span><span class=p>],</span> <span class=n>shell</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>stdout</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>PIPE</span><span class=p>,</span> <span class=n>stderr</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>STDOUT</span><span class=p>,</span>  <span class=c1># 标准错误重定向到标准输出</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span><span class=o>=</span><span class=kc>True</span>  <span class=c1># 以文本模式读取输出，而非字节流</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_lines</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 实时读取子进程输出，并打印到终端</span>
+</span></span><span class=line><span class=cl>        <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>line</span> <span class=o>=</span> <span class=n>proc</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>readline</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 终止条件：无输出且进程已退出</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>line</span> <span class=ow>and</span> <span class=n>proc</span><span class=o>.</span><span class=n>poll</span><span class=p>()</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>line</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>DIM</span><span class=si>}</span><span class=s2>│ </span><span class=si>{</span><span class=n>line</span><span class=o>.</span><span class=n>rstrip</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>flush</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>output_lines</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 等待进程执行完成，超时30秒</span>
+</span></span><span class=line><span class=cl>        <span class=n>proc</span><span class=o>.</span><span class=n>wait</span><span class=p>(</span><span class=n>timeout</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>TimeoutExpired</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 超时后杀死进程，记录超时信息</span>
+</span></span><span class=line><span class=cl>        <span class=n>proc</span><span class=o>.</span><span class=n>kill</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>output_lines</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>(timed out after 30s)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 返回命令执行结果（去除首尾空白，无结果返回&#34;(empty)&#34;）</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>output_lines</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=ow>or</span> <span class=s2>&#34;(empty)&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：必须包含<code>cmd</code>（要执行的Shell命令）。</li><li>关键：<code>subprocess.Popen</code>创建子进程，实时输出命令执行日志，30秒超时控制避免进程挂起，提升安全性。</li></ul><h3 id=3-工具配置与辅助函数模块>3. 工具配置与辅助函数模块</h3><p>这部分用于管理工具、生成工具Schema、执行工具调用，是连接工具函数与AI API的桥梁。</p><h4 id=1tools字典工具元信息配置>（1）<code>TOOLS</code>字典：工具元信息配置</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>TOOLS</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;read&#34;</span><span class=p>:</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;Read file with line numbers (file path, not directory)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span><span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;string&#34;</span><span class=p>,</span> <span class=s2>&#34;offset&#34;</span><span class=p>:</span> <span class=s2>&#34;number?&#34;</span><span class=p>,</span> <span class=s2>&#34;limit&#34;</span><span class=p>:</span> <span class=s2>&#34;number?&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>read</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 其他工具配置省略...</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>结构：每个工具对应一个三元组 <code>(工具描述, 入参Schema, 工具函数)</code>。</li><li>入参Schema说明：<code>?</code>表示可选参数（如<code>offset: number?</code>），无<code>?</code>表示必选参数，用于生成AI可识别的工具Schema。</li></ul><h4 id=2run_tool工具执行封装带异常捕获>（2）<code>run_tool()</code>：工具执行封装（带异常捕获）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_tool</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 从TOOLS中获取对应的工具函数并执行</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>TOOLS</span><span class=p>[</span><span class=n>name</span><span class=p>][</span><span class=mi>2</span><span class=p>](</span><span class=n>args</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>err</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 捕获工具执行中的所有异常，返回友好错误信息</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;error: </span><span class=si>{</span><span class=n>err</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>作用：统一封装工具调用逻辑，添加异常捕获，避免单个工具执行失败导致整个程序崩溃。</li></ul><h4 id=3make_schema生成ai-api可识别的工具schema>（3）<code>make_schema()</code>：生成AI API可识别的工具Schema</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>make_schema</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>name</span><span class=p>,</span> <span class=p>(</span><span class=n>description</span><span class=p>,</span> <span class=n>params</span><span class=p>,</span> <span class=n>_fn</span><span class=p>)</span> <span class=ow>in</span> <span class=n>TOOLS</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=n>properties</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>        <span class=n>required</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>param_name</span><span class=p>,</span> <span class=n>param_type</span> <span class=ow>in</span> <span class=n>params</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 判断参数是否可选</span>
+</span></span><span class=line><span class=cl>            <span class=n>is_optional</span> <span class=o>=</span> <span class=n>param_type</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 获取参数基础类型（去除末尾的?）</span>
+</span></span><span class=line><span class=cl>            <span class=n>base_type</span> <span class=o>=</span> <span class=n>param_type</span><span class=o>.</span><span class=n>rstrip</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 构建参数属性（number类型转为integer，适配API要求）</span>
+</span></span><span class=line><span class=cl>            <span class=n>properties</span><span class=p>[</span><span class=n>param_name</span><span class=p>]</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;integer&#34;</span> <span class=k>if</span> <span class=n>base_type</span> <span class=o>==</span> <span class=s2>&#34;number&#34;</span> <span class=k>else</span> <span class=n>base_type</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 必选参数加入required列表</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>is_optional</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>required</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>param_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 拼接单个工具的Schema</span>
+</span></span><span class=line><span class=cl>        <span class=n>result</span><span class=o>.</span><span class=n>append</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;name&#34;</span><span class=p>:</span> <span class=n>name</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;description&#34;</span><span class=p>:</span> <span class=n>description</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;input_schema&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;object&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;properties&#34;</span><span class=p>:</span> <span class=n>properties</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;required&#34;</span><span class=p>:</span> <span class=n>required</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>result</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>作用：将<code>TOOLS</code>字典中的简易配置，转换为Anthropic/OpenRouter API要求的标准工具Schema格式，让AI能够理解并调用工具。</li><li>关键：处理可选参数和类型转换（<code>number</code>→<code>integer</code>），符合API的数据格式要求。</li></ul><h4 id=4call_api调用ai-api发送请求获取响应>（4）<code>call_api()</code>：调用AI API（发送请求，获取响应）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>call_api</span><span class=p>(</span><span class=n>messages</span><span class=p>,</span> <span class=n>system_prompt</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 构建API请求体</span>
+</span></span><span class=line><span class=cl>    <span class=n>request</span> <span class=o>=</span> <span class=n>urllib</span><span class=o>.</span><span class=n>request</span><span class=o>.</span><span class=n>Request</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>API_URL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span><span class=o>=</span><span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;model&#34;</span><span class=p>:</span> <span class=n>MODEL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;max_tokens&#34;</span><span class=p>:</span> <span class=mi>8192</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;system&#34;</span><span class=p>:</span> <span class=n>system_prompt</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;messages&#34;</span><span class=p>:</span> <span class=n>messages</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;tools&#34;</span><span class=p>:</span> <span class=n>make_schema</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(),</span>  <span class=c1># 转为JSON字节流</span>
+</span></span><span class=line><span class=cl>        <span class=n>headers</span><span class=o>=</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;Content-Type&#34;</span><span class=p>:</span> <span class=s2>&#34;application/json&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;anthropic-version&#34;</span><span class=p>:</span> <span class=s2>&#34;2023-06-01&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 动态构建授权头：区分OpenRouter和Anthropic</span>
+</span></span><span class=line><span class=cl>            <span class=o>**</span><span class=p>({</span><span class=s2>&#34;Authorization&#34;</span><span class=p>:</span> <span class=sa>f</span><span class=s2>&#34;Bearer </span><span class=si>{</span><span class=n>OPENROUTER_KEY</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>}</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=p>{</span><span class=s2>&#34;x-api-key&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;ANTHROPIC_API_KEY&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)}),</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 发送请求并获取响应</span>
+</span></span><span class=line><span class=cl>    <span class=n>response</span> <span class=o>=</span> <span class=n>urllib</span><span class=o>.</span><span class=n>request</span><span class=o>.</span><span class=n>urlopen</span><span class=p>(</span><span class=n>request</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 解析JSON响应为Python字典并返回</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=n>response</span><span class=o>.</span><span class=n>read</span><span class=p>())</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>入参：<code>messages</code>（对话历史）、<code>system_prompt</code>（系统提示词，定义AI的角色和行为）。</li><li>关键：使用Python内置<code>urllib.request</code>发送HTTP请求，无需额外安装<code>requests</code>库，符合「零依赖」要求；动态构建请求头，适配两种API平台。</li></ul><h3 id=4-终端格式辅助函数>4. 终端格式辅助函数</h3><p>这部分函数用于优化终端输出格式，提升用户体验。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>separator</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 生成终端宽度的分隔线（最多80个字符）</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=s1>&#39;─&#39;</span> <span class=o>*</span> <span class=nb>min</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>get_terminal_size</span><span class=p>()</span><span class=o>.</span><span class=n>columns</span><span class=p>,</span> <span class=mi>80</span><span class=p>)</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>render_markdown</span><span class=p>(</span><span class=n>text</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 简单渲染Markdown加粗格式（**内容** → 终端加粗样式）</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&#34;\*\*(.+?)\*\*&#34;</span><span class=p>,</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}</span><span class=se>\\</span><span class=s2>1</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>text</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=5-主函数main程序入口与核心循环>5. 主函数<code>main()</code>：程序入口与核心循环</h3><p>这部分是程序的控制中心，实现了交互式对话、智能体工具调用循环、终端输出等核心逻辑。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 打印程序初始化信息（名称、模型、当前工作目录）</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}</span><span class=s2>nanocode</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=n>MODEL</span><span class=si>}</span><span class=s2> (</span><span class=si>{</span><span class=s1>&#39;OpenRouter&#39;</span> <span class=k>if</span> <span class=n>OPENROUTER_KEY</span> <span class=k>else</span> <span class=s1>&#39;Anthropic&#39;</span><span class=si>}</span><span class=s2>) | </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>messages</span> <span class=o>=</span> <span class=p>[]</span>  <span class=c1># 存储对话历史</span>
+</span></span><span class=line><span class=cl>    <span class=n>system_prompt</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;Concise coding assistant. cwd: </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>()</span><span class=si>}</span><span class=s2>&#34;</span>  <span class=c1># 系统提示词</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 1. 终端交互：获取用户输入</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>separator</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=n>user_input</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>BOLD</span><span class=si>}{</span><span class=n>BLUE</span><span class=si>}</span><span class=s2>❯</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> &#34;</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>separator</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>user_input</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 退出命令</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>user_input</span> <span class=ow>in</span> <span class=p>(</span><span class=s2>&#34;/q&#34;</span><span class=p>,</span> <span class=s2>&#34;exit&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 清空对话历史命令</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>user_input</span> <span class=o>==</span> <span class=s2>&#34;/c&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>GREEN</span><span class=si>}</span><span class=s2>⏺ Cleared conversation</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 2. 将用户输入加入对话历史</span>
+</span></span><span class=line><span class=cl>            <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;user&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>user_input</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 3. 核心：智能体工具调用循环（直到无工具调用为止）</span>
+</span></span><span class=line><span class=cl>            <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 调用AI API获取响应</span>
+</span></span><span class=line><span class=cl>                <span class=n>response</span> <span class=o>=</span> <span class=n>call_api</span><span class=p>(</span><span class=n>messages</span><span class=p>,</span> <span class=n>system_prompt</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>content_blocks</span> <span class=o>=</span> <span class=n>response</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;content&#34;</span><span class=p>,</span> <span class=p>[])</span>
+</span></span><span class=line><span class=cl>                <span class=n>tool_results</span> <span class=o>=</span> <span class=p>[]</span>  <span class=c1># 存储工具执行结果</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 解析API响应内容</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>block</span> <span class=ow>in</span> <span class=n>content_blocks</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 文本内容：直接打印到终端</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;type&#34;</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;text&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=si>{</span><span class=n>CYAN</span><span class=si>}</span><span class=s2>⏺</span><span class=si>{</span><span class=n>RESET</span><span class=si>}</span><span class=s2> </span><span class=si>{</span><span class=n>render_markdown</span><span class=p>(</span><span class=n>block</span><span class=p>[</span><span class=s1>&#39;text&#39;</span><span class=p>])</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                    <span class=c1># 工具调用：执行对应的工具，并收集结果</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;type&#34;</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;tool_use&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_name</span> <span class=o>=</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;name&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_args</span> <span class=o>=</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;input&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=c1># 打印工具调用预览</span>
+</span></span><span class=line><span class=cl>                        <span class=n>arg_preview</span> <span class=o>=</span> <span class=nb>str</span><span class=p>(</span><span class=nb>list</span><span class=p>(</span><span class=n>tool_args</span><span class=o>.</span><span class=n>values</span><span class=p>())[</span><span class=mi>0</span><span class=p>])[:</span><span class=mi>50</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                            <span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=si>{</span><span class=n>GREEN</span><span class=si>}</span><span class=s2>⏺ </span><span class=si>{</span><span class=n>tool_name</span><span class=o>.</span><span class=n>capitalize</span><span class=p>()</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>(</span><span class=si>{</span><span class=n>DIM</span><span class=si>}{</span><span class=n>arg_preview</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>)&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                        <span class=c1># 执行工具并获取结果</span>
+</span></span><span class=line><span class=cl>                        <span class=n>result</span> <span class=o>=</span> <span class=n>run_tool</span><span class=p>(</span><span class=n>tool_name</span><span class=p>,</span> <span class=n>tool_args</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=c1># 处理结果预览，避免输出过长</span>
+</span></span><span class=line><span class=cl>                        <span class=n>result_lines</span> <span class=o>=</span> <span class=n>result</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=n>preview</span> <span class=o>=</span> <span class=n>result_lines</span><span class=p>[</span><span class=mi>0</span><span class=p>][:</span><span class=mi>60</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>preview</span> <span class=o>+=</span> <span class=sa>f</span><span class=s2>&#34; ... +</span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=si>}</span><span class=s2> lines&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=k>elif</span> <span class=nb>len</span><span class=p>(</span><span class=n>result_lines</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=o>&gt;</span> <span class=mi>60</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>preview</span> <span class=o>+=</span> <span class=s2>&#34;...&#34;</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>DIM</span><span class=si>}</span><span class=s2>⎿  </span><span class=si>{</span><span class=n>preview</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                        <span class=c1># 收集工具执行结果（用于反馈给AI）</span>
+</span></span><span class=line><span class=cl>                        <span class=n>tool_results</span><span class=o>.</span><span class=n>append</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;tool_result&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;tool_use_id&#34;</span><span class=p>:</span> <span class=n>block</span><span class=p>[</span><span class=s2>&#34;id&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>                                <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>result</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                            <span class=p>}</span>
+</span></span><span class=line><span class=cl>                        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 4. 更新对话历史：添加AI响应</span>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;assistant&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>content_blocks</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 5. 终止循环条件：无工具调用结果（任务完成）</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=ow>not</span> <span class=n>tool_results</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>break</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 6. 有工具调用结果：将结果加入对话历史，继续调用AI</span>
+</span></span><span class=line><span class=cl>                <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;role&#34;</span><span class=p>:</span> <span class=s2>&#34;user&#34;</span><span class=p>,</span> <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=n>tool_results</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 捕获用户中断（Ctrl+C）和EOF错误，优雅退出</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=p>(</span><span class=ne>KeyboardInterrupt</span><span class=p>,</span> <span class=ne>EOFError</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 捕获其他异常，打印友好错误信息</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>err</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>RED</span><span class=si>}</span><span class=s2>⏺ Error: </span><span class=si>{</span><span class=n>err</span><span class=si>}{</span><span class=n>RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>核心逻辑流程：<ol><li>初始化对话历史和系统提示词。</li><li>进入交互式循环，获取用户输入并处理命令（退出/清空历史）。</li><li>将用户输入加入对话历史，调用AI API。</li><li>解析API响应：如果是文本，直接输出；如果是工具调用，执行工具并收集结果。</li><li>更新对话历史，若有工具执行结果，将其反馈给AI，继续循环（让AI基于工具结果做下一步处理）。</li><li>无工具调用时，终止循环，等待用户下一次输入。</li></ol></li></ul><h3 id=6-程序入口>6. 程序入口</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>作用：当直接运行该Python文件时，执行<code>main()</code>函数，启动程序；若被作为模块导入，不执行主逻辑，符合Python编程规范。</li></ul><h2 id=三整体分析核心亮点与设计思路>三、整体分析（核心亮点与设计思路）</h2><h3 id=1-核心设计亮点>1. 核心设计亮点</h3><ul><li><strong>零外部依赖</strong>：仅使用Python内置库，无需<code>pip install</code>任何包，可直接在有Python3的环境中运行，便携性极强。</li><li><strong>完整的智能体循环</strong>：实现了「用户输入→AI决策→工具执行→结果反馈→AI再决策」的闭环，符合智能体的核心特征。</li><li><strong>简洁高效</strong>：约250行代码实现完整功能，结构清晰，工具与核心逻辑解耦，易于扩展（新增工具只需在<code>TOOLS</code>中配置并实现对应函数）。</li><li><strong>用户体验友好</strong>：终端彩色输出、结果预览、命令行交互、异常友好提示，提升了使用便捷性。</li><li><strong>多平台兼容</strong>：支持Anthropic和OpenRouter两种API平台，可灵活切换模型。</li></ul><h3 id=2-潜在局限性>2. 潜在局限性</h3><ul><li><strong>文件操作风险</strong>：<code>write()</code>、<code>edit()</code>为覆盖写入，无备份机制，可能误删文件内容。</li><li><strong>Shell命令安全</strong>：<code>bash()</code>支持执行任意Shell命令，存在安全风险（如<code>rm -rf /</code>），不适合在生产环境使用。</li><li><strong>Markdown渲染有限</strong>：仅支持加粗格式，不支持其他Markdown语法（如列表、代码块）。</li><li><strong>无持久化存储</strong>：对话历史仅存于内存，程序退出后丢失，无法恢复之前的对话。</li></ul><h3 id=3-整体架构梳理>3. 整体架构梳理</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nanocode程序架构
+</span></span><span class=line><span class=cl>├── 初始化层（环境变量、常量、依赖导入）
+</span></span><span class=line><span class=cl>├── 工具层（6个核心工具函数，实现具体操作）
+</span></span><span class=line><span class=cl>├── 桥梁层（工具配置、Schema生成、API调用，连接工具与AI）
+</span></span><span class=line><span class=cl>├── 格式层（终端输出格式优化，提升用户体验）
+</span></span><span class=line><span class=cl>└── 控制层（main函数，实现交互式循环与智能体闭环）
+</span></span></code></pre></td></tr></table></div></div><h3 id=总结>总结</h3><ol><li>该代码是一个<strong>轻量级、零依赖的AI编程智能体</strong>，核心是通过工具调用闭环完成编程辅助任务，结构清晰且易于扩展。</li><li>核心模块分为「工具实现」和「智能体循环」，工具负责具体操作，循环负责决策与反馈，解耦设计提升了可维护性。</li><li>亮点是便携性和完整的智能体逻辑，局限性是缺乏安全防护和持久化存储，适合用于学习和个人轻量场景，不适合生产环境。</li></ol></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/github/>GitHub</a>
+<a href=/blog/tags/nanocode/>Nanocode</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E5%8F%8A%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90/><div class=article-details><h2 class=article-title>大语言模型安全——威胁建模及风险分析</h2></div></a></article><article><a href=/blog/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/><div class=article-details><h2 class=article-title>大语言模型安全总览</h2></div></a></article><article><a href=/blog/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/><div class=article-details><h2 class=article-title>GitHub优秀资源索引</h2></div></a></article><article><a href=/blog/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/><div class=article-details><h2 class=article-title>加速神器——Xget</h2></div></a></article><article><a href=/blog/p/%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8Bapi%E6%B1%87%E6%80%BB/><div class=article-details><h2 class=article-title>免费的大语言模型API汇总</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
