@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI-Agent on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/tags/ai-agent/</link><description>Recent content in AI-Agent on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 02 Feb 2026 17:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/tags/ai-agent/index.xml" rel="self" type="application/rss+xml"/><item><title>500+ AI Agent Projects / UseCases</title><link>https://hanguangwu.github.io/blog/en/p/500-ai-agent-projects-/-usecases/</link><pubDate>Mon, 02 Feb 2026 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/500-ai-agent-projects-/-usecases/</guid><description>&lt;h1 id="-500-ai-agent-projects--usecases"&gt;🌟 500+ AI Agent Projects / UseCases
+&lt;/h1&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260202175639846.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;A curated collection of AI agent use cases across industries, showcasing practical applications and linking to open-source projects for implementation. Explore how AI agents are transforming industries like healthcare, finance, education, and more! 🤖✨&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/ashishpatel26/500-AI-Agents-Projects" target="_blank" rel="noopener"
+&gt;GitHub-Repo&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-introduction"&gt;🧠 Introduction
+&lt;/h2&gt;&lt;p&gt;Artificial Intelligence (AI) agents are revolutionizing the way industries operate. From personalized learning to financial trading bots, AI agents bring efficiency, innovation, and scalability. This repository provides:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A categorized list of industries where AI agents are making an impact.&lt;/li&gt;
+&lt;li&gt;Detailed use cases with links to open-source projects for implementation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether you&amp;rsquo;re a developer, researcher, or business enthusiast, this repository is your go-to resource for AI agent inspiration and learning.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="selected-usecase-by-myself"&gt;Selected Usecase By Myself
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Use Case&lt;/th&gt;
+&lt;th&gt;Industry&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Code Github&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AI Health Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Healthcare&lt;/td&gt;
+&lt;td&gt;Diagnoses and monitors diseases using patient data.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/ahmadvh/AI-Agents-for-Medical-Diagnostics.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Automated Trading Bot&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Finance&lt;/td&gt;
+&lt;td&gt;Automates stock trading with real-time market analysis.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/MingyuJ666/Stockagent.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Content Personalization Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Entertainment&lt;/td&gt;
+&lt;td&gt;Recommends personalized media based on preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crosleythomas/MirrorGPT" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Legal Document Review Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Legal&lt;/td&gt;
+&lt;td&gt;Automates document review and highlights key clauses.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/firica/legalai" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Recruitment Recommendation Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Human Resources&lt;/td&gt;
+&lt;td&gt;Suggests best-fit candidates for job openings.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/sentient-engineering/jobber" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Virtual Travel Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Hospitality&lt;/td&gt;
+&lt;td&gt;Plans travel itineraries based on preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/nirbar1985/ai-travel-agent" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AI Game Companion Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Gaming&lt;/td&gt;
+&lt;td&gt;Enhances player experience with real-time assistance.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/onjas-buidl/LLM-agent-game" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/465962dd14abb8181b8d1a3dbaf186be171bc3c5338d347e03b863e17980be8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d4769744875622d626c61636b3f6c6f676f3d676974687562"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🌐 Landing Page Generator&lt;/td&gt;
+&lt;td&gt;💻 Web Development&lt;/td&gt;
+&lt;td&gt;Automates the creation of landing pages for websites, facilitating web development tasks.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/landing_page_generator" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎮 Game Builder Crew&lt;/td&gt;
+&lt;td&gt;🎮 Game Development&lt;/td&gt;
+&lt;td&gt;Assists in the development of games by automating certain aspects of game creation.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/game-builder-crew" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;💹 Stock Analysis Tool&lt;/td&gt;
+&lt;td&gt;💰 Finance&lt;/td&gt;
+&lt;td&gt;Provides tools for analyzing stock market data to assist in financial decision-making.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/stock_analysis" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🗺️ Trip Planner&lt;/td&gt;
+&lt;td&gt;✈️ Travel&lt;/td&gt;
+&lt;td&gt;Assists in planning trips by organizing itineraries and managing travel details.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/trip_planner" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎁 Surprise Trip Planner&lt;/td&gt;
+&lt;td&gt;✈️ Travel&lt;/td&gt;
+&lt;td&gt;Plans surprise trips by selecting destinations and activities based on user preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/surprise_trip" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📚 Write a Book with Flows&lt;/td&gt;
+&lt;td&gt;✍️ Creative Writing&lt;/td&gt;
+&lt;td&gt;Assists authors in writing books by providing structured workflows and writing assistance.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/write_a_book_with_flows" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎬 Screenplay Writer&lt;/td&gt;
+&lt;td&gt;✍️ Creative Writing&lt;/td&gt;
+&lt;td&gt;Aids in writing screenplays by offering templates and guidance for script development.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/screenplay_writer" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;✅ Markdown Validator&lt;/td&gt;
+&lt;td&gt;📄 Documentation&lt;/td&gt;
+&lt;td&gt;Validates Markdown files to ensure proper formatting and adherence to standards.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/markdown_validator" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/78ef5623d7361e74e909b90ea5f4af9d939df5307c2896284062b70b0762bdbe/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d5265706f7369746f72792d626c7565"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="-industry-usecase-mindmap"&gt;🏭 Industry UseCase MindMap
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260202175656635.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-use-case-table"&gt;🧩 Use Case Table
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Use Case&lt;/th&gt;
+&lt;th&gt;Industry&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Code Github&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;HIA (Health Insights Agent)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Healthcare&lt;/td&gt;
+&lt;td&gt;analyses medical reports and provide health insights.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/harshhh28/hia.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AI Health Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Healthcare&lt;/td&gt;
+&lt;td&gt;Diagnoses and monitors diseases using patient data.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/ahmadvh/AI-Agents-for-Medical-Diagnostics.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Automated Trading Bot&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Finance&lt;/td&gt;
+&lt;td&gt;Automates stock trading with real-time market analysis.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/MingyuJ666/Stockagent.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Virtual AI Tutor&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Education&lt;/td&gt;
+&lt;td&gt;Provides personalized education tailored to users.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/hqanhh/EduGPT.git" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;24/7 AI Chatbot&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Customer Service&lt;/td&gt;
+&lt;td&gt;Handles customer queries around the clock.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/NirDiamant/GenAI_Agents/blob/main/all_agents_tutorials/customer_support_agent_langgraph.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Product Recommendation Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Retail&lt;/td&gt;
+&lt;td&gt;Suggests products based on user preferences and history.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/microsoft/RecAI" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Self-Driving Delivery Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Transportation&lt;/td&gt;
+&lt;td&gt;Optimizes routes and autonomously delivers packages.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/sled-group/driVLMe" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Factory Process Monitoring Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Manufacturing&lt;/td&gt;
+&lt;td&gt;Monitors production lines and ensures quality control.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/yuchenxia/llm4ias" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Property Pricing Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Real Estate&lt;/td&gt;
+&lt;td&gt;Analyzes market trends to determine property prices.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/AleksNeStu/ai-real-estate-assistant" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Smart Farming Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Agriculture&lt;/td&gt;
+&lt;td&gt;Provides insights on crop health and yield predictions.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/mohammed97ashraf/LLM_Agri_Bot" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Energy Demand Forecasting Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Energy&lt;/td&gt;
+&lt;td&gt;Predicts energy usage to optimize grid management.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/yecchen/MIRAI" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Content Personalization Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Entertainment&lt;/td&gt;
+&lt;td&gt;Recommends personalized media based on preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crosleythomas/MirrorGPT" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Legal Document Review Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Legal&lt;/td&gt;
+&lt;td&gt;Automates document review and highlights key clauses.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/firica/legalai" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Recruitment Recommendation Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Human Resources&lt;/td&gt;
+&lt;td&gt;Suggests best-fit candidates for job openings.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/sentient-engineering/jobber" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Virtual Travel Assistant&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Hospitality&lt;/td&gt;
+&lt;td&gt;Plans travel itineraries based on preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/nirbar1985/ai-travel-agent" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AI Game Companion Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Gaming&lt;/td&gt;
+&lt;td&gt;Enhances player experience with real-time assistance.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/onjas-buidl/LLM-agent-game" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Real-Time Threat Detection Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Cybersecurity&lt;/td&gt;
+&lt;td&gt;Identifies potential threats and mitigates attacks.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/NVISOsecurity/cyber-security-llm-agents" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;E-commerce Personal Shopper Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;E-commerce&lt;/td&gt;
+&lt;td&gt;Helps customers find products they’ll love.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/Hoanganhvu123/ShoppingGPT" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Logistics Optimization Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Supply Chain&lt;/td&gt;
+&lt;td&gt;Plans efficient delivery routes and manages inventory.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/microsoft/OptiGuide" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Vibe Hacking Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Cybersecurity&lt;/td&gt;
+&lt;td&gt;Autonomous Multi-Agent Based Red Team Testing Service.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/PurpleAILAB/Decepticon" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MediSuite-Ai-Agent&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Health insurance&lt;/td&gt;
+&lt;td&gt;A medical ai agent that helps automating the process of hospitals / insurance claiming workflow.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/MahmoudRabea13/MediSuite-Ai-Agent" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Lina-Egyptian-Medical-Chatbot&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Health insurance&lt;/td&gt;
+&lt;td&gt;A medical ai agent that helps automating the process of hospitals / insurance claiming workflow.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/MahmoudRabea13/MediSuite-Ai-Agent" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Code-GitHub-black?logo=github"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="framework-wise-usecases"&gt;Framework wise Usecases
+&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id="framework-name-crewai"&gt;&lt;strong&gt;Framework Name&lt;/strong&gt;: &lt;strong&gt;CrewAI&lt;/strong&gt;
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Use Case&lt;/th&gt;
+&lt;th&gt;Industry&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;GitHub&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;📧 Email Auto Responder Flow&lt;/td&gt;
+&lt;td&gt;🗣️ Communication&lt;/td&gt;
+&lt;td&gt;Automates email responses based on predefined criteria to enhance communication efficiency.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/email_auto_responder_flow" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📝 Meeting Assistant Flow&lt;/td&gt;
+&lt;td&gt;🛠️ Productivity&lt;/td&gt;
+&lt;td&gt;Assists in organizing and managing meetings, including scheduling and agenda preparation.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/meeting_assistant_flow" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🔄 Self Evaluation Loop Flow&lt;/td&gt;
+&lt;td&gt;👥 Human Resources&lt;/td&gt;
+&lt;td&gt;Facilitates self-assessment processes within an organization, aiding in performance reviews.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/self_evaluation_loop_flow" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📈 Lead Score Flow&lt;/td&gt;
+&lt;td&gt;💼 Sales&lt;/td&gt;
+&lt;td&gt;Evaluates and scores potential leads to prioritize outreach in sales strategies.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/lead-score-flow" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📊 Marketing Strategy Generator&lt;/td&gt;
+&lt;td&gt;📢 Marketing&lt;/td&gt;
+&lt;td&gt;Develops marketing strategies by analyzing market trends and audience data.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/marketing_strategy" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📝 Job Posting Generator&lt;/td&gt;
+&lt;td&gt;🧑‍💼 Recruitment&lt;/td&gt;
+&lt;td&gt;Creates job postings by analyzing job requirements, aiding in recruitment processes.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/job-posting" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🔄 Recruitment Workflow&lt;/td&gt;
+&lt;td&gt;🧑‍💼 Recruitment&lt;/td&gt;
+&lt;td&gt;Streamlines the recruitment process by automating various tasks involved in hiring.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/recruitment" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🔍 Match Profile to Positions&lt;/td&gt;
+&lt;td&gt;🧑‍💼 Recruitment&lt;/td&gt;
+&lt;td&gt;Matches candidate profiles to suitable job positions to enhance recruitment efficiency.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/match_profile_to_positions" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📸 Instagram Post Generator&lt;/td&gt;
+&lt;td&gt;📱 Social Media&lt;/td&gt;
+&lt;td&gt;Generates and schedules Instagram posts automatically, streamlining social media management.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/instagram_post" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🌐 Landing Page Generator&lt;/td&gt;
+&lt;td&gt;💻 Web Development&lt;/td&gt;
+&lt;td&gt;Automates the creation of landing pages for websites, facilitating web development tasks.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/landing_page_generator" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎮 Game Builder Crew&lt;/td&gt;
+&lt;td&gt;🎮 Game Development&lt;/td&gt;
+&lt;td&gt;Assists in the development of games by automating certain aspects of game creation.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/game-builder-crew" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;💹 Stock Analysis Tool&lt;/td&gt;
+&lt;td&gt;💰 Finance&lt;/td&gt;
+&lt;td&gt;Provides tools for analyzing stock market data to assist in financial decision-making.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/stock_analysis" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🗺️ Trip Planner&lt;/td&gt;
+&lt;td&gt;✈️ Travel&lt;/td&gt;
+&lt;td&gt;Assists in planning trips by organizing itineraries and managing travel details.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/trip_planner" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎁 Surprise Trip Planner&lt;/td&gt;
+&lt;td&gt;✈️ Travel&lt;/td&gt;
+&lt;td&gt;Plans surprise trips by selecting destinations and activities based on user preferences.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/surprise_trip" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;📚 Write a Book with Flows&lt;/td&gt;
+&lt;td&gt;✍️ Creative Writing&lt;/td&gt;
+&lt;td&gt;Assists authors in writing books by providing structured workflows and writing assistance.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/flows/write_a_book_with_flows" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🎬 Screenplay Writer&lt;/td&gt;
+&lt;td&gt;✍️ Creative Writing&lt;/td&gt;
+&lt;td&gt;Aids in writing screenplays by offering templates and guidance for script development.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/screenplay_writer" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;✅ Markdown Validator&lt;/td&gt;
+&lt;td&gt;📄 Documentation&lt;/td&gt;
+&lt;td&gt;Validates Markdown files to ensure proper formatting and adherence to standards.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/markdown_validator" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🧠 Meta Quest Knowledge&lt;/td&gt;
+&lt;td&gt;📚 Knowledge Management&lt;/td&gt;
+&lt;td&gt;Manages and organizes knowledge related to Meta Quest, facilitating information retrieval.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/meta_quest_knowledge" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🤖 NVIDIA Models Integration&lt;/td&gt;
+&lt;td&gt;🤖 AI Integration&lt;/td&gt;
+&lt;td&gt;Integrates NVIDIA AI models into workflows to enhance computational capabilities.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/integrations/nvidia_models" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🗂️ Prep for a Meeting&lt;/td&gt;
+&lt;td&gt;🛠️ Productivity&lt;/td&gt;
+&lt;td&gt;Assists in preparing for meetings by organizing materials and setting agendas.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/prep-for-a-meeting" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🛠️Starter Template&lt;/td&gt;
+&lt;td&gt;🛠️ Development&lt;/td&gt;
+&lt;td&gt;Provides a starter template for new projects to streamline the setup process.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/crews/starter_template" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🔗CrewAI + LangGraph Integration&lt;/td&gt;
+&lt;td&gt;🤖 AI Integration&lt;/td&gt;
+&lt;td&gt;Demonstrates integration between CrewAI and LangGraph for enhanced workflow automation.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/crewAIInc/crewAI-examples/tree/main/integrations/CrewAI-LangGraph" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/GitHub-Repository-blue"
+loading="lazy"
+alt="GitHub"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="framework-name-autogen"&gt;&lt;strong&gt;Framework Name&lt;/strong&gt;: &lt;strong&gt;Autogen&lt;/strong&gt;
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Code Generation, Execution, and Debugging&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Use Case&lt;/th&gt;
+&lt;th&gt;Industry&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;🤖 Automated Task Solving with Code Generation, Execution &amp;amp; Debugging&lt;/td&gt;
+&lt;td&gt;💻 Software Development&lt;/td&gt;
+&lt;td&gt;Demonstrates automated task-solving by generating, executing, and debugging code.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_auto_feedback_from_code_execution" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🧑‍💻 Automated Code Generation and Question Answering with Retrieval Augmented Agents&lt;/td&gt;
+&lt;td&gt;💻 Software Development&lt;/td&gt;
+&lt;td&gt;Generates code and answers questions using retrieval-augmented methods.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_RetrieveChat" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🧠 Automated Code Generation and Question Answering with Qdrant-based Retrieval&lt;/td&gt;
+&lt;td&gt;💻 Software Development&lt;/td&gt;
+&lt;td&gt;Utilizes Qdrant for enhanced retrieval-augmented agent performance.&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_RetrieveChat_qdrant" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Multi-Agent Collaboration (&amp;gt;3 Agents)&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤝 Automated Task Solving by Group Chat (3 members, 1 manager)&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates group task-solving via multi-agent collaboration.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_groupchat" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📊 Automated Data Visualization by Group Chat (3 members, 1 manager)&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📊 Data Analysis&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Uses multi-agent collaboration to create data visualizations.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_groupchat_vis" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧩 Automated Complex Task Solving by Group Chat (6 members, 1 manager)&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Solves complex tasks collaboratively with a larger group of agents.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_groupchat_research" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧑‍💻 Automated Task Solving with Coding &amp;amp; Planning Agents&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🛠️ Planning &amp;amp; Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Combines coding and planning agents for solving tasks effectively.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_planning.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📐 Automated Task Solving with Transition Paths Specified in a Graph&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Uses predefined transition paths in a graph for solving tasks.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/docs/notebooks/agentchat_groupchat_finite_state_machine" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Running a Group Chat as an Inner-Monologue via the SocietyOfMindAgent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Cognitive Sciences&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Simulates inner-monologue for problem-solving using group chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_society_of_mind" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔧 Running a Group Chat with Custom Speaker Selection Function&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Implements a custom function for speaker selection in group chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_groupchat_customized" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Sequential Multi-Agent Chats&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔄 Solving Multiple Tasks in a Sequence of Chats Initiated by a Single Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔄 Workflow Automation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Automates sequential task-solving with a single initiating agent.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_multi_task_chats" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;⏳ Async-solving Multiple Tasks in a Sequence of Chats Initiated by a Single Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔄 Workflow Automation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Handles asynchronous task-solving in a sequence of chats initiated by one agent.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_multi_task_async_chats" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤝 Solving Multiple Tasks in a Sequence of Chats Initiated by Different Agents&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔄 Workflow Automation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Facilitates sequential task-solving with different agents initiating each chat.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchats_sequential_chats" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Nested Chats&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Solving Complex Tasks with Nested Chats&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Problem Solving&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Uses nested chats to solve hierarchical and complex problems.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nestedchat" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔄 Solving Complex Tasks with A Sequence of Nested Chats&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Problem Solving&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates sequential task-solving using nested chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nested_sequential_chats" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🏭 OptiGuide for Solving a Supply Chain Optimization Problem with Nested Chats&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🏭 Supply Chain Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Showcases how to solve supply chain optimization problems using nested chats, a coding agent, and a safeguard agent.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nestedchat_optiguide" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;♟️ Conversational Chess with Nested Chats and Tool Use&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎮 Gaming&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explores the use of nested chats for playing conversational chess with integrated tools.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nested_chats_chess" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Application&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔄 Automated Continual Learning from New Data&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📊 Machine Learning&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Continuously learns from new data inputs for adaptive AI.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_stream.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🏭 OptiGuide - Coding, Tool Using, Safeguarding &amp;amp; Question Answering for Supply Chain Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🏭 Supply Chain Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Highlights a solution combining coding, tool use, and safeguarding for supply chain optimization.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nestedchat_optiguide" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 AutoAnny - A Discord bot built using AutoGen&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💬 Communication Tools&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Showcases the development of a Discord bot using AutoGen for enhanced interaction.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/tree/main/samples/apps/auto-anny" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🌐 Web Search: Solve Tasks Requiring Web Info&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔍 Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Searches the web to gather information required for completing tasks.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_web_info.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔧 Use Provided Tools as Functions&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🛠️ Tool Integration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates how to use pre-provided tools as callable functions in AutoGen.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_function_call_currency_calculator" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔗 Use Tools via Sync and Async Function Calling&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🛠️ Tool Integration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Illustrates synchronous and asynchronous tool usage within AutoGen workflows.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_function_call_async" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧩 Task Solving with Langchain Provided Tools as Functions&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔍 Language Processing&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Leverages Langchain tools for task-solving within AutoGen.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_langchain.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📚 RAG: Group Chat with Retrieval Augmented Generation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Enables group chat with Retrieval Augmented Generation (RAG) to support information sharing.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_groupchat_RAG" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;⚙️ Function Inception: Update/Remove Functions During Conversations&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔧 Development Tools&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Allows AutoGen agents to modify their functions dynamically during conversations.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_inception_function.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔊 Agent Chat with Whisper&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎙️ Audio Processing&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates AI agent capabilities for transcription and translation using Whisper.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_video_transcript_translate_with_whisper" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📏 Constrained Responses via Guidance&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💡 Natural Language Processing&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Shows how to use guidance to constrain responses generated by agents.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_guidance.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🌍 Browse the Web with Agents&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🌐 Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to configure agents to browse and retrieve information from the web.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_surfer.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📊 SQL: Natural Language Text to SQL Query Using Spider Benchmark&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💾 Database Management&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Converts natural language inputs into SQL queries using the Spider benchmark.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_sql_spider.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🕸️ Web Scraping with Apify&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🌐 Data Gathering&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Illustrates web scraping techniques with Apify using AutoGen.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_webscraping_with_apify" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🕷️ Web Crawling: Crawl Entire Domain with Spider API&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🌐 Data Gathering&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to crawl entire domains using the Spider API.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_webcrawling_with_spider" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;💻 Write a Software App Task by Task with Specially Designed Functions&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Builds a software application step-by-step using designed functions.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_function_call_code_writing.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Human Development&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;💬 Simple Example in ChatGPT Style&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Conversational AI&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates a simple conversational example in the style of ChatGPT.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/samples/simple_chat.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Example-blue?logo=openai"
+loading="lazy"
+alt="Example"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Auto Code Generation, Execution, Debugging and Human Feedback&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Showcases code generation, execution, debugging with human feedback integrated into the workflow.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_human_feedback.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;👥 Automated Task Solving with GPT-4 + Multiple Human Users&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Enables task solving with multiple human users collaborating with GPT-4.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_two_users.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔄 Agent Chat with Async Human Inputs&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Conversational AI&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Supports asynchronous human input during agent conversations.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/Async_human_input.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Agent Teaching and Learning&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📘 Teach Agents New Skills &amp;amp; Reuse via Automated Chat&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎓 Education &amp;amp; Training&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates teaching new skills to agents and enabling their reuse in automated chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_teaching" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Teach Agents New Facts, User Preferences and Skills Beyond Coding&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎓 Education &amp;amp; Training&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Shows how to teach agents new facts, user preferences, and non-coding skills.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_teachability" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Teach OpenAI Assistants Through GPTAssistantAgent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 AI Assistant Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Illustrates how to enhance OpenAI assistants&amp;rsquo; capabilities using GPTAssistantAgent.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_teachable_oai_assistants.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔄 Agent Optimizer: Train Agents in an Agentic Way&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🛠️ Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to train agents effectively in an agentic manner using the Agent Optimizer.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_agentoptimizer.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Multi-Agent Chat with OpenAI Assistants in the loop&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🌟 Hello-World Chat with OpenAI Assistant in AutoGen&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤖 Conversational AI&lt;/td&gt;
+&lt;td style="text-align: left"&gt;A basic example of chatting with OpenAI Assistant using AutoGen.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_oai_assistant_twoagents_basic.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔧 Chat with OpenAI Assistant using Function Call&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔧 Development Tools&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Illustrates how to use function calls with OpenAI Assistant in chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_oai_assistant_function_call.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Chat with OpenAI Assistant with Code Interpreter&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates the use of OpenAI Assistant as a code interpreter in chats.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_oai_code_interpreter.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔍 Chat with OpenAI Assistant with Retrieval Augmentation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📚 Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Enables retrieval-augmented conversations with OpenAI Assistant.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_oai_assistant_retrieval.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤝 OpenAI Assistant in a Group Chat&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤝 Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Shows how OpenAI Assistant can collaborate with other agents in a group chat.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_oai_assistant_groupchat.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🛠️ GPTAssistantAgent based Multi-Agent Tool Use&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔧 Development Tools&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to use GPTAssistantAgent for multi-agent tool usage.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/gpt_assistant_agent_function_call.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Non-OpenAI Models&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;♟️ Conversational Chess using Non-OpenAI Models&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎮 Gaming&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explores conversational chess implemented with non-OpenAI models.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_nested_chats_chess_altmodels" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Multimodal Agent&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🎨 Multimodal Agent Chat with DALLE and GPT-4V&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🖼️ Multimedia AI&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Combines DALLE and GPT-4V for multimodal agent communication.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_dalle_and_gpt4v.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🖌️ Multimodal Agent Chat with Llava&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📷 Image Processing&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Uses Llava for enabling multimodal agent conversations with image processing.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_lmm_llava.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🖼️ Multimodal Agent Chat with GPT-4V&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🖼️ Multimedia AI&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Leverages GPT-4V for visual and conversational interactions in multimodal agents.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_lmm_gpt-4v.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Long Context Handling&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📜 Long Context Handling as A Capability&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI Capability&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates techniques for handling long context effectively within AI workflows.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/notebooks/agentchat_transform_messages" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Evaluation and Assessment&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📊 AgentEval: A Multi-Agent System for Assessing Utility of LLM-Powered Applications&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📈 Performance Evaluation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Introduces AgentEval for evaluating and assessing the performance of LLM-based applications.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agenteval_cq_math.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Automatic Agent Building&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🏗️ Automatically Build Multi-agent System with AgentBuilder&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤖 AI Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to automatically build multi-agent systems using the AgentBuilder tool.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/autobuild_basic.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📚 Automatically Build Multi-agent System from Agent Library&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤖 AI Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Shows how to construct multi-agent systems by leveraging a pre-defined agent library.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/autobuild_agent_library.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Observability&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📊 Track LLM Calls, Tool Usage, Actions and Errors using AgentOps&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📈 Monitoring &amp;amp; Analytics&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates how to monitor LLM interactions, tool usage, and errors using AgentOps.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_agentops.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Enhanced Inferences&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔗 API Unification&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔧 API Management&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains how to unify API usage with documentation and code examples.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/docs/Use-Cases/enhanced_inference/#api-unification" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Documentation-blue?logo=readthedocs"
+loading="lazy"
+alt="Documentation"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;⚙️ Utility Functions to Help Managing API Configurations Effectively&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🔧 API Management&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Demonstrates utility functions to manage API configurations more effectively.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://microsoft.github.io/autogen/0.2/docs/topics/llm_configuration" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;💰 Cost Calculation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📈 Cost Management&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Introduces methods for tracking token usage and estimating costs for LLM interactions.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/agentchat_cost_token_tracking.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;⚡ Optimize for Code Generation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📊 Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Highlights cost-effective optimization techniques for improving code generation with LLMs.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/oai_completion.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📐 Optimize for Math&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📊 Optimization&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Explains techniques to optimize LLM performance for solving mathematical problems.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/microsoft/autogen/blob/0.2/notebook/oai_chatgpt_gpt4.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/View-Notebook-blue?logo=jupyter"
+loading="lazy"
+alt="Notebook"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="framework-name-agno"&gt;&lt;strong&gt;Framework Name&lt;/strong&gt;: &lt;strong&gt;Agno&lt;/strong&gt;
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;UseCase&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Support Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Development / AI / Framework Support&lt;/td&gt;
+&lt;td style="text-align: left"&gt;The Agno Support Agent helps developers with the Agno framework by providing real-time answers, explanations, and code examples.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/agno_support_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🎥 YouTube Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📺 Media &amp;amp; Content&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An intelligent agent that analyzes YouTube videos by generating detailed summaries, timestamps, themes, and content breakdowns using AI tools.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/youtube_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📊 Finance Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💼 Finance&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An advanced AI-powered market analyst that delivers real-time stock market insights, analyst recommendations, financial deep-dives, and sector-specific trends. Supports prompts for detailed analysis of companies like AAPL, TSLA, NVDA, etc.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/thinking_finance_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📚 Study Partner&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎓 Education&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Assists users in learning by finding resources, answering questions, and creating study plans.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/study_partner.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🛍️ Shopping Partner Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🏬 E-commerce&lt;/td&gt;
+&lt;td style="text-align: left"&gt;A product recommender agent that helps users find matching products based on preferences from trusted platforms like Amazon, Flipkart, etc.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/shopping_partner.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🎓 Research Scholar Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Education / Research&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An AI-powered academic assistant that performs advanced academic searches, analyzes recent publications, synthesizes findings across disciplines, and writes well-structured academic reports with proper citations.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/research_agent_exa.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Research Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🗞️ Media &amp;amp; Journalism&lt;/td&gt;
+&lt;td style="text-align: left"&gt;A research agent that combines web search and professional journalistic writing. It performs deep investigations and produces NYT-style reports.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/research_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🍳 Recipe Creator&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🍽️ Food &amp;amp; Culinary&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An AI-powered recipe recommendation agent that provides personalized recipes based on ingredients, preferences, and time constraints.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/recipe_creator.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🗞️ Finance Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💼 Finance&lt;/td&gt;
+&lt;td style="text-align: left"&gt;A powerful financial analyst agent combining real-time stock data, analyst insights, company fundamentals, and market news. Ideal for analyzing companies like Apple, Tesla, NVIDIA, and sectors like semiconductors or automotive.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/finance_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Financial Reasoning Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📈 Finance&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Uses a Claude-3.5 Sonnet-based agent to analyze stocks like NVDA using tools for reasoning and Yahoo Finance data.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/reasoning_finance_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Readme Generator Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Dev&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Agent generates high-quality READMEs for GitHub repositories using repo metadata.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/readme_generator.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🎬 Movie Recommendation Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🎥 Entertainment&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An intelligent agent that gives personalized movie recommendations using Exa and GPT-4o, analyzing genres, themes, and latest ratings.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/movie_recommedation.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔍 Media Trend Analysis Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;📰 Media &amp;amp; News&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Analyzes emerging trends, patterns, and influencers from digital platforms using AI-powered agents and scraping.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/media_trend_analysis_agent.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;⚖️ Legal Document Analysis Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🏛️ Legal Tech&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An AI agent that analyzes legal documents from PDF URLs and provides legal insights based on a knowledge base using vector embeddings and GPT-4o.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/legal_consultant.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤔 DeepKnowledge&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Research&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This agent performs iterative searches through its knowledge base, breaking down complex queries into sub-questions and synthesizing comprehensive answers. It uses Agno docs for demonstration and is designed for deep reasoning and exploration.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/deep_knowledge.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;📚 Book Recommendation Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 Publishing &amp;amp; Media&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An intelligent agent that provides personalized book suggestions using literary data, reader preferences, reviews, and release info.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/book_recommendation.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🏠 MCP Airbnb Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🛎️ Hospitality&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Create an AI Agent using MCP and Llama 4 to search Airbnb listings with filters like workspace &amp;amp; transport proximity.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/airbnb_mcp.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Assist Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI Framework&lt;/td&gt;
+&lt;td style="text-align: left"&gt;An AI agent using GPT-4o to answer questions about the Agno framework with hybrid search and embedded knowledge.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/agno-agi/agno/blob/main/cookbook/examples/agents/agno_assist.py" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="framework-name-langgraph"&gt;&lt;strong&gt;Framework Name&lt;/strong&gt;: &lt;strong&gt;Langgraph&lt;/strong&gt;
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;UseCase&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;Use Case&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Industry&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+&lt;th style="text-align: left"&gt;Notebook&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 Chatbot Simulation Evaluation&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 💬 AI / Quality Assurance&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Simulate user interactions to evaluate chatbot performance, ensuring robustness and reliability in real-world scenarios.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/chatbot-simulation-evaluation/agent-simulation-evaluation.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Information Gathering via Prompting&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Research &amp;amp; Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to design a LangGraph workflow that utilizes prompting techniques to gather information effectively. It showcases how to structure prompts and manage the flow of information to build intelligent agents.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/chatbots/information-gather-prompting.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Code Assistant with LangGraph&lt;/td&gt;
+&lt;td style="text-align: left"&gt;💻 Software Development&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a resilient code assistant using LangGraph. It guides you through creating a graph-based agent that can handle code generation, error checking, and iterative refinement, ensuring robust and accurate coding assistance.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/code_assistant/langgraph_code_assistant.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧑‍💼 Customer Support Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧑‍💼 Customer Support Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a customer support agent using LangGraph. It guides you through creating a graph-based agent that can handle customer inquiries, providing automated support and enhancing user experience.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/customer-support/customer-support.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🔁 Extraction with Retries&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Data Extraction&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to implement retry mechanisms in LangGraph workflows, ensuring robust data extraction processes that can handle transient errors and improve reliability.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/extraction/retries.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Multi-Agent Workflow&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a multi-agent system using LangGraph&amp;rsquo;s agent supervisor. It guides you through creating a supervisor agent that orchestrates multiple specialized agents, managing task delegation and communication flow.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/agent_supervisor.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Hierarchical Agent Teams&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a hierarchical agent system using LangGraph. It guides you through creating a top-level supervisor agent that delegates tasks to specialized sub-agents, enabling complex workflows with clear task delegation and communication.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/hierarchical_agent_teams.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤝 Multi-Agent Collaboration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to implement multi-agent collaboration using LangGraph. It guides you through creating multiple specialized agents that work together to accomplish a complex task, showcasing the power of agent collaboration in AI workflows.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Plan-and-Execute Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a &amp;ldquo;Plan-and-Execute&amp;rdquo; style agent using LangGraph. It guides you through creating an agent that first generates a multi-step plan and then executes each step sequentially, revisiting and modifying the plan as necessary. This approach is inspired by the Plan-and-Solve paper and the Baby-AGI project, aiming to enhance long-term planning and task execution in AI workflows.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/plan-and-execute/plan-and-execute.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 SQL Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Database Interaction&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build an agent that can answer questions about a SQL database. The agent fetches available tables, determines relevance to the question, retrieves schemas, generates a query, checks for errors, executes it, and formulates a response.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/sql-agent.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Reflection Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a reflection agent using LangGraph. It guides you through creating an agent that can critique and revise its own outputs, enhancing the quality and reliability of generated content.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/reflection/reflection.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 Reflexion Agent&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Workflow Orchestration&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build a reflexion agent using LangGraph. It guides you through creating an agent that can reflect on its actions and outcomes, enabling iterative improvement and more accurate decision-making in complex workflows.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/reflexion/reflexion.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;LangGraph Agentic RAG&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Adaptive RAG&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to build an Adaptive RAG system using LangGraph. It guides you through creating a dynamic retrieval process that adjusts based on query complexity, enhancing the efficiency and accuracy of information retrieval.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_adaptive_rag.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Adaptive RAG (Local)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial focuses on implementing Adaptive RAG with local models, allowing for offline retrieval and generation, which is crucial for environments with limited internet access or privacy concerns.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_adaptive_rag_local.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 &lt;strong&gt;Agentic RAG&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤖 AI / Intelligent Agents&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Learn to build an Agentic RAG system where an agent determines the best retrieval strategy before generating a response, improving the relevance and accuracy of answers.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_agentic_rag.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🤖 &lt;strong&gt;Agentic RAG (Local)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🤖 AI / Intelligent Agents&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial extends Agentic RAG to local environments, enabling the use of local models and data sources for retrieval and generation tasks.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_agentic_rag_local.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Corrective RAG (CRAG)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Implement a Corrective RAG system that evaluates and refines retrieved documents before passing them to the generator, ensuring higher-quality outputs.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_crag.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Corrective RAG (Local)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial focuses on building a Corrective RAG system using local resources, allowing for offline document evaluation and refinement processes.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_crag_local.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Self-RAG&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Learn to implement Self-RAG, where the system reflects on its responses and retrieves additional information if necessary, enhancing the accuracy and relevance of generated content.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_self_rag.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;🧠 &lt;strong&gt;Self-RAG (Local)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;🧠 AI / Information Retrieval&lt;/td&gt;
+&lt;td style="text-align: left"&gt;This tutorial demonstrates how to implement Self-RAG using local models and data sources, enabling offline reflection and retrieval processes.&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a class="link" href="https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/rag/langgraph_self_rag_local.ipynb" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/static/v1?label=AI&amp;#43;Agent&amp;#43;Code&amp;amp;message=Python&amp;amp;color=%23244cd1"
+loading="lazy"
+alt="AI Agent Code - Python"
+&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description></item></channel></rss>

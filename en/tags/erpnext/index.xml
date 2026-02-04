@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ERPNext on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/tags/erpnext/</link><description>Recent content in ERPNext on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 02 Feb 2026 18:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/tags/erpnext/index.xml" rel="self" type="application/rss+xml"/><item><title>New Era ERP System-ERPNext</title><link>https://hanguangwu.github.io/blog/en/p/new-era-erp-system-erpnext/</link><pubDate>Mon, 02 Feb 2026 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/new-era-erp-system-erpnext/</guid><description>&lt;h1 id="new-era-erp-system-erpnext"&gt;New Era ERP System-ERPNext
+&lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/frappe/erpnext" target="_blank" rel="noopener"
+&gt;100% Open-Source ERP system to help you run your business.&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="motivation"&gt;Motivation
+&lt;/h3&gt;&lt;p&gt;Running a business is a complex task - handling invoices, tracking stock, managing personnel and even more ad-hoc activities. In a market where software is sold separately to manage each of these tasks, ERPNext does all of the above and more, for free.&lt;/p&gt;
+&lt;h3 id="key-features"&gt;Key Features
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accounting&lt;/strong&gt;: All the tools you need to manage cash flow in one place, right from recording transactions to summarizing and analyzing financial reports.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Order Management&lt;/strong&gt;: Track inventory levels, replenish stock, and manage sales orders, customers, suppliers, shipments, deliverables, and order fulfillment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manufacturing&lt;/strong&gt;: Simplifies the production cycle, helps track material consumption, exhibits capacity planning, handles subcontracting, and more!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Asset Management&lt;/strong&gt;: From purchase to perishment, IT infrastructure to equipment. Cover every branch of your organization, all in one centralized system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Projects&lt;/strong&gt;: Delivery both internal and external Projects on time, budget and Profitability. Track tasks, timesheets, and issues by project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;details open&gt;
+&lt;summary&gt;More&lt;/summary&gt;
+&lt;img src="https://erpnext.com/files/v16_bom.png"/&gt;
+&lt;img src="https://erpnext.com/files/v16_stock_summary.png"/&gt;
+&lt;img src="https://erpnext.com/files/v16_job_card.png"/&gt;
+&lt;img src="https://erpnext.com/files/v16_tasks.png"/&gt;
+&lt;/details&gt;
+&lt;h3 id="under-the-hood"&gt;Under the Hood
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/frappe/frappe" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Frappe Framework&lt;/strong&gt;&lt;/a&gt;: A full-stack web application framework written in Python and Javascript. The framework provides a robust foundation for building web applications, including a database abstraction layer, user authentication, and a REST API.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/frappe/frappe-ui" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Frappe UI&lt;/strong&gt;&lt;/a&gt;: A Vue-based UI library, to provide a modern user interface. The Frappe UI library provides a variety of components that can be used to build single-page applications on top of the Frappe Framework.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="production-setup"&gt;Production Setup
+&lt;/h2&gt;&lt;h3 id="managed-hosting"&gt;Managed Hosting
+&lt;/h3&gt;&lt;p&gt;You can try &lt;a class="link" href="https://frappecloud.com" target="_blank" rel="noopener"
+&gt;Frappe Cloud&lt;/a&gt;, a simple, user-friendly and sophisticated &lt;a class="link" href="https://github.com/frappe/press" target="_blank" rel="noopener"
+&gt;open-source&lt;/a&gt; platform to host Frappe applications with peace of mind.&lt;/p&gt;
+&lt;p&gt;It takes care of installation, setup, upgrades, monitoring, maintenance and support of your Frappe deployments. It is a fully featured developer platform with an ability to manage and control multiple Frappe deployments.&lt;/p&gt;
+&lt;div&gt;
+&lt;a href="https://erpnext-demo.frappe.cloud/app/home" target="_blank"&gt;
+&lt;picture&gt;
+&lt;source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/try-on-fc-white.png"&gt;
+&lt;img src="https://frappe.io/files/try-on-fc-black.png" alt="Try on Frappe Cloud" height="28" /&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="self-hosted"&gt;Self-Hosted
+&lt;/h3&gt;&lt;h4 id="docker"&gt;Docker
+&lt;/h4&gt;&lt;p&gt;Prerequisites: docker, docker-compose, git. Refer &lt;a class="link" href="https://docs.docker.com" target="_blank" rel="noopener"
+&gt;Docker Documentation&lt;/a&gt; for more details on Docker setup.&lt;/p&gt;
+&lt;p&gt;Run following commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/frappe/frappe_docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd frappe_docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker compose -f pwd.yml up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;After a couple of minutes, site should be accessible on your localhost port: 8080. Use below default login credentials to access the site.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Username: Administrator&lt;/li&gt;
+&lt;li&gt;Password: admin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a class="link" href="https://github.com/frappe/frappe_docker?tab=readme-ov-file#to-run-on-arm64-architecture-follow-this-instructions" target="_blank" rel="noopener"
+&gt;Frappe Docker&lt;/a&gt; for ARM based docker setup.&lt;/p&gt;
+&lt;h2 id="development-setup"&gt;Development Setup
+&lt;/h2&gt;&lt;h3 id="manual-install"&gt;Manual Install
+&lt;/h3&gt;&lt;p&gt;The Easy Way: our install script for bench will install all dependencies (e.g. MariaDB). See &lt;a class="link" href="https://github.com/frappe/bench" target="_blank" rel="noopener"
+&gt;https://github.com/frappe/bench&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;New passwords will be created for the ERPNext &amp;ldquo;Administrator&amp;rdquo; user, the MariaDB root user, and the frappe user (the script displays the passwords and saves them to ~/frappe_passwords.txt).&lt;/p&gt;
+&lt;h3 id="local"&gt;Local
+&lt;/h3&gt;&lt;p&gt;To setup the repository locally follow the steps mentioned below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Setup bench by following the &lt;a class="link" href="https://frappeframework.com/docs/user/en/installation" target="_blank" rel="noopener"
+&gt;Installation Steps&lt;/a&gt; and start the server&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bench start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In a separate terminal window, run the following commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# Create a new site
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bench new-site erpnext.localhost
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get the ERPNext app and install it&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# Get the ERPNext app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bench get-app https://github.com/frappe/erpnext
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# Install the app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bench --site erpnext.localhost install-app erpnext
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open the URL &lt;code&gt;http://erpnext.localhost:8000/app&lt;/code&gt; in your browser, you should see the app running&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="learning-and-community"&gt;Learning and community
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a class="link" href="https://school.frappe.io" target="_blank" rel="noopener"
+&gt;Frappe School&lt;/a&gt; - Learn Frappe Framework and ERPNext from the various courses by the maintainers or from the community.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.erpnext.com/" target="_blank" rel="noopener"
+&gt;Official documentation&lt;/a&gt; - Extensive documentation for ERPNext.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://discuss.frappe.io/c/erpnext/6" target="_blank" rel="noopener"
+&gt;Discussion Forum&lt;/a&gt; - Engage with community of ERPNext users and service providers.&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://erpnext_public.t.me" target="_blank" rel="noopener"
+&gt;Telegram Group&lt;/a&gt; - Get instant help from huge community of users.&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>
