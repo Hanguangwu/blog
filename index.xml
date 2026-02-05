@@ -1,4 +1,279 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>https://hanguangwu.github.io/blog/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 02 Feb 2026 21:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>循环神经网络</title><link>https://hanguangwu.github.io/blog/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Mon, 02 Feb 2026 21:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="循环神经网络"&gt;循环神经网络
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>https://hanguangwu.github.io/blog/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Wed, 04 Feb 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>乐理入门</title><link>https://hanguangwu.github.io/blog/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</link><pubDate>Wed, 04 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</guid><description>&lt;h1 id="乐理入门"&gt;乐理入门
+&lt;/h1&gt;&lt;h2 id="简介"&gt;简介
+&lt;/h2&gt;&lt;p&gt;B站最通俗易懂的乐理课程（30集），零基础轻松学！适用于作曲编曲、钢琴、吉他、声乐。&lt;/p&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1Hg411w7n2"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;这应该是全网最通俗易懂的乐理课程了，它能帮助新手更好的理解音乐理论知识。包含了节拍/简谱/音符/音程/和弦等音乐必修内容。&lt;/p&gt;
+&lt;p&gt;课程出品：音律屋（yinlvwu.com）&lt;/p&gt;
+&lt;p&gt;AI音乐生成工具正在彻底改变音乐创作的格局，从专业音乐人到普通用户，每个人都可以通过这些智能工具实现音乐创作梦想。本文介绍了11款优秀的AI音乐生成工具，从基础的文本转音乐到专业的影视配乐，从免版税背景音乐到实时流媒体音乐，这些工具涵盖了音乐创作的各个场景和需求。TemPolor、Suno、Udio等工具在各自领域表现出色，各有特色和优势。&lt;/p&gt;
+&lt;p&gt;选择合适的AI音乐生成工具需要根据具体需求考虑音乐质量、风格多样性、版权问题和使用成本等因素。建议先体验多个工具，了解它们的特色和适用场景，然后根据项目需求做出最佳选择。随着AI技术的不断进步，音乐创作将变得更加民主化和高效，AI工具将成为音乐人不可或缺的创作伙伴。无论您是专业音乐人还是业余爱好者，都能在这些AI工具中找到适合自己的音乐创作解决方案。&lt;/p&gt;
+&lt;h2 id="课程内容"&gt;课程内容
+&lt;/h2&gt;&lt;h3 id="01-为什么要学乐理"&gt;01 为什么要学乐理？
+&lt;/h3&gt;&lt;p&gt;方便学习乐器、音乐创作、后期修音和声乐训练&lt;/p&gt;
+&lt;h2 id="02-音名与钢琴键盘"&gt;02 音名与钢琴键盘
+&lt;/h2&gt;&lt;p&gt;钢琴一共88个键，52个白键，36个黑键。其中7个白键、5个黑键为一组。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260201200433599.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="03-升降号还原号"&gt;03 升降号、还原号
+&lt;/h3&gt;&lt;p&gt;半音：两个相邻键之间的关系，只有EF和BC是半音（中间没有黑键）。&lt;/p&gt;
+&lt;p&gt;全音：中间隔了一个键的两个键&lt;/p&gt;
+&lt;p&gt;等音：如E是F!，F是E#&lt;/p&gt;
+&lt;p&gt;同一个黑键有两个符号，可以根据还原号确定使用的符号。&lt;/p&gt;
+&lt;p&gt;重升：升两次半音&lt;/p&gt;
+&lt;p&gt;重降：降两次半音&lt;/p&gt;
+&lt;h3 id="04-如何区分同一音名的不同键"&gt;04 如何区分同一音名的不同键？
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260201201444641.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260201201506627.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ts1.tc.mm.bing.net/th/id/R-C.4e7c684912507963fff00a425e669582?rik=GXCkgZJNyLRj9g&amp;amp;riu=http%3a%2f%2fwww.doczj.com%2fpic%2fview%3fih%3d1071%26rn%3d1%26doc_id%3d8f9cf9291b37f111f18583d049649b6649d709d0%26o%3dpng_6_0_0_0_0_892_630_892.5_1263%26pn%3d1%26iw%3d1517%26ix%3d0%26sign%3dabf74663d5bd9bb573a88350987f915f%26type%3d1%26iy%3d0%26aimw%3d1517%26app_ver%3d2.9.8.2%26ua%3dbd_800_800_IncredibleS_2.9.8.2_2.3.7%26bid%3d1%26app_ua%3dIncredibleS%26uid%3d%26cuid%3d%26fr%3d3%26Bdi_bear%3dWIFI%26from%3d3_10000%26bduss%3d%26pid%3d1%26screen%3d800_800%26sys_ver%3d2.3.7&amp;amp;ehk=jIbbzeCoQ%2fD6NUiq2xOHi4ltwSPLtHGgPbYPVBWTPUs%3d&amp;amp;risl=&amp;amp;pid=ImgRaw&amp;amp;r=0"
+loading="lazy"
+alt="w"
+&gt;&lt;/p&gt;
+&lt;p&gt;中央C就是C3（小字1组）&lt;/p&gt;
+&lt;h3 id="05-各类音符时值的关系"&gt;05 各类音符时值的关系
+&lt;/h3&gt;&lt;p&gt;音符时值就是音的长短&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260203215805082.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="06-歌曲拍号"&gt;06 歌曲拍号
+&lt;/h3&gt;&lt;p&gt;拍号决定歌曲的律动，通常以分数形式表达&lt;/p&gt;
+&lt;p&gt;4/4表示以四分音符为一拍，每小节有4拍，=&amp;gt;全音符是4拍，二分音符是2拍，八分音符是半拍。&lt;/p&gt;
+&lt;p&gt;小节：||之间为一个小节&lt;/p&gt;
+&lt;h3 id="07-拍号的强弱规律"&gt;07 拍号的强弱规律
+&lt;/h3&gt;&lt;p&gt;如何打拍子？&lt;/p&gt;
+&lt;p&gt;4拍：1234 1234 ……&lt;/p&gt;
+&lt;p&gt;2拍子：强弱 强弱 强弱……&lt;/p&gt;
+&lt;p&gt;3拍子：强弱弱 强弱弱 ……&lt;/p&gt;
+&lt;p&gt;4拍子：强弱次强弱 ……&lt;/p&gt;
+&lt;p&gt;6拍子：强弱弱次强弱弱 ……&lt;/p&gt;
+&lt;h3 id="08-歌曲速度bpm是什么"&gt;08 歌曲速度（BPM）是什么？
+&lt;/h3&gt;&lt;p&gt;仅通过音符时值及节拍，并不能得出具体的时间值&lt;/p&gt;
+&lt;p&gt;BPM：每分钟节拍数的单位&lt;/p&gt;
+&lt;p&gt;BPM影响歌曲情绪，越快越嗨皮&lt;/p&gt;
+&lt;p&gt;60/歌曲速度=拍子&lt;/p&gt;
+&lt;p&gt;通过节拍及速度，即可计算出音符的时间。实际演唱、演奏和创作不需要计算时间。&lt;/p&gt;
+&lt;h3 id="9-附点音符"&gt;9 附点音符
+&lt;/h3&gt;&lt;p&gt;附点X分音符=X分音符+X分音符的一半&lt;/p&gt;
+&lt;h3 id="10-三连音"&gt;10 三连音
+&lt;/h3&gt;&lt;p&gt;三连音：把一个整体切分成三等分&lt;/p&gt;
+&lt;p&gt;八分音符三连音 不等于 三个八分音符&lt;/p&gt;
+&lt;h3 id="11-音与节奏的应用"&gt;11 音与节奏的应用
+&lt;/h3&gt;&lt;h3 id="12-唱名与简谱数字"&gt;12 唱名与简谱数字
+&lt;/h3&gt;&lt;p&gt;唱名：do re mi fa sol la si&lt;/p&gt;
+&lt;p&gt;简谱：1 2 3 4 5 6 7&lt;/p&gt;
+&lt;p&gt;数字上加每加1点就高8度（音高不同）&lt;/p&gt;
+&lt;h3 id="13-自然大调白键"&gt;13 自然大调（白键）
+&lt;/h3&gt;&lt;p&gt;调式中最常用的就是自然调式&lt;/p&gt;
+&lt;p&gt;1=C是指C自然大调，此时1234567对应CDEFGAB&lt;/p&gt;
+&lt;p&gt;不管1等于几，调式内部排列规律都一致，从已知的C自然大调找排列规律，7个音名要按顺序依次出现&lt;/p&gt;
+&lt;p&gt;C自然大调排列规律——全全半全全全半&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204131928326.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="14-自然大调黑键"&gt;14 自然大调（黑键）
+&lt;/h3&gt;&lt;p&gt;黑键出发的调式应该用哪个音名？两者都可以但推荐使用降的音名（写法更简单）。&lt;/p&gt;
+&lt;h3 id="15-自然小调"&gt;15 自然小调
+&lt;/h3&gt;&lt;p&gt;唱名：la si do re mi fa sol&lt;/p&gt;
+&lt;p&gt;简谱：6 7 1 2 3 4 5&lt;/p&gt;
+&lt;p&gt;音名（A小调）：A B C D E F G&lt;/p&gt;
+&lt;p&gt;从已知的A自然小调找排列规律：全半全全半全全&lt;/p&gt;
+&lt;p&gt;C大调和A小调是关系大小调（平行大小调），从A小调走一个全音加一个半音对应C大调&lt;/p&gt;
+&lt;h3 id="16-大小调有什么区别"&gt;16 大小调有什么区别？
+&lt;/h3&gt;&lt;p&gt;小调一般暗淡、忧伤&lt;/p&gt;
+&lt;p&gt;大调一般欢快、明朗&lt;/p&gt;
+&lt;p&gt;音乐不能用文字形容&lt;/p&gt;
+&lt;h3 id="17-音程的基础概念"&gt;17 音程的基础概念
+&lt;/h3&gt;&lt;p&gt;音程：两个音之间的距离，有几个白键就是多少度，有升调要先还原（C升调要还原到C，D降调要还原到D）&lt;/p&gt;
+&lt;p&gt;升D到降B是6度。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204133700745.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="18-音程的属性纯大"&gt;18 音程的属性（纯、大）
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;#c到E&lt;/code&gt;和&lt;code&gt;C到E&lt;/code&gt;都是3度，但音程不同&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204134353697.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;两个音之间有5个键的为大三度？不一定对，在三度前提下有5个键便是大三度。&lt;/p&gt;
+&lt;h3 id="19-音程的属性小减倍减增倍增"&gt;19 音程的属性（小、减、倍减、增、倍增）
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204134634904.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;常用：大、纯和小&lt;/p&gt;
+&lt;h3 id="20-音程的实战练习"&gt;20 音程的实战练习
+&lt;/h3&gt;&lt;p&gt;升C——降A：减六度（6度，8个键）&lt;/p&gt;
+&lt;p&gt;E——降F：减二度（2度，1个键）&lt;/p&gt;
+&lt;h3 id="21-音的乐名"&gt;21 音的乐名
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204135451854.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="22-三和弦"&gt;22 三和弦
+&lt;/h3&gt;&lt;p&gt;三和弦：三个音（根音、三音、五音）按三度关系叠加的和弦&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根音：最低音（原位和弦）&lt;/li&gt;
+&lt;li&gt;三音：根音上方三度音&lt;/li&gt;
+&lt;li&gt;五音：根音上方五度音&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;三和弦分类：大三和弦、小三和弦、减三和弦、增三和弦&lt;/p&gt;
+&lt;p&gt;大三和弦：大三度+小三度，比如CEG用大写字母C表示&lt;/p&gt;
+&lt;p&gt;小三和弦：小三度+大三度，比如C降EG用Cm表示&lt;/p&gt;
+&lt;p&gt;减三和弦：小三度+小三度，比如C降E降G用Cdim表示&lt;/p&gt;
+&lt;p&gt;增三和弦：大三度+大三度，比如CE升G用Caug表示&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204181229264.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;C大调共有7级三和弦&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204181636905.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="23-七和弦"&gt;23 七和弦
+&lt;/h3&gt;&lt;p&gt;七和弦：四个音（根音、三音、五音和七音）按三度关系叠加的和弦&lt;/p&gt;
+&lt;p&gt;大七和弦：大三和弦+大三度，比如CEGB用Cmaj7表示&lt;/p&gt;
+&lt;p&gt;大小七和弦：大三和弦+小三度，比如CEG降B用Cm表示&lt;/p&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;因为每个调只有一个属音，所有也只有一个属七和弦，其他的都叫“大小七和弦”。&lt;/li&gt;
+&lt;li&gt;一个调式里，除了“属七和弦”，其他“大小七和弦”都有离调音（7音）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;小七和弦：小三和弦（小三度+大三度）+小三度，比如C降EG降B用Cmin7表示&lt;/p&gt;
+&lt;p&gt;小大七和弦：小三和弦（小三度+大三度）+大三度，比如C降EGB用CmM7表示&lt;/p&gt;
+&lt;p&gt;减七和弦：减三和弦+小三度，比如C降E降G重降B用Cdim7表示&lt;/p&gt;
+&lt;p&gt;半减七和弦：减三和弦+大三度，比如C降E降G降B用Cm7-5表示&lt;/p&gt;
+&lt;p&gt;常用：大七和弦、大小七和弦和小七和弦&lt;/p&gt;
+&lt;h3 id="24-九和弦"&gt;24 九和弦
+&lt;/h3&gt;&lt;p&gt;九和弦：五个音（根音、三音、五音、七音和九音）按三度关系叠加的和弦&lt;/p&gt;
+&lt;p&gt;大九和弦：大七和弦（大三度+小三度+大三度）+小三度，比如CEGBD用Cmaj9表示&lt;/p&gt;
+&lt;p&gt;小九和弦：小七和弦（小三度+大三度+小三度）+大三度，比如C降EG降BD用Cm9表示&lt;/p&gt;
+&lt;p&gt;属九和弦：属七和弦+大三度，比如CEG降BD用C9表示&lt;/p&gt;
+&lt;p&gt;属七降九和弦：属九和弦九音降半音，比如CEG降B降D用C7b9表示&lt;/p&gt;
+&lt;p&gt;ADD9和弦：三和弦+九音，比如CEGD用Cadd9表示&lt;/p&gt;
+&lt;h3 id="25-挂留和弦"&gt;25 挂留和弦
+&lt;/h3&gt;&lt;p&gt;挂二和弦：用二度音替换掉原本的三度音而形成的和弦，比如CDG用Csus2表示&lt;/p&gt;
+&lt;p&gt;挂四和弦：用四度音替换掉原本的三度音而形成的和弦，比如CFG用Csus4表示&lt;/p&gt;
+&lt;p&gt;挂留和弦一般用于调式的1级和弦、5级和弦&lt;/p&gt;
+&lt;h3 id="26-转位和弦"&gt;26 转位和弦
+&lt;/h3&gt;&lt;p&gt;转位和弦：根音不在最低音的和弦&lt;/p&gt;
+&lt;p&gt;原位和弦：根音在最低音的和弦&lt;/p&gt;
+&lt;p&gt;比如GBD变成BDG则记为G/B第一转位，GBD变成DGB则记为G/D第二转位&lt;/p&gt;
+&lt;p&gt;第三转位：以七音为最低音的和弦&lt;/p&gt;
+&lt;p&gt;无论是什么转位，根音永远不会改变&lt;/p&gt;
+&lt;h3 id="27-休止符"&gt;27 休止符
+&lt;/h3&gt;&lt;p&gt;无论是演唱还是演奏，都有需要换气的时候。&lt;/p&gt;
+&lt;p&gt;休止符在简谱中用0表示&lt;/p&gt;
+&lt;p&gt;全休止符：0000&lt;/p&gt;
+&lt;p&gt;二分休止符：00&lt;/p&gt;
+&lt;p&gt;四分休止符：0&lt;/p&gt;
+&lt;p&gt;……&lt;/p&gt;
+&lt;h3 id="28-延音线连音线"&gt;28 延音线、连音线
+&lt;/h3&gt;&lt;p&gt;延音线：多个相同音高的音连一起，变成一个音&lt;/p&gt;
+&lt;p&gt;连音线&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260204184414976.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h3 id="29-中古教会调式"&gt;29 中古（教会）调式
+&lt;/h3&gt;&lt;p&gt;共有七种，了解即可&lt;/p&gt;
+&lt;h3 id="30-考试总结"&gt;30 考试+总结
+&lt;/h3&gt;&lt;h2 id="主流音乐生成工具对比"&gt;主流音乐生成工具对比
+&lt;/h2&gt;&lt;p&gt;以下是主流AI音乐生成工具的对比表格，帮助您快速了解各工具的特点和适用场景:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;工具名称&lt;/th&gt;
+&lt;th&gt;核心特点&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;th&gt;音乐质量&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;TemPolor&lt;/td&gt;
+&lt;td&gt;文本/图像生成，免版税授权&lt;/td&gt;
+&lt;td&gt;视频、广告、播客背景音乐&lt;/td&gt;
+&lt;td&gt;高（商业友好）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Suno&lt;/td&gt;
+&lt;td&gt;文本生成音乐，快速输出&lt;/td&gt;
+&lt;td&gt;快速创作梗歌、轻量级作品&lt;/td&gt;
+&lt;td&gt;中等（人声有合成感）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Udio&lt;/td&gt;
+&lt;td&gt;协作生成，音质提升&lt;/td&gt;
+&lt;td&gt;摇滚、金属等复杂风格&lt;/td&gt;
+&lt;td&gt;高（接近专业水平）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Soundraw&lt;/td&gt;
+&lt;td&gt;免版税音乐生成&lt;/td&gt;
+&lt;td&gt;视频、游戏背景音乐&lt;/td&gt;
+&lt;td&gt;中等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ace Studio&lt;/td&gt;
+&lt;td&gt;专业编曲，简谱输入&lt;/td&gt;
+&lt;td&gt;专业音乐人制作Demo&lt;/td&gt;
+&lt;td&gt;高（录音棚效果）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Beatoven.ai&lt;/td&gt;
+&lt;td&gt;视频配乐，动态调整&lt;/td&gt;
+&lt;td&gt;视频创作者动态配乐&lt;/td&gt;
+&lt;td&gt;中等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mubert&lt;/td&gt;
+&lt;td&gt;实时音乐生成&lt;/td&gt;
+&lt;td&gt;直播、播客背景音乐&lt;/td&gt;
+&lt;td&gt;中等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AIVA&lt;/td&gt;
+&lt;td&gt;影视配乐，交响乐&lt;/td&gt;
+&lt;td&gt;影视、游戏配乐&lt;/td&gt;
+&lt;td&gt;高（专业级）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="音乐生成工具都能做什么6大实用场景"&gt;音乐生成工具都能做什么：6大实用场景
+&lt;/h2&gt;&lt;p&gt;AI音乐生成工具在内容创作、音乐制作、商业用途、教育应用、游戏娱乐和实时流媒体等多个领域都有广泛应用。这些工具能够快速生成符合不同场景需求的音乐，提升创作效率和内容质量。&lt;/p&gt;
+&lt;h3 id="1-内容创作"&gt;1. 内容创作
+&lt;/h3&gt;&lt;p&gt;AI音乐生成工具在内容创作领域发挥着重要作用。内容创作者可以使用&lt;strong&gt;Suno&lt;/strong&gt;或&lt;strong&gt;TemPolor&lt;/strong&gt;快速为视频、播客和社交媒体内容生成背景音乐，无需购买昂贵的版权音乐。这些工具支持多种风格和情绪，能够根据内容主题自动匹配合适的音乐，大大提升内容的专业度和吸引力。特别是在短视频和播客制作中，AI工具能够快速生成符合平台调性的音乐，帮助创作者提升内容质量和用户体验。如需为视频制作专业背景音乐，可以使用&lt;strong&gt;Beatoven.ai&lt;/strong&gt;等专门的视频配乐工具。&lt;/p&gt;
+&lt;h3 id="2-音乐制作"&gt;2. 音乐制作
+&lt;/h3&gt;&lt;p&gt;专业音乐人和音乐制作人可以将AI工具作为创作助手。使用&lt;strong&gt;Udio&lt;/strong&gt;或&lt;strong&gt;Ace Studio&lt;/strong&gt;进行音乐探索和Demo制作，这些工具能够快速生成不同风格的音乐片段，帮助音乐人发现新的创作灵感。AI工具还可以作为音乐学习的辅助工具，让初学者快速理解不同音乐风格的特点和结构。通过AI生成的音乐片段作为起点，音乐人可以在此基础上进行修改和完善，创作出真正独特的音乐作品。如需进行专业的音乐后期制作，可以结合&lt;strong&gt;Soundraw&lt;/strong&gt;等工具进行混音和母带处理。&lt;/p&gt;
+&lt;h3 id="3-商业用途"&gt;3. 商业用途
+&lt;/h3&gt;&lt;p&gt;AI音乐生成工具为商业项目提供版权安全的音乐解决方案。企业可以使用&lt;strong&gt;Soundraw&lt;/strong&gt;或&lt;strong&gt;TemPolor&lt;/strong&gt;为广告、宣传片和企业培训视频创作专业音乐，这些工具提供免版税授权，确保商业使用的合规性。特别是在预算有限的情况下，AI工具能够快速生成高质量的商业音乐，大大降低企业的音乐制作成本。对于品牌营销项目，可以使用&lt;strong&gt;Mubert&lt;/strong&gt;等工具生成定制化的品牌音乐，提升品牌识别度和市场影响力。如需为商业项目制作影视配乐，可以选择&lt;strong&gt;AIVA&lt;/strong&gt;等专业配乐工具。&lt;/p&gt;
+&lt;h3 id="4-教育应用"&gt;4. 教育应用
+&lt;/h3&gt;&lt;p&gt;在教育领域，AI音乐生成工具能够辅助音乐教学和学习。教师可以使用&lt;strong&gt;Mubert&lt;/strong&gt;或&lt;strong&gt;Soundful&lt;/strong&gt;为教学视频和在线课程生成背景音乐，帮助学生更好地理解音乐概念和节奏。AI工具还可以作为音乐创作的教学辅助，让学生快速体验不同音乐风格和创作技巧。对于音乐教育机构，可以使用这些工具快速生成教学演示音乐，提升教学质量和效率。学生也可以通过AI工具进行音乐创作练习，培养音乐鉴赏能力和创作思维。如需制作教育类多媒体内容，可以使用&lt;strong&gt;Lovo&lt;/strong&gt;等工具进行音乐和语音的综合制作。&lt;/p&gt;
+&lt;h3 id="5-游戏娱乐"&gt;5. 游戏娱乐
+&lt;/h3&gt;&lt;p&gt;游戏开发者和娱乐内容创作者可以利用AI音乐生成工具提升娱乐体验。游戏开发者可以使用&lt;strong&gt;AIVA&lt;/strong&gt;或&lt;strong&gt;Udio&lt;/strong&gt;为不同游戏场景生成动态背景音乐，根据游戏情节自动调整音乐情绪和节奏。娱乐内容创作者可以为短视频、动画和娱乐节目制作配乐，提升内容的趣味性和吸引力。特别是在游戏音乐制作中，AI工具能够快速生成符合游戏风格的音乐，大大缩短开发周期。对于娱乐节目制作，可以使用&lt;strong&gt;Musicfy&lt;/strong&gt;等工具进行音乐风格转换和创意混音。如需制作游戏原声音乐，可以选择&lt;strong&gt;Loudly&lt;/strong&gt;等支持多种游戏风格的工具。&lt;/p&gt;
+&lt;h3 id="6-实时流媒体"&gt;6. 实时流媒体
+&lt;/h3&gt;&lt;p&gt;在直播和流媒体领域，AI音乐生成工具提供实时音乐支持。主播可以使用&lt;strong&gt;Mubert&lt;/strong&gt;或&lt;strong&gt;Loudly&lt;/strong&gt;实时生成背景音乐，根据直播内容自动调整音乐风格和情绪。流媒体平台可以利用这些工具快速生成频道主题音乐和转场音乐，提升用户观看体验。特别是在电商直播中，AI工具能够根据产品特点生成合适的背景音乐，增强商品展示效果。实时音乐生成功能确保直播过程中音乐的连续性和多样性，避免版权风险。如需制作专业直播音乐，可以使用&lt;strong&gt;PlayHT&lt;/strong&gt;等支持实时合成的工具。&lt;/p&gt;
+&lt;h2 id="如何选择音乐生成工具"&gt;如何选择音乐生成工具
+&lt;/h2&gt;&lt;p&gt;根据您的音乐质量要求、风格多样性、可定制性、版权需求和易用性，选择合适的音乐生成工具可以显著提升音乐创作效率和质量。&lt;/p&gt;
+&lt;h3 id="1-评估音乐质量要求"&gt;1. 评估音乐质量要求
+&lt;/h3&gt;&lt;p&gt;评估音乐质量时，需要关注自然度、音质、人声质量和乐器分离度等方面。不同工具在音乐质量上有所差异，建议先试用再决定。对于对音乐质量要求较高的场景（如商业广告、影视配乐），建议选择Udio、Ace Studio、AIVA等高质量工具；日常使用可以选择基础工具。&lt;/p&gt;
+&lt;h3 id="2-评估风格多样性"&gt;2. 评估风格多样性
+&lt;/h3&gt;&lt;p&gt;确认工具是否支持所需音乐风格。不同工具在风格支持方面差异较大：大多数工具都支持流行音乐风格，Mubert等工具专门支持电子音乐，Udio等工具擅长复杂风格，AIVA等工具专门支持古典和交响乐。如果需要在多种风格之间切换，建议选择支持多种风格的工具。&lt;/p&gt;
+&lt;h3 id="3-评估可定制性需求"&gt;3. 评估可定制性需求
+&lt;/h3&gt;&lt;p&gt;如果需要精细控制音乐参数，需要选择支持可定制性的工具。可定制性包括长度调整、风格调整、参数控制和混合编辑等。对于需要精细控制的场景，建议选择Ace Studio、Musicfy等支持可定制性的工具；如果只需要快速生成，选择简单易用的工具如Suno、Udio。&lt;/p&gt;
+&lt;h3 id="4-评估版权需求"&gt;4. 评估版权需求
+&lt;/h3&gt;&lt;p&gt;商业用途需要特别注意版权问题。选择工具时需要考虑商业许可、版权归属、使用限制和授权方式等。大多数工具都提供商业许可，但需要仔细阅读服务条款。Soundraw、TemPolor等工具明确提供免版税授权，特别适合商业用途。根据使用场景选择合适的授权方式。&lt;/p&gt;
+&lt;h3 id="5-评估易用性和成本"&gt;5. 评估易用性和成本
+&lt;/h3&gt;&lt;p&gt;易用性和成本也是选择工具时需要考虑的重要因素，包括操作简单性、免费额度、订阅价格和按量计费等。对于个人用户和小规模使用，建议选择提供免费额度的工具，如Suno、Udio等；对于大规模商业使用，建议选择企业方案。比较不同工具的性价比，选择符合预算且易用的工具。&lt;/p&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://alignify.co/zh/tools/music-generator" target="_blank" rel="noopener"
+&gt;主流音乐生成工具对比&lt;/a&gt;&lt;/p&gt;</description></item><item><title>循环神经网络</title><link>https://hanguangwu.github.io/blog/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Mon, 02 Feb 2026 21:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="循环神经网络"&gt;循环神经网络
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/base-llm" target="_blank" rel="noopener"
 &gt;本文来源于Datawhale教程&lt;/a&gt;&lt;/p&gt;
