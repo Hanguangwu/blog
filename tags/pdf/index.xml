@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PDF on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/pdf/</link><description>Recent content in PDF on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 05 Feb 2026 14:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/pdf/index.xml" rel="self" type="application/rss+xml"/><item><title>PDF转Markdown工具</title><link>https://hanguangwu.github.io/blog/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf转markdown工具"&gt;PDF转Markdown工具
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;在大语言模型（LLM）迅速发展的时代，文档处理和转换变得尤为重要。当我们需要将各种格式的文档（如 PDF、Word、PowerPoint 等）输入到 LLM 中进行分析或处理时，首先需要将这些文档转换为文本格式。然而，简单的文本转换往往会丢失文档的结构信息，如标题、列表、表格等重要元素。Microsoft 开源的 MarkItDown 项目就是为解决这一问题而诞生的。它能将各种格式的文档转换为 Markdown 格式，既保留了原文档的结构信息，又保证了输出内容的简洁性，特别适合与 LLM 配合使用。本文将深入探讨 MarkItDown 的功能特点、应用场景和使用方法，帮助开发者更好地利用这一强大工具。&lt;/p&gt;
+&lt;h2 id="markitdown"&gt;markitdown
+&lt;/h2&gt;&lt;p&gt;MarkItDown now offers an MCP (Model Context Protocol) server for integration with LLM applications like Claude Desktop. See &lt;a class="link" href="https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp" target="_blank" rel="noopener"
+&gt;markitdown-mcp&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener"
+&gt;Python tool for converting files and office documents to Markdown.&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="主要功能"&gt;主要功能
+&lt;/h3&gt;&lt;p&gt;MarkItDown 的核心功能是将各种文件格式转换为 Markdown，特别强调在转换过程中保留文档结构和内容的完整性。与类似工具如 textract 相比，MarkItDown 更专注于保留文档中的以下结构元素：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标题层级&lt;/li&gt;
+&lt;li&gt;列表格式&lt;/li&gt;
+&lt;li&gt;表格结构&lt;/li&gt;
+&lt;li&gt;超链接&lt;/li&gt;
+&lt;li&gt;图像引用&lt;/li&gt;
+&lt;li&gt;文本格式（如粗体、斜体）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="支持的文件格式"&gt;支持的文件格式
+&lt;/h3&gt;&lt;p&gt;MarkItDown 支持的文件格式非常丰富，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PDF 文档&lt;/li&gt;
+&lt;li&gt;PowerPoint 演示文稿&lt;/li&gt;
+&lt;li&gt;Word 文档&lt;/li&gt;
+&lt;li&gt;Excel 电子表格&lt;/li&gt;
+&lt;li&gt;图像文件（包括 EXIF 元数据提取和 OCR 文字识别）&lt;/li&gt;
+&lt;li&gt;音频文件（支持 EXIF 元数据提取和语音转文字）&lt;/li&gt;
+&lt;li&gt;HTML 网页&lt;/li&gt;
+&lt;li&gt;各种文本格式（CSV、JSON、XML 等）&lt;/li&gt;
+&lt;li&gt;ZIP 压缩文件（自动遍历内容）&lt;/li&gt;
+&lt;li&gt;YouTube 视频链接（提取字幕）&lt;/li&gt;
+&lt;li&gt;EPub 电子书&lt;/li&gt;
+&lt;li&gt;以及更多&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="技术架构"&gt;技术架构
+&lt;/h3&gt;&lt;p&gt;MarkItDown 采用模块化设计，主要包含以下组件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;核心转换引擎&lt;/strong&gt;：负责文件格式识别和转换协调&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件格式转换器&lt;/strong&gt;：针对不同文件格式的专用转换模块&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;插件系统&lt;/strong&gt;：支持第三方扩展功能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;命令行接口&lt;/strong&gt;：便于在终端中使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python API&lt;/strong&gt;：方便集成到其他 Python 应用中&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="安装与使用"&gt;安装与使用
+&lt;/h3&gt;&lt;h4 id="安装"&gt;安装
+&lt;/h4&gt;&lt;p&gt;MarkItDown 可以通过 pip 安装。为了获得完整功能，建议安装所有可选依赖：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install markitdown&lt;span class="o"&gt;[&lt;/span&gt;all&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果只需要部分功能，可以选择性安装依赖：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 仅安装 PDF、Word 和 PowerPoint 支持&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install markitdown&lt;span class="o"&gt;[&lt;/span&gt;pdf,docx,pptx&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;也可以从源代码安装：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone git@github.com:microsoft/markitdown.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; markitdown
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -e &lt;span class="s1"&gt;&amp;#39;packages/markitdown[all]&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="可选依赖包"&gt;可选依赖包
+&lt;/h4&gt;&lt;p&gt;MarkItDown 将依赖组织为可选特性组，当前支持的特性组包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[all]&lt;/code&gt;：安装所有可选依赖&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[pptx]&lt;/code&gt;：PowerPoint 文件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[docx]&lt;/code&gt;：Word 文件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[xlsx]&lt;/code&gt;：Excel 文件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[xls]&lt;/code&gt;：旧版 Excel 文件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[pdf]&lt;/code&gt;：PDF 文件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[outlook]&lt;/code&gt;：Outlook 邮件支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[az-doc-intel]&lt;/code&gt;：Azure Document Intelligence 支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[audio-transcription]&lt;/code&gt;：音频转录支持（wav 和 mp3 文件）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[youtube-transcription]&lt;/code&gt;：YouTube 视频转录支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="命令行使用"&gt;命令行使用
+&lt;/h4&gt;&lt;p&gt;最基本的命令行使用方式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 转换文件并输出到标准输出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;markitdown path-to-file.pdf &amp;gt; document.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 指定输出文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;markitdown path-to-file.pdf -o document.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 从标准输入读取内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat path-to-file.pdf &lt;span class="p"&gt;|&lt;/span&gt; markitdown
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://pica.zhimg.com/v2-e62fe5dd8536a91074426b37bb722324_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;命令行方式&lt;/p&gt;
+&lt;h4 id="python-api-使用"&gt;Python API 使用
+&lt;/h4&gt;&lt;p&gt;基本使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;markitdown&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;enable_plugins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Set to True to enable plugins&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;test.xlsx&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;集成文档智能：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;markitdown&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;docintel_endpoint&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;lt;document_intelligence_endpoint&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;test.pdf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用大语言模型生成图片描述（当前只适用于 pptx 和 image文件）需要提供 &lt;code&gt;llm_client&lt;/code&gt; 和 &lt;code&gt;llm_model&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;markitdown&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;openai&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OpenAI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OpenAI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;llm_client&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;gpt-4o&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm_prompt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;optional custom prompt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;example.jpg&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Azure AI 文档智能是&lt;strong&gt;一项基于云的Azure AI 服务，支持构建智能文档处理解决方案&lt;/strong&gt;。在 Python 代码中使用 MarkItDown：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;markitdown&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 基本使用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;enable_plugins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 设置为 True 启用插件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;test.xlsx&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 使用 Azure Document Intelligence&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;md&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkItDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;docintel_endpoint&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;lt;document_intelligence_endpoint&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;test.pdf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="pdf3md"&gt;pdf3md
+&lt;/h2&gt;&lt;p&gt;PDF3MD 是一个现代化、用户友好的网络应用程序，旨在将 PDF 文档转换为干净、格式化的 Markdown 文本。它提供了高效的转换工具，支持多种文件格式之间的转换。&lt;/p&gt;
+&lt;p&gt;注意：不要用那种扫描的 &lt;code&gt;pdf&lt;/code&gt; 文件，毕竟还不支持 &lt;code&gt;ocr&lt;/code&gt; 功能&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/murtaza-nasir/pdf3md" target="_blank" rel="noopener"
+&gt;A modern, user-friendly web application that converts PDF documents to clean, formatted Markdown text.&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="主要特点"&gt;主要特点
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;PDF 转 Markdown：能够将 PDF 文档转换为可读性强的 Markdown 格式，同时保留文档的结构元素。&lt;/li&gt;
+&lt;li&gt;Markdown 转 Word (DOCX)：支持将用户提供的 Markdown 文本转换为 DOCX 格式，使用 Pandoc 实现高质量输出。&lt;/li&gt;
+&lt;li&gt;多文件上传：支持同时上传和处理多个 PDF 文件，提升工作效率。&lt;/li&gt;
+&lt;li&gt;拖拽式界面：提供用户友好的文件上传方式，支持拖放或传统的文件选择。&lt;/li&gt;
+&lt;li&gt;实时进度跟踪：在转换过程中提供详细的状态更新，用户可以实时监控转换进度。&lt;/li&gt;
+&lt;li&gt;现代响应式用户界面：设计直观，适合各种设备使用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="应用场景"&gt;应用场景
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;文档转换：适用于需要将 PDF 文档转换为 Markdown 的用户，例如技术文档编辑、博客撰写等。&lt;/li&gt;
+&lt;li&gt;内容编辑：方便用户在 Markdown 格式下进行内容编辑和格式化，然后可以轻松导出为 Word 文档。&lt;/li&gt;
+&lt;li&gt;批量处理：适合需要处理大量文档的场景，例如教育机构、出版社等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;PDF3MD 通过提供简化的文档转换流程，大大提升了用户的工作效率和体验。&lt;/p&gt;
+&lt;h2 id="gptpdf"&gt;gptpdf
+&lt;/h2&gt;&lt;p&gt;gptpdf 是一个利用VLLM解析PDF为Markdown的工具，几乎完美支持数学公式、表格等。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pica.zhimg.com/v2-d23eda146615dd13b084837b0edde7f6_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;GPTPDF 是一个使用视觉大模型（如 GPT-4o）将 PDF 文件解析成 Markdown 文件的工具。它主要用于高效地解析 PDF 文档中的排版、数学公式、表格、图片、图表等内容，并将这些内容转换为结构化的 Markdown 格式。其显著特点是简单且成本低，每页平均费用为 $0.013。&lt;/p&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/CosmosShadow/gptpdf" target="_blank" rel="noopener"
+&gt;https://github.com/CosmosShadow/gptpdf&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="marker"&gt;marker
+&lt;/h2&gt;&lt;p&gt;Marker是一款将PDF快速精准转换为Markdown的工具，支持多种文档格式和语言。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pica.zhimg.com/v2-a7af59d898bbbb3d8b10f9c6a2d25fae_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;Marker是一款能够快速且准确地将PDF转换为Markdown的工具。它支持多种类型的文档（针对书籍和科学论文进行了优化），支持所有语言，并且能够去除页眉、页脚及其他杂乱信息。此外，它还能正确格式化表格和代码块，并提取图像保存为Markdown。同时，Marker将大多数的公式转换为LaTeX格式，适用于GPU、CPU或MPS环境。&lt;/p&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/vikparuchuri/marker" target="_blank" rel="noopener"
+&gt;https://github.com/vikparuchuri/marker&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="pdf-extract-kit"&gt;PDF-Extract-Kit
+&lt;/h2&gt;&lt;p&gt;PDF-Extract-Kit 提供高质量PDF内容提取，支持布局检测、公式识别和OCR功能&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pic2.zhimg.com/v2-d88f85513cf62647be7a0dda7eb649ff_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;基本功能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;版面检测：使用 LayoutLMv3 模型进行区域检测，如检测图片、表格、标题、文本等。&lt;/li&gt;
+&lt;li&gt;公式检测：使用 YOLOv8 模型检测公式，包括行内公式和独立公式。&lt;/li&gt;
+&lt;li&gt;公式识别：使用 UniMERNet 进行公式识别。&lt;/li&gt;
+&lt;li&gt;光学字符识别 (OCR)：使用 PaddleOCR 进行文本识别。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/opendatalab/PDF-Extract-Kit" target="_blank" rel="noopener"
+&gt;https://github.com/opendatalab/PDF-Extract-Kit&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="zerox"&gt;zeroX
+&lt;/h2&gt;&lt;p&gt;Zerox OCR 是一种经济高效且准确的文档OCR工具，适用于AI数据处理。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pic1.zhimg.com/v2-b0be541184234a0890bc2c82f027552e_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;Zerox OCR 是一种极其简便的方法，用于将文档进行光学字符识别（OCR）并方便人工智能进行后续处理。鉴于文档往往包含复杂布局、表格、图表等，视觉模型在处理这些内容时尤其有效。&lt;/p&gt;
+&lt;p&gt;基本逻辑如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;提供一个 PDF 文件（URL 或文件缓冲区）。&lt;/li&gt;
+&lt;li&gt;将 PDF 转换成一系列图像。&lt;/li&gt;
+&lt;li&gt;将每个图像传给 GPT，让其生成 Markdown 格式的文本。&lt;/li&gt;
+&lt;li&gt;聚合所有响应，并返回 Markdown 格式的结果。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/getomni-ai/zeroX" target="_blank" rel="noopener"
+&gt;https://github.com/getomni-ai/zeroX&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="omniparse"&gt;omniparse
+&lt;/h2&gt;&lt;p&gt;OmniParse是一个将各种非结构化数据转换为结构化、适用于生成式AI（LLM）应用的平台。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pica.zhimg.com/v2-d7b200f79c65701c30d5893c85207264_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;OmniParse 是一个数据解析平台，旨在将各种非结构化数据转换为适用于生成式AI（GenAI）应用的结构化数据。无论是文档、表格、图像、视频、音频文件，还是网页，OmniParse 都能对其进行处理，使其变得干净、结构化，并为诸如 RAG（Retrieval-Augmented Generation）和细调等AI应用做好准备。&lt;/p&gt;
+&lt;p&gt;特色：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完全本地化，无需外部API&lt;/li&gt;
+&lt;li&gt;支持多达 20 种文件类型&lt;/li&gt;
+&lt;li&gt;将文档、多媒体和网页转换为高质量的结构化 Markdown&lt;/li&gt;
+&lt;li&gt;支持表格提取、图像提取与标注、音频/视频转录、网页爬取&lt;/li&gt;
+&lt;li&gt;通过 Docker 和 Skypilot 轻松部署&lt;/li&gt;
+&lt;li&gt;兼容 Colab&lt;/li&gt;
+&lt;li&gt;交互式 UI 由 Gradio 提供支持&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/adithya-s-k/omniparse" target="_blank" rel="noopener"
+&gt;https://github.com/adithya-s-k/omniparse&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="mineru"&gt;MinerU
+&lt;/h2&gt;&lt;p&gt;MinerU 是一个开源的高质量数据提取工具，支持多种文件格式&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pic2.zhimg.com/v2-0b620d8cd335c5094b881feff6ec4003_1440w.jpg"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;MinerU 是一个一站式、开源的高质量数据提取工具，主要包括以下两个核心功能模块：&lt;/p&gt;
+&lt;p&gt;功能介绍：Magic-PDF 能将 PDF 文档转换为 Markdown 格式，可以处理本地存储或支持 S3 协议的对象存储中的文件。&lt;/p&gt;
+&lt;p&gt;主要特色：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;支持多种前端模型输入&lt;/li&gt;
+&lt;li&gt;自动去除页眉、页脚、脚注和页码&lt;/li&gt;
+&lt;li&gt;保留文档原有的结构和格式，包括标题、段落、列表等&lt;/li&gt;
+&lt;li&gt;提取并显示图片和表格&lt;/li&gt;
+&lt;li&gt;将公式转换为 LaTeX 格式&lt;/li&gt;
+&lt;li&gt;自动检测和转换乱码 PDF 文档&lt;/li&gt;
+&lt;li&gt;兼容 CPU 和 GPU 环境&lt;/li&gt;
+&lt;li&gt;可在 Windows、Linux 和 macOS 平台上使用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;地址： &lt;a class="link" href="https://github.com/opendatalab/MinerU" target="_blank" rel="noopener"
+&gt;https://github.com/opendatalab/MinerU&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/711487482" target="_blank" rel="noopener"
+&gt;六个开源的PDF转Markdown项目&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1900486359417853286" target="_blank" rel="noopener"
+&gt;MarkItDown：微软开源的文档转 Markdown 工具及其在 LLM 时代的应用&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PDF电子书制作工具</title><link>https://hanguangwu.github.io/blog/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf电子书制作工具"&gt;PDF电子书制作工具
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;本文介绍一些PDF电子书制作工具。&lt;/p&gt;
+&lt;h2 id="mdbook-pdf"&gt;MdBook-PDF
+&lt;/h2&gt;&lt;h3 id="简介"&gt;简介
+&lt;/h3&gt;&lt;p&gt;用 Rust 编写的 &lt;a class="link" href="https://github.com/rust-lang/mdBook" target="_blank" rel="noopener"
+&gt;mdBook&lt;/a&gt; 后端，基于&lt;a class="link" href="https://github.com/rust-headless-chrome/rust-headless-chrome" target="_blank" rel="noopener"
+&gt;headless chrome&lt;/a&gt;和&lt;a class="link" href="https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF" target="_blank" rel="noopener"
+&gt;Chrome开发工具协议&lt;/a&gt;生成PDF。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md" target="_blank" rel="noopener"
+&gt;mdbook-pdf——中文说明&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/zjp-CN/mdbook-theme" target="_blank" rel="noopener"
+&gt;mdbook-theme&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/qq_18572023/article/details/122753374" target="_blank" rel="noopener"
+&gt;博客&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="安装和使用"&gt;安装和使用
+&lt;/h3&gt;&lt;p&gt;由于它是 &lt;a class="link" href="https://github.com/rust-lang/mdBook" target="_blank" rel="noopener"
+&gt;mdBook&lt;/a&gt; 的插件（后端），首先您应该确保 &lt;code&gt;mdbook&lt;/code&gt; 可用。&lt;/p&gt;
+&lt;p&gt;如果您的计算机的架构为&lt;code&gt;x86_64&lt;/code&gt;，或者&lt;code&gt;ARM64&lt;/code&gt;版本的Linux，请检查成功的&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/actions/workflows/build.yml?query=is%3Asuccess" target="_blank" rel="noopener"
+&gt;build GitHub Actions workflows&lt;/a&gt;/&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/releases" target="_blank" rel="noopener"
+&gt;release&lt;/a&gt;，单击最新的一次运行记录，然后您可以从 Artifacts中获取二进制文件（包括 &lt;code&gt;Windows&lt;/code&gt;、&lt;code&gt;Linux&lt;/code&gt;、&lt;code&gt;macOS&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;否则，确保 &lt;a class="link" href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener"
+&gt;rust 编译环境&lt;/a&gt;可用，执行&lt;code&gt;cargo install mdbook-pdf&lt;/code&gt;编译安装即可。&lt;/p&gt;
+&lt;p&gt;如果需要最新版的编译二进制文件，请确保 Rust 编译环境可用（&lt;code&gt;cargo build&lt;/code&gt;），运行 &lt;code&gt;cargo install --git https://github.com/HollowMan6/mdbook-pdf.git&lt;/code&gt;，或者，您可以克隆存储库并自行编译。（执行&lt;code&gt;git clone https://github.com/HollowMan6/mdbook-pdf.git&lt;/code&gt;，在然后在克隆下来的文件夹中运行&lt;code&gt;cargo build --release&lt;/code&gt;，在&lt;code&gt;target/release/&lt;/code&gt;中获取可执行文件，并将其放入PATH）&lt;/p&gt;
+&lt;p&gt;为了使得程序能够正常运行，请确保计算机上在运行本程序之前已经安装了 Google Chrome / Chromium / Microsoft Edge，（安装在默认的位置，在当前的PATH中，或配置了二进制文件位置）。如果没有安装，并且程序启用了&lt;code&gt;fetch&lt;/code&gt;功能(默认未开启，需使用&lt;code&gt;cargo install mdbook-pdf --features fetch&lt;/code&gt;重新编译开启)，程序将会尝试自动下载 Chromium 浏览器并运行（注意：如在Linux中使用可能会存在chromium依赖不满足/非x86_64无法适配的问题）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在Windows 10及以上该程序无需安装任何额外软件即可正常生成 PDF，因为 Microsoft Edge 是 Windows 系统自带的浏览器。当然如果考虑到对没有自带安装 Edge 的老版本Windows的支持，在电脑上安装一个 Google Chrome 即可。&lt;/li&gt;
+&lt;li&gt;在 macOS 中需要下载并安装 &lt;a class="link" href="https://www.google.com/chrome/" target="_blank" rel="noopener"
+&gt;Google Chrome&lt;/a&gt; 或者 &lt;a class="link" href="https://www.microsoft.com/zh-cn/edge" target="_blank" rel="noopener"
+&gt;Microsoft Edge&lt;/a&gt; 或者 Chromium。&lt;/li&gt;
+&lt;li&gt;在 Linux 中安装Google Chrome / Chromium / Microsoft Edge 浏览器中的任意一个即可，推荐安装 Chromium，该软件包在您的发行版中一般名称为 &lt;code&gt;chromium&lt;/code&gt; 或 &lt;code&gt;chromium-browser&lt;/code&gt;（注意，在 Ubuntu 18.04 之后需要通过 &lt;code&gt;snap&lt;/code&gt; 安装 &lt;code&gt;chromium-browser&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;请确保您的&lt;code&gt;book.toml&lt;/code&gt;中存在以下内容:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;而且，&lt;code&gt;[output.html.print]&lt;/code&gt;也没有被禁用（默认情况下应该是启用的，所以如果您的&lt;code&gt;book.toml&lt;/code&gt;中没有出现以下行，请不要担心）。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;html&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;enable&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;一个最简单的&lt;code&gt;book.toml&lt;/code&gt;文件示例如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;book&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;title&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;An Example&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最后，您可以使用 &lt;code&gt;mdbook build&lt;/code&gt; 命令生成书籍并获取PDF文件，您的PDF文件将被存放在&lt;code&gt;book/pdf/output.put&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id="配置"&gt;配置
+&lt;/h3&gt;&lt;p&gt;支持自定义PDF纸张方向、页面缩放比例、纸张宽度和高度、页面边距、生成的PDF页面范围、是否显示页眉和页脚以及自定义其格式等。&lt;/p&gt;
+&lt;p&gt;示例配置文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;book&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;authors&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hollow Man&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;language&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;en&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;src&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;src&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;title&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;An Example&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## Set for auto-retrying if failed to generate PDF.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# trying-times = 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## Set the timeout in seconds.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# timeout = 600&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## This backend only support latest Chromium based browsers, not Safari and Firefox currently.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## If needed, please specify the full path.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## If you specify the wrong binary, chances are that there will be a timeout error.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# browser-binary-path = &amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## Assign the static hosting site url so that relative links outside the book can be fixed.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# static_site_url = &amp;#34;https://rust-lang.github.io/mdBook&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## Set the theme to be applied for the generated PDF.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# theme = &amp;#34;ayu&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## Check Chrome Devtools Protocol Docs for the explanation of the following params:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;## https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;landscape&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;display-header-footer&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;print-background&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;scale&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;paper-width&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;paper-height&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;margin-top&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;margin-bottom&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;margin-left&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;margin-right&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;page-ranges&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;ignore-invalid-page-ranges&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;header-template&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;h3 style=&amp;#39;font-size:8px; margin-left: 48%&amp;#39; class=&amp;#39;title&amp;#39;&amp;gt;&amp;lt;/h3&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;footer-template&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;p style=&amp;#39;font-size:10px; margin-left: 48%&amp;#39;&amp;gt;&amp;lt;span class=&amp;#39;pageNumber&amp;#39;&amp;gt;&amp;lt;/span&amp;gt; / &amp;lt;span class=&amp;#39;totalPages&amp;#39;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;prefer-css-page-size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;generate-document-outline&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;generate-tagged-pdf&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf-outline&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;like-wkhtmltopdf&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看 &lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/test_doc/book.toml#L10-L39" target="_blank" rel="noopener"
+&gt;book.toml&lt;/a&gt; 以了解 &lt;code&gt;[output.pdf]&lt;/code&gt; 可用配置的详细信息。&lt;/p&gt;
+&lt;p&gt;具体参数详解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;trying-times&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个整型数，默认为&lt;code&gt;1&lt;/code&gt;。其指定假如发生PDF生成失败的情况重试的次数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;browser-binary-path&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串，默认为空&lt;code&gt;''&lt;/code&gt;，程序自动判断路径。其指定浏览器可执行文件路径。&lt;/p&gt;
+&lt;p&gt;本程序支持最新的基于Chromium的浏览器，不支持Safari和Firefox。如果你需要指定，请指定完整的路径，比如说&lt;code&gt;/usr/bin/foo&lt;/code&gt;。如果指定了错误的可执行文件，则很可能会出现超时错误或者直接报错。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;static-site-url&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串，默认为空&lt;code&gt;''&lt;/code&gt;。其指定书的静态网站托管URL，从而修复书之外的相对链接，将其转换为绝对路径。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;landscape&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;false&lt;/code&gt;。其指定PDF纸张方向，&lt;code&gt;true&lt;/code&gt;为横向，&lt;code&gt;false&lt;/code&gt;为纵向。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;display-header-footer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;false&lt;/code&gt;。其指定是否显示页眉和页脚，&lt;code&gt;true&lt;/code&gt;为显示，&lt;code&gt;false&lt;/code&gt;为不显示。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;print-background&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;false&lt;/code&gt;。其指定是否在PDF中显示背景图片，&lt;code&gt;true&lt;/code&gt;为显示，&lt;code&gt;false&lt;/code&gt;为不显示。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;theme&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串。其指定用于打印书的主题。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;scale&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;1&lt;/code&gt;。其指定缩放因子，例如指定值为&lt;code&gt;1.25&lt;/code&gt;，则将页面缩放125%。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;paper-width&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;8.5&lt;/code&gt;。其指定页面宽度的英尺数，如果需要使用A4纸请将此值设为&lt;code&gt;8&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;paper-height&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;11&lt;/code&gt;。其指定页面高度的英尺数，如果需要使用A4纸请将此值设为&lt;code&gt;10&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;margin-top&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;1&lt;/code&gt;。其指定页面上边距的厘米数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;margin-bottom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;1&lt;/code&gt;。其指定页面下边距的厘米数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;margin-left&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;1&lt;/code&gt;。其指定页面左边距的厘米数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;margin-right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个数字，默认为&lt;code&gt;1&lt;/code&gt;。其指定页面右边距的厘米数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;page-range&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串，默认为空&lt;code&gt;''&lt;/code&gt;，即不截取PDF页面。其指定生成PDF文件页面截取范围，支持指定常见打印机格式页面范围，如&lt;code&gt;'1-5, 8, 11-13'&lt;/code&gt;则是将第1到5页以及第8页和第11到13页截取出来生成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ignore-invalid-page-ranges&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;false&lt;/code&gt;。其指定，如果上面指定的PDF文件页面截取范围格式正确，但是实际无法按照语义执行，是否忽略。&lt;code&gt;true&lt;/code&gt;为忽略，生成全部PDF页面，&lt;code&gt;false&lt;/code&gt;为进行报错，如在指定&lt;code&gt;3-2&lt;/code&gt;这种情况下将会报错，PDF生成失败。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;header-template&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串。其指定PDF文件页眉的HTML模板。其值应该是一个有效的HTML标记，并使用以下类从而将对应值插入其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;date: 格式化后的PDF生成日期&lt;/li&gt;
+&lt;li&gt;title: 书的标题&lt;/li&gt;
+&lt;li&gt;url: PDF文件存放路径&lt;/li&gt;
+&lt;li&gt;pageNumber: 当前页号&lt;/li&gt;
+&lt;li&gt;totalPages: 总共页数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，&lt;code&gt;'&amp;lt;span class=title&amp;gt;&amp;lt;/span&amp;gt;'&lt;/code&gt; 将生成一个包含标题的页眉。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;footer-template&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个字符串。其指定PDF文件页脚的HTML模板。其值的格式同header-template。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;prefer-css-page-size&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;false&lt;/code&gt;。其指定是否使用 CSS 定义的页面大小。&lt;code&gt;true&lt;/code&gt;为使用，&lt;code&gt;false&lt;/code&gt;时页面将通过缩放来适应纸张大小。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;generate-document-outline&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;true&lt;/code&gt;。其指定是否根据网页生成PDF目录。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;generate-tagged-pdf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接受输入一个布尔值，默认为&lt;code&gt;true&lt;/code&gt;。其指定是否根据网页生成PDF标记。&lt;/p&gt;
+&lt;h3 id="常见问题"&gt;常见问题
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;让&lt;code&gt;mdbook-pdf&lt;/code&gt;支持火狐！
+目前，尽管 Puppeteer 根据其&lt;a class="link" href="https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF" target="_blank" rel="noopener"
+&gt;文档&lt;/a&gt;，已经支持类似于&lt;a class="link" href="https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF" target="_blank" rel="noopener"
+&gt;Chrome 开发工具协议 Page.printToPDF&lt;/a&gt;的东西，&lt;a class="link" href="https://github.com/rust-headless-chrome/rust-headless-chrome" target="_blank" rel="noopener"
+&gt;rust-headless-chrome&lt;/a&gt; 并没有。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;链接损坏！&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;del&gt;我已经提交了&lt;a class="link" href="https://github.com/rust-lang/mdBook/pull/1738" target="_blank" rel="noopener"
+&gt;一个 mdBook 的拉取请求&lt;/a&gt;，该拉取请求通过将打印页面 (print.html) 上的链接指向打印页面上的锚点来解决此问题，但尚未合并。您可以尝试&lt;a class="link" href="https://github.com/HollowMan6/mdBook" target="_blank" rel="noopener"
+&gt;我的拉取请求分支&lt;/a&gt; 以使其正常工作。&lt;/del&gt; 在最新的 &lt;code&gt;mdbook&lt;/code&gt; (v0.5.0+) 中已经修复。&lt;/p&gt;
+&lt;p&gt;如果你的书中有书以外的相对路径链接，请提供&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/test_doc/book.toml#L19-L20" target="_blank" rel="noopener"
+&gt;静态网站托管URL&lt;/a&gt;以便修复。&lt;/p&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;del&gt;可以像&lt;a class="link" href="https://wkhtmltopdf.org/" target="_blank" rel="noopener"
+&gt;wkhtmltopdf&lt;/a&gt;支持的那样，在PDF中添加书签来反映目录吗？&lt;/del&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这已经由 Chromium 实现，现在，在&lt;code&gt;v0.1.11+&lt;/code&gt;中，您可以通过&lt;code&gt;generate-document-outline&lt;/code&gt;选项控制。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+如果您不喜欢 Chromium 的实现方案，我们还自己实现了对PDF文件书签/大纲的支持（&lt;a class="link" href="https://pypi.org/project/mdbook-pdf-outline/" target="_blank" rel="noopener"
+&gt;mdbook-pdf-outline&lt;/a&gt;）。它是&lt;code&gt;mdbook&lt;/code&gt;的另一个后端，用Python编写，应与&lt;code&gt;mdbook-pdf&lt;/code&gt; 一起使用。&lt;/p&gt;
+&lt;p&gt;您可以通过&lt;code&gt;pip install mdbook-pdf-outline&lt;/code&gt;安装此后端。&lt;/p&gt;
+&lt;p&gt;记住将以下内容放在&lt;code&gt;book.toml&lt;/code&gt;的 &lt;em&gt;&lt;strong&gt;末尾，[output.pdf]之后&lt;/strong&gt;&lt;/em&gt;，并禁用&lt;code&gt;generate-document-outline&lt;/code&gt;选项：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;generate-document-outline&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf-outline&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果您希望使PDF目录与&lt;code&gt;wkhtmltopdf&lt;/code&gt;生成的目录相同（根据标题生成条目），则则无需进一步修改&lt;code&gt;book.toml&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;如果您想使PDF目录与&lt;code&gt;print.html&lt;/code&gt;页面中显示的目录相同，可以通过在&lt;code&gt;book.toml&lt;/code&gt;中禁用&lt;code&gt;like-wkhtmltopdf&lt;/code&gt;选项（注意：此功能只在mdbook v0.5.0 之前修复了&lt;code&gt;print.html&lt;/code&gt;中损坏链接的旧版&lt;a class="link" href="https://github.com/rust-lang/mdBook/pull/1738" target="_blank" rel="noopener"
+&gt;mdbook版本&lt;/a&gt;可用，你可以通过 &lt;code&gt;cargo install --git https://github.com/HollowMan6/mdBook mdbook&lt;/code&gt;安装。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;generate-document-outline&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;pdf-outline&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;like-wkhtmltopdf&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最后，您可以在&lt;code&gt;book/pdfoutline/output.pdf&lt;/code&gt;中找到带有大纲/目录的版本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;在 mdbook-pdf 所遵循的 Markdown 源中强制分页！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/discussions/9#discussioncomment-4895678" target="_blank" rel="noopener"
+&gt;#9&lt;/a&gt;，您可以使用以下语法在markdown源中强制分页：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;div style=&amp;#34;page-break-before:always&amp;#34;&amp;gt;&amp;amp;nbsp;&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="5"&gt;
+&lt;li&gt;无法在 &lt;code&gt;mdbook-pdf&lt;/code&gt; 中将我的书呈现为 PDF！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果您能将它报告给&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/issues/new" target="_blank" rel="noopener"
+&gt;问题跟踪器&lt;/a&gt;，并提供&lt;code&gt;mdbook-pdf&lt;/code&gt;渲染时产生的所有跟踪，以及&lt;code&gt;book.toml&lt;/code&gt;配置文件，和书的仓库地址（如果有的话），将不胜感激。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;RUST_BACKTRACE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;full &lt;span class="nv"&gt;RUST_LOG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;trace mdbook build
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="typora"&gt;Typora
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://typorachina.com/guide/quick-start/export.html" target="_blank" rel="noopener"
+&gt;Typora-China指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Typora 支持你将当前文档导出为 PDF、HTML、HTML（无样式）和图像格式。&lt;/p&gt;
+&lt;p&gt;更多的格式（如 Word、RTF 等）通过 &lt;a class="link" href="https://pandoc.org/" target="_blank" rel="noopener"
+&gt;pandoc (opens new window)&lt;/a&gt;，在你 &lt;a class="link" href="https://support.typora.io/Install-and-Use-Pandoc/" target="_blank" rel="noopener"
+&gt;install pandoc (opens new window)&lt;/a&gt;，这些格式都支持开箱即用。&lt;/p&gt;
+&lt;p&gt;你可以从 &lt;code&gt;文件&lt;/code&gt; → &lt;code&gt;导出&lt;/code&gt; 命令的菜单栏中访问导出命令。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://imagedelivery.net/8B08sdLvw783CQcaKhUoYw/36695fdb-bfdb-4a80-5b46-a4f3f129ba00/public"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h2 id="使用wkhtmltopdf从html生成pdf"&gt;使用wkhtmltopdf从HTML生成PDF
+&lt;/h2&gt;&lt;p&gt;在本文中，我们将介绍如何使用wkhtmltopdf工具从HTML文件生成PDF文件。wkhtmltopdf是一个开源的命令行工具，它可以将HTML转换为PDF，并保留HTML文档的结构和样式。&lt;/p&gt;
+&lt;h3 id="安装wkhtmltopdf"&gt;安装wkhtmltopdf
+&lt;/h3&gt;&lt;p&gt;要使用wkhtmltopdf工具，首先需要在您的系统上安装它。wkhtmltopdf是一个跨平台的工具，可以在Linux、Windows和MacOS上使用。&lt;/p&gt;
+&lt;p&gt;在Linux上安装wkhtmltopdf，您可以执行以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get install wkhtmltopdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在Windows上安装wkhtmltopdf，您可以从&lt;a class="link" href="https://wkhtmltopdf.org/downloads.html" target="_blank" rel="noopener"
+&gt;官方网站&lt;/a&gt;下载可执行文件，并按照安装向导进行安装。&lt;/p&gt;
+&lt;h3 id="使用wkhtmltopdf生成pdf"&gt;使用wkhtmltopdf生成PDF
+&lt;/h3&gt;&lt;p&gt;安装完成后，您可以使用以下命令从HTML文件生成PDF文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wkhtmltopdf input.html output.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;您可以使用&lt;code&gt;--page-size&lt;/code&gt;参数来指定生成的PDF文件的页面大小。以下是一些常用的页面大小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A4&lt;/li&gt;
+&lt;li&gt;Letter&lt;/li&gt;
+&lt;li&gt;Legal&lt;/li&gt;
+&lt;li&gt;A5&lt;/li&gt;
+&lt;li&gt;A3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;您可以使用&lt;code&gt;--orientation&lt;/code&gt;参数来指定页面的方向。可以选择的方向有&lt;code&gt;Landscape&lt;/code&gt;和&lt;code&gt;Portrait&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;例如，以下命令将生成一个A4大小、纵向排列的PDF文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wkhtmltopdf --page-size A4 --orientation Portrait input.html output.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="包含页眉和页脚"&gt;包含页眉和页脚
+&lt;/h4&gt;&lt;p&gt;您可以使用&lt;code&gt;--header-html&lt;/code&gt;和&lt;code&gt;--footer-html&lt;/code&gt;参数来为PDF文件添加自定义的页眉和页脚。您可以指定一个HTML文件作为页眉和页脚的模板。&lt;/p&gt;
+&lt;p&gt;例如，以下命令将为PDF文件添加一个名为&lt;code&gt;header.html&lt;/code&gt;的页眉模板和一个名为&lt;code&gt;footer.html&lt;/code&gt;的页脚模板：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wkhtmltopdf --header-html header.html --footer-html footer.html input.html output.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="设置页面边距"&gt;设置页面边距
+&lt;/h4&gt;&lt;p&gt;您可以使用&lt;code&gt;--margin-top&lt;/code&gt;、&lt;code&gt;--margin-right&lt;/code&gt;、&lt;code&gt;--margin-bottom&lt;/code&gt;和&lt;code&gt;--margin-left&lt;/code&gt;参数来设置PDF文件的页面边距。&lt;/p&gt;
+&lt;p&gt;例如，以下命令将设置PDF文件的上、右、下和左边距为1英寸：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wkhtmltopdf --margin-top 1in --margin-right 1in --margin-bottom 1in --margin-left 1in input.html output.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="添加目录"&gt;添加目录
+&lt;/h4&gt;&lt;p&gt;您可以使用&lt;code&gt;--toc&lt;/code&gt;参数来为PDF文件添加目录。&lt;/p&gt;
+&lt;p&gt;例如，以下命令将为PDF文件添加目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wkhtmltopdf --toc input.html output.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在本文中，我们介绍了如何使用wkhtmltopdf工具从HTML文件生成PDF文件。您可以安装并使用这个开源工具来生成高质量的PDF文件，同时保留HTML文档的结构和样式。无论您是在Linux、Windows还是MacOS上工作，wkhtmltopdf都是一个强大而方便的工具。&lt;/p&gt;
+&lt;h2 id="中文古籍刻本風格直排電子書製作工具vrain"&gt;中文古籍刻本風格直排電子書製作工具vRain
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/shanleiguang/vRain" target="_blank" rel="noopener"
+&gt;中文古籍刻本風格直排電子書製作工具 Chinese Ancient eBooks Generator&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="vrain-is"&gt;vRain is
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;vRain是该復刻計劃的主要工具，此外還有古籍印章製作工具 &lt;a class="link" href="https://github.com/shanleiguang/vYinn" target="_blank" rel="noopener"
+&gt;vYinn殷人&lt;/a&gt; 、古棋譜製作工具 &lt;a class="link" href="https://github.com/shanleiguang/vQi" target="_blank" rel="noopener"
+&gt;vQi&lt;/a&gt; 、古籍掃描圖像變形糾正工具&lt;a class="link" href="https://github.com/shanleiguang/vModou" target="_blank" rel="noopener"
+&gt;vModou墨斗&lt;/a&gt;以及其他傳統文化文創工具，如天地人三才傳統曆法筆記本 &lt;a class="link" href="https://github.com/shanleiguang/v3CaiPreview" target="_blank" rel="noopener"
+&gt;v3Cai&lt;/a&gt;等。&lt;/li&gt;
+&lt;li&gt;vRain是一款面向讀者的中文古籍刻本風格直排電子書製作工具。&lt;/li&gt;
+&lt;li&gt;參考中文古籍雕版刻本製作過程，首先生成書葉背景圖，根據行數、每行字數形成一個自右向左、自上而下的位置數組，然後把文本逐字打印到對應位置，打滿一頁、新建一頁，直到所有文字處理完。&lt;/li&gt;
+&lt;li&gt;文本編輯準備和自動排版生成分離，使用者將主要精力用在文本編輯準備。&lt;/li&gt;
+&lt;li&gt;一個背景圖對應一個配置文件。一本書對應一個配置文件。&lt;/li&gt;
+&lt;li&gt;百萬字書籍十幾分鐘生成。&lt;/li&gt;
+&lt;li&gt;採用Perl語言開發，需安裝Image::Magick和PDF::Builder等模塊。&lt;/li&gt;
+&lt;li&gt;作者小紅書主頁：兀雨書屋。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="基本功能"&gt;基本功能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;書葉背景圖的書房名、尺寸、列數、框線粗細及顏色均可配置。支持單雙、順對、黑白魚尾。&lt;/li&gt;
+&lt;li&gt;支持生成宣紙做舊風格、竹簡風格的背景圖。&lt;/li&gt;
+&lt;li&gt;支持批注文字小字雙排。正文、批注文字的字體、大小、顏色、位置可配置。&lt;/li&gt;
+&lt;li&gt;正文文字、批注文字、標點符號的上、下、左、右位置均可微調以達到最佳呈現效果。&lt;/li&gt;
+&lt;li&gt;一主多輔字體，主字體不支持時自動採用輔字體補字。某字符主字體不支持時，可嘗試簡繁轉換以改善支持情況，但可能產生與語境不符問題。&lt;/li&gt;
+&lt;li&gt;標點符號替換規則、過濾規則可配置。標點符號可歸一化為句號，僅用於句讀。常用標點符號可設置為不佔字符位置，頁面文字更緊湊，貼近古籍刻本風格。&lt;/li&gt;
+&lt;li&gt;書名號、單雙引號直排旋轉九十度。書名號可調整為側邊線。&lt;/li&gt;
+&lt;li&gt;根據文本序號自動生成PDF目錄，如第x回、卷x。&lt;/li&gt;
+&lt;li&gt;保留字符：&amp;rsquo;@&amp;lsquo;代表空格，&amp;rsquo;【】&amp;lsquo;內代表雙排批注文字，&amp;rsquo;%&amp;lsquo;代表換葉符，&amp;rsquo;$&amp;lsquo;代表換頁符（半葉），&amp;rsquo;&amp;amp;&amp;lsquo;代表下行文字居葉末，文本行首&amp;rsquo;S+數字&amp;rsquo;代表整段縮幾個字符（需indentxt腳本做預處理）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ppt转pdf并合并"&gt;PPT转PDF并合并
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://pypi.org/project/spire-presentation/" target="_blank" rel="noopener"
+&gt;Spire.Presentation for Python&lt;/a&gt; 是一个强大的 API，用于在 Python 应用中处理 PowerPoint 演示文稿。它使开发者能够创建、编辑、转换和保存演示文稿，而无需使用 Microsoft PowerPoint。Spire.Presentation for Python 提供幻灯片管理、文本和图像处理、图表创建和水印等功能，提供高效的演示处理综合工具包。&lt;/p&gt;
+&lt;p&gt;它支持流行的演示文件格式，如PPT、PPS、PPTX和ppsx，并且允许格式间的便捷转换。开发者可以将演示文稿导出为图片、PDF、HTML、XPS 和 SVG 文件。凭借用户友好的界面和丰富的功能，Spire.Python演示使开发者能够轻松提升Python应用中的PowerPoint演示能力。&lt;/p&gt;
+&lt;p&gt;转换示例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spire.presentation&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;spire.presentation.common&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Create an object of Presentation class&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;presentation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Presentation&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Load a presentation file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;presentation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LoadFromFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Sample.pptx&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Convert the presentation file to PDF and save it&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;presentation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SaveToFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;output/PresentationToPDF.pdf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FileFormat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PDF&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;presentation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Dispose&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Krasjet/pdf.tocgen" target="_blank" rel="noopener"
+&gt;https://github.com/Krasjet/pdf.tocgen&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/137469275" target="_blank" rel="noopener"
+&gt;https://zhuanlan.zhihu.com/p/137469275&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://geek-docs.com/html/html-ask-answer/648_html_calling_wkhtmltopdf_to_generate_pdf_from_html.html" target="_blank" rel="noopener"
+&gt;https://geek-docs.com/html/html-ask-answer/648_html_calling_wkhtmltopdf_to_generate_pdf_from_html.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md" target="_blank" rel="noopener"
+&gt;https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/lookscanned/lookscanned.io" target="_blank" rel="noopener"
+&gt;https://github.com/lookscanned/lookscanned.io&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
