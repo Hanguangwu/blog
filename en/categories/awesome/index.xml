@@ -1,4 +1,195 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Awesome on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/categories/awesome/</link><description>Recent content in Awesome on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 02 Feb 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/categories/awesome/index.xml" rel="self" type="application/rss+xml"/><item><title>NeuroTechEDU's Awesome List of BCI-related Resources</title><link>https://hanguangwu.github.io/blog/en/p/neurotechedus-awesome-list-of-bci-related-resources/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/neurotechedus-awesome-list-of-bci-related-resources/</guid><description>&lt;h1 id="neurotechedus-awesome-list-of-bci-related-resources"&gt;NeuroTechEDU&amp;rsquo;s Awesome List of BCI-related Resources
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Awesome on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/categories/awesome/</link><description>Recent content in Awesome on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 10 Feb 2026 18:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/categories/awesome/index.xml" rel="self" type="application/rss+xml"/><item><title>Awesome LLM Apps</title><link>https://hanguangwu.github.io/blog/en/p/awesome-llm-apps/</link><pubDate>Tue, 10 Feb 2026 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/awesome-llm-apps/</guid><description>&lt;h1 id="-awesome-llm-apps"&gt;🌟 Awesome LLM Apps
+&lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;A curated collection of &lt;strong&gt;Awesome LLM apps built with RAG, AI Agents, Multi-agent Teams, MCP, Voice Agents, and more.&lt;/strong&gt; This repository features LLM apps that use models from &lt;img src="https://cdn.simpleicons.org/openai" alt="openai logo" width="25" height="15"&gt;&lt;strong&gt;OpenAI&lt;/strong&gt; , &lt;img src="https://cdn.simpleicons.org/anthropic" alt="anthropic logo" width="25" height="15"&gt;&lt;strong&gt;Anthropic&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/googlegemini" alt="google logo" width="25" height="18"&gt;&lt;strong&gt;Google&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/x" alt="X logo" width="25" height="15"&gt;&lt;strong&gt;xAI&lt;/strong&gt; and open-source models like &lt;img src="https://cdn.simpleicons.org/alibabacloud" alt="alibaba logo" width="25" height="15"&gt;&lt;strong&gt;Qwen&lt;/strong&gt; or &lt;img src="https://cdn.simpleicons.org/meta" alt="meta logo" width="25" height="15"&gt;&lt;strong&gt;Llama&lt;/strong&gt; that you can run locally on your computer.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener"
+&gt;GitHub-Awesome LLM Apps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.theunwindai.com/" target="_blank" rel="noopener"
+&gt;Collection of awesome LLM apps with AI Agents and RAG using OpenAI, Anthropic, Gemini and opensource models.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="-why-awesome-llm-apps"&gt;🤔 Why Awesome LLM Apps?
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;💡 Discover practical and creative ways LLMs can be applied across different domains, from code repositories to email inboxes and more.&lt;/li&gt;
+&lt;li&gt;🔥 Explore apps that combine LLMs from OpenAI, Anthropic, Gemini, and open-source alternatives with AI Agents, Agent Teams, MCP &amp;amp; RAG.&lt;/li&gt;
+&lt;li&gt;🎓 Learn from well-documented projects and contribute to the growing open-source ecosystem of LLM-powered applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-featured-ai-projects"&gt;📂 Featured AI Projects
+&lt;/h2&gt;&lt;h3 id="ai-agents"&gt;AI Agents
+&lt;/h3&gt;&lt;h3 id="-starter-ai-agents"&gt;🌱 Starter AI Agents
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_blog_to_podcast_agent/" &gt;🎙️ AI Blog to Podcast Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_breakup_recovery_agent/" &gt;❤️‍🩹 AI Breakup Recovery Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_data_analysis_agent/" &gt;📊 AI Data Analysis Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_medical_imaging_agent/" &gt;🩻 AI Medical Imaging Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_meme_generator_agent_browseruse/" &gt;😂 AI Meme Generator Agent (Browser)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_music_generator_agent/" &gt;🎵 AI Music Generator Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/ai_travel_agent/" &gt;🛫 AI Travel Agent (Local &amp;amp; Cloud)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/gemini_multimodal_agent_demo/" &gt;✨ Gemini Multimodal Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/mixture_of_agents/" &gt;🔄 Mixture of Agents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/xai_finance_agent/" &gt;📊 xAI Finance Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/opeani_research_agent/" &gt;🔍 OpenAI Research Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="starter_ai_agents/web_scrapping_ai_agent/" &gt;🕸️ Web Scraping AI Agent (Local &amp;amp; Cloud SDK)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-advanced-ai-agents"&gt;🚀 Advanced AI Agents
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/ai_home_renovation_agent" &gt;🏚️ 🍌 AI Home Renovation Agent with Nano Banana Pro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_deep_research_agent/" &gt;🔍 AI Deep Research Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_vc_due_diligence_agent_team" &gt;📊 AI VC Due Diligence Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/research_agent_gemini_interaction_api" &gt;🔬 AI Research Planner &amp;amp; Executor (Google Interactions API)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_consultant_agent" &gt;🤝 AI Consultant Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_system_architect_r1/" &gt;🏗️ AI System Architect Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/ai_financial_coach_agent/" &gt;💰 AI Financial Coach Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_movie_production_agent/" &gt;🎬 AI Movie Production Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_investment_agent/" &gt;📈 AI Investment Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_health_fitness_agent/" &gt;🏋️‍♂️ AI Health &amp;amp; Fitness Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/product_launch_intelligence_agent" &gt;🚀 AI Product Launch Intelligence Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_journalist_agent/" &gt;🗞️ AI Journalist Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/ai_mental_wellbeing_agent/" &gt;🧠 AI Mental Wellbeing Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/single_agent_apps/ai_meeting_agent/" &gt;📑 AI Meeting Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/ai_Self-Evolving_agent/" &gt;🧬 AI Self-Evolving Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_sales_intelligence_agent_team" &gt;👨🏻‍💼 AI Sales Intelligence Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/ai_news_and_podcast_agents/" &gt;🎧 AI Social Media News and Podcast Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/accomplish-ai/openwork" target="_blank" rel="noopener"
+&gt;🌐 Openwork - Open Browser Automation Agent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-autonomous-game-playing-agents"&gt;🎮 Autonomous Game Playing Agents
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/autonomous_game_playing_agent_apps/ai_3dpygame_r1/" &gt;🎮 AI 3D Pygame Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/autonomous_game_playing_agent_apps/ai_chess_agent/" &gt;♜ AI Chess Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/autonomous_game_playing_agent_apps/ai_tic_tac_toe_agent/" &gt;🎲 AI Tic-Tac-Toe Agent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-multi-agent-teams"&gt;🤝 Multi-agent Teams
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_competitor_intelligence_agent_team/" &gt;🧲 AI Competitor Intelligence Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_finance_agent_team/" &gt;💲 AI Finance Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_game_design_agent_team/" &gt;🎨 AI Game Design Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_legal_agent_team/" &gt;👨‍⚖️ AI Legal Agent Team (Cloud &amp;amp; Local)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_recruitment_agent_team/" &gt;💼 AI Recruitment Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_real_estate_agent_team" &gt;🏠 AI Real Estate Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_services_agency/" &gt;👨‍💼 AI Services Agency (CrewAI)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/ai_teaching_agent_team/" &gt;👨‍🏫 AI Teaching Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_coding_agent_team/" &gt;💻 Multimodal Coding Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_design_agent_team/" &gt;✨ Multimodal Design Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_uiux_feedback_agent_team/" &gt;🎨 🍌 Multimodal UI/UX Feedback Agent Team with Nano Banana&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hanguangwu.github.io/blog/advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/" &gt;🌏 AI Travel Planner Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-voice-ai-agents"&gt;🗣️ Voice AI Agents
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="voice_ai_agents/ai_audio_tour_agent/" &gt;🗣️ AI Audio Tour Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="voice_ai_agents/customer_support_voice_agent/" &gt;📞 Customer Support Voice Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="voice_ai_agents/voice_rag_openaisdk/" &gt;🔊 Voice RAG Agent (OpenAI SDK)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/akshayaggarwal99/jarvis-ai-assistant" target="_blank" rel="noopener"
+&gt;🎙️ OpenSource Voice Dictation Agent (like Wispr Flow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mcp-ai-agents"&gt;&lt;img src="https://cdn.simpleicons.org/modelcontextprotocol" alt="mcp logo" width="25" height="20"&gt; MCP AI Agents
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="mcp_ai_agents/browser_mcp_agent/" &gt;♾️ Browser MCP Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="mcp_ai_agents/github_mcp_agent/" &gt;🐙 GitHub MCP Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="mcp_ai_agents/notion_mcp_agent" &gt;📑 Notion MCP Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="mcp_ai_agents/ai_travel_planner_mcp_agent_team" &gt;🌍 AI Travel Planner MCP Agent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-rag-retrieval-augmented-generation"&gt;📀 RAG (Retrieval Augmented Generation)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/agentic_rag_embedding_gemma" &gt;🔥 Agentic RAG with Embedding Gemma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/agentic_rag_with_reasoning/" &gt;🧐 Agentic RAG with Reasoning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/ai_blog_search/" &gt;📰 AI Blog Search (RAG)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/autonomous_rag/" &gt;🔍 Autonomous RAG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/contextualai_rag_agent/" &gt;🔄 Contextual AI RAG Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/corrective_rag/" &gt;🔄 Corrective RAG (CRAG)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/deepseek_local_rag_agent/" &gt;🐋 Deepseek Local RAG Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/gemini_agentic_rag/" &gt;🤔 Gemini Agentic RAG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/hybrid_search_rag/" &gt;👀 Hybrid Search RAG (Cloud)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/llama3.1_local_rag/" &gt;🔄 Llama 3.1 Local RAG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/local_hybrid_search_rag/" &gt;🖥️ Local Hybrid Search RAG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/local_rag_agent/" &gt;🦙 Local RAG Agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/rag-as-a-service/" &gt;🧩 RAG-as-a-Service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/rag_agent_cohere/" &gt;✨ RAG Agent with Cohere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/rag_chain/" &gt;⛓️ Basic RAG Chain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/rag_database_routing/" &gt;📠 RAG with Database Routing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="rag_tutorials/vision_rag/" &gt;🖼️ Vision RAG&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-llm-apps-with-memory-tutorials"&gt;💾 LLM Apps with Memory Tutorials
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/ai_arxiv_agent_memory/" &gt;💾 AI ArXiv Agent with Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/ai_travel_agent_memory/" &gt;🛩️ AI Travel Agent with Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/llama3_stateful_chat/" &gt;💬 Llama3 Stateful Chat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/llm_app_personalized_memory/" &gt;📝 LLM App with Personalized Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/local_chatgpt_with_memory/" &gt;🗄️ Local ChatGPT Clone with Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_apps_with_memory_tutorials/multi_llm_memory/" &gt;🧠 Multi-LLM Application with Shared Memory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-chat-with-x-tutorials"&gt;💬 Chat with X Tutorials
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_github/" &gt;💬 Chat with GitHub (GPT &amp;amp; Llama3)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_gmail/" &gt;📨 Chat with Gmail&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_pdf/" &gt;📄 Chat with PDF (GPT &amp;amp; Llama3)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_research_papers/" &gt;📚 Chat with Research Papers (ArXiv) (GPT &amp;amp; Llama3)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_substack/" &gt;📝 Chat with Substack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/chat_with_X_tutorials/chat_with_youtube_videos/" &gt;📽️ Chat with YouTube Videos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-llm-optimization-tools"&gt;🎯 LLM Optimization Tools
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_optimization_tools/toonify_token_optimization/" &gt;🎯 Toonify Token Optimization&lt;/a&gt; - Reduce LLM API costs by 30-60% using TOON format&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="advanced_llm_apps/llm_optimization_tools/headroom_context_optimization/" &gt;🧠 Headroom Context Optimization&lt;/a&gt; - Reduce LLM API costs by 50-90% through intelligent context compression for AI agents (includes persistent memory &amp;amp; MCP support)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-llm-fine-tuning-tutorials"&gt;🔧 LLM Fine-tuning Tutorials
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;img src="https://cdn.simpleicons.org/google" alt="google logo" width="20" height="15"&gt; &lt;a class="link" href="advanced_llm_apps/llm_finetuning_tutorials/gemma3_finetuning/" &gt;Gemma 3 Fine-tuning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://cdn.simpleicons.org/meta" alt="meta logo" width="25" height="15"&gt; &lt;a class="link" href="advanced_llm_apps/llm_finetuning_tutorials/llama3.2_finetuning/" &gt;Llama 3.2 Fine-tuning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-ai-agent-framework-crash-course"&gt;🧑‍🏫 AI Agent Framework Crash Course
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://cdn.simpleicons.org/google" alt="google logo" width="25" height="15"&gt; &lt;a class="link" href="ai_agent_framework_crash_course/google_adk_crash_course/" &gt;Google ADK Crash Course&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Starter agent; model‑agnostic (OpenAI, Claude)&lt;/li&gt;
+&lt;li&gt;Structured outputs (Pydantic)&lt;/li&gt;
+&lt;li&gt;Tools: built‑in, function, third‑party, MCP tools&lt;/li&gt;
+&lt;li&gt;Memory; callbacks; Plugins&lt;/li&gt;
+&lt;li&gt;Simple multi‑agent; Multi‑agent patterns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://cdn.simpleicons.org/openai" alt="openai logo" width="25" height="15"&gt; &lt;a class="link" href="ai_agent_framework_crash_course/openai_sdk_crash_course/" &gt;OpenAI Agents SDK Crash Course&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Starter agent; function calling; structured outputs&lt;/li&gt;
+&lt;li&gt;Tools: built‑in, function, third‑party integrations&lt;/li&gt;
+&lt;li&gt;Memory; callbacks; evaluation&lt;/li&gt;
+&lt;li&gt;Multi‑agent patterns; agent handoffs&lt;/li&gt;
+&lt;li&gt;Swarm orchestration; routing logic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-getting-started"&gt;🚀 Getting Started
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clone the repository&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Navigate to the desired project directory&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; awesome-llm-apps/starter_ai_agents/ai_travel_agent
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install the required dependencies&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Follow the project-specific instructions&lt;/strong&gt; in each project&amp;rsquo;s &lt;code&gt;README.md&lt;/code&gt; file to set up and run the app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>NeuroTechEDU's Awesome List of BCI-related Resources</title><link>https://hanguangwu.github.io/blog/en/p/neurotechedus-awesome-list-of-bci-related-resources/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/neurotechedus-awesome-list-of-bci-related-resources/</guid><description>&lt;h1 id="neurotechedus-awesome-list-of-bci-related-resources"&gt;NeuroTechEDU&amp;rsquo;s Awesome List of BCI-related Resources
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/NeuroTechX/awesome-bci" target="_blank" rel="noopener"
 &gt;Curated Collection of BCI resources&lt;/a&gt;&lt;/p&gt;
