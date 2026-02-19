@@ -109,8 +109,11 @@ print(f"第三步: P(learns|agent) = {count_agent_learns}/{count_agent} = {p_lea
 # --- 最后:将概率连乘 ---
 p_sentence = p_datawhale * p_agent_given_datawhale * p_learns_given_agent
 print(f"最后: P('datawhale agent learns') ≈ {p_datawhale:.3f} * {p_agent_given_datawhale:.3f} * {p_learns_given_agent:.3f} = {p_sentence:.3f}")
+```
 
->>>
+输出结果如下所示：
+
+```
 第一步: P(datawhale) = 2/6 = 0.333
 第二步: P(agent|datawhale) = 2/2 = 1.000
 第三步: P(learns|agent) = 1/2 = 0.500
@@ -149,7 +152,7 @@ $$\text{similarity}(\vec{a}, \vec{b}) = \cos(\theta) = \frac{\vec{a} \cdot \vec{
 
 通过这种方式，词向量不仅能捕捉到“同义词”这类简单的关系，还能捕捉到更复杂的类比关系。
 
-一个著名的例子展示了词向量捕捉到的语义关系： `vector('King') - vector('Man') + vector('Woman')` 这个向量运算的结果，在向量空间中与 `vector('Queen')` 的位置惊人地接近。这好比在进行语义的平移：我们从“国王”这个点出发，减去“男性”的向量，再加上“女性”的向量，最终就抵达了“女王”的位置。这证明了词嵌入能够学习到“性别”、“皇室”这类抽象概念。
+一个著名的例子展示了词向量捕捉到的语义关系： `vector('King') - vector('Man') + vector('Woman')` 这个向量运算的结果，在向量空间中与 `vector('Queen')` 的位置惊人地接近。这好比在进行语义的平移：我们从“国王”这个点出发，减去“男性”的向量，再加上“女性”的向量，最终就抵达了“女王”的位置。这证明了词嵌入能够学习到“性别”、“王室”这类抽象概念。
 
 ```Python
 import numpy as np
@@ -175,11 +178,16 @@ sim = cosine_similarity(result_vec, embeddings["queen"])
 
 print(f"king - man + woman 的结果向量: {result_vec}")
 print(f"该结果与 'queen' 的相似度: {sim:.4f}")
+```
 
->>>
+输出结果如下所示：
+
+```
 king - man + woman 的结果向量: [0.9 0.2]
 该结果与 'queen' 的相似度: 1.0000
 ```
+
+
 
 神经网络语言模型通过词嵌入，成功解决了 N-gram 模型的泛化能力差的问题。然而，它仍然有一个类似 N-gram 的限制：上下文窗口是固定的。它只能考虑固定数量的前文，这为能处理任意长序列的循环神经网络埋下了伏笔。
 
@@ -493,7 +501,271 @@ class PositionalEncoding(nn.Module):
         return self.dropout(x)
 ```
 
-本小节主要是为了帮助理解 Transformer 的宏观结构和内部每个模块的运作细节。由于是为了补充智能体学习中大模型的知识体系，也就不再继续往下深入实现。至此，我们已经为理解现代大语言模型打下了坚实的架构基础。在下一节中，我们将探讨 Decoder-Only 架构，看看它是如何基于 Transformer 的思想演变而来。
+本小节主要是为了帮助理解 Transformer 的宏观结构和内部每个模块的运作细节。
+
+完整代码如下所示：
+
+```python
+import torch
+import torch.nn as nn
+import math
+import copy
+
+class MultiHeadAttention(nn.Module):
+    """
+    多头注意力机制模块
+    """
+    def __init__(self, d_model, num_heads):
+        super(MultiHeadAttention, self).__init__()
+        assert d_model % num_heads == 0, "d_model 必须能被 num_heads 整除"
+        
+        self.d_model = d_model
+        self.num_heads = num_heads
+        self.d_k = d_model // num_heads
+        
+        # 定义 Q, K, V 和输出的线性变换层
+        self.W_q = nn.Linear(d_model, d_model)
+        self.W_k = nn.Linear(d_model, d_model)
+        self.W_v = nn.Linear(d_model, d_model)
+        self.W_o = nn.Linear(d_model, d_model)
+        
+    def scaled_dot_product_attention(self, Q, K, V, mask=None):
+        # 1. 计算注意力得分 (QK^T)
+        attn_scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.d_k)
+        
+        # 2. 应用掩码 (如果提供)
+        if mask is not None:
+            # 将掩码中为 0 的位置设置为一个非常小的负数，这样 softmax 后会接近 0
+            attn_scores = attn_scores.masked_fill(mask == 0, -1e9)
+        
+        # 3. 计算注意力权重 (Softmax)
+        attn_probs = torch.softmax(attn_scores, dim=-1)
+        
+        # 4. 加权求和 (权重 * V)
+        output = torch.matmul(attn_probs, V)
+        return output
+        
+    def split_heads(self, x):
+        # 将输入 x 的形状从 (batch_size, seq_length, d_model)
+        # 变换为 (batch_size, num_heads, seq_length, d_k)
+        batch_size, seq_length, d_model = x.size()
+        return x.view(batch_size, seq_length, self.num_heads, self.d_k).transpose(1, 2)
+        
+    def combine_heads(self, x):
+        # 将输入 x 的形状从 (batch_size, num_heads, seq_length, d_k)
+        # 变回 (batch_size, seq_length, d_model)
+        batch_size, num_heads, seq_length, d_k = x.size()
+        return x.transpose(1, 2).contiguous().view(batch_size, seq_length, self.d_model)
+        
+    def forward(self, Q, K, V, mask=None):
+        # 1. 对 Q, K, V 进行线性变换
+        Q = self.split_heads(self.W_q(Q))
+        K = self.split_heads(self.W_k(K))
+        V = self.split_heads(self.W_v(V))
+        
+        # 2. 计算缩放点积注意力
+        attn_output = self.scaled_dot_product_attention(Q, K, V, mask)
+        
+        # 3. 合并多头输出并进行最终的线性变换
+        output = self.W_o(self.combine_heads(attn_output))
+        return output
+
+class PositionWiseFeedForward(nn.Module):
+    """
+    位置前馈网络模块
+    """
+    def __init__(self, d_model, d_ff, dropout=0.1):
+        super(PositionWiseFeedForward, self).__init__()
+        self.linear1 = nn.Linear(d_model, d_ff)
+        self.dropout = nn.Dropout(dropout)
+        self.linear2 = nn.Linear(d_ff, d_model)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        # x 形状: (batch_size, seq_len, d_model)
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+        x = self.linear2(x)
+        # 最终输出形状: (batch_size, seq_len, d_model)
+        return x
+
+class PositionalEncoding(nn.Module):
+    """
+    为输入序列的词嵌入向量添加位置编码。
+    """
+    def __init__(self, d_model: int, dropout: float = 0.1, max_len: int = 5000):
+        super().__init__()
+        self.dropout = nn.Dropout(p=dropout)
+
+        # 创建一个足够长的位置编码矩阵
+        position = torch.arange(max_len).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model))
+        
+        # pe (positional encoding) 的大小为 (max_len, d_model)
+        pe = torch.zeros(max_len, d_model)
+        
+        # 偶数维度使用 sin, 奇数维度使用 cos
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        
+        # 将 pe 注册为 buffer，这样它就不会被视为模型参数，但会随模型移动（例如 to(device)）
+        self.register_buffer('pe', pe.unsqueeze(0))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # x.size(1) 是当前输入的序列长度
+        # 将位置编码加到输入向量上
+        x = x + self.pe[:, :x.size(1)]
+        return self.dropout(x)
+
+class EncoderLayer(nn.Module):
+    """
+    编码器核心层
+    """
+    def __init__(self, d_model, num_heads, d_ff, dropout):
+        super(EncoderLayer, self).__init__()
+        self.self_attn = MultiHeadAttention(d_model, num_heads)
+        self.feed_forward = PositionWiseFeedForward(d_model, d_ff, dropout)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+    
+    def forward(self, x, mask):
+        # 1. 多头自注意力
+        attn_output = self.self_attn(x, x, x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+        
+        # 2. 前馈网络
+        ff_output = self.feed_forward(x)
+        x = self.norm2(x + self.dropout(ff_output))
+        
+        return x
+
+class DecoderLayer(nn.Module):
+    """
+    解码器核心层
+    """
+    def __init__(self, d_model, num_heads, d_ff, dropout):
+        super(DecoderLayer, self).__init__()
+        self.self_attn = MultiHeadAttention(d_model, num_heads)
+        self.cross_attn = MultiHeadAttention(d_model, num_heads)
+        self.feed_forward = PositionWiseFeedForward(d_model, d_ff, dropout)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.norm3 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, x, encoder_output, src_mask, tgt_mask):
+        # 1. 掩码多头自注意力 (对自己)
+        attn_output = self.self_attn(x, x, x, tgt_mask)
+        x = self.norm1(x + self.dropout(attn_output))
+        
+        # 2. 交叉注意力 (对编码器输出)
+        cross_attn_output = self.cross_attn(x, encoder_output, encoder_output, src_mask)
+        x = self.norm2(x + self.dropout(cross_attn_output))
+        
+        # 3. 前馈网络
+        ff_output = self.feed_forward(x)
+        x = self.norm3(x + self.dropout(ff_output))
+        
+        return x
+
+class Encoder(nn.Module):
+    def __init__(self, vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len):
+        super(Encoder, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, d_model)
+        self.pos_encoder = PositionalEncoding(d_model, dropout, max_len)
+        self.layers = nn.ModuleList([EncoderLayer(d_model, num_heads, d_ff, dropout) for _ in range(num_layers)])
+        self.norm = nn.LayerNorm(d_model)
+
+    def forward(self, x, mask):
+        x = self.embedding(x)
+        x = self.pos_encoder(x)
+        for layer in self.layers:
+            x = layer(x, mask)
+        return self.norm(x)
+
+class Decoder(nn.Module):
+    def __init__(self, vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len):
+        super(Decoder, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, d_model)
+        self.pos_encoder = PositionalEncoding(d_model, dropout, max_len)
+        self.layers = nn.ModuleList([DecoderLayer(d_model, num_heads, d_ff, dropout) for _ in range(num_layers)])
+        self.norm = nn.LayerNorm(d_model)
+
+    def forward(self, x, encoder_output, src_mask, tgt_mask):
+        x = self.embedding(x)
+        x = self.pos_encoder(x)
+        for layer in self.layers:
+            x = layer(x, encoder_output, src_mask, tgt_mask)
+        return self.norm(x)
+
+class Transformer(nn.Module):
+    def __init__(self, src_vocab_size, tgt_vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len=5000):
+        super(Transformer, self).__init__()
+        self.encoder = Encoder(src_vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len)
+        self.decoder = Decoder(tgt_vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len)
+        self.final_linear = nn.Linear(d_model, tgt_vocab_size)
+    
+    def generate_mask(self, src, tgt):
+        # src_mask: (batch_size, 1, 1, src_len)
+        src_mask = (src != 0).unsqueeze(1).unsqueeze(2) 
+        
+        # tgt_mask: (batch_size, 1, tgt_len, tgt_len)
+        tgt_pad_mask = (tgt != 0).unsqueeze(1).unsqueeze(2) # (batch_size, 1, 1, tgt_len)
+        tgt_len = tgt.size(1)
+        # 下三角矩阵，用于防止看到未来的 token
+        tgt_sub_mask = torch.tril(torch.ones((tgt_len, tgt_len), device=src.device)).bool() # (tgt_len, tgt_len)
+        tgt_mask = tgt_pad_mask & tgt_sub_mask
+        
+        return src_mask, tgt_mask
+    
+    def forward(self, src, tgt):
+        src_mask, tgt_mask = self.generate_mask(src, tgt)
+        
+        encoder_output = self.encoder(src, src_mask)
+        decoder_output = self.decoder(tgt, encoder_output, src_mask, tgt_mask)
+        
+        output = self.final_linear(decoder_output)
+        return output
+
+# --- 演示如何使用模型 ---
+if __name__ == "__main__":
+    # 1. 定义超参数
+    src_vocab_size = 5000
+    tgt_vocab_size = 5000
+    d_model = 512
+    num_layers = 6
+    num_heads = 8
+    d_ff = 2048
+    dropout = 0.1
+    max_len = 100
+    
+    # 2. 实例化模型
+    model = Transformer(src_vocab_size, tgt_vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_len)
+    
+    # 3. 创建模拟输入数据
+    # 假设 batch_size=2, src_seq_len=10, tgt_seq_len=12
+    src = torch.randint(1, src_vocab_size, (2, 10))  # (batch_size, seq_length)
+    tgt = torch.randint(1, tgt_vocab_size, (2, 12))  # (batch_size, seq_length)
+
+    # 4. 模型前向传播
+    output = model(src, tgt)
+    
+    # 5. 打印输出形状
+    print("模型输出的形状:", output.shape)
+    # 预期输出: torch.Size([2, 12, 5000]) -> (batch_size, tgt_seq_len, tgt_vocab_size)
+```
+
+输出结果如下所示：
+
+```
+模型输出的形状: torch.Size([2, 12, 5000])
+```
+
+
+
+由于是为了补充智能体学习中大模型的知识体系，也就不再继续往下深入实现。至此，我们已经为理解现代大语言模型打下了坚实的架构基础。在下一节中，我们将探讨 Decoder-Only 架构，看看它是如何基于 Transformer 的思想演变而来。
 
 ### 3.1.3 Decoder-Only 架构
 
@@ -560,11 +832,8 @@ Decoder-Only 架构的工作模式被称为<strong>自回归 (Autoregressive)</s
 
 - 与Top-k的区别与联系：相对于固定截断大小的 Top-k，Top-p 能动态适应不同分布的“长尾”特性，对概率分布不均匀的极端情况的适应性更好。
 
-
 在文本生成中，当同时设置 Top-p、Top-k 和温度系数时，这些参数会按照分层过滤的方式协同工作，其优先级顺序为：温度调整→Top-k→Top-p。温度调整整体分布的陡峭程度，Top-k 会先保留概率最高的 k 个候选，然后 Top-p 会从 Top-k 的结果中选取累积概率≥p 的最小集合作为最终的候选集。不过，通常 Top-k 和 Top-p 二选一即可，若同时设置，实际候选集为两者的交集。
 需要注意的是，如果将温度设置为 0，则 Top-k 和 Top-p 将变得无关紧要，因为最有可能的 Token 将成为下一个预测的 Token；如果将 Top-k 设置为 1，温度和 Top-p 也将变得无关紧要，因为只有一个 Token 通过 Top-k 标准，它将是下一个预测的 Token。
-
-
 
 <strong>（2）零样本、单样本与少样本提示</strong>
 
@@ -753,8 +1022,13 @@ for i in range(num_merges):
     print(f"第{i+1}次合并: {best} -> {''.join(best)}")
     print(f"新词表（部分）: {list(vocab.keys())}")
     print("-" * 20)
+```
 
->>>
+这段代码清晰地展示了 BPE 算法如何通过迭代合并最高频的相邻词元对，来逐步构建和扩充词表的过程。
+
+输出结果如下所示：
+
+```
 第1次合并: ('u', 'g') -> ug
 新词表（部分）: ['h ug </w>', 'p ug </w>', 'p u n </w>', 'b u n </w>']
 --------------------
@@ -766,10 +1040,7 @@ for i in range(num_merges):
 --------------------
 第4次合并: ('un', '</w>') -> un</w>
 新词表（部分）: ['h ug</w>', 'p ug</w>', 'p un</w>', 'b un</w>']
---------------------
 ```
-
-这段代码清晰地展示了 BPE 算法如何通过迭代合并最高频的相邻词元对，来逐步构建和扩充词表的过程。
 
 后续的许多算法都是在BPE的基础上进行优化的。其中，Google 开发的 WordPiece 和 SentencePiece 是影响力最大的两种。
 
@@ -794,7 +1065,7 @@ for i in range(num_merges):
 
 首先，请确保你已经安装了必要的库：
 
-```Plain
+```bash
 pip install transformers torch
 ```
 
@@ -841,10 +1112,15 @@ model_inputs = tokenizer([text], return_tensors="pt").to(device)
 
 print("编码后的输入文本:")
 print(model_inputs)
+```
 
->>>
-{'input_ids': tensor([[151644, 8948, 198, 2610, 525, 264,  10950, 17847, 13,151645, 198, 151644, 872, 198, 108386, 37945, 100157, 107828,1773, 151645, 198, 151644, 77091, 198]], device='cuda:0'), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]],
-       device='cuda:0')}
+输出结果如下所示：
+
+```
+编码后的输入文本:
+{'input_ids': tensor([[151644,   8948,    198,   2610,    525,    264,  10950,  17847,     13,
+         151645,    198, 151644,    872,    198, 108386,  37945, 100157, 107828,
+           1773, 151645,    198, 151644,  77091,    198]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])}
 ```
 
 现在可以调用模型的 `generate()` 方法来生成回答了。模型会输出一系列 Token ID，这代表了它的回答。
@@ -870,10 +1146,12 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
 print("\n模型的回答:")
 print(response)
+```
 
->>>
-我叫通义千问，是由阿里云研发的预训练语言模型，可以回答问题、创作文字，还能表达观点、撰写代码。我主要的功能是在多个领域提
-供帮助，包括但不限于:语言理解、文本生成、机器翻译、问答系统等。有什么我可以帮到你的吗？
+输出结果如下所示：
+
+```
+我是一个人工智能，没有具体的自我认识和经历。我的设计目的是帮助用户获取信息、完成任务等。我可以回答各种问题、提供定义、解释和建议，以及生成代码或文本等服务。
 ```
 
 当你运行完所有代码后，你将会在本地电脑上看到模型生成的关于Qwen模型的介绍。恭喜你，你已经成功地在本地部署并运行了一个开源大语言模型！
@@ -970,8 +1248,6 @@ print(response)
 
 这一章的LLM基础主要是为了帮助大家更好的理解大模型的诞生以及发展过程，其中也蕴含了智能体设计的部分思考。例如，如何设计有效的提示词来引导 Agent 的规划与决策，如何根据任务需求选择合适的模型，以及如何在 Agent 的工作流中加入验证机制以规避模型的幻觉等问题，其解决方案均建立在本章的基础之上。我们现在已经准备好从理论转向实践。在下一章，我们将开始探索智能体经典范式构建，将本章所学的知识应用于实际的智能体设计之中。
 
-
-
 ## 习题
 
 1. 自然语言处理中，语言模型经历了从统计到神经网络的模型演进。
@@ -1041,7 +1317,6 @@ print(response)
 [13] Christiano, P., Leike, J., Brown, T. B., Martic, M., Legg, S., & Amodei, D. (2017). Deep reinforcement learning from human preferences. *arXiv preprint arXiv:1706.03741*.
 
 [14] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goswami, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. In *Advances in neural information processing systems* (pp. 9459-9474).
-
 
 
 
