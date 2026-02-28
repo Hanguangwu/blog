@@ -1,0 +1,356 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍使用Python的第三方库实现文件夹中文本加密。"><title>使用Python实现文本加密</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="使用Python实现文本加密"><meta property='og:description' content="本文介绍使用Python的第三方库实现文件夹中文本加密。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Python'><meta property='article:tag' content='Cryptography'><meta property='article:published_time' content='2026-02-27T12:34:25-08:00'><meta property='article:modified_time' content='2026-02-27T12:34:25-08:00'><meta name=twitter:title content="使用Python实现文本加密"><meta name=twitter:description content="本文介绍使用Python的第三方库实现文件夹中文本加密。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#实现思路>实现思路</a></li><li><a href=#完整代码>完整代码</a></li><li><a href=#代码关键部分解释>代码关键部分解释</a><ol><li><a href=#1-密钥生成核心>1. 密钥生成（核心）</a></li><li><a href=#2-文件处理逻辑>2. 文件处理逻辑</a></li><li><a href=#3-使用方法>3. 使用方法</a></li></ol></li><li><a href=#示例效果>示例效果</a></li><li><a href=#参考资料>参考资料</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/%E7%BC%96%E7%A8%8B/>编程</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/>使用Python实现文本加密</a></h2><h3 class=article-subtitle>本文介绍使用Python的第三方库实现文件夹中文本加密。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Feb 27, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 6 分钟</time></div></footer></div></header><section class=article-content><h1 id=使用python实现文本加密>使用Python实现文本加密</h1><h2 id=前言>前言</h2><p>本脚本的核心功能如下所示：</p><ol><li>脚本通过PBKDF2HMAC+base64将易记密码转换为符合Fernet要求的密钥，比单纯hash更安全；</li><li>支持对指定文件夹的.md文件批量加密/解密，加密文件带后缀区分，解密自动还原；</li><li>包含完善的异常处理和防覆盖机制，新手也能安全使用，核心是<strong>加密/解密必须使用相同密码+相同盐值</strong>。</li></ol><h2 id=实现思路>实现思路</h2><ol><li><strong>密钥生成</strong>：<ul><li>用hashlib（如SHA-256）对原始密码进行哈希，得到固定长度的摘要</li><li>将哈希结果编码为URL安全的base64格式，并截取前32字节（Fernet要求的密钥长度）</li></ul></li><li><strong>文件加密/解密</strong>：<ul><li>遍历指定文件夹，筛选目标文件（默认.md）</li><li>使用生成的Fernet密钥对文件内容进行加密/解密</li><li>加密后的文件可添加后缀（如.encrypted）区分，解密时还原</li></ul></li><li><strong>健壮性设计</strong>：<ul><li>异常处理（文件读写、加密解密错误）</li><li>路径验证、文件覆盖提示</li><li>支持指定目标文件类型、自定义加密后缀</li></ul></li></ol><h2 id=完整代码>完整代码</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>base64</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>cryptography.fernet</span> <span class=kn>import</span> <span class=n>Fernet</span><span class=p>,</span> <span class=n>InvalidToken</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>cryptography.hazmat.backends</span> <span class=kn>import</span> <span class=n>default_backend</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>cryptography.hazmat.primitives</span> <span class=kn>import</span> <span class=n>hashes</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>cryptography.hazmat.primitives.kdf.pbkdf2</span> <span class=kn>import</span> <span class=n>PBKDF2HMAC</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>generate_fernet_key</span><span class=p>(</span><span class=n>password</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>salt</span><span class=p>:</span> <span class=nb>bytes</span> <span class=o>=</span> <span class=sa>b</span><span class=s1>&#39;system_design_salt_123&#39;</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>bytes</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>    将易记密码转换为符合Fernet要求的32字节URL安全base64密钥
+</span></span></span><span class=line><span class=cl><span class=s2>    
+</span></span></span><span class=line><span class=cl><span class=s2>    Args:
+</span></span></span><span class=line><span class=cl><span class=s2>        password: 原始密码（如&#34;password&#34;）
+</span></span></span><span class=line><span class=cl><span class=s2>        salt: 盐值（增加安全性，建议自定义）
+</span></span></span><span class=line><span class=cl><span class=s2>    
+</span></span></span><span class=line><span class=cl><span class=s2>    Returns:
+</span></span></span><span class=line><span class=cl><span class=s2>        符合Fernet要求的32字节URL安全base64密钥
+</span></span></span><span class=line><span class=cl><span class=s2>    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 1. 将密码转换为字节串</span>
+</span></span><span class=line><span class=cl>    <span class=n>password_bytes</span> <span class=o>=</span> <span class=n>password</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 2. 使用PBKDF2HMAC进行密钥派生（比单纯hash更安全）</span>
+</span></span><span class=line><span class=cl>    <span class=n>kdf</span> <span class=o>=</span> <span class=n>PBKDF2HMAC</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>algorithm</span><span class=o>=</span><span class=n>hashes</span><span class=o>.</span><span class=n>SHA256</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>length</span><span class=o>=</span><span class=mi>32</span><span class=p>,</span>  <span class=c1># Fernet要求32字节</span>
+</span></span><span class=line><span class=cl>        <span class=n>salt</span><span class=o>=</span><span class=n>salt</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>iterations</span><span class=o>=</span><span class=mi>100000</span><span class=p>,</span>  <span class=c1># 迭代次数，越高越安全（但稍慢）</span>
+</span></span><span class=line><span class=cl>        <span class=n>backend</span><span class=o>=</span><span class=n>default_backend</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>kdf</span><span class=o>.</span><span class=n>derive</span><span class=p>(</span><span class=n>password_bytes</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 3. 编码为URL安全的base64格式（Fernet要求的格式）</span>
+</span></span><span class=line><span class=cl>    <span class=n>fernet_key</span> <span class=o>=</span> <span class=n>base64</span><span class=o>.</span><span class=n>urlsafe_b64encode</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>fernet_key</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>process_files</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>folder_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>password</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>mode</span><span class=p>:</span> <span class=nb>str</span> <span class=o>=</span> <span class=s1>&#39;encrypt&#39;</span><span class=p>,</span>  <span class=c1># &#39;encrypt&#39; 加密 / &#39;decrypt&#39; 解密</span>
+</span></span><span class=line><span class=cl>    <span class=n>file_ext</span><span class=p>:</span> <span class=nb>str</span> <span class=o>=</span> <span class=s1>&#39;.md&#39;</span><span class=p>,</span>  <span class=c1># 目标文件类型</span>
+</span></span><span class=line><span class=cl>    <span class=n>encrypt_suffix</span><span class=p>:</span> <span class=nb>str</span> <span class=o>=</span> <span class=s1>&#39;.encrypted&#39;</span>  <span class=c1># 加密文件后缀</span>
+</span></span><span class=line><span class=cl><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>    加密/解密指定文件夹中的目标文件
+</span></span></span><span class=line><span class=cl><span class=s2>    
+</span></span></span><span class=line><span class=cl><span class=s2>    Args:
+</span></span></span><span class=line><span class=cl><span class=s2>        folder_path: 目标文件夹路径
+</span></span></span><span class=line><span class=cl><span class=s2>        password: 加密/解密密码
+</span></span></span><span class=line><span class=cl><span class=s2>        mode: 操作模式（encrypt/decrypt）
+</span></span></span><span class=line><span class=cl><span class=s2>        file_ext: 要处理的文件扩展名（如.md）
+</span></span></span><span class=line><span class=cl><span class=s2>        encrypt_suffix: 加密文件的后缀（解密时会移除）
+</span></span></span><span class=line><span class=cl><span class=s2>    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 验证文件夹是否存在</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>folder_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;错误：文件夹 &#39;</span><span class=si>{</span><span class=n>folder_path</span><span class=si>}</span><span class=s2>&#39; 不存在！&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 验证操作模式</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>mode</span> <span class=ow>not</span> <span class=ow>in</span> <span class=p>[</span><span class=s1>&#39;encrypt&#39;</span><span class=p>,</span> <span class=s1>&#39;decrypt&#39;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;错误：mode只能是 &#39;encrypt&#39; 或 &#39;decrypt&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 生成Fernet密钥</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>key</span> <span class=o>=</span> <span class=n>generate_fernet_key</span><span class=p>(</span><span class=n>password</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>fernet</span> <span class=o>=</span> <span class=n>Fernet</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;✅ 密钥生成成功（基于密码：</span><span class=si>{</span><span class=n>password</span><span class=si>}</span><span class=s2>）&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 密钥生成失败：</span><span class=si>{</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 遍历文件夹中的文件</span>
+</span></span><span class=line><span class=cl>    <span class=n>processed_count</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=n>failed_files</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>filename</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>folder_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>folder_path</span><span class=p>,</span> <span class=n>filename</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 跳过文件夹，只处理文件</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>file_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 筛选目标文件（加密：匹配扩展名；解密：匹配加密后缀）</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>mode</span> <span class=o>==</span> <span class=s1>&#39;encrypt&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>filename</span><span class=o>.</span><span class=n>lower</span><span class=p>()</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=n>file_ext</span><span class=o>.</span><span class=n>lower</span><span class=p>()):</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>  <span class=c1># 只处理指定扩展名的文件</span>
+</span></span><span class=line><span class=cl>            <span class=n>target_file</span> <span class=o>=</span> <span class=n>file_path</span> <span class=o>+</span> <span class=n>encrypt_suffix</span>  <span class=c1># 加密后的文件名</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>filename</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=n>encrypt_suffix</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>  <span class=c1># 只处理带加密后缀的文件</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 解密：移除加密后缀，还原原文件名</span>
+</span></span><span class=line><span class=cl>            <span class=n>target_file</span> <span class=o>=</span> <span class=n>filename</span><span class=p>[:</span><span class=o>-</span><span class=nb>len</span><span class=p>(</span><span class=n>encrypt_suffix</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>            <span class=n>target_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>folder_path</span><span class=p>,</span> <span class=n>target_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 跳过已存在的目标文件（避免覆盖）</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>target_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;⚠️ 跳过：目标文件 &#39;</span><span class=si>{</span><span class=n>target_file</span><span class=si>}</span><span class=s2>&#39; 已存在，避免覆盖&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 读取原文件内容</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>content</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 读取文件失败 &#39;</span><span class=si>{</span><span class=n>file_path</span><span class=si>}</span><span class=s2>&#39;：</span><span class=si>{</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_files</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 加密/解密处理</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>mode</span> <span class=o>==</span> <span class=s1>&#39;encrypt&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>processed_content</span> <span class=o>=</span> <span class=n>fernet</span><span class=o>.</span><span class=n>encrypt</span><span class=p>(</span><span class=n>content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;🔒 加密中：</span><span class=si>{</span><span class=n>filename</span><span class=si>}</span><span class=s2> -&gt; </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>target_file</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>processed_content</span> <span class=o>=</span> <span class=n>fernet</span><span class=o>.</span><span class=n>decrypt</span><span class=p>(</span><span class=n>content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;🔓 解密中：</span><span class=si>{</span><span class=n>filename</span><span class=si>}</span><span class=s2> -&gt; </span><span class=si>{</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>target_file</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=n>InvalidToken</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 解密失败 &#39;</span><span class=si>{</span><span class=n>file_path</span><span class=si>}</span><span class=s2>&#39;：密码错误或文件已被篡改&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_files</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 处理失败 &#39;</span><span class=si>{</span><span class=n>file_path</span><span class=si>}</span><span class=s2>&#39;：</span><span class=si>{</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_files</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 写入处理后的内容</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>target_file</span><span class=p>,</span> <span class=s1>&#39;wb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>processed_content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>processed_count</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 写入文件失败 &#39;</span><span class=si>{</span><span class=n>target_file</span><span class=si>}</span><span class=s2>&#39;：</span><span class=si>{</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_files</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 输出处理结果</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>+</span> <span class=s2>&#34;=&#34;</span><span class=o>*</span><span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;处理完成！&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;✅ 成功处理文件数：</span><span class=si>{</span><span class=n>processed_count</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>failed_files</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;❌ 失败文件数：</span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>failed_files</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;失败列表：</span><span class=si>{</span><span class=n>failed_files</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;🎉 所有目标文件处理成功！&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># -------------------------- 配置参数 --------------------------</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 你需要根据实际情况修改以下参数</span>
+</span></span><span class=line><span class=cl>    <span class=n>FOLDER_PATH</span> <span class=o>=</span> <span class=s2>&#34;./System-Design&#34;</span>  <span class=c1># 要处理的文件夹路径</span>
+</span></span><span class=line><span class=cl>    <span class=n>PASSWORD</span> <span class=o>=</span> <span class=s2>&#34;password123&#34;</span>         <span class=c1># 易记密码（自定义）</span>
+</span></span><span class=line><span class=cl>    <span class=n>OPERATION_MODE</span> <span class=o>=</span> <span class=s2>&#34;encrypt&#34;</span>       <span class=c1># encrypt=加密 / decrypt=解密</span>
+</span></span><span class=line><span class=cl>    <span class=n>TARGET_FILE_EXT</span> <span class=o>=</span> <span class=s2>&#34;.md&#34;</span>          <span class=c1># 要处理的文件类型（如.md/.txt）</span>
+</span></span><span class=line><span class=cl>    <span class=n>ENCRYPT_SUFFIX</span> <span class=o>=</span> <span class=s2>&#34;.encrypted&#34;</span>    <span class=c1># 加密文件后缀（解密时自动移除）</span>
+</span></span><span class=line><span class=cl>    <span class=c1># --------------------------------------------------------------</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 执行文件处理</span>
+</span></span><span class=line><span class=cl>    <span class=n>process_files</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>folder_path</span><span class=o>=</span><span class=n>FOLDER_PATH</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>password</span><span class=o>=</span><span class=n>PASSWORD</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>mode</span><span class=o>=</span><span class=n>OPERATION_MODE</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>file_ext</span><span class=o>=</span><span class=n>TARGET_FILE_EXT</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>encrypt_suffix</span><span class=o>=</span><span class=n>ENCRYPT_SUFFIX</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=代码关键部分解释>代码关键部分解释</h2><h3 id=1-密钥生成核心>1. 密钥生成（核心）</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>generate_fernet_key</span><span class=p>(</span><span class=n>password</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>salt</span><span class=p>:</span> <span class=nb>bytes</span> <span class=o>=</span> <span class=sa>b</span><span class=s1>&#39;system_design_salt_123&#39;</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>bytes</span><span class=p>:</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li><strong>PBKDF2HMAC</strong>：比单纯用hashlib更安全的密钥派生方式，通过盐值（salt）和迭代次数增加破解难度</li><li><strong>盐值（salt）</strong>：建议你自定义（如替换<code>b'system_design_salt_123'</code>），相同密码+不同盐值会生成不同密钥</li><li><strong>URL安全base64</strong>：Fernet要求密钥必须是URL安全的base64编码，<code>base64.urlsafe_b64encode()</code> 专门处理这种场景</li><li><strong>32字节长度</strong>：Fernet密钥固定要求32字节，PBKDF2HMAC直接指定<code>length=32</code>保证符合要求</li></ul><h3 id=2-文件处理逻辑>2. 文件处理逻辑</h3><ul><li><strong>加密模式</strong>：筛选<code>.md</code>文件，加密后生成<code>文件名.md.encrypted</code>（可自定义后缀）</li><li><strong>解密模式</strong>：筛选带<code>.encrypted</code>后缀的文件，解密后还原为原文件名（如<code>文件名.md</code>）</li><li><strong>防覆盖</strong>：检测目标文件是否存在，避免误覆盖已有文件</li><li><strong>异常处理</strong>：捕获文件读写、加密解密（如密码错误）等异常，输出清晰的错误提示</li></ul><h3 id=3-使用方法>3. 使用方法</h3><ol><li><strong>安装依赖</strong>（cryptography不是Python内置库）：<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install cryptography
+</span></span></code></pre></td></tr></table></div></div></li><li><strong>修改配置参数</strong>：<ul><li><code>FOLDER_PATH</code>：改为你要处理的文件夹路径（如<code>./System-Design</code>）</li><li><code>PASSWORD</code>：改为你的易记密码（如<code>my_secure_password</code>）</li><li><code>OPERATION_MODE</code>：<code>encrypt</code>（加密）/ <code>decrypt</code>（解密）</li></ul></li><li><strong>运行脚本</strong>：<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>python file_encryptor.py
+</span></span></code></pre></td></tr></table></div></div></li></ol><h2 id=示例效果>示例效果</h2><p>假设<code>System-Design</code>文件夹下有<code>chapter_1.md</code>：</p><ul><li><strong>加密后</strong>：生成<code>chapter_1.md.encrypted</code>（原文件保留，加密文件为二进制密文）</li><li><strong>解密时</strong>：将<code>chapter_1.md.encrypted</code>解密为<code>chapter_1.md</code>（需使用相同密码）</li></ul><h2 id=参考资料>参考资料</h2><p><a class=link href=https://geek-blogs.com/blog/fernet-python/ target=_blank rel=noopener>https://geek-blogs.com/blog/fernet-python/</a></p><p><a class=link href=https://www.cnblogs.com/tian-jiang-ming/p/8313397.html target=_blank rel=noopener>https://www.cnblogs.com/tian-jiang-ming/p/8313397.html</a></p><p><a class=link href=https://deepinout.com/python/python-top-articles/1695265611_tr_fernet-symmetric-encryption-using-a-cryptography-module-in-python.html target=_blank rel=noopener>https://deepinout.com/python/python-top-articles/1695265611_tr_fernet-symmetric-encryption-using-a-cryptography-module-in-python.html</a></p><p><a class=link href=https://geek-docs.com/python/python-ask-answer/686_python_how_to_encrypt_text_with_a_password_in_python.html target=_blank rel=noopener>https://geek-docs.com/python/python-ask-answer/686_python_how_to_encrypt_text_with_a_password_in_python.html</a></p><p><a class=link href=https://www.runoob.com/python3/python-hashlib.html target=_blank rel=noopener>https://www.runoob.com/python3/python-hashlib.html</a></p><p><a class=link href=https://cryptools.github.io/ target=_blank rel=noopener>https://cryptools.github.io/</a></p></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/python/>Python</a>
+<a href=/blog/tags/cryptography/>Cryptography</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/><div class=article-details><h2 class=article-title>使用Python处理文件名与拼音转换</h2></div></a></article><article><a href=/blog/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/><div class=article-details><h2 class=article-title>批量下载 Cloudflare R2 中的文件</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>基于 ResNet18 实现 CIFAR100 图像分类Web应用</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>基于Python实现数字识别Web应用</h2></div></a></article><article><a href=/blog/p/python-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E7%A0%81/><div class=article-details><h2 class=article-title>Python 实现图片的算术编码压缩与解码</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
