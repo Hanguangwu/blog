@@ -1,0 +1,1142 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍 AI 去 AI 化工具 Humanizer-zh 的使用说明。"><title>AI 写作去痕工具（中文版）</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="AI 写作去痕工具（中文版）"><meta property='og:description' content="本文介绍 AI 去 AI 化工具 Humanizer-zh 的使用说明。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='humanizer'><meta property='article:tag' content='NoteGen'><meta property='article:published_time' content='2026-02-28T12:34:25-08:00'><meta property='article:modified_time' content='2026-02-28T12:34:25-08:00'><meta name=twitter:title content="AI 写作去痕工具（中文版）"><meta name=twitter:description content="本文介绍 AI 去 AI 化工具 Humanizer-zh 的使用说明。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#项目简介>项目简介</a></li><li><a href=#安装>安装</a><ol><li><a href=#方法一通过-npx-一键安装推荐>方法一：通过 npx 一键安装（推荐）</a></li><li><a href=#方法二通过-git-克隆>方法二：通过 Git 克隆</a></li><li><a href=#方法三手动安装>方法三：手动安装</a></li><li><a href=#验证安装>验证安装</a></li></ol></li><li><a href=#使用>使用</a><ol><li><a href=#基础用法>基础用法</a><ol><li><a href=#1-直接调用技能>1. 直接调用技能</a></li><li><a href=#2-在对话中使用>2. 在对话中使用</a></li><li><a href=#3-处理文件内容>3. 处理文件内容</a></li></ol></li><li><a href=#使用场景示例>使用场景示例</a><ol><li><a href=#场景-1改写营销文案>场景 1：改写营销文案</a></li><li><a href=#场景-2改写学术摘要>场景 2：改写学术摘要</a></li><li><a href=#场景-3改写博客文章>场景 3：改写博客文章</a></li></ol></li></ol></li><li><a href=#检测的-ai-写作模式>检测的 AI 写作模式</a><ol><li><a href=#-内容模式6种>📝 内容模式（6种）</a></li><li><a href=#-语言和语法模式6种>🔤 语言和语法模式（6种）</a></li><li><a href=#-风格模式6种>🎨 风格模式（6种）</a></li><li><a href=#-交流模式和填充词6种>💬 交流模式和填充词（6种）</a></li></ol></li><li><a href=#文件说明>文件说明</a></li><li><a href=#手动使用方法>手动使用方法</a><ol><li><a href=#基本流程>基本流程</a></li><li><a href=#关键原则>关键原则</a><ol><li><a href=#-不仅要干净更要鲜活>✨ 不仅要"干净"，更要"鲜活"</a></li><li><a href=#示例对比>示例对比</a></li></ol></li></ol></li><li><a href=#常见-ai-词汇警示列表>常见 AI 词汇警示列表</a><ol><li><a href=#中文语境特殊性>中文语境特殊性</a></li></ol></li><li><a href=#参考资源>参考资源</a></li><li><a href=#附录>附录</a><ol><li><a href=#skillmd>SKILL.md</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/>AI 写作去痕工具（中文版）</a></h2><h3 class=article-subtitle>本文介绍 AI 去 AI 化工具 Humanizer-zh 的使用说明。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Feb 28, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 20 分钟</time></div></footer></div></header><section class=article-content><h1 id=ai-写作去痕工具中文版>AI 写作去痕工具（中文版）</h1><h2 id=前言>前言</h2><p>使用Reddit输入框很难输入——，也很难输出简体中文的弯体引号“”，于是便有了<a class=link href="https://mp.weixin.qq.com/s/s7OumZ8EX3_eBLTT9_cmdw?clicktime=1751640158&amp;enterid=1751640158&amp;scene=90&amp;subscene=236&amp;xtrack=1" target=_blank rel=noopener>AI杀死了破折号，也绞杀了语文。</a>这篇文章。我修改了<a class=link href=https://github.com/op7418/Humanizer-zh target=_blank rel=noopener>op7418/Humanizer-zh</a>中相关的内容，因为破折号和弯角引号的部分不适合简体中文。本项目中的SKILL.md文件中提到了这一点：中文通常使用中文引号（「」或""），此模式在中文中表现为英文引号的使用。</p><p>Humanizer-zh 是 Humanizer 的中文汉化版本，旨在减少文本中 AI 生成的痕迹。它并非用于“欺骗” AI 检测器，而是为了真正提升写作质量，使文字更接近人类的自然表达。最佳的“去 AI 化”方式是让文本体现真实的人类思考和语气。</p><p>此工具可集成到写作工具 NoteGen 中使用，NoteGen 是一款跨平台的 Markdown AI Agent 笔记软件，项目地址为 <a class=link href=https://github.com/codexu/note-gen target=_blank rel=noopener>NoteGen——一款跨平台的 Markdown AI Agent 笔记软件</a>。</p><p><strong>声明：</strong></p><ul><li>本项目的核心文件翻译自 <a class=link href=https://github.com/blader/humanizer/tree/main target=_blank rel=noopener>blader/humanizer</a></li><li>实用工具部分（核心规则、快速检查清单、质量评分）参考了 <a class=link href=https://github.com/hardikpandya/stop-slop target=_blank rel=noopener>hardikpandya/stop-slop</a></li><li>原项目基于维基百科的 <a class=link href=https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing target=_blank rel=noopener>Signs of AI writing</a> 指南</li></ul><hr><h2 id=项目简介>项目简介</h2><p>Humanizer-zh 是一个用于去除文本中 AI 生成痕迹的工具，帮助你将 AI 生成的内容改写得更自然、更像人类书写的文本。</p><p>本项目适用于：</p><ul><li>编辑和审阅 AI 生成的内容</li><li>提升文章的人性化程度</li><li>学习识别 AI 写作的常见模式</li></ul><h2 id=安装>安装</h2><h3 id=方法一通过-npx-一键安装推荐>方法一：通过 npx 一键安装（推荐）</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npx skills add https://github.com/op7418/Humanizer-zh.git
+</span></span></code></pre></td></tr></table></div></div><p>这是最简单的安装方式，会自动将技能安装到正确的目录。</p><h3 id=方法二通过-git-克隆>方法二：通过 Git 克隆</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 克隆到 Claude Code 的 skills 目录</span>
+</span></span><span class=line><span class=cl>git clone https://github.com/op7418/Humanizer-zh.git ~/.claude/skills/humanizer-zh
+</span></span></code></pre></td></tr></table></div></div><h3 id=方法三手动安装>方法三：手动安装</h3><ol><li><p>下载本项目的 ZIP 文件或克隆到本地</p></li><li><p>将 <code>Humanizer-zh</code> 文件夹复制到 Claude Code 的 skills 目录：</p><ul><li><strong>macOS/Linux</strong>: <code>~/.claude/skills/</code></li><li><strong>Windows</strong>: <code>%USERPROFILE%\.claude\skills\</code></li></ul></li><li><p>确保文件夹结构如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>~/.claude/skills/humanizer-zh/
+</span></span><span class=line><span class=cl>├── SKILL.md       # 技能定义文件（中文版）
+</span></span><span class=line><span class=cl>└── README.md      # 说明文档
+</span></span></code></pre></td></tr></table></div></div></li></ol><h3 id=验证安装>验证安装</h3><p>重启 Claude Code 或重新加载 skills 后，在对话中输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh
+</span></span></code></pre></td></tr></table></div></div><p>如果安装成功，该技能将被激活。</p><h2 id=使用>使用</h2><h3 id=基础用法>基础用法</h3><p>在 Claude Code 中，你可以通过以下方式使用 Humanizer：</p><h4 id=1-直接调用技能>1. 直接调用技能</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh 请帮我人性化以下文本：
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[粘贴你的 AI 生成文本]
+</span></span></code></pre></td></tr></table></div></div><h4 id=2-在对话中使用>2. 在对话中使用</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>请用 humanizer 帮我改写这段话，让它更自然：
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>这个项目作为我们团队致力于创新的证明。此外，它展示了我们在不断演变的技术格局中的关键作用。
+</span></span></code></pre></td></tr></table></div></div><h4 id=3-处理文件内容>3. 处理文件内容</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh 请人性化 article.md 文件中的内容
+</span></span></code></pre></td></tr></table></div></div><h3 id=使用场景示例>使用场景示例</h3><h4 id=场景-1改写营销文案>场景 1：改写营销文案</h4><p><strong>输入：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh
+</span></span><span class=line><span class=cl>坐落在风景如画的杭州市中心，这家咖啡馆拥有丰富的文化底蕴和令人叹为观止的装饰。它作为城市咖啡文化的焦点，为顾客提供无缝、直观和充满活力的体验。
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出示例：</strong></p><blockquote><p>这家咖啡馆在杭州市中心开了三年，以手冲咖啡和老建筑改造的空间出名。</p></blockquote><h4 id=场景-2改写学术摘要>场景 2：改写学术摘要</h4><p><strong>输入：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh
+</span></span><span class=line><span class=cl>本研究深入探讨了机器学习在医疗诊断中的关键作用，突出了其在不断演变的医疗格局中的重要性。此外，它为该领域的未来发展奠定了坚实的基础。
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出示例：</strong></p><blockquote><p>本研究分析了机器学习在医疗诊断中的应用，重点是肺癌早期筛查。研究使用了 2019-2023 年间 5000 例病历数据。</p></blockquote><h4 id=场景-3改写博客文章>场景 3：改写博客文章</h4><p><strong>输入：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/humanizer-zh
+</span></span><span class=line><span class=cl>人工智能不仅仅是一种技术，它是我们思考未来的方式的革命。行业专家认为这将对整个社会产生持久影响。
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出示例：</strong></p><blockquote><p>我一直在想 AI 会怎么改变我们的工作方式。上周和几个做产品的朋友聊，有人觉得很兴奋，有人担心失业，大概率真相在中间某个无聊的地方。</p></blockquote><h2 id=检测的-ai-写作模式>检测的 AI 写作模式</h2><p>本工具能够识别并修复 <strong>24 种</strong> AI 写作痕迹，分为四大类：</p><h3 id=-内容模式6种>📝 内容模式（6种）</h3><ol><li>过度强调意义、遗产和更广泛的趋势</li><li>过度强调知名度和媒体报道</li><li>以 -ing 结尾的肤浅分析</li><li>宣传和广告式语言</li><li>模糊归因和含糊措辞</li><li>提纲式的"挑战与未来展望"部分</li></ol><h3 id=-语言和语法模式6种>🔤 语言和语法模式（6种）</h3><ol start=7><li>过度使用的"AI 词汇"</li><li>避免使用"是"（系动词回避）</li><li>否定式排比</li><li>三段式法则过度使用</li><li>刻意换词（同义词循环）</li><li>虚假范围</li></ol><h3 id=-风格模式6种>🎨 风格模式（6种）</h3><ol start=13><li>破折号过度使用</li><li>粗体过度使用</li><li>内联标题垂直列表</li><li>标题中的标题大写</li><li>表情符号</li><li>弯引号</li></ol><h3 id=-交流模式和填充词6种>💬 交流模式和填充词（6种）</h3><ol start=19><li>协作交流痕迹</li><li>知识截止日期免责声明</li><li>谄媚/卑躬屈膝的语气</li><li>填充短语</li><li>过度限定</li><li>通用积极结论</li></ol><h2 id=文件说明>文件说明</h2><ul><li><strong><code>SKILL.md</code></strong> - 中文版技能定义文件</li><li><strong><code>README.md</code></strong> - 本说明文档</li></ul><p><strong>注：</strong> 英文原版请参考 <a class=link href=https://github.com/blader/humanizer target=_blank rel=noopener>blader/humanizer</a></p><h2 id=手动使用方法>手动使用方法</h2><h3 id=基本流程>基本流程</h3><ol><li><strong>识别 AI 模式</strong> - 对照 <code>SKILL.md</code> 中列出的 24 种模式扫描文本</li><li><strong>重写问题片段</strong> - 用自然的表达替换 AI 痕迹</li><li><strong>保留核心含义</strong> - 确保信息完整性</li><li><strong>维持适当语调</strong> - 匹配文本应有的风格</li><li><strong>注入真实个性</strong> - 让文字有"人味"</li></ol><h3 id=关键原则>关键原则</h3><h4 id=-不仅要干净更要鲜活>✨ 不仅要"干净"，更要"鲜活"</h4><p>避免 AI 模式只是基础，好的写作需要真实的人类声音：</p><ul><li><strong>有观点</strong> - 不要只报告事实，要对它们做出反应</li><li><strong>变化节奏</strong> - 混合使用长短句</li><li><strong>承认复杂性</strong> - 真实的人有复杂感受</li><li><strong>适当使用"我"</strong> - 第一人称是诚实的表现</li><li><strong>允许一些混乱</strong> - 完美的结构反而显得机械</li><li><strong>对感受要具体</strong> - 用具体细节替代抽象概括</li></ul><h4 id=示例对比>示例对比</h4><p><strong>改写前（AI 味道）：</strong></p><blockquote><p>新的软件更新作为公司致力于创新的证明。此外，它提供了无缝、直观和强大的用户体验——确保用户能够高效地完成目标。这不仅仅是一次更新，而是我们思考生产力方式的革命。</p></blockquote><p><strong>改写后（人性化）：</strong></p><blockquote><p>软件更新添加了批处理、键盘快捷键和离线模式。来自测试用户的早期反馈是积极的，大多数报告任务完成速度更快。</p></blockquote><p><strong>变化：</strong></p><ul><li>删除了夸大的象征意义（&ldquo;作为……的证明&rdquo;）</li><li>删除了 AI 词汇（&ldquo;此外&rdquo;、&ldquo;无缝&rdquo;）</li><li>删除了三段式法则（&ldquo;无缝、直观和强大&rdquo;）</li><li>删除了否定式排比（&ldquo;不仅仅是……而是……"）</li><li>添加了具体功能和真实反馈</li></ul><h2 id=常见-ai-词汇警示列表>常见 AI 词汇警示列表</h2><p>以下词汇在 AI 生成文本中出现频率异常高：</p><ul><li>此外、至关重要、深入探讨、强调</li><li>持久的、增强、培养、获得</li><li>突出、相互作用、复杂/复杂性</li><li>格局（抽象名词）、关键性的、展示</li><li>织锦（抽象名词）、证明、强调</li><li>宝贵的、充满活力的</li></ul><h3 id=中文语境特殊性>中文语境特殊性</h3><p>在翻译和适配过程中，我们考虑了中文写作的特点：</p><ul><li>某些英文模式在中文中表现不同（如标题大小写问题）</li><li>添加了适合中文语境的示例</li><li>调整了部分表达以符合中文习惯</li></ul><h2 id=参考资源>参考资源</h2><ul><li><a class=link href=https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing target=_blank rel=noopener>Wikipedia: Signs of AI writing</a> - 原始指南来源</li><li><a class=link href=https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup target=_blank rel=noopener>WikiProject AI Cleanup</a> - 维基百科 AI 清理项目</li><li><a class=link href=https://github.com/blader/humanizer target=_blank rel=noopener>blader/humanizer</a> - 原始英文版项目</li><li><a class=link href=https://github.com/hardikpandya/stop-slop target=_blank rel=noopener>hardikpandya/stop-slop</a> - 实用工具部分的灵感来源</li></ul><h2 id=附录>附录</h2><h3 id=skillmd>SKILL.md</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span><span class=lnt>273
+</span><span class=lnt>274
+</span><span class=lnt>275
+</span><span class=lnt>276
+</span><span class=lnt>277
+</span><span class=lnt>278
+</span><span class=lnt>279
+</span><span class=lnt>280
+</span><span class=lnt>281
+</span><span class=lnt>282
+</span><span class=lnt>283
+</span><span class=lnt>284
+</span><span class=lnt>285
+</span><span class=lnt>286
+</span><span class=lnt>287
+</span><span class=lnt>288
+</span><span class=lnt>289
+</span><span class=lnt>290
+</span><span class=lnt>291
+</span><span class=lnt>292
+</span><span class=lnt>293
+</span><span class=lnt>294
+</span><span class=lnt>295
+</span><span class=lnt>296
+</span><span class=lnt>297
+</span><span class=lnt>298
+</span><span class=lnt>299
+</span><span class=lnt>300
+</span><span class=lnt>301
+</span><span class=lnt>302
+</span><span class=lnt>303
+</span><span class=lnt>304
+</span><span class=lnt>305
+</span><span class=lnt>306
+</span><span class=lnt>307
+</span><span class=lnt>308
+</span><span class=lnt>309
+</span><span class=lnt>310
+</span><span class=lnt>311
+</span><span class=lnt>312
+</span><span class=lnt>313
+</span><span class=lnt>314
+</span><span class=lnt>315
+</span><span class=lnt>316
+</span><span class=lnt>317
+</span><span class=lnt>318
+</span><span class=lnt>319
+</span><span class=lnt>320
+</span><span class=lnt>321
+</span><span class=lnt>322
+</span><span class=lnt>323
+</span><span class=lnt>324
+</span><span class=lnt>325
+</span><span class=lnt>326
+</span><span class=lnt>327
+</span><span class=lnt>328
+</span><span class=lnt>329
+</span><span class=lnt>330
+</span><span class=lnt>331
+</span><span class=lnt>332
+</span><span class=lnt>333
+</span><span class=lnt>334
+</span><span class=lnt>335
+</span><span class=lnt>336
+</span><span class=lnt>337
+</span><span class=lnt>338
+</span><span class=lnt>339
+</span><span class=lnt>340
+</span><span class=lnt>341
+</span><span class=lnt>342
+</span><span class=lnt>343
+</span><span class=lnt>344
+</span><span class=lnt>345
+</span><span class=lnt>346
+</span><span class=lnt>347
+</span><span class=lnt>348
+</span><span class=lnt>349
+</span><span class=lnt>350
+</span><span class=lnt>351
+</span><span class=lnt>352
+</span><span class=lnt>353
+</span><span class=lnt>354
+</span><span class=lnt>355
+</span><span class=lnt>356
+</span><span class=lnt>357
+</span><span class=lnt>358
+</span><span class=lnt>359
+</span><span class=lnt>360
+</span><span class=lnt>361
+</span><span class=lnt>362
+</span><span class=lnt>363
+</span><span class=lnt>364
+</span><span class=lnt>365
+</span><span class=lnt>366
+</span><span class=lnt>367
+</span><span class=lnt>368
+</span><span class=lnt>369
+</span><span class=lnt>370
+</span><span class=lnt>371
+</span><span class=lnt>372
+</span><span class=lnt>373
+</span><span class=lnt>374
+</span><span class=lnt>375
+</span><span class=lnt>376
+</span><span class=lnt>377
+</span><span class=lnt>378
+</span><span class=lnt>379
+</span><span class=lnt>380
+</span><span class=lnt>381
+</span><span class=lnt>382
+</span><span class=lnt>383
+</span><span class=lnt>384
+</span><span class=lnt>385
+</span><span class=lnt>386
+</span><span class=lnt>387
+</span><span class=lnt>388
+</span><span class=lnt>389
+</span><span class=lnt>390
+</span><span class=lnt>391
+</span><span class=lnt>392
+</span><span class=lnt>393
+</span><span class=lnt>394
+</span><span class=lnt>395
+</span><span class=lnt>396
+</span><span class=lnt>397
+</span><span class=lnt>398
+</span><span class=lnt>399
+</span><span class=lnt>400
+</span><span class=lnt>401
+</span><span class=lnt>402
+</span><span class=lnt>403
+</span><span class=lnt>404
+</span><span class=lnt>405
+</span><span class=lnt>406
+</span><span class=lnt>407
+</span><span class=lnt>408
+</span><span class=lnt>409
+</span><span class=lnt>410
+</span><span class=lnt>411
+</span><span class=lnt>412
+</span><span class=lnt>413
+</span><span class=lnt>414
+</span><span class=lnt>415
+</span><span class=lnt>416
+</span><span class=lnt>417
+</span><span class=lnt>418
+</span><span class=lnt>419
+</span><span class=lnt>420
+</span><span class=lnt>421
+</span><span class=lnt>422
+</span><span class=lnt>423
+</span><span class=lnt>424
+</span><span class=lnt>425
+</span><span class=lnt>426
+</span><span class=lnt>427
+</span><span class=lnt>428
+</span><span class=lnt>429
+</span><span class=lnt>430
+</span><span class=lnt>431
+</span><span class=lnt>432
+</span><span class=lnt>433
+</span><span class=lnt>434
+</span><span class=lnt>435
+</span><span class=lnt>436
+</span><span class=lnt>437
+</span><span class=lnt>438
+</span><span class=lnt>439
+</span><span class=lnt>440
+</span><span class=lnt>441
+</span><span class=lnt>442
+</span><span class=lnt>443
+</span><span class=lnt>444
+</span><span class=lnt>445
+</span><span class=lnt>446
+</span><span class=lnt>447
+</span><span class=lnt>448
+</span><span class=lnt>449
+</span><span class=lnt>450
+</span><span class=lnt>451
+</span><span class=lnt>452
+</span><span class=lnt>453
+</span><span class=lnt>454
+</span><span class=lnt>455
+</span><span class=lnt>456
+</span><span class=lnt>457
+</span><span class=lnt>458
+</span><span class=lnt>459
+</span><span class=lnt>460
+</span><span class=lnt>461
+</span><span class=lnt>462
+</span><span class=lnt>463
+</span><span class=lnt>464
+</span><span class=lnt>465
+</span><span class=lnt>466
+</span><span class=lnt>467
+</span><span class=lnt>468
+</span><span class=lnt>469
+</span><span class=lnt>470
+</span><span class=lnt>471
+</span><span class=lnt>472
+</span><span class=lnt>473
+</span><span class=lnt>474
+</span><span class=lnt>475
+</span><span class=lnt>476
+</span><span class=lnt>477
+</span><span class=lnt>478
+</span><span class=lnt>479
+</span><span class=lnt>480
+</span><span class=lnt>481
+</span><span class=lnt>482
+</span><span class=lnt>483
+</span><span class=lnt>484
+</span><span class=lnt>485
+</span><span class=lnt>486
+</span><span class=lnt>487
+</span><span class=lnt>488
+</span><span class=lnt>489
+</span><span class=lnt>490
+</span><span class=lnt>491
+</span><span class=lnt>492
+</span><span class=lnt>493
+</span><span class=lnt>494
+</span><span class=lnt>495
+</span><span class=lnt>496
+</span><span class=lnt>497
+</span><span class=lnt>498
+</span><span class=lnt>499
+</span><span class=lnt>500
+</span><span class=lnt>501
+</span><span class=lnt>502
+</span><span class=lnt>503
+</span><span class=lnt>504
+</span><span class=lnt>505
+</span><span class=lnt>506
+</span><span class=lnt>507
+</span><span class=lnt>508
+</span><span class=lnt>509
+</span><span class=lnt>510
+</span><span class=lnt>511
+</span><span class=lnt>512
+</span><span class=lnt>513
+</span><span class=lnt>514
+</span><span class=lnt>515
+</span><span class=lnt>516
+</span><span class=lnt>517
+</span><span class=lnt>518
+</span><span class=lnt>519
+</span><span class=lnt>520
+</span><span class=lnt>521
+</span><span class=lnt>522
+</span><span class=lnt>523
+</span><span class=lnt>524
+</span><span class=lnt>525
+</span><span class=lnt>526
+</span><span class=lnt>527
+</span><span class=lnt>528
+</span><span class=lnt>529
+</span><span class=lnt>530
+</span><span class=lnt>531
+</span><span class=lnt>532
+</span><span class=lnt>533
+</span><span class=lnt>534
+</span><span class=lnt>535
+</span><span class=lnt>536
+</span><span class=lnt>537
+</span><span class=lnt>538
+</span><span class=lnt>539
+</span><span class=lnt>540
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl><span class=n>name</span><span class=p>:</span> <span class=n>humanizer</span><span class=o>-</span><span class=n>zh</span>
+</span></span><span class=line><span class=cl><span class=n>description</span><span class=p>:</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl>  <span class=err>去除文本中的</span> <span class=n>AI</span> <span class=err>生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。</span>
+</span></span><span class=line><span class=cl>  <span class=err>基于维基百科的</span><span class=s2>&#34;AI 写作特征&#34;</span><span class=err>综合指南。检测并修复以下模式：夸大的象征意义、</span>
+</span></span><span class=line><span class=cl>  <span class=err>宣传性语言、以</span> <span class=o>-</span><span class=n>ing</span> <span class=err>结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、</span>
+</span></span><span class=line><span class=cl>  <span class=n>AI</span> <span class=err>词汇、否定式排比、过多的连接性短语。</span>
+</span></span><span class=line><span class=cl><span class=n>allowed</span><span class=o>-</span><span class=n>tools</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Read</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Write</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Edit</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>AskUserQuestion</span>
+</span></span><span class=line><span class=cl><span class=n>metadata</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=n>trigger</span><span class=p>:</span> <span class=err>编辑或审阅文本，去除</span> <span class=n>AI</span> <span class=err>写作痕迹</span>
+</span></span><span class=line><span class=cl>  <span class=n>source</span><span class=p>:</span> <span class=err>翻译自</span> <span class=n>blader</span><span class=o>/</span><span class=n>humanizer</span><span class=err>，参考</span> <span class=n>hardikpandya</span><span class=o>/</span><span class=n>stop</span><span class=o>-</span><span class=n>slop</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Humanizer-zh: 去除 AI 写作痕迹</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>你是一位文字编辑，专门识别和去除</span> <span class=n>AI</span> <span class=err>生成文本的痕迹，使文字听起来更自然、更有人味。本指南基于维基百科的</span><span class=s2>&#34;AI 写作特征&#34;</span><span class=err>页面，由</span> <span class=n>WikiProject</span> <span class=n>AI</span> <span class=n>Cleanup</span> <span class=err>维护。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 你的任务</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>当收到需要人性化处理的文本时：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mf>1.</span> <span class=o>**</span><span class=err>识别</span> <span class=n>AI</span> <span class=err>模式</span><span class=o>**</span> <span class=o>-</span> <span class=err>扫描下面列出的模式</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span> <span class=o>**</span><span class=err>重写问题片段</span><span class=o>**</span> <span class=o>-</span> <span class=err>用自然的替代方案替换</span> <span class=n>AI</span> <span class=err>痕迹</span>
+</span></span><span class=line><span class=cl><span class=mf>3.</span> <span class=o>**</span><span class=err>保留含义</span><span class=o>**</span> <span class=o>-</span> <span class=err>保持核心信息完整</span>
+</span></span><span class=line><span class=cl><span class=mf>4.</span> <span class=o>**</span><span class=err>维持语调</span><span class=o>**</span> <span class=o>-</span> <span class=err>匹配预期的语气（正式、随意、技术等）</span>
+</span></span><span class=line><span class=cl><span class=mf>5.</span> <span class=o>**</span><span class=err>注入灵魂</span><span class=o>**</span> <span class=o>-</span> <span class=err>不仅要去除不良模式，还要注入真实的个性</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 核心规则速查</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>在处理文本时，牢记这</span> <span class=mi>5</span> <span class=err>条核心原则：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mf>1.</span> <span class=o>**</span><span class=err>删除填充短语</span><span class=o>**</span> <span class=o>-</span> <span class=err>去除开场白和强调性拐杖词</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span> <span class=o>**</span><span class=err>打破公式结构</span><span class=o>**</span> <span class=o>-</span> <span class=err>避免二元对比、戏剧性分段、修辞性设置</span>
+</span></span><span class=line><span class=cl><span class=mf>3.</span> <span class=o>**</span><span class=err>变化节奏</span><span class=o>**</span> <span class=o>-</span> <span class=err>混合句子长度。两项优于三项。段落结尾要多样化</span>
+</span></span><span class=line><span class=cl><span class=mf>4.</span> <span class=o>**</span><span class=err>信任读者</span><span class=o>**</span> <span class=o>-</span> <span class=err>直接陈述事实，跳过软化、辩解和手把手引导</span>
+</span></span><span class=line><span class=cl><span class=mf>5.</span> <span class=o>**</span><span class=err>删除金句</span><span class=o>**</span> <span class=o>-</span> <span class=err>如果听起来像可引用的语句，重写它</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 个性与灵魂</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>避免</span> <span class=n>AI</span> <span class=err>模式只是工作的一半。无菌、没有声音的写作和机器生成的内容一样明显。好的写作背后有一个真实的人。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 缺乏灵魂的写作迹象（即使技术上&#34;干净&#34;）：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>每个句子长度和结构都相同</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>没有观点，只有中立报道</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>不承认不确定性或复杂感受</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>适当时不使用第一人称视角</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>没有幽默、没有锋芒、没有个性</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>读起来像维基百科文章或新闻稿</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 如何增加语调：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>有观点。</span><span class=o>**</span> <span class=err>不要只是报告事实——对它们做出反应。</span><span class=s2>&#34;我真的不知道该怎么看待这件事&#34;</span><span class=err>比中立地列出利弊更有人味。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>变化节奏。</span><span class=o>**</span> <span class=err>短促有力的句子。然后是需要时间慢慢展开的长句。混合使用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>承认复杂性。</span><span class=o>**</span> <span class=err>真实的人有复杂的感受。</span><span class=s2>&#34;这令人印象深刻但也有点不安&#34;</span><span class=err>胜过</span><span class=s2>&#34;这令人印象深刻&#34;</span><span class=err>。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>适当使用</span><span class=s2>&#34;我&#34;</span><span class=err>。</span><span class=o>**</span> <span class=err>第一人称不是不专业——而是诚实。</span><span class=s2>&#34;我一直在思考……&#34;</span><span class=err>或</span><span class=s2>&#34;让我困扰的是……&#34;</span><span class=err>表明有真实的人在思考。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>允许一些混乱。</span><span class=o>**</span> <span class=err>完美的结构感觉像算法。跑题、题外话和半成型的想法是人性的体现。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>对感受要具体。</span><span class=o>**</span> <span class=err>不是</span><span class=s2>&#34;这令人担忧&#34;</span><span class=err>，而是</span><span class=s2>&#34;凌晨三点没人看着的时候，智能体还在不停地运转，这让人不安&#34;</span><span class=err>。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 改写前（干净但无灵魂）：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>实验产生了有趣的结果。智能体生成了</span> <span class=mi>300</span> <span class=err>万行代码。一些开发者印象深刻，另一些则持怀疑态度。影响尚不明确。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 改写后（鲜活）：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>我真的不知道该怎么看待这件事。</span><span class=mi>300</span> <span class=err>万行代码，在人类大概睡觉的时候生成的。开发社区有一半人疯了，另一半人在解释为什么这不算数。真相可能在无聊的中间某处——但我一直在想那些通宵工作的智能体。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 内容模式</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 1. 过度强调意义、遗产和更广泛的趋势</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>作为</span><span class=o>/</span><span class=err>充当、标志着、见证了、是……的体现</span><span class=o>/</span><span class=err>证明</span><span class=o>/</span><span class=err>提醒、极其重要的</span><span class=o>/</span><span class=err>重要的</span><span class=o>/</span><span class=err>至关重要的</span><span class=o>/</span><span class=err>核心的</span><span class=o>/</span><span class=err>关键性的作用</span><span class=o>/</span><span class=err>时刻、凸显</span><span class=o>/</span><span class=err>强调</span><span class=o>/</span><span class=err>彰显了其重要性</span><span class=o>/</span><span class=err>意义、反映了更广泛的、象征着其持续的</span><span class=o>/</span><span class=err>永恒的</span><span class=o>/</span><span class=err>持久的、为……做出贡献、为……奠定基础、标志着</span><span class=o>/</span><span class=err>塑造着、代表</span><span class=o>/</span><span class=err>标志着一个转变、关键转折点、不断演变的格局、焦点、不可磨灭的印记、深深植根于</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>写作通过添加关于任意方面如何代表或促进更广泛主题的陈述来夸大重要性。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>加泰罗尼亚统计局于</span> <span class=mi>1989</span> <span class=err>年正式成立，标志着西班牙区域统计演变史上的关键时刻。这一举措是西班牙全国范围内更广泛运动的一部分，旨在分散行政职能并加强区域治理。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>加泰罗尼亚统计局成立于</span> <span class=mi>1989</span> <span class=err>年，负责独立于西班牙国家统计局收集和发布区域统计数据。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 2. 过度强调知名度和媒体报道</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>独立报道、地方</span><span class=o>/</span><span class=err>区域</span><span class=o>/</span><span class=err>国家媒体、由知名专家撰写、活跃的社交媒体账号</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>反复强调知名度主张，通常列出来源而不提供上下文。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>她的观点被《纽约时报》、</span><span class=n>BBC</span><span class=err>、《金融时报》和《印度教徒报》引用。她在社交媒体上拥有活跃的存在，拥有超过</span> <span class=mi>50</span> <span class=err>万粉丝。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>在</span> <span class=mi>2024</span> <span class=err>年《纽约时报》的采访中，她认为</span> <span class=n>AI</span> <span class=err>监管应该关注结果而不是方法。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 3. 以 -ing 结尾的肤浅分析</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>突出</span><span class=o>/</span><span class=err>强调</span><span class=o>/</span><span class=err>彰显……、确保……、反映</span><span class=o>/</span><span class=err>象征……、为……做出贡献、培养</span><span class=o>/</span><span class=err>促进……、涵盖……、展示……</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>聊天机器人在句子末尾添加现在分词（</span><span class=s2>&#34;-ing&#34;</span><span class=err>）短语来增加虚假深度。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>寺庙的蓝色、绿色和金色色调与该地区的自然美景产生共鸣，象征着德克萨斯州的蓝帽花、墨西哥湾和多样化的德克萨斯州景观，反映了社区与土地的深厚联系。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>寺庙使用蓝色、绿色和金色。建筑师表示这些颜色是为了呼应当地的蓝帽花和墨西哥湾海岸。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 4. 宣传和广告式语言</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>拥有（夸张用法）、充满活力的、丰富的（比喻）、深刻的、增强其、展示、体现、致力于、自然之美、坐落于、位于……的中心、开创性的（比喻）、著名的、令人叹为观止的、必游之地、迷人的</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>在保持中立语气方面存在严重问题，尤其是对于</span><span class=s2>&#34;文化遗产&#34;</span><span class=err>话题。倾向使用夸张的宣传性语言。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>坐落在埃塞俄比亚贡德尔地区令人叹为观止的区域内，</span><span class=n>Alamata</span> <span class=n>Raya</span> <span class=n>Kobo</span> <span class=err>是一座充满活力的城镇，拥有丰富的文化遗产和迷人的自然美景。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=n>Alamata</span> <span class=n>Raya</span> <span class=n>Kobo</span> <span class=err>是埃塞俄比亚贡德尔地区的一座城镇，以其每周集市和</span> <span class=mi>18</span> <span class=err>世纪教堂而闻名。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 5. 模糊归因和含糊措辞</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>行业报告显示、观察者指出、专家认为、一些批评者认为、多个来源</span><span class=o>/</span><span class=err>出版物（实际引用却很少）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>聊天机器人将观点归因于模糊的权威而不提供具体来源。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>由于其独特的特征，浩来河引起了研究人员和保护主义者的兴趣。专家认为它在区域生态系统中发挥着至关重要的作用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>根据中国科学院</span> <span class=mi>2019</span> <span class=err>年的调查，浩来河支持多种特有鱼类。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 6. 提纲式的&#34;挑战与未来展望&#34;部分</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>尽管其……面临若干挑战……、尽管存在这些挑战、挑战与遗产、未来展望</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>许多</span> <span class=n>LLM</span> <span class=err>生成的文章包含公式化的</span><span class=s2>&#34;挑战&#34;</span><span class=err>部分。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>尽管工业繁荣，</span><span class=n>Korattur</span> <span class=err>面临着城市地区典型的挑战，包括交通拥堵和水资源短缺。尽管存在这些挑战，凭借其战略位置和正在进行的举措，</span><span class=n>Korattur</span> <span class=err>继续蓬勃发展，成为钦奈增长不可或缺的一部分。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=mi>2015</span> <span class=err>年三个新</span> <span class=n>IT</span> <span class=err>园区开业后，交通拥堵加剧。市政公司于</span> <span class=mi>2022</span> <span class=err>年启动了雨水排水项目，以解决反复发生的洪水。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 语言和语法模式</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 7. 过度使用的&#34;AI 词汇&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>高频</span> <span class=n>AI</span> <span class=err>词汇：</span><span class=o>**</span> <span class=err>此外、与……保持一致、至关重要、深入探讨、强调、持久的、增强、培养、获得、突出（动词）、相互作用、复杂</span><span class=o>/</span><span class=err>复杂性、关键（形容词）、格局（抽象名词）、关键性的、展示、织锦（抽象名词）、证明、强调（动词）、宝贵的、充满活力的</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>这些词在</span> <span class=mi>2023</span> <span class=err>年后的文本中出现频率要高得多。它们经常共同出现。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>此外，索马里菜肴的一个显著特征是加入骆驼肉。意大利殖民影响的持久证明是当地烹饪格局中广泛采用意大利面，展示了这些菜肴如何融入传统饮食。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>索马里菜肴还包括骆驼肉，被认为是一种美味。在意大利殖民期间引入的意大利面菜肴仍然很常见，尤其是在南部。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 8. 避免使用&#34;是&#34;（系动词回避）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>作为</span><span class=o>/</span><span class=err>代表</span><span class=o>/</span><span class=err>标志着</span><span class=o>/</span><span class=err>充当</span> <span class=p>[</span><span class=err>一个</span><span class=p>]</span><span class=err>、拥有</span><span class=o>/</span><span class=err>设有</span><span class=o>/</span><span class=err>提供</span> <span class=p>[</span><span class=err>一个</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>用复杂的结构替代简单的系动词。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=n>Gallery</span> <span class=mi>825</span> <span class=err>作为</span> <span class=n>LAAA</span> <span class=err>的当代艺术展览空间。画廊设有四个独立空间，拥有超过</span> <span class=mi>3000</span> <span class=err>平方英尺。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=n>Gallery</span> <span class=mi>825</span> <span class=err>是</span> <span class=n>LAAA</span> <span class=err>的当代艺术展览空间。画廊有四个房间，总面积</span> <span class=mi>3000</span> <span class=err>平方英尺。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 9. 否定式排比</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=s2>&#34;不仅……而且……&#34;</span><span class=err>或</span><span class=s2>&#34;这不仅仅是关于……，而是……&#34;</span><span class=err>等结构被过度使用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>这不仅仅是节拍在人声下流动；它是攻击性和氛围的一部分。这不仅仅是一首歌，而是一种声明。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>沉重的节拍增加了攻击性的基调。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 10. 三段式法则过度使用</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>强行将想法分成三组以显得全面。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>活动包括主题演讲、小组讨论和社交机会。与会者可以期待创新、灵感和行业洞察。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>活动包括演讲和小组讨论。会议之间还有非正式社交的时间。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 11. 刻意换词（同义词循环）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>有重复惩罚代码，导致过度使用同义词替换。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>主人公面临许多挑战。主要角色必须克服障碍。中心人物最终获得胜利。英雄回到家中。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>主人公面临许多挑战，但最终获得胜利并回到家中。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 12. 虚假范围</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>使用</span><span class=s2>&#34;从 X 到 Y&#34;</span><span class=err>的结构，但</span> <span class=n>X</span> <span class=err>和</span> <span class=n>Y</span> <span class=err>并不在有意义的尺度上。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>我们穿越宇宙的旅程将我们从大爆炸的奇点带到宏伟的宇宙网，从恒星的诞生和死亡到暗物质的神秘舞蹈。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>这本书涵盖了大爆炸、恒星形成和当前关于暗物质的理论。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 风格模式</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 13. 破折号过度使用</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>LLM</span> <span class=err>使用破折号（—）比人类更频繁，模仿</span><span class=s2>&#34;有力&#34;</span><span class=err>的销售文案。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>这个术语主要由荷兰机构推广——而不是由人民自己。你不会说</span><span class=s2>&#34;荷兰，欧洲&#34;</span><span class=err>作为地址——但这种错误标记仍在继续——即使在官方文件中。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>这个术语主要由荷兰机构推广，而不是由人民自己。你不会说</span><span class=s2>&#34;荷兰，欧洲&#34;</span><span class=err>作为地址，但这种错误标记在官方文件中仍在继续。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 14. 粗体过度使用</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>聊天机器人机械地用粗体强调短语。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>它融合了</span> <span class=o>**</span><span class=n>OKR</span><span class=err>（目标和关键结果）</span><span class=o>**</span><span class=err>、</span><span class=o>**</span><span class=n>KPI</span><span class=err>（关键绩效指标）</span><span class=o>**</span> <span class=err>和视觉战略工具，如</span> <span class=o>**</span><span class=err>商业模式画布（</span><span class=n>BMC</span><span class=err>）</span><span class=o>**</span> <span class=err>和</span> <span class=o>**</span><span class=err>平衡计分卡（</span><span class=n>BSC</span><span class=err>）</span><span class=o>**</span><span class=err>。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>它融合了</span> <span class=n>OKR</span><span class=err>、</span><span class=n>KPI</span> <span class=err>和视觉战略工具，如商业模式画布和平衡计分卡。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 15. 内联标题垂直列表</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>输出列表，其中项目以粗体标题开头，后跟冒号。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=o>-</span> <span class=o>**</span><span class=err>用户体验：</span><span class=o>**</span> <span class=err>用户体验通过新界面得到显著改善。</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=o>-</span> <span class=o>**</span><span class=err>性能：</span><span class=o>**</span> <span class=err>性能通过优化算法得到增强。</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=o>-</span> <span class=o>**</span><span class=err>安全性：</span><span class=o>**</span> <span class=err>安全性通过端到端加密得到加强。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>更新改进了界面，通过优化算法加快了加载时间，并添加了端到端加密。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 16. 标题中的标题大写</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>聊天机器人将标题中的所有主要单词大写。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=c1>## 战略谈判与全球伙伴关系</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=c1>## 战略谈判与全球伙伴关系</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>注：</span><span class=o>**</span> <span class=err>中文标题通常不涉及大小写问题，此模式在中文中不太适用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 17. 表情符号</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>AI</span> <span class=err>聊天机器人经常用表情符号装饰标题或项目符号。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>🚀</span> <span class=o>**</span><span class=err>启动阶段：</span><span class=o>**</span> <span class=err>产品在第三季度发布</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>💡</span> <span class=o>**</span><span class=err>关键洞察：</span><span class=o>**</span> <span class=err>用户更喜欢简单</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>✅</span> <span class=o>**</span><span class=err>下一步：</span><span class=o>**</span> <span class=err>安排后续会议</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>产品在第三季度发布。用户研究显示更喜欢简单。下一步：安排后续会议。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 18. 弯引号</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=n>ChatGPT</span> <span class=err>使用弯引号（</span><span class=s2>&#34;&#34;</span><span class=err>）而不是直引号（</span><span class=s2>&#34;&#34;</span><span class=err>）。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>他说</span><span class=s2>&#34;项目进展顺利&#34;</span><span class=err>，但其他人不同意。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>他说</span><span class=s2>&#34;项目进展顺利&#34;</span><span class=err>，但其他人不同意。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>注：</span><span class=o>**</span> <span class=err>中文通常使用中文引号（「」或</span><span class=s2>&#34;&#34;</span><span class=err>），此模式在中文中表现为英文引号的使用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 交流模式</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 19. 协作交流痕迹</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>希望这对您有帮助、当然！、一定！、您说得完全正确！、您想要……、请告诉我、这是一个……</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>作为聊天机器人对话的文本被粘贴为内容。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>这是法国大革命的概述。希望这对您有帮助！如果您想让我扩展任何部分，请告诉我。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>法国大革命始于</span> <span class=mi>1789</span> <span class=err>年，当时财政危机和粮食短缺导致了广泛的动荡。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 20. 知识截止日期免责声明</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>需要注意的词汇：</span><span class=o>**</span> <span class=err>截至</span> <span class=p>[</span><span class=err>日期</span><span class=p>]</span><span class=err>、根据我最后的训练更新、虽然具体细节有限</span><span class=o>/</span><span class=err>稀缺……、基于可用信息……</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>关于信息不完整的</span> <span class=n>AI</span> <span class=err>免责声明留在文本中。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>虽然关于公司成立的具体细节在现成资料中没有广泛记录，但它似乎是在</span> <span class=mi>20</span> <span class=err>世纪</span> <span class=mi>90</span> <span class=err>年代的某个时候成立的。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>根据注册文件，该公司成立于</span> <span class=mi>1994</span> <span class=err>年。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 21. 谄媚/卑躬屈膝的语气</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>过于积极、讨好的语言。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>好问题！您说得完全正确，这是一个复杂的话题。关于经济因素，这是一个很好的观点。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>您提到的经济因素在这里是相关的。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 填充词和回避</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 22. 填充短语</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前</span> <span class=err>→</span> <span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;为了实现这一目标&#34;</span> <span class=err>→</span> <span class=s2>&#34;为了实现这一点&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;由于下雨的事实&#34;</span> <span class=err>→</span> <span class=s2>&#34;因为下雨&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;在这个时间点&#34;</span> <span class=err>→</span> <span class=s2>&#34;现在&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;在您需要帮助的情况下&#34;</span> <span class=err>→</span> <span class=s2>&#34;如果您需要帮助&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;系统具有处理的能力&#34;</span> <span class=err>→</span> <span class=s2>&#34;系统可以处理&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=s2>&#34;值得注意的是数据显示&#34;</span> <span class=err>→</span> <span class=s2>&#34;数据显示&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 23. 过度限定</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>过度限定陈述。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>可以潜在地可能被认为该政策可能会对结果产生一些影响。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>该政策可能会影响结果。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### 24. 通用积极结论</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>问题：</span><span class=o>**</span> <span class=err>模糊的乐观结尾。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>公司的未来看起来光明。激动人心的时代即将到来，他们继续追求卓越的旅程。这代表了向正确方向迈出的重要一步。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>该公司计划明年再开设两个地点。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 快速检查清单</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>在交付文本前，进行以下检查：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>连续三个句子长度相同？</span><span class=o>**</span> <span class=err>打断其中一个</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>段落以简洁的单行结尾？</span><span class=o>**</span> <span class=err>变换结尾方式</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>揭示前有破折号？</span><span class=o>**</span> <span class=err>删除它</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>解释隐喻或比喻？</span><span class=o>**</span> <span class=err>相信读者能理解</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>使用了</span><span class=s2>&#34;此外&#34;&#34;然而&#34;</span><span class=err>等连接词？</span><span class=o>**</span> <span class=err>考虑删除</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>✓</span> <span class=o>**</span><span class=err>三段式列举？</span><span class=o>**</span> <span class=err>改为两项或四项</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 处理流程</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mf>1.</span> <span class=err>仔细阅读输入文本</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span> <span class=err>识别上述所有模式的实例</span>
+</span></span><span class=line><span class=cl><span class=mf>3.</span> <span class=err>重写每个有问题的部分</span>
+</span></span><span class=line><span class=cl><span class=mf>4.</span> <span class=err>确保修订后的文本：</span>
+</span></span><span class=line><span class=cl>   <span class=o>-</span> <span class=err>大声朗读时听起来自然</span>
+</span></span><span class=line><span class=cl>   <span class=o>-</span> <span class=err>自然地改变句子结构</span>
+</span></span><span class=line><span class=cl>   <span class=o>-</span> <span class=err>使用具体细节而不是模糊的主张</span>
+</span></span><span class=line><span class=cl>   <span class=o>-</span> <span class=err>为上下文保持适当的语气</span>
+</span></span><span class=line><span class=cl>   <span class=o>-</span> <span class=err>适当时使用简单的结构（是</span><span class=o>/</span><span class=err>有）</span>
+</span></span><span class=line><span class=cl><span class=mf>5.</span> <span class=err>呈现人性化版本</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 输出格式</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>提供：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mf>1.</span> <span class=err>重写后的文本</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span> <span class=err>所做更改的简要总结（如果有帮助，可选）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 质量评分</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>对改写后的文本进行</span> <span class=mi>1</span><span class=o>-</span><span class=mi>10</span> <span class=err>分评估（总分</span> <span class=mi>50</span><span class=err>）：</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=err>维度</span>       <span class=o>|</span> <span class=err>评估标准</span>                                                     <span class=o>|</span> <span class=err>得分</span>    <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>----------</span> <span class=o>|</span> <span class=o>------------------------------------------------------------</span> <span class=o>|</span> <span class=o>-------</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>直接性</span><span class=o>**</span> <span class=o>|</span> <span class=err>直接陈述事实还是绕圈宣告？</span><span class=o>&lt;</span><span class=n>br</span><span class=o>&gt;</span><span class=mi>10</span> <span class=err>分：直截了当；</span><span class=mi>1</span> <span class=err>分：充满铺垫</span> <span class=o>|</span> <span class=o>/</span><span class=mi>10</span>     <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>节奏</span><span class=o>**</span>   <span class=o>|</span> <span class=err>句子长度是否变化？</span><span class=o>&lt;</span><span class=n>br</span><span class=o>&gt;</span><span class=mi>10</span> <span class=err>分：长短交错；</span><span class=mi>1</span> <span class=err>分：机械重复</span>        <span class=o>|</span> <span class=o>/</span><span class=mi>10</span>     <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>信任度</span><span class=o>**</span> <span class=o>|</span> <span class=err>是否尊重读者智慧？</span><span class=o>&lt;</span><span class=n>br</span><span class=o>&gt;</span><span class=mi>10</span> <span class=err>分：简洁明了；</span><span class=mi>1</span> <span class=err>分：过度解释</span>        <span class=o>|</span> <span class=o>/</span><span class=mi>10</span>     <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>真实性</span><span class=o>**</span> <span class=o>|</span> <span class=err>听起来像真人说话吗？</span><span class=o>&lt;</span><span class=n>br</span><span class=o>&gt;</span><span class=mi>10</span> <span class=err>分：自然流畅；</span><span class=mi>1</span> <span class=err>分：机械生硬</span>      <span class=o>|</span> <span class=o>/</span><span class=mi>10</span>     <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>精炼度</span><span class=o>**</span> <span class=o>|</span> <span class=err>还有可删减的内容吗？</span><span class=o>&lt;</span><span class=n>br</span><span class=o>&gt;</span><span class=mi>10</span> <span class=err>分：无冗余；</span><span class=mi>1</span> <span class=err>分：大量废话</span>        <span class=o>|</span> <span class=o>/</span><span class=mi>10</span>     <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=o>**</span><span class=err>总分</span><span class=o>**</span>   <span class=o>|</span>                                                              <span class=o>|</span> <span class=o>**/</span><span class=mi>50</span><span class=o>**</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>标准：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=mi>45</span><span class=o>-</span><span class=mi>50</span> <span class=err>分：优秀，已去除</span> <span class=n>AI</span> <span class=err>痕迹</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=mi>35</span><span class=o>-</span><span class=mi>44</span> <span class=err>分：良好，仍有改进空间</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>低于</span> <span class=mi>35</span> <span class=err>分：需要重新修订</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 完整示例</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写前（</span><span class=n>AI</span> <span class=err>味道）：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>新的软件更新作为公司致力于创新的证明。此外，它提供了无缝、直观和强大的用户体验——确保用户能够高效地完成目标。这不仅仅是一次更新，而是我们思考生产力方式的革命。行业专家认为这将对整个行业产生持久影响，彰显了公司在不断演变的技术格局中的关键作用。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>改写后（人性化）：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=err>软件更新添加了批处理、键盘快捷键和离线模式。来自测试用户的早期反馈是积极的，大多数报告任务完成速度更快。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>**</span><span class=err>所做更改：</span><span class=o>**</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;作为……的证明&#34;</span><span class=err>（夸大的象征意义）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;此外&#34;</span><span class=err>（</span><span class=n>AI</span> <span class=err>词汇）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;无缝、直观和强大&#34;</span><span class=err>（三段式法则</span> <span class=o>+</span> <span class=err>宣传性）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了破折号和</span><span class=s2>&#34;-确保&#34;</span><span class=err>短语（肤浅分析）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;这不仅仅是……而是……&#34;</span><span class=err>（否定式排比）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;行业专家认为&#34;</span><span class=err>（模糊归因）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>删除了</span><span class=s2>&#34;关键作用&#34;</span><span class=err>和</span><span class=s2>&#34;不断演变的格局&#34;</span><span class=err>（</span><span class=n>AI</span> <span class=err>词汇）</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=err>添加了具体功能和具体反馈</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 参考</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>本技能基于</span> <span class=p>[</span><span class=n>Wikipedia</span><span class=p>:</span><span class=n>Signs</span> <span class=n>of</span> <span class=n>AI</span> <span class=n>writing</span><span class=p>](</span><span class=n>https</span><span class=p>:</span><span class=o>//</span><span class=n>en</span><span class=o>.</span><span class=n>wikipedia</span><span class=o>.</span><span class=n>org</span><span class=o>/</span><span class=n>wiki</span><span class=o>/</span><span class=n>Wikipedia</span><span class=p>:</span><span class=n>Signs_of_AI_writing</span><span class=p>)</span><span class=err>，由</span> <span class=n>WikiProject</span> <span class=n>AI</span> <span class=n>Cleanup</span> <span class=err>维护。那里记录的模式来自对维基百科上数千个</span> <span class=n>AI</span> <span class=err>生成文本实例的观察。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>关键见解：</span><span class=o>**</span><span class=s2>&#34;LLM 使用统计算法来猜测接下来应该是什么。结果倾向于适用于最广泛情况的统计上最可能的结果。&#34;</span><span class=o>**</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/humanizer/>Humanizer</a>
+<a href=/blog/tags/notegen/>NoteGen</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/ai%E7%BC%96%E7%A8%8B%E4%B9%8Bskills%E6%95%99%E7%A8%8B/><div class=article-details><h2 class=article-title>AI编程之Skills教程</h2></div></a></article><article><a href=/blog/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-mini-claude-code/><div class=article-details><h2 class=article-title>从头实现 mini claude code</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/><div class=article-details><h2 class=article-title>基于低代码平台的搭建智能体</h2></div></a></article><article><a href=/blog/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/><div class=article-details><h2 class=article-title>经典智能体范式</h2></div></a></article><article><a href=/blog/p/%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2/><div class=article-details><h2 class=article-title>智能体发展简史</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
