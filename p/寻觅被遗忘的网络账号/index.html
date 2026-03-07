@@ -1,0 +1,467 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍一些网络账号泄露情况检测工具。"><title>寻觅被遗忘的网络账号</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="寻觅被遗忘的网络账号"><meta property='og:description' content="本文介绍一些网络账号泄露情况检测工具。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='社工库'><meta property='article:tag' content='OSINT'><meta property='article:published_time' content='2026-03-06T12:34:25-08:00'><meta property='article:modified_time' content='2026-03-06T12:34:25-08:00'><meta name=twitter:title content="寻觅被遗忘的网络账号"><meta name=twitter:description content="本文介绍一些网络账号泄露情况检测工具。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#社工库-haveibeenpwned>社工库 haveibeenpwned</a></li><li><a href=#密码泄露检测工具--撞库风险即时查询>密码泄露检测工具 | 撞库风险即时查询</a><ol><li><a href=#关于密码泄露检测与撞库攻击>关于密码泄露检测与撞库攻击</a><ol><li><a href=#什么是密码泄露检测工具>什么是密码泄露检测工具？</a></li><li><a href=#什么是撞库攻击>什么是撞库攻击？</a></li><li><a href=#k-anonymity-隐私保护技术>k-Anonymity 隐私保护技术</a></li><li><a href=#hibp数据库全球最大的密码泄露库>HIBP数据库：全球最大的密码泄露库</a></li><li><a href=#密码安全最佳实践>密码安全最佳实践</a></li><li><a href=#关于sha-1哈希算法>关于SHA-1哈希算法</a></li></ol></li></ol></li><li><a href=#sherlock>Sherlock</a><ol><li><a href=#安装>安装</a></li><li><a href=#用法>用法</a></li><li><a href=#代码解析>代码解析</a><ol><li><a href=#跨越web应用防火墙>跨越Web应用防火墙</a></li><li><a href=#update-site-listyml>update-site-list.yml</a></li><li><a href=#增减数据site-listpy>增减数据——site-list.py</a></li></ol></li></ol></li><li><a href=#whatsmyname>WhatsMyName</a><ol><li><a href=#whatsmyname-是什么>WhatsMyName 是什么？</a></li><li><a href=#它是如何工作的>它是如何工作的？</a></li><li><a href=#使用-whatsmyname-的工具网站>使用 WhatsMyName 的工具/网站</a></li><li><a href=#代码解析-1>代码解析</a><ol><li><a href=#排序python代码>排序Python代码</a></li><li><a href=#排序工作流>排序工作流</a></li><li><a href=#docker镜像验证json>Docker镜像验证JSON</a></li></ol></li></ol></li><li><a href=#失效的中文osint-framework>失效的中文OSINT FRAMEWORK</a><ol><li><a href=#功能介绍>功能介绍</a></li></ol></li><li><a href=#附录>附录</a><ol><li><a href=#开源情报分析osint实战指南从基础到高级的信息收集技术>开源情报分析（OSINT）实战指南：从基础到高级的信息收集技术</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/app/>APP
+</a><a href=/blog/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/>网络安全</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/>寻觅被遗忘的网络账号</a></h2><h3 class=article-subtitle>本文介绍一些网络账号泄露情况检测工具。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 06, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 11 分钟</time></div></footer></div></header><section class=article-content><h1 id=寻觅被遗忘的网络账号>寻觅被遗忘的网络账号</h1><h2 id=前言>前言</h2><p><strong>开源情报（Open Source Intelligence，OSINT）</strong> 是指通过公开渠道收集和分析信息的过程。它涉及从可公开访问的来源（如社交媒体、新闻报道、政府档案等）收集数据，以帮助决策、调查或研究。OSINT的应用广泛，包括政府监测、商业竞争情报和安全分析等领域。通过合法的方式收集信息，企业可以更深入地了解市场和竞争对手，从而做出明智的决策。</p><p><a class=link href=https://github.com/sherlock-project/sherlock target=_blank rel=noopener>Hunt down social media accounts by username across social networks</a></p><p><a class=link href=https://github.com/WebBreacher/WhatsMyName target=_blank rel=noopener>WhatsMyName-Advanced whatsmyname OSINT tool for safe and comprehensive digital intelligence gathering. Free professional username analysis across 500+ platforms for security research, cyber investigations, and digital forensics.</a></p><p>缺点：几乎没有简中平台数据</p><p>这两个网站都是临时请求已收录的网站获知情况，而不是像Telegram中的「开盒」数据一样。</p><p>有空可以做一个中文版！</p><h2 id=社工库-haveibeenpwned>社工库 haveibeenpwned</h2><p>网安：haveibeenpwned(社工库)查看信息是否被泄露</p><p><a class=link href=https://haveibeenpwned.com/ target=_blank rel=noopener>Have I Been Pwned: Check if your email has been compromised in a data breach</a></p><p>通过以上网址可以到达官网。</p><p>可以输入手机号或者邮箱查看信息是否被泄露，如果有被泄露的，查看怎么被泄露的。最后赶快修改关键信息，免得撞库。</p><p>撞库：比如你在优酷的信息泄露了，这个信息的密码是你qq账号的密码，攻击者通过这个优酷得到的密码进入了你的qq。这就叫撞库。</p><h2 id=密码泄露检测工具--撞库风险即时查询>密码泄露检测工具 | 撞库风险即时查询</h2><p><a class=link href=https://www.freetoolhouse.com/secret-tool/pass-pwned target=_blank rel=noopener>密码泄露检测工具 | 撞库风险即时查询</a></p><p>通过HIBP官方数据库，检测您的密码是否出现在已知数据泄露事件中</p><p>k-Anonymity隐私保护：仅传输哈希前缀，完整密码永不离开设备</p><h3 id=关于密码泄露检测与撞库攻击>关于密码泄露检测与撞库攻击</h3><h4 id=什么是密码泄露检测工具>什么是密码泄露检测工具？</h4><p>密码泄露检测工具（Pwned Password Checker）是一种在线安全工具，用于验证您的密码是否曾在公开的数据泄露事件中出现过。本工具通过调用Have I Been Pwned (HIBP) 官方API，实时查询超过7亿个已泄露密码的数据库，帮助您评估密码安全性，避免因使用已泄露密码而导致撞库攻击风险。</p><p>与传统的密码强度检测不同，泄露检测关注的是"实际已泄露"的密码，而非仅评估复杂度，因此能更真实地反映密码在当前网络安全环境下的实际风险等级。</p><h4 id=什么是撞库攻击>什么是撞库攻击？</h4><p>撞库攻击（Credential Stuffing）是黑客常用的攻击手段之一。攻击者利用用户在多个平台重复使用同一密码的习惯，将从某网站泄露的账号密码组合，批量尝试登录其他网站。由于许多人习惯使用相同的密码，一旦某个平台的密码泄露，其他平台的账号安全也随之受到威胁。</p><p>根据网络安全机构的统计，超过65%的用户会在不同平台重复使用密码，这使得撞库攻击的成功率远高于传统暴力破解。这也是为什么即使您的密码足够复杂，一旦出现在泄露库中，就必须立即更换的根本原因。</p><h4 id=k-anonymity-隐私保护技术>k-Anonymity 隐私保护技术</h4><p>为了解决隐私顾虑，本工具采用了k-Anonymity（k-匿名）技术，这是由安全专家Junade Ali设计的一种隐私保护模型。其工作原理是：</p><ul><li>计算密码SHA-1哈希值：如"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"</li><li>分割哈希：取前5位"5baa6"发送给API服务器</li><li>服务器返回所有以"5baa6"开头的哈希后缀列表（通常包含数百个结果）</li><li>客户端在本地比对完整哈希是否存在于返回列表中</li></ul><p>这种设计确保API服务器无法获知您查询的具体密码，因为哈希前缀对应着海量可能的密码组合，而完整哈希值始终保存在您本地。即使通信被截获，攻击者也只能看到哈希前缀，无法反向推导出原始密码。</p><h4 id=hibp数据库全球最大的密码泄露库>HIBP数据库：全球最大的密码泄露库</h4><p>Have I Been Pwned (HIBP) 由安全专家Troy Hunt创建，是目前全球最大的公开数据泄露查询平台。该数据库收录了来自数百起数据泄露事件的超过7亿个真实密码，涵盖Adobe、LinkedIn、MySpace、Yahoo等重大安全事件。HIBP被微软、美国政府等机构广泛采用，是公认的密码泄露权威数据源。</p><p>本工具通过官方API与HIBP数据库实时同步，确保查询结果的时效性和准确性。所有查询均遵循k-Anonymity协议，在保护用户隐私的同时提供专业的密码安全检测服务。</p><h4 id=密码安全最佳实践>密码安全最佳实践</h4><p>使用密码管理器：通过1Password、Bitwarden等工具生成并存储高强度随机密码，避免重复使用和记忆负担</p><p>启用多因素认证：即使密码泄露，MFA也能阻止未授权访问，建议优先使用TOTP或硬件密钥</p><p>定期检测泄露：每季度使用本工具检测关键密码，发现泄露立即更换，并检查相关账号异常活动</p><h4 id=关于sha-1哈希算法>关于SHA-1哈希算法</h4><p>本工具采用SHA-1算法对密码进行哈希处理，这是HIBP API的标准要求。虽然SHA-1在数字签名领域已被认为不够安全，但在密码泄露查询场景中，由于我们仅使用其单向哈希特性且配合k-Anonymity机制，即使SHA-1存在碰撞理论可能性，也不会影响密码查询的安全性。实际场景中，从哈希前缀反向破解原始密码的计算复杂度仍然极高，远超过实际攻击成本。</p><h2 id=sherlock>Sherlock</h2><p><a class=link href=https://github.com/sherlock-project/sherlock target=_blank rel=noopener>Hunt down social media accounts by username across social networks</a></p><h3 id=安装>安装</h3><p>This is an officially supported package, maintained by a member of the Sherlock Project itself.</p><p><a class=link href=https://pipx.pypa.io/ target=_blank rel=noopener>pipx</a> is often recommended over pip, having more predictable behavior.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>pipx install sherlock-project
+</span></span></code></pre></td></tr></table></div></div><p>For those who prefer classic pip, it’s very similar. Userspace is recommended.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>pip install --user sherlock-project
+</span></span></code></pre></td></tr></table></div></div><p>That’s it! You can now run sherlock from anywhere.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sherlock --version
+</span></span></code></pre></td></tr></table></div></div><h3 id=用法>用法</h3><p>Search for only one user:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sherlock user123
+</span></span></code></pre></td></tr></table></div></div><p>Search for multiples users:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sherlock user1 user2 user3
+</span></span></code></pre></td></tr></table></div></div><p>Accounts found will be stored in an individual text file with the corresponding username (e.g <code>user123.txt</code>).</p><h3 id=代码解析>代码解析</h3><h4 id=跨越web应用防火墙>跨越Web应用防火墙</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl>		<span class=c1># As WAFs advance and evolve, they will occasionally block Sherlock and</span>
+</span></span><span class=line><span class=cl>        <span class=c1># lead to false positives and negatives. Fingerprints should be added</span>
+</span></span><span class=line><span class=cl>        <span class=c1># here to filter results that fail to bypass WAFs. Fingerprints should</span>
+</span></span><span class=line><span class=cl>        <span class=c1># be highly targetted. Comment at the end of each fingerprint to</span>
+</span></span><span class=line><span class=cl>        <span class=c1># indicate target and date fingerprinted.</span>
+</span></span><span class=line><span class=cl>        <span class=n>WAFHitMsgs</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=sa>r</span><span class=s1>&#39;.loading-spinner{visibility:hidden}body.no-js .challenge-running{display:none}body.dark{background-color:#222;color:#d9d9d9}body.dark a{color:#fff}body.dark a:hover{color:#ee730a;text-decoration:underline}body.dark .lds-ring div{border-color:#999 transparent transparent}body.dark .font-red{color:#b20f03}body.dark&#39;</span><span class=p>,</span> <span class=c1># 2024-05-13 Cloudflare</span>
+</span></span><span class=line><span class=cl>            <span class=sa>r</span><span class=s1>&#39;&lt;span id=&#34;challenge-error-text&#34;&gt;&#39;</span><span class=p>,</span> <span class=c1># 2024-11-11 Cloudflare error page</span>
+</span></span><span class=line><span class=cl>            <span class=sa>r</span><span class=s1>&#39;AwsWafIntegration.forceRefreshToken&#39;</span><span class=p>,</span> <span class=c1># 2024-11-11 Cloudfront (AWS)</span>
+</span></span><span class=line><span class=cl>            <span class=sa>r</span><span class=s1>&#39;{return l.onPageView}}),Object.defineProperty(r,&#34;perimeterxIdentifiers&#34;,{enumerable:&#39;</span> <span class=c1># 2024-04-09 PerimeterX / Human Security</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=update-site-listyml>update-site-list.yml</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Update Site List</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c># Trigger the workflow when changes are pushed to the main branch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c># and the changes include the sherlock_project/resources/data.json file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>sherlock_project/resources/data.json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync-json-data</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># Use the latest version of Ubuntu as the runner environment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Check out the code at the specified pull request head commit</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ref</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.pull_request.head.sha }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Install Python 3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install Python</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/setup-python@v5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>python-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.x&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Execute the site_list.py Python script</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Execute site-list.py</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>python devel/site-list.py</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Pushes to another repository</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>sdushantha/github-action-push-to-another-repository@main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>SSH_DEPLOY_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.SSH_DEPLOY_KEY }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>API_TOKEN_GITHUB</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.API_TOKEN_GITHUB }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>source-directory</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;output&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>destination-github-username</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;sherlock-project&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>commit-message</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;Updated site list&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>destination-repository-name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;sherlockproject.xyz&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>user-email</span><span class=p>:</span><span class=w> </span><span class=l>siddharth.dushantha@gmail.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>target-branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>提交到另一个仓库：<code>push-to-another-repository</code></p><h4 id=增减数据site-listpy>增减数据——site-list.py</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># This module generates the listing of supported sites which can be found in</span>
+</span></span><span class=line><span class=cl><span class=c1># sites.mdx. It also organizes all the sites in alphanumeric order</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>DATA_REL_URI</span><span class=p>:</span> <span class=nb>str</span> <span class=o>=</span> <span class=s2>&#34;sherlock_project/resources/data.json&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>DEFAULT_ENCODING</span> <span class=o>=</span> <span class=s2>&#34;utf-8&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Read the data.json file</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>DATA_REL_URI</span><span class=p>,</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=n>DEFAULT_ENCODING</span><span class=p>)</span> <span class=k>as</span> <span class=n>data_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>:</span> <span class=nb>dict</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>data_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Removes schema-specific keywords for proper processing</span>
+</span></span><span class=line><span class=cl><span class=n>social_networks</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>copy</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>social_networks</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;$schema&#39;</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Sort the social networks in alphanumeric order</span>
+</span></span><span class=line><span class=cl><span class=n>social_networks</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span><span class=n>social_networks</span><span class=o>.</span><span class=n>items</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Make output dir where the site list will be written</span>
+</span></span><span class=line><span class=cl><span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;output&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Write the list of supported sites to sites.mdx</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;output/sites.mdx&#34;</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=n>DEFAULT_ENCODING</span><span class=p>)</span> <span class=k>as</span> <span class=n>site_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;---</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;title: &#39;List of supported sites&#39;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;sidebarTitle: &#39;Supported sites&#39;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;icon: &#39;globe&#39;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;description: &#39;Sherlock currently supports **400+** sites&#39;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;---</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>social_network</span><span class=p>,</span> <span class=n>info</span> <span class=ow>in</span> <span class=n>social_networks</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>url_main</span> <span class=o>=</span> <span class=n>info</span><span class=p>[</span><span class=s2>&#34;urlMain&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>is_nsfw</span> <span class=o>=</span> <span class=s2>&#34;**(NSFW)**&#34;</span> <span class=k>if</span> <span class=n>info</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;isNSFW&#34;</span><span class=p>)</span> <span class=k>else</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>site_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;1. [</span><span class=si>{</span><span class=n>social_network</span><span class=si>}</span><span class=s2>](</span><span class=si>{</span><span class=n>url_main</span><span class=si>}</span><span class=s2>) </span><span class=si>{</span><span class=n>is_nsfw</span><span class=si>}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Overwrite the data.json file with sorted data</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>DATA_REL_URI</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=n>DEFAULT_ENCODING</span><span class=p>)</span> <span class=k>as</span> <span class=n>data_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>sorted_data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>indent</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>sort_keys</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>sorted_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_file</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>  <span class=c1># Keep the newline after writing data</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Finished updating supported site listing!&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>先复制数据再写入</p><h2 id=whatsmyname>WhatsMyName</h2><h3 id=whatsmyname-是什么>WhatsMyName 是什么？</h3><p>WhatsMyName 是 Micah &ldquo;WebBreacher&rdquo; Hoffman 在 2015 年创建的一个项目，其目标是在给定网站上检测用户名是否被使用。 他对当时用户名检查器的误报感到沮丧，因此他创建了自己的版本。 随着时间的推移，许多人帮助这个开源项目发展，使其成为现在。</p><p>如果您是进行此操作的 OSINT 专家，那么您现在可能会感到有些失望。 在 2023 年 5 月，我们从项目中移除了所有检查脚本，并专注于该项目的核心：其数据文件 (wmn-dat.json)。</p><p>因此，我们将继续发现网站并添加它们，您可以自由尝试以下使用我们数据的检查网站和脚本。</p><p><a class=link href=https://github.com/WebBreacher/WhatsMyName target=_blank rel=noopener>WhatsMyName-Advanced whatsmyname OSINT tool for safe and comprehensive digital intelligence gathering. Free professional username analysis across 500+ platforms for security research, cyber investigations, and digital forensics.</a></p><h3 id=它是如何工作的>它是如何工作的？</h3><p>WhatsMyName (WMN) 包含一个 JSON 文件，其中包含检测结果。 包含来自世界各地的人的提交。 当一个工具（如下一部分中的工具）从这些网站上发起请求时，服务器会返回与我们检测结果相匹配的数据。 这将告诉检查脚本，该网站上是否存在我们指定的用户名，或者不是。</p><p>为了让一个网站包含在 WMN 中，它必须：</p><ul><li>可访问。 我们无法检查需要付费或进行用户身份验证的网站。</li><li>在 URL 中包含用户名。 如果查看用户个人资料的 URL 中不包含该用户名，则此工具将不起作用。</li><li>不要在 URL 中修改用户名。 包含用户 ID 编号在用户名的 URL 将无法在 WMN 中使用。 此外，将您的用户名映射到用户 ID 编号并将其放在 URL 中的网站也无法使用。</li></ul><h3 id=使用-whatsmyname-的工具网站>使用 WhatsMyName 的工具/网站</h3><ul><li><a class=link href=https://whatsmyname.app/ target=_blank rel=noopener>https://whatsmyname.app/</a> - Chris Poulter 创建了这个网站，它将项目的 JSON 文件转换为易于使用的 Web 界面。<ul><li>按类别和搜索结果过滤。</li><li>导出到 CSV 和其他格式。</li><li>在运行时，获取项目的最新 JSON 文件。</li><li>使用 <a class=link href="https://whatsmyname.app/?q=USERNAME" target=_blank rel=noopener>https://whatsmyname.app/?q=USERNAME</a> (例如，<a class=link href="https://whatsmyname.app/?q=john" target=_blank rel=noopener>https://whatsmyname.app/?q=john</a>) 在 URL 中提交用户名。</li></ul></li><li>Who Am I Google/Brave 扩展，不仅集成 WhatsMyName 的数据，还包括 Sherlock 和 Maigret 用户名检查器。 由 OSINT Liar 创建。</li><li>Naminter - 专为 Whats My Name 列表而设计的，具有漂亮的控制台界面、浏览器冒充功能、能够绕过 Cloudflare 和其他基本保护、并发检查以及广泛的配置选项。</li><li>Blackbird - 在其搜索中使用 WhatsMyName 列表。</li><li>K2OSINT Bookmarks - Bookmarks，允许您在弹出窗口中输入用户名，然后在新标签页中打开 WMN 结果。</li><li>LinkScope - 在 &ldquo;在线身份&rdquo; 类别下使用 WhatsMyName 进行解析。</li><li>Maltego WhatsMyName 转换 - Maltego Local 转换，利用 JSON 文件并实时检查用户名。</li><li>Reveal My Name - 由 @yooper 创建，是与此项目捆绑的 Python 检查器工具。</li><li>sn0int - 下载并使用 kpcyrd/whatsmyname 模块中的 JSON 文件，详情和说明请参考 <a class=link href=https://twitter.com/sn0int/status/1228046880459907073%E3%80%82 target=_blank rel=noopener>https://twitter.com/sn0int/status/1228046880459907073。</a></li><li>Spiderfoot - 在 sfp_account 模块中使用。 还有一段视频演示如何使用 Spiderfoot 命令行界面 (CLI) 使用该项目。</li><li>WhatsMyName-Python - 由 @C3n7ral051nt4g3ncy 创建的简单的 Python 脚本。</li><li>WMN_screenshooter - 一个辅助脚本，使用 Selenium 尝试抓取识别出的个人资料页面截图。</li><li>WhatsMyName-Client - 由 @grabowskiadrian 创建的简单的 Python 脚本，具有“请求头”和“POST 请求”支持。 该脚本还允许您测试 wmn-data.json 文件的配置。</li><li>WhatsMyName-Web - 由 @AXRoux 创建的 WhatsMyName-Web 是 WhatsMyName 的一个简单的 Flask Web 应用程序。</li><li>WhatsMyName Docker - 这是一个 Docker API 包装器，用于 WhatsMyName 工具。 Docker 化由 @kodamaChameleon 完成。</li><li>NameSeeker - 是一款强大的跨平台桌面应用程序，可以搜索数百个网站上的用户名和电子邮件地址，帮助您快速发现您的数字足迹。 它基于 WhatsMyName 项目的数据，支持将搜索结果导出到 PDF、CSV、JSON 和其他格式。</li></ul><h3 id=代码解析-1>代码解析</h3><h4 id=排序python代码>排序Python代码</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>data_path</span> <span class=o>=</span> <span class=s1>&#39;wmn-data.json&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>schema_path</span> <span class=o>=</span> <span class=s1>&#39;wmn-data-schema.json&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>sort_array_alphabetically</span><span class=p>(</span><span class=n>arr</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>sorted</span><span class=p>(</span><span class=n>arr</span><span class=p>,</span> <span class=n>key</span><span class=o>=</span><span class=nb>str</span><span class=o>.</span><span class=n>lower</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>reorder_object_keys</span><span class=p>(</span><span class=n>obj</span><span class=p>,</span> <span class=n>key_order</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>reordered</span> <span class=o>=</span> <span class=p>{</span><span class=n>k</span><span class=p>:</span> <span class=n>obj</span><span class=p>[</span><span class=n>k</span><span class=p>]</span> <span class=k>for</span> <span class=n>k</span> <span class=ow>in</span> <span class=n>key_order</span> <span class=k>if</span> <span class=n>k</span> <span class=ow>in</span> <span class=n>obj</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>k</span> <span class=ow>in</span> <span class=n>obj</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>k</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>key_order</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>reordered</span><span class=p>[</span><span class=n>k</span><span class=p>]</span> <span class=o>=</span> <span class=n>obj</span><span class=p>[</span><span class=n>k</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>reordered</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>sort_headers</span><span class=p>(</span><span class=n>site</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>headers</span> <span class=o>=</span> <span class=n>site</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;headers&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>headers</span><span class=p>,</span> <span class=nb>dict</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>site</span><span class=p>[</span><span class=s2>&#34;headers&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nb>dict</span><span class=p>(</span><span class=nb>sorted</span><span class=p>(</span><span class=n>headers</span><span class=o>.</span><span class=n>items</span><span class=p>(),</span> <span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>item</span><span class=p>:</span> <span class=n>item</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>.</span><span class=n>lower</span><span class=p>()))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>load_and_format_json</span><span class=p>(</span><span class=n>path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>path</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>raw_content</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=n>raw_content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>formatted</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>indent</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>ensure_ascii</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>data</span><span class=p>,</span> <span class=n>raw_content</span><span class=p>,</span> <span class=n>formatted</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>data</span><span class=p>,</span> <span class=n>data_raw</span><span class=p>,</span> <span class=n>data_formatted</span> <span class=o>=</span> <span class=n>load_and_format_json</span><span class=p>(</span><span class=n>data_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>schema</span><span class=p>,</span> <span class=n>schema_raw</span><span class=p>,</span> <span class=n>schema_formatted</span> <span class=o>=</span> <span class=n>load_and_format_json</span><span class=p>(</span><span class=n>schema_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>changed</span> <span class=o>=</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Sort authors and categories</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;authors&#39;</span><span class=p>),</span> <span class=nb>list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>[</span><span class=s1>&#39;authors&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>sort_array_alphabetically</span><span class=p>(</span><span class=n>data</span><span class=p>[</span><span class=s1>&#39;authors&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;categories&#39;</span><span class=p>),</span> <span class=nb>list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>[</span><span class=s1>&#39;categories&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>sort_array_alphabetically</span><span class=p>(</span><span class=n>data</span><span class=p>[</span><span class=s1>&#39;categories&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Sort and reorder sites</span>
+</span></span><span class=line><span class=cl><span class=n>site_schema</span> <span class=o>=</span> <span class=n>schema</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;properties&#39;</span><span class=p>,</span> <span class=p>{})</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;sites&#39;</span><span class=p>,</span> <span class=p>{})</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;items&#39;</span><span class=p>,</span> <span class=p>{})</span>
+</span></span><span class=line><span class=cl><span class=n>key_order</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>site_schema</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;properties&#39;</span><span class=p>,</span> <span class=p>{})</span><span class=o>.</span><span class=n>keys</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;sites&#39;</span><span class=p>),</span> <span class=nb>list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>[</span><span class=s1>&#39;sites&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>sort</span><span class=p>(</span><span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>site</span><span class=p>:</span> <span class=n>site</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>lower</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>site</span> <span class=ow>in</span> <span class=n>data</span><span class=p>[</span><span class=s1>&#39;sites&#39;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=n>sort_headers</span><span class=p>(</span><span class=n>site</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>[</span><span class=s1>&#39;sites&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=n>reorder_object_keys</span><span class=p>(</span><span class=n>site</span><span class=p>,</span> <span class=n>key_order</span><span class=p>)</span> <span class=k>for</span> <span class=n>site</span> <span class=ow>in</span> <span class=n>data</span><span class=p>[</span><span class=s1>&#39;sites&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>updated_data_formatted</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>indent</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>ensure_ascii</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Write wmn-data.json if changed</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>data_raw</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>!=</span> <span class=n>updated_data_formatted</span><span class=o>.</span><span class=n>strip</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>data_path</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>updated_data_formatted</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Updated and sorted wmn-data.json.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>changed</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl><span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;wmn-data.json already formatted.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Write formatted wmn-data-schema.json if changed</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>schema_raw</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>!=</span> <span class=n>schema_formatted</span><span class=o>.</span><span class=n>strip</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>schema_path</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>schema_formatted</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Formatted wmn-data-schema.json.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>changed</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl><span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;wmn-data-schema.json already formatted.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>changed</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;No changes made.&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=排序工作流>排序工作流</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sort and Format JSON Files</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;wmn-data.json&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;wmn-data-schema.json&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sort-and-format-json</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sort and Format JSON Files</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set up Python</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/setup-python@v5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>python-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.11&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Run Python sorting script</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>python scripts/sort_format_json.py</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Commit if changed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.name &#34;github-actions&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.email &#34;github-actions@github.com&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git add wmn-data.json wmn-data-schema.json
+</span></span></span><span class=line><span class=cl><span class=sd>          git diff --cached --quiet || git commit -m &#34;chore: auto-sort and format JSON files&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git push</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h4 id=docker镜像验证json>Docker镜像验证JSON</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Validate JSON</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>pull_request]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>verify-json-validation</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Validate JSON</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>docker://orrosenblatt/validate-json-action:latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>INPUT_SCHEMA</span><span class=p>:</span><span class=w> </span><span class=l>/wmn-data-schema.json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>INPUT_JSONS</span><span class=p>:</span><span class=w> </span><span class=l>/wmn-data.json</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>还能这么玩，哈！</p><h2 id=失效的中文osint-framework>失效的中文OSINT FRAMEWORK</h2><p><a class=link href=https://github.com/B1gM8c/osint target=_blank rel=noopener>osint-framework</a></p><p>Osint Framework（开源情报查询框架）即通过在互联网中公开的信息进行一些事件的调查，它的优势显而易见就是不会与目标主体产生接触、关联，意味着你的调查将不会被他发现，这是不是听起来蛮有意思的！</p><h3 id=功能介绍>功能介绍</h3><p>功能大纲包括</p><ul><li>用户名搜索</li><li>邮箱账户搜索</li><li>域名搜索</li><li>IP地址搜索</li><li>图片/视频/文档搜索</li><li>社交网站搜索</li><li>即时通讯</li><li>身份信息核实</li><li>约会记录查询</li><li>电话号码查询</li><li>公开档案</li><li>商业档案</li><li>交通运输</li><li>高精度定位/地图</li><li>搜索引擎玩法</li><li>论坛/博客/IRC</li><li>档案资料</li><li>语言翻译</li><li>元数据</li><li>手机模拟器</li><li>数字货币</li><li>分类信息</li><li>编码/解码</li><li>工具</li><li>恶意文件分析</li><li>漏洞EXP & 修复建议</li><li>威胁情报</li><li>OpSec</li><li>文档资料</li><li>训练</li></ul><h2 id=附录>附录</h2><h3 id=开源情报分析osint实战指南从基础到高级的信息收集技术>开源情报分析（OSINT）实战指南：从基础到高级的信息收集技术</h3><p><a class=link href=https://xz.aliyun.com/news/17607 target=_blank rel=noopener>https://xz.aliyun.com/news/17607</a></p><p>在数字化时代，公开信息中隐藏着大量有价值的情报，而开源情报分析（OSINT）正是挖掘这些信息的关键技术。无论是网络安全竞赛（CTF）、渗透测试，还是企业安全审计，掌握OSINT技能都能让你更高效地收集目标数据。本文是一份全面且实用的OSINT技术指南，涵盖从基础到高级的信息收集方法，包括：</p><ul><li>搜索引擎高级语法（Google、Bing、DuckDuckGo）</li><li>反向图片搜索（Google Images、Yandex、TinEye）</li><li>EXIF数据解析（地理位置、拍摄设备信息）</li><li>社交媒体情报分析（Twitter、Facebook、Instagram、Snapchat）</li><li>电子邮件与用户名追踪（Hunter.io、Phonebook.cz、HaveIBeenPwned）</li><li>密码泄露检测（Dehashed、WeLeakInfo）</li><li>匿名身份（马甲）构建（虚拟电话、加密邮箱、VPN、虚拟机）</li></ul><p>此外，文章还提供了数十个实用工具和网站，帮助你在合法合规的前提下高效完成情报收集任务。无论你是安全研究员、OSINT爱好者，还是CTF选手，这篇指南都能助你提升信息挖掘能力。</p><p>在文章最后，会实战分析一道OSINT类型的题目。</p></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/%E7%A4%BE%E5%B7%A5%E5%BA%93/>社工库</a>
+<a href=/blog/tags/osint/>OSINT</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/><div class=article-details><h2 class=article-title>知乎爬虫——ZhiZhu项目分析</h2></div></a></article><article><a href=/blog/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/><div class=article-details><h2 class=article-title>Docker可部署项目合集</h2></div></a></article><article><a href=/blog/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/><div class=article-details><h2 class=article-title>PDF转Markdown工具</h2></div></a></article><article><a href=/blog/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/><div class=article-details><h2 class=article-title>PDF电子书制作工具</h2></div></a></article><article><a href=/blog/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/><div class=article-details><h2 class=article-title>Windows 应用的自定义与扩展工具 Windhawk</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
