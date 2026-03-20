@@ -1,4 +1,1830 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://hanguangwu.github.io/blog/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sun, 15 Mar 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>从头实现属于自己的 OpenClaw</title><link>https://hanguangwu.github.io/blog/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</link><pubDate>Sun, 15 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</guid><description>&lt;h1 id="从头实现属于自己的-openclaw"&gt;从头实现属于自己的 OpenClaw
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://hanguangwu.github.io/blog/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 17 Mar 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>多智能体系统架构设计案例</title><link>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</link><pubDate>Tue, 17 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</guid><description>&lt;h1 id="多智能体系统架构设计案例"&gt;多智能体系统架构设计案例
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;这里搜集了一些多智能体系统实现的案例。&lt;/p&gt;
+&lt;h2 id="框架流metagpt"&gt;框架流——MetaGPT
+&lt;/h2&gt;&lt;p&gt;MetaGPT是一个由中国团队开发的多智能体框架，主要应用于软件开发等场景。其利用SOP（Standard Operating Procedures，标准作业程序）来协调基于大语言模型的多智能体系统，从而实现元编程技术。 该框架使用智能体模拟了一个虚拟软件团队，包含产品经理、架构师、项目经理、工程师、质量工程师等角色，并引入SOP成为框架的虚拟软件团队的开发流程。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/FoundationAgents/MetaGPT" target="_blank" rel="noopener"
+&gt;🌟 The Multi-Agent Framework: First AI Software Company, Towards Natural Language Programming&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="框架流autogen"&gt;框架流——AutoGen
+&lt;/h2&gt;&lt;p&gt;​AutoGen​ 是微软开发的一个用于创建多智能体AI应用 程序的编程框架，支持自主运行或与人类协同工作。该框架提供了分层和可扩展的设计，使开发者能够在不同抽象级别上构建复杂的多智能体系统。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/microsoft/autogen" target="_blank" rel="noopener"
+&gt;A programming framework for agentic AI&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="-核心价值"&gt;🚀 ​核心价值​
+&lt;/h3&gt;&lt;p&gt;多智能体 · AI框架 · 微软开发 · 分层架构 · 开源免费&lt;/p&gt;
+&lt;h3 id="项目背景"&gt;项目背景​
+&lt;/h3&gt;&lt;p&gt;​AI智能体需求​：应对多智能体系统开发需求&lt;/p&gt;
+&lt;p&gt;​企业级应用​：企业级AI应用支持&lt;/p&gt;
+&lt;p&gt;​微软生态​：微软AI生态系统发展&lt;/p&gt;
+&lt;p&gt;​开源社区​：活跃开源社区支持&lt;/p&gt;
+&lt;p&gt;​开发效率​：提高智能体开发效率&lt;/p&gt;
+&lt;h3 id="项目特色"&gt;项目特色​
+&lt;/h3&gt;&lt;p&gt;🤖 ​多智能体​：多智能体协作系统&lt;/p&gt;
+&lt;p&gt;🏗️ ​分层架构​：分层可扩展架构&lt;/p&gt;
+&lt;p&gt;🔌 ​扩展生态​：丰富扩展生态系统&lt;/p&gt;
+&lt;p&gt;🌐 ​跨语言​：.NET和Python支持&lt;/p&gt;
+&lt;p&gt;🆓 ​开源免费​：MIT许可证开源&lt;/p&gt;
+&lt;h3 id="技术亮点"&gt;技术亮点​
+&lt;/h3&gt;&lt;p&gt;​消息传递​：智能消息传递机制&lt;/p&gt;
+&lt;p&gt;​事件驱动​：事件驱动架构&lt;/p&gt;
+&lt;p&gt;​分布式运行​：本地和分布式运行时&lt;/p&gt;
+&lt;p&gt;​工具集成​：丰富工具集成&lt;/p&gt;
+&lt;p&gt;​开发工具​：完整开发工具链&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关键优势：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;✅ 管理企业目标，而不是 Pull Requests&lt;br&gt;
+✅ 任何代理、任何运行时、一个组织图&lt;br&gt;
+✅ 每个任务追溯到公司使命&lt;br&gt;
+✅ 心跳自动执行，委托流程自动化&lt;br&gt;
+✅ 月度预算，超支自动停止&lt;br&gt;
+✅ 多公司隔离，完整数据隔离&lt;br&gt;
+✅ 完整审计追踪，每个决策可解释&lt;br&gt;
+✅ 人工监督，随时干预&lt;/p&gt;
+&lt;h2 id="提示词流agent-agency-zh"&gt;提示词流——Agent Agency ZH
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh" target="_blank" rel="noopener"
+&gt;176 个即插即用的 AI 专家人设（中文版）— 覆盖 17 个部门，支持 Claude Code / OpenClaw / Cursor / Trae 等 11 种工具 | Chinese AI agent personas for dev tools&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="-这是什么"&gt;🚀 这是什么？
+&lt;/h3&gt;&lt;p&gt;源自 Reddit 帖子并经过数月的迭代，&lt;strong&gt;The Agency&lt;/strong&gt; 是一个不断增长的任务交付型 AI 智能体人格合集。每位智能体都具备：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;🎯 专业化&lt;/strong&gt;：在其领域拥有深厚的专业知识（而非通用的提示词模板）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🧠 人格驱动&lt;/strong&gt;：拥有独特的语气、沟通风格和处理方式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📋 交付导向&lt;/strong&gt;：产出真实的代码、流程和可衡量的成果&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✅ 生产就绪&lt;/strong&gt;：经过实战检验的工作流和成功指标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;你可以把它看作&lt;/strong&gt;：组建你的梦想团队，只不过他们是永不疲倦、从不抱怨且使命必达的 AI 专家。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-快速入门"&gt;⚡ 快速入门
+&lt;/h3&gt;&lt;h4 id="选项-1配合-claude-code-使用推荐"&gt;选项 1：配合 Claude Code 使用（推荐）
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 将智能体复制到你的 Claude Code 目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r agency-agents/* ~/.claude/agents/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 现在可以在 Claude Code 会话中激活任何智能体：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# “嘿 Claude，激活前端开发模式，帮我构建一个 React 组件”&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="选项-2作为参考使用"&gt;选项 2：作为参考使用
+&lt;/h4&gt;&lt;p&gt;每个智能体文件包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;身份与人格特质&lt;/li&gt;
+&lt;li&gt;核心使命与工作流&lt;/li&gt;
+&lt;li&gt;带有代码示例的技术交付物&lt;/li&gt;
+&lt;li&gt;成功指标与沟通风格&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Browse the agents below and copy/adapt the ones you need! 浏览下方的智能体列表，复制或改编你需要的角色！&lt;/p&gt;
+&lt;h4 id="选项-3配合其他工具使用-cursor-aider-windsurf-gemini-cli-opencode"&gt;选项 3：配合其他工具使用 (Cursor, Aider, Windsurf, Gemini CLI, OpenCode)
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 第 1 步 —— 为所有受支持的工具生成集成文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/convert.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 第 2 步 —— 交互式安装（自动检测你已安装的工具）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/install.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 或者直接安装到特定工具&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/install.sh --tool cursor
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/install.sh --tool aider
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/install.sh --tool windsurf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;详见下方的 &lt;a class="link" href="https://github.com/gosinkx/agency-agents_zhCN#-%E5%A4%9A%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90" target="_blank" rel="noopener"
+&gt;多工具集成&lt;/a&gt; 章节。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-智能体阵容-the-agency-roster"&gt;🎨 智能体阵容 (The Agency Roster)
+&lt;/h3&gt;&lt;h4 id="-工程部"&gt;🛠️ 工程部
+&lt;/h4&gt;&lt;p&gt;构建未来，一个 commit 一个脚印。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-frontend-developer.md" target="_blank" rel="noopener"
+&gt;前端开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;React/Vue、UI 实现、性能优化&lt;/td&gt;
+&lt;td&gt;现代 Web 应用、像素级 UI&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-backend-architect.md" target="_blank" rel="noopener"
+&gt;后端架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;API 设计、数据库架构、可扩展性&lt;/td&gt;
+&lt;td&gt;服务端系统、微服务&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-ai-engineer.md" target="_blank" rel="noopener"
+&gt;AI 工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;机器学习、模型部署、AI 集成&lt;/td&gt;
+&lt;td&gt;ML 功能、数据管线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-devops-automator.md" target="_blank" rel="noopener"
+&gt;DevOps 自动化&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;CI/CD、基础设施自动化&lt;/td&gt;
+&lt;td&gt;流水线开发、部署自动化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-security-engineer.md" target="_blank" rel="noopener"
+&gt;安全工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;威胁建模、代码审计、安全架构&lt;/td&gt;
+&lt;td&gt;应用安全、漏洞评估&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-rapid-prototyper.md" target="_blank" rel="noopener"
+&gt;快速原型师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;快速 POC、MVP 开发&lt;/td&gt;
+&lt;td&gt;概念验证、黑客马拉松&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-senior-developer.md" target="_blank" rel="noopener"
+&gt;高级开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Laravel/Livewire/FluxUI、高端 CSS、Three.js&lt;/td&gt;
+&lt;td&gt;高品质 Web 体验&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-mobile-app-builder.md" target="_blank" rel="noopener"
+&gt;移动应用开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;iOS/Android 原生、跨平台框架&lt;/td&gt;
+&lt;td&gt;移动端开发、App 性能优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-data-engineer.md" target="_blank" rel="noopener"
+&gt;数据工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;ETL/ELT、数据湖、Spark/dbt&lt;/td&gt;
+&lt;td&gt;数据管线、数据仓库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-technical-writer.md" target="_blank" rel="noopener"
+&gt;技术文档工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;API 文档、开发者文档、docs-as-code&lt;/td&gt;
+&lt;td&gt;技术文档、知识库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-autonomous-optimization-architect.md" target="_blank" rel="noopener"
+&gt;自主优化架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;自适应系统、自动调优&lt;/td&gt;
+&lt;td&gt;智能运维、自愈系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-embedded-firmware-engineer.md" target="_blank" rel="noopener"
+&gt;嵌入式固件工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;RTOS、外设驱动、低功耗设计&lt;/td&gt;
+&lt;td&gt;IoT、嵌入式系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-incident-response-commander.md" target="_blank" rel="noopener"
+&gt;故障响应指挥官&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;故障处置、SLO 管理、事后复盘&lt;/td&gt;
+&lt;td&gt;线上故障、应急响应&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-threat-detection-engineer.md" target="_blank" rel="noopener"
+&gt;威胁检测工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;SIEM、威胁狩猎、检测规则&lt;/td&gt;
+&lt;td&gt;安全运营、威胁检测&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-solidity-smart-contract-engineer.md" target="_blank" rel="noopener"
+&gt;Solidity 智能合约工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Solidity、EVM、Gas 优化、DeFi&lt;/td&gt;
+&lt;td&gt;智能合约开发、Web3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-wechat-mini-program-developer.md" target="_blank" rel="noopener"
+&gt;微信小程序开发者&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;WXML/WXSS、微信支付、云开发&lt;/td&gt;
+&lt;td&gt;微信小程序全栈开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-code-reviewer.md" target="_blank" rel="noopener"
+&gt;代码审查员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;代码审查、安全审计、质量把关&lt;/td&gt;
+&lt;td&gt;PR 审查、代码质量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-database-optimizer.md" target="_blank" rel="noopener"
+&gt;数据库优化师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Schema 设计、查询优化、索引策略&lt;/td&gt;
+&lt;td&gt;数据库性能调优&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-git-workflow-master.md" target="_blank" rel="noopener"
+&gt;Git 工作流大师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;分支策略、约定式提交、变基&lt;/td&gt;
+&lt;td&gt;Git 工作流规范&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-software-architect.md" target="_blank" rel="noopener"
+&gt;软件架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;系统设计、DDD、架构决策&lt;/td&gt;
+&lt;td&gt;系统架构设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-sre.md" target="_blank" rel="noopener"
+&gt;SRE&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;SLO、可观测性、混沌工程&lt;/td&gt;
+&lt;td&gt;站点可靠性工程&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-ai-data-remediation-engineer.md" target="_blank" rel="noopener"
+&gt;AI 数据修复工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;自愈管道、SLM 语义聚类、零数据丢失&lt;/td&gt;
+&lt;td&gt;大规模数据异常修复&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-feishu-integration-developer.md" target="_blank" rel="noopener"
+&gt;飞书集成开发工程师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;飞书机器人、审批流、多维表格&lt;/td&gt;
+&lt;td&gt;飞书生态集成开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/engineering/engineering-dingtalk-integration-developer.md" target="_blank" rel="noopener"
+&gt;钉钉集成开发工程师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;钉钉机器人、酷应用、连接器&lt;/td&gt;
+&lt;td&gt;钉钉生态集成开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-设计部"&gt;🎨 设计部
+&lt;/h4&gt;&lt;p&gt;让产品好看、好用、有惊喜。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-ui-designer.md" target="_blank" rel="noopener"
+&gt;UI 设计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;视觉设计、组件库、设计系统&lt;/td&gt;
+&lt;td&gt;界面设计、品牌一致性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-ux-researcher.md" target="_blank" rel="noopener"
+&gt;UX 研究员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;用户测试、行为分析&lt;/td&gt;
+&lt;td&gt;用户研究、可用性测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-ux-architect.md" target="_blank" rel="noopener"
+&gt;UX 架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;信息架构、交互设计、导航系统&lt;/td&gt;
+&lt;td&gt;复杂产品的 UX 架构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-brand-guardian.md" target="_blank" rel="noopener"
+&gt;品牌守护者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;品牌标识、一致性、定位&lt;/td&gt;
+&lt;td&gt;品牌策略、视觉规范&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-image-prompt-engineer.md" target="_blank" rel="noopener"
+&gt;图像提示词工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;AI 图像生成、提示词优化&lt;/td&gt;
+&lt;td&gt;Midjourney/DALL-E 出图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-visual-storyteller.md" target="_blank" rel="noopener"
+&gt;视觉叙事师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;数据可视化、视觉叙事&lt;/td&gt;
+&lt;td&gt;信息图、演示文稿&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-whimsy-injector.md" target="_blank" rel="noopener"
+&gt;趣味注入师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;微交互、彩蛋、趣味元素&lt;/td&gt;
+&lt;td&gt;产品细节体验提升&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/design/design-inclusive-visuals-specialist.md" target="_blank" rel="noopener"
+&gt;包容性视觉专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;多元化视觉、无障碍设计&lt;/td&gt;
+&lt;td&gt;包容性设计、全球化视觉&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-营销部"&gt;📢 营销部
+&lt;/h4&gt;&lt;p&gt;一个真实互动一个粉丝地增长。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;国内平台：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-xiaohongshu-operator.md" target="_blank" rel="noopener"
+&gt;小红书运营&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;种草笔记、达人合作、爆款内容&lt;/td&gt;
+&lt;td&gt;小红书获客、品牌种草&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-douyin-strategist.md" target="_blank" rel="noopener"
+&gt;抖音策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;短视频策划、算法优化、直播带货&lt;/td&gt;
+&lt;td&gt;抖音增长、短视频营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-wechat-operator.md" target="_blank" rel="noopener"
+&gt;微信公众号运营&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;公众号内容、社群运营、裂变增长&lt;/td&gt;
+&lt;td&gt;微信生态营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-bilibili-strategist.md" target="_blank" rel="noopener"
+&gt;B站内容策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;UP主运营、弹幕文化、中长视频&lt;/td&gt;
+&lt;td&gt;B站内容增长、品牌合作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-kuaishou-strategist.md" target="_blank" rel="noopener"
+&gt;快手策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;下沉市场、老铁文化、直播电商&lt;/td&gt;
+&lt;td&gt;快手运营、社区信任&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-china-ecommerce-operator.md" target="_blank" rel="noopener"
+&gt;中国电商运营师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;淘宝/拼多多/京东、广告投放、大促作战&lt;/td&gt;
+&lt;td&gt;电商全链路深度运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-ecommerce-operator.md" target="_blank" rel="noopener"
+&gt;电商运营师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;淘宝/拼多多/京东、直播带货、大促&lt;/td&gt;
+&lt;td&gt;电商全平台运营（简洁版）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-baidu-seo-specialist.md" target="_blank" rel="noopener"
+&gt;百度 SEO 专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;百度优化、百科/知道/贴吧生态&lt;/td&gt;
+&lt;td&gt;百度搜索营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-private-domain-operator.md" target="_blank" rel="noopener"
+&gt;私域流量运营师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;企微SCRM、社群运营、用户生命周期&lt;/td&gt;
+&lt;td&gt;私域体系搭建、复购增长&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-livestream-commerce-coach.md" target="_blank" rel="noopener"
+&gt;直播电商主播教练&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;直播话术、选品排品、千川投放&lt;/td&gt;
+&lt;td&gt;直播带货、主播孵化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-cross-border-ecommerce.md" target="_blank" rel="noopener"
+&gt;跨境电商运营专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;Amazon/Shopee/Lazada、海外仓、品牌出海&lt;/td&gt;
+&lt;td&gt;跨境电商全链路运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-short-video-editing-coach.md" target="_blank" rel="noopener"
+&gt;短视频剪辑指导师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;剪映/PR/达芬奇、调色、音频、特效&lt;/td&gt;
+&lt;td&gt;短视频剪辑技术指导&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-weibo-strategist.md" target="_blank" rel="noopener"
+&gt;微博运营策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;热搜运营、超话、舆情公关、粉丝经济&lt;/td&gt;
+&lt;td&gt;微博全链路运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-podcast-strategist.md" target="_blank" rel="noopener"
+&gt;播客内容策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;小宇宙/喜马拉雅、音频制作、商业化&lt;/td&gt;
+&lt;td&gt;播客内容创作与增长&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-weixin-channels-strategist.md" target="_blank" rel="noopener"
+&gt;微信视频号运营策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;视频号直播、社交裂变、私域闭环&lt;/td&gt;
+&lt;td&gt;视频号运营与变现&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-knowledge-commerce-strategist.md" target="_blank" rel="noopener"
+&gt;知识付费产品策划师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;得到/知识星球/小鹅通、内容定价&lt;/td&gt;
+&lt;td&gt;知识付费产品运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-xiaohongshu-specialist.md" target="_blank" rel="noopener"
+&gt;小红书专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;生活方式内容、趋势策略&lt;/td&gt;
+&lt;td&gt;小红书品牌建设&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-wechat-official-account.md" target="_blank" rel="noopener"
+&gt;微信公众号管理&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;订阅者运营、内容营销&lt;/td&gt;
+&lt;td&gt;微信公众号增长&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-zhihu-strategist.md" target="_blank" rel="noopener"
+&gt;知乎策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;知识型内容、思想领袖建设&lt;/td&gt;
+&lt;td&gt;知乎品牌权威&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⭐ 标记的是本项目原创，更贴合国内实操。其余为上游英文版翻译。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;出海营销：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-tiktok-strategist.md" target="_blank" rel="noopener"
+&gt;TikTok 策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;病毒式内容、算法优化&lt;/td&gt;
+&lt;td&gt;出海短视频营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-twitter-engager.md" target="_blank" rel="noopener"
+&gt;Twitter 互动官&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;实时互动、思想领袖&lt;/td&gt;
+&lt;td&gt;出海品牌社交&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-instagram-curator.md" target="_blank" rel="noopener"
+&gt;Instagram 策展师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;视觉叙事、社区运营&lt;/td&gt;
+&lt;td&gt;出海视觉营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-reddit-community-builder.md" target="_blank" rel="noopener"
+&gt;Reddit 社区运营&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;社区文化、真实互动&lt;/td&gt;
+&lt;td&gt;出海社区营销&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-app-store-optimizer.md" target="_blank" rel="noopener"
+&gt;应用商店优化师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;ASO、转化优化&lt;/td&gt;
+&lt;td&gt;App 出海推广&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;通用：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-growth-hacker.md" target="_blank" rel="noopener"
+&gt;增长黑客&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;快速获客、病毒循环、实验&lt;/td&gt;
+&lt;td&gt;用户增长、转化优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-content-creator.md" target="_blank" rel="noopener"
+&gt;内容创作者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;多平台内容、编辑日历&lt;/td&gt;
+&lt;td&gt;内容策略、品牌故事&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-social-media-strategist.md" target="_blank" rel="noopener"
+&gt;社交媒体策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;跨平台策略、整合营销&lt;/td&gt;
+&lt;td&gt;全渠道社交运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-seo-specialist.md" target="_blank" rel="noopener"
+&gt;SEO 专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;搜索引擎优化、技术 SEO&lt;/td&gt;
+&lt;td&gt;Google SEO、内容优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-carousel-growth-engine.md" target="_blank" rel="noopener"
+&gt;轮播图增长引擎&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;轮播图内容、自动化投放&lt;/td&gt;
+&lt;td&gt;社交媒体轮播素材&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-linkedin-content-creator.md" target="_blank" rel="noopener"
+&gt;LinkedIn 内容创作专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;LinkedIn 职场内容、B2B 获客&lt;/td&gt;
+&lt;td&gt;LinkedIn 品牌建设&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/marketing/marketing-book-co-author.md" target="_blank" rel="noopener"
+&gt;图书联合作者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;思想领袖力图书、代笔协作&lt;/td&gt;
+&lt;td&gt;图书策划与撰写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="-付费媒体部"&gt;💰 付费媒体部
+&lt;/h3&gt;&lt;p&gt;精准投放，每一分预算都花在刀刃上。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-auditor.md" target="_blank" rel="noopener"
+&gt;付费媒体审计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;广告账户审计、预算优化&lt;/td&gt;
+&lt;td&gt;广告效果诊断、降本增效&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-creative-strategist.md" target="_blank" rel="noopener"
+&gt;广告创意策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;广告素材策划、A/B 测试&lt;/td&gt;
+&lt;td&gt;广告创意优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-paid-social-strategist.md" target="_blank" rel="noopener"
+&gt;社交广告策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;社交平台广告投放&lt;/td&gt;
+&lt;td&gt;Meta/TikTok/LinkedIn 广告&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-ppc-strategist.md" target="_blank" rel="noopener"
+&gt;PPC 竞价策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;搜索竞价、关键词管理&lt;/td&gt;
+&lt;td&gt;Google Ads、百度推广&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-programmatic-buyer.md" target="_blank" rel="noopener"
+&gt;程序化广告采买专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;DSP、RTB、程序化购买&lt;/td&gt;
+&lt;td&gt;程序化广告投放&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-search-query-analyst.md" target="_blank" rel="noopener"
+&gt;搜索词分析师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;搜索词挖掘、否词优化&lt;/td&gt;
+&lt;td&gt;搜索广告精细化运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/paid-media/paid-media-tracking-specialist.md" target="_blank" rel="noopener"
+&gt;追踪与归因专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;转化追踪、归因模型&lt;/td&gt;
+&lt;td&gt;广告效果衡量、数据打通&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="-销售部"&gt;💼 销售部
+&lt;/h3&gt;&lt;p&gt;从线索到成交，让每一单都有章法。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-account-strategist.md" target="_blank" rel="noopener"
+&gt;客户拓展策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;大客户拓展、ABM 策略&lt;/td&gt;
+&lt;td&gt;重点客户攻关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-coach.md" target="_blank" rel="noopener"
+&gt;销售教练&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;销售辅导、技能提升&lt;/td&gt;
+&lt;td&gt;团队销售能力建设&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-deal-strategist.md" target="_blank" rel="noopener"
+&gt;赢单策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;成交策略、MEDDPICC&lt;/td&gt;
+&lt;td&gt;复杂销售推进&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-discovery-coach.md" target="_blank" rel="noopener"
+&gt;Discovery 教练&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;需求挖掘、客户洞察&lt;/td&gt;
+&lt;td&gt;销售前期沟通&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-engineer.md" target="_blank" rel="noopener"
+&gt;售前工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;技术方案、Demo 演示&lt;/td&gt;
+&lt;td&gt;技术售前支持&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-outbound-strategist.md" target="_blank" rel="noopener"
+&gt;Outbound 策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;外呼策略、Cold outreach&lt;/td&gt;
+&lt;td&gt;新客户开拓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-pipeline-analyst.md" target="_blank" rel="noopener"
+&gt;Pipeline 分析师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;销售漏斗、预测分析&lt;/td&gt;
+&lt;td&gt;销售数据分析、预测&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/sales/sales-proposal-strategist.md" target="_blank" rel="noopener"
+&gt;投标策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;投标方案、提案撰写&lt;/td&gt;
+&lt;td&gt;招投标、方案竞标&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-金融部"&gt;🏦 金融部
+&lt;/h4&gt;&lt;p&gt;让每一笔钱都清清楚楚。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/finance/finance-financial-forecaster.md" target="_blank" rel="noopener"
+&gt;财务预测分析师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;收入预测、场景建模、现金流&lt;/td&gt;
+&lt;td&gt;SaaS 财务规划、融资对接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/finance/finance-invoice-manager.md" target="_blank" rel="noopener"
+&gt;发票管理专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;增值税发票、金税系统、三单匹配&lt;/td&gt;
+&lt;td&gt;发票全生命周期管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/finance/finance-fraud-detector.md" target="_blank" rel="noopener"
+&gt;金融风控分析师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;交易风控、反洗钱、电信诈骗&lt;/td&gt;
+&lt;td&gt;支付风控、合规审查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-人力资源部"&gt;👔 人力资源部
+&lt;/h4&gt;&lt;p&gt;找对人、用好人、留住人。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/hr/hr-recruiter.md" target="_blank" rel="noopener"
+&gt;招聘专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;Boss直聘/猎聘、校招社招、背调&lt;/td&gt;
+&lt;td&gt;招聘全流程管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/hr/hr-performance-reviewer.md" target="_blank" rel="noopener"
+&gt;绩效管理专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;OKR/KPI、361分布、晋升答辩&lt;/td&gt;
+&lt;td&gt;绩效体系搭建与评估&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-法务部"&gt;⚖️ 法务部
+&lt;/h4&gt;&lt;p&gt;合规是底线，风控是生命线。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/legal/legal-contract-reviewer.md" target="_blank" rel="noopener"
+&gt;合同审查专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;民法典合同编、电子签章、风险评估&lt;/td&gt;
+&lt;td&gt;合同审查与风控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/legal/legal-policy-writer.md" target="_blank" rel="noopener"
+&gt;制度文件撰写专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;PIPL/数据安全法、隐私政策&lt;/td&gt;
+&lt;td&gt;合规制度与政策撰写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-供应链部"&gt;🚚 供应链部
+&lt;/h4&gt;&lt;p&gt;从工厂到用户，每一环都不掉链子。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/supply-chain/supply-chain-inventory-forecaster.md" target="_blank" rel="noopener"
+&gt;库存预测专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;需求预测、安全库存、618/双11备货&lt;/td&gt;
+&lt;td&gt;库存管理与补货优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/supply-chain/supply-chain-vendor-evaluator.md" target="_blank" rel="noopener"
+&gt;供应商评估专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;1688供应商、验厂、国标质检&lt;/td&gt;
+&lt;td&gt;供应商准入与分级管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/supply-chain/supply-chain-route-optimizer.md" target="_blank" rel="noopener"
+&gt;物流路线优化师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;顺丰/通达系、冷链、跨境物流&lt;/td&gt;
+&lt;td&gt;物流成本优化与路线规划&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-产品部"&gt;📦 产品部
+&lt;/h4&gt;&lt;p&gt;在正确的时间做正确的事。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/product/product-sprint-prioritizer.md" target="_blank" rel="noopener"
+&gt;Sprint 排序师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;敏捷规划、功能优先级&lt;/td&gt;
+&lt;td&gt;Sprint 规划、资源分配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/product/product-trend-researcher.md" target="_blank" rel="noopener"
+&gt;趋势研究员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;市场情报、竞品分析&lt;/td&gt;
+&lt;td&gt;市场调研、机会评估&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/product/product-feedback-synthesizer.md" target="_blank" rel="noopener"
+&gt;反馈分析师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;用户反馈分析、洞察提取&lt;/td&gt;
+&lt;td&gt;反馈分析、产品优先级&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/product/product-behavioral-nudge-engine.md" target="_blank" rel="noopener"
+&gt;行为助推引擎&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;行为心理学、用户引导&lt;/td&gt;
+&lt;td&gt;用户行为设计、转化提升&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/product/product-manager.md" target="_blank" rel="noopener"
+&gt;产品经理&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;产品全生命周期、PRD、路线图&lt;/td&gt;
+&lt;td&gt;产品策略与交付管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-项目管理部"&gt;📋 项目管理部
+&lt;/h4&gt;&lt;p&gt;让项目按时按质交付。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-manager-senior.md" target="_blank" rel="noopener"
+&gt;高级项目经理&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;需求拆解、范围管控&lt;/td&gt;
+&lt;td&gt;大型项目管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-management-project-shepherd.md" target="_blank" rel="noopener"
+&gt;项目牧羊人&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;跨团队协调、进度跟踪&lt;/td&gt;
+&lt;td&gt;多团队项目协调&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-management-experiment-tracker.md" target="_blank" rel="noopener"
+&gt;实验追踪员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A/B 测试、实验管理&lt;/td&gt;
+&lt;td&gt;数据驱动决策&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-management-studio-producer.md" target="_blank" rel="noopener"
+&gt;工作室制片人&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;创意项目管理、资源调度&lt;/td&gt;
+&lt;td&gt;内容/创意项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-management-studio-operations.md" target="_blank" rel="noopener"
+&gt;工作室运营&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;工作室日常运营管理&lt;/td&gt;
+&lt;td&gt;团队运营效率&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/project-management/project-management-jira-workflow-steward.md" target="_blank" rel="noopener"
+&gt;Jira 工作流管家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Jira 配置、工作流优化&lt;/td&gt;
+&lt;td&gt;Jira 项目管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-测试部"&gt;🧪 测试部
+&lt;/h4&gt;&lt;p&gt;打破一切，让用户不必承受。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-evidence-collector.md" target="_blank" rel="noopener"
+&gt;证据收集者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;截图 QA、视觉验证&lt;/td&gt;
+&lt;td&gt;UI 测试、Bug 文档&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-reality-checker.md" target="_blank" rel="noopener"
+&gt;现实检验者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;证据驱动认证、质量关卡&lt;/td&gt;
+&lt;td&gt;生产就绪评估&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-api-tester.md" target="_blank" rel="noopener"
+&gt;API 测试员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;API 验证、集成测试&lt;/td&gt;
+&lt;td&gt;接口测试、端点验证&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-performance-benchmarker.md" target="_blank" rel="noopener"
+&gt;性能基准师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;性能测试、优化&lt;/td&gt;
+&lt;td&gt;压测、性能调优&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-accessibility-auditor.md" target="_blank" rel="noopener"
+&gt;无障碍审核员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;WCAG 审核、辅助技术测试&lt;/td&gt;
+&lt;td&gt;无障碍合规、包容性设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-test-results-analyzer.md" target="_blank" rel="noopener"
+&gt;测试结果分析师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;测试数据分析、质量度量&lt;/td&gt;
+&lt;td&gt;质量趋势、发布决策&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-tool-evaluator.md" target="_blank" rel="noopener"
+&gt;工具评估师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;工具选型、功能对比&lt;/td&gt;
+&lt;td&gt;技术选型、工具采购&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/testing/testing-workflow-optimizer.md" target="_blank" rel="noopener"
+&gt;工作流优化师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;流程分析、自动化&lt;/td&gt;
+&lt;td&gt;效率提升、流程改进&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-支持部"&gt;🤝 支持部
+&lt;/h4&gt;&lt;p&gt;运营的中流砥柱。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-support-responder.md" target="_blank" rel="noopener"
+&gt;客服响应者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;客户服务、工单处理&lt;/td&gt;
+&lt;td&gt;客户支持、用户体验&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-analytics-reporter.md" target="_blank" rel="noopener"
+&gt;数据分析师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;数据分析、仪表盘&lt;/td&gt;
+&lt;td&gt;商业智能、KPI 追踪&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-legal-compliance-checker.md" target="_blank" rel="noopener"
+&gt;法务合规员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;合规审查、法规检查&lt;/td&gt;
+&lt;td&gt;法律合规、风险管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-executive-summary-generator.md" target="_blank" rel="noopener"
+&gt;高管摘要师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;业务摘要、战略沟通&lt;/td&gt;
+&lt;td&gt;高管汇报、决策支持&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-finance-tracker.md" target="_blank" rel="noopener"
+&gt;财务追踪员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;财务分析、预算管理&lt;/td&gt;
+&lt;td&gt;财务规划、成本管控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-infrastructure-maintainer.md" target="_blank" rel="noopener"
+&gt;基础设施运维师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;系统运维、可靠性工程&lt;/td&gt;
+&lt;td&gt;基础设施管理、故障排查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-recruitment-specialist.md" target="_blank" rel="noopener"
+&gt;招聘运营专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;Boss直聘/猎聘、劳动法、校招社招&lt;/td&gt;
+&lt;td&gt;招聘全流程与HR合规&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/support/support-supply-chain-strategist.md" target="_blank" rel="noopener"
+&gt;供应链采购策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;1688采购、质检、供应商管理、ERP&lt;/td&gt;
+&lt;td&gt;供应链与采购管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-专项部"&gt;🔬 专项部
+&lt;/h4&gt;&lt;p&gt;不走寻常路的专家。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/agents-orchestrator.md" target="_blank" rel="noopener"
+&gt;智能体编排者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;多智能体协调、工作流管理&lt;/td&gt;
+&lt;td&gt;复杂项目的多智能体协作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/prompt-engineer.md" target="_blank" rel="noopener"
+&gt;提示词工程师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;LLM 提示词设计、优化、评测&lt;/td&gt;
+&lt;td&gt;提示词开发、AI 应用优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/agentic-identity-trust.md" target="_blank" rel="noopener"
+&gt;身份信任架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;AI 身份验证、信任框架&lt;/td&gt;
+&lt;td&gt;AI 系统安全与信任&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/data-consolidation-agent.md" target="_blank" rel="noopener"
+&gt;数据整合师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;多源数据整合、仪表盘&lt;/td&gt;
+&lt;td&gt;数据汇总与可视化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/lsp-index-engineer.md" target="_blank" rel="noopener"
+&gt;LSP 索引工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;代码智能、语义索引&lt;/td&gt;
+&lt;td&gt;代码导航、IDE 集成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/report-distribution-agent.md" target="_blank" rel="noopener"
+&gt;报告分发师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;报告分发、多渠道推送&lt;/td&gt;
+&lt;td&gt;自动化报告分发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/sales-data-extraction-agent.md" target="_blank" rel="noopener"
+&gt;销售数据提取师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;销售数据采集、结构化&lt;/td&gt;
+&lt;td&gt;CRM 数据处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/compliance-auditor.md" target="_blank" rel="noopener"
+&gt;合规审计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;SOC 2/ISO 27001/HIPAA 合规&lt;/td&gt;
+&lt;td&gt;合规审计、安全认证&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/accounts-payable-agent.md" target="_blank" rel="noopener"
+&gt;应付账款智能体&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;发票处理、付款自动化&lt;/td&gt;
+&lt;td&gt;财务流程自动化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/identity-graph-operator.md" target="_blank" rel="noopener"
+&gt;身份图谱操作员&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;身份解析、多源匹配&lt;/td&gt;
+&lt;td&gt;用户身份治理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-cultural-intelligence-strategist.md" target="_blank" rel="noopener"
+&gt;文化智能策略师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文化洞察、跨文化设计&lt;/td&gt;
+&lt;td&gt;全球化产品、本地化策略&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-developer-advocate.md" target="_blank" rel="noopener"
+&gt;开发者布道师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;开发者关系、DX 工程&lt;/td&gt;
+&lt;td&gt;开发者社区、技术推广&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-model-qa.md" target="_blank" rel="noopener"
+&gt;模型 QA 专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;ML 模型审计、质量验证&lt;/td&gt;
+&lt;td&gt;模型上线前检查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/zk-steward.md" target="_blank" rel="noopener"
+&gt;ZK 管家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Zettelkasten 知识管理&lt;/td&gt;
+&lt;td&gt;知识库构建、笔记系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/blockchain-security-auditor.md" target="_blank" rel="noopener"
+&gt;区块链安全审计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;智能合约审计、漏洞检测&lt;/td&gt;
+&lt;td&gt;合约安全、DeFi 审计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/study-abroad-advisor.md" target="_blank" rel="noopener"
+&gt;留学规划顾问&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;多国申请策略、选校定位&lt;/td&gt;
+&lt;td&gt;留学规划、文书指导&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/government-digital-presales-consultant.md" target="_blank" rel="noopener"
+&gt;政务数字化售前顾问&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;方案设计、标书、等保/信创&lt;/td&gt;
+&lt;td&gt;政务ToG项目售前&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/corporate-training-designer.md" target="_blank" rel="noopener"
+&gt;企业培训课程设计师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;ADDIE/SAM、企业学习平台、TTT&lt;/td&gt;
+&lt;td&gt;培训体系搭建与课程开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-mcp-builder.md" target="_blank" rel="noopener"
+&gt;MCP 构建器&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MCP 服务器、工具设计、API 集成&lt;/td&gt;
+&lt;td&gt;MCP 开发、AI 工具扩展&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-document-generator.md" target="_blank" rel="noopener"
+&gt;文档生成器&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;PDF/PPTX/DOCX/XLSX 生成&lt;/td&gt;
+&lt;td&gt;程序化文档创建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-workflow-architect.md" target="_blank" rel="noopener"
+&gt;工作流架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;工作流树设计、交接契约、故障恢复&lt;/td&gt;
+&lt;td&gt;系统流程规格化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/automation-governance-architect.md" target="_blank" rel="noopener"
+&gt;自动化治理架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;自动化审计、n8n 工作流治理、风险评估&lt;/td&gt;
+&lt;td&gt;业务自动化决策&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-salesforce-architect.md" target="_blank" rel="noopener"
+&gt;Salesforce 架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Salesforce 多云设计、集成、数据模型&lt;/td&gt;
+&lt;td&gt;企业级 Salesforce 架构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/healthcare-marketing-compliance.md" target="_blank" rel="noopener"
+&gt;医疗健康营销合规师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;医疗广告法、NMPA、互联网医疗&lt;/td&gt;
+&lt;td&gt;医疗健康营销合规&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/gaokao-college-advisor.md" target="_blank" rel="noopener"
+&gt;高考志愿填报顾问&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;平行志愿、位次法、冲稳保策略&lt;/td&gt;
+&lt;td&gt;高考志愿填报规划&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-pricing-optimizer.md" target="_blank" rel="noopener"
+&gt;动态定价策略师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;淘宝/京东/拼多多定价、大促机制&lt;/td&gt;
+&lt;td&gt;电商定价与促销策略&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-ai-policy-writer.md" target="_blank" rel="noopener"
+&gt;AI 治理政策专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;算法备案、生成式AI管理、伦理审查&lt;/td&gt;
+&lt;td&gt;AI 合规与治理框架&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-risk-assessor.md" target="_blank" rel="noopener"
+&gt;企业风险评估师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;COSO本土化、国企风控、ESG&lt;/td&gt;
+&lt;td&gt;企业风险管理与审计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/specialized/specialized-meeting-assistant.md" target="_blank" rel="noopener"
+&gt;会议效率专家&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;飞书/钉钉/腾讯会议、OKR周会&lt;/td&gt;
+&lt;td&gt;会议管理与纪要输出&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-空间计算部"&gt;🥽 空间计算部
+&lt;/h4&gt;&lt;p&gt;构建下一代空间交互体验。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/visionos-spatial-engineer.md" target="_blank" rel="noopener"
+&gt;visionOS 空间工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;visionOS、SwiftUI 空间 UI&lt;/td&gt;
+&lt;td&gt;Apple Vision Pro 开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/macos-spatial-metal-engineer.md" target="_blank" rel="noopener"
+&gt;macOS Metal 空间工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Metal、GPU 渲染&lt;/td&gt;
+&lt;td&gt;macOS 高性能图形&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/xr-interface-architect.md" target="_blank" rel="noopener"
+&gt;XR 界面架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;空间 UI 架构、交互设计&lt;/td&gt;
+&lt;td&gt;XR 应用界面设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/xr-immersive-developer.md" target="_blank" rel="noopener"
+&gt;XR 沉浸式开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;WebXR、沉浸式体验&lt;/td&gt;
+&lt;td&gt;VR/AR 应用开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/xr-cockpit-interaction-specialist.md" target="_blank" rel="noopener"
+&gt;XR 座舱交互专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;座舱 UI、多模态交互&lt;/td&gt;
+&lt;td&gt;汽车/航空 XR 交互&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/spatial-computing/terminal-integration-specialist.md" target="_blank" rel="noopener"
+&gt;终端集成专家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;终端模拟、系统集成&lt;/td&gt;
+&lt;td&gt;空间计算终端工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-游戏开发部"&gt;🎮 游戏开发部
+&lt;/h4&gt;&lt;p&gt;从独立游戏到 3A 大作，全引擎覆盖。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通用：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/game-designer.md" target="_blank" rel="noopener"
+&gt;游戏设计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;游戏机制、系统设计、平衡性&lt;/td&gt;
+&lt;td&gt;游戏核心玩法设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/level-designer.md" target="_blank" rel="noopener"
+&gt;关卡设计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;关卡布局、节奏控制、空间叙事&lt;/td&gt;
+&lt;td&gt;关卡设计、场景构建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/narrative-designer.md" target="_blank" rel="noopener"
+&gt;叙事设计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;剧情设计、对话系统、世界观&lt;/td&gt;
+&lt;td&gt;游戏剧情、互动叙事&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/technical-artist.md" target="_blank" rel="noopener"
+&gt;技术美术&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Shader、渲染管线、美术工具&lt;/td&gt;
+&lt;td&gt;画面效果、性能优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/game-audio-engineer.md" target="_blank" rel="noopener"
+&gt;游戏音频工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;音效设计、音频引擎、空间音频&lt;/td&gt;
+&lt;td&gt;游戏音效、配乐&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Unity：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unity/unity-architect.md" target="_blank" rel="noopener"
+&gt;Unity 架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Unity 架构、ECS、性能优化&lt;/td&gt;
+&lt;td&gt;Unity 项目架构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unity/unity-editor-tool-developer.md" target="_blank" rel="noopener"
+&gt;Unity 编辑器工具开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;编辑器扩展、自定义工具&lt;/td&gt;
+&lt;td&gt;Unity 工具链开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unity/unity-multiplayer-engineer.md" target="_blank" rel="noopener"
+&gt;Unity 多人游戏工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Netcode、同步、网络架构&lt;/td&gt;
+&lt;td&gt;Unity 联机游戏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unity/unity-shader-graph-artist.md" target="_blank" rel="noopener"
+&gt;Unity Shader Graph 美术师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Shader Graph、URP/HDRP&lt;/td&gt;
+&lt;td&gt;Unity 视觉效果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Unreal Engine：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unreal-engine/unreal-multiplayer-architect.md" target="_blank" rel="noopener"
+&gt;Unreal 多人游戏架构师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Replication、网络同步&lt;/td&gt;
+&lt;td&gt;UE 联机架构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unreal-engine/unreal-systems-engineer.md" target="_blank" rel="noopener"
+&gt;Unreal 系统工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Gameplay 框架、C++ 系统&lt;/td&gt;
+&lt;td&gt;UE 核心系统开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unreal-engine/unreal-technical-artist.md" target="_blank" rel="noopener"
+&gt;Unreal 技术美术&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;材质、Niagara、渲染管线&lt;/td&gt;
+&lt;td&gt;UE 画面与性能&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/unreal-engine/unreal-world-builder.md" target="_blank" rel="noopener"
+&gt;Unreal 世界构建师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;开放世界、地形、关卡串流&lt;/td&gt;
+&lt;td&gt;UE 场景构建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Blender：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/blender/blender-addon-engineer.md" target="_blank" rel="noopener"
+&gt;Blender 插件工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python 插件、资源验证、导出自动化&lt;/td&gt;
+&lt;td&gt;Blender 管线工具开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Godot：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/godot/godot-gameplay-scripter.md" target="_blank" rel="noopener"
+&gt;Godot 游戏脚本开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;GDScript、场景树、信号系统&lt;/td&gt;
+&lt;td&gt;Godot 游戏逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/godot/godot-multiplayer-engineer.md" target="_blank" rel="noopener"
+&gt;Godot 多人游戏工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MultiplayerAPI、网络同步&lt;/td&gt;
+&lt;td&gt;Godot 联机游戏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/godot/godot-shader-developer.md" target="_blank" rel="noopener"
+&gt;Godot Shader 开发者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Godot Shader Language、视觉效果&lt;/td&gt;
+&lt;td&gt;Godot 画面效果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Roblox Studio：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/roblox-studio/roblox-avatar-creator.md" target="_blank" rel="noopener"
+&gt;Roblox 虚拟形象创作者&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;虚拟形象、UGC 资产&lt;/td&gt;
+&lt;td&gt;Roblox 角色设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/roblox-studio/roblox-experience-designer.md" target="_blank" rel="noopener"
+&gt;Roblox 体验设计师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;体验设计、游戏循环&lt;/td&gt;
+&lt;td&gt;Roblox 游戏设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/game-development/roblox-studio/roblox-systems-scripter.md" target="_blank" rel="noopener"
+&gt;Roblox 系统脚本工程师&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Luau 脚本、数据存储&lt;/td&gt;
+&lt;td&gt;Roblox 游戏开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-学术部"&gt;📖 学术部
+&lt;/h4&gt;&lt;p&gt;为叙事设计、世界构建和文化研究提供学术级支撑。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;智能体&lt;/th&gt;
+&lt;th&gt;专长&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-anthropologist.md" target="_blank" rel="noopener"
+&gt;人类学家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文化体系、仪式、民族志&lt;/td&gt;
+&lt;td&gt;世界观设计、文化构建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-geographer.md" target="_blank" rel="noopener"
+&gt;地理学家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;自然与人文地理、空间分析&lt;/td&gt;
+&lt;td&gt;地图构建、场景设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-historian.md" target="_blank" rel="noopener"
+&gt;历史学家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;历史分析、史料考证&lt;/td&gt;
+&lt;td&gt;历史题材验证、年代设定&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-narratologist.md" target="_blank" rel="noopener"
+&gt;叙事学家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;叙事理论、故事结构&lt;/td&gt;
+&lt;td&gt;剧情设计、角色弧线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-psychologist.md" target="_blank" rel="noopener"
+&gt;心理学家&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;行为心理、人格理论&lt;/td&gt;
+&lt;td&gt;角色心理塑造、动机设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/academic/academic-study-planner.md" target="_blank" rel="noopener"
+&gt;学习规划师&lt;/a&gt; ⭐&lt;/td&gt;
+&lt;td&gt;考研/考公/法考备考、学习方法论&lt;/td&gt;
+&lt;td&gt;个性化学习计划与备考规划&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id="-战略部"&gt;🎯 战略部
+&lt;/h4&gt;&lt;p&gt;从发现到运营的全流程战略指导。详见 &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy" target="_blank" rel="noopener"
+&gt;strategy/&lt;/a&gt; 目录。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文档&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/EXECUTIVE-BRIEF.md" target="_blank" rel="noopener"
+&gt;高管简报&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;NEXUS 战略概览&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/QUICKSTART.md" target="_blank" rel="noopener"
+&gt;快速上手&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;5 分钟上手指南&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/nexus-strategy.md" target="_blank" rel="noopener"
+&gt;完整战略&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;运营纲领全文&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/coordination/agent-activation-prompts.md" target="_blank" rel="noopener"
+&gt;智能体激活提示词&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;各智能体的激活指令&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/coordination/handoff-templates.md" target="_blank" rel="noopener"
+&gt;交接模板&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;智能体间的交接规范&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phase 0-6 Playbooks&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-0-discovery.md" target="_blank" rel="noopener"
+&gt;发现&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-1-strategy.md" target="_blank" rel="noopener"
+&gt;策略&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-2-foundation.md" target="_blank" rel="noopener"
+&gt;基础&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-3-build.md" target="_blank" rel="noopener"
+&gt;构建&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-4-hardening.md" target="_blank" rel="noopener"
+&gt;加固&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-5-launch.md" target="_blank" rel="noopener"
+&gt;上线&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/playbooks/phase-6-operate.md" target="_blank" rel="noopener"
+&gt;运营&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;场景 Runbook&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/runbooks/scenario-startup-mvp.md" target="_blank" rel="noopener"
+&gt;创业 MVP&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/runbooks/scenario-enterprise-feature.md" target="_blank" rel="noopener"
+&gt;企业功能&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/runbooks/scenario-incident-response.md" target="_blank" rel="noopener"
+&gt;事故响应&lt;/a&gt; · &lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh/blob/main/strategy/runbooks/scenario-marketing-campaign.md" target="_blank" rel="noopener"
+&gt;营销活动&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="提示词流agent-agency"&gt;提示词流——Agent Agency
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noopener"
+&gt;A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="-roadmap"&gt;🗺️ Roadmap
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt;  Interactive agent selector web tool&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt;  Multi-agent workflow examples &amp;ndash; see &lt;a class="link" href="https://github.com/msitarzewski/agency-agents/blob/main/examples" target="_blank" rel="noopener"
+&gt;examples/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt;  Multi-tool integration scripts (Claude Code, GitHub Copilot, Antigravity, Gemini CLI, OpenCode, OpenClaw, Cursor, Aider, Windsurf, Qwen Code)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt;  Video tutorials on agent design&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt;  Community agent marketplace&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt;  Agent &amp;ldquo;personality quiz&amp;rdquo; for project matching&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt;  &amp;ldquo;Agent of the Week&amp;rdquo; showcase series&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="-community-translations--localizations"&gt;🌐 Community Translations &amp;amp; Localizations
+&lt;/h3&gt;&lt;p&gt;Community-maintained translations and regional adaptations. These are independently maintained &amp;ndash; see each repo for coverage and version compatibility.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Language&lt;/th&gt;
+&lt;th&gt;Maintainer&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;🇨🇳 简体中文 (zh-CN)&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode" target="_blank" rel="noopener"
+&gt;@jnMetaCode&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/jnMetaCode/agency-agents-zh" target="_blank" rel="noopener"
+&gt;agency-agents-zh&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;100 translated agents + 9 China-market originals&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🇨🇳 简体中文 (zh-CN)&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/dsclca12" target="_blank" rel="noopener"
+&gt;@dsclca12&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://github.com/dsclca12/agent-teams" target="_blank" rel="noopener"
+&gt;agent-teams&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Independent translation with Bilibili, WeChat, Xiaohongshu localization&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Want to add a translation? Open an issue and we&amp;rsquo;ll link it here.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-related-resources"&gt;🔗 Related Resources
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/mergisi/awesome-openclaw-agents" target="_blank" rel="noopener"
+&gt;awesome-openclaw-agents&lt;/a&gt; — Community-maintained OpenClaw agent collection (derived from this repo)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-get-started"&gt;🚀 Get Started
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Browse&lt;/strong&gt; the agents above and find specialists for your needs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Copy&lt;/strong&gt; the agents to &lt;code&gt;~/.claude/agents/&lt;/code&gt; for Claude Code integration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Activate&lt;/strong&gt; agents by referencing them in your Claude conversations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customize&lt;/strong&gt; agent personalities and workflows for your specific needs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Share&lt;/strong&gt; your results and contribute back to the community&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="提示词流paperclip"&gt;提示词流——Paperclip
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Paperclip&lt;/strong&gt; 是一个开源的 Node.js 服务器和 React UI，用于编排 AI 代理团队来运营企业。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核心理念：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果 OpenClaw 是员工，Paperclip 就是公司&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;它能做什么：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定义公司目标（如&amp;quot;打造 #1 AI 笔记应用，月入 100 万美元&amp;quot;）&lt;/li&gt;
+&lt;li&gt;雇佣 AI 团队（CEO、CTO、工程师、设计师、营销人员）&lt;/li&gt;
+&lt;li&gt;设置预算和成本监控&lt;/li&gt;
+&lt;li&gt;从统一仪表盘追踪工作和成本&lt;/li&gt;
+&lt;li&gt;✅ 审批策略、监督执行、随时干预&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;一句话：&lt;/strong&gt; 管理企业目标，而不是 Pull Requests！&lt;/p&gt;
+&lt;h3 id="技术架构一个-typescript-monorepo-里的公司"&gt;技术架构：一个 TypeScript Monorepo 里的”公司”
+&lt;/h3&gt;&lt;p&gt;Paperclip 是一个 &lt;strong&gt;pnpm monorepo&lt;/strong&gt;，完全用 TypeScript 编写，核心结构如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;server/ → Express REST API + 编排服务（端口 3100）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ui/ → React + Vite 仪表盘（支持 PWA 安装）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;packages/db/ → Drizzle ORM 数据模型与迁移
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;packages/shared/ → 共享类型、常量、校验器
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cli/ → paperclipai 命令行工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;skills/ → 运行时技能注入文件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;数据库层用 &lt;strong&gt;PostgreSQL&lt;/strong&gt;，但开发体验做得很聪明：本地开发直接内嵌 &lt;strong&gt;PGlite&lt;/strong&gt;（零外部依赖），生产环境接外部 Postgres。只需一行命令就能跑起来：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npx paperclipai onboard --yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;前端以 &lt;strong&gt;PWA&lt;/strong&gt;（Progressive Web App）形式发布，支持 Service Worker 离线缓存，可以装到手机上随时监控 Agent 状态。界面包括仪表盘、组织架构图、工单视图（支持线程式对话）、成本面板（按 Agent 显示预算进度条）、收件箱、审批队列、命令面板，以及带 Markdown 渲染的运行日志查看器。&lt;/p&gt;
+&lt;p&gt;测试框架用的是 &lt;strong&gt;Vitest&lt;/strong&gt;（单元测试）和 &lt;strong&gt;Playwright&lt;/strong&gt;（端到端测试）。CI/CD 基于 GitHub Actions，包含 PR 校验、策略检查和 lockfile 刷新流水线。&lt;/p&gt;
+&lt;h2 id="soul流crewclaw"&gt;Soul流——CrewClaw
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/mergisi/awesome-openclaw-agents" target="_blank" rel="noopener"
+&gt;162 production-ready AI agent templates for OpenClaw. SOUL.md configs across 19 categories. Submit yours!&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://crewclaw.com/" title="https://crewclaw.com"
+target="_blank" rel="noopener"
+&gt;crewclaw.com&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="getting-started"&gt;Getting Started
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/what-is-openclaw-ai-agent-framework" target="_blank" rel="noopener"
+&gt;What is OpenClaw?&lt;/a&gt; - Complete guide to the framework&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/how-to-create-ai-agent-openclaw" target="_blank" rel="noopener"
+&gt;Create Your First Agent&lt;/a&gt; - No code required&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-setup-guide-2026" target="_blank" rel="noopener"
+&gt;OpenClaw Setup Guide 2026&lt;/a&gt; - Install, configure, run&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/soul-md-examples-templates" target="_blank" rel="noopener"
+&gt;SOUL.md Templates&lt;/a&gt; - 10 ready-to-use examples&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-agent--orchestration"&gt;Multi-Agent &amp;amp; Orchestration
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-multi-agent-setup-guide" target="_blank" rel="noopener"
+&gt;Multi-Agent Setup Guide&lt;/a&gt; - Run multiple agents together&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-agent-to-agent-communication" target="_blank" rel="noopener"
+&gt;Agent-to-Agent Communication&lt;/a&gt; - How agents collaborate&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/build-ai-team-workflows" target="_blank" rel="noopener"
+&gt;Build an AI Team&lt;/a&gt; - Workflows that run autonomously&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="integrations--automation"&gt;Integrations &amp;amp; Automation
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-slack-telegram-integration" target="_blank" rel="noopener"
+&gt;Slack &amp;amp; Telegram Integration&lt;/a&gt; - Connect to messaging channels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-ollama-local-agents" target="_blank" rel="noopener"
+&gt;Run with Ollama&lt;/a&gt; - Free local AI agents&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-automation-guide" target="_blank" rel="noopener"
+&gt;Automation Guide&lt;/a&gt; - Build 24/7 workflows&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-cli-commands-reference" target="_blank" rel="noopener"
+&gt;CLI Commands Reference&lt;/a&gt; - Complete cheat sheet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="comparisons"&gt;Comparisons
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-vs-langchain" target="_blank" rel="noopener"
+&gt;OpenClaw vs LangChain&lt;/a&gt; - Framework comparison&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-vs-autogpt" target="_blank" rel="noopener"
+&gt;OpenClaw vs AutoGPT&lt;/a&gt; - Key differences&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://crewclaw.com/blog/openclaw-vs-crewai" target="_blank" rel="noopener"
+&gt;OpenClaw vs CrewAI&lt;/a&gt; - Which is better?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="新架构式三省六部翰林院"&gt;新架构式——三省六部翰林院
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/wanikua/danghuangshang" target="_blank" rel="noopener"
+&gt;AI 朝廷搭建完整教程 - 从零基础到进阶&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一行命令起王朝，三省六部皆AI。千里之外调百官，万事不劳御驾亲。&lt;/p&gt;
+&lt;p&gt;以明朝内阁制为蓝本，用 OpenClaw 框架构建的多 Agent 协作系统。 一台服务器 + OpenClaw = 一支 7×24 在线的 AI 朝廷。&lt;/p&gt;
+&lt;p&gt;AI 朝廷是一个开箱即用的多 Agent 协作系统。你是皇帝，AI 是你的大臣。在 Discord 或飞书 @某个 Agent，大臣们就会立刻执行。司礼监接旨、内阁优化 Prompt、六部各司其职、都察院自动审查代码。管理 AI 团队的高效模版。&lt;/p&gt;
+&lt;h3 id="-朝廷架构"&gt;🏛️ 朝廷架构
+&lt;/h3&gt;&lt;p&gt;三省六部制是中国古代经典制度。 &lt;strong&gt;明朝初年&lt;/strong&gt; 废丞相，司礼监 + 内阁二元治理。 本项目的Agent团队协作方式采用更贴近明朝六部的制度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方式一：经司礼监调度（默认）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;皇帝（你）下旨
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;司礼监（大内总管）── 接旨
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ 内阁（首辅）── Prompt 增强：理解意图、引导追问、生成执行计划
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ ←─┘ 返回优化后的 Prompt + Plan
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ @兵部 @户部 @礼部 …（按 Plan 派发）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─→ 都察院 ── 代码 push 到 GitHub 时自动审查
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─→ ✅ 通过 / ❌ 打回修改
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;方式二：皇帝直接下旨给任意部门&lt;/strong&gt;（Discord 多 Bot 模式）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;皇帝（你）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ @兵部 写个登录 API ← 直接指挥，跳过司礼监
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ @户部 查本月开销
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─→ @都察院 审查这个 PR
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Discord 多 Bot 模式下，每个部门都是独立 Bot，你可以直接 @任意部门下达指令，无需经过司礼监。复杂任务推荐走司礼监（自动内阁优化），简单任务直接 @对应部门更快。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;查看完整机构表&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;机构&lt;/th&gt;
+&lt;th&gt;角色&lt;/th&gt;
+&lt;th&gt;在本项目中&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;司礼监&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;大内总管&lt;/td&gt;
+&lt;td&gt;接旨 → 送内阁优化 → 派发六部&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;内阁&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;首辅大学士&lt;/td&gt;
+&lt;td&gt;Prompt 增强、追问、生成计划、重大决策审议&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;都察院&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;左都御史&lt;/td&gt;
+&lt;td&gt;GitHub push 自动代码审查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;兵部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;软件工程：编码、架构、Bug 调试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;户部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;财务运营：成本分析、预算管控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;礼部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;品牌营销：文案、社媒运营&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;工部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;运维：DevOps、CI/CD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;吏部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;项目管理、团队协调&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;刑部&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;尚书&lt;/td&gt;
+&lt;td&gt;法务合规、知识产权&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;与明朝制度的映射：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;明朝&lt;/th&gt;
+&lt;th&gt;本项目&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;皇帝下旨 → 司礼监批红&lt;/td&gt;
+&lt;td&gt;用户 @司礼监 → 接旨调度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;内阁票拟（起草方案）&lt;/td&gt;
+&lt;td&gt;内阁 Prompt 增强 + Plan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;司礼监代批（下发执行）&lt;/td&gt;
+&lt;td&gt;用优化后 Prompt 派发六部&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;都察院纠劾百官&lt;/td&gt;
+&lt;td&gt;GitHub push 自动审查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;内阁封驳权&lt;/td&gt;
+&lt;td&gt;内阁可否决不合理方案&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>从头实现属于自己的 OpenClaw</title><link>https://hanguangwu.github.io/blog/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</link><pubDate>Sun, 15 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</guid><description>&lt;h1 id="从头实现属于自己的-openclaw"&gt;从头实现属于自己的 OpenClaw
 &lt;/h1&gt;&lt;h2 id="claw0-简介"&gt;claw0 简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/shareAI-lab/claw0" target="_blank" rel="noopener"
 &gt;项目链接&lt;/a&gt;&lt;/p&gt;
