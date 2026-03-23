@@ -1,0 +1,771 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍如何使用Python获取中国历史资料。"><title>使用Python获取中国历史资料</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="使用Python获取中国历史资料"><meta property='og:description' content="本文介绍如何使用Python获取中国历史资料。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Python'><meta property='article:tag' content='爬虫'><meta property='article:tag' content='历史'><meta property='article:published_time' content='2026-03-20T22:34:25-08:00'><meta property='article:modified_time' content='2026-03-20T22:34:25-08:00'><meta name=twitter:title content="使用Python获取中国历史资料"><meta name=twitter:description content="本文介绍如何使用Python获取中国历史资料。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#基本流程>基本流程</a></li><li><a href=#python代码实现>Python代码实现</a><ol><li><a href=#顺序获取-url-地址scrape_history_zhoupy>顺序获取 URL 地址<code>scrape_history_zhou.py</code></a></li><li><a href=#根据url获取当年内容scrape_historypy>根据URL获取当年内容<code>scrape_history.py</code></a></li></ol></li><li><a href=#结果展示>结果展示</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/%E7%BC%96%E7%A8%8B/>编程</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/>使用Python获取中国历史资料</a></h2><h3 class=article-subtitle>本文介绍如何使用Python获取中国历史资料。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 20, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 11 分钟</time></div></footer></div></header><section class=article-content><h1 id=使用python获取中国历史资料>使用Python获取中国历史资料</h1><h2 id=基本流程>基本流程</h2><p>资料来源： <a class=link href=https://www.ilishi.com.cn target=_blank rel=noopener>https://www.ilishi.com.cn</a></p><p>先顺序获取URL地址，然后根据生成的JSON文件逐年获取历史资料，最后存为 Markdown 文件。</p><h2 id=python代码实现>Python代码实现</h2><h3 id=顺序获取-url-地址scrape_history_zhoupy>顺序获取 URL 地址<code>scrape_history_zhou.py</code></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python3</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>使用Playwright自动化工具抓取历史年表URL
+</span></span></span><span class=line><span class=cl><span class=s2>从公元前841年开始，通过&#34;下一篇&#34;链接逐页获取
+</span></span></span><span class=line><span class=cl><span class=s2>保存为JSON文件，按时间排序
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datetime</span> <span class=kn>import</span> <span class=n>datetime</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=kn>from</span> <span class=nn>playwright.sync_api</span> <span class=kn>import</span> <span class=n>sync_playwright</span>
+</span></span><span class=line><span class=cl><span class=k>except</span> <span class=ne>ImportError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;请安装playwright: pip install playwright&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;并运行: playwright install chromium&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ============== 配置区域 ==============</span>
+</span></span><span class=line><span class=cl><span class=n>START_URL</span> <span class=o>=</span> <span class=s1>&#39;https://www.ilishi.com.cn/2024/101776.html&#39;</span>  <span class=c1># 起始页面（公元前841年）</span>
+</span></span><span class=line><span class=cl><span class=n>OUTPUT_FILE</span> <span class=o>=</span> <span class=s1>&#39;zhou_ilishi_history_urls.json&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>HEADLESS</span> <span class=o>=</span> <span class=kc>True</span>  <span class=c1># 无头模式</span>
+</span></span><span class=line><span class=cl><span class=n>TIMEOUT</span> <span class=o>=</span> <span class=mi>30000</span>  <span class=c1># 页面加载超时（毫秒）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ======================================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_year_from_title</span><span class=p>(</span><span class=n>title</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;从页面标题提取年份&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 匹配 &#34;公元前X年&#34; 或 &#34;公元X年&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>match</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;(公元前\d+年|公元\d+年)&#39;</span><span class=p>,</span> <span class=n>title</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=k>match</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>year_str</span> <span class=o>=</span> <span class=k>match</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 转换为数字</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=s1>&#39;公元前&#39;</span> <span class=ow>in</span> <span class=n>year_str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>year</span> <span class=o>=</span> <span class=o>-</span><span class=nb>int</span><span class=p>(</span><span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;\d+&#39;</span><span class=p>,</span> <span class=n>year_str</span><span class=p>)</span><span class=o>.</span><span class=n>group</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>year</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;\d+&#39;</span><span class=p>,</span> <span class=n>year_str</span><span class=p>)</span><span class=o>.</span><span class=n>group</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>year</span><span class=p>,</span> <span class=n>year_str</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>scrape_history_urls</span><span class=p>(</span><span class=n>start_url</span><span class=p>,</span> <span class=n>output_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;抓取历史年表URL&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>results</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>visited</span> <span class=o>=</span> <span class=nb>set</span><span class=p>()</span>  <span class=c1># 避免重复访问</span>
+</span></span><span class=line><span class=cl>    <span class=n>page_num</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=n>max_pages</span> <span class=o>=</span> <span class=mi>500</span>  <span class=c1># 最大页数限制，防止死循环</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;开始抓取，起始URL: </span><span class=si>{</span><span class=n>start_url</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;=&#34;</span> <span class=o>*</span> <span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>sync_playwright</span><span class=p>()</span> <span class=k>as</span> <span class=n>p</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 启动浏览器</span>
+</span></span><span class=line><span class=cl>        <span class=n>browser</span> <span class=o>=</span> <span class=n>p</span><span class=o>.</span><span class=n>chromium</span><span class=o>.</span><span class=n>launch</span><span class=p>(</span><span class=n>headless</span><span class=o>=</span><span class=n>HEADLESS</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>context</span> <span class=o>=</span> <span class=n>browser</span><span class=o>.</span><span class=n>new_context</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>page</span> <span class=o>=</span> <span class=n>context</span><span class=o>.</span><span class=n>new_page</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>current_url</span> <span class=o>=</span> <span class=n>start_url</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>while</span> <span class=n>current_url</span> <span class=ow>and</span> <span class=n>page_num</span> <span class=o>&lt;</span> <span class=n>max_pages</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>page_num</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 检查是否已访问</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>current_url</span> <span class=ow>in</span> <span class=n>visited</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[</span><span class=si>{</span><span class=n>page_num</span><span class=si>}</span><span class=s2>] 跳过已访问: </span><span class=si>{</span><span class=n>current_url</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>visited</span><span class=o>.</span><span class=n>add</span><span class=p>(</span><span class=n>current_url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 访问页面</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[</span><span class=si>{</span><span class=n>page_num</span><span class=si>}</span><span class=s2>] 访问: </span><span class=si>{</span><span class=n>current_url</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>page</span><span class=o>.</span><span class=n>goto</span><span class=p>(</span><span class=n>current_url</span><span class=p>,</span> <span class=n>timeout</span><span class=o>=</span><span class=n>TIMEOUT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 获取页面标题</span>
+</span></span><span class=line><span class=cl>                <span class=n>title</span> <span class=o>=</span> <span class=n>page</span><span class=o>.</span><span class=n>title</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  标题: </span><span class=si>{</span><span class=n>title</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 提取年份</span>
+</span></span><span class=line><span class=cl>                <span class=n>year</span><span class=p>,</span> <span class=n>year_str</span> <span class=o>=</span> <span class=n>extract_year_from_title</span><span class=p>(</span><span class=n>title</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>year</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  [警告] 无法从标题提取年份: </span><span class=si>{</span><span class=n>title</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 尝试从页面内容提取</span>
+</span></span><span class=line><span class=cl>                    <span class=n>content</span> <span class=o>=</span> <span class=n>page</span><span class=o>.</span><span class=n>content</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                    <span class=n>year_match</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;(公元前\d+年|公元\d+年)&#39;</span><span class=p>,</span> <span class=n>content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>year_match</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>year_str</span> <span class=o>=</span> <span class=n>year_match</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=k>if</span> <span class=s1>&#39;公元前&#39;</span> <span class=ow>in</span> <span class=n>year_str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>year</span> <span class=o>=</span> <span class=o>-</span><span class=nb>int</span><span class=p>(</span><span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;\d+&#39;</span><span class=p>,</span> <span class=n>year_str</span><span class=p>)</span><span class=o>.</span><span class=n>group</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>                        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                            <span class=n>year</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;\d+&#39;</span><span class=p>,</span> <span class=n>year_str</span><span class=p>)</span><span class=o>.</span><span class=n>group</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>                            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  从内容提取年份: </span><span class=si>{</span><span class=n>year_str</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  [停止] 无法提取年份，终止抓取&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 保存结果</span>
+</span></span><span class=line><span class=cl>                <span class=n>results</span><span class=o>.</span><span class=n>append</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;year&#39;</span><span class=p>:</span> <span class=n>year</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;year_str&#39;</span><span class=p>:</span> <span class=n>year_str</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;title&#39;</span><span class=p>:</span> <span class=n>title</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39; - 爱历史网&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;url&#39;</span><span class=p>:</span> <span class=n>current_url</span>
+</span></span><span class=line><span class=cl>                <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  年份: </span><span class=si>{</span><span class=n>year_str</span><span class=si>}</span><span class=s2>, URL: </span><span class=si>{</span><span class=n>current_url</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 查找&#34;下一篇&#34;链接</span>
+</span></span><span class=line><span class=cl>                <span class=n>next_link</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 方法1: 通过CSS选择器查找</span>
+</span></span><span class=line><span class=cl>                <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 查找包含&#34;下一篇&#34;的元素</span>
+</span></span><span class=line><span class=cl>                    <span class=n>next_element</span> <span class=o>=</span> <span class=n>page</span><span class=o>.</span><span class=n>locator</span><span class=p>(</span><span class=s1>&#39;text=下一篇&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>first</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>next_element</span><span class=o>.</span><span class=n>count</span><span class=p>()</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=c1># 获取父级链接</span>
+</span></span><span class=line><span class=cl>                        <span class=n>next_link</span> <span class=o>=</span> <span class=n>next_element</span><span class=o>.</span><span class=n>locator</span><span class=p>(</span><span class=s1>&#39;xpath=../a&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>get_attribute</span><span class=p>(</span><span class=s1>&#39;href&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 方法2: 通过HTML结构查找</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=ow>not</span> <span class=n>next_link</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=c1># 查找 class=&#34;fr chao f16&#34; 的 p 标签中的链接</span>
+</span></span><span class=line><span class=cl>                        <span class=n>next_link</span> <span class=o>=</span> <span class=n>page</span><span class=o>.</span><span class=n>evaluate</span><span class=p>(</span><span class=s1>&#39;&#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>                                                  () =&gt; {
+</span></span></span><span class=line><span class=cl><span class=s1>                                                      const elements = document.querySelectorAll(&#39;.fr.chao.f16&#39;);
+</span></span></span><span class=line><span class=cl><span class=s1>                                                      for (const el of elements) {
+</span></span></span><span class=line><span class=cl><span class=s1>                                                          const link = el.querySelector(&#39;a&#39;);
+</span></span></span><span class=line><span class=cl><span class=s1>                                                          if (link &amp;&amp; link.href) {
+</span></span></span><span class=line><span class=cl><span class=s1>                                                              return link.href;
+</span></span></span><span class=line><span class=cl><span class=s1>                                                          }
+</span></span></span><span class=line><span class=cl><span class=s1>                                                      }
+</span></span></span><span class=line><span class=cl><span class=s1>                                                      return null;
+</span></span></span><span class=line><span class=cl><span class=s1>                                                  }
+</span></span></span><span class=line><span class=cl><span class=s1>                                                  &#39;&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=c1># 方法3: 通过正则匹配HTML</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=ow>not</span> <span class=n>next_link</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>html</span> <span class=o>=</span> <span class=n>page</span><span class=o>.</span><span class=n>content</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                    <span class=k>match</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;下一篇：&lt;a href=&#34;(/2024/\d+\.html)&#34;&gt;([^&lt;]+)&lt;/a&gt;&#39;</span><span class=p>,</span> <span class=n>html</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=k>match</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>next_link</span> <span class=o>=</span> <span class=s1>&#39;https://www.ilishi.com.cn&#39;</span> <span class=o>+</span> <span class=k>match</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  通过正则找到下一篇: </span><span class=si>{</span><span class=n>next_link</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>next_link</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 确保是完整URL</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>next_link</span><span class=o>.</span><span class=n>startswith</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                        <span class=n>next_link</span> <span class=o>=</span> <span class=s1>&#39;https://www.ilishi.com.cn&#39;</span> <span class=o>+</span> <span class=n>next_link</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                    <span class=c1># 检查是否是有效的下一页</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># if &#39;10260&#39; in next_link or &#39;/2024/1026&#39; in next_link:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=s1>&#39;fl&#39;</span> <span class=ow>in</span> <span class=n>next_link</span> <span class=ow>or</span> <span class=s1>&#39;jn&#39;</span> <span class=ow>in</span> <span class=n>next_link</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  [停止] 下一篇链接异常: </span><span class=si>{</span><span class=n>next_link</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=k>break</span>
+</span></span><span class=line><span class=cl>                    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>current_url</span> <span class=o>=</span> <span class=n>next_link</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  -&gt; 下一篇: </span><span class=si>{</span><span class=n>current_url</span><span class=si>}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  [停止] 未找到下一页链接&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  [错误] 处理页面失败: </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>browser</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 按年份排序</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>+</span> <span class=s2>&#34;=&#34;</span> <span class=o>*</span> <span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;按年份排序...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>sorted_results</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span><span class=n>results</span><span class=p>,</span> <span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span> <span class=n>x</span><span class=p>[</span><span class=s1>&#39;year&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 保存为JSON</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;保存到: </span><span class=si>{</span><span class=n>output_file</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>output_file</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>json</span><span class=o>.</span><span class=n>dump</span><span class=p>(</span><span class=n>sorted_results</span><span class=p>,</span> <span class=n>f</span><span class=p>,</span> <span class=n>ensure_ascii</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>indent</span><span class=o>=</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>抓取完成! 共获取 </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>sorted_results</span><span class=p>)</span><span class=si>}</span><span class=s2> 条记录&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 显示部分结果</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>前5条:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>sorted_results</span><span class=p>[:</span><span class=mi>5</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;year_str&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;url&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>后5条:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>sorted_results</span><span class=p>[</span><span class=o>-</span><span class=mi>5</span><span class=p>:]:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;year_str&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;url&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>sorted_results</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;主函数&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;=&#34;</span> <span class=o>*</span> <span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;历史年表URL抓取工具&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;=&#34;</span> <span class=o>*</span> <span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;起始URL: </span><span class=si>{</span><span class=n>START_URL</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;输出文件: </span><span class=si>{</span><span class=n>OUTPUT_FILE</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;无头模式: </span><span class=si>{</span><span class=n>HEADLESS</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;=&#34;</span> <span class=o>*</span> <span class=mi>50</span> <span class=o>+</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 抓取</span>
+</span></span><span class=line><span class=cl>    <span class=n>results</span> <span class=o>=</span> <span class=n>scrape_history_urls</span><span class=p>(</span><span class=n>START_URL</span><span class=p>,</span> <span class=n>OUTPUT_FILE</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>完成!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=根据url获取当年内容scrape_historypy>根据URL获取当年内容<code>scrape_history.py</code></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>requests</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>bs4</span> <span class=kn>import</span> <span class=n>BeautifulSoup</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_year_content</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>year</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>headers</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;User-Agent&#39;</span><span class=p>:</span> <span class=s1>&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>response</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>headers</span><span class=o>=</span><span class=n>headers</span><span class=p>,</span> <span class=n>timeout</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>response</span><span class=o>.</span><span class=n>encoding</span> <span class=o>=</span> <span class=s1>&#39;utf-8&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>response</span><span class=o>.</span><span class=n>status_code</span> <span class=o>!=</span> <span class=mi>200</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>soup</span> <span class=o>=</span> <span class=n>BeautifulSoup</span><span class=p>(</span><span class=n>response</span><span class=o>.</span><span class=n>text</span><span class=p>,</span> <span class=s1>&#39;html.parser&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>content_div</span> <span class=o>=</span> <span class=n>soup</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>,</span> <span class=p>{</span><span class=s1>&#39;id&#39;</span><span class=p>:</span> <span class=s1>&#39;contentText&#39;</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>content_div</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>paragraphs</span> <span class=o>=</span> <span class=n>content_div</span><span class=o>.</span><span class=n>find_all</span><span class=p>(</span><span class=s1>&#39;p&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>content_paragraphs</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>paragraphs</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>p</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s1>&#39;img&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>text</span> <span class=o>=</span> <span class=n>p</span><span class=o>.</span><span class=n>get_text</span><span class=p>(</span><span class=n>strip</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>text</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>re</span><span class=o>.</span><span class=k>match</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;^公元\d+年，&#39;</span><span class=p>,</span> <span class=n>text</span><span class=p>)</span> <span class=ow>or</span> <span class=n>re</span><span class=o>.</span><span class=k>match</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;^西元\d+年，&#39;</span><span class=p>,</span> <span class=n>text</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>continue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>content_paragraphs</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>content_paragraphs</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>content_text</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>content_paragraphs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;year&#39;</span><span class=p>:</span> <span class=sa>f</span><span class=s1>&#39;西元</span><span class=si>{</span><span class=n>year</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;content&#39;</span><span class=p>:</span> <span class=n>content_text</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>requests</span><span class=o>.</span><span class=n>RequestException</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>scrape_history</span><span class=p>(</span><span class=n>urls</span><span class=p>,</span> <span class=n>years</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>results</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>failed_urls</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>urls</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>temp_url</span> <span class=o>=</span> <span class=n>urls</span><span class=p>[</span><span class=n>i</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>year</span> <span class=o>=</span> <span class=n>years</span><span class=p>[</span><span class=n>i</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;Processing </span><span class=si>{</span><span class=n>temp_url</span><span class=si>}</span><span class=s1> (西元</span><span class=si>{</span><span class=n>year</span><span class=si>}</span><span class=s1>)...&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>get_year_content</span><span class=p>(</span><span class=n>temp_url</span><span class=p>,</span> <span class=n>year</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>results</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;  Success: </span><span class=si>{</span><span class=n>data</span><span class=p>[</span><span class=s2>&#34;year&#34;</span><span class=p>]</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_urls</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;  Failed or empty&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mf>0.5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>results</span><span class=p>,</span> <span class=n>failed_urls</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>save_to_markdown</span><span class=p>(</span><span class=n>results</span><span class=p>,</span> <span class=n>filename</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;# 历史年表</span><span class=se>\n\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;| 年份 | 内容 |</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;|------|------|</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>results</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>escaped_content</span> <span class=o>=</span> <span class=n>item</span><span class=p>[</span><span class=s1>&#39;content&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;|&#39;</span><span class=p>,</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>|&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>,</span> <span class=s1>&#39;&lt;br/&gt;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;| </span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=s2>&#34;year&#34;</span><span class=p>]</span><span class=si>}</span><span class=s1>年 | </span><span class=si>{</span><span class=n>escaped_content</span><span class=si>}</span><span class=s1> |</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>Data saved to </span><span class=si>{</span><span class=n>filename</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>process_urls_from_json</span><span class=p>(</span><span class=n>input_json</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;从JSON读取URL列表，批量获取内容&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 读取URL列表</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;读取URL列表: </span><span class=si>{</span><span class=n>input_json</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>input_json</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>url_data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;共有 </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>url_data</span><span class=p>)</span><span class=si>}</span><span class=s2> 个URL需要处理&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>urls</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>years</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>url_data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>urls</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;url&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=n>years</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=s1>&#39;year&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>urls</span><span class=p>,</span> <span class=n>years</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>input_json</span> <span class=o>=</span> <span class=s1>&#39;zhou_ilishi_history_urls.json&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>filename</span> <span class=o>=</span> <span class=s1>&#39;history_data_zhou.md&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>urls</span><span class=p>,</span> <span class=n>years</span> <span class=o>=</span> <span class=n>process_urls_from_json</span><span class=p>(</span><span class=n>input_json</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>results</span><span class=p>,</span> <span class=n>failed_urls</span> <span class=o>=</span> <span class=n>scrape_history</span><span class=p>(</span><span class=n>urls</span><span class=p>,</span> <span class=n>years</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>Successfully scraped </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>results</span><span class=p>)</span><span class=si>}</span><span class=s1> years&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;Failed to scrape </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>failed_urls</span><span class=p>)</span><span class=si>}</span><span class=s1> URLs&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>failed_urls</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>Failed URLs:&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>url</span> <span class=ow>in</span> <span class=n>failed_urls</span><span class=p>[:</span><span class=mi>10</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;  </span><span class=si>{</span><span class=n>url</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>failed_urls</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>10</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;  ... and </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>failed_urls</span><span class=p>)</span> <span class=o>-</span> <span class=mi>10</span><span class=si>}</span><span class=s1> more&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>save_to_markdown</span><span class=p>(</span><span class=n>results</span><span class=p>,</span> <span class=n>filename</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=结果展示>结果展示</h2><p>URL地址：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>[</span>  
+</span></span><span class=line><span class=cl>  <span class=p>{</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year&#34;</span><span class=p>:</span> <span class=mi>-841</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year_str&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前841年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前841年历史纪年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;url&#34;</span><span class=p>:</span> <span class=s2>&#34;https://www.ilishi.com.cn/2024/101776.html&#34;</span>  
+</span></span><span class=line><span class=cl>  <span class=p>},</span>  
+</span></span><span class=line><span class=cl>  <span class=p>{</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year&#34;</span><span class=p>:</span> <span class=mi>-831</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year_str&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前831年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前831年历史纪年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;url&#34;</span><span class=p>:</span> <span class=s2>&#34;https://www.ilishi.com.cn/2024/101777.html&#34;</span>  
+</span></span><span class=line><span class=cl>  <span class=p>},</span>  
+</span></span><span class=line><span class=cl>  <span class=p>{</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year&#34;</span><span class=p>:</span> <span class=mi>-830</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;year_str&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前830年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=s2>&#34;公元前830年历史纪年&#34;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;url&#34;</span><span class=p>:</span> <span class=s2>&#34;https://www.ilishi.com.cn/2024/101778.html&#34;</span>  
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>历史资料内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 历史年表
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>| 年份 | 内容 |
+</span></span><span class=line><span class=cl>|------|------|
+</span></span><span class=line><span class=cl>| 西元-841年 | 公元前841年，岁次庚申，猴年。是中国有确切纪年的开始。&lt;br/&gt;1、公元前841年简介&lt;br/&gt;公元前841年，是中国历史的端口年份， 此时在位的周厉王刚愎自用，行事暴虐封杀言论，对敢言其不是的国人实行高压手段，《国语·周语上》有载：“国人莫敢言，道路以目。”最终酿成“国人暴动”，导致厉王逃出王宫“出奔于彘”，由召公与周公二相行政，史称“共和行政”。&lt;br/&gt;2、公元前841年“共和时政”时代&lt;br/&gt;公元前841年历史年表 公元前841年历史大事 公元前841年大事记国人暴动&lt;br/&gt;历史上大名鼎鼎的“共和元年”。“共和”这一新概念，当时是指不要国王了，有多位贤臣共同来执政，求得一种和谐与和平。这个“共和”制度肯定比周厉王一人独裁好，是没有疑问的。而且从这一年开始，中国每一位帝王的在位、驾崩时间，全部有了明确记载至到宣统退位(共计2752年)，这也是世界史上没有的。至于召公会不会实行他那十二条了解下情的办法，没有史书记载，不好瞎说。又过了十四年(公元前828年)，厉王死于彘。这时太子(姬静) 也在召公家里读书学习长大成人了。周、召两公就和大臣商量撤下了“共和”这个招牌，又复回了禹王的老传统，拥立太子为周宣王。宣王继位一开始十多年还算好。二十年后，他老爸周厉王的毛病又在他身上复发了。不再听大臣的忠谏，结果打了一次败仗，七年后去世。又换上了周厉王之孙(周幽王) 继了位，这是西周最后的一位亡国之君。公元前的西周、东周姬家王朝长达790年，从公元前大约1046年(见《夏商周断代工程》)的周武王姬发，到公元前256年的周赧王姬延)，它是一个在世界上独一无二的，比较牢固而又漫长可怕的奴隶、封建、以君为本的社会。&lt;br/&gt;公元前841年，如果仅仅以年份而论，这是中国历史上最重要的一年，因为从这一年开始，中国历史才有了确切的年份记载。从此之后，中国历史就进入了完全信史时代。而在这一年之前，在前面写了好几千年，明确写出年份的也有一千多年，但那些年代，都是大致年份，并不是有文字确切记录的年份。只有到了公元前841年，我们才敢于充满信心地将哪一年的事归于哪一年。感谢伟大的司马迁先生，他以他的付出，为我们这些后世历史工作者及爱好者，梳理出了一条准确的历史通道。伟人千古。&lt;br/&gt;当然，公元前841年之所以了不起，还不仅仅因为这一年是准确记年之始，这一年所发生的“国人暴动”，让中国进入了一个“共和”时代。国人暴动的起因很简单，那就是典型的官逼民反。上一节我们谈到过，周厉王以其残酷的统治，辅以特务手段，成功地使国内的老百姓再也没人敢于抨击他的暴政，不仅不敢抨击，评论也不敢了，又不止不敢评论，说话都不敢了。让人连话都不敢说的政府，不管他有多么强横的手段，也注定不长久。&lt;br/&gt;说他在编纂史书时查阅了大量的文献资料，关于纪年的书籍很多，但是他们在共和元年（公元前841年）之后的记载是一致的，也就是说，公元前841年以后的确切纪年是可以确定的。&lt;br/&gt;3、公元前841年历史记载&lt;br/&gt;那么前841年以前的纪年有没有记载呢？有，而且司马迁说，自黄帝时代以来都有确切的纪年。可是不同的资料说法也有所不同，真实的历史纪年没法确定，于是本着实事求是的原则，司马迁没有把它们记录下来。随着历史的演进，那些有着公元前841年以前的纪年的珍贵史料渐渐湮没失传了，流传下来最早的年表就只有史记的十二诸侯年表了，因此我们取公元前841年作为中国有确切纪年的历史的开始。&lt;br/&gt;《史记·十二诸侯年表》始于前841年。是年为：宋釐公十八年，周厉王三十七年、共和元年，齐武公十年，陈幽公十四年，蔡武侯二十三年，曹夷伯二十四年，燕惠侯二十四年，鲁真公十五年，楚熊勇七年，卫釐侯十四年，晋靖侯十八年，秦嬴仲四年。&lt;br/&gt;共和行政指西周时期国人暴动后，周厉王出奔，由召穆公、周定公共同主持政事的政权，一说为共伯和执政。从公元前841年到公元前828年，共持续十四年。共和元年，即公元前841年，是我国现存史料中有确切纪年的开始。共和十四年，即公元前828年，周厉王死于彘，太子静即位，是为周宣王，共和结束。&lt;br/&gt;公元前841年·中国周厉王暴虐，国人暴动，厉王逃亡。召公、周公行政，号曰共和。中国历史准确年代自此开始（共和当年改元）共和 前841年——前828年 在位14年。公元前841年1月12日，周厉王三十七年、鲁真公十五年夏正头年十二月朔壬子。周历共和元年正月初一日。由《西周金文历谱》按《膳夫山鼎》推定为：“厉王三十七年正月壬子朔。” |
+</span></span><span class=line><span class=cl>| 西元-831年 | 在公元前831年，撒缦以色遭到乌拉尔图人的反抗。公元前831年，周共和十一年 鲁真公二十五年 陈僖公元年 宋国君僖公卒，子惠公覸（jian）即位。陈幽公十二年，幽公二十三年卒就可以推定为公元前&lt;br/&gt;公元前831年 - 周宣王&lt;br/&gt;周宣王七年（公元前831年），随申伯平定申、甫、许三个小国，此时仲氏也随父亲孙子仲到甫国，并留下《汝坟》和《汉广》等诗。宣王八年到十年，尹吉甫奉命东征鲁国，担任监建营房一职。即至三年后回家时，父母却为他娶了一名姜姓女子，致使仲氏被休回娘家。&lt;br/&gt;在公元前831年，撒缦以色遭到乌拉尔图人的反抗。子举，子鲍祀之子，公元前858~前831年，宋厘公，葬于河南永城市芒山镇僖山 春秋时期: 子 见:子举之子，公元前830~前800年，宋惠公，葬于河南商丘旧城区地下待考 子□□:子见之子，公元前800~前800年，宋哀公，葬于河南商丘旧城区地下待考 子□□:宋哀公之子。&lt;br/&gt;公元前831年 - 厉王奔彘&lt;br/&gt;幽公十二年，周厉王奔于彘。二十三年，幽公卒，子釐公孝立。釐公六年，周宣王即位。(《陈杞世家》36.1575、1576)按照这个记载，宣壬“即位”的年代应在厉王奔彘以后17年。如上面己经指定，厉王奔彘年为公元前842年。此年等于陈幽公十二年，幽公二十三年卒就可以推定为公元前831年。子釐公按照古时通例以次年即公元前830年为元年，在位6年“周宣王即位”就是公元前825年。&lt;br/&gt;除了《陈杞世家》以外，其他的古书也反映宣王时代曾使用过两个相隔二年的年历。《史记·秦本纪》里定秦仲的卒年为宣王六年:秦仲立三年，周厉王无道，诸侯或叛之。西戎反王室，灭犬丘大骆之族。周宣王即位，乃以秦仲为大夫，诛西戎。西戎杀秦仲。秦仲立二十三年，死于戎。 |
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/python/>Python</a>
+<a href=/blog/tags/%E7%88%AC%E8%99%AB/>爬虫</a>
+<a href=/blog/tags/%E5%8E%86%E5%8F%B2/>历史</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/><div class=article-details><h2 class=article-title>使用Python实现文本加密</h2></div></a></article><article><a href=/blog/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/><div class=article-details><h2 class=article-title>使用Python处理文件名与拼音转换</h2></div></a></article><article><a href=/blog/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/><div class=article-details><h2 class=article-title>批量下载 Cloudflare R2 中的文件</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>基于 ResNet18 实现 CIFAR100 图像分类Web应用</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>基于Python实现数字识别Web应用</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
