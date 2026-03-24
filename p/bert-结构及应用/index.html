@@ -1,0 +1,341 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍 BERT 结构及应用。"><title>BERT 结构及应用</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="BERT 结构及应用"><meta property='og:description' content="本文介绍 BERT 结构及应用。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='BERT'><meta property='article:published_time' content='2026-03-23T12:34:25-08:00'><meta property='article:modified_time' content='2026-03-23T12:34:25-08:00'><meta name=twitter:title content="BERT 结构及应用"><meta name=twitter:description content="本文介绍 BERT 结构及应用。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/ selected>中文</option><option value=https://hanguangwu.github.io/blog/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一bert-的设计原理与预训练策略>一、BERT 的设计原理与预训练策略</a></li><li><a href=#二bert-架构详解>二、BERT 架构详解</a><ol><li><a href=#21-bert-的模型规模>2.1 BERT 的模型规模</a></li><li><a href=#22-bert-的输入表示>2.2 BERT 的输入表示</a></li><li><a href=#23-特殊词元>2.3 特殊词元</a></li></ol></li><li><a href=#三bert-的预训练任务>三、BERT 的预训练任务</a><ol><li><a href=#31-任务一掩码语言模型-masked-language-model-mlm>3.1 任务一：掩码语言模型 (Masked Language Model, MLM)</a></li><li><a href=#32-任务二下一句预测-next-sentence-prediction-nsp>3.2 任务二：下一句预测 (Next Sentence Prediction, NSP)</a></li></ol></li><li><a href=#四bert-的应用与实践>四、BERT 的应用与实践</a><ol><li><a href=#41-微调下游任务>4.1 微调下游任务</a></li><li><a href=#42-实践技巧与生态>4.2 实践技巧与生态</a><ol><li><a href=#421-输入处理与限制>4.2.1 输入处理与限制</a></li><li><a href=#422-特征提取策略>4.2.2 特征提取策略</a></li><li><a href=#423-hugging-face-transformers-生态>4.2.3 Hugging Face Transformers 生态</a></li></ol></li></ol></li><li><a href=#五bert-代码实战>五、BERT 代码实战</a><ol><li><a href=#51-环境准备>5.1 环境准备</a></li><li><a href=#52-代码示例>5.2 代码示例</a></li><li><a href=#53-模型结构分解>5.3 模型结构分解</a></li></ol></li><li><a href=#练习>练习</a></li><li><a href=#参考文献>参考文献</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/datawhale/>Datawhale
+</a><a href=/blog/categories/nlp/>NLP</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/>BERT 结构及应用</a></h2><h3 class=article-subtitle>本文介绍 BERT 结构及应用。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 23, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 17 分钟</time></div></footer></div></header><section class=article-content><h1 id=bert-结构及应用>BERT 结构及应用</h1><p>我们在前面的章节中探讨了 Transformer 架构，它的结构是由一个编码器和一个解码器组成，而这两部分内部又分别由 N 个相同的层堆叠而成。Transformer 的提出催生了许多强大的预训练模型。有趣的是，这些后续模型往往只采用了 Transformer 架构的一部分。其中，以 GPT 为代表的模型<strong>采用解码器结构</strong>，主要任务是预测下一个词元，这种特性使其天然适用于文本生成任务。而本章的主角 <strong>BERT（Bidirectional Encoder Representations from Transformers）</strong>，则完全基于<strong>编码器结构</strong>构建 <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。</p><p>正如其名，BERT 的核心优势在于其<strong>双向性</strong>。通过 Transformer 编码器中自注意力机制能够同时关注上下文的特性，BERT 在理解语言的深层语义方面取得了突破性进展。这一设计也决定了 BERT 的核心应用场景，它是一个强大的<strong>语言理解</strong>模型，但在不进行结构改造的前提下，<strong>不适用于文本生成</strong>。这是因为它在预测时能够“看到”整个输入序列，而以 GPT 为代表的生成模型在预测下一个词时，必须严格遵守“只能看到过去”的单向规则。</p><h2 id=一bert-的设计原理与预训练策略>一、BERT 的设计原理与预训练策略</h2><p>在 BERT 出现之前，像 Word2Vec 这样的模型能够为词语生成一个固定的向量表示（静态词向量），但无法解决一词多义的问题。例如，“破防”在“我出了一件破防装备”和“NLP 算法给我学破防了”中的含义完全不同，但在 Word2Vec 中它们的向量是相同的。BERT 的设计初衷就是为了解决这个问题，它的目标是生成<strong>动态的、与上下文相关的词向量</strong>。它不仅仅是一个词向量生成工具，更是一个强大的<strong>预训练语言模型</strong>。其工作范式可以分为两个主要阶段，如图 5-1 所示：</p><div align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_1_1.png alt="BERT 的预训练与微调流程"><p>图 5-1 BERT 的预训练 (Pre-training) 与微调 (Fine-tuning) 流程</p></div><ul><li><p><strong>预训练 (Pre-training)</strong></p><ul><li>在一个庞大的、通用的文本语料库（如维基百科、书籍）上，通过特定的无监督任务来训练一个深度神经网络模型。</li><li>这个阶段的目标不是为了完成某个具体的 NLP 任务，而是让模型学习语言本身的规律，比如语法结构、词语间的语义关系、上下文依赖等。</li><li>训练完成后，就得到了一个包含了丰富语言知识的、参数已经训练好的<strong>预训练模型</strong>。</li></ul></li><li><p><strong>微调 (Fine-tuning)</strong></p><ul><li>当面临一个具体的下游任务时（如文本分类、命名实体识别），我们不再从头开始训练模型。而是把预训练好的 BERT 模型作为任务模型的<strong>基础结构</strong>。加载它已经学习到的所有参数作为<strong>初始值</strong>。</li><li>接着根据具体任务，在 BERT 模型之上增加一个小的、任务相关的输出层（例如，一个用于分类的全连接层）。</li><li>最后在自己的任务数据集上对整个模型（或仅仅是顶部的输出层）进行训练。由于模型已经具备了强大的语言理解能力，这个微调过程通常非常快速，并且只需要相对较少的数据就能达到很好的效果。</li></ul></li></ul><p>这种 <strong>“预训练 + 微调”</strong> 的训练范式，属于<strong>迁移学习</strong>的一种实现，也是 BERT 的训练框架。它能够从海量数据中学到的通用语言知识，迁移到数据量有限的特定任务中。</p><blockquote><p><strong>与 RNN/LSTM 的区别</strong></p><p>你可能会有疑问：像 Bi-LSTM 这样的循环神经网络不是也能捕捉上下文信息，生成动态词向量吗，为什么还需要 BERT？</p><p>虽然目标相似，但实现方式和效果却有很大的差别。Bi-LSTM 的“双向”本质上是两个独立的单向 RNN（一个正向，一个反向）的<strong>浅层拼接</strong>。在计算过程中，正向 RNN 并不知道未来的信息，反向 RNN 也不知道过去的信息。</p><p>而 BERT 基于 Transformer 的<strong>自注意力机制</strong>，实现了<strong>真正的“深度双向”</strong>。也就是上一节中所学到的，自注意力机制使模型的每一层，计算任何一个词的表示时，都能<strong>同时与序列中的所有其他词直接交互</strong>。这种全局视野让 BERT 能够捕捉到比 RNN 更复杂、更长距离的依赖关系，并且其并行计算的特性也远比 RNN 的串行结构高效。可以说，BERT 实现了 RNN 想要达到但未能完美实现的目标。</p></blockquote><h2 id=二bert-架构详解>二、BERT 架构详解</h2><h3 id=21-bert-的模型规模>2.1 BERT 的模型规模</h3><p>与 Transformer 论文中 N=6 不同，BERT 提供了几种不同规模的预训练模型，以适应不同的计算资源和性能需求。其中最常见的两个是如表 5-1 所示的 <code>BERT Base</code> 与 <code>BERT Large</code>。</p><div align=center><table border=1 style="margin:0 auto"><tr><td style=text-align:center><strong>模型</strong></td><td style=text-align:center><strong>层数 (L)</strong></td><td style=text-align:center><strong>隐藏层大小 (H)</strong></td><td style=text-align:center><strong>注意力头数 (A)</strong></td><td style=text-align:center><strong>总参数量</strong></td></tr><tr><td style=text-align:center><code>BERT-Base</code></td><td style=text-align:center>12</td><td style=text-align:center>768</td><td style=text-align:center>12</td><td style=text-align:center>~1.1 亿</td></tr><tr><td style=text-align:center><code>BERT-Large</code></td><td style=text-align:center>24</td><td style=text-align:center>1024</td><td style=text-align:center>16</td><td style=text-align:center>~3.4 亿</td></tr></table><p><em>表 5-1 BERT Base 与 BERT Large 模型规模对比</em></p></div><p>通过加深、加宽网络，BERT 拥有了比原始 Transformer 更强大的特征提取和表示能力。</p><h3 id=22-bert-的输入表示>2.2 BERT 的输入表示</h3><p>为了让模型能够处理各种复杂的输入，BERT 的输入表示由三个部分的嵌入向量<strong>逐元素相加</strong>而成：</p>$$
+Input_{embedding} = Token_{embedding} + Position_{embedding} + Segment_{embedding}
+$$<p>对应的结构示意见图 5-2。</p><div align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_1_2.svg alt="BERT 输入表示"><p>图 5-2 BERT 输入表示</p></div><p>（1）<strong>词元嵌入</strong>:</p><ul><li>与之前模型类似，这是每个词元（Token）自身的向量表示。</li><li>BERT 使用一种称为 <strong>WordPiece</strong> 的分词方法 <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>。它能够将不常见的词拆分成更小的子词单元（如 &ldquo;studying&rdquo; -> &ldquo;study&rdquo;, &ldquo;##ing&rdquo;），有效处理了未登录词问题。对于 <code>bert-base-chinese</code> 模型，其词表<strong>以单字为主，也包含少量常用词</strong>，因此在处理中文时，其效果接近于按字分词，但更准确的描述是<strong>子词切分</strong>。</li></ul><p>（2）<strong>片段嵌入</strong>:</p><ul><li>这是 BERT 为了处理句子对任务（如判断两个句子是否是连续的）而引入的，用于区分输入中的不同句子。</li><li>例如，对于一个由句子 A 和句子 B 拼接而成的输入，所有属于句子 A 的词元都会加上一个相同的“句子A嵌入”，而所有属于句子 B 的词元则会加上另一个“句子B嵌入”。</li></ul><p>（3）<strong>位置嵌入</strong>:</p><ul><li>Transformer 的自注意力机制本身不包含位置信息，必须额外引入位置编码来告诉模型每个词元在序列中的位置。</li><li>与原始 Transformer 使用固定的正余弦函数不同，BERT 采用的是<strong>可学习的位置嵌入</strong>。即创建一个大小为 <code>[max_position_embeddings, hidden_size]</code> 的嵌入表，让模型在预训练过程中自己学习每个位置的最佳向量表示。</li><li><strong>BERT 的最大长度限制</strong>：正是这个可学习的位置嵌入表，决定了 BERT 的最大输入长度。例如，在 <code>BERT-Base</code> 模型中，这个嵌入表的大小通常是 <code>[512, 768]</code>，这意味着模型最多只能处理 512 个词元的序列。这并非 Transformer 架构本身的限制，而是 BERT 预训练时设定的一个参数。</li></ul><p>最终，每个输入词元的表示向量，是上述三种嵌入向量相加的结果。</p><h3 id=23-特殊词元>2.3 特殊词元</h3><p>BERT 在输入序列中引入了几个特殊的词元，它们在预训练和微调阶段扮演着重要的角色：</p><ul><li><p><strong><code>[CLS]</code> (Classification)</strong>:</p><ul><li>这个词元被添加到 <strong>每个输入序列的开头</strong>。</li><li>BERT 的一个特殊设计是，这个 <code>[CLS]</code> 词元在经过整个编码器网络后的最终输出向量，被视为整个输入序列的 <strong>聚合表示</strong>。</li><li>因此，在进行文本分类、情感分析等句子级别的任务时，通常只取用 <code>[CLS]</code> 对应的输出向量，然后将其送入一个分类器。</li></ul></li><li><p><strong><code>[SEP]</code> (Separator)</strong>:</p><ul><li>这个词元用于 <strong>分隔不同的句子</strong>。</li><li>例如，在输入是单个句子时，它被添加在句子的末尾。</li><li>在输入是句子对时，它被用在两个句子之间，以及整个序列的末尾。</li></ul></li><li><p><strong><code>[MASK]</code></strong>:</p><ul><li>这个词元仅在 <strong>预训练阶段</strong> 使用，用于“掩盖”掉输入序列中的某些词元，是“掩码语言模型”任务的核心。</li></ul></li><li><p><strong><code>[PAD]</code> (Padding)</strong>:</p><ul><li>用于将不同长度的输入序列补齐到相同的长度（例如 512），以便进行批量处理。</li><li>在计算注意力时，这些位置会被 <code>Attention Mask</code> 屏蔽，不参与计算。</li></ul></li><li><p><strong><code>[UNK]</code> (Unknown)</strong>:</p><ul><li>当分词器遇到词表中不存在的字符或词汇时，会将其替换为该特殊词元。</li></ul></li></ul><h2 id=三bert-的预训练任务>三、BERT 的预训练任务</h2><p>为了让 BERT 真正理解语言，研究人员在其训练过程中引入了两项全新的预训练任务（如图 5-3 所示），这也是它成功的关键。</p><div align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_1_3.svg alt="BERT 预训练任务图示"><p>图 5-3 BERT 预训练任务图示 (MLM 和 NSP)</p></div><h3 id=31-任务一掩码语言模型-masked-language-model-mlm>3.1 任务一：掩码语言模型 (Masked Language Model, MLM)</h3><p>传统的语言模型（如 GPT）是单向的，只能根据前面的词预测下一个词。如果我们想让模型同时利用上下文信息，简单地将左右两侧的词都作为输入来预测当前词，会导致一个问题，在多层网络中，模型会“间接地看到自己”，预测任务将变得毫无意义。</p><p>为了解决这个问题，BERT 引入了 MLM。它的思路是在输入文本中随机遮盖掉一部分词元（Token），然后训练模型去<strong>根据上下文预测这些被遮盖的词元</strong>。这就像在做“完形填空”一样，迫使模型学习词元之间深层次的语义关系和句法结构。</p><p>MLM 的执行策略如下：</p><p>（1）<strong>随机选择</strong>：在每一个训练序列中，随机挑选 <strong>15%</strong> 的词元作为预测目标。</p><p>（2）<strong>特殊替换策略</strong>：为了缓解<strong>预训练</strong>（有 <code>[MASK]</code> 标记）与<strong>微调</strong>（没有 <code>[MASK]</code> 标记）阶段的数据差异，对于这 15% 被选中的词元，采用如下“80/10/10”的替换方法。假设如图 5-3 中 <code>My son is a good stu</code> 的 <code>son</code> 词元被选中：</p><ul><li><strong>80% 的情况</strong>：将选中的词元替换为 <code>[MASK]</code> 标记。<ul><li><strong>示例</strong>：<code>My [MASK] is a good stu</code></li><li><strong>目的</strong>：这是最核心的操作，强制模型利用上下文信息来预测被“挖空”的词。</li></ul></li><li><strong>10% 的情况</strong>：将选中的词元替换成一个<strong>随机</strong>的其他词元。<ul><li><strong>示例</strong>：<code>My apple is a good stu</code> (将 <code>son</code> 随机替换为 <code>apple</code>)</li><li><strong>目的</strong>：相当于为模型引入了噪声。一方面，它要求模型不仅要理解上下文，还要具备识别并纠正错误词元的能力，从而增强模型的健壮性；另一方面，它也促使模型去学习每一个输入词元的分布式特征表示，而不是仅仅“依赖”<code>[MASK]</code>标记去触发预测。</li></ul></li><li><strong>10% 的情况</strong>：<strong>保持词元不变</strong>。<ul><li><strong>示例</strong>：<code>My son is a good stu</code></li><li><strong>目的</strong>：这是为了让模型在看到真实词元时也去预测它自己，从而使得模型更好地学习每一个真实词元的上下文表示，减轻预训练和微调阶段的<strong>数据不匹配</strong>问题。</li></ul></li></ul><p>通过这种方式，MLM 任务促使 BERT 学习到一种<strong>动态的、与上下文深度融合的词向量表示</strong>。</p><blockquote><p><strong>MLM 的局限</strong></p><p>由于 MLM 是随机 Mask 单个字或子词，可能会割裂一个完整词语的内部语义联系。例如，对于 “菩提老祖” 这个词，模型可能会只 Mask “菩” 或 “提”，而无法在词的层面上进行学习。为了解决这个问题，后续的研究提出了 <strong>WWM (Whole Word Masking, 全词掩码)</strong> 的策略 <sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>。即如果一个词的一部分被选中进行 Mask，那么这个词的所有部分都会被一起 Mask。这项技术在中英文任务上都取得了效果提升。</p></blockquote><h3 id=32-任务二下一句预测-next-sentence-prediction-nsp>3.2 任务二：下一句预测 (Next Sentence Prediction, NSP)</h3><p>NSP 任务的目标是让模型理解句子与句子之间的逻辑关系。在训练时，模型会接收一对句子 A 和 B，并判断句子 B 是否是句子 A 在原文中的下一句。</p><p>（1）<strong>构造句子对</strong>: 在预训练时，为模型准备句子对 (A, B)。其中，50% 的情况下，B 是 A 的真实下一句；另外 50% 的情况下，B 是从语料库中随机选择的一个句子。</p><p>（2）<strong>二分类任务</strong>: 模型需要预测 B 是否是 A 的下一句。</p><p>这个任务的预测，正是通过 2.3 节中提到的 <code>[CLS]</code> 词元的输出来完成的。将 <code>[CLS]</code> 的最终隐藏状态送入一个二分类器，来判断 <code>IsNext</code> 还是 <code>NotNext</code>，从而训练 <code>[CLS]</code> 向量学习句子级别的聚合特征。</p><blockquote><p><strong>NSP 的有效性讨论</strong></p><p>后续研究（如 RoBERTa <sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>, ALBERT <sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>）对 NSP 的有效性提出了质疑，发现在更大规模的预训练下，移除它或用 other 任务替代（如句子顺序预测）会带来更好的效果。</p><p>但是，在 BERT 的原始论文中，消融实验证明，在当时的训练设置下，移除 NSP 会导致在问答（QNLI）和自然语言推断（MNLI）等任务上性能明显下降。这说明 NSP 任务确实帮助原始 BERT 模型学习到了句子级别的关系，在特定场景下依然有其价值。</p></blockquote><h2 id=四bert-的应用与实践>四、BERT 的应用与实践</h2><p>预训练完成后，我们就得到了一个强大的 BERT 模型。接下来，可以根据具体的任务来释放它的能力。</p><h3 id=41-微调下游任务>4.1 微调下游任务</h3><p>（1）文本分类任务</p><p>对于文本分类任务（如情感分析、意图识别），主要利用 <code>[CLS]</code> 词元的聚合表示能力（见 2.3 节）。</p><ul><li><strong>输入构造</strong>: 将单个句子或句子对按照 BERT 的要求格式化（添加 <code>[CLS]</code> 和 <code>[SEP]</code>）。</li><li><strong>获取表示</strong>: 提取 <code>[CLS]</code> 词元对应的最终输出向量。</li><li><strong>添加分类头</strong>: 在这个向量之上，添加一个简单的全连接层作为分类器，其输出维度等于任务的类别数量。</li><li><strong>微调</strong>: 在任务数据上，训练这个新添加的分类器，同时对 BERT 模型的参数进行微调（通常使用比预训练时小得多的学习率）。</li></ul><p>（2）词元分类任务</p><p>对于词元级别的任务（如命名实体识别、分词、词性标注），需要为输入序列中的每一个词元进行分类。</p><ul><li><strong>输入构造</strong>: 与文本分类类似，将序列格式化。</li><li><strong>获取表示</strong>: 将输入送入 BERT 模型，但这次提取 <strong>所有词元</strong> 对应的最终输出向量序列。输出的形状为 <code>(batch_size, sequence_length, hidden_size)</code>。</li><li><strong>添加分类头</strong>: 在这个序列之上，添加一个全连接层（可以看作是在时间维度上共享权重），将每个词元的 <code>hidden_size</code> 维向量映射到类别数量的维度。</li><li><strong>微调</strong>: 在任务数据上进行端到端的训练和微调。</li></ul><p>（3）其他任务</p><p>BERT 的应用非常广泛，几乎可以适配所有的 NLP 任务。例如，在问答任务中，可以将问题和段落作为两个句子输入 BERT，然后训练模型去预测答案在段落中的起始和结束位置。</p><h3 id=42-实践技巧与生态>4.2 实践技巧与生态</h3><h4 id=421-输入处理与限制>4.2.1 输入处理与限制</h4><p>在进行 BERT 微调时，有两点需要特别注意，这直接关系到模型能否正常运行和发挥效果：</p><p>（1）<strong>最大长度限制</strong>:</p><ul><li>标准的 BERT 模型（如 <code>bert-base-chinese</code>）通常设定的最大输入长度为 <strong>512</strong> 个 Token。虽然这个长度并非架构本身的限制（可以修改位置嵌入表大小来调整），但大多数预训练模型都遵循这一设定。</li><li>这 512 个位置中包含了特殊 Token。所以，实际输入文本的有效长度最多为 <strong>510</strong> 个 Token（512 - <code>[CLS]</code> - <code>[SEP]</code>）。如果是句子对任务，则两个句子的总长度加上 3 个特殊 Token（<code>[CLS]</code>, <code>[SEP]</code>, <code>[SEP]</code>）不能超过 512。</li></ul><p>（2）<strong>特殊 Token 的添加</strong>:</p><ul><li>输入序列的开头必须添加 <strong><code>[CLS]</code></strong>，结尾必须添加 <strong><code>[SEP]</code></strong>。</li><li>虽然现在的 <code>Tokenizer</code>（如 <code>tokenizer(text, ...)</code>）通常会自动处理这些特殊 Token 的添加，但在手动构建输入或分析数据时，务必牢记这一要求。</li></ul><h4 id=422-特征提取策略>4.2.2 特征提取策略</h4><p>虽然我们通常使用最后一层的输出作为词元或句子的特征表示，但这并非唯一选择。研究和实践表明，BERT 的不同层级学习到的特征有所侧重：</p><ul><li><strong>底层</strong> 更偏向于捕捉 <strong>词法、语法</strong> 等表层信息。</li><li><strong>高层</strong> 更偏向于捕捉 <strong>语义、语境</strong> 等深层信息。</li></ul><p>在某些任务（如命名实体识别）中，将最后几层（例如，最后四层）的向量进行拼接（Concatenate）或相加（Sum），有时能获得比单独使用最后一层更好的效果。这提供了一种简单有效的性能提升技巧。</p><h4 id=423-hugging-face-transformers-生态>4.2.3 Hugging Face Transformers 生态</h4><p>如今，从头实现或手动管理 BERT 模型已无必要。<strong>Hugging Face</strong> 公司开源的 <code>transformers</code> 库 <sup id=fnref:6><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup>已经成为 NLP 领域的标准工具。</p><ul><li><strong>模型中心</strong>: 它提供了一个庞大的模型仓库，包含了几乎所有主流的预训练模型（包括各种语言、各种规模的 BERT）。用户可以在 <a class=link href=https://huggingface.co/models target=_blank rel=noopener>Hugging Face 官网</a> 或其国内镜像上查找、下载和试用这些模型。</li><li><strong>统一的 API</strong>: 开发者可以使用简洁、统一的接口，轻松地加载、使用和微调这些模型。</li><li><strong>社区支持</strong>: 拥有活跃的社区和丰富的文档，是学习和应用 BERT 等预训练模型的最佳起点。</li></ul><h2 id=五bert-代码实战>五、BERT 代码实战</h2><p>在了解了 BERT 的理论知识后，下面来通过一个完整的代码示例，展示如何使用 <code>transformers</code> 库加载预训练的 BERT 模型，并从中提取文本特征向量。</p><blockquote><p><a class=link href=https://github.com/datawhalechina/base-nlp/blob/main/code/C5/01_bert_usage.py target=_blank rel=noopener>本节完整代码</a></p></blockquote><h3 id=51-环境准备>5.1 环境准备</h3><p>首先，确保已经安装了 <code>transformers</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install transformers
+</span></span></code></pre></td></tr></table></div></div><p>如果在国内下载模型遇到网络问题，可以设置环境变量来使用 Hugging Face 的国内镜像：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s1>&#39;HF_ENDPOINT&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;https://hf-mirror.com&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=52-代码示例>5.2 代码示例</h3><p>以下代码涵盖了从加载模型到提取特征的完整流程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>AutoTokenizer</span><span class=p>,</span> <span class=n>AutoModel</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 环境和模型配置</span>
+</span></span><span class=line><span class=cl><span class=c1># os.environ[&#39;HF_ENDPOINT&#39;] = &#39;https://hf-mirror.com&#39; # 可选：设置镜像</span>
+</span></span><span class=line><span class=cl><span class=n>device</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>device</span><span class=p>(</span><span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>torch</span><span class=o>.</span><span class=n>cuda</span><span class=o>.</span><span class=n>is_available</span><span class=p>()</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>model_name</span> <span class=o>=</span> <span class=s2>&#34;bert-base-chinese&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>texts</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;我来自中国南方&#34;</span><span class=p>,</span> <span class=s2>&#34;我喜欢自然语言处理课程&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 加载模型和分词器</span>
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>AutoTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>AutoModel</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_name</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>model</span><span class=o>.</span><span class=n>eval</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--- BERT 模型结构 ---&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>model</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. 文本预处理</span>
+</span></span><span class=line><span class=cl><span class=n>inputs</span> <span class=o>=</span> <span class=n>tokenizer</span><span class=p>(</span><span class=n>texts</span><span class=p>,</span> <span class=n>padding</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>return_tensors</span><span class=o>=</span><span class=s2>&#34;pt&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 打印 Tokenizer 的完整输出，以理解其内部结构</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--- Tokenizer 输出 ---&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>key</span><span class=p>,</span> <span class=n>value</span> <span class=ow>in</span> <span class=n>inputs</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>key</span><span class=si>}</span><span class=s2>: </span><span class=se>\n</span><span class=si>{</span><span class=n>value</span><span class=si>}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. 模型推理</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>outputs</span> <span class=o>=</span> <span class=n>model</span><span class=p>(</span><span class=o>**</span><span class=n>inputs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 5. 提取特征</span>
+</span></span><span class=line><span class=cl><span class=n>last_hidden_state</span> <span class=o>=</span> <span class=n>outputs</span><span class=o>.</span><span class=n>last_hidden_state</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>last_hidden_state</span><span class=o>.</span><span class=n>shape</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sentence_features_pooler</span> <span class=o>=</span> <span class=nb>getattr</span><span class=p>(</span><span class=n>outputs</span><span class=p>,</span> <span class=s2>&#34;pooler_output&#34;</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># (1) 提取句子级别的特征向量 ([CLS] token)</span>
+</span></span><span class=line><span class=cl><span class=n>sentence_features</span> <span class=o>=</span> <span class=n>last_hidden_state</span><span class=p>[:,</span> <span class=mi>0</span><span class=p>,</span> <span class=p>:]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># (2) 提取第一个句子的词元级别特征</span>
+</span></span><span class=line><span class=cl><span class=n>first_sentence_tokens</span> <span class=o>=</span> <span class=n>last_hidden_state</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>:</span><span class=mi>6</span><span class=p>,</span> <span class=p>:]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--- 特征提取结果 ---&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;句子特征 shape: </span><span class=si>{</span><span class=n>sentence_features</span><span class=o>.</span><span class=n>shape</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>sentence_features_pooler</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;pooler_output shape: </span><span class=si>{</span><span class=n>sentence_features_pooler</span><span class=o>.</span><span class=n>shape</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;第一个句子的词元特征 shape: </span><span class=si>{</span><span class=n>first_sentence_tokens</span><span class=o>.</span><span class=n>shape</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>（1）<strong>加载模型和分词器</strong>：使用 <code>AutoTokenizer.from_pretrained(model_name)</code> 和 <code>AutoModel.from_pretrained(model_name)</code> 来自动下载并加载指定的预训练模型。</p><p>（2）<strong>文本预处理</strong>：<code>tokenizer(...)</code> 函数的输出是一个字典，其中包含了模型所需的全部输入信息。</p><ul><li><code>input_ids</code>: 这是文本被转换为的 token ID 序列。Tokenizer 会在合适的位置自动添加 <code>101</code> (<code>[CLS]</code>) 和 <code>102</code> (<code>[SEP]</code>) 等特殊标记；批次中较短的句子会被 <code>0</code> (<code>[PAD]</code>) 填充到与最长序列等长（或到指定的 <code>max_length</code>）。</li><li><code>token_type_ids</code>: <strong>片段嵌入</strong> 的体现（见 2.2 节），用于区分不同句子。</li><li><code>attention_mask</code>: 一个非常重要的参数，它告诉模型在进行自注意力计算时，哪些 token 是真实的（值为 1），哪些是填充的（值为 0），模型会忽略填充 token。<blockquote><p><strong>Attention Mask 如何工作？</strong></p><p><code>attention_mask</code> 张量中的 <code>0</code> 会被转换为一个非常大的负数（如 <code>-10000</code>），然后加到注意力得分上。这样，在经过 <code>Softmax</code> 计算后，这些位置的注意力权重会趋近于 0，从而在计算中被忽略。</p></blockquote></li></ul><p>（3）<strong>模型推理</strong>:</p><ul><li>将预处理好的 <code>inputs</code> 字典通过 <code>**inputs</code> 解包后送入模型。</li><li><code>with torch.no_grad():</code> 上下文管理器会禁用梯度计算，用于在推理阶段减少内存消耗并加速计算。</li></ul><p>（4）<strong>解析与提取</strong>:</p><ul><li><code>outputs.last_hidden_state</code>: 它的形状是 <code>(batch_size, sequence_length, hidden_size)</code>，包含了序列中<strong>每一个词元</strong>在最高层的向量表示。</li><li><strong>句子特征提取</strong>: 通过索引 <code>[:, 0, :]</code>，可以轻松获得整个批次的 <code>[CLS]</code> 位置的隐藏状态；此外，<code>outputs.pooler_output</code>（若存在）是对该隐藏状态再经过一层全连接+Tanh 的结果（BERT 原用于 NSP 任务）。具体使用哪一种，建议以验证集效果为准，平均池化或拼接最后几层在实践中也常见。</li><li><strong>词元特征提取</strong>: 通过对特定范围进行切片可以获得具体某个句子的所有<strong>非特殊词元</strong>的特征向量。例如，对于第一个句子 &ldquo;我来自中国&rdquo;，Tokenizer 会将其转换为 <code>['[CLS]', '我', '来', '自', '中', '国', '[SEP]']</code>。因此，我们使用 <code>[0, 1:6, :]</code> 来提取索引从 1 到 5 的词元向量，这对应了 &ldquo;我&rdquo; 到 &ldquo;国&rdquo; 这五个汉字。这些特征可以用于命名实体识别等词元级任务。</li></ul><p>输出结果如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>--- BERT 模型结构 ---
+</span></span><span class=line><span class=cl>BertModel(
+</span></span><span class=line><span class=cl>  (embeddings): BertEmbeddings(
+</span></span><span class=line><span class=cl>    (word_embeddings): Embedding(21128, 768, padding_idx=0)
+</span></span><span class=line><span class=cl>    (position_embeddings): Embedding(512, 768)
+</span></span><span class=line><span class=cl>    (token_type_embeddings): Embedding(2, 768)
+</span></span><span class=line><span class=cl>    (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+</span></span><span class=line><span class=cl>    (dropout): Dropout(p=0.1, inplace=False)
+</span></span><span class=line><span class=cl>  )
+</span></span><span class=line><span class=cl>  (encoder): BertEncoder(
+</span></span><span class=line><span class=cl>    (layer): ModuleList(
+</span></span><span class=line><span class=cl>      (0-11): 12 x BertLayer(
+</span></span><span class=line><span class=cl>        (attention): BertAttention(
+</span></span><span class=line><span class=cl>          (self): BertSdpaSelfAttention(
+</span></span><span class=line><span class=cl>            (query): Linear(in_features=768, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>            (key): Linear(in_features=768, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>            (value): Linear(in_features=768, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>            (dropout): Dropout(p=0.1, inplace=False)
+</span></span><span class=line><span class=cl>          )
+</span></span><span class=line><span class=cl>          (output): BertSelfOutput(
+</span></span><span class=line><span class=cl>            (dense): Linear(in_features=768, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+</span></span><span class=line><span class=cl>            (dropout): Dropout(p=0.1, inplace=False)
+</span></span><span class=line><span class=cl>          )
+</span></span><span class=line><span class=cl>        )
+</span></span><span class=line><span class=cl>        (intermediate): BertIntermediate(
+</span></span><span class=line><span class=cl>          (dense): Linear(in_features=768, out_features=3072, bias=True)
+</span></span><span class=line><span class=cl>          (intermediate_act_fn): GELUActivation()
+</span></span><span class=line><span class=cl>        )
+</span></span><span class=line><span class=cl>        (output): BertOutput(
+</span></span><span class=line><span class=cl>          (dense): Linear(in_features=3072, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+</span></span><span class=line><span class=cl>          (dropout): Dropout(p=0.1, inplace=False)
+</span></span><span class=line><span class=cl>        )
+</span></span><span class=line><span class=cl>      )
+</span></span><span class=line><span class=cl>    )
+</span></span><span class=line><span class=cl>  )
+</span></span><span class=line><span class=cl>  (pooler): BertPooler(
+</span></span><span class=line><span class=cl>    (dense): Linear(in_features=768, out_features=768, bias=True)
+</span></span><span class=line><span class=cl>    (activation): Tanh()
+</span></span><span class=line><span class=cl>  )
+</span></span><span class=line><span class=cl>)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>--- Tokenizer 输出 ---
+</span></span><span class=line><span class=cl>input_ids: 
+</span></span><span class=line><span class=cl>tensor([[ 101, 2769, 3341, 5632,  704, 1744, 1298, 3175,  102,    0,    0,    0,
+</span></span><span class=line><span class=cl>            0],
+</span></span><span class=line><span class=cl>        [ 101, 2769, 1599, 3614, 5632, 4197, 6427, 6241, 1905, 4415, 6440, 4923,
+</span></span><span class=line><span class=cl>          102]], device=&#39;cuda:0&#39;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>token_type_ids: 
+</span></span><span class=line><span class=cl>tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+</span></span><span class=line><span class=cl>        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], device=&#39;cuda:0&#39;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>attention_mask: 
+</span></span><span class=line><span class=cl>tensor([[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+</span></span><span class=line><span class=cl>        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]], device=&#39;cuda:0&#39;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>torch.Size([2, 13, 768])
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>--- 特征提取结果 ---
+</span></span><span class=line><span class=cl>句子特征 shape: torch.Size([2, 768])
+</span></span><span class=line><span class=cl>pooler_output shape: torch.Size([2, 768])
+</span></span><span class=line><span class=cl>第一个句子的词元特征 shape: torch.Size([5, 768])
+</span></span></code></pre></td></tr></table></div></div><h3 id=53-模型结构分解>5.3 模型结构分解</h3><p>当运行 <code>print(model)</code> 时，会得到一个详细的、树状的 BERT 模型结构图，如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>BertModel<span class=o>(</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>embeddings<span class=o>)</span>: BertEmbeddings<span class=o>(</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>word_embeddings<span class=o>)</span>: Embedding<span class=o>(</span>21128, 768, <span class=nv>padding_idx</span><span class=o>=</span>0<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>position_embeddings<span class=o>)</span>: Embedding<span class=o>(</span>512, 768<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>token_type_embeddings<span class=o>)</span>: Embedding<span class=o>(</span>2, 768<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>LayerNorm<span class=o>)</span>: LayerNorm<span class=o>((</span>768,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-12, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.1, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>encoder<span class=o>)</span>: BertEncoder<span class=o>(</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>layer<span class=o>)</span>: ModuleList<span class=o>(</span>
+</span></span><span class=line><span class=cl>      <span class=o>(</span>0-11<span class=o>)</span>: <span class=m>12</span> x BertLayer<span class=o>(</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>attention<span class=o>)</span>: BertAttention<span class=o>(</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>self<span class=o>)</span>: BertSdpaSelfAttention<span class=o>(</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>query<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>key<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>value<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.1, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>output<span class=o>)</span>: BertSelfOutput<span class=o>(</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>dense<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>LayerNorm<span class=o>)</span>: LayerNorm<span class=o>((</span>768,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-12, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>            <span class=o>(</span>dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.1, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>intermediate<span class=o>)</span>: BertIntermediate<span class=o>(</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dense<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>3072, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>intermediate_act_fn<span class=o>)</span>: GELUActivation<span class=o>()</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>output<span class=o>)</span>: BertOutput<span class=o>(</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dense<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>3072, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>LayerNorm<span class=o>)</span>: LayerNorm<span class=o>((</span>768,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-12, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.1, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>      <span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>pooler<span class=o>)</span>: BertPooler<span class=o>(</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>dense<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>768, <span class=nv>out_features</span><span class=o>=</span>768, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>activation<span class=o>)</span>: Tanh<span class=o>()</span>
+</span></span><span class=line><span class=cl>  <span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>这给我们提供了一个直观的方式来理解它的内部组件，并将其与理论知识对应起来。下面来结合这个结构，对 <code>bert--base-chinese</code> 模型的核心部分进行分解：</p><p>（1）<strong><code>embeddings</code> (嵌入层)</strong>: 此模块是上文 <strong>BERT 输入表示</strong>理论的具体实现。它负责将输入的 token ID 序列，通过组合 <strong>词元、位置和片段</strong> 三种嵌入向量，转换为模型真正的输入。</p><ul><li><code>(word_embeddings): Embedding(21128, 768)</code>: <strong>词元嵌入</strong>。这里的 <code>21128</code> 是 <code>bert-base-chinese</code> 模型的词汇表大小，<code>768</code> 则是 BERT-Base 模型的隐藏层维度 H。</li><li><code>(position_embeddings): Embedding(512, 768)</code>: <strong>位置嵌入</strong>。这就是在理论部分提到的<strong>可学习的位置嵌入</strong>，其 <code>[512, 768]</code> 的大小也直接解释了为什么 BERT-Base 模型的最大输入长度是 512 个词元。</li><li><code>(token_type_embeddings): Embedding(2, 768)</code>: <strong>片段嵌入</strong>。它用于区分输入的两个不同句子（句子 A 和 B），这对于 NSP 这样的预训练任务非常重要。</li><li><code>(LayerNorm)</code> 和 <code>(dropout)</code>: 在将上述三种嵌入向量相加后，会进行层归一化和 Dropout 操作，以稳定训练过程并增强模型的泛化能力。</li></ul><blockquote><p>可以打开 <a class=link href=https://huggingface.co/google-bert/bert-base-chinese/blob/main/vocab.txt target=_blank rel=noopener>bert-base-chinese 的 <code>vocab.txt</code> 词汇表文件</a> 验证一下。该文件共有 21128 行，每一行代表一个词元，词汇表大小正好是 <code>21128</code>。</p><p>直接浏览器查看可能会导致浏览器卡死，别问笔者怎么知道的🫠</p></blockquote><p>（2）<strong><code>encoder</code> (编码器)</strong>: 这是 BERT 的核心主体，正是由前面提到的 <strong>12 层 Transformer 编码器</strong>堆叠而成。</p><ul><li><code>(layer): ModuleList((0-11): 12 x BertLayer)</code>: <code>ModuleList</code> 中包含了 12 个完全相同的 <code>BertLayer</code>。模型的“深度”就体现在这里，每一层的输出都会作为下一层的输入，逐层提取更深层次的特征。</li><li>在每一个 <code>BertLayer</code> 内部，都包含了 2 节中所述的两个核心子层：<ul><li><code>(attention)</code>: <strong>多头自注意力模块</strong>，其内部的 <code>query</code>, <code>key</code>, <code>value</code> 线性层和 <code>output.dense</code> 层分别对应 $W^Q, W^K, W^V$ 和 $W^O$ 矩阵。</li><li><code>(intermediate)</code> 和 <code>(output)</code>: <strong>位置前馈网络模块</strong>，它通过一个 <code>768 -> 3072 -> 768</code> 的升维再降维结构来提取特征。</li></ul></li></ul><p>（3）<strong><code>pooler</code> (池化层)</strong>:</p><ul><li>该层功能与前面介绍的特殊词元 <strong><code>[CLS]</code></strong> 紧密相关。</li><li>它的作用是处理 <code>[CLS]</code> 词元在经过 12 层 Encoder 后的最终输出向量（即 <code>last_hidden_state[:, 0]</code>），通过一个全连接层和 <code>Tanh</code> 激活函数，将其转换为一个代表整个序列的“池化”后的特征向量。</li><li>这个经过特殊处理的 <code>[CLS]</code> 向量，在预训练阶段专门用于完成 <strong>NSP</strong> 任务，从而使其学习到了整个输入序列的聚合信息。</li></ul><p>通过这个结构，可以清晰地看到 BERT 是如何将 Transformer 编码器的思想付诸实践的，从输入处理到多层特征提取，再到最终的输出，每一步都清晰可见。</p><h2 id=练习>练习</h2><ul><li>总结 BERT 和 Transformer(Encoder) 区别</li></ul><hr><h2 id=参考文献>参考文献</h2><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a class=link href=https://arxiv.org/abs/1810.04805 target=_blank rel=noopener>Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). <em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</em>.</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a class=link href=https://arxiv.org/abs/1609.08144 target=_blank rel=noopener>Wu, Y., Schuster, M., Chen, Z., et al. (2016). <em>Google&rsquo;s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</em>.</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a class=link href=https://arxiv.org/abs/1906.08101 target=_blank rel=noopener>Cui, Y., Che, W., Liu, T., Qin, B., & Yang, Z. (2019). <em>Pre-training with Whole Word Masking for Chinese BERT</em>.</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p><a class=link href=https://arxiv.org/abs/1907.11692 target=_blank rel=noopener>Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., et al. (2019). <em>RoBERTa: A Robustly Optimized BERT Pretraining Approach</em>.</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5><p><a class=link href=https://arxiv.org/abs/1909.11942 target=_blank rel=noopener>Lan, Z., Chen, M., Goodman, S., Gimpel, K., Sharma, P., Soricut, R. (2019). <em>ALBERT: A Lite BERT for Self-supervised Learning of Language Representations</em>.</a>&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:6><p><a class=link href=https://arxiv.org/abs/1910.03771 target=_blank rel=noopener>Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault,T., Louf, R., Funtowicz, M., Brew, J. (2020). <em>Transformers: State-of-the-Art Natural Language Processing</em>. EMNLP 2020 System Demonstrations.</a>&#160;<a href=#fnref:6 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/bert/>BERT</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/><div class=article-details><h2 class=article-title>Hugging Face 生态与核心库</h2></div></a></article><article><a href=/blog/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>T5 结构及应用</h2></div></a></article><article><a href=/blog/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>GPT 结构及应用</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/><div class=article-details><h2 class=article-title>基于低代码平台的搭建智能体</h2></div></a></article><article><a href=/blog/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/><div class=article-details><h2 class=article-title>经典智能体范式</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugging Face on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/hugging-face/</link><description>Recent content in Hugging Face on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 23 Mar 2026 15:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/hugging-face/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugging Face 生态与核心库</title><link>https://hanguangwu.github.io/blog/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</link><pubDate>Mon, 23 Mar 2026 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</guid><description>&lt;h1 id="hugging-face-生态与核心库"&gt;Hugging Face 生态与核心库
+&lt;/h1&gt;&lt;p&gt;我们在前面的学习中简单尝试了 BERT、GPT 和 T5 三大模型的应用。可以发现，无论使用哪种架构，都离不开一个核心工具库——&lt;strong&gt;Hugging Face Transformers&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如今，Hugging Face 已经从一家 NLP 初创公司演变为 &lt;strong&gt;AI 时代的基础设施&lt;/strong&gt;。它构建了一个涵盖模型开发全生命周期的完整生态系统——从数据获取、模型开发、训练微调到最终的评估与部署。本节将深入剖析 Hugging Face 的生态构成，并以 &lt;strong&gt;Transformers&lt;/strong&gt; 库为核心，结合 &lt;strong&gt;Datasets&lt;/strong&gt; 和 &lt;strong&gt;Tokenizers&lt;/strong&gt;，展示现代化模型开发链路。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/code/C5/04_hf_usage.ipynb" target="_blank" rel="noopener"
+&gt;本节完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="一hugging-face-生态全景"&gt;一、Hugging Face 生态全景
+&lt;/h2&gt;&lt;p&gt;Hugging Face 的生态系统可以看作是由&lt;strong&gt;核心软件库&lt;/strong&gt;、&lt;strong&gt;协作平台&lt;/strong&gt;和&lt;strong&gt;辅助工具&lt;/strong&gt; 共同构成的有机整体。&lt;/p&gt;
+&lt;div align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_4_1.png" width="90%" alt="Hugging Face 官网" /&gt;
+&lt;p&gt;图 5-7 Hugging Face 官网&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="11-hugging-face-hub"&gt;1.1 Hugging Face Hub
+&lt;/h3&gt;&lt;p&gt;如果说 GitHub 是代码的托管中心，那么 &lt;strong&gt;Hugging Face Hub&lt;/strong&gt; 就是 &lt;strong&gt;AI 领域的 GitHub&lt;/strong&gt;。它是一个集成了模型、数据集和应用演示的中央枢纽，支持 Git 版本控制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Models（模型库）&lt;/strong&gt;：托管了数十万个预训练模型，涵盖 NLP、CV、Audio 等多模态领域。用户可以下载、使用甚至在线体验模型效果。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Datasets（数据集）&lt;/strong&gt;：托管各类公开数据集。支持数据预览和高效的流式传输。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spaces（演示空间）&lt;/strong&gt;：允许开发者使用 &lt;strong&gt;Gradio&lt;/strong&gt;、&lt;strong&gt;Streamlit&lt;/strong&gt; 或 &lt;strong&gt;Docker&lt;/strong&gt; 快速构建 Web 应用，在线展示模型效果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="12-核心软件库的三驾马车"&gt;1.2 核心软件库的“三驾马车”
+&lt;/h3&gt;&lt;p&gt;在开发层面，以下三个开源库构成了生态系统的技术基石：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Transformers&lt;/strong&gt;: 生态系统的引擎。提供统一的 API 来下载、加载和使用预训练模型 &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tokenizers&lt;/strong&gt;: 连接文本与模型的桥梁。底层由 &lt;strong&gt;Rust&lt;/strong&gt; 编写，提供极致的文本处理速度（Fast Tokenizers），并与 Transformers 无缝集成 &lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Datasets&lt;/strong&gt;: 数据处理的加速器。提供标准化的接口来加载、处理和管理大型数据集，内置高效的内存映射机制 &lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="13-辅助工具"&gt;1.3 辅助工具
+&lt;/h3&gt;&lt;p&gt;为了应对更复杂的开发需求，生态中还包含了一系列强大的辅助库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accelerate&lt;/strong&gt;: 简化分布式训练。让同一套代码可以无缝运行在 CPU、单卡 GPU、多卡 GPU 甚至 TPU 上，无需手动处理复杂的分布式逻辑。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Evaluate&lt;/strong&gt;: 标准化的模型评估框架。提供数十种常用的评估指标（如 Accuracy, F1, BLEU, ROUGE） &lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diffusers&lt;/strong&gt;: 专注于生成式 AI（如 Stable Diffusion）的库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PEFT&lt;/strong&gt;: 参数高效微调库（Parameter-Efficient Fine-Tuning），支持 LoRA 等前沿微调技术。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="二transformers-核心库详解"&gt;二、Transformers 核心库详解
+&lt;/h2&gt;&lt;h3 id="21-开箱即用的-pipeline"&gt;2.1 开箱即用的 Pipeline
+&lt;/h3&gt;&lt;p&gt;对于刚接触 AI 的开发者，或者只想快速验证某个想法，&lt;strong&gt;Pipeline&lt;/strong&gt; 是最高效的工具。它将&lt;strong&gt;预处理 -&amp;gt; 模型推理 -&amp;gt; 后处理&lt;/strong&gt;这一复杂的全流程封装成了一个黑盒。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NLP 任务&lt;/strong&gt;：
+在前面的 GPT 实战中，我们曾显式指定模型（&lt;code&gt;model=&amp;quot;gpt2&amp;quot;&lt;/code&gt;）来完成文本生成。同时，Pipeline 还拥有强大的“自动导航”能力——&lt;strong&gt;无需指定模型，只需指定任务&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;当指定一个任务类型（如 &lt;code&gt;sentiment-analysis&lt;/code&gt;）时，Pipeline 会自动从 Hub 上下载并加载该任务对应的&lt;strong&gt;默认预训练模型&lt;/strong&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 情感分析（默认下载英文模型）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;classifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;sentiment-analysis&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;I love Hugging Face!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;默认模型通常为英文，中文任务建议显式指定中文模型（如 &lt;code&gt;model=&amp;quot;bert-base-chinese&amp;quot;&lt;/code&gt;）。*&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;跨模态能力&lt;/strong&gt;：
+Transformers 早已突破 NLP 边界，支持 CV 和 Audio 等多个领域。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 图像分类示例（显式指定小模型 apple/mobilevit-small）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# pip install pillow&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vision_classifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;apple/mobilevit-small&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vision_classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="22-autoclass智能加载机制"&gt;2.2 AutoClass：智能加载机制
+&lt;/h3&gt;&lt;p&gt;当深入定制模型时，我们需要手动加载模型。&lt;strong&gt;&lt;code&gt;AutoClass&lt;/code&gt;&lt;/strong&gt;（如 &lt;code&gt;AutoTokenizer&lt;/code&gt;, &lt;code&gt;AutoModel&lt;/code&gt;, &lt;code&gt;AutoConfig&lt;/code&gt;）是库设计的精髓。&lt;/p&gt;
+&lt;p&gt;它的作用是&lt;strong&gt;根据 Checkpoint 名称，自动推断并加载正确的模型架构&lt;/strong&gt;。例如，调用 &lt;code&gt;AutoModel.from_pretrained(&amp;quot;bert-base-chinese&amp;quot;)&lt;/code&gt; 时，库会自动识别这是 BERT 架构，并实例化 &lt;code&gt;BertModel&lt;/code&gt; 类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;from_pretrained&lt;/code&gt;&lt;/strong&gt;: 加载接口。既支持从 Hub 在线下载，也支持从本地目录加载。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;save_pretrained&lt;/code&gt;&lt;/strong&gt;: 保存接口。将模型权重、配置和词表保存到本地。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="23-核心组件拆解"&gt;2.3 核心组件拆解
+&lt;/h3&gt;&lt;p&gt;Transformers 的处理流程主要包含三个核心阶段。我们将结合代码演示，分析每个阶段的职责与实现：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Tokenizer（分词）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoModelForSequenceClassification&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 准备模型与分词器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;checkpoint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;bert-base-chinese&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;checkpoint&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoModelForSequenceClassification&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;checkpoint&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. Tokenizer: 文本 -&amp;gt; Tensor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Hugging Face 让 NLP 变得简单&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;inputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;return_tensors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;pt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;inputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;input_ids&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Tokenizer 充当数据的“翻译官”，负责将原始文本转换为模型可理解的数字序列（如 Input IDs 和 Attention Mask）。它利用 Rust 实现的 Fast Tokenizer 技术，在处理海量语料时比纯 Python 实现快几个数量级。&lt;/p&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tensor&lt;span class="o"&gt;([[&lt;/span&gt; 101, 100, 100, 6375, 100, 1359, 2533, 5042, 1296, 102&lt;span class="o"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出的 Tensor 就是分词后的 &lt;strong&gt;Token IDs&lt;/strong&gt;。其中 &lt;code&gt;101&lt;/code&gt; 是 BERT 特有的起始标记 &lt;code&gt;[CLS]&lt;/code&gt;，&lt;code&gt;102&lt;/code&gt; 是结束标记 &lt;code&gt;[SEP]&lt;/code&gt;。
+中间的数字对应文本 &amp;ldquo;Hugging Face 让 NLP 变得简单&amp;rdquo; 的词表索引：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;100&lt;/code&gt;：对应特殊标记 &lt;code&gt;[UNK]&lt;/code&gt;（未知词）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;6375&lt;/code&gt;: &amp;ldquo;让&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1359&lt;/code&gt;: &amp;ldquo;变&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2533&lt;/code&gt;: &amp;ldquo;得&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;5042&lt;/code&gt;: &amp;ldquo;简&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1296&lt;/code&gt;: &amp;ldquo;单&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于 bert-base-chinese 词表未包含英文单词 &lt;code&gt;Hugging&lt;/code&gt;、&lt;code&gt;Face&lt;/code&gt;、&lt;code&gt;NLP&lt;/code&gt;，它们都会被映射为 &lt;code&gt;[UNK]&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Model（模型）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. Model: Tensor -&amp;gt; Logits&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;inputs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logits&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logits&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;模型是计算的“引擎”，由 &lt;code&gt;Config&lt;/code&gt;（架构定义）和 &lt;code&gt;Weights&lt;/code&gt;（参数权重）组成。它接收 Token IDs，执行前向传播，最终输出隐藏状态（Hidden States）或 Logits。&lt;/p&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.2436, 0.1208&lt;span class="o"&gt;]]&lt;/span&gt;, &lt;span class="nv"&gt;grad_fn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;AddmmBackward0&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;模型输出的 &lt;code&gt;logits&lt;/code&gt; 是未归一化的数值。可以看到输出是一个 &lt;code&gt;[1, 2]&lt;/code&gt; 的张量，在一个二分类任务中通常可以理解为两个类别（例如“负面/正面”）的原始得分。这里我们主要演示前向推理流程；在实际应用中，需要在标注数据上对模型进行微调（或直接加载已经在下游任务上微调好的权重），这两个维度才会对应具体语义的类别标签。&lt;/p&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Post-processing（后处理）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. Post-processing: Logits -&amp;gt; 概率&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;predictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;functional&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;softmax&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dim&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后处理阶段的职责是将模型输出的 Logits 转换为人类可读的概率或标签。&lt;/p&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.5306, 0.4694&lt;span class="o"&gt;]]&lt;/span&gt;, &lt;span class="nv"&gt;grad_fn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;SoftmaxBackward0&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;经过 Softmax 层后，logits 被转换为概率分布（和为 1）。此例中，第一个类别的概率约为 53%，第二个类别约为 47%。&lt;/p&gt;
+&lt;h2 id="三使用-datasets-构建数据流水线"&gt;三、使用 Datasets 构建数据流水线
+&lt;/h2&gt;&lt;p&gt;在深度学习中，数据的准备工作往往繁琐。虽然清洗逻辑仍需开发者根据业务定制，但 &lt;code&gt;datasets&lt;/code&gt; 库提供了一套&lt;strong&gt;高效的框架&lt;/strong&gt;，解决了数据加载、内存管理和并行处理等底层工程问题，让开发者能专注于预处理逻辑本身。&lt;/p&gt;
+&lt;h3 id="31-内存映射与流式处理"&gt;3.1 内存映射与流式处理
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;datasets&lt;/code&gt; 库底层基于 &lt;strong&gt;Apache Arrow&lt;/strong&gt; 格式，支持&lt;strong&gt;内存映射&lt;/strong&gt;。这意味着它可以在不将整个数据集加载到 RAM 的情况下进行读取和处理。即使是 TB 级别的数据集，也能在普通笔记本上高效运行。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_dataset&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 加载烂番茄影评数据集&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;rotten_tomatoes&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;DatasetDict&lt;span class="o"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; train: Dataset&lt;span class="o"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; features: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;label&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; num_rows: &lt;span class="m"&gt;8530&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; validation: Dataset&lt;span class="o"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; features: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;label&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; num_rows: &lt;span class="m"&gt;1066&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; test: Dataset&lt;span class="o"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; features: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;label&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; num_rows: &lt;span class="m"&gt;1066&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;加载后的 &lt;code&gt;DatasetDict&lt;/code&gt; 类似于一个字典，包含了 &lt;code&gt;train&lt;/code&gt;（训练集）、&lt;code&gt;validation&lt;/code&gt;（验证集）和 &lt;code&gt;test&lt;/code&gt;（测试集）三个子集。每个子集都明确列出了特征列（&lt;code&gt;features&lt;/code&gt;）和数据量（&lt;code&gt;num_rows&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;此外，对于超大规模数据集，&lt;code&gt;datasets&lt;/code&gt; 库还支持&lt;strong&gt;流式模式&lt;/strong&gt;，按需迭代数据而无需下载完整文件。&lt;/p&gt;
+&lt;h3 id="32-并行的预处理"&gt;3.2 并行的预处理
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;map&lt;/code&gt; 是 &lt;code&gt;datasets&lt;/code&gt; 最强大的功能。它允许你将预处理函数（如 Tokenizer）应用到数据集的每一个样本上。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;批处理 (&lt;code&gt;batched=True&lt;/code&gt;)&lt;/strong&gt;：一次处理一批数据，充分利用 Tokenizer 的多线程优势。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多进程 (&lt;code&gt;num_proc=N&lt;/code&gt;)&lt;/strong&gt;：并行处理，显著加快大数据集的预处理速度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tokenize_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;examples&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;examples&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;max_length&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;truncation&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 高效并行处理&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# tokenized_datasets = dataset.map(tokenize_function, batched=True, num_proc=4)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="四trainer-与-evaluate"&gt;四、Trainer 与 Evaluate
+&lt;/h2&gt;&lt;h3 id="41-trainer-训练框架"&gt;4.1 Trainer 训练框架
+&lt;/h3&gt;&lt;p&gt;数据准备就绪后，&lt;code&gt;transformers&lt;/code&gt; 提供了 &lt;code&gt;Trainer&lt;/code&gt; API，这是一个高度封装的训练框架。虽然可以手写 PyTorch 循环，但 &lt;code&gt;Trainer&lt;/code&gt; 集成了大量工程化特性（如混合精度、梯度累积、分布式训练支持），且底层自动调用 &lt;code&gt;Accelerate&lt;/code&gt; 库。使用 Trainer 通常遵循“三步走”：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;准备组件&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TrainingArguments&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Trainer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoModelForSequenceClassification&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 使用英文模型 distilbert-base-uncased&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;distilbert-base-uncased&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tokenize_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;examples&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;examples&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;max_length&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;truncation&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenized_datasets&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tokenize_function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;batched&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 为了快速演示，我们只取一小部分数据&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;small_train_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenized_datasets&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;train&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shuffle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;small_eval_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenized_datasets&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;validation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shuffle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 准备模型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoModelForSequenceClassification&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;distilbert-base-uncased&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以看到第一步我们实例化了 Model、Dataset 和 Tokenizer 等核心组件。&lt;/p&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;DistilBertForSequenceClassification&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;distilbert&lt;span class="o"&gt;)&lt;/span&gt;: DistilBertModel&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;embeddings&lt;span class="o"&gt;)&lt;/span&gt;: Embeddings&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;word_embeddings&lt;span class="o"&gt;)&lt;/span&gt;: Embedding&lt;span class="o"&gt;(&lt;/span&gt;30522, 768, &lt;span class="nv"&gt;padding_idx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;position_embeddings&lt;span class="o"&gt;)&lt;/span&gt;: Embedding&lt;span class="o"&gt;(&lt;/span&gt;512, 768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;LayerNorm&lt;span class="o"&gt;)&lt;/span&gt;: LayerNorm&lt;span class="o"&gt;((&lt;/span&gt;768,&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;eps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1e-12, &lt;span class="nv"&gt;elementwise_affine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;transformer&lt;span class="o"&gt;)&lt;/span&gt;: Transformer&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;layer&lt;span class="o"&gt;)&lt;/span&gt;: ModuleList&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;0-5&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="m"&gt;6&lt;/span&gt; x TransformerBlock&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;attention&lt;span class="o"&gt;)&lt;/span&gt;: DistilBertSdpaAttention&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;q_lin&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;k_lin&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;v_lin&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;out_lin&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;sa_layer_norm&lt;span class="o"&gt;)&lt;/span&gt;: LayerNorm&lt;span class="o"&gt;((&lt;/span&gt;768,&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;eps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1e-12, &lt;span class="nv"&gt;elementwise_affine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;ffn&lt;span class="o"&gt;)&lt;/span&gt;: FFN&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;lin1&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3072, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;lin2&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3072, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;activation&lt;span class="o"&gt;)&lt;/span&gt;: GELUActivation&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;pre_classifier&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;classifier&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.2, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打印模型对象可以看到其完整的网络结构。注意最后的 &lt;code&gt;classifier&lt;/code&gt; 层，其 &lt;code&gt;out_features=2&lt;/code&gt; 对应我们在加载时设置的 &lt;code&gt;num_labels=2&lt;/code&gt;，这表明模型已经被正确初始化为二分类任务。&lt;/p&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;配置参数&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 配置参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;training_args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TrainingArguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;test_trainer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;eval_strategy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;epoch&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# 每个 epoch 结束进行评估&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;num_train_epochs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用 &lt;code&gt;TrainingArguments&lt;/code&gt; 定义超参数（Batch Size, LR, Epoch, 保存策略等）。&lt;/p&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;启动训练&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 实例化 Trainer 并启动训练&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;trainer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Trainer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;training_args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;train_dataset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;small_train_dataset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;eval_dataset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;small_eval_dataset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;trainer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;实例化 &lt;code&gt;Trainer&lt;/code&gt; 并调用 &lt;code&gt;train()&lt;/code&gt; 即可开启训练流程。&lt;/p&gt;
+&lt;h3 id="42-evaluate-性能评估"&gt;4.2 Evaluate 性能评估
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;evaluate&lt;/code&gt; 库用于计算 Metrics（指标），如 Accuracy、F1-score。它与 Trainer 无缝集成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定义一个 &lt;code&gt;compute_metrics&lt;/code&gt; 函数。&lt;/li&gt;
+&lt;li&gt;将其传入 &lt;code&gt;Trainer&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;在训练过程中，Trainer 会自动调用该函数评估模型在验证集上的表现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;evaluate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 加载评估指标&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;metric&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;evaluate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;accuracy&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 定义计算函数：将 Logits 转换为 Predictions 并计算 Accuracy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compute_metrics&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eval_pred&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;logits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eval_pred&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;predictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;metric&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;references&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 重新实例化 Trainer，注入 compute_metrics&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;trainer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Trainer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;training_args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;train_dataset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;small_train_dataset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;eval_dataset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;small_eval_dataset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;compute_metrics&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;compute_metrics&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# 关键步骤&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 训练并评估&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;trainer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="本章小结"&gt;本章小结
+&lt;/h2&gt;&lt;p&gt;本章我们探索了预训练语言模型的三大主流技术路线及其工程实践：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BERT（理解）&lt;/strong&gt;：基于 &lt;strong&gt;Transformer Encoder&lt;/strong&gt; 结构，主要通过 &lt;strong&gt;MLM（掩码语言建模）&lt;/strong&gt;（以及 NSP 等）任务学习双向上下文表示。BERT 及其变体（RoBERTa、ALBERT）在文本分类、序列标注等&lt;strong&gt;自然语言理解&lt;/strong&gt;任务上表现出色，是解决此类问题的经典方案。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPT（生成）&lt;/strong&gt;：基于 &lt;strong&gt;Transformer Decoder&lt;/strong&gt; 结构，通过 &lt;strong&gt;自回归&lt;/strong&gt; 预测下一个词。GPT 系列模型不仅在&lt;strong&gt;自然语言生成（NLG）&lt;/strong&gt; 上表现优异，更通过 GPT-3 系统性展示了&lt;strong&gt;提示工程&lt;/strong&gt;和&lt;strong&gt;上下文学习&lt;/strong&gt;的潜力，在实践层面推动了现代大语言模型的发展。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;T5（统一）&lt;/strong&gt;：回归 &lt;strong&gt;Encoder-Decoder&lt;/strong&gt; 经典架构，提出了 &lt;strong&gt;“Text-to-Text”（万物皆文本）&lt;/strong&gt; 的统一框架。T5 证明通过将不同任务（翻译、分类、回归）统一为文本生成的形式，可以用一个模型解决多种 NLP 问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hugging Face 实战&lt;/strong&gt;：本章还详细介绍了 NLP 领域的标准工具——&lt;strong&gt;Hugging Face&lt;/strong&gt;。通过 &lt;strong&gt;Transformers&lt;/strong&gt;（模型）、&lt;strong&gt;Tokenizers&lt;/strong&gt;（分词）、&lt;strong&gt;Datasets&lt;/strong&gt;（数据） 和 &lt;strong&gt;Evaluate&lt;/strong&gt;（评估）这四大核心库，开发者能够以极低的代码量，高效地复现和应用现代 NLP 模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从理论原理到工具实践，本章构建了使用预训练模型的完整知识体系。在下一章中，将进一步深入底层，探索如何从零开始构建一个类 LLaMA 的大模型结构。&lt;/p&gt;
+&lt;h2 id="练习"&gt;练习
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;尝试将之前实现的文本分类模型，从基于 &lt;code&gt;Word2Vec&lt;/code&gt; 和 &lt;code&gt;LSTM&lt;/code&gt; 的结构，迁移为使用 &lt;code&gt;BERT&lt;/code&gt; 模型进行微调。对比分析两者在模型构建、训练流程以及最终性能上的异同。（可以参考&lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/docs/chapter7/01_text_classification.md" target="_blank" rel="noopener"
+&gt;微调 BERT 模型进行文本分类&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://huggingface.co/docs/transformers/index" target="_blank" rel="noopener"
+&gt;Hugging Face. &lt;em&gt;Transformers Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://huggingface.co/docs/tokenizers/index" target="_blank" rel="noopener"
+&gt;Hugging Face. &lt;em&gt;Tokenizers Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;&lt;a class="link" href="https://huggingface.co/docs/datasets/index" target="_blank" rel="noopener"
+&gt;Hugging Face. &lt;em&gt;Datasets Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;a class="link" href="https://huggingface.co/docs/evaluate/index" target="_blank" rel="noopener"
+&gt;Hugging Face. &lt;em&gt;Evaluate Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>

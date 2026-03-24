@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GPT on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/gpt/</link><description>Recent content in GPT on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 23 Mar 2026 13:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/gpt/index.xml" rel="self" type="application/rss+xml"/><item><title>GPT 结构及应用</title><link>https://hanguangwu.github.io/blog/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 13:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="gpt-结构及应用"&gt;GPT 结构及应用
+&lt;/h1&gt;&lt;p&gt;在 Transformer 催生的众多预训练模型中，除了应用广泛的基于的 BERT，还有一条专注于&lt;strong&gt;生成&lt;/strong&gt;的技术路线。那就是完全基于 &lt;strong&gt;Transformer 解码器&lt;/strong&gt; 构建的 &lt;strong&gt;GPT（Generative Pre-trained Transformer）&lt;/strong&gt; 系列模型。与 BERT 致力于通过双向上下文来“理解”语言不同，GPT 的重心在“生成”语言。它的设计初衷就是为了根据给定的上文，以自回归的方式预测下一个最可能的词元，这种特性使其在文本生成、对话系统、内容续写等任务上展现出无与伦比的能力。从早期的 GPT-1，到引爆全球AI热潮的 ChatGPT (其背后是 GPT-3.5/4)，OpenAI 沿着解码器这条路，不断刷新着我们对语言模型能力的认知。&lt;/p&gt;
+&lt;h2 id="一gpt-的设计思想与技术发展"&gt;一、GPT 的设计思想与技术发展
+&lt;/h2&gt;&lt;p&gt;与 BERT 类似，早期的 GPT 也遵循 &lt;strong&gt;“预训练 + 微调”&lt;/strong&gt; 的思路。不过，随着模型规模的指数级增长（尤其是到了 GPT-3），&lt;strong&gt;提示（Prompt）&lt;/strong&gt; 和&lt;strong&gt;上下文学习（In-context Learning）&lt;/strong&gt; 开始成为主流，允许用户在不更新参数的情况下完成任务。虽然现代大模型依然会使用微调，但目的和形式已与 BERT 时代针对特定任务的微调有了本质不同。&lt;/p&gt;
+&lt;h3 id="11-因果语言模型"&gt;1.1 因果语言模型
+&lt;/h3&gt;&lt;p&gt;GPT 的成功根植于一个非常简洁而强大的预训练任务——&lt;strong&gt;因果语言模型 (Causal Language Model, CLM)&lt;/strong&gt;。通俗地讲，就是 &lt;strong&gt;预测下一个词&lt;/strong&gt;。给定一段文本序列 $x_1, x_2, &amp;hellip;, x_t$，模型的目标是最大化预测出下一个词元 $x_{t+1}$ 的概率。它在预训练过程中，不断地在海量文本上重复这个“续写”任务。&lt;/p&gt;
+$$
+P(x_1, ..., x_T) = \prod_{t=1}^{T} P(x_t | x_1, ..., x_{t-1})
+$$&lt;p&gt;这个看似简单的目标，却迫使模型必须学习到语言的深层规律，包括语法结构、事实知识、上下文逻辑关系等，因为只有真正“理解”了前面的内容，才能准确地预测后面会说什么。由于在预测第 &lt;code&gt;t&lt;/code&gt; 个词时，模型只能看到它前面的 &lt;code&gt;t-1&lt;/code&gt; 个词，这种单向的、自回归的特性是 GPT 与 BERT 最根本的区别。&lt;/p&gt;
+&lt;h3 id="12-从微调到提示"&gt;1.2 从微调到提示
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GPT-1：有监督微调（Supervised Fine-tuning）&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心理念&lt;/strong&gt;：先在无标注数据上进行&lt;strong&gt;无监督预训练&lt;/strong&gt;，学习通用的语言表示；然后在特定任务的有标注数据上进行&lt;strong&gt;有监督微调&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键创新&lt;/strong&gt;：提出了&lt;strong&gt;任务特定的输入变换&lt;/strong&gt;。为了解决不同任务输入格式不一致的问题（如问答需要输入文章、问题、答案），GPT-1 不改变模型架构，而是通过在输入文本中加入特殊的分隔符（如 Start, Delimiter, Extract）将结构化输入转换为有序的序列。例如，对于文本蕴含任务，将前提（Premise）和假设（Hypothesis）用 &lt;code&gt;$&lt;/code&gt; 符号拼接后输入模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GPT-2：零样本学习（Zero-shot Learning）&lt;/strong&gt; &lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心理念&lt;/strong&gt;：&lt;strong&gt;语言模型即多任务学习者&lt;/strong&gt;。研究者发现，当模型规模扩大（1.5B 参数）并使用更高质量的数据集（&lt;strong&gt;WebText&lt;/strong&gt;，过滤后的 Reddit 高赞链接内容）训练后，模型展现出了无需微调的&lt;strong&gt;零样本&lt;/strong&gt;能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;表现&lt;/strong&gt;：可以直接给模型输入指令，如 “Translate English to French: cheese =&amp;gt;”，模型就能自动续写出 “fromage”。证明模型在预训练中已经隐式地学会了各种任务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;架构微调&lt;/strong&gt;：将 LayerNorm 移到了每个子层的输入端（&lt;strong&gt;Pre-activation&lt;/strong&gt;），并增加了上下文窗口大小（512 -&amp;gt; 1024）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GPT-3：上下文学习（In-context Learning）&lt;/strong&gt; &lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心理念&lt;/strong&gt;：&lt;strong&gt;少样本学习者（Few-Shot Learners）&lt;/strong&gt;。GPT-3 将参数量推向了惊人的 1750 亿。此时，模型展现出了强大的&lt;strong&gt;上下文学习&lt;/strong&gt;能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;什么是 In-context Learning？&lt;/strong&gt;：模型在推理阶段，不需要更新任何权重（即不需要微调），仅凭输入提示中给出的&lt;strong&gt;少量示例（Demonstrations）&lt;/strong&gt;，就能理解并完成新任务。
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Zero-shot&lt;/strong&gt;: 仅给出任务描述。例如：“将中文翻译成英文：你好 -&amp;gt;”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One-shot&lt;/strong&gt;: 给出一个示例。例如：“将中文翻译成英文：\n苹果 -&amp;gt; apple\n你好 -&amp;gt;”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Few-shot&lt;/strong&gt;: 给出多个示例。这通常能显著提升模型性能，甚至达到微调模型的效果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;意义&lt;/strong&gt;：这标志着范式的转变——我们不再为每个任务训练一个专用模型，而是通过设计&lt;strong&gt;提示 (Prompt)&lt;/strong&gt; 来激发通用大模型的能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过这种方式，几乎所有的自然语言处理任务都可以被转换成一个统一的“问答”或“续写”模式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文本分类&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;旧方法（微调）&lt;/strong&gt;: 输入句子 -&amp;gt; &lt;code&gt;[CLS]&lt;/code&gt;向量 -&amp;gt; 分类头 -&amp;gt; 类别标签&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;新方法（提示）&lt;/strong&gt;: 输入一段文本，如：&lt;code&gt;请判断以下评论的情感类别（正面/负面）：&amp;quot;这家餐厅的菜品味道惊艳，服务也很周到。&amp;quot;&lt;/code&gt;，然后让模型续写出 &lt;code&gt;正面&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文本相似度&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;旧方法（微调）&lt;/strong&gt;: 输入句子对 -&amp;gt; &lt;code&gt;[CLS]&lt;/code&gt;向量 -&amp;gt; 分类头 -&amp;gt; 相似/不相似&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;新方法（提示）&lt;/strong&gt;: 输入：&lt;code&gt;请判断下面两个句子的意思是否相似。句子1：&amp;quot;今天天气真好&amp;quot; 句子2：&amp;quot;天气晴朗的一天&amp;quot;&lt;/code&gt;，然后让模型续写出 &lt;code&gt;相似&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="二gpt-架构解析"&gt;二、GPT 架构解析
+&lt;/h2&gt;&lt;h3 id="21-模型基本结构"&gt;2.1 模型基本结构
+&lt;/h3&gt;&lt;p&gt;GPT 的架构本质就是将 Transformer 的解码器模块进行堆叠。我们在 transformer 中学习的关于解码器的知识，大部分都适用于 GPT。&lt;/p&gt;
+&lt;p&gt;一个标准的 Transformer 解码器层包含两个核心子层：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;掩码多头自注意力&lt;/strong&gt;: 这是实现单向、自回归生成的关键。通过一个“掩码”机制，确保在计算任何一个位置的表示时，只能关注到它左侧（即已经生成）的词元，而不能“看到”未来的信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;位置前馈网络&lt;/strong&gt;: 与编码器中的结构完全相同，负责对每个位置的表示进行非线性变换。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;需要注意，原始的 Transformer 解码器还有一个用于与编码器交互的“交叉注意力”层，但由于 GPT 模型完全没有编码器部分，所以&lt;strong&gt;这一层被移除了&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;图 5-4 详细展示了 GPT-1 的模型架构与微调策略。&lt;strong&gt;左侧&lt;/strong&gt;是基于 Transformer 解码器的模型主体，可以看到在微调阶段，模型除了输出任务分类结果（Task Classifier），还可以保留语言模型预测（Text Prediction）作为辅助目标。具体来说，我们在优化特定任务（如分类）的损失 $L_{task}$ 时，会加上一个权重的语言模型损失 $L_{lm}$，即 $L = L_{task} + \lambda L_{lm}$。这种多任务学习的策略不仅能帮助模型泛化，还能加速收敛。&lt;strong&gt;右侧&lt;/strong&gt;则直观地描绘了如何通过&lt;strong&gt;输入变换&lt;/strong&gt;将不同类型的任务适配到预训练模型中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;分类任务&lt;/strong&gt;：在文本前后添加起始 (&lt;code&gt;Start&lt;/code&gt;) 和提取 (&lt;code&gt;Extract&lt;/code&gt;) 标记。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;蕴含任务&lt;/strong&gt;：将前提和假设用分隔符 (&lt;code&gt;Delim&lt;/code&gt;) 拼接。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相似度任务&lt;/strong&gt;：由于 GPT 是单向模型，无法像 BERT 那样同时“看到”两个句子，所有它对句子顺序敏感。为了消除这种顺序偏差，将两个句子按不同顺序拼接（Text1-Text2 和 Text2-Text1），分别输入模型，最后将两者的特征相加作为最终表示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多选题任务&lt;/strong&gt;：将上下文与每一个答案选项分别拼接，独立输入模型计算得分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_2_1.png" alt="GPT-1 模型架构与输入变换" /&gt;
+&lt;p&gt;图 5-4 GPT-1 模型架构（左）与针对不同任务的输入变换（右）&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="22-关键架构演进"&gt;2.2 关键架构演进
+&lt;/h3&gt;&lt;p&gt;虽然大体框架不变，但 GPT 各代模型在细节上有一些关键演进。这里我们结合 GPT 的一些通用特性来进行介绍。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;特殊 Token&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GPT 系列模型通常使用 &lt;strong&gt;&lt;code&gt;&amp;lt;|endoftext|&amp;gt;&lt;/code&gt;&lt;/strong&gt; 作为其主要的特殊 Token。&lt;/li&gt;
+&lt;li&gt;它既可以表示文本的结束（End of Text），也可以在预训练时用作不同文档之间的分隔符。在微调或 Few-shot 学习时，它也常被用来分隔示例。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;归一化位置 (Pre-Norm vs Post-Norm)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GPT-1&lt;/strong&gt;: 采用 &lt;strong&gt;Post-Norm&lt;/strong&gt; 结构（与原始 Transformer 和 BERT 一致），即 &lt;code&gt;LayerNorm(x + SubLayer(x))&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPT-2/3&lt;/strong&gt;: 转向 &lt;strong&gt;Pre-Norm&lt;/strong&gt; 结构，即 &lt;code&gt;x + SubLayer(LayerNorm(x))&lt;/code&gt;。
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;意义&lt;/strong&gt;: 这一改进&lt;strong&gt;缓解&lt;/strong&gt;了深层网络梯度消失/爆炸的问题，让训练更深的模型（如 GPT-3 的 96 层）成为可能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;输入表示与最大长度&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;词元嵌入&lt;/strong&gt;: 采用&lt;strong&gt;字节级 BPE（Byte-level BPE）&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;位置嵌入&lt;/strong&gt;: 始终采用&lt;strong&gt;可学习的位置嵌入&lt;/strong&gt;。
+&lt;ul&gt;
+&lt;li&gt;GPT-1 上下文窗口: 512&lt;/li&gt;
+&lt;li&gt;GPT-2 上下文窗口: &lt;strong&gt;1024&lt;/strong&gt; (这也是很多早期 GPT 类模型的默认最大长度)&lt;/li&gt;
+&lt;li&gt;GPT-3 上下文窗口: 2048&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;无片段嵌入&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GPT 的输入总是一个连续的文本流，不区分句子片段，所以没有 BERT 那样的 Segment Embeddings。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;表 5-1 展示了 GPT-3 系列不同规模模型的具体参数配置，可以看到随着层数和维度的增加，模型容量呈指数级增长。&lt;/p&gt;
+&lt;div align="center"&gt;
+&lt;table border=1 style='margin: auto; width: max-content;'&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;Model Name&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;&lt;i&gt;n&lt;/i&gt;&lt;sub&gt;params&lt;/sub&gt;&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;&lt;i&gt;n&lt;/i&gt;&lt;sub&gt;layers&lt;/sub&gt;&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;&lt;i&gt;d&lt;/i&gt;&lt;sub&gt;model&lt;/sub&gt;&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;&lt;i&gt;n&lt;/i&gt;&lt;sub&gt;heads&lt;/sub&gt;&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;&lt;i&gt;d&lt;/i&gt;&lt;sub&gt;head&lt;/sub&gt;&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;Batch Size&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;Learning Rate&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 Small&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;125M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;12&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;768&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;12&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;64&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;0.5M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;6.0 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 Medium&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;350M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;24&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1024&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;16&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;64&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;0.5M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;3.0 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 Large&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;760M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;24&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1536&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;16&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;96&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;0.5M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2.5 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 XL&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1.3B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;24&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2048&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;24&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;128&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2.0 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 2.7B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2.7B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;32&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2560&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;32&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;80&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1.6 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 6.7B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;6.7B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;32&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;4096&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;32&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;128&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1.2 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 13B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;13.0B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;40&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;5140&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;40&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;128&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;2M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;1.0 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='text-align: center;'&gt;GPT-3 175B or “GPT-3”&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;175.0B&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;96&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;12288&lt;/td&gt;&lt;td style='text-align: center;'&gt;96&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;128&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;3.2M&lt;/td&gt;
+&lt;td style='text-align: center;'&gt;0.6 &amp;times; 10&lt;sup&gt;-4&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;表 5-1 不同规模 GPT-3 模型的架构参数配置&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="23-gpt-与-bert-的主要差异"&gt;2.3 GPT 与 BERT 的主要差异
+&lt;/h3&gt;&lt;p&gt;尽管都基于 Transformer，但由于选择了编码器和解码器两条不同的路线，BERT 和 GPT 在设计和应用上有着明显区别（此处主要对比原始版本的 BERT 和 GPT-1/2/3，不包含后续的各类变体）。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;特性&lt;/th&gt;
+&lt;th style="text-align: left"&gt;BERT (Encoder)&lt;/th&gt;
+&lt;th style="text-align: left"&gt;GPT (Decoder)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;核心结构&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Transformer 编码器&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Transformer 解码器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;注意力机制&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;标准自注意力（双向，能看到全文）&lt;/td&gt;
+&lt;td style="text-align: left"&gt;掩码自注意力（单向，只能看左边）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;预训练任务&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;掩码语言模型, 下一句预测&lt;/td&gt;
+&lt;td style="text-align: left"&gt;因果语言模型 / 预测下一个词&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;输入表示&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;词元 + 位置 + &lt;strong&gt;片段&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;词元 + 位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;最大长度&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;通常 512&lt;/td&gt;
+&lt;td style="text-align: left"&gt;1024 (GPT-2) / 2048 (GPT-3)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;归一化&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Post-Norm&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Pre-Norm (GPT-2/3)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;应用模式&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;微调（Fine-tuning）&lt;/strong&gt;: 加分类头，更新权重&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;提示（Prompting）&lt;/strong&gt;: 设计提示词，不更新权重 (Zero/Few-shot)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;适用场景&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;语言理解（NLU）: 分类、NER、抽取式问答&lt;/td&gt;
+&lt;td style="text-align: left"&gt;语言生成（NLG）: 写作、对话、生成式任务&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="三gpt-代码实战"&gt;三、GPT 代码实战
+&lt;/h2&gt;&lt;p&gt;为了更好地理解 GPT 模型自回归生成的内部原理，以及 &lt;code&gt;gpt2&lt;/code&gt; 这类英文预训练模型处理不同语言时的差异，下面的示例将并列展示它处理英文和中文时的不同表现。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/code/C5/02_gpt_usage.py" target="_blank" rel="noopener"
+&gt;本节完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="31-代码示例"&gt;3.1 代码示例
+&lt;/h3&gt;&lt;p&gt;以下代码将分别对英文和中文进行手动地逐字生成，以观察其内部过程和差异。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;span class="lnt"&gt;52
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoModelForCausalLM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 环境配置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;cuda&amp;#34;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cuda&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_available&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;cpu&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;gpt2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoModelForCausalLM&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 英文示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;prompt_en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;I like eating fried&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_ids_en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prompt_en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;return_tensors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;pt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;input_ids&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;英文输入: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;prompt_en&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;被编码为 &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;input_ids_en&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 个 token: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert_ids_to_tokens&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_ids_en&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;开始为英文逐个 token 生成...&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;generated_ids_en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;input_ids_en&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;no_grad&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="c1"&gt;# 只生成 5 个 token 作为示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;generated_ids_en&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;next_token_logits&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logits&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;next_token_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;next_token_logits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dim&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unsqueeze&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;new_token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;next_token_id&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;第 &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 步, 生成 token: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;new_token&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;generated_ids_en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;generated_ids_en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;next_token_id&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;dim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;full_decoded_text_en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;generated_ids_en&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;skip_special_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;英文最终生成结果: &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;full_decoded_text_en&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 中文示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;prompt_zh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;我喜欢吃炸&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_ids_zh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prompt_zh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;return_tensors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;pt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;input_ids&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;中文输入: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;prompt_zh&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;被编码为 &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;input_ids_zh&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 个 token: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert_ids_to_tokens&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_ids_zh&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;开始为中文逐个 token 生成...&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;generated_ids_zh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;input_ids_zh&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;no_grad&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="c1"&gt;# 只生成 5 个 token 作为示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;generated_ids_zh&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;next_token_logits&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logits&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;next_token_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;next_token_logits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dim&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unsqueeze&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;new_token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;next_token_id&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;第 &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 步, 生成 token: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;new_token&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;generated_ids_zh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;generated_ids_zh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;next_token_id&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;dim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;full_decoded_text_zh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;generated_ids_zh&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;skip_special_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;中文最终生成结果 (出现乱码是正常现象): &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;full_decoded_text_zh&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;加载模型和分词器&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 &lt;code&gt;AutoModelForCausalLM.from_pretrained(model_name)&lt;/code&gt; 加载模型。注意这里使用的是 &lt;code&gt;ForCausalLM&lt;/code&gt; 类，它比标准的 &lt;code&gt;AutoModel&lt;/code&gt; 多了一个 &lt;code&gt;lm_head&lt;/code&gt; 层，专门用于将隐藏层状态映射回词表大小，从而预测下一个词。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文本预处理&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tokenizer(prompt_en, ...)&lt;/code&gt;: 将文本转换为 token ID 序列。与 BERT 不同，GPT 通常不需要 &lt;code&gt;token_type_ids&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型推理 (自回归循环)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;outputs = model(generated_ids_en)&lt;/code&gt;: 将当前的完整序列输入模型。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;next_token_logits = outputs.logits[:, -1, :]&lt;/code&gt;: GPT 模型的输出 &lt;code&gt;logits&lt;/code&gt; 形状为 &lt;code&gt;(batch_size, sequence_length, vocab_size)&lt;/code&gt;。我们只关心序列中&lt;strong&gt;最后一个位置&lt;/strong&gt; (&lt;code&gt;-1&lt;/code&gt;) 的输出，因为它是对“下一个未知词”的预测。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;torch.argmax(..., dim=-1)&lt;/code&gt;: 在词表维度上取概率最大的那个 token ID，作为预测结果（这是最简单的&lt;strong&gt;贪心搜索&lt;/strong&gt;策略）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;拼接与更新&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;torch.cat([generated_ids_en, next_token_id], dim=1)&lt;/code&gt;: 将新预测出的 token 拼接到原输入序列的末尾。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键点&lt;/strong&gt;: 这个新的、更长的序列将在下一次循环中再次被送入模型。这就是&lt;strong&gt;自回归 (Auto-Regressive)&lt;/strong&gt; 的本质——用自己的输出作为下一次的输入。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;对比结论&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;上面的代码通过并列对比 &lt;code&gt;gpt2&lt;/code&gt; 模型处理英文和中文时的不同表现，可以得到两个关于原始 GPT2 预训练模型的结论：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分词效率&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;英文&lt;/strong&gt;: 输入 &lt;code&gt;&amp;quot;I like eating fried&amp;quot;&lt;/code&gt; 包含 4 个单词，被分词器高效地编码成了 4 个有意义的 token: &lt;code&gt;['I', 'Ġlike', 'Ġeating', 'Ġfried']&lt;/code&gt; (带 &lt;code&gt;Ġ&lt;/code&gt; 前缀表示一个词的开始)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中文&lt;/strong&gt;: 输入 &lt;code&gt;&amp;quot;我喜欢吃炸&amp;quot;&lt;/code&gt; 同样是 4 个字，但通常会被编码成更多的字节级 token（数量会随 transformers 版本和分词细节略有差异）。这说明 &lt;code&gt;gpt2&lt;/code&gt; 的分词机制导致了中文编码效率的下降，具体原因详见 4.3 节的分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;生成质量&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;英文&lt;/strong&gt;: 对于英文输入，模型能够理解其语义，并生成流畅、有逻辑的续写，例如 &lt;code&gt;I like eating fried chicken...&lt;/code&gt;。这证明了模型在其“母语”环境下的强大能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中文&lt;/strong&gt;: 对于中文输入，由于模型完全不理解这些字节组合的含义，它只能根据在英文世界里学到的统计规律来预测下一个字节，最终呈现为一片乱码。其深层原因同样与分词机制和训练语料有关。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="32-模型结构分解"&gt;3.2 模型结构分解
+&lt;/h3&gt;&lt;p&gt;通过 &lt;code&gt;print(model)&lt;/code&gt; 可以得到 GPT-2 模型的结构图。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;GPT2LMHeadModel&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;transformer&lt;span class="o"&gt;)&lt;/span&gt;: GPT2Model&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;wte&lt;span class="o"&gt;)&lt;/span&gt;: Embedding&lt;span class="o"&gt;(&lt;/span&gt;50257, 768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;wpe&lt;span class="o"&gt;)&lt;/span&gt;: Embedding&lt;span class="o"&gt;(&lt;/span&gt;1024, 768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;drop&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;h&lt;span class="o"&gt;)&lt;/span&gt;: ModuleList&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;0-11&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="m"&gt;12&lt;/span&gt; x GPT2Block&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;ln_1&lt;span class="o"&gt;)&lt;/span&gt;: LayerNorm&lt;span class="o"&gt;((&lt;/span&gt;768,&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;eps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1e-05, &lt;span class="nv"&gt;elementwise_affine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;attn&lt;span class="o"&gt;)&lt;/span&gt;: GPT2Attention&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;c_attn&lt;span class="o"&gt;)&lt;/span&gt;: Conv1D&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;nf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2304, &lt;span class="nv"&gt;nx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;c_proj&lt;span class="o"&gt;)&lt;/span&gt;: Conv1D&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;nf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;nx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;attn_dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;resid_dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;ln_2&lt;span class="o"&gt;)&lt;/span&gt;: LayerNorm&lt;span class="o"&gt;((&lt;/span&gt;768,&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;eps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1e-05, &lt;span class="nv"&gt;elementwise_affine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;mlp&lt;span class="o"&gt;)&lt;/span&gt;: GPT2MLP&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;c_fc&lt;span class="o"&gt;)&lt;/span&gt;: Conv1D&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;nf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3072, &lt;span class="nv"&gt;nx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;c_proj&lt;span class="o"&gt;)&lt;/span&gt;: Conv1D&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;nf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;nx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3072&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;act&lt;span class="o"&gt;)&lt;/span&gt;: NewGELUActivation&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;dropout&lt;span class="o"&gt;)&lt;/span&gt;: Dropout&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.1, &lt;span class="nv"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;ln_f&lt;span class="o"&gt;)&lt;/span&gt;: LayerNorm&lt;span class="o"&gt;((&lt;/span&gt;768,&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;eps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1e-05, &lt;span class="nv"&gt;elementwise_affine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;(&lt;/span&gt;lm_head&lt;span class="o"&gt;)&lt;/span&gt;: Linear&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;768, &lt;span class="nv"&gt;out_features&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;50257, &lt;span class="nv"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;False&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;整个 &lt;code&gt;GPT2LMHeadModel&lt;/code&gt; 由两大部分组成：核心的 &lt;code&gt;transformer&lt;/code&gt; 主体 (即 &lt;code&gt;GPT2Model&lt;/code&gt;)，和顶层的 &lt;code&gt;lm_head&lt;/code&gt; (语言模型头)。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;transformer&lt;/code&gt; (GPT2Model)&lt;/strong&gt;: 这是模型的主体，负责从输入 token ID 序列中提取深层特征。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;嵌入层 (Embeddings)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(wte): Embedding(50257, 768)&lt;/code&gt;: &lt;strong&gt;词元嵌入 (Word Token Embedding)&lt;/strong&gt;。这里的 &lt;code&gt;50257&lt;/code&gt; 是 GPT-2 的词汇表大小，&lt;code&gt;768&lt;/code&gt; 是模型的隐藏层维度 H。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(wpe): Embedding(1024, 768)&lt;/code&gt;: &lt;strong&gt;位置嵌入 (Word Position Embedding)&lt;/strong&gt;。这正是在理论部分提到的&lt;strong&gt;可学习的位置嵌入&lt;/strong&gt;，其 &lt;code&gt;[1024, 768]&lt;/code&gt; 的大小也直接解释了为什么标准 GPT-2 模型的最大输入长度是 1024 个词元。&lt;/li&gt;
+&lt;li&gt;与 BERT 不同，这里没有片段嵌入（&lt;code&gt;token_type_embeddings&lt;/code&gt;），具体原因已在 2.1 节中阐述。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;解码器堆栈 (Decoder Stack)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(h): ModuleList((0-11): 12 x GPT2Block)&lt;/code&gt;: &lt;code&gt;ModuleList&lt;/code&gt; 中包含了 12 个完全相同的 &lt;code&gt;GPT2Block&lt;/code&gt;，即 12 层的 Transformer 解码器。每一层的输出都会作为下一层的输入。&lt;/li&gt;
+&lt;li&gt;在每一个 &lt;code&gt;GPT2Block&lt;/code&gt; 内部，都包含了理论中所述的两个核心子层（被 &lt;code&gt;LayerNorm&lt;/code&gt; 包裹）：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(attn): GPT2Attention&lt;/code&gt;: &lt;strong&gt;掩码多头自注意力模块&lt;/strong&gt;。其内部的 &lt;code&gt;c_attn&lt;/code&gt; 和 &lt;code&gt;c_proj&lt;/code&gt; 使用 &lt;code&gt;Conv1D&lt;/code&gt; 来实现。&lt;code&gt;Conv1D&lt;/code&gt; 在这里被巧妙地用作全连接层。&lt;code&gt;c_attn&lt;/code&gt; 一次性将 768 维的输入映射到 2304 维 (768 * 3)，正好对应 Q, K, V 三个矩阵的拼接。&lt;code&gt;c_proj&lt;/code&gt; 则是注意力机制中的输出映射矩阵 $W^O$。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(mlp): GPT2MLP&lt;/code&gt;: &lt;strong&gt;位置前馈网络模块&lt;/strong&gt;。它同样使用 &lt;code&gt;Conv1D&lt;/code&gt; 实现。&lt;code&gt;c_fc&lt;/code&gt; 将维度从 768 &lt;strong&gt;升维&lt;/strong&gt; 到 3072，经过激活函数后，&lt;code&gt;c_proj&lt;/code&gt; 再将维度从 3072 &lt;strong&gt;降维&lt;/strong&gt; 回 768。这个“先升维再降维”的结构与 BERT 中的前馈网络完全一致。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;lm_head&lt;/code&gt; (语言模型头)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是 &lt;code&gt;GPT2LMHeadModel&lt;/code&gt; 与基础的 &lt;code&gt;GPT2Model&lt;/code&gt; 的唯一区别，也是它能够生成文本的关键。它是一个简单的线性层（全连接层）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能对比&lt;/strong&gt;: 它与 BERT 的 &lt;code&gt;pooler&lt;/code&gt; 层形成了鲜明对比。BERT 的 &lt;code&gt;pooler&lt;/code&gt; 层只接收 &lt;code&gt;[CLS]&lt;/code&gt; 词元的输出，用于 NSP 任务的&lt;strong&gt;句子级别&lt;/strong&gt;二分类。而 GPT 的 &lt;code&gt;lm_head&lt;/code&gt; 接收&lt;strong&gt;序列中每一个位置&lt;/strong&gt;的输出向量，并将其从 &lt;code&gt;768&lt;/code&gt; 维映射到词汇表大小 &lt;code&gt;50257&lt;/code&gt; 维，得到每个位置上所有词元的 logits 分布，专门用于&lt;strong&gt;词元级别&lt;/strong&gt;的“预测下一个词”任务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;与手动生成的关联&lt;/strong&gt;: 在我们手动实现的贪心搜索循环中，&lt;code&gt;next_token_logits = outputs.logits[:, -1, :]&lt;/code&gt; 这一步，实际上就是 &lt;code&gt;transformer&lt;/code&gt; 主体输出最后一个位置的 768 维向量后，再通过这个 &lt;code&gt;lm_head&lt;/code&gt; 转换成 50257 维 logits 的结果。&lt;code&gt;lm_head&lt;/code&gt; 正是连接模型特征与最终词元预测的桥梁。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="33-分词器工作原理"&gt;3.3 分词器工作原理
+&lt;/h3&gt;&lt;p&gt;理解 GPT 与 BERT 在分词器设计上的差异，是理解 GPT 模型特性的一个关键。GPT 使用的 &lt;strong&gt;字节对编码 (Byte-Pair Encoding, BPE)&lt;/strong&gt;，特别是&lt;strong&gt;字节级 (Byte-level)&lt;/strong&gt; 的实现，使它能够从根本上杜绝 &lt;code&gt;[UNK]&lt;/code&gt; (未知词) 。&lt;/p&gt;
+&lt;p&gt;其工作原理如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;基础词汇表&lt;/strong&gt;：BPE 的基础词汇表是所有的单个字节，即 0-255。这意味着任何文本，无论是什么语言、什么符号，都可以被无损地表示为一个字节序列。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;贪心合并&lt;/strong&gt;：在训练分词器时，算法会贪心地、迭代地合并最高频出现的相邻字节对，形成新的、更长的子词（subword），并将其加入词汇表。例如，&lt;code&gt;t&lt;/code&gt; 和 &lt;code&gt;h&lt;/code&gt; 经常一起出现，就会被合并成 &lt;code&gt;th&lt;/code&gt;；之后 &lt;code&gt;th&lt;/code&gt; 和 &lt;code&gt;e&lt;/code&gt; 经常一起出现，就可能被合并成 &lt;code&gt;the&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编码过程&lt;/strong&gt;：当对新文本进行编码时，会先将其转换为字节序列，然后在这个序列上，贪心地用词汇表里最长的子词来替换对应的字节序列。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个机制带来了两大特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;优点：无未知词&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因为最坏情况下，任何在词汇表中找不到的词，都可以被拆分成最基础的单个字节，所以模型永远不会遇到它完全不认识的 token。&lt;/li&gt;
+&lt;li&gt;通过代码可以直观地看到这一点。对于一个非常生僻的汉字 &lt;code&gt;龘&lt;/code&gt;，BERT 的分词器可能会直接判为 &lt;code&gt;[UNK]&lt;/code&gt;，但 GPT-2 的分词器会将其分解为对应的 UTF-8 字节表示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;gpt2&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;一个生僻字：龘&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这类不在词表的字符会被拆成若干字节级 token&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;缺点：对非核心语言效率低&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gpt2&lt;/code&gt; 的 BPE 词汇表是为英文构建的，&lt;strong&gt;不包含任何独立的中文词语作为 token&lt;/strong&gt;。虽然其字节级机制能表示任意汉字，但它会将这些汉字拆分成多个基础的字节 token。&lt;/li&gt;
+&lt;li&gt;这导致在处理中文时，一个汉字通常会被拆分成 2-3 个字节级别的 token。这不仅增加了序列的长度，也让模型学习中文语义变得更加困难。如代码示例所示，英文提示词被编码为 10 个 token，而几乎同样长度的中文提示词，则被编码为了 19 个 token，极大地消耗了模型的上下文长度预算。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;为什么 &lt;code&gt;gpt2&lt;/code&gt; 模型生成中文会是乱码？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这就是由上述的分词机制和模型的英文训练背景共同导致的。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;分词层面&lt;/strong&gt;：模型看到的不是“汉字”，而是一堆无意义的字节组合。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型层面&lt;/strong&gt;：模型是在英文语料上训练的，它只懂得按英文的规律来预测下一个字节。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最终，模型会续写出一串符合&lt;strong&gt;英文统计规律&lt;/strong&gt;但完全不符合&lt;strong&gt;中文编码规则&lt;/strong&gt;的字节序列，解码时自然就成了一片乱码。要解决此问题，必须使用在中文语料上预训练的模型，例如 &lt;code&gt;uer/gpt2-chinese-cluecorpussmall&lt;/code&gt;，这类模型的分词器和模型本身都为中文进行了适配。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="34-使用-pipeline"&gt;3.4 使用 pipeline
+&lt;/h3&gt;&lt;p&gt;手动实现循环有助于理解原理，但在实际应用中，&lt;code&gt;transformers&lt;/code&gt; 库提供了更高阶、更便捷的工具——&lt;code&gt;pipeline&lt;/code&gt;。它将所有步骤（分词、模型调用、解码）封装在一起，一行代码即可完成文本生成&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;。下面的示例将用 &lt;code&gt;pipeline&lt;/code&gt; 快速复现前面的英文生成任务。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# pipeline 应用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;--- Pipeline 快速演示 (英文) ---&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;generator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;text-generation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;pipeline_outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;generator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;I like eating fried&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_new_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_return_sequences&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pipeline_outputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;generated_text&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pipeline(&amp;quot;text-generation&amp;quot;, ...)&lt;/code&gt;: 创建一个专门用于文本生成的 &lt;code&gt;pipeline&lt;/code&gt; 对象，它自动处理了分词、模型推理和解码的所有细节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;generator(...)&lt;/code&gt;: 仅用一行代码就完成了我们之前手动循环实现的全部功能。其输出结果与我们手动实现的英文生成结果是一致的，这证明了 &lt;code&gt;pipeline&lt;/code&gt; 是在底层执行了相似的逻辑，但为开发者提供了极其便利的接口。&lt;/p&gt;
+&lt;p&gt;换个本地模型：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# pipeline 应用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoModelForCausalLM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Qwen3-0.6B&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;cuda&amp;#34;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cuda&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_available&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;cpu&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoModelForCausalLM&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;local_files_only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;local_files_only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;--- Pipeline 快速演示 (英文) ---&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;generator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;text-generation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;pipeline_outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;generator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;I like eating fried&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_new_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_return_sequences&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pipeline_outputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;generated_text&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noopener"
+&gt;Radford, A., Narasimhan, K., Salimans, T., &amp;amp; Sutskever, I. (2018). &lt;em&gt;Improving Language Understanding by Generative Pre-Training&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener"
+&gt;Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp;amp; Sutskever, I. (2019). &lt;em&gt;Language Models are Unsupervised Multitask Learners&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener"
+&gt;Brown, T. B., Mann, B., Ryder, N., et al. (2020). &lt;em&gt;Language Models are Few-Shot Learners&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;a class="link" href="https://huggingface.co/docs/transformers/model_doc/gpt2" target="_blank" rel="noopener"
+&gt;Hugging Face. GPT-2 tokenizer and model documentation.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>

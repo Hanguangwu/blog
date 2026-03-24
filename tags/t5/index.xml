@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>T5 on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/t5/</link><description>Recent content in T5 on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 23 Mar 2026 14:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/t5/index.xml" rel="self" type="application/rss+xml"/><item><title>T5 结构及应用</title><link>https://hanguangwu.github.io/blog/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="t5-结构及应用"&gt;T5 结构及应用
+&lt;/h1&gt;&lt;p&gt;在前两节中，我们分别学习了基于 &lt;strong&gt;Encoder&lt;/strong&gt; 的 BERT（擅长理解）和基于 &lt;strong&gt;Decoder&lt;/strong&gt; 的 GPT（擅长生成）。那 Transformer 最原始的 &lt;strong&gt;Encoder-Decoder&lt;/strong&gt; 结构去哪了？&lt;/p&gt;
+&lt;p&gt;本节的主角 &lt;strong&gt;T5 (Text-to-Text Transfer Transformer)&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt; 回归了这一经典架构。BERT 擅长&lt;strong&gt;理解&lt;/strong&gt;（如分类、实体识别），GPT 擅长&lt;strong&gt;生成&lt;/strong&gt;（如续写、对话），而 T5 则试图在&lt;strong&gt;输入输出形式&lt;/strong&gt;上寻找一种通解。如图 5-5，它将所有 NLP 任务都视为 &lt;strong&gt;“文本到文本” (Text-to-Text)&lt;/strong&gt; 的转换问题，以此来统一处理理解与生成任务。&lt;/p&gt;
+&lt;div align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_3_1.png" width="90%" alt="Text-to-Text 框架示意图" /&gt;
+&lt;p&gt;图 5-5 Text-to-Text 框架示意图&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id="一万物皆文本的核心理念"&gt;一、万物皆文本的核心理念
+&lt;/h2&gt;&lt;p&gt;在 &lt;strong&gt;BERT 模式&lt;/strong&gt;下，针对不同的任务，我们需要设计不同的模型结构：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文本分类&lt;/strong&gt;：BERT + 全连接层（分类头）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列标注&lt;/strong&gt;：BERT + CRF/分类层。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文本相似度&lt;/strong&gt;：双塔 BERT 或拼接输入 + 回归层。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Google 提出的 T5 模型打破了这种模式。它提出——&lt;strong&gt;无论是什么任务，输入是文本，输出也是文本&lt;/strong&gt;。我们以《黑神话：悟空》的评论处理为例：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;翻译&lt;/strong&gt;：输入 &amp;ldquo;翻译成英文: 黑神话悟空真好玩&amp;rdquo; -&amp;gt; 输出 &amp;ldquo;Black Myth: Wukong is really fun.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情感分类&lt;/strong&gt;：输入 &amp;ldquo;情感分析: 黑神话悟空真好玩&amp;rdquo; -&amp;gt; 输出 &amp;ldquo;正面&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;摘要&lt;/strong&gt;：输入 &amp;ldquo;摘要: 黑神话悟空是一款以中国神话为背景的动作角色扮演游戏&amp;hellip;&amp;rdquo; -&amp;gt; 输出 &amp;ldquo;黑神话悟空是国产 3A 动作游戏。&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;回归（打分）&lt;/strong&gt;：输入 &amp;ldquo;计算相似度 句子1: 黑神话悟空真好玩 句子2: 这猴子游戏真不错&amp;rdquo; -&amp;gt; 输出 &amp;ldquo;4.5&amp;rdquo; (直接生成数字文本)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="11-提示词的先驱与多任务平衡"&gt;1.1 提示词的先驱与多任务平衡
+&lt;/h3&gt;&lt;p&gt;为了让同一个模型能够区分不同的任务，T5 引入了 &lt;strong&gt;Task Prefix (任务前缀)&lt;/strong&gt; 的概念。例如，在做翻译时，我们在输入文本前加上 &lt;code&gt;翻译成英文:&lt;/code&gt;；在做摘要时，加上 &lt;code&gt;摘要:&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这其实就是大语言模型时代&lt;strong&gt;提示词&lt;/strong&gt;的雏形。虽然同期的 GPT-2 也展示了类似的续写能力，但 T5 是较早系统化地将“&lt;strong&gt;使用自然语言指令显式定义任务&lt;/strong&gt;”这一范式应用到大规模预训练与多任务设置中的模型之一。它证明了我们可以通过改变输入文本（Instruction）来“编程”模型，而不仅仅是改变模型结构。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;T5 Prefix 与 GPT Prompt 的区别&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;虽然两者看起来很像，但出发点不同：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;T5 Prefix&lt;/strong&gt;：主要用于&lt;strong&gt;有监督微调&lt;/strong&gt;。模型在训练时就见过这些前缀，它们是“多任务学习”的一种标记，告诉模型当前要调动哪部分参数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPT Prompt&lt;/strong&gt;：主要用于&lt;strong&gt;零样本/少样本推理&lt;/strong&gt;。模型在预训练时可能没见过特定的 Prompt，但依靠强大的泛化能力，它能通过 Prompt 理解用户的意图，而无需更新参数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在有监督训练阶段，T5 将多个任务统一为一个&lt;strong&gt;多任务学习（Multi-task Learning）&lt;strong&gt;框架。由于不同任务（如翻译、摘要、分类）的数据量差异巨大，如果简单混合，大任务会淹没小任务。T5 采用了一种&lt;/strong&gt;带有上限的比例混合&lt;/strong&gt;策略（对大数据集设置采样上限、适当提升小数据集的采样概率），确保模型能“雨露均沾”地学习各种能力。&lt;/p&gt;
+&lt;h3 id="12-独特的预训练目标-span-corruption"&gt;1.2 独特的预训练目标 Span Corruption
+&lt;/h3&gt;&lt;p&gt;不同于 BERT 的“单字掩码”（Masked LM）或 GPT 的“单向预测”（Causal LM），T5 为了适应 Encoder-Decoder 结构，设计了一种如图 5-6 所示的全新预训练目标——&lt;strong&gt;Span Corruption（片段破坏与重构）&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;破坏&lt;/strong&gt;：在输入文本中随机选中一些&lt;strong&gt;连续的片段（Span）&lt;/strong&gt;，并将它们替换为特殊的哨兵符（Sentinel Token），如 &lt;code&gt;&amp;lt;extra_id_0&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;extra_id_1&amp;gt;&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重构&lt;/strong&gt;：要求 Decoder 生成被遮盖的片段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/5_3_2.png" width="90%" alt="Span Corruption 预训练目标示意图" /&gt;
+&lt;p&gt;图 5-6 Span Corruption 预训练目标示意图&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;关键设计细节：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Mask 比例与长度&lt;/strong&gt;：T5 经过大量实验发现，遮盖 &lt;strong&gt;15%&lt;/strong&gt; 的 token，且平均片段长度为 &lt;strong&gt;3&lt;/strong&gt; 时，模型性能最佳。这比 BERT 仅遮盖单个 token 更有挑战性，会迫使模型理解更长的上下文依赖。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;哨兵符的唯一性&lt;/strong&gt;：输出序列中包含的 &lt;code&gt;&amp;lt;extra_id_0&amp;gt;&lt;/code&gt; 等哨兵符是唯一的，不与词表中的普通词共享。这让 Decoder 能够精确地定位它正在恢复的是哪一段内容。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原始文本&lt;/strong&gt;：&lt;code&gt;黑神话悟空是一款以中国神话为背景的动作角色扮演游戏。&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输入 (Encoder)&lt;/strong&gt;：&lt;code&gt;黑神话悟空是一款&amp;lt;extra_id_0&amp;gt;的动作&amp;lt;extra_id_1&amp;gt;游戏。&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出 (Decoder)&lt;/strong&gt;：&lt;code&gt;&amp;lt;extra_id_0&amp;gt;以中国神话为背景&amp;lt;extra_id_1&amp;gt;角色扮演&amp;lt;extra_id_2&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输出末尾的 &lt;code&gt;&amp;lt;extra_id_2&amp;gt;&lt;/code&gt; 起到了结束符的作用，表示所有被遮盖的片段都已恢复完毕。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这种预训练任务兼顾了&lt;strong&gt;理解（Encoder）&lt;strong&gt;与&lt;/strong&gt;生成（Decoder）&lt;/strong&gt;。配合 T5 使用的 &lt;strong&gt;C4 (Colossal Clean Crawled Corpus)&lt;/strong&gt; 超大规模清洗数据集，模型学习到了极其丰富的语言知识。&lt;/p&gt;
+&lt;h2 id="二t5-架构解析"&gt;二、T5 架构解析
+&lt;/h2&gt;&lt;h3 id="21-回归经典的模型结构"&gt;2.1 回归经典的模型结构
+&lt;/h3&gt;&lt;p&gt;T5 的整体架构与原始 Transformer 几乎一致，是一个标准的 &lt;strong&gt;Encoder-Decoder&lt;/strong&gt; 模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Encoder&lt;/strong&gt;：负责理解输入文本（如 BERT）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decoder&lt;/strong&gt;：负责自回归地生成输出文本（如 GPT）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种结构使得 T5 既具备 BERT 的双向理解能力，又具备 GPT 的生成能力，完美契合 &amp;ldquo;Text-to-Text&amp;rdquo; 的任务设定。&lt;/p&gt;
+&lt;h3 id="22-关键技术改进"&gt;2.2 关键技术改进
+&lt;/h3&gt;&lt;p&gt;虽然宏观结构回归经典，但在微观层面，T5 引入了多项针对大模型训练优化的“黑科技”，这些改进后来也成为了许多现代大模型（如 PaLM, LLaMA）的标配。&lt;/p&gt;
+&lt;h4 id="1-相对位置编码"&gt;1. 相对位置编码
+&lt;/h4&gt;&lt;p&gt;在 BERT 和 GPT 中，使用的是&lt;strong&gt;绝对位置编码&lt;/strong&gt;（给每个位置分配一个固定的向量）。但 T5 认为，注意力机制应该关注词与词之间的&lt;strong&gt;相对距离&lt;/strong&gt;，而不是它们在句子中的绝对坐标。&lt;/p&gt;
+&lt;p&gt;T5 采用了一种基于&lt;strong&gt;分桶 (Bucketing)&lt;/strong&gt; 的相对位置编码方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;近距离精确，远距离模糊&lt;/strong&gt;：对于相邻的词（如距离 &amp;lt; 8），模型会精确区分它们的距离；对于较远的词（如距离 &amp;gt; 8），模型通过&lt;strong&gt;对数映射&lt;/strong&gt;将它们归入同一个“桶”中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数共享&lt;/strong&gt;：位置编码不再是加在 Input Embedding 上，而是作为 &lt;strong&gt;Bias (偏置)&lt;/strong&gt; 直接加在 Attention Score (Q·K) 矩阵上。并且，这些位置编码的&lt;strong&gt;参数在所有层之间共享&lt;/strong&gt;，即每一层都使用相同的一组 Bias 参数，大幅减少了参数量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="2-简化版-layer-normalization"&gt;2. 简化版 Layer Normalization
+&lt;/h4&gt;&lt;p&gt;T5 使用了一种简化版的层归一化（Layer Normalization）。与标准 LayerNorm 不同，T5 去除了&lt;strong&gt;加性偏置 (Additive Bias)&lt;/strong&gt;，仅对激活值进行缩放（Rescaling）。这种设计在保证性能的同时，减少了参数量和计算开销。&lt;/p&gt;
+&lt;p&gt;此外，原版 T5 在前馈网络（FFN）中使用的仍是标准的 &lt;strong&gt;ReLU&lt;/strong&gt; 激活函数。直到后续的 &lt;strong&gt;T5 v1.1&lt;/strong&gt; 版本，才引入了更复杂的 &lt;strong&gt;GEGLU&lt;/strong&gt; 门控激活单元。&lt;/p&gt;
+&lt;h4 id="3-sentencepiece-分词器"&gt;3. SentencePiece 分词器
+&lt;/h4&gt;&lt;p&gt;与 BERT 使用 WordPiece、GPT 使用 BPE 不同，T5 采用了 &lt;strong&gt;SentencePiece&lt;/strong&gt; 分词器。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;处理原始文本&lt;/strong&gt;：BERT 需要先将文本进行预分词（Pre-tokenization，如按空格切分），这对于中文或不使用空格的语言并不友好。T5 的 SentencePiece 直接在**原始文本（Raw Text）**上进行训练，将空格视为一种特殊字符（如 &lt;code&gt;_&lt;/code&gt;）处理。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;语言无关性&lt;/strong&gt;：这种设计使得 T5 能够天然地支持多语言混合训练，而不需要针对每种语言设计特定的分词规则，非常符合其“大一统”的设计哲学。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="三t5-代码实战"&gt;三、T5 代码实战
+&lt;/h2&gt;&lt;p&gt;我们使用 &lt;code&gt;transformers&lt;/code&gt; 库来加载 T5 模型，并深入观察其相对位置编码的实现细节。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/code/C5/03_t5_usage.py" target="_blank" rel="noopener"
+&gt;本节完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="31-text-to-text-任务演示"&gt;3.1 Text-to-Text 任务演示
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;T5Tokenizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T5ForConditionalGeneration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 加载模型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;t5-small&amp;#34;&lt;/span&gt; &lt;span class="c1"&gt;# 使用最小版本演示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T5Tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T5ForConditionalGeneration&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 准备输入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# T5 需要明确的任务前缀&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_text_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;translate English to German: The house is wonderful.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_text_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;stsb sentence1: The rhino grazed on the grass. sentence2: A rhino is grazing in a field.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 推理生成&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;inputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;input_text_1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;input_text_2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;return_tensors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;pt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;outputs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;inputs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;输入 1: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;input_text_1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;输出 1: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;skip_special_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;输入 2: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;input_text_2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;输出 2: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;tokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;skip_special_tokens&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;输入 1: translate English to German: The house is wonderful.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;输出 1: Das Haus ist wunderbar.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;输入 2: stsb sentence1: The rhino grazed on the grass. sentence2: A rhino is grazing in a field.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;输出 2: 4.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以看到，T5 能够通过不同的任务前缀（&lt;code&gt;translate...&lt;/code&gt;, &lt;code&gt;stsb...&lt;/code&gt;）灵活地切换模式。特别是第二个例子，T5 并不是像 BERT 那样输出一个回归数值，而是直接生成了字符串 &lt;code&gt;&amp;quot;4.0&amp;quot;&lt;/code&gt;。这就体现了它“万物皆文本”的设计哲学——无论是翻译、分类还是数值预测，最终都统一为文本生成任务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果把 &lt;code&gt;translate English to German&lt;/code&gt; 换成 &lt;code&gt;translate English to Chinese&lt;/code&gt; 会发现模型&lt;strong&gt;依然输出了德语&lt;/strong&gt;。这是因为&lt;strong&gt;原版 T5&lt;/strong&gt; 在训练时，只包含英语到德语、法语、罗马尼亚语等少数语种的翻译任务，并没有专门的英语到中文翻译任务指令。它的词表主要基于英文及相关翻译语料，几乎不包含中文字符。对于模型来说，它只是机械地匹配到了 &lt;code&gt;translate English to&lt;/code&gt; 这个模式，然后按照训练中形成的“翻译任务”分布，倾向于生成在这类任务里最常见的目标语种之一——德语，而不会真正去“理解” &lt;code&gt;Chinese&lt;/code&gt; 这个词。&lt;/p&gt;
+&lt;p&gt;如果要处理中文任务，需要使用支持 101 种语言的 &lt;strong&gt;mT5&lt;/strong&gt; 模型 &lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="32-相对位置编码分桶逻辑源码解析"&gt;3.2 相对位置编码分桶逻辑源码解析
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;transformers&lt;/code&gt; 库实现的 T5 源码中，相对位置编码并没有像 BERT 那样作为 Input Embedding 的一部分，而是在 &lt;strong&gt;Attention&lt;/strong&gt; 层计算 Attention Score 时，作为一个&lt;strong&gt;偏置项&lt;/strong&gt;（Bias）加进去的。&lt;/p&gt;
+&lt;p&gt;我们通过 &lt;code&gt;transformers&lt;/code&gt; 库中 &lt;code&gt;T5Attention&lt;/code&gt; 类的 &lt;code&gt;compute_bias&lt;/code&gt; 方法可以完整看到这一过程。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;compute_bias&lt;/code&gt; 主要用于预计算或缓存 Bias，虽然在训练时的前向传播（forward）中不一定直接调用它，但它封装了从“位置索引”到“最终 Bias 矩阵”的完整逻辑链条，适合作为理解原理的切入点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compute_bias&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query_length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key_length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; 计算相对位置偏置矩阵的完整流程
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 1. 生成位置索引&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# context_position (Query的位置): [0, 1, ..., q_len-1]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;context_position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query_length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;long&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)[:,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# memory_position (Key的位置): [0, 1, ..., k_len-1]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;memory_position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key_length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;long&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 2. 计算相对距离 (Relative Distance)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 矩阵相减，得到 (q_len, k_len) 的相对距离矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;memory_position&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;context_position&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 3. 映射到桶 (Bucketing)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 调用 _relative_position_bucket 函数，将具体距离映射为 bucket_id&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position_bucket&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_relative_position_bucket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;bidirectional&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_decoder&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;relative_attention_num_buckets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;max_distance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;relative_attention_max_distance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 4. 查 Embedding 表 (Lookup)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# self.relative_attention_bias 是一个可学习的 Embedding 层&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 根据 bucket_id 查出对应的 bias 值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;relative_attention_bias&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position_bucket&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 调整形状以适配 Multi-head Attention: (1, n_heads, q_len, k_len)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;permute&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unsqueeze&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;原理解析：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;解耦位置与内容&lt;/strong&gt;：BERT 将位置信息加在 Input Embedding 上，意味着位置和内容在第一层就混合了。而 T5 选择在每一层 Attention 计算时，直接在这个 $N \times N$ 的注意力分数矩阵上加上一个位置偏置矩阵（Bias），让位置信息更直接地作用于注意力权重。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数效率&lt;/strong&gt;：如果为每个距离都学习一个 Bias，参数量会太大。T5 通过**分桶（Bucketing）**策略，将无限的距离映射到有限的桶（如 32 个）中，大大减少了参数量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对数映射&lt;/strong&gt;：分桶时采用“近密远疏”的策略（对数映射），因为人类语言对近距离的语法依赖（如主谓关系）非常敏感，需要精确区分；而对于远距离的语义依赖，只需要知道“大概很远”就足够了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下面我们将 &lt;code&gt;compute_bias&lt;/code&gt; 中调用的核心分桶函数 &lt;code&gt;_relative_position_bucket&lt;/code&gt; 单独提取出来，并编写一段简单的测试代码，来看看&lt;strong&gt;相对距离&lt;/strong&gt;是如何被映射为 &lt;strong&gt;Bucket ID&lt;/strong&gt; 的：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;span class="lnt"&gt;52
+&lt;/span&gt;&lt;span class="lnt"&gt;53
+&lt;/span&gt;&lt;span class="lnt"&gt;54
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_relative_position_bucket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bidirectional&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_distance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; T5 相对位置编码的核心分桶逻辑
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; 将相对距离（relative_position）映射为一个桶编号（bucket ID）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_buckets&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 1. 处理双向/单向 Attention&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 如果是双向 Attention (如 Encoder)，正负距离是不同的桶&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;bidirectional&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt; &lt;span class="o"&gt;//=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 如果距离 &amp;gt; 0 (Key 在 Query 后面)，桶编号加上总数的一半&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_buckets&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;long&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 取绝对值，统一处理正负距离&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 如果是单向 Attention (如 Decoder)，只考虑过去的距离&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros_like&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 2. 核心分桶逻辑：近距离精确，远距离模糊&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 前一半的桶（max_exact）用于精确匹配近距离&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;is_small&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 情况1：距离较小 (is_small 为 True)，直接使用距离作为桶编号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 例如距离为 1 -&amp;gt; 桶 1; 距离为 5 -&amp;gt; 桶 5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 情况2：距离较大 (is_small 为 False)，使用对数公式计算桶编号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 使用对数函数 log 把很大的距离压缩到剩下的桶里&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position_if_large&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_distance&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_buckets&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;max_exact&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;long&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 防止越界，最大不超过 num_buckets - 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position_if_large&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_position_if_large&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;full_like&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relative_position_if_large&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_buckets&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 根据 is_small 的判断，选择使用精确编号还是对数编号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;relative_buckets&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;is_small&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;relative_position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;relative_position_if_large&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;relative_buckets&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 假设有 32 个桶，最大敏感距离为 128&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;distances&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;buckets&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_relative_position_bucket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;distances&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;真实距离: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;distances&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;映射桶号: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;buckets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;真实距离: &lt;span class="o"&gt;[&lt;/span&gt;-10, -5, -1, 0, 1, 5, 10, 50, 100&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;映射桶号: &lt;span class="o"&gt;[&lt;/span&gt;8, 5, 1, 0, 17, 21, 24, 29, 31&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;结果分析：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;双向区分&lt;/strong&gt;：可以看到，距离为 &lt;code&gt;0&lt;/code&gt; (自己关注自己) 映射为 &lt;code&gt;0&lt;/code&gt;。正向距离（如 &lt;code&gt;1, 5, 10&lt;/code&gt;）和负向距离（如 &lt;code&gt;-1, -5, -10&lt;/code&gt;）被映射到了不同的区间（正向从 16 开始，负向在 0-15 之间），说明 T5 在 Encoder 中区分了“左边”和“右边”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;近密远疏&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;近距离如 &lt;code&gt;0&lt;/code&gt; 和 &lt;code&gt;1&lt;/code&gt; 分别对应桶 &lt;code&gt;0&lt;/code&gt; 和 &lt;code&gt;17&lt;/code&gt;，每个距离都有独立的桶。&lt;/li&gt;
+&lt;li&gt;远距离如 &lt;code&gt;50&lt;/code&gt; 和 &lt;code&gt;100&lt;/code&gt;，虽然数值相差很大，但桶号 &lt;code&gt;29&lt;/code&gt; 和 &lt;code&gt;31&lt;/code&gt; 却很接近。这就是对数映射的效果——距离越远，分桶越粗糙。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这段代码体现了 T5 设计者的巧思。人类语言对近距离的依赖非常敏感（如主谓搭配），需要精确建模；而对于远距离的依赖，只需要知道“大概很远”就足够了。这种设计既捕捉了长距离信息，又有效节省了模型参数，实现了性能与效率的平衡。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/1910.10683" target="_blank" rel="noopener"
+&gt;Raffel, C., et al. (2020). &lt;em&gt;Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2010.11934" target="_blank" rel="noopener"
+&gt;Xue, L., et al. (2020). &lt;em&gt;mT5: A Massively Multilingual Pre-trained Text-to-Text Transformer&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>
