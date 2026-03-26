@@ -16,14 +16,14 @@ languages:
     en:
         languageName: English
         title: Hanguangwu
-        weight: 2
+        weight: 1
         params:
             sidebar:
                 subtitle: Welcome to my blog - exploring new era.
     zh-cn:
         languageName: 中文
         title: 酒中仙
-        weight: 1
+        weight: 2
         params:
             sidebar:
                 subtitle: 仰天大笑出門去，我輩豈是蓬蒿人！
