@@ -1,0 +1,568 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍基于微调 BERT 模型进行文本分类的过程。"><title>微调 BERT 模型进行文本分类</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="微调 BERT 模型进行文本分类"><meta property='og:description' content="本文介绍基于微调 BERT 模型进行文本分类的过程。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='文本分类'><meta property='article:tag' content='BERT'><meta property='article:published_time' content='2026-03-25T18:34:25-08:00'><meta property='article:modified_time' content='2026-03-25T18:34:25-08:00'><meta name=twitter:title content="微调 BERT 模型进行文本分类"><meta name=twitter:description content="本文介绍基于微调 BERT 模型进行文本分类的过程。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/en/>English</option><option value=https://hanguangwu.github.io/blog/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一从序列建模到预训练微调>一、从“序列建模”到“预训练微调”</a></li><li><a href=#二代码修改实践>二、代码修改实践</a><ol><li><a href=#21-替换为-berttokenizer>2.1 替换为 <code>BertTokenizer</code></a></li><li><a href=#22-改造-dataset-与-collate_fn>2.2 改造 <code>Dataset</code> 与 <code>collate_fn</code></a></li><li><a href=#23-构建-textclassifierbert-模型>2.3 构建 <code>TextClassifierBERT</code> 模型</a></li><li><a href=#24-调整-trainer-与-predictor>2.4 调整 <code>Trainer</code> 与 <code>Predictor</code></a></li><li><a href=#25-更新训练超参数>2.5 更新训练超参数</a></li><li><a href=#26-推理阶段资源加载>2.6 推理阶段资源加载</a></li></ol></li><li><a href=#三实验结果与分析>三、实验结果与分析</a></li><li><a href=#本章小结>本章小结</a></li><li><a href=#附录使用bert实现中文文本情感分类>附录——使用BERT实现中文文本情感分类</a><ol><li><a href=#bert文本处理tokenizer>BERT文本处理——Tokenizer</a></li><li><a href=#未微调时使用-text-classification-pipeline>未微调时使用 text-classification pipeline</a></li><li><a href=#微调后使用-text-classification-pipeline>微调后使用 text-classification pipeline</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/datawhale/>DataWhale
+</a><a href=/blog/categories/nlp/>NLP</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/>微调 BERT 模型进行文本分类</a></h2><h3 class=article-subtitle>本文介绍基于微调 BERT 模型进行文本分类的过程。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 25, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 13 分钟</time></div></footer></div></header><section class=article-content><h1 id=微调-bert-模型进行文本分类>微调 BERT 模型进行文本分类</h1><p>回顾前两节的内容，我们依次实现了一个基于全连接网络的“词袋”模型和一个基于 LSTM 的序列模型。这两次的运行结果揭示了一个有趣的现象，对于当前的新闻分类任务，结构更复杂的 LSTM 模型在性能上并未超越更简单的全连接模型。这说明，对于这个特定任务，捕捉“关键词”比分析“词序”更关键。不过，这两种模型都是从零开始训练的，它们对语言的理解完全依赖于我们提供的小规模 <code>20 Newsgroups</code> 数据集。那么我们能否利用在更大、更通用语料库上预先学到的知识，来帮助模型更好地理解文本，从而提升分类性能呢？</p><p>这就是<strong>预训练语言模型</strong>，特别是 BERT，所要解决的问题。在<strong>第五章第一节</strong>中，我们已经学习了 BERT 的原理。它通过在海量原始文本上以<strong>自监督</strong>的方式构造“掩码语言模型”和“下一句预测”等训练任务（无需人工标注标签），学习到了丰富的语言学知识和世界知识。本节是文本分类系列实战的最后一站。我们将把模型架构迁移为 BERT，探索从“从零训练”到“微调”这一范式转变所带来的性能提升。</p><h2 id=一从序列建模到预训练微调>一、从“序列建模”到“预训练微调”</h2><p>回顾前两个模型，它们的核心都是在特定任务数据上从随机初始化的词向量开始学习如何进行分类。而基于 BERT 的微调则采用了一种完全不同的范式，通常包含以下三个步骤：</p><p>（1）<strong>加载预训练权重</strong>：我们不再随机初始化模型，而是加载一个已经在海量数据（如维基百科、书籍）上训练好的 BERT 模型。这个模型已经是一个通用的“语言理解专家”。</p><p>（2）<strong>附加任务相关的“头”</strong>：在 BERT 模型的主体结构之上，我们添加一个简单的、未经训练的分类层（通常就是一个全连接层）。</p><p>（3）<strong>在下游任务上“微调”</strong>：使用我们的新闻分类数据，对整个模型（或者仅仅是顶部的分类层）进行训练。由于 BERT 部分已经具备了强大的语言理解能力，整个模型可以很快地适应新的分类任务，并且通常只需要很少的训练轮次和较小的学习率。</p><p>这个“预训练-微调”的范式是现代 NLP 领域最主流、最有效的方法之一。它大大降低了对特定任务标注数据的依赖，并显著提升了模型性能的上限。</p><h2 id=二代码修改实践>二、代码修改实践</h2><p>将 LSTM 模型改造为 BERT 模型，同样遵循之前的思路，主要修改涉及数据处理和模型结构，同时也要相应地调整训练超参数。</p><blockquote><p><a class=link href=https://github.com/datawhalechina/base-nlp/blob/main/code/C7/03_bert_text_classification.ipynb target=_blank rel=noopener>本节完整代码</a></p></blockquote><h3 id=21-替换为-berttokenizer>2.1 替换为 <code>BertTokenizer</code></h3><p>现在我们不需要手动构建词典。<code>transformers</code> 库为每个预训练模型都提供了配套的 <code>Tokenizer</code>。对于英文 <code>20 Newsgroups</code> 数据集，选择 <code>bert-base-uncased</code> 模型及其对应的分词器。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertTokenizer</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>bert_model_name</span> <span class=o>=</span> <span class=s1>&#39;bert-base-uncased&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>bert_model_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看特殊token</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;UNK token: &#39;</span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>unk_token</span><span class=si>}</span><span class=s2>&#39;, ID: </span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>unk_token_id</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;PAD token: &#39;</span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token</span><span class=si>}</span><span class=s2>&#39;, ID: </span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token_id</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;CLS token: &#39;</span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>cls_token</span><span class=si>}</span><span class=s2>&#39;, ID: </span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>cls_token_id</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;SEP token: &#39;</span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>sep_token</span><span class=si>}</span><span class=s2>&#39;, ID: </span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>sep_token_id</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Vocab size: </span><span class=si>{</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>vocab_size</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>UNK token: <span class=s1>&#39;[UNK]&#39;</span>, ID: <span class=m>100</span>
+</span></span><span class=line><span class=cl>PAD token: <span class=s1>&#39;[PAD]&#39;</span>, ID: <span class=m>0</span>
+</span></span><span class=line><span class=cl>CLS token: <span class=s1>&#39;[CLS]&#39;</span>, ID: <span class=m>101</span>
+</span></span><span class=line><span class=cl>SEP token: <span class=s1>&#39;[SEP]&#39;</span>, ID: <span class=m>102</span>
+</span></span><span class=line><span class=cl>Vocab size: <span class=m>30522</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>BertTokenizer</code> 会自动处理文本的预处理（如小写转换、标点分割），并为文本添加特殊的 <code>[CLS]</code> 和 <code>[SEP]</code> 标记。其中，<strong><code>[CLS]</code></strong> 位于序列开头，它在 BERT 输出中对应的向量通常被用作整个序列的聚合表示，非常适合用于分类任务；<strong><code>[SEP]</code></strong> 用于分隔两个句子，在单句分类任务中标志着句子的结束。</p><h3 id=22-改造-dataset-与-collate_fn>2.2 改造 <code>Dataset</code> 与 <code>collate_fn</code></h3><p>为了适配 BERT，数据处理流程需要进行如下调整：</p><p>（1）<strong><code>Dataset</code></strong>: <code>BertTextClassificationDataset</code> 现在直接调用 <code>BertTokenizer</code> 来进行分词和ID转换。处理长文本的滑窗分割逻辑保持不变。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>BertTextClassificationDataset</span><span class=p>(</span><span class=n>Dataset</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>texts</span><span class=p>,</span> <span class=n>labels</span><span class=p>,</span> <span class=n>tokenizer</span><span class=p>,</span> <span class=n>max_len</span><span class=o>=</span><span class=mi>128</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>tokenizer</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>max_len</span> <span class=o>=</span> <span class=n>max_len</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>processed_data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>text</span><span class=p>,</span> <span class=n>label</span> <span class=ow>in</span> <span class=n>tqdm</span><span class=p>(</span><span class=nb>zip</span><span class=p>(</span><span class=n>texts</span><span class=p>,</span> <span class=n>labels</span><span class=p>),</span> <span class=n>total</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>labels</span><span class=p>),</span> <span class=n>desc</span><span class=o>=</span><span class=s2>&#34;Processing Dataset&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 直接使用BertTokenizer进行编码</span>
+</span></span><span class=line><span class=cl>            <span class=n>encoding</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=p>(</span><span class=n>text</span><span class=p>,</span> <span class=n>add_special_tokens</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>input_ids</span> <span class=o>=</span> <span class=n>encoding</span><span class=p>[</span><span class=s1>&#39;input_ids&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=c1># 滑窗分割逻辑保持不变</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>input_ids</span><span class=p>)</span> <span class=o>&lt;=</span> <span class=bp>self</span><span class=o>.</span><span class=n>max_len</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=bp>self</span><span class=o>.</span><span class=n>processed_data</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;input_ids&#34;</span><span class=p>:</span> <span class=n>input_ids</span><span class=p>,</span> <span class=s2>&#34;label&#34;</span><span class=p>:</span> <span class=n>label</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>stride</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>max_len</span> <span class=o>*</span> <span class=mf>0.8</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>input_ids</span><span class=p>)</span> <span class=o>-</span> <span class=bp>self</span><span class=o>.</span><span class=n>max_len</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>stride</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                    <span class=n>chunk</span> <span class=o>=</span> <span class=n>input_ids</span><span class=p>[</span><span class=n>i</span><span class=p>:</span><span class=n>i</span> <span class=o>+</span> <span class=bp>self</span><span class=o>.</span><span class=n>max_len</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                    <span class=bp>self</span><span class=o>.</span><span class=n>processed_data</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;input_ids&#34;</span><span class=p>:</span> <span class=n>chunk</span><span class=p>,</span> <span class=s2>&#34;label&#34;</span><span class=p>:</span> <span class=n>label</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=o>...</span>
+</span></span></code></pre></td></tr></table></div></div><p>（2）<strong><code>collate_fn</code></strong>: BERT 的一个重要输入是 <code>attention_mask</code>（注意力掩码）。它是一个与 <code>input_ids</code> 形状相同的张量，用 <code>1</code> 标记真实 Token，用 <code>0</code> 标记填充（Padding）的 Token。模型会根据这个掩码，在计算注意力时忽略填充部分。所以，我们需要修改 <code>collate_fn</code> 以生成并返回 <code>attention_mask</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>bert_collate_fn</span><span class=p>(</span><span class=n>batch</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>max_batch_len</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=s2>&#34;input_ids&#34;</span><span class=p>])</span> <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>batch</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>batch_input_ids</span><span class=p>,</span> <span class=n>batch_attention_masks</span><span class=p>,</span> <span class=n>batch_labels</span> <span class=o>=</span> <span class=p>[],</span> <span class=p>[],</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>batch</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>input_ids</span> <span class=o>=</span> <span class=n>item</span><span class=p>[</span><span class=s2>&#34;input_ids&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>padding_len</span> <span class=o>=</span> <span class=n>max_batch_len</span> <span class=o>-</span> <span class=nb>len</span><span class=p>(</span><span class=n>input_ids</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>padded_ids</span> <span class=o>=</span> <span class=n>input_ids</span> <span class=o>+</span> <span class=p>[</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token_id</span><span class=p>]</span> <span class=o>*</span> <span class=n>padding_len</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 新增：生成 attention_mask</span>
+</span></span><span class=line><span class=cl>        <span class=n>attention_mask</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>*</span> <span class=nb>len</span><span class=p>(</span><span class=n>input_ids</span><span class=p>)</span> <span class=o>+</span> <span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>*</span> <span class=n>padding_len</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>batch_input_ids</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>padded_ids</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>batch_attention_masks</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>attention_mask</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>batch_labels</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=s2>&#34;label&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;input_ids&#34;</span><span class=p>:</span> <span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=n>batch_input_ids</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>long</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 新增：返回 attention_mask</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;attention_mask&#34;</span><span class=p>:</span> <span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=n>batch_attention_masks</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>long</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;labels&#34;</span><span class=p>:</span> <span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=n>batch_labels</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>long</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=23-构建-textclassifierbert-模型>2.3 构建 <code>TextClassifierBERT</code> 模型</h3><p>得益于 <code>transformers</code> 库的高度封装，从代码实现的角度来看，新的模型结构非常简洁，一个预训练的 BERT 主干网络 + 一个线性分类头。尽管 BERT 模型内部结构极其复杂，但我们只需几行代码便可调用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertModel</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>TextClassifierBERT</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>model_name</span><span class=p>,</span> <span class=n>num_classes</span><span class=p>,</span> <span class=n>freeze_bert</span><span class=o>=</span><span class=kc>False</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>TextClassifierBERT</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 1. 加载预训练的BERT模型</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>bert</span> <span class=o>=</span> <span class=n>BertModel</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 2. 定义分类头</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>classifier</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Linear</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>bert</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>hidden_size</span><span class=p>,</span> <span class=n>num_classes</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 3. (可选) 冻结BERT参数</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>freeze_bert</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>param</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>bert</span><span class=o>.</span><span class=n>parameters</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>                <span class=n>param</span><span class=o>.</span><span class=n>requires_grad</span> <span class=o>=</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>input_ids</span><span class=p>,</span> <span class=n>attention_mask</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 将输入传入BERT</span>
+</span></span><span class=line><span class=cl>        <span class=n>outputs</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>bert</span><span class=p>(</span><span class=n>input_ids</span><span class=o>=</span><span class=n>input_ids</span><span class=p>,</span> <span class=n>attention_mask</span><span class=o>=</span><span class=n>attention_mask</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 使用[CLS] token的输出(pooler_output)进行分类</span>
+</span></span><span class=line><span class=cl>        <span class=n>pooled_output</span> <span class=o>=</span> <span class=n>outputs</span><span class=o>.</span><span class=n>pooler_output</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 传入分类头得到logits</span>
+</span></span><span class=line><span class=cl>        <span class=n>logits</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>classifier</span><span class=p>(</span><span class=n>pooled_output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>logits</span>
+</span></span></code></pre></td></tr></table></div></div><p>在 <strong><code>__init__</code></strong> 方法中，<code>BertModel.from_pretrained(model_name)</code> 会自动下载并加载指定名称的预训练模型权重。分类头的输入维度直接从 <code>self.bert.config.hidden_size</code> 获取，这是一个非常好的实践，避免了硬编码。此外提供了 <code>freeze_bert</code> 选项，如果为 <code>True</code>，则 BERT 部分的参数不会在训练中更新。这被称为“特征提取”模式，训练速度更快，但效果通常不如全量微调。实战中还可以更细粒度地“冻结”部分层（例如仅冻结 Embedding 和前几层 Transformer Block，或按层号前缀选择参数，将其 <code>requires_grad=False</code>），在<strong>训练速度 / 显存占用</strong>与<strong>微调效果</strong>之间做折中，这里为了示例清晰，仅展示了“全部冻结 BERT 主干”这一简单形式。而在 <strong><code>forward</code></strong> 函数中，现在接收 <code>input_ids</code> 和 <code>attention_mask</code>。BERT 模型的输出 <code>outputs</code> 中，<code>outputs.pooler_output</code> 是 <code>[CLS]</code> Token 对应的隐藏状态经过进一步处理后得到的向量，专门用于句子级别的任务，我们直接取用这个向量送入分类层即可。</p><h3 id=24-调整-trainer-与-predictor>2.4 调整 <code>Trainer</code> 与 <code>Predictor</code></h3><p><code>Trainer</code> 的 <code>_run_epoch</code> 和 <code>_evaluate</code> 方法需要修改，以将 <code>attention_mask</code> 传递给模型。同时，保存模型的逻辑也应更新为 <code>transformers</code> 推荐的方式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 在 Trainer._run_epoch 方法中</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl><span class=n>input_ids</span> <span class=o>=</span> <span class=n>batch</span><span class=p>[</span><span class=s2>&#34;input_ids&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>attention_mask</span> <span class=o>=</span> <span class=n>batch</span><span class=p>[</span><span class=s2>&#34;attention_mask&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>device</span><span class=p>)</span> <span class=c1># 新增</span>
+</span></span><span class=line><span class=cl><span class=n>labels</span> <span class=o>=</span> <span class=n>batch</span><span class=p>[</span><span class=s2>&#34;labels&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>outputs</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=p>(</span><span class=n>input_ids</span><span class=o>=</span><span class=n>input_ids</span><span class=p>,</span> <span class=n>attention_mask</span><span class=o>=</span><span class=n>attention_mask</span><span class=p>)</span> <span class=c1># 修改</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 在 Trainer._save_checkpoint 方法中</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl><span class=c1># 对于transformers模型，推荐使用save_pretrained来保存</span>
+</span></span><span class=line><span class=cl><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>bert</span><span class=o>.</span><span class=n>save_pretrained</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>output_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># 单独保存分类头</span>
+</span></span><span class=line><span class=cl><span class=n>classifier_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>output_dir</span><span class=p>,</span> <span class=s2>&#34;classifier.pth&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>torch</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>classifier</span><span class=o>.</span><span class=n>state_dict</span><span class=p>(),</span> <span class=n>classifier_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span></code></pre></td></tr></table></div></div><p>另外，别忘了在训练脚本中将 <code>tokenizer</code> 一并保存到同一个目录，方便推理阶段直接从该目录恢复分词器配置与词表，例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 训练脚本中</span>
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span><span class=o>.</span><span class=n>save_pretrained</span><span class=p>(</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;output_dir&#34;</span><span class=p>])</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>Predictor</code> 的逻辑与 LSTM 版本非常相似，同样采用<strong>分块+投票</strong>的策略。主要区别在于，现在需要为每个 <code>chunk</code> 创建对应的 <code>attention_mask</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 在 Predictor.predict 方法中</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl><span class=c1># (分块逻辑不变)...</span>
+</span></span><span class=line><span class=cl><span class=n>padded_chunks</span><span class=p>,</span> <span class=n>attention_masks</span> <span class=o>=</span> <span class=p>[],</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>chunk</span> <span class=ow>in</span> <span class=n>chunks</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>padding_len</span> <span class=o>=</span> <span class=n>max_chunk_len</span> <span class=o>-</span> <span class=nb>len</span><span class=p>(</span><span class=n>chunk</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>padded_chunks</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>chunk</span> <span class=o>+</span> <span class=p>[</span><span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token_id</span><span class=p>]</span> <span class=o>*</span> <span class=n>padding_len</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>attention_masks</span><span class=o>.</span><span class=n>append</span><span class=p>([</span><span class=mi>1</span><span class=p>]</span> <span class=o>*</span> <span class=nb>len</span><span class=p>(</span><span class=n>chunk</span><span class=p>)</span> <span class=o>+</span> <span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>*</span> <span class=n>padding_len</span><span class=p>)</span> <span class=c1># 新增</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>input_ids_tensor</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=n>padded_chunks</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>long</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>attention_mask_tensor</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=n>attention_masks</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>long</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>device</span><span class=p>)</span> <span class=c1># 新增</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 将input_ids和attention_mask都传入</span>
+</span></span><span class=line><span class=cl>    <span class=n>outputs</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=p>(</span><span class=n>input_ids</span><span class=o>=</span><span class=n>input_ids_tensor</span><span class=p>,</span> <span class=n>attention_mask</span><span class=o>=</span><span class=n>attention_mask_tensor</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>preds</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=n>outputs</span><span class=p>,</span> <span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl><span class=c1># (投票逻辑不变)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=25-更新训练超参数>2.5 更新训练超参数</h3><p>微调 BERT 时，超参数的选择与从零训练有很大不同。<strong>学习率</strong>通常设置得非常小，例如 <code>2e-5</code> 到 <code>5e-5</code> 之间，这是因为我们希望在预训练学到的知识基础上做“微小”的调整，过大的学习率会破坏这些知识。至于<strong>训练轮次</strong>通常只需要 3-5 个轮次就足以收敛。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>hparams</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;model_name&#34;</span><span class=p>:</span> <span class=s1>&#39;bert-base-uncased&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;num_classes&#34;</span><span class=p>:</span> <span class=nb>len</span><span class=p>(</span><span class=n>train_dataset_raw</span><span class=o>.</span><span class=n>target_names</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;freeze_bert&#34;</span><span class=p>:</span> <span class=kc>False</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;epochs&#34;</span><span class=p>:</span> <span class=mi>5</span><span class=p>,</span>             <span class=c1># 减少轮次</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;learning_rate&#34;</span><span class=p>:</span> <span class=mf>2e-5</span><span class=p>,</span>   <span class=c1># 降低学习率</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;device&#34;</span><span class=p>:</span> <span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>torch</span><span class=o>.</span><span class=n>cuda</span><span class=o>.</span><span class=n>is_available</span><span class=p>()</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;output_dir&#34;</span><span class=p>:</span> <span class=s2>&#34;output_bert&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=26-推理阶段资源加载>2.6 推理阶段资源加载</h3><p>推理阶段的整体流程与 LSTM 版本保持一致，但在<strong>加载推理所需资源</strong>时有几个容易忽略的细节。训练时我们使用 <code>save_pretrained</code> 将 BERT 主干和 tokenizer 一并保存到 <code>output_bert</code> 目录，所以推理阶段不需要手动构建或加载词表，可以应该直接从该目录恢复。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>labels_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;output_dir&#34;</span><span class=p>],</span> <span class=s2>&#34;label_map.json&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>labels_path</span><span class=p>,</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>label_map_loaded</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>inference_tokenizer</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;output_dir&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>inference_model</span> <span class=o>=</span> <span class=n>TextClassifierBERT</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>model_name</span><span class=o>=</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;output_dir&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>num_classes</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>label_map_loaded</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;device&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>classifier_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;output_dir&#34;</span><span class=p>],</span> <span class=s2>&#34;classifier.pth&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>inference_model</span><span class=o>.</span><span class=n>classifier</span><span class=o>.</span><span class=n>load_state_dict</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>torch</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>classifier_path</span><span class=p>,</span> <span class=n>map_location</span><span class=o>=</span><span class=n>hparams</span><span class=p>[</span><span class=s2>&#34;device&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>这里有两个关键点：</p><ul><li>通过 <code>BertTokenizer.from_pretrained</code> 从输出目录一次性恢复完整的分词器配置与词表，无需手动加载独立的 vocab 文件；</li><li><code>TextClassifierBERT</code> 的 <code>model_name</code> 也改为输出目录，从而加载微调后的 BERT 权重。</li></ul><h2 id=三实验结果与分析>三、实验结果与分析</h2><p>完成所有改造后，我们启动训练。由于 BERT 模型参数量远大于之前的模型（<code>bert-base-uncased</code> 约有1.1亿参数），每个 <code>epoch</code> 的训练时间会更长，对计算资源（特别是 GPU 显存）的要求也更高。下面是本次实验的训练日志：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Epoch <span class=m>1</span> <span class=o>[</span>训练中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 625/625 <span class=o>[</span>01:53&lt;00:00,  5.53it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch <span class=m>1</span> <span class=o>[</span>评估中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 467/467 <span class=o>[</span>00:29&lt;00:00, 16.02it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch 1/5 <span class=p>|</span> 训练损失: 0.4214 <span class=p>|</span> 验证集准确率: 0.8738
+</span></span><span class=line><span class=cl>新最佳模型已保存! Epoch: 1, 验证集准确率: 0.8738
+</span></span><span class=line><span class=cl>Epoch <span class=m>2</span> <span class=o>[</span>训练中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 625/625 <span class=o>[</span>02:14&lt;00:00,  4.64it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch <span class=m>2</span> <span class=o>[</span>评估中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 467/467 <span class=o>[</span>00:31&lt;00:00, 14.84it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch 2/5 <span class=p>|</span> 训练损失: 0.1495 <span class=p>|</span> 验证集准确率: 0.8827
+</span></span><span class=line><span class=cl>新最佳模型已保存! Epoch: 2, 验证集准确率: 0.8827
+</span></span><span class=line><span class=cl>Epoch <span class=m>3</span> <span class=o>[</span>训练中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 625/625 <span class=o>[</span>02:18&lt;00:00,  4.51it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch <span class=m>3</span> <span class=o>[</span>评估中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 467/467 <span class=o>[</span>00:31&lt;00:00, 14.66it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch 3/5 <span class=p>|</span> 训练损失: 0.0698 <span class=p>|</span> 验证集准确率: 0.8915
+</span></span><span class=line><span class=cl>新最佳模型已保存! Epoch: 3, 验证集准确率: 0.8915
+</span></span><span class=line><span class=cl>Epoch <span class=m>4</span> <span class=o>[</span>训练中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 625/625 <span class=o>[</span>02:20&lt;00:00,  4.46it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch <span class=m>4</span> <span class=o>[</span>评估中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 467/467 <span class=o>[</span>00:32&lt;00:00, 14.44it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch 4/5 <span class=p>|</span> 训练损失: 0.0404 <span class=p>|</span> 验证集准确率: 0.8946
+</span></span><span class=line><span class=cl>新最佳模型已保存! Epoch: 4, 验证集准确率: 0.8946
+</span></span><span class=line><span class=cl>Epoch <span class=m>5</span> <span class=o>[</span>训练中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 625/625 <span class=o>[</span>02:22&lt;00:00,  4.37it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch <span class=m>5</span> <span class=o>[</span>评估中<span class=o>]</span>: 100%<span class=p>|</span>██████████<span class=p>|</span> 467/467 <span class=o>[</span>00:32&lt;00:00, 14.48it/s<span class=o>]</span>
+</span></span><span class=line><span class=cl>Epoch 5/5 <span class=p>|</span> 训练损失: 0.0251 <span class=p>|</span> 验证集准确率: 0.9032
+</span></span><span class=line><span class=cl>新最佳模型已保存! Epoch: 5, 验证集准确率: 0.9032
+</span></span><span class=line><span class=cl>训练完成！
+</span></span><span class=line><span class=cl>Tokenizer 和标签映射 <span class=o>(</span>output_bert<span class=se>\l</span>abel_map.json<span class=o>)</span> 已保存。
+</span></span></code></pre></td></tr></table></div></div><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/7_3_1.png width=70% alt="BERT 模型训练过程指标"><br><em>图 7-6 BERT 模型训练损失与验证集准确率变化曲线</em></p><p>我们将三个模型的最佳性能进行对比：</p><ul><li><strong>全连接模型 (基线)</strong>：最佳验证集准确率 <strong>~0.8469</strong>。</li><li><strong>LSTM 模型 (正则化后)</strong>：最佳验证集准确率 <strong>~0.8415</strong>。</li><li><strong>BERT 微调模型</strong>：最佳验证集准确率 <strong>~0.9032</strong>。</li></ul><p><strong>结果分析</strong>:</p><p>通过日志可以看出，BERT 模型的性能远超前两个从零开始训练的模型。具体来看，BERT的优势体现在以下几点：</p><p>（1）<strong>性能上限更高</strong>：BERT 微调模型最终达到了约 <strong>90.32%</strong> 的准确率，比之前两个模型高出<strong>超过 5 个百分点</strong>，这是一个显著的提升。</p><p>（2）<strong>收敛速度快</strong>：仅仅在第一个 <code>epoch</code> 结束后，BERT 模型的准确率（87.38%）就已经超过了前两个模型经过 20 个 <code>epoch</code> 充分训练后的最佳水平。</p><p>（3）<strong>强大的上下文理解能力</strong>：BERT 的核心是 Transformer 的自注意力机制，它能够捕捉句子中任意两个词之间的依赖关系，无论它们相隔多远。使得 BERT 能够生成真正“上下文相关”的词向量，深刻理解词语在不同语境下的含义。</p><p>（4）<strong>海量预训练知识的迁移</strong>：BERT 在预训练阶段已经学习了丰富的语法、语义和世界知识。在微调时，这些知识被有效地迁移到了下游的新闻分类任务中。模型不再是一个“新生儿”，而是一个知识渊博的“专家”，只需要少量数据就能学会如何应用已有知识来完成新任务。</p><p>（5）<strong>成熟的范式</strong>：相比于需要精心设计网络结构、调整正则化策略的从零训练，BERT 的“预训练-微调”范式更加成熟和标准化。它为各种 NLP 任务提供了一个更高的起点，通过这种方式我们能够用相对少的代码和调试，就达到了出色的效果。</p><p>这个结果初看似乎与上一节“如无必要，勿增实体”的结论有所矛盾。但这并不意味着奥卡姆剃刀原理失效了，而是提醒我们要在正确的维度上应用它。当然，这并不绝对否定简单模型（如全连接或 LSTM）通过更精细的特征工程、算法优化和超参数调优，<strong>有可能</strong>在特定任务上接近甚至超越 BERT 的效果。但是，那通常需要耗费巨大的精力。相比之下，BERT 的成功揭示了“预训练-微调”范式的巨大优势。一方面它具备<strong>强大的预训练知识</strong>，BERT 不是从零学习，而是将从海量文本中学到的通用语言知识<strong>迁移</strong>到了我们的任务中，所以它对词汇和语境的理解深度远超任何从头训练的模型。另一方面它是一条<strong>更便捷的路径</strong>，我们不再需要为特定任务从头设计复杂的网络或特征，而是可以方便地在一个强大的通用模型基础上进行微调，用更少的努力达到更高的性能上限。</p><p>所以，这里的结论并非“模型越复杂越好”，而是“<strong>利用高质量的预训练模型进行微调，往往是一种在下游任务中以更少的开发精力和数据量达成更好性能的推荐方式</strong>”。与此同时，我们也必须认识到，微调所带来的便捷和高效，是建立在 BERT 等大模型在预训练阶段已经消耗了巨大计算资源和时间的基础之上的。</p><h2 id=本章小结>本章小结</h2><p>综合三节的实践，我们完成了一次 NLP 文本分类任务的探索之旅。整个过程为我们提供了宝贵的实践经验，并最终指向一个现代 NLP 项目中进行模型选择与迭代的常用流程：</p><p>（1）<strong>从一个简单、快速的基线模型开始</strong>（如第一节的全连接模型）。建立基线有助于我们评估任务的难度，并为后续的优化提供一个比较标准。</p><p>（2）<strong>审慎地增加模型的复杂性</strong>。第二节的实验证明，对于特定任务，更复杂的结构（从零训练的LSTM）未必能带来性能提升，其结果恰好印证了“奥卡姆剃刀原理”。</p><p>（3）<strong>优先考虑利用高质量的预训练模型进行微调</strong>。当基线模型无法满足需求时，与其从零开始构建更复杂的模型，不如优先采用“预训练-微调”的范式。第三节的实验清晰地展示了，采用此范式通常是通往较优性能的高效路径。</p><p>整个探索过程也侧面反映了 NLP 技术的发展脉络，也提供了一个更全面、辩证的实践准则，帮助我们在未来的项目中做出更明智的技术选型。</p><h2 id=附录使用bert实现中文文本情感分类>附录——使用BERT实现中文文本情感分类</h2><p>参考资料：</p><p><a class=link href=https://blog.csdn.net/l01011_/article/details/145895561 target=_blank rel=noopener>微调BERT模型实现文本分类</a></p><h3 id=bert文本处理tokenizer>BERT文本处理——Tokenizer</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertTokenizer</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>token</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;bert-base-chinese&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>out</span> <span class=o>=</span> <span class=n>token</span><span class=o>.</span><span class=n>batch_encode_plus</span><span class=p>(</span>  
+</span></span><span class=line><span class=cl>    <span class=n>batch_text_or_text_pairs</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;今天我要努力学习自然语言处理&#39;</span><span class=p>,</span> <span class=s1>&#39;明天我要认真学习金融学&#39;</span><span class=p>],</span>  
+</span></span><span class=line><span class=cl>    <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>padding</span><span class=o>=</span><span class=s1>&#39;max_length&#39;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>max_length</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>return_tensors</span><span class=o>=</span><span class=s1>&#39;pt&#39;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>out</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=p>,</span><span class=n>out</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>.</span><span class=n>shape</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>token</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=n>out</span><span class=p>[</span><span class=s1>&#39;input_ids&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]))</span>  
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>token</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=n>out</span><span class=p>[</span><span class=s1>&#39;input_ids&#39;</span><span class=p>][</span><span class=mi>1</span><span class=p>]))</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出结果如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>input_ids torch.Size([2, 15])
+</span></span><span class=line><span class=cl>token_type_ids torch.Size([2, 15])
+</span></span><span class=line><span class=cl>attention_mask torch.Size([2, 15])
+</span></span><span class=line><span class=cl>[CLS] 今 天 我 要 努 力 学 习 自 然 语 言 处 [SEP]
+</span></span><span class=line><span class=cl>[CLS] 明 天 我 要 认 真 学 习 金 融 学 [SEP] [PAD] [PAD]
+</span></span></code></pre></td></tr></table></div></div><h3 id=未微调时使用-text-classification-pipeline>未微调时使用 text-classification pipeline</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertTokenizer</span><span class=p>,</span> <span class=n>BertForSequenceClassification</span><span class=p>,</span> <span class=n>pipeline</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>BertForSequenceClassification</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;bert-base-chinese&#39;</span><span class=p>,</span> <span class=n>num_labels</span><span class=o>=</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;bert-base-chinese&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>classifier</span> <span class=o>=</span> <span class=n>pipeline</span><span class=p>(</span><span class=s1>&#39;text-classification&#39;</span><span class=p>,</span> <span class=n>model</span><span class=o>=</span><span class=n>model</span><span class=p>,</span> <span class=n>tokenizer</span><span class=o>=</span><span class=n>tokenizer</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;我今天心情很好&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;你好，我是AI助手&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;我今天很生气&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出结果如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-chinese and are newly initialized: [&#39;classifier.bias&#39;, &#39;classifier.weight&#39;]
+</span></span><span class=line><span class=cl>You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+</span></span><span class=line><span class=cl>Device set to use cuda:0
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_2&#39;, &#39;score&#39;: 0.5192456841468811}]
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_2&#39;, &#39;score&#39;: 0.502333402633667}]
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_2&#39;, &#39;score&#39;: 0.47641533613204956}]
+</span></span></code></pre></td></tr></table></div></div><h3 id=微调后使用-text-classification-pipeline>微调后使用 text-classification pipeline</h3><p>首先我们需要通过同样的方法来构建基础模型。然后通过语料样本来进行微调。这里我们使用lansinuote/ChnSentiCorp数据集。</p><p>lansinuote/ChnSentiCorp数据集是一个用于中文情感分析的数据集。该数据集汇集了来自网络平台的多样化评论数据，主要覆盖三大领域：酒店住宿体验、笔记本电脑使用评价以及书籍阅读感受。数据集分为训练集、验证集和测试集。其中，训练集包含约 9600 条数据，验证集和测试集各包含约 1200 条数据。每条数据包含一段评论文本和对应的情感标签，情感标签通常为二分类（如好评、差评），部分版本可能包含中性标签。</p><p>将lansinuote/ChnSentiCorp数据集下载之后，使用模型的分词器对其进行处理，将处理之后的数据放入模型进行训练，我们仅训练1轮看看效果。训练完之后再测试集上进行预测查看训练效果。并将模型保存。实现代码如下。</p><p>模型预训练过程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertTokenizer</span><span class=p>,</span> <span class=n>BertForSequenceClassification</span><span class=p>,</span> <span class=n>Trainer</span><span class=p>,</span> <span class=n>TrainingArguments</span>  
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datasets</span> <span class=kn>import</span> <span class=n>load_dataset</span>  
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;bert-base-chinese&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>mode</span> <span class=o>=</span> <span class=n>BertForSequenceClassification</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;bert-base-chinese&#39;</span><span class=p>,</span> <span class=n>num_labels</span><span class=o>=</span><span class=mi>3</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>dataset</span> <span class=o>=</span> <span class=n>load_dataset</span><span class=p>(</span><span class=s1>&#39;lansinuote/ChnSentiCorp&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>clean_text</span><span class=p>(</span><span class=n>text</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;[^\w\s]+&#39;</span><span class=p>,</span> <span class=s1>&#39; &#39;</span><span class=p>,</span> <span class=n>text</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=n>text</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>text</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>dataset</span> <span class=o>=</span> <span class=n>dataset</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span> <span class=p>{</span><span class=s1>&#39;text&#39;</span><span class=p>:</span> <span class=n>clean_text</span><span class=p>(</span><span class=n>x</span><span class=p>[</span><span class=s1>&#39;text&#39;</span><span class=p>]),</span> <span class=s1>&#39;label&#39;</span><span class=p>:</span> <span class=n>x</span><span class=p>[</span><span class=s1>&#39;label&#39;</span><span class=p>]})</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>tokenize_function</span><span class=p>(</span><span class=n>examples</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>tokenizer</span><span class=p>(</span><span class=n>examples</span><span class=p>[</span><span class=s1>&#39;text&#39;</span><span class=p>],</span> <span class=n>padding</span><span class=o>=</span><span class=s1>&#39;max_length&#39;</span><span class=p>,</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>max_length</span><span class=o>=</span><span class=mi>128</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>encoded_dataset</span> <span class=o>=</span> <span class=n>dataset</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>tokenize_function</span><span class=p>,</span> <span class=n>batched</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>training_args</span> <span class=o>=</span> <span class=n>TrainingArguments</span><span class=p>(</span>  
+</span></span><span class=line><span class=cl>    <span class=n>output_dir</span><span class=o>=</span><span class=s1>&#39;./results&#39;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>num_train_epochs</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>per_device_train_batch_size</span><span class=o>=</span><span class=mi>32</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>per_device_eval_batch_size</span><span class=o>=</span><span class=mi>32</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>eval_strategy</span><span class=o>=</span><span class=s1>&#39;epoch&#39;</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>logging_dir</span><span class=o>=</span><span class=s1>&#39;./logs&#39;</span>  
+</span></span><span class=line><span class=cl><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>trainer</span> <span class=o>=</span> <span class=n>Trainer</span><span class=p>(</span>  
+</span></span><span class=line><span class=cl>    <span class=n>model</span><span class=o>=</span><span class=n>mode</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>args</span><span class=o>=</span><span class=n>training_args</span><span class=p>,</span>  
+</span></span><span class=line><span class=cl>    <span class=n>train_dataset</span><span class=o>=</span><span class=n>encoded_dataset</span><span class=p>[</span><span class=s1>&#39;train&#39;</span><span class=p>],</span>  
+</span></span><span class=line><span class=cl>    <span class=n>eval_dataset</span><span class=o>=</span><span class=n>encoded_dataset</span><span class=p>[</span><span class=s1>&#39;validation&#39;</span><span class=p>],</span>  
+</span></span><span class=line><span class=cl><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>trainer</span><span class=o>.</span><span class=n>train</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>trainer</span><span class=o>.</span><span class=n>evaluate</span><span class=p>(</span><span class=n>encoded_dataset</span><span class=p>[</span><span class=s1>&#39;test&#39;</span><span class=p>],</span> <span class=n>metric_key_prefix</span><span class=o>=</span><span class=s1>&#39;eval&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>mode</span><span class=o>.</span><span class=n>save_pretrained</span><span class=p>(</span><span class=s1>&#39;./sentiment_model&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span><span class=o>.</span><span class=n>save_pretrained</span><span class=p>(</span><span class=s1>&#39;./sentiment_model&#39;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>保存模型后进行情感分类：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>BertTokenizer</span><span class=p>,</span> <span class=n>BertForSequenceClassification</span><span class=p>,</span> <span class=n>pipeline</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>mode_dir</span> <span class=o>=</span> <span class=s1>&#39;./sentiment_model&#39;</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>BertForSequenceClassification</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>mode_dir</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>BertTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>mode_dir</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>classifier</span> <span class=o>=</span> <span class=n>pipeline</span><span class=p>(</span><span class=s1>&#39;text-classification&#39;</span><span class=p>,</span> <span class=n>model</span><span class=o>=</span><span class=n>model</span><span class=p>,</span> <span class=n>tokenizer</span><span class=o>=</span><span class=n>tokenizer</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;我今天心情很好&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;你好，我是AI助手&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=n>classifier</span><span class=p>(</span><span class=s1>&#39;我今天很生气&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出结果如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Device set to use cuda:0
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_1&#39;, &#39;score&#39;: 0.7787742614746094}]
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_0&#39;, &#39;score&#39;: 0.5039134621620178}]
+</span></span><span class=line><span class=cl>[{&#39;label&#39;: &#39;LABEL_0&#39;, &#39;score&#39;: 0.9373114109039307}]
+</span></span></code></pre></td></tr></table></div></div><p>效果明显好了很多。</p></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/>文本分类</a>
+<a href=/blog/tags/bert/>BERT</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/><div class=article-details><h2 class=article-title>基于 LSTM 的文本分类</h2></div></a></article><article><a href=/blog/p/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/><div class=article-details><h2 class=article-title>文本分类简单实现</h2></div></a></article><article><a href=/blog/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/><div class=article-details><h2 class=article-title>BERT 结构及应用</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/><div class=article-details><h2 class=article-title>基于 peft 库的 LoRA 实战</h2></div></a></article><article><a href=/blog/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/><div class=article-details><h2 class=article-title>使用 Qwen2.5 微调私有数据</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

@@ -1,0 +1,352 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍基于 peft 库的 LoRA 实战的过程。"><title>基于 peft 库的 LoRA 实战</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="基于 peft 库的 LoRA 实战"><meta property='og:description' content="本文介绍基于 peft 库的 LoRA 实战的过程。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='PEFT'><meta property='article:tag' content='LoRA'><meta property='article:published_time' content='2026-03-25T22:40:25-08:00'><meta property='article:modified_time' content='2026-03-25T22:40:25-08:00'><meta name=twitter:title content="基于 peft 库的 LoRA 实战"><meta name=twitter:description content="本文介绍基于 peft 库的 LoRA 实战的过程。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/en/>English</option><option value=https://hanguangwu.github.io/blog/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一peft-库的设计理念>一、<code>peft</code> 库的设计理念</a></li><li><a href=#二peft-库的核心组件>二、<code>peft</code> 库的核心组件</a><ol><li><a href=#21-声明式配置-peftconfig>2.1 声明式配置 PeftConfig</a></li><li><a href=#22-动态注入生成-peftmodel>2.2 动态注入生成 PeftModel</a></li></ol></li><li><a href=#三lora-微调实战流程>三、LoRA 微调实战流程</a><ol><li><a href=#31-加载依赖基础模型与分词器>3.1 加载依赖、基础模型与分词器</a></li><li><a href=#32-模型预处理>3.2 模型预处理</a></li><li><a href=#33-定义-lora-配置并创建-peftmodel>3.3 定义 LoRA 配置并创建 <code>PeftModel</code></a></li><li><a href=#34-数据处理>3.4 数据处理</a></li><li><a href=#35-定义-trainer-并开始训练>3.5 定义 Trainer 并开始训练</a></li><li><a href=#36-模型保存与推理>3.6 模型保存与推理</a></li></ol></li><li><a href=#参考文献>参考文献</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/datawhale/>DataWhale
+</a><a href=/blog/categories/nlp/>NLP</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/>基于 peft 库的 LoRA 实战</a></h2><h3 class=article-subtitle>本文介绍基于 peft 库的 LoRA 实战的过程。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 25, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 14 分钟</time></div></footer></div></header><section class=article-content><h1 id=基于-peft-库的-lora-实战>基于 peft 库的 LoRA 实战</h1><p>在前两个小节中，探讨了参数高效微调（PEFT）的理论背景和主流方法，特别是 LoRA 的核心原理。这些知识为我们提供了理论支撑，但要真正驾驭这些技术，还需要一个强大而易用的工具。本节将进入实战环节，学习使用当前社区常用的 PEFT 工具库——Hugging Face 的 <code>peft</code> <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。
+<code>peft</code> 库的设计理念与 Hugging Face 生态系统一脉相承，它希望将复杂的 PEFT 技术（如 LoRA, Prefix Tuning, Adapter 等）抽象成统一、简洁的接口，让开发者能够以最小的代码改动，将这些高效微调方法无缝地应用到 Hugging Face Hub 上的大模型上。如图 11-11，<code>peft</code> 库的官方文档将其内容划分为快速入门、方法指南、概念指南和参考手册，便于开发者上手。</p><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/11_3_1.png width=90% alt="Hugging Face PEFT 库官方文档首页"><br><em>图 11-11 Hugging Face PEFT 库官方文档首页</em></p><h2 id=一peft-库的设计理念>一、<code>peft</code> 库的设计理念</h2><p>要理解 <code>peft</code> 库，首先要明白它并非要取代基础的模型库（例如 <code>transformers</code>），而是作为其 <strong>插件</strong> 或 <strong>增强模块</strong> 而存在。</p><p>我们可以类比游戏《黑神话：悟空》：</p><ul><li><p><strong>基础预训练模型</strong>：如同主角“天命人”（悟空），他本身已拥有强大的基础能力和标志性的金箍棒。但面对不同的 Boss（下游任务），只靠基础能力会很吃力。让他“重新修炼”以获得全新能力（即全量微调）显然不现实。</p></li><li><p><strong><code>peft</code> 库</strong>：则相当于悟空掌握的“七十二变”法术神通库。这个库里包含了各种强大的法术（如 LoRA）、变身能力（如 Prefix Tuning）和法宝（如 Prompt Tuning）。</p></li><li><p><strong><code>PeftConfig</code></strong>：相当于一份为特定 Boss 战准备的“法术搭配方案”。这份方案详细规划了要启用哪一种核心神通（例如 <code>peft_type='LORA'</code>），以及该神通的具体参数（例如 LoRA 的 <code>r</code>、<code>lora_alpha</code>，可以理解为法术的威力和范围）。</p></li><li><p><strong><code>get_peft_model</code> 函数</strong>：扮演着“临阵变身”的角色。它接收基础的“悟空”（<code>base_model</code>）和选定的“法术搭配方案”（<code>peft_config</code>），然后依据方案，将对应的神通（例如 LoRA 的低秩矩阵）“加持”在悟空身上，从而打造出一个针对特定 Boss 特化的、能力更强的 <code>PeftModel</code>。</p></li></ul><p>通过这种方式，无需改动庞大的基础模型本身（冻结其大部分权重），只需定义、训练和切换不同的轻量级插件（Adapter），就能让模型高效地适应各种下游任务。这不仅节省了大量的计算和存储资源，也使得模型的管理和部署变得更加灵活。</p><h2 id=二peft-库的核心组件>二、<code>peft</code> 库的核心组件</h2><p><code>peft</code> 库通过几个核心的类和函数，实现了对各种 PEFT 方法的统一封装，使其遵循一致的调用逻辑。接下来，简单介绍一下。</p><h3 id=21-声明式配置-peftconfig>2.1 声明式配置 PeftConfig</h3><p><code>PeftConfig</code> 是所有 PEFT 方法配置的基类，它采用声明式的方式定义了微调的策略。其中最重要的两个通用参数是：</p><ul><li><p><code>peft_type</code>：一个枚举类型，用于 <strong>指定要使用的 PEFT 插件类型</strong>。例如，<code>PeftType.LORA</code> 明确表示使用 LoRA 方法。这是 <code>peft</code> 库能够自动检索和应用不同微调算法的关键。</p></li><li><p><code>task_type</code>：同样是枚举类型，用于 <strong>指定模型的下游任务类型</strong>。例如，<code>TaskType.CAUSAL_LM</code> 用于自回归语言模型（如 GPT），<code>TaskType.SEQ_2_SEQ_LM</code> 用于序列到序列模型（如 T5）。这个参数能够帮助 <code>peft</code> 库为特定任务对模型的头部（Head）或其他结构进行正确的适配。</p></li></ul><p>针对每一种具体的 PEFT 方法，<code>peft</code> 库都提供了一个继承自 <code>PeftConfig</code> 的子类，例如 <code>LoraConfig</code>、<code>PromptTuningConfig</code> 等。以 <code>LoraConfig</code> 为例，它包含了 LoRA 方法专属的超参数，这些参数直接源于 LoRA 论文中的定义：</p><ul><li><p><code>r</code>：LoRA 的<strong>秩（rank）</strong>，决定了低秩矩阵 A 和 B 的中间维度 <code>(d, r)</code> 和 <code>(r, k)</code>。它是控制新增参数量和模型适应能力的核心超参数。</p></li><li><p><code>lora_alpha</code>：LoRA 的<strong>缩放因子</strong>。在 LoRA 的计算中，低秩矩阵的输出 <code>BAx</code> 会乘以一个缩放系数 <code>alpha/r</code>。<code>lora_alpha</code> 就是这个公式中的 <code>alpha</code>，它用于调整低秩适应矩阵与原始权重矩阵合并时的尺度。</p></li><li><p><code>target_modules</code>：一个字符串或正则表达式列表，用于 <strong>精确指定要将 LoRA 应用于基础模型中的哪些模块</strong>。如，<code>["q_proj", "v_proj"]</code> 表示仅在 Transformer 层的 <code>query</code> 和 <code>value</code> 投影矩阵上应用 LoRA。</p></li><li><p><code>lora_dropout</code>：在 LoRA 层上应用的 Dropout 比例，用于防止过拟合。</p></li><li><p><code>bias</code>：偏置参数的训练方式，可选值为 <code>'none'</code>（冻结所有 bias）、<code>'all'</code>（训练所有 bias）或 <code>'lora_only'</code>（仅训练 LoRA 模块自身的 bias）。</p></li></ul><h3 id=22-动态注入生成-peftmodel>2.2 动态注入生成 PeftModel</h3><p><code>get_peft_model</code> 是 <code>peft</code> 库中的核心工厂函数。它接收一个原始的预训练模型和一个 <code>PeftConfig</code> 对象，然后执行以下操作：</p><ul><li>解析 <code>PeftConfig</code>，确定要使用的 PEFT 方法和相关参数。</li><li>遍历基础模型的网络结构，根据 <code>target_modules</code> 找到需要注入 LoRA 模块的目标层。</li><li>将原始的目标层（如 <code>nn.Linear</code>）替换/封装为注入了 LoRA 的线性模块（如 LoraLinear 或其 k-bit 量化变体）。该模块内部保留冻结的原始权重，并引入可训练的低秩分支 A 和 B。</li><li>返回一个 <code>PeftModel</code> 实例。</li></ul><p>返回的 <code>peft_model</code> 对象是一个高度封装的模型。它内部保留了对原始基础模型的引用，并通过动态修改其 <code>forward</code> 传递路径，实现了 LoRA 逻辑的注入。这个 <code>peft_model</code> 实例拥有与基础模型完全兼容的接口，可以直接用于 <code>Trainer</code> 或自定义的训练循环中。</p><p><code>peft_model</code> 还提供了一个有用的调试方法是 <code>print_trainable_parameters()</code>，它可以计算并打印出模型中可训练参数的数量及其占总参数量的比例，能够直观地感受到 PEFT 在节约资源上的巨大优势。</p><h2 id=三lora-微调实战流程>三、LoRA 微调实战流程</h2><p>结合 <code>peft</code> 库，可以形成一个标准的 LoRA 微调流程。下面以 <code>EleutherAI/pythia-2.8b-deduped</code> 模型为例，进行微调实战。</p><blockquote><p><a class=link href=https://github.com/datawhalechina/base-nlp/blob/main/code/C11/03_peft_pythia-2.8b.ipynb target=_blank rel=noopener>本节完整代码</a></p></blockquote><h3 id=31-加载依赖基础模型与分词器>3.1 加载依赖、基础模型与分词器</h3><p>为了在消费级硬件上运行数十亿参数的大模型，需要采用 <strong>量化</strong> 技术。这里，我们使用 <code>bitsandbytes</code> 库，在加载模型时直接对其进行 8-bit 量化，并指定 <code>dtype=torch.float16</code> 以进一步优化显存。</p><p>根据 <code>transformers</code> 库的最新实践，现已不再推荐使用已被弃用的 <code>load_in_8bit=True</code> 参数，而是通过定义一个 <code>BitsAndBytesConfig</code> 对象，并将其传递给 <code>quantization_config</code> 参数来精确地控制量化行为。同时，通过设置 <code>device_map="auto"</code>，可以让 <code>accelerate</code> 库自动地、智能地将模型层分配到可用的硬件上（例如，将所有层都放到唯一的 GPU 上）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>AutoModelForCausalLM</span><span class=p>,</span> <span class=n>AutoTokenizer</span><span class=p>,</span> <span class=n>BitsAndBytesConfig</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>model_id</span> <span class=o>=</span> <span class=s2>&#34;EleutherAI/pythia-2.8b-deduped&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- 使用 BitsAndBytesConfig 定义 8-bit 量化配置 ---</span>
+</span></span><span class=line><span class=cl><span class=n>bnb_config</span> <span class=o>=</span> <span class=n>BitsAndBytesConfig</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>load_in_8bit</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 加载模型，并将量化配置传给 `quantization_config` 参数</span>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>AutoModelForCausalLM</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>model_id</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>quantization_config</span><span class=o>=</span><span class=n>bnb_config</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>dtype</span><span class=o>=</span><span class=n>torch</span><span class=o>.</span><span class=n>float16</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>device_map</span><span class=o>=</span><span class=s2>&#34;auto&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>执行完这段代码后，如果打印 <code>model</code> 对象，你会看到模型架构的详细信息。其中，类似 <code>(query_key_value): Linear8bitLt(in_features=2560, out_features=7680, bias=True)</code> 的层表明，原始的 <code>nn.Linear</code> 已经被成功替换为 8-bit 量化版本 <code>Linear8bitLt</code>，说明模型加载和量化已成功完成。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>GPTNeoXForCausalLM<span class=o>(</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>gpt_neox<span class=o>)</span>: GPTNeoXModel<span class=o>(</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>embed_in<span class=o>)</span>: Embedding<span class=o>(</span>50304, 2560<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>emb_dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.0, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>layers<span class=o>)</span>: ModuleList<span class=o>(</span>
+</span></span><span class=line><span class=cl>      <span class=o>(</span>0-31<span class=o>)</span>: <span class=m>32</span> x GPTNeoXLayer<span class=o>(</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>input_layernorm<span class=o>)</span>: LayerNorm<span class=o>((</span>2560,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-05, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>post_attention_layernorm<span class=o>)</span>: LayerNorm<span class=o>((</span>2560,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-05, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>post_attention_dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.0, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>post_mlp_dropout<span class=o>)</span>: Dropout<span class=o>(</span><span class=nv>p</span><span class=o>=</span>0.0, <span class=nv>inplace</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>attention<span class=o>)</span>: GPTNeoXAttention<span class=o>(</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>query_key_value<span class=o>)</span>: Linear8bitLt<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>2560, <span class=nv>out_features</span><span class=o>=</span>7680, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dense<span class=o>)</span>: Linear8bitLt<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>2560, <span class=nv>out_features</span><span class=o>=</span>2560, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=o>(</span>mlp<span class=o>)</span>: GPTNeoXMLP<span class=o>(</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dense_h_to_4h<span class=o>)</span>: Linear8bitLt<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>2560, <span class=nv>out_features</span><span class=o>=</span>10240, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>dense_4h_to_h<span class=o>)</span>: Linear8bitLt<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>10240, <span class=nv>out_features</span><span class=o>=</span>2560, <span class=nv>bias</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>          <span class=o>(</span>act<span class=o>)</span>: GELUActivation<span class=o>()</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>      <span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>final_layer_norm<span class=o>)</span>: LayerNorm<span class=o>((</span>2560,<span class=o>)</span>, <span class=nv>eps</span><span class=o>=</span>1e-05, <span class=nv>elementwise_affine</span><span class=o>=</span>True<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span>rotary_emb<span class=o>)</span>: GPTNeoXRotaryEmbedding<span class=o>()</span>
+</span></span><span class=line><span class=cl>  <span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>embed_out<span class=o>)</span>: Linear<span class=o>(</span><span class=nv>in_features</span><span class=o>=</span>2560, <span class=nv>out_features</span><span class=o>=</span>50304, <span class=nv>bias</span><span class=o>=</span>False<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>模型加载完成后，加载其对应的分词器。对于 Pythia 这类模型，其分词器默认可能没有 <code>pad_token</code>。在进行批量训练时，数据整理器（Data Collator）要用 <code>pad_token</code> 将序列填充至相同长度，我们需要手动将其设置为 <code>eos_token</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>AutoTokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># Pythia模型的tokenizer默认没有pad_token，我们将其设置为eos_token</span>
+</span></span><span class=line><span class=cl><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token</span> <span class=o>=</span> <span class=n>tokenizer</span><span class=o>.</span><span class=n>eos_token</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=32-模型预处理>3.2 模型预处理</h3><p>在使用 <code>peft</code> 对 8-bit 量化模型进行微调之前，需要进行一些必要的预处理。<code>peft</code> 库提供了一个非常方便的函数 <code>prepare_model_for_kbit_training</code> 来完成这项工作。</p><blockquote><p>在 PEFT 0.10.0 及更高版本中，原来的 <code>prepare_model_for_int8_training</code> 已被 <code>prepare_model_for_kbit_training</code> 替代，新函数同时支持 4-bit 和 8-bit 量化。</p></blockquote><p>这个函数主要执行几个关键操作：</p><p>（1）<strong>类型转换</strong>：将模型中一些需要以更高精度（如 FP32）计算的层（例如 LayerNorm）进行类型转换，以保证训练的数值稳定性。</p><p>（2）<strong>启用梯度检查点</strong>：调用 <code>model.gradient_checkpointing_enable()</code>，这是一种用计算时间换取显存的技术。它在反向传播时会重新计算中间层的激活值，而不是将它们全部存储在显存中，从而显著降低了训练过程中的显存峰值。</p><p>（3）<strong>输出嵌入层预处理</strong>：对模型的输出嵌入层进行一些必要的处理，以使其与 LoRA 兼容。</p><p>（4）<strong>输入梯度处理</strong>：为需要的输入启用梯度，保证在冻结大部分权重且使用 k-bit 训练时的反向传播兼容性。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>peft</span> <span class=kn>import</span> <span class=n>prepare_model_for_kbit_training</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 对量化后的模型进行预处理</span>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>prepare_model_for_kbit_training</span><span class=p>(</span><span class=n>model</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=33-定义-lora-配置并创建-peftmodel>3.3 定义 LoRA 配置并创建 <code>PeftModel</code></h3><p>这是整个 PEFT 流程中最核心的一步。我们将应用刚才介绍的核心组件，实例化一个 <code>LoraConfig</code> 对象来声明 LoRA 微调的具体策略，然后使用 <code>get_peft_model</code> 函数将其应用到预处理过的基础模型上。</p><p>在 <code>LoraConfig</code> 中，会详细设置 LoRA 的各个超参数，这些参数的选择直接关系到微调的效果和效率，与在上节 <code>LoRA 方法详解</code> 中讨论的理论紧密相关：</p><ul><li><p><code>r</code>：LoRA 的秩。这是最关键的超参数之一。<code>r</code> 越大，意味着低秩矩阵的表达能力越强，可训练的参数也越多。但正如前文的实验所示，<code>r</code> 并非越大越好，过大的 <code>r</code> 可能会增加噪声，且会线性增加可训练参数量。通常建议从 8 或 16 开始尝试。</p></li><li><p><code>lora_alpha</code>：LoRA 的缩放因子。在前文提到过，最终的权重更新量会以 <code>alpha/r</code> 的比例进行缩放。这意味着，<code>lora_alpha</code> 的值可以理解为对学习到的低秩矩阵的“增强系数”。一个常见的做法是将其设置为 <code>r</code> 的两倍。</p></li><li><p><code>target_modules</code>：指定要将 LoRA 应用于模型中的哪些模块。这是一个非常关键的参数，因为不同模型的模块命名方式不同。</p><blockquote><p><strong>如何确定 <code>target_modules</code>？</strong> 可以先打印出基础模型 <code>model</code> 的结构，并以其显示的层命名为准。对于大多数 Transformer 模型，注意力机制中的“查询（Query）”、“键（Key）”和“值（Value）”层（如 <code>q_proj</code>, <code>k_proj</code>, <code>v_proj</code>）是首选。而对于 <code>Pythia</code> 或 <code>GPT-NeoX</code> 系列模型，其注意力权重常被合并在一个 <code>query_key_value</code> 层中，前馈网络（FFN）中的线性层则常见 <code>dense</code>、<code>dense_h_to_4h</code> 和 <code>dense_4h_to_h</code>。将 LoRA 应用于这些层通常都能带来收益。</p></blockquote></li><li><p><code>bias</code>：偏置参数的训练方式。<code>'none'</code> 是最常用的设置，意味着不训练任何偏置参数，这与 LoRA 的原始思想保持一致，以最大化参数效率。在数据量充足的情况下，可以尝试 <code>'lora_only'</code>，仅训练 LoRA 模块自身的偏置。</p></li></ul><p><code>LoraConfig</code> 的其他参数（如 <code>lora_dropout</code>、<code>task_type</code>）也都提供了对微调过程的精细控制，具体代码如下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>peft</span> <span class=kn>import</span> <span class=n>LoraConfig</span><span class=p>,</span> <span class=n>get_peft_model</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 定义 LoRA 配置</span>
+</span></span><span class=line><span class=cl><span class=n>config</span> <span class=o>=</span> <span class=n>LoraConfig</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>r</span><span class=o>=</span><span class=mi>16</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>lora_alpha</span><span class=o>=</span><span class=mi>32</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>target_modules</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;query_key_value&#34;</span><span class=p>,</span> <span class=s2>&#34;dense&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>lora_dropout</span><span class=o>=</span><span class=mf>0.05</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>bias</span><span class=o>=</span><span class=s2>&#34;none&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>task_type</span><span class=o>=</span><span class=s2>&#34;CAUSAL_LM&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 应用配置，获得 PEFT 模型</span>
+</span></span><span class=line><span class=cl><span class=n>peft_model</span> <span class=o>=</span> <span class=n>get_peft_model</span><span class=p>(</span><span class=n>model</span><span class=p>,</span> <span class=n>config</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>peft_model</span><span class=o>.</span><span class=n>print_trainable_parameters</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>trainable params: 7,864,320 <span class=o>||</span> all params: 2,783,073,280 <span class=o>||</span> trainable%: 0.2826
+</span></span></code></pre></td></tr></table></div></div><p>通过前面提到的 <code>print_trainable_parameters()</code> 可以看到，可训练参数仅占总参数量的 0.28%。</p><h3 id=34-数据处理>3.4 数据处理</h3><p>现在模型已经准备就绪，需要为它准备“教材”——也就是训练数据。本次微调的目标是让模型学会生成名人名言。这里将使用 <code>Abirate/english_quotes</code> 这个数据集，它包含了大量的英文名言。</p><p>数据处理流程如下：</p><ol><li><strong>加载数据集</strong>：使用 <code>datasets</code> 库从 Hugging Face Hub 下载数据集。</li><li><strong>数据预处理</strong>：定义一个 <code>tokenize</code> 函数，该函数会接收一批数据，提取出所关心的 <code>quote</code> 字段，然后使用之前加载的分词器 <code>tokenizer</code> 对其进行编码，将其转换为模型可以理解的 <code>input_ids</code>。</li><li><strong>应用处理</strong>：使用 <code>dataset.map()</code> 方法，将 <code>tokenize</code> 函数批量应用到整个数据集上。这是 <code>datasets</code> 库一个非常高效的特性。</li></ol><p>首先，加载数据集并查看一条样本。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datasets</span> <span class=kn>import</span> <span class=n>load_dataset</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 加载数据集</span>
+</span></span><span class=line><span class=cl><span class=n>quotes_dataset</span> <span class=o>=</span> <span class=n>load_dataset</span><span class=p>(</span><span class=s2>&#34;Abirate/english_quotes&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看数据集示例</span>
+</span></span><span class=line><span class=cl><span class=n>quotes_dataset</span><span class=p>[</span><span class=s1>&#39;train&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出显示了数据集的结构，包含 <code>quote</code>、<code>author</code> 和 <code>tags</code> 字段。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{&#39;quote&#39;: &#39;“Be yourself; everyone else is already taken.”&#39;,
+</span></span><span class=line><span class=cl> &#39;author&#39;: &#39;Oscar Wilde&#39;,
+</span></span><span class=line><span class=cl> &#39;tags&#39;: [&#39;be-yourself&#39;,
+</span></span><span class=line><span class=cl>  &#39;gilbert-perreira&#39;,
+</span></span><span class=line><span class=cl>  &#39;honesty&#39;,
+</span></span><span class=line><span class=cl>  &#39;inspirational&#39;,
+</span></span><span class=line><span class=cl>  &#39;misattributed-oscar-wilde&#39;,
+</span></span><span class=line><span class=cl>  &#39;quote-investigator&#39;]}
+</span></span></code></pre></td></tr></table></div></div><p>接下来，定义分词函数并将其应用到整个数据集上。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 定义分词函数</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>tokenize_quotes</span><span class=p>(</span><span class=n>batch</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 只对 &#34;quote&#34; 列进行分词</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>tokenizer</span><span class=p>(</span><span class=n>batch</span><span class=p>[</span><span class=s2>&#34;quote&#34;</span><span class=p>],</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 对整个数据集进行分词处理</span>
+</span></span><span class=line><span class=cl><span class=n>tokenized_quotes</span> <span class=o>=</span> <span class=n>quotes_dataset</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>tokenize_quotes</span><span class=p>,</span> <span class=n>batched</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>tokenized_quotes</span><span class=p>[</span><span class=s1>&#39;train&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>处理后的数据集新增了模型所需的 <code>input_ids</code> 和 <code>attention_mask</code> 列。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{&#39;quote&#39;: &#39;“Be yourself; everyone else is already taken.”&#39;,
+</span></span><span class=line><span class=cl> &#39;author&#39;: &#39;Oscar Wilde&#39;,
+</span></span><span class=line><span class=cl> &#39;tags&#39;: [&#39;be-yourself&#39;,
+</span></span><span class=line><span class=cl>  &#39;gilbert-perreira&#39;,
+</span></span><span class=line><span class=cl>  &#39;honesty&#39;,
+</span></span><span class=line><span class=cl>  &#39;inspirational&#39;,
+</span></span><span class=line><span class=cl>  &#39;misattributed-oscar-wilde&#39;,
+</span></span><span class=line><span class=cl>  &#39;quote-investigator&#39;],
+</span></span><span class=line><span class=cl> &#39;input_ids&#39;: [1628, 4678, 4834, 28, 4130, 2010, 310, 2168, 2668, 1425],
+</span></span><span class=line><span class=cl> &#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
+</span></span></code></pre></td></tr></table></div></div><h3 id=35-定义-trainer-并开始训练>3.5 定义 Trainer 并开始训练</h3><p><code>Trainer</code> 是 <code>transformers</code> 库提供的一个高度抽象化的训练器，它封装了标准的 PyTorch 训练循环。只需通过 <code>TrainingArguments</code> 定义训练的“策略”，而无需手动编写繁琐的训练代码（如梯度更新、学习率调度、日志记录等）。</p><p>在 <code>TrainingArguments</code> 中，会设置一些关键的训练参数：</p><ul><li><code>per_device_train_batch_size</code> & <code>gradient_accumulation_steps</code>：这两个参数共同决定了有效批量大小（effective batch size）。<code>per_device_train_batch_size</code> 是指每个 GPU 单次前向传播处理的样本数，而 <code>gradient_accumulation_steps</code> 则指定了梯度累积的步数。有效批量大小 = <code>per_device_train_batch_size</code> * <code>gradient_accumulation_steps</code> * <code>num_gpus</code>。通过梯度累积，可以在显存有限的情况下，模拟出更大的批量大小，这通常有助于稳定训练过程。</li><li><code>warmup_steps</code>: 学习率预热的步数。在训练初期，学习率会从一个很小的值线性增加到设定的 <code>learning_rate</code>，这能让模型在开始阶段更好地适应数据。</li><li><code>max_steps</code>: 训练的总步数。为了快速演示，这里只训练 200 步。</li><li><code>learning_rate</code>: 学习率，控制模型参数更新的幅度。</li><li><code>fp16</code>: 启用 16-bit 混合精度训练。可以在不牺牲太多性能的情况下，进一步减少显存占用并加速训练。</li></ul><p>最关键的是，将之前创建的 <code>PeftModel</code> 实例直接传递给 <code>Trainer</code>。<code>Trainer</code> 会足够智能，自动识别出只有 LoRA 相关的参数是可训练的，并在训练时冻结所有其他参数。</p><p>除了上述基础参数外，还有两个关于训练策略的要点值得注意：</p><ul><li><p><strong><code>max_steps</code> vs <code>num_train_epochs</code></strong>：<code>TrainingArguments</code> 允许通过设置 <code>max_steps</code>（总训练步数）或 <code>num_train_epochs</code>（总训练轮数）来控制训练的总长度。在快速原型验证或演示时，使用 <code>max_steps</code> 可以精确控制训练量，便于快速看到结果。在正式的项目中，使用 <code>num_train_epochs</code> 更为常见，它能确保模型完整地学习过所有训练数据指定的轮数。</p></li><li><p><strong>验证集的缺失</strong>：在专业的训练流程中，通常会从数据集中划分出一部分作为验证集，并在 <code>TrainingArguments</code> 中通过 <code>evaluation_strategy</code> 参数设置评估时机（例如，每 N 步或每个 epoch 结束后），以便监控模型是否过拟合，并据此进行早停等操作。为了简化演示流程，本教程省略了这一环节。</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>Trainer</span><span class=p>,</span> <span class=n>TrainingArguments</span><span class=p>,</span> <span class=n>DataCollatorForLanguageModeling</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 推荐操作：关闭缓存可提高训练效率</span>
+</span></span><span class=line><span class=cl><span class=n>peft_model</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>use_cache</span> <span class=o>=</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 定义训练参数</span>
+</span></span><span class=line><span class=cl><span class=n>train_args</span> <span class=o>=</span> <span class=n>TrainingArguments</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>per_device_train_batch_size</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>gradient_accumulation_steps</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>warmup_steps</span><span class=o>=</span><span class=mi>100</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>max_steps</span><span class=o>=</span><span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>learning_rate</span><span class=o>=</span><span class=mf>2e-4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fp16</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=c1># 启用混合精度训练</span>
+</span></span><span class=line><span class=cl>    <span class=n>logging_steps</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_dir</span><span class=o>=</span><span class=s2>&#34;outputs&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 数据整理器，用于处理批量数据</span>
+</span></span><span class=line><span class=cl><span class=n>quote_collator</span> <span class=o>=</span> <span class=n>DataCollatorForLanguageModeling</span><span class=p>(</span><span class=n>tokenizer</span><span class=p>,</span> <span class=n>mlm</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 实例化 Trainer</span>
+</span></span><span class=line><span class=cl><span class=n>trainer</span> <span class=o>=</span> <span class=n>Trainer</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>model</span><span class=o>=</span><span class=n>peft_model</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>train_dataset</span><span class=o>=</span><span class=n>tokenized_quotes</span><span class=p>[</span><span class=s2>&#34;train&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>args</span><span class=o>=</span><span class=n>train_args</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_collator</span><span class=o>=</span><span class=n>quote_collator</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 开始训练</span>
+</span></span><span class=line><span class=cl><span class=n>trainer</span><span class=o>.</span><span class=n>train</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><p>执行 <code>trainer.train()</code> 后，控制台会实时打印训练日志。训练完成后，<code>train</code> 方法会返回一个包含所有训练指标的 <code>TrainOutput</code> 对象，方便进行分析和记录。</p><h3 id=36-模型保存与推理>3.6 模型保存与推理</h3><p>训练完成后，可以将学到的知识——也就是轻量的 LoRA 适配器保存下来，以备后续使用。</p><p>对 <code>PeftModel</code>（即 <code>peft_model</code>）调用 <code>save_pretrained()</code> 时，<code>peft</code> 会只保存增量的、可训练的适配器权重，而不是整个庞大的基础模型。通常，保存下来的文件（<code>adapter_model.safetensors</code> 和 <code>adapter_config.json</code>）只有几十 MB。</p><blockquote><p><strong>合并权重</strong></p><p>正如上节中所讨论的，LoRA 的一个核心优势是它不会在推理时引入额外的延迟。这是因为它训练出的旁路矩阵 $A$ 和 $B$ 可以被 <strong>合并（merge）</strong> 回原始的权重矩阵中。训练完成后，可以调用 <code>merged_model = peft_model.merge_and_unload()</code> 方法，它会返回一个标准的 <code>transformers</code> 模型，其权重已经包含了 LoRA 的更新。这个 <code>merged_model</code> 的结构与原始模型完全一致，所以可以像任何普通模型一样进行部署，而没有任何额外的计算开销。
+若基础模型以 8/4-bit 量化加载，合并后返回的标准模型通常会转为 FP16/FP32；若需继续以 k-bit 部署，可在合并后按需重新量化。</p></blockquote><p>为了验证微调的效果，可以进行一次推理测试，观察模型在续写名言开头的表现。为了获得最佳的推理效果并避免警告，需要注意以下几点：</p><ol><li><strong>传递 attention_mask</strong>：显式传递 <code>attention_mask</code>，确保模型能够正确识别有效的 token。</li><li><strong>启用采样</strong>：设置 <code>do_sample=True</code> 以启用温度采样和核采样参数。</li><li><strong>启用 use_cache</strong>：推理前将 <code>use_cache=True</code> 可提升生成效率；训练阶段通常配合梯度检查点将其关闭。</li></ol><p><strong>生成参数说明：</strong></p><ul><li><code>max_length</code>: 生成文本的最大长度（包括输入）。</li><li><code>do_sample</code>: 是否使用采样策略。设置为 <code>True</code> 时，<code>temperature</code>、<code>top_p</code>、<code>top_k</code> 才会生效。</li><li><code>temperature</code>: 控制生成的随机性。较低的值（如 0.6）会使生成更具确定性，而较高的值则会增加多样性。</li><li><code>top_p</code>: 核采样的概率阈值。只考虑累积概率达到 <code>top_p</code> 的最小 token 集合。</li><li><code>top_k</code>: 每步只从概率最高的 <code>k</code> 个 token 中采样。</li><li><code>repetition_penalty</code>: 重复惩罚因子，大于 1.0 会降低重复内容的概率。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 将模型设置为评估模式</span>
+</span></span><span class=line><span class=cl><span class=n>peft_model</span><span class=o>.</span><span class=n>eval</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置 pad_token_id 到模型配置中</span>
+</span></span><span class=line><span class=cl><span class=n>peft_model</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>pad_token_id</span> <span class=o>=</span> <span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token_id</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>prompt</span> <span class=o>=</span> <span class=s2>&#34;Be yourself; everyone&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 对输入进行分词，并获取 attention_mask</span>
+</span></span><span class=line><span class=cl><span class=n>inputs</span> <span class=o>=</span> <span class=n>tokenizer</span><span class=p>(</span><span class=n>prompt</span><span class=p>,</span> <span class=n>return_tensors</span><span class=o>=</span><span class=s2>&#34;pt&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>input_ids</span> <span class=o>=</span> <span class=n>inputs</span><span class=p>[</span><span class=s2>&#34;input_ids&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>peft_model</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>attention_mask</span> <span class=o>=</span> <span class=n>inputs</span><span class=p>[</span><span class=s2>&#34;attention_mask&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>peft_model</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 生成文本</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用 autocast 提高混合精度推理的效率</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>amp</span><span class=o>.</span><span class=n>autocast</span><span class=p>(</span><span class=s1>&#39;cuda&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>outputs</span> <span class=o>=</span> <span class=n>peft_model</span><span class=o>.</span><span class=n>generate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>input_ids</span><span class=o>=</span><span class=n>input_ids</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>attention_mask</span><span class=o>=</span><span class=n>attention_mask</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>max_length</span><span class=o>=</span><span class=mi>50</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>do_sample</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>temperature</span><span class=o>=</span><span class=mf>0.6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>top_p</span><span class=o>=</span><span class=mf>0.95</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>top_k</span><span class=o>=</span><span class=mi>40</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>repetition_penalty</span><span class=o>=</span><span class=mf>1.2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>pad_token_id</span><span class=o>=</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token_id</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 解码并打印结果</span>
+</span></span><span class=line><span class=cl><span class=n>decoded_output</span> <span class=o>=</span> <span class=n>tokenizer</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=n>outputs</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>skip_special_tokens</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>decoded_output</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=s1>&#39;Be yourself; everyone else is taken.” - Oscar Wilde&#34;I have found that people will forget what you said, people will forget what you did, but people will never forget how you made them feel” Maya Angelou“The worst thing we&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>从输出可以看到，模型成功地补全了这句来自奥斯卡·王尔德的名言，并且还继续生成了另一句风格相似的名言。这表明，仅仅通过200步的微调，模型就已经从数据集中大致学习到了名言的风格和内容，证明了 PEFT 方法的高效性。</p><blockquote><p><strong>模型输出的非确定性</strong></p><p>大语言模型输出的非确定性主要来源于解码阶段的<strong>采样策略</strong>。当 <code>do_sample=True</code> 时，模型会根据计算出的词汇表概率分布进行随机抽样，而不是像确定性的贪心搜索那样总是选择概率最高的词。<code>temperature</code>、<code>top_p</code> 等参数正是用来调节这种抽样过程的随机程度的。</p><p>所以，这些采样参数是引入输出多样性的<strong>主要和意图性</strong> 的来源。除此之外，底层的CUDA算子、浮点数计算精度等因素也可能导致即使在固定随机种子的情况下，两次运行结果仍存在微小差异，但这并非主要原因。在本地运行时得到与文档不完全相同的结果，属于正常现象。</p></blockquote><hr><h2 id=参考文献>参考文献</h2><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a class=link href=https://huggingface.co/docs/peft/index target=_blank rel=noopener>Hugging Face PEFT Documentation. (2024).</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/peft/>PEFT</a>
+<a href=/blog/tags/lora/>LoRA</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BClora-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/><div class=article-details><h2 class=article-title>低秩近似（LoRA） 方法详解</h2></div></a></article><article><a href=/blog/p/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83peft%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/><div class=article-details><h2 class=article-title>参数高效微调（PEFT）技术综述</h2></div></a></article><article><a href=/blog/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/><div class=article-details><h2 class=article-title>使用 Qwen2.5 微调私有数据</h2></div></a></article><article><a href=/blog/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/><div class=article-details><h2 class=article-title>微调 BERT 模型进行文本分类</h2></div></a></article><article><a href=/blog/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/><div class=article-details><h2 class=article-title>基于 LSTM 的文本分类</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
