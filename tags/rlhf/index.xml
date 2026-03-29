@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RLHF on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/rlhf/</link><description>Recent content in RLHF on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Fri, 27 Mar 2026 13:40:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/rlhf/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 LLaMA-Factory 的RLHF（DPO）实战</title><link>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</link><pubDate>Fri, 27 Mar 2026 13:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="基于-llama-factory-的rlhfdpo实战"&gt;基于 LLaMA-Factory 的RLHF（DPO）实战
+&lt;/h1&gt;&lt;p&gt;我们在上一节详细介绍了 RLHF 的原理以及目前主流的 &lt;strong&gt;DPO（Direct Preference Optimization）&lt;/strong&gt; 算法。相比于传统的 PPO，DPO 省去了训练独立的奖励模型（Reward Model）和复杂的强化学习采样过程，直接在偏好数据上优化策略，更加稳定且高效。&lt;/p&gt;
+&lt;p&gt;本节我们将使用开源社区流行的微调框架 &lt;strong&gt;LLaMA-Factory&lt;/strong&gt;，配合阿里发布的轻量级指令模型 &lt;strong&gt;Qwen2.5-0.5B-Instruct&lt;/strong&gt;，在单张消费级显卡（甚至 CPU）上跑通 DPO 对齐流程。&lt;/p&gt;
+&lt;h2 id="一llama-factory-简介"&gt;一、LLaMA-Factory 简介
+&lt;/h2&gt;&lt;p&gt;LLaMA-Factory 是一个简洁高效的大型语言模型（Large Language Model）训练与微调平台，旨在让开发者能够“零代码”地完成大模型的定制化训练。它具有以下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;广泛的模型支持&lt;/strong&gt;：支持业界主流的开源模型，如 LLaMA、Qwen（通义千问）、Baichuan（百川）、ChatGLM、Mistral、Yi 等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;全流程覆盖&lt;/strong&gt;：涵盖了从 &lt;strong&gt;预训练（Pre-Training）&lt;/strong&gt;、&lt;strong&gt;指令监督微调（SFT）&lt;/strong&gt; 到 &lt;strong&gt;RLHF&lt;/strong&gt;（包含奖励模型建模、PPO、DPO、KTO、ORPO 等）的完整训练阶段。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高效的微调技术&lt;/strong&gt;：内置了 LoRA、QLoRA、DoRA、GaLore 等多种参数高效微调（PEFT）方法，大幅降低了显存需求。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;易用的交互界面&lt;/strong&gt;：提供名为 &lt;strong&gt;LLaMA-Board&lt;/strong&gt; 的 Web UI 界面，通过可视化操作即可配置训练参数、监控训练进度以及进行模型对话测试。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;硬件友好&lt;/strong&gt;：支持 DeepSpeed、FlashAttention 等加速技术，并支持 4-bit/8-bit 量化训练，使得普通消费级显卡也能运行大模型训练。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="二环境搭建"&gt;二、环境搭建
+&lt;/h2&gt;&lt;h3 id="21-拉取代码并安装依赖"&gt;2.1 拉取代码并安装依赖
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;克隆 LLaMA-Factory 仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/hiyouga/LLaMA-Factory.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; LLaMA-Factory
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;激活 Conda 环境&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;conda activate peft
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;安装依赖&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -e .&lt;span class="o"&gt;[&lt;/span&gt;metrics&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证安装&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llamafactory-cli version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果安装成功后，能够看到类似下面的输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;----------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;|&lt;/span&gt; Welcome to LLaMA Factory, version 0.9.4.dev0 &lt;span class="p"&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;|&lt;/span&gt; Project page: https://github.com/hiyouga/LLaMA-Factory &lt;span class="p"&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;----------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="22-启动-web-ui-界面"&gt;2.2 启动 Web UI 界面
+&lt;/h3&gt;&lt;p&gt;LLaMA-Factory 提供了一个简单易用的 Web UI 界面，可以用于训练、评估和聊天。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llamafactory-cli webui
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;启动后，将看到如下输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Visit http://ip:port for Web UI, e.g., http://127.0.0.1:7860
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;* Running on local URL: http://0.0.0.0:7860
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;* To create a public link, set `share=True` in `launch()`.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;访问 &lt;code&gt;http://localhost:7860&lt;/code&gt;，就能看到如图 12-9 所示界面：&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_1.png" width="80%" alt="LLaMA-Factory Web UI" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-9 LLaMA-Factory Web UI 界面&lt;/em&gt;
+&lt;/p&gt;
+&lt;h2 id="三dpo-训练准备"&gt;三、DPO 训练准备
+&lt;/h2&gt;&lt;p&gt;RLHF（DPO）通常是在模型已经具备一定指令遵循能力的基础上进行的。由于我们直接使用已经经过指令微调的 &lt;strong&gt;&lt;code&gt;Qwen2.5-0.5B-Instruct&lt;/code&gt;&lt;/strong&gt; 版本，因此可以直接进入 DPO 阶段。&lt;/p&gt;
+&lt;h3 id="31-配置模型"&gt;3.1 配置模型
+&lt;/h3&gt;&lt;p&gt;进入 WebUI 后，可以根据自己熟悉的语言切换界面语言（目前支持 en、ru、zh、ko、ja 等）。然后在下拉框中选择 &lt;strong&gt;&lt;code&gt;Qwen2.5-0.5B-Instruct&lt;/code&gt;&lt;/strong&gt;（聊天 / 指令版本）并设置&lt;strong&gt;下载源&lt;/strong&gt;。默认为 &lt;code&gt;Hugging Face&lt;/code&gt;，如果遇到网络问题，可以切换为 &lt;code&gt;ModelScope&lt;/code&gt; 或 &lt;code&gt;OpenMind&lt;/code&gt; 进行下载。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_2.png" width="80%" alt="模型选择与配置" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-10 模型选择与配置&lt;/em&gt;
+&lt;/p&gt;
+&lt;h3 id="32-配置微调参数"&gt;3.2 配置微调参数
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;微调方法&lt;/strong&gt;：保持默认的 &lt;code&gt;lora&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;量化配置&lt;/strong&gt;：对于显存较小的设备，可以选择将 &lt;code&gt;Quantization bit&lt;/code&gt; 设置为 &lt;code&gt;8&lt;/code&gt; 或 &lt;code&gt;4&lt;/code&gt;，启用量化训练（QLoRA）。&lt;strong&gt;如果显存充足或希望获得更好的效果，可以保持默认（不量化）&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;其他参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Quantization method&lt;/code&gt;: 量化方法，默认为 &lt;code&gt;bnb&lt;/code&gt;（bitsandbytes）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Chat template&lt;/code&gt;: 对话模板。
+&lt;ul&gt;
+&lt;li&gt;对于 &lt;strong&gt;Base&lt;/strong&gt; 模型，可选择 &lt;code&gt;default&lt;/code&gt;, &lt;code&gt;alpaca&lt;/code&gt;, &lt;code&gt;vicuna&lt;/code&gt; 等。&lt;/li&gt;
+&lt;li&gt;对于 &lt;strong&gt;Instruct/Chat&lt;/strong&gt; 模型，&lt;strong&gt;务必选择对应的模板&lt;/strong&gt;（例如 Qwen 系列选择 &lt;code&gt;qwen&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;训练和推理时必须使用&lt;strong&gt;相同&lt;/strong&gt;的模板。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RoPE scaling&lt;/code&gt;: 旋转位置编码缩放，用于扩展上下文长度。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Booster&lt;/code&gt;: 加速库，默认 &lt;code&gt;auto&lt;/code&gt; 即可，它会自动选择最适合的加速后端（如 FlashAttention）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如图 12-11 ，我们设置了 LoRA 微调，并手动指定了对话模板为 &lt;code&gt;qwen&lt;/code&gt;，其余选项保持默认。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_3.png" width="80%" alt="微调方法与量化配置" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-11 微调方法与量化配置&lt;/em&gt;
+&lt;/p&gt;
+&lt;h3 id="33-配置数据集"&gt;3.3 配置数据集
+&lt;/h3&gt;&lt;p&gt;如图 12-12 需要先在左上角的 Stage 下拉菜单中选择 &lt;code&gt;DPO&lt;/code&gt;。接着，在“数据集”一栏中，选择需要的训练数据。我们将使用 LLaMA-Factory 自带的 DPO 演示数据集 &lt;strong&gt;&lt;code&gt;dpo_zh_demo&lt;/code&gt;&lt;/strong&gt;。这个数据集包含了偏好对比（chosen vs rejected）的数据对。选中数据集后，可以点击右上角的 &lt;strong&gt;Preview dataset&lt;/strong&gt; 按钮预览数据格式，确认数据无误。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_4.png" width="80%" alt="数据集选择与预览" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-12 数据集选择与预览&lt;/em&gt;
+&lt;/p&gt;
+&lt;h2 id="四启动-dpo-训练"&gt;四、启动 DPO 训练
+&lt;/h2&gt;&lt;h3 id="41-设置训练参数"&gt;4.1 设置训练参数
+&lt;/h3&gt;&lt;p&gt;笔者根据自己的机器情况设置了如图 12-13 所示的配置。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_5.png" width="80%" alt="训练参数配置" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-13 训练参数配置&lt;/em&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;关键参数说明&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Learning rate&lt;/code&gt;: &lt;code&gt;1e-4&lt;/code&gt; （学习率）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Epochs&lt;/code&gt;: &lt;code&gt;3.0&lt;/code&gt; （训练轮数）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Compute type&lt;/code&gt;: &lt;code&gt;fp16&lt;/code&gt; （兼容性好，若显卡适配可选 &lt;code&gt;bf16&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cutoff length&lt;/code&gt;: &lt;code&gt;2048&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Batch size&lt;/code&gt;: &lt;code&gt;1&lt;/code&gt; （取决于显存）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Gradient accumulation&lt;/code&gt;: &lt;code&gt;16&lt;/code&gt; （建议 Batch size × Gradient accumulation ≈ 16 或 32）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LoRA rank&lt;/code&gt;: &lt;code&gt;8&lt;/code&gt; （LoRA 的秩，决定微调参数量，8 是默认配置）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LoRA alpha&lt;/code&gt;: &lt;code&gt;16&lt;/code&gt; （缩放系数，默认设置为 Rank 的 2 倍）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="42-启动训练"&gt;4.2 启动训练
+&lt;/h3&gt;&lt;p&gt;如图 12-14 设置好输出目录后，可以点击 &lt;strong&gt;Preview command&lt;/strong&gt; 预览训练命令，确认无误后直接点击 &lt;strong&gt;Start&lt;/strong&gt; 开始训练。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_6.png" width="80%" alt="预览命令并启动训练" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-14 预览命令并启动训练&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;训练完成后，适配器（Adapter）权重将保存在 &lt;code&gt;saves/Qwen2.5-0.5B-Instruct/lora/Qwen2.5-0.5B-dpo-demo&lt;/code&gt; 目录下。我们也可以在 &lt;strong&gt;Train&lt;/strong&gt; 面板中看到如图 12-15 的训练过程 Loss 曲线，观察模型收敛情况。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_7.png" width="80%" alt="训练 Loss 曲线" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-15 训练 Loss 曲线&lt;/em&gt;
+&lt;/p&gt;
+&lt;h2 id="五效果测试与对比"&gt;五、效果测试与对比
+&lt;/h2&gt;&lt;p&gt;在训练完成后，本来还应进行评估的步骤（这步也可以直接通过可视化界面的 &lt;strong&gt;Evaluate &amp;amp; Predict&lt;/strong&gt; 面板进行），但是由于没有准备测试数据集，所以这一步就省略了。我们将直接使用 &lt;strong&gt;LLaMA-Board&lt;/strong&gt; 的 &lt;code&gt;Chat&lt;/code&gt; 功能来测试模型的对话效果。&lt;/p&gt;
+&lt;h3 id="51-加载模型进行对话"&gt;5.1 加载模型进行对话
+&lt;/h3&gt;&lt;p&gt;如图 12-16 所示，切换到 &lt;strong&gt;Chat&lt;/strong&gt; 栏。在训练开始前，我们可以先不选择任何 Adapter，直接点击 &lt;strong&gt;Load model&lt;/strong&gt; 加载原始的 &lt;code&gt;Qwen2.5-0.5B-Instruct&lt;/code&gt; 模型，测试一下未训练时的模型表现。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_8.png" width="80%" alt="加载模型进行对话测试" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-16 加载模型进行对话测试&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;加载成功后，在页面下方的对话框中输入测试问题，查看原始模型的回答情况（如图 12-14）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;测试配置：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;System prompt&lt;/strong&gt;: &lt;code&gt;您是一名AI助手。用户会给您一个任务。您的目标是尽量忠实地完成任务。在执行任务时，要逐步思考并合理地解释您的步骤。&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Input&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;体重增加是一个复杂的问题。但毫无疑问，西方国家当前的食物环境——大量含有高度加工的咸、甜和油脂食品——起着重要作用。我们饮食中摄入的大部分盐都是在制造过程中添加的。这与大多数食物中天然存在的少量盐或在餐桌上或在家里烹饪时添加的盐形成对比。盐可以增加食物的可口性，帮助保鲜；这就是为什么它通常被添加到加工食品中。盐和脂肪的结合被认为是促进食物被 passively 过量消费的强大组合。想想看，咸薯片有多令人回味。对咸和油脂食物更喜欢与整体摄入更多千焦耳、不受控制的饮食和儿童超重有关。食物过量摄入与其盐度程度之间的联系被认为比对甜和油脂食物的喜好更强。从进一步揭示盐可能如何影响对油脂食物的过量摄入，Deakin 大学的感官研究人员招募了 48 名健康成年人参加品尝小组。在四个午餐时间段（在那天早上进行了标准早餐后），每个人都吃了一顿经过脂肪和盐含量调整的通心粉奶酪餐。四种餐食组合分别是低脂/低盐、低脂/高盐、高脂/低盐和高脂/高盐。鼓励参与者吃到饱为止。还记录了进食速度、餐食的可口性以及主观评价的饥饿感和饱腹感。盐促进过量进食当食用含盐量高的餐食时，摄入的千焦耳增加了 11%。而这与脂肪含量高低无关。餐食的脂肪含量并没有导致人们按重量摄入更多食物，但由于其更高的能量密度，这意味着摄入了更多千焦耳。问题：那些习惯于喜欢高热量密度饮食的人可能经常食用高盐食品吗？=== 上述问题的答案是 可选项： (1). 一周以上。 (2). 大多数时候通心粉奶酪被提供时。 (3). 没有足够的信息 (4). 通常在午餐时间。 答案：
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_9.png" width="80%" alt="原始模型对话测试" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-17 原始模型对话测试&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;在图 12-17 中，原始模型给出的答案&lt;strong&gt;简短且武断&lt;/strong&gt;。虽然我们在 System Prompt 中要求它“逐步思考并合理地解释步骤”，但它忽略了这一指令，直接给出了一个基于表面关联（文中提到午餐）的猜测性结论。这种倾向于“快速给出答案”而非“深思熟虑”的风格，在未经过偏好对齐的模型中很常见。&lt;/p&gt;
+&lt;h3 id="52-验证-dpo-效果"&gt;5.2 验证 DPO 效果
+&lt;/h3&gt;&lt;p&gt;当 DPO 训练完成后，如图 12-18 需要选择 &lt;code&gt;Checkpoint path&lt;/code&gt; 为我们刚刚训练好的 Adapter（位于 &lt;code&gt;saves/Qwen2.5-0.5B-Instruct/lora/Qwen2.5-0.5B-dpo-demo&lt;/code&gt;），然后再次点击 &lt;strong&gt;Load model&lt;/strong&gt; 加载混合了 DPO 权重的模型。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_10.png" width="80%" alt="加载 DPO 训练后的 Adapter" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-18 加载 DPO 训练后的 Adapter&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;对比图 12-17 和图 12-19，我们可以看到 DPO 训练带来的&lt;strong&gt;行为风格变化&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原始模型&lt;/strong&gt;：回答简短、直接，但缺乏解释，倾向于“猜测”答案，表现出一种“急于完成任务”但缺乏严谨性的风格。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DPO 模型&lt;/strong&gt;：回答更加&lt;strong&gt;严谨&lt;/strong&gt;。它不仅给出了选项，还忠实地执行了 System Prompt 中“解释步骤”的要求，明确指出了原文信息的局限性（“缺乏关于这些人群饮食习惯的直接证据”）。相比于原始模型的一句话猜测，DPO 模型的回答展示了&lt;strong&gt;推理过程&lt;/strong&gt;，这更符合我们对角色的期待。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_2_11.png" width="80%" alt="DPO 模型对话测试" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-19 DPO 模型对话测试&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;这就是 RLHF 的价值——不仅仅是让模型“做对题”，更是让模型学会人类偏好的&lt;strong&gt;交互风格&lt;/strong&gt;。通过 &lt;code&gt;dpo_zh_demo&lt;/code&gt; 数据集的训练，模型初步对齐了数据集中这种“诚实且严谨”的偏好风格。&lt;/p&gt;
+&lt;h2 id="本章小结"&gt;本章小结
+&lt;/h2&gt;&lt;p&gt;本章我们探讨了让大语言模型“更懂人类”技术——RLHF。在理论层面，我们不仅剖析了模型对齐的必要性，对比了 SFT 与 RLHF 的核心差异，还详细解析了从经典的 &lt;strong&gt;PPO&lt;/strong&gt; 到高效的 &lt;strong&gt;DPO&lt;/strong&gt;，再到驱动 DeepSeek-R1 等推理模型涌现的 &lt;strong&gt;GRPO&lt;/strong&gt; 算法。特别是 GRPO 与 RLVR 的结合，展示了通过强化学习激发模型长链推理能力的巨大潜力。&lt;/p&gt;
+&lt;p&gt;在实战环节，借助 LLaMA-Factory 这一高效框架，成功在消费级硬件上完成了 Qwen2.5 模型的 DPO 训练。通过对比训练前后的对话效果，我们直观地看到了模型在行为风格上的转变，即从简单武断的回答，进化为能够遵循复杂指令、展示推理过程的严谨回复。这不仅验证了 DPO 算法的有效性，也展示了如何通过偏好数据低成本地定制模型的“性格”。此外，虽然可视化界面便于上手，但在实际使用中，开发者往往更倾向于使用命令行方式，以获取对训练过程更细致的控制。&lt;/p&gt;</description></item><item><title>基于人类反馈的强化学习（RLHF） 技术详解</title><link>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</link><pubDate>Fri, 27 Mar 2026 12:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="基于人类反馈的强化学习rlhf-技术详解"&gt;基于人类反馈的强化学习（RLHF） 技术详解
+&lt;/h1&gt;&lt;p&gt;通过前面的学习，我们已经知道如何通过 PEFT，用较低的成本让大语言模型适应下游任务。无论是 PEFT 还是全量微调，主要方法大多是&lt;strong&gt;有监督微调（Supervised Fine-tuning, SFT）&lt;/strong&gt;，即用成对的“(指令, 回答)”数据来训练模型。但是，SFT 存在一个重要的局限。它教会模型&lt;strong&gt;模仿&lt;/strong&gt;高质量的范例，但无法让模型理解&lt;strong&gt;人类的偏好&lt;/strong&gt;。一个 SFT 模型或许能很好地回答“中国的首都是哪里？”，但当面对更开放、更复杂的指令，如“为我的项目写一个既专业又有创意的介绍”时，SFT 的局限性就暴露无遗：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;缺乏泛化能力&lt;/strong&gt;：模型只能很好地响应数据集中出现过的指令模式，无法覆盖用户千奇百怪的真实意图。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;“对齐”不足&lt;/strong&gt;：模型的回答可能在事实上正确，但在风格、语气、安全性或有用性上，并不符合人类的期望。它只知道“正确答案”，却不知道“更好的答案”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="一模型对齐的必要性"&gt;一、模型对齐的必要性
+&lt;/h2&gt;&lt;p&gt;为了跨越从“遵循指令”到“理解偏好”的鸿沟，我们需要一种新的训练范式。&lt;strong&gt;基于人类反馈的强化学习（Reinforcement Learning from Human Feedback, RLHF）&lt;/strong&gt; 正是解决这一问题的关键技术。它的核心目标就是让模型超越简单的模仿学习，真正理解并内化人类复杂的价值观，使其输出更符合我们的期望。&lt;/p&gt;
+&lt;p&gt;表 12-1 总结了 SFT 与 RLHF 在核心理念与实现方式上的关键差异：&lt;/p&gt;
+&lt;div align="center"&gt;
+&lt;table border="1" style="margin: 0 auto;"&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;对比维度&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;监督微调 (SFT)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;人类反馈强化学习 (RLHF)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;核心目标&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;模仿正确答案（指令遵循）&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;对齐人类偏好（有用/无害/诚实）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;数据需求&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;高质量的 &lt;code&gt;(指令, 回答)&lt;/code&gt; 对&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;提示词 &lt;code&gt;(Prompt)&lt;/code&gt; + 偏好排序/评分&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;学习方式&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;填鸭式教学（拟合分布）&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;探索式学习（试错与反馈）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;优化信号&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;Token 级预测概率（交叉熵）&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;整句生成质量评分（标量奖励）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;&lt;strong&gt;泛化能力&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;局限于训练数据分布&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;可泛化到未见过的复杂指令&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;表 12-1 SFT 与 RLHF 核心差异对比&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;如图 12-1 所示，RLHF 的有效性在实践中得到了强有力的验证。在 InstructGPT 的研究中 &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，经过 RLHF 对齐后，仅有 13 亿参数的模型，在人类评估中的表现甚至超过了 1750 亿参数的原始 GPT-3 模型。这说明，让模型“懂”人类偏好，比单纯增加参数规模更能提升其实用性。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_1.png" width="60%" alt="InstructGPT 模型与 GPT-3 的人类偏好对比" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-1 InstructGPT 与 GPT-3 人类偏好对比&lt;/em&gt;
+&lt;/p&gt;
+&lt;h2 id="二通往对齐模型的三大阶段"&gt;二、通往对齐模型的三大阶段
+&lt;/h2&gt;&lt;p&gt;在实践中，对齐训练通常划分为三个阶段，分别面向通用语言能力、指令遵循与偏好对齐：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;基础模型预训练&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在大规模（万亿级 Token）无标注文本数据（网页、书籍、代码等）上进行自回归预训练。通过预测下一个词的任务，模型能够习得广泛的语料知识并具备基础的生成能力，从而得到一个基础语言模型。虽然此时模型尚未进行指令或偏好对齐，但这一阶段的训练门槛极高，不仅算力成本巨大，还需在超大规模数据与模型上解决复杂的收敛稳定性问题。&lt;/p&gt;
+&lt;p&gt;（2）有监督指令微调&lt;/p&gt;
+&lt;p&gt;使用少量（千到几万条）高质量“指令-回答”对，对基础模型进行有监督微调，使其学会理解并执行人类指令。这一阶段通常使用 &lt;code&gt;(prompt, response)&lt;/code&gt; 格式的数据，并可结合 QLoRA 等参数高效微调技术进行训练。它的目标是在指令上下文中实现条件生成，以此显著提升模型的指令遵循与任务完成能力，最终获得一个在指定任务与约束条件下更为可控的“指令模型”（Instruction-tuned LM）。高质量的 SFT 数据集是模型能力养成的关键。根据目标的不同，数据集可以分为两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;任务型指令数据集&lt;/strong&gt;：如 &lt;code&gt;WizardLM Evol‑Instruct 70k&lt;/code&gt; (AI 生成) 和 &lt;code&gt;Dolly-15k&lt;/code&gt; (专家编写)，它们主要由单轮的“指令-回答”构成，核心目标是教会模型如何“做事”，准确地遵循指令完成特定任务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;对话型数据集&lt;/strong&gt;：这类数据集的代表作就是 &lt;strong&gt;OpenAssistant (OASST)&lt;/strong&gt;。它专注于教会模型如何“聊天”，其独特性和重要性体现在：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;来源真实且多样&lt;/strong&gt;：数据由超过 1.3 万名真实志愿者众包贡献，覆盖了广泛的话题和真实的语言风格，而非 AI 生成或专家编写的固定模式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;专注于多轮对话&lt;/strong&gt;：OASST 的核心是&lt;strong&gt;多轮对话树&lt;/strong&gt;，完整记录上下文、分支和用户的追问。这对于训练模型理解上下文、进行连贯的长对话至关重要。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的反馈信号&lt;/strong&gt;：数据不仅包含对话文本，还有人工标注的质量评分和多种标签（可作为偏好学习/奖励建模的有益信号）。这使其不仅是优秀的 SFT 数据，也是训练奖励模型（Reward Model）、进行 RLHF 的宝贵材料。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;简单来说就是任务型数据集教会模型“智商”，而以 OASST 为代表的对话型数据集则赋予模型“情商”，使模型更接近一个真正能与人交流的智能助手。&lt;/p&gt;
+&lt;p&gt;（3）基于人类反馈的强化学习&lt;/p&gt;
+&lt;p&gt;这一阶段是模型从“及格”走向“卓越”的关键跨越。虽然经过 SFT 微调的模型已经能流畅地遵循指令，但它本质上仍是在进行“模仿学习”，受限于标注数据的质量，会存在“只知其一不知其二”的问题，且容易产生幻觉或不安全的输出。RLHF 引入了&lt;strong&gt;人类价值观&lt;/strong&gt;作为指导信号，通过构建&lt;strong&gt;奖励模型&lt;/strong&gt;来模拟人类的判别标准，并利用&lt;strong&gt;强化学习算法&lt;/strong&gt;让模型在生成过程中不断“试错”并学习如何获得更高的奖励。这一过程不再要求模型死记硬背固定的标准答案，而是鼓励它探索出更符合&lt;strong&gt;有用性（Helpful）、诚实性（Honest）和无害性（Harmless）&lt;/strong&gt;（简称 3H 原则）的回复路径。&lt;/p&gt;
+&lt;h2 id="三rlhf-的形式化定义"&gt;三、RLHF 的形式化定义
+&lt;/h2&gt;&lt;p&gt;在深入具体步骤之前，我们需要理解为什么文本生成任务可以被建模为强化学习问题。在 RLHF 框架中，将 Token 生成过程建模为 &lt;strong&gt;“片段的（Episodic）马尔可夫决策过程（MDP）”&lt;/strong&gt; 是连接 NLP 与 RL 的核心桥梁。这个“片段”特指“从接收用户提示到生成完整输出”的单次生成任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;状态 (State, $s_t$)&lt;/strong&gt;：当前已生成的上下文，包括用户提示 $x$ 和已生成的 Token 序列 $y_{&amp;lt;t}$。即 $s_t = (x, y_1, &amp;hellip;, y_{t-1})$。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动作 (Action, $a_t$)&lt;/strong&gt;：模型在当前时间步生成的下一个 Token $y_t$。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;策略 (Policy, $\pi_\theta$)&lt;/strong&gt;：即我们的大语言模型。$\pi(a_t|s_t)$ 对应模型在当前上下文下预测下一个 Token 的概率分布。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;奖励 (Reward, $R$)&lt;/strong&gt;：通常在整个回答生成完毕（Episode 结束）后，由奖励模型给予一个标量反馈 $R(x, y)$。中间步骤的奖励通常为 0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在这个定义下，RLHF 的目标就是寻找一个最优策略 $\pi_\theta$，使得生成的完整序列期望奖励最大化：&lt;/p&gt;
+$$
+\max_\pi \mathbb{E}_{x \sim \mathcal{D}, y \sim \pi(\cdot|x)} [R(x, y)]
+$$&lt;p&gt;理解了这一形式化定义，我们就能明白为什么 PPO 等算法可以通过试错（Sampling）和反馈（Reward）来调整模型参数，从而让模型生成的“轨迹”（文本）更符合人类偏好。&lt;/p&gt;
+&lt;h2 id="四rlhf-的核心步骤"&gt;四、RLHF 的核心步骤
+&lt;/h2&gt;&lt;p&gt;如图 12-2 所示，RLHF 的流程主要包含三个核心步骤。首先通过有监督微调得到初始策略模型；然后，收集人类偏好数据训练一个奖励模型；最后，使用奖励模型作为信号，通过强化学习算法（如 PPO）进一步优化策略模型。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_2.png" width="70%" alt="RLHF 经典三步法示意图" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-2 RLHF 经典三步法示意图&lt;/em&gt;
+&lt;/p&gt;
+&lt;h3 id="41-训练奖励模型"&gt;4.1 训练奖励模型
+&lt;/h3&gt;&lt;p&gt;在 RLHF 中，我们需要一个“裁判”，用来评判模型的哪个回答更好；这个“裁判”就是奖励模型（RM）。RM 的目标是学习一个函数 $r(x, y)$，输入提示 $x$ 和回答 $y$，输出一个标量分数，代表人类对该回答的偏好程度。在 InstructGPT 的实践中，RM 数据集约含 33k 个训练提示（由此衍生出数量级更大的成对比较样本）。接下来，分别介绍一下如何收集人类偏好数据，以及训练奖励模型。&lt;/p&gt;
+&lt;p&gt;（1）收集人类偏好数据&lt;/p&gt;
+&lt;p&gt;第一步需要准备一个指令（prompt），可从真实用户请求中选取，也可由标注员设计；让 SFT 模型针对该指令生成多个（InstructGPT 中为 4-9 个）不同的回答；由人工标注员对这些回答进行&lt;strong&gt;排序（Ranking）&lt;/strong&gt;，从最好到最差。相比于给每个回答打一个绝对分数，排序是一种对人类更友好、也更一致的标注方式。这些排序数据构成了偏好数据集 $\mathcal{D} = {(x, y_w, y_l)}_{i=1}^N$，其中 $y_w$ 是比 $y_l$ 更受偏好的回答 (winner)，$y_l$ 是较差的回答 (loser)。&lt;/p&gt;
+&lt;p&gt;（2）训练奖励模型&lt;/p&gt;
+&lt;p&gt;训练奖励模型的常见做法包括以下几点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;将一个包含 K 个回答的排序数据，转换成 $\binom{K}{2}$ 个成对的比较数据。例如，(回答A &amp;gt; 回答B)、(回答A &amp;gt; 回答C)、(回答B &amp;gt; 回答C)&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;奖励模型（RM）通常和我们正在优化的语言模型结构类似（但可以小得多），它的任务不是生成文本，而是&lt;strong&gt;输入 &lt;code&gt;(prompt, response)&lt;/code&gt;，输出一个标量分数 &lt;code&gt;reward&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;训练 RM 的目标是，让它给人类偏好的回答打出更高的分数。这通常基于 &lt;strong&gt;Bradley-Terry 模型&lt;/strong&gt;，该模型假设人类对两个回答的偏好概率可以用它們的潜在奖励分数通过 Sigmoid 函数来建模：&lt;/p&gt;
+$$
+P(y_w \succ y_l | x) = \sigma(r(x, y_w) - r(x, y_l))
+$$&lt;p&gt;其损失函数（负对数似然）如下：&lt;/p&gt;
+$$
+\text{loss}(\theta) = - \mathbb{E}_{(x, y_w, y_l) \sim \mathcal{D}} \left[ \log(\sigma(r_\theta(x, y_w) - r_\theta(x, y_l))) \right]
+$$&lt;p&gt;其中 $r_\theta$ 是奖励模型，$y_w$ 是比 $y_l$ 更受偏好的回答，$\sigma$ 是 Sigmoid 函数。这个损失函数旨在最大化偏好回答与非偏好回答之间的分数差距。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;经过训练，RM 能够逼近人类偏好函数，作为自动化的偏好评估器，为后续策略优化提供稳定的标量奖励信号。&lt;/p&gt;
+&lt;h3 id="42-使用策略优化算法微调模型"&gt;4.2 使用策略优化算法微调模型
+&lt;/h3&gt;&lt;p&gt;有了“裁判”（或者隐式的偏好信号），就可以开始真正的“强化学习”训练了。这个阶段的目标是更新语言模型的&lt;strong&gt;策略&lt;/strong&gt;，让它生成的回答能够获得更高的奖励。传统的强化学习算法存在高方差、训练不稳定的问题。因此，学术界和工业界发展出了一系列更先进的策略优化算法，其中 PPO、DPO 和 GRPO 是目前的主流。&lt;/p&gt;
+&lt;p&gt;如图 12-3 所示，不同的对齐范式在流程设计上有所侧重。经典的 &lt;strong&gt;RLHF&lt;/strong&gt; 范式依赖奖励模型和 PPO 进行在线优化；&lt;strong&gt;DPO&lt;/strong&gt; 直接基于偏好数据进行离线优化；而 &lt;strong&gt;RLVR&lt;/strong&gt; 则利用确定性的验证器（如代码执行器）结合 &lt;strong&gt;GRPO&lt;/strong&gt; 进行训练。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_3.png" width="90%" alt="不同强化学习对齐范式的对比" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-3 不同强化学习对齐范式的对比（RLHF / DPO / RLVR）&lt;/em&gt;
+&lt;/p&gt;
+&lt;h4 id="421-ppo-与对齐税"&gt;4.2.1 PPO 与“对齐税”
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;近端策略优化（Proximal Policy Optimization, PPO）&lt;/strong&gt; 是 RLHF 中最经典的算法 &lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。PPO 的主要思路是，在尝试最大化奖励的同时，通过一个约束项来限制新旧策略的差异范围，继而避免单步更新过大导致训练崩溃。它通过优化一个“替代目标函数”（Surrogate Objective）来实现这一点。PPO 最常用的替代目标是 &lt;strong&gt;Clipped Surrogate Objective&lt;/strong&gt;:&lt;/p&gt;
+$$
+L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left(r_t(\theta)\hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t\right) \right]
+$$&lt;p&gt;其中，$r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$ 是新旧策略的概率比，$\hat{A}_t$ 是优势函数估计，$\epsilon$ 是一个限制更新范围的超参数（通常为 0.2）。这个裁剪操作有效地构建了一个悲观的下界，防止策略更新过于激进。&lt;/p&gt;
+&lt;p&gt;如图 12-4 是 PPO 裁剪代理目标函数 $L^{CLIP}$ 的单步示意图。当优势 $\hat{A}_t&amp;gt;0$ 时（左），目标函数随概率比 $r_t(\theta)$ 的增加而增加，但增长被限制在 $1+\epsilon$ 处；当 $\hat{A}_t&amp;lt;0$ 时（右），目标函数随 $r_t(\theta)$ 的增加而减小，但减小幅度被限制在 $1-\epsilon$ 处，从而约束了策略更新的步长。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_4.png" width="60%" alt="PPO 的裁剪代理目标函数" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-4 PPO 的裁剪代理目标函数&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;但研究者发现，单纯用 PPO 优化奖励模型，可能会导致模型在某些传统 NLP 任务（如 SQuAD）上的性能下降，这种现象被称为 &lt;strong&gt;“对齐税”（Alignment Tax）&lt;/strong&gt;。为了解决这个问题，InstructGPT 提出了一种名为 &lt;strong&gt;PPO-ptx&lt;/strong&gt; 的变体，它在优化奖励的同时，混合了一部分预训练数据的梯度，其优化目标为：&lt;/p&gt;
+$$
+\text{objective}(\phi) = \mathbb{E}_{(x, y) \sim D_{\pi_\phi^{RL}}} [r_\theta(x, y) - \beta \log(\pi_\phi^{RL}(y|x) / \pi^{SFT}(y|x))] + \gamma \mathbb{E}_{x \sim D_{pretrain}}[\sum_t \log(\pi_\phi^{RL}(x_t|x_{&lt;t}))]
+$$&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;PPO 主目标项（奖励 + KL 约束）：在当前策略生成的数据分布 $D_{\pi_\phi^{RL}}$ 上，最大化奖励模型分数 $r_\theta(x,y)$，并用每 token KL 约束惩罚新策略 $\pi_\phi^{RL}$ 偏离参考模型 $\pi^{SFT}$，以抑制灾难性漂移。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;预训练保留项（ptx）：在预训练语料 $D_{pretrain}$ 上进行最大似然学习 $\sum_t \log \pi_\phi^{RL}(x_t|x_{&amp;lt;t})$，用于保留通用语言能力与知识面，缓解“对齐税”。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;符号说明：$\beta$ 控制 KL 约束强度；$\gamma$ 控制 ptx 项权重；$D_{\pi_\phi^{RL}}$ 为在线由当前策略采样的数据分布；$D_{pretrain}$ 为静态预训练语料；KL 为每 token KL 散度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过图 12-5 可以看到 PPO-ptx 缓解了 RLHF 在部分公开 NLP 数据集上的性能下降（对齐税）问题。图中 PPO-ptx 模型（红色）代表混合了预训练梯度，而 PPO 模型（橙色）则没有。在 SQuADv2、DROP 等多个任务上，PPO-ptx 的性能显著优于单纯的 PPO。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_5.png" width="60%" alt="PPO-ptx 缓解对齐税" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-5 PPO-ptx 缓解对齐税&lt;/em&gt;
+&lt;/p&gt;
+&lt;h4 id="422-直接偏好优化"&gt;4.2.2 直接偏好优化
+&lt;/h4&gt;&lt;p&gt;尽管 PPO 效果很好，但它流程复杂（需要训练奖励模型、价值模型，并进行在线采样），训练成本高且不稳定。&lt;strong&gt;直接偏好优化（Direct Preference Optimization, DPO）&lt;/strong&gt; 是一项创新的技术 &lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;，它巧妙地绕过了显式的奖励模型训练和复杂的强化学习过程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;主要思路&lt;/strong&gt;：DPO 证明了，我们可以从人类偏好数据 $\mathcal{D} = {(x, y_w, y_l)}$ 中，直接推导出最优策略，而无需先拟合一个奖励模型。它将问题转化为一个简单的分类任务，&lt;strong&gt;不需要显式训练奖励模型，也无需在线采样&lt;/strong&gt;，所以更稳定、高效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;优化目标&lt;/strong&gt;：
+DPO 的损失函数直接最大化模型对“更好”回答的偏好概率，同时用 KL 散度进行约束：&lt;/p&gt;
+$$
+\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_{\text{ref}}) = - \mathbb{E}_{(x, y_w, y_l) \sim \mathcal{D}} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_w|x)}{\pi_{\text{ref}}(y_w|x)} - \beta \log \frac{\pi_\theta(y_l|x)}{\pi_{\text{ref}}(y_l|x)} \right) \right]
+$$&lt;p&gt;其中 $\pi_{\text{ref}}$ 是参考模型（通常是 SFT 模型），$\sigma$ 是 Sigmoid 函数。这个损失函数简洁地鼓励模型提高 $y_w$ 的概率，降低 $y_l$ 的概率。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;训练动力学&lt;/strong&gt;：DPO 的梯度更新有一个直观的解释。它会给那些&lt;strong&gt;被隐式奖励模型错误排序的样本（即认为 $y_l$ 比 $y_w$ 更好）更大的权重&lt;/strong&gt;，从而集中火力修正模型的“判断失误”。这个隐式奖励由下式定义：
+&lt;/p&gt;
+$$
+\hat r_\theta(x,y)=\beta \log \frac{\pi_\theta(y|x)}{\pi_{\mathrm{ref}}(y|x)}
+$$&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;优势&lt;/strong&gt;：由于其简单、稳定且高效，DPO 及其变种正在迅速成为 RLHF 的新范式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如图 12-6，该图展示了在 IMDb 情感生成任务中，不同偏好学习算法的 Reward-KL 效率前沿。DPO（黄色散点）在所有 KL 散度值上都获得了最高的期望奖励，表明 DPO 能够更有效地在最大化奖励和与参考模型的 KL 散度约束之间进行权衡，其优化效果优于 PPO 等基线方法。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_6.png" width="60%" alt="DPO 与 PPO 的 Reward-KL 效率前沿对比" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-6 DPO 与 PPO 的 Reward-KL 效率前沿对比&lt;/em&gt;
+&lt;/p&gt;
+&lt;h4 id="423-群体相对策略优化"&gt;4.2.3 群体相对策略优化
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;群体相对策略优化（Group Relative Policy Optimization, GRPO）&lt;/strong&gt; 是 DeepSeek 在 2024 年发布的 DeepSeekMath 中提出的一种高效算法 &lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;。此时 DPO (2023) 虽已流行，但主要用于偏好对齐；而在数学、代码等**带可验证奖励（Reinforcement Learning with Verifiable Rewards, RLVR）**的场景中，模型更需要通过在线探索（Online Exploration）来寻找正确路径，而非仅仅拟合静态数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RLVR 的核心逻辑&lt;/strong&gt;是用确定性的验证器（Validator）取代主观的奖励模型（如通过代码测试用例 $v(x, y) \in {0, 1}$ 直接判断正误）。这种强反馈消除了 Reward Hacking 中“欺骗人类”的可能性，并驱动模型通过&lt;strong&gt;自我博弈（Self-Play）&lt;strong&gt;涌现出思维链（CoT）等高级推理能力。然而，传统的 PPO 算法需要维护一个与策略模型规模相当的价值网络（Critic），在训练千亿参数模型时显存开销巨大。GRPO 的关键创新是&lt;/strong&gt;“去 Critic 化”&lt;/strong&gt;，它通过组内统计量来替代 Critic 的基线估计功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组采样 (Group Sampling)&lt;/strong&gt;：对于同一个提示词 $x$，利用旧策略 $\pi_{\theta_{old}}$ 采样生成一组输出 ${y_1, y_2, &amp;hellip;, y_G}$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组内优势估计 (Group Relative Advantage)&lt;/strong&gt;：利用奖励模型或验证器对这组输出打分。关键在于，GRPO 不使用额外的 Critic 来预测基线，而是直接使用&lt;strong&gt;组内奖励的均值&lt;/strong&gt;作为动态基线。这种方法不仅显著降低了显存占用（无需维护与策略模型同等规模的 Critic），还有效利用了组内对比来降低方差。对于每个输出，其优势 $A_i$ 通常通过标准化计算得出：&lt;/p&gt;
+$$
+A_i = \frac{r_i - \text{mean}(\{r_1, ..., r_G\})}{\text{std}(\{r_1, ..., r_G\})}
+$$&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;KL 散度正则化&lt;/strong&gt;：与 PPO 通常在奖励函数中直接扣除 KL 惩罚不同，GRPO 将 KL 散度 $D_{KL}(\pi_\theta || \pi_{ref})$ 直接加入损失函数中作为正则项。这样做的好处是保持了优势估计的纯粹性，使其仅反映组内输出的相对好坏，而不会被 KL 惩罚项混淆。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过这种设计，GRPO 既保留了 PPO 在线探索的能力（适合推理任务），又享受了类似 DPO 的低资源消耗，成为 DeepSeek-R1 等推理模型背后的关键技术。如图 12-7 所示的时间线展现了使用强化学习训练的代表性推理模型的发展。这一过程囊括了各类开源与闭源的语言模型、多模态模型以及智能体模型。其中，OpenAI o1 与 DeepSeek-R1 作为推理模型领域的关键里程碑，有力证明了可验证奖励训练的重要性。通过这种训练，模型得以掌握包括规划、反思及自我纠错在内的长链推理能力。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_7.png" width="90%" alt="基于强化学习训练的推理模型" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-7 基于强化学习训练的推理模型&lt;/em&gt;
+&lt;/p&gt;
+&lt;h4 id="424-算法选择指南"&gt;4.2.4 算法选择指南
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;PPO（稳定性与通用性）&lt;/strong&gt;: PPO 适用于各类需与环境交互的通用任务（如游戏 AI、机器人控制）。在 LLM 领域，当系统已经有了成熟的 RL 框架，或者需要对模型行为进行&lt;strong&gt;极细粒度的控制&lt;/strong&gt;（如复杂的指令遵循、多轮对话策略）时，PPO 仍然是首选。它通过显式的 Critic 模型进行价值估计，能够处理更复杂的奖励信号，但计算成本较高。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DPO（效率与数据利用）&lt;/strong&gt;: DPO 是&lt;strong&gt;样本数据稀缺&lt;/strong&gt;或&lt;strong&gt;追求高训练效率&lt;/strong&gt;场景下的利器。由于它绕过了显式的奖励建模和在线采样，直接利用离线偏好数据进行优化，因此非常适合快速迭代或计算资源有限的项目（如对话风格微调、摘要生成）。它能高效利用有限的标注数据，但在缺乏大规模探索的情况下，上限可能不如 RL 方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GRPO（推理与长序列奖励）&lt;/strong&gt;: 针对&lt;strong&gt;奖励常在序列末尾给出&lt;/strong&gt;（如数学最终答案、代码运行结果）的场景，GRPO 是最佳选择。它解决了 PPO 难以给每个 Token 精确分配价值的难题，通过&lt;strong&gt;组采样（Group Sampling）&lt;strong&gt;和组内优势估计来优化策略。GRPO 去除了 Critic 模型，显著降低了显存占用，非常适合需要&lt;/strong&gt;在线探索&lt;/strong&gt;以涌现思维链（CoT）能力的复杂推理任务（如 DeepSeek-R1）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="43-rlhf-的实际效果"&gt;4.3 RLHF 的实际效果
+&lt;/h3&gt;&lt;p&gt;以 InstructGPT 为例，RLHF 带来了显著且复杂的影响。如图 12-8 展示了模型在 TruthfulQA 基准上的真实性表现。其中，灰色柱表示“真实性（truthfulness）”，彩色柱表示“真实性与信息量（truthfulness and informativeness）”。整体来看，经过 RLHF 的 InstructGPT 模型（PPO-ptx/PPO）在 TruthfulQA 上相较 GPT-3 基线更真实且更具信息量。但需注意，原论文报告 1.3B 的 PPO-ptx 模型在 TruthfulQA 上略低于同尺寸 GPT-3。&lt;/p&gt;
+&lt;p align="center"&gt;
+&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/12_1_8.png" width="60%" alt="InstructGPT 在 TruthfulQA 上的真实性表现" /&gt;
+&lt;br /&gt;
+&lt;em&gt;图 12-8 InstructGPT 在 TruthfulQA 上的真实性表现&lt;/em&gt;
+&lt;/p&gt;
+&lt;p&gt;更具体地说，这些效果体现在以下几个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;提升真实性&lt;/strong&gt;：在 TruthfulQA 等基准上，模型生成真实、信息丰富答案的频率提升了约一倍，且在封闭问答中“捏造事实”的比例减半。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;降低有害性&lt;/strong&gt;：当被明确指示要“尊重地”回答时，模型产生有毒输出的比例比原始 GPT-3 减少了约 25%。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;偏见问题依然存在&lt;/strong&gt;：在衡量社会偏见的数据集（如 Winogender）上，RLHF 并没有带来明显改善。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;仍会犯错&lt;/strong&gt;：模型有时仍会盲目遵循错误的指令前提（例如，回答“为什么要饭后吃袜子”），或者在简单问题上过度“耍滑头”、含糊其辞。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="44-rlhf-的实践挑战与前沿方向"&gt;4.4 RLHF 的实践挑战与前沿方向
+&lt;/h3&gt;&lt;p&gt;尽管 RLHF 效果显著，但它也面临着巨大的挑战，许多问题仍在探索之中。一篇近期的综述论文 &lt;sup id="fnref:5"&gt;&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref"&gt;5&lt;/a&gt;&lt;/sup&gt; 系统性地梳理了这些挑战。首先是&lt;strong&gt;奖励过拟合 (Reward Hacking)&lt;/strong&gt;，这是核心挑战之一，模型可能会学会利用奖励模型的漏洞，通过生成过分追求详细而导致啰嗦、避而不答、或“听起来不错”的无意义内容来获取高分，这要求在数据收集和模型训练中进行仔细的权衡和约束；其次是&lt;strong&gt;评估困境&lt;/strong&gt;，如何准确评估一个模型是否真的与人类价值观“对-齐”是一个开放性问题，现有的基准测试可能无法完全覆盖人类偏好的广度和深度，而 LLM-as-a-Judge 的方法也存在自身的偏见和提示敏感性问题；再者是&lt;strong&gt;多模态对齐&lt;/strong&gt;，当前 RLHF 主要集中在文本，如何将其有效扩展到视频、音频等多模态场景，解决&lt;strong&gt;视觉幻觉（Visual Hallucination）、时序理解&lt;/strong&gt;等新问题，是一个重要方向；同时，&lt;strong&gt;文化与价值观对齐&lt;/strong&gt;也面临困难，主流的偏好数据大多来自单一文化背景，这使得模型可能无法理解和尊重多样化的文化、价值观和人口特征，甚至会放大偏见；还有就是&lt;strong&gt;效率与成本（低延迟对齐）&lt;strong&gt;问题，RLHF 流程（特别是基于 PPO 的方法）计算成本高昂，探索更轻量级的对齐方法（例如在&lt;/strong&gt;推理时进行对齐&lt;/strong&gt;）和更高效的算法，是降低成本、实现低延迟响应的关键。&lt;/p&gt;
+&lt;p&gt;针对上述挑战，学术界和工业界正探索更先进的对齐路径。其中具有代表性的方向包括：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;RLAIF (Reinforcement Learning from AI Feedback)&lt;/strong&gt;：使用更强大的 AI 模型产生偏好信号，作为人类标注的补充或替代，以降低收集成本并缓解主观偏见。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;迭代式后训练 (Iterative Post-training)&lt;/strong&gt;：如 LLaMA 3 的做法，不再是一次性的 RLHF，而是将“采样 -&amp;gt; 偏好标注 -&amp;gt; DPO/PPO 训练”作为一个循环不断迭代。前一轮的最优模型成为下一轮的数据生成器，实现模型的持续自我进化。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;从对话到推理 (Reasoning Models)&lt;/strong&gt;：以 &lt;strong&gt;OpenAI o1&lt;/strong&gt; 和 &lt;strong&gt;DeepSeek-R1&lt;/strong&gt; 为代表，通过引入 RLVR 和长思维链（CoT），让模型在后训练阶段不仅仅是对齐偏好，更是通过强化学习探索复杂的逻辑推理路径，实现“慢思考”能力的涌现。这标志着 RLHF 正从单纯的“对齐”工具，演变为激发模型深层智能的关键手段。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener"
+&gt;Ouyang, L., Wu, J., et al. (2022). &lt;em&gt;Training language models to follow instructions with human feedback&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/1707.06347" target="_blank" rel="noopener"
+&gt;Schulman, J., Wolski, F., et al. (2017). &lt;em&gt;Proximal policy optimization algorithms&lt;/em&gt;. arXiv preprint arXiv:1707.06347.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener"
+&gt;Rafailov, R., Zong, A., et al. (2023). &lt;em&gt;Direct preference optimization: Your language model is secretly a reward model&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2402.03300" target="_blank" rel="noopener"
+&gt;Shao, Z., Wang, P., et al. (2024). &lt;em&gt;DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:5"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2401.05583" target="_blank" rel="noopener"
+&gt;Cui, B., Lu, Y., et al. (2024). &lt;em&gt;RLHF: A Comprehensive Survey for Cultural, Multimodal and Low Latency Alignment Methods&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>

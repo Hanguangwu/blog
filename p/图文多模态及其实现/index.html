@@ -1,0 +1,497 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文主要介绍图文多模态、ViT 与 CLIP 模型。"><title>图文多模态及其实现</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="图文多模态及其实现"><meta property='og:description' content="本文主要介绍图文多模态、ViT 与 CLIP 模型。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='多模态'><meta property='article:tag' content='CLIP'><meta property='article:tag' content='ViT'><meta property='article:published_time' content='2026-03-27T20:40:25-08:00'><meta property='article:modified_time' content='2026-03-27T20:40:25-08:00'><meta name=twitter:title content="图文多模态及其实现"><meta name=twitter:description content="本文主要介绍图文多模态、ViT 与 CLIP 模型。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/en/>English</option><option value=https://hanguangwu.github.io/blog/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一视觉的-transformer-化>一、视觉的 Transformer 化</a><ol><li><a href=#11-序列化图像>1.1 序列化图像</a></li><li><a href=#12-vit-模型架构细节>1.2 ViT 模型架构细节</a></li><li><a href=#13-关键特性>1.3 关键特性</a></li></ol></li><li><a href=#二连接图文的-clip-架构>二、连接图文的 CLIP 架构</a><ol><li><a href=#21-clip-的架构与原理>2.1 CLIP 的架构与原理</a></li><li><a href=#22-零样本推理与提示工程>2.2 零样本推理与提示工程</a></li><li><a href=#23-clip-的局限>2.3 CLIP 的局限</a></li></ol></li><li><a href=#三clip-代码实现>三、CLIP 代码实现</a></li><li><a href=#clip-实现完整代码>CLIP 实现完整代码</a></li><li><a href=#小结>小结</a></li><li><a href=#参考文献>参考文献</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/datawhale/>DataWhale
+</a><a href=/blog/categories/nlp/>NLP</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/>图文多模态及其实现</a></h2><h3 class=article-subtitle>本文主要介绍图文多模态、ViT 与 CLIP 模型。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 27, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 18 分钟</time></div></footer></div></header><section class=article-content><h1 id=图文多模态及其实现>图文多模态及其实现</h1><p>虽然多模态领域涵盖了音频、视频、3D 点云、热成像等多种数据形式，且“多模态”的边界正在不断拓展，但**图文（Image-Text）**始终是目前研究最深入、应用最广泛，也是最能体现跨模态交互逻辑的基础组合。本节我们将深入探讨两个具有代表性的模型架构，分别是将 Transformer 引入视觉领域的 <strong>ViT</strong>，以及连接文本与图像语义的 <strong>CLIP</strong>。</p><h2 id=一视觉的-transformer-化>一、视觉的 Transformer 化</h2><p>在过去十年里，计算机视觉领域长期以 CNN（卷积神经网络，如 ResNet）为主流，而 NLP 领域自 2017 年后则由 Transformer 主导。虽然两者都能通过网络设计获得全局信息，但在基础算子的特性上仍有明显区别。2020年，Google 提出了 <strong>ViT (Vision Transformer)</strong> <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，<strong>既然 Transformer 擅长处理 Token 序列，能不能把图像切成 Patch（图像块），把每个 Patch 当作一个 Token，直接用 Transformer 来做图像识别？</strong></p><h3 id=11-序列化图像>1.1 序列化图像</h3><p>Transformer 的标准输入是 1D 向量序列，而图像是 2D 网格。ViT 的处理方式非常直接且“暴力”，具体步骤如下：</p><p>（1）<strong>Patch Embedding（把图像变成 Token，见图 19-5 左下）</strong>：将图像 $\mathbf{x}\in\mathbb{R}^{H\times W\times C}$ 切分为 $N$ 个固定大小的 Patch（如 $P\times P \times C$），展平后得到 $\mathbf{x}_p\in\mathbb{R}^{N\times(P^2\cdot C)}$，其中</p>$$
+N=\frac{H\cdot W}{P^2} \tag{19.1}
+$$<p>然后用一个<strong>可学习的线性投影</strong> $\mathbf{E}\in\mathbb{R}^{(P^2\cdot C)\times D}$ 把每个 Patch 映射为 $D$ 维向量（<strong>图 19-5 中的粉色长条 &ldquo;Linear Projection&mldr;&rdquo;</strong>）。这一步在实现上等价于一个 <strong>kernel=$P$、stride=$P$</strong> 的卷积（把每个 patch “一次性”投到 $D$ 维）。</p><p>（2）<strong>特殊的 <code>[CLS]</code> Token（全局聚合器，见图 19-5 左下角标 * 的紫色胶囊）</strong>：借鉴 BERT，在序列开头拼接一个可学习的分类令牌 $\mathbf{x}_{class}$。它更像一个“读写全局信息的槽位”，通过自注意力在层间不断从各个 patch 聚合信息。最终，我们只用该位置对应的输出向量（<strong>图 19-5 左上角的 &ldquo;Class&rdquo; 黄色框</strong>）来代表整张图像进行分类。</p><blockquote><p>假设图像尺寸为 $224\times224$，Patch 大小 $P=16$，则会切分出 $14\times14=196$ 个 Patch。加上这个额外的 <code>[CLS]</code> Token 后，输入 Transformer 的<strong>序列总长度</strong>变为 $196+1=197$。</p></blockquote><p>（3）<strong>位置编码（保留空间信息，见图 19-5 紫色标号圆圈）</strong>：给序列加上可学习的 1D 位置编码 $\mathbf{E}_{pos}\in\mathbb{R}^{(N+1)\times D}$。</p><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/19_2_1.png width=80% alt="ViT 架构概览"><br><em>图 19-5 ViT 架构概览（左侧为 Patch Embedding 流程，右侧为 Transformer Encoder 内部结构）</em></p><p>最终，输入 Transformer 的<strong>向量序列</strong> $\mathbf{z}_0$ 如下：</p>$$
+\mathbf{z}_0=[\mathbf{x}_{class};\mathbf{x}_p^1\mathbf{E};\mathbf{x}_p^2\mathbf{E};\dots;\mathbf{x}_p^N\mathbf{E}] + \mathbf{E}_{pos} \tag{19.2}
+$$<p>其中：</p><ul><li>$\mathbf{x}_{class}$：特殊的分类 Token 向量。</li><li>$\mathbf{x}_p^k\mathbf{E}$：第 $k$ 个图像 Patch 经过线性投影后的嵌入向量。</li><li>$\mathbf{E}_{pos}$：与序列长度对应的位置编码，用于补充 Transformer 缺失的位置信息。</li></ul><h3 id=12-vit-模型架构细节>1.2 ViT 模型架构细节</h3><p>ViT 尽可能保持了 Transformer 的原貌，这种“无修饰”的设计反而使其具有极强的扩展性。我们可以对照图 19-5 中右侧的 <strong>Transformer Encoder</strong> 部分。</p><p>（1）<strong>Encoder-only + Pre-Norm</strong>：ViT 沿用了标准的 Transformer Encoder 架构（即 MSA 和 MLP 的堆叠），不过它将 <strong>Layer Norm 移到了每个子层的输入位置（Pre-Norm）</strong>。这种设计与之前学习过的 GPT-2/3 一致。</p><p>（2）<strong>分类读出</strong>：用分类 token 的输出做表征：</p>$$
+\mathbf{y}=\mathrm{LN}(\mathbf{z}_L^{0}) \tag{19.3}
+$$<p>其中 $\mathbf{z}_L^{0}$ 表示 <strong>Transformer Encoder 最后一层（第 $L$ 层）</strong> 输出序列中的第 0 个 token（即 <code>[CLS]</code> 位置）的向量。实践中， $\mathbf{y}$ 会接一个 MLP 分类头来输出最终类别。论文指出，在预训练阶段这个 Head 是含有一个隐藏层的 MLP，而在微调阶段通常简化为单层线性映射。</p><p>（3）<strong>位置编码与“高分辨率微调”的 2D 插值</strong>：ViT 的位置编码本身是 1D 可学习向量，但当微调分辨率变化导致 $N$ 变化时，需要把预训练的 $\mathbf{E}_{pos}$ 视作 $h\times w$ 的 patch 网格再做 <strong>2D 插值</strong>，以适配新的 patch 网格尺寸。这也是 ViT 少数显式注入“2D 结构”的地方。也就是说假设 Patch 大小为 $16 \times 16$，预训练时图像为 $224\times224$，Patch 数量为 $14\times14=196$（即 $224/16=14$）。微调时若图像放大到 $384\times384$，Patch 数量变为 $24\times24=576$（即 $384/16=24$）。此时，我们不仅要处理序列变长的问题，还要保持空间位置的相对关系。所以，需要将原本 $14\times14$ 的位置编码矩阵“拉伸”（双线性插值）到 $24\times24$，以初始化新的位置编码。</p><blockquote><p><strong>为什么微调时要放大图像？</strong></p><p>这是一个在计算机视觉中常见的策略（效率 vs 精度权衡）。<strong>预训练阶段</strong>由于数据量巨大，为了节省计算成本，通常使用标准分辨率。而<strong>微调阶段</strong>面向下游特定任务，数据量相对较小，此时使用更高分辨率（如 $384 \times 384$）可以让模型“看清”更多细节，以追求更高的精度。</p></blockquote><p>（4）<strong>全局交互</strong>：这其实就是 BERT 中“<strong>深度双向注意力</strong>”在图像领域的直接体现。在 BERT 中，每个 Token 在第一层就能“看见”句子中所有的其他 Token。同样地，在 ViT 中，<strong>每个 Patch 就相当于一个 Token</strong>。CNN 需要堆叠多层卷积才能扩大感受野看到全图，而 ViT 的自注意力机制在<strong>第一层</strong>就能让任意两个 Patch 进行交互。左上角的 Patch 可以直接“关注”到右下角的 Patch，无需经过层层传递，通过 Attention 矩阵实现了一步到位的<strong>全局视角</strong>。但这种能力的代价是计算量，标准 Self-Attention 的复杂度是序列长度 $N$ 的平方（$O(N^2)$）。Patch 越小（$P$ 越小），序列长度 $N$ 就越大（$N \propto 1/P^2$），计算量就会呈平方级爆炸（$O(1/P^4)$）。这也是为什么 ViT 通常不把 Patch 设置得太小的原因。</p><h3 id=13-关键特性>1.3 关键特性</h3><p>ViT 的设计哲学与 CNN 截然不同，首先体现在<strong>弱归纳偏置 (Inductive Bias)</strong> 上。所谓归纳偏置，就是模型在处理数据时<strong>预先带有的“偏见”或“假设”</strong>。CNN 天然假设图像具有<strong>局部性</strong>（相邻像素有关联）和<strong>平移等变性</strong>（猫在左上角和右下角都是猫）等结构先验，就像是带着“有色眼镜”看图，所以 CNN 在小数据上也能快速抓住重点，更容易泛化。而 ViT 的自注意力是<strong>全局</strong>的，它把图像看作一串长长的序列，显式的 2D 结构只在<strong>切 patch</strong>与<strong>位置编码插值</strong>这两处出现。这就好比 ViT 是一张白纸，模型无法预先“知道”像素的空间规则，需要更多数据去“学会”稳定的空间与语义模式。</p><blockquote><p><strong>空间与语义模式</strong></p><p><strong>空间模式</strong>指像素点如何在空间上组成有意义的几何结构（如“圆形”通常由连续的弧线像素组成，“眼睛”通常位于“鼻子”上方），CNN 通过卷积核的局部连接天然假设了这种相邻关系，而 ViT 最初是一张白纸，必须靠大量数据自己发现“相邻的 Patch 往往属于同一个物体”这一规律。<strong>语义模式</strong>则指图像内容的高层含义及其组合规则，例如“蓝色的上方区域”通常是“天空”，“两个尖耳朵 + 胡须”通常代表“猫”。ViT 不仅要学会识别这些物体，还要学会跨越长距离关注它们的关联（如鸟的头和尾巴虽然相距很远，但共同定义了“鸟”这个概念）。</p></blockquote><p>这种弱归纳偏置的设计虽然增加了学习难度，但也带来了<strong>架构的统一性 (Unified Architecture)</strong>。ViT 的最大贡献在于证明了 <strong>Transformer 是一个通用的计算原语</strong>。在 ViT 之前，CV 领域由 CNN 统治，NLP 领域由 Transformer 统治，两者的模型设计思路完全不同。ViT 出现后，CV 和 NLP 终于可以在<strong>底层架构</strong>上实现统一（都用 Transformer 处理 Token 序列）。这种统一性不仅简化了模型设计，更为后续的多模态大模型提供了实现路径。图像和文本都能被变成 Token 喂给 Transformer，那么在一个模型里同时处理它们<strong>就有了可能性</strong>。归纳偏置的减弱同时也导致了 ViT 的<strong>数据饥渴 (Data Hungry)</strong> 特性。在中小数据集（如 ImageNet-1k）从头训练时，ViT 往往不如同规模的 CNN。但当在超大规模数据（如 ImageNet-21k、JFT-300M）上预训练后，再迁移到下游任务，ViT 会呈现更强的<strong>扩展性（scale 越大越吃香）</strong>。总结起来就是因为 ViT 的归纳偏置更弱、需要从数据里学到“空间结构 + 语义组合”这套规则，所以更依赖大规模预训练数据来把泛化能力堆起来。</p><h2 id=二连接图文的-clip-架构>二、连接图文的 CLIP 架构</h2><p>2021年，OpenAI 紧随其后发布了 <strong>CLIP (Contrastive Language-Image Pre-training)</strong> <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>。如果说 ViT 统一了视觉的模型架构，那么 CLIP 就统一了图文的<strong>语义空间</strong>。</p><h3 id=21-clip-的架构与原理>2.1 CLIP 的架构与原理</h3><p>ViT 虽然实现了图像与文本在<strong>底层架构</strong>上的统一，但这仅仅是第一步。尽管模型能“吃”进去图像和文本，但它并不理解“一张猫图”和“单词 Cat”之间有什么联系。要打破这层隔阂，我们需要让这两个模态在<strong>语义空间</strong>上实现对话。而实现这一对话的关键就是 <strong>Embedding</strong>，它能够将高维、非结构化的数据（图片、文字）映射到一个低维的、稠密的数学空间中。在多模态任务中，仅仅分别得到图像向量和文本向量是不够的。我们还需要让这两个向量在<strong>同一个空间</strong>中具有几何意义上的关联，这就是<strong>语义对齐（Alignment）</strong>。多模态学习的理想状态下，一张“猫”的图片生成的向量 $V_{img}$ 应该与单词“Cat”生成的向量 $V_{text}$ 在空间中距离非常近，即夹角小且相似度高。面对图像和文本原本处于两个完全不同异构特征空间的挑战，CLIP 的目标就是解决如何让模型学会将它们对齐。</p><p>（1）双塔结构</p><p>为了实现上述目标，CLIP 采用了经典的<strong>双塔结构</strong>，但在具体设计上不仅追求特征的表达能力，更注重大规模训练的效率。对于负责将图像编码为特征向量的<strong>图像编码器（Image Encoder）</strong>，OpenAI 探索了经过改进的 ResNet 和 ViT 两种架构。ResNet 版本在 ResNet-50 的基础上引入了 <strong>ResNet-D</strong> 的改进，并采用<strong>抗混叠下采样（anti-aliased downsampling）<strong>来减少下采样带来的信息折叠；同时将末端的</strong>全局平均池化</strong>替换为<strong>注意力池化</strong>，以更好地聚合全局特征。ViT 版本则基本遵循原始 ViT 的实现，只做了很小的改动。仅在 <strong>patch embedding 和 position embedding</strong> 相加后、进入 Transformer 之前增加一个额外的 <strong>LayerNorm</strong>，并使用了稍微不同的初始化方案以提升训练稳定性。如图 19-6 所示，实验表明在同样的计算预算下，ViT 架构在相近计算预算下整体表现更优。论文也指出 <strong>CLIP 的 ViT 系列在计算效率上大约比 CLIP ResNet 系列高 3 倍</strong>。而对于负责将文本编码为特征向量的<strong>文本编码器（Text Encoder）</strong>，CLIP 选用了类似 GPT-2 的 <strong>Decoder-only Transformer</strong> 架构而非 BERT，通过<strong>自注意力掩码</strong>确保模型在编码当前词时仅能关注之前的词。文本序列以 <code>[SOS]</code> 标记开始，以 <code>[EOS]</code> 标记结束。经过 Transformer 编码后，每个词位置都会产生对应的特征向量，但 CLIP 只取最后一层 Transformer 在 <code>[EOS]</code> 标记位置的特征向量作为整句话的语义表示。这是因为 <code>[EOS]</code> 位置的特征通过自注意力机制已经聚合了整个句子的信息，能够代表整句话的语义。</p><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/19_2_2.png width=80% alt="CLIP 图像编码器计算效率对比"><br><em>图 19-6 CLIP 图像编码器计算效率对比：ViT vs ResNet</em></p><p>这两个<strong>模态塔</strong>（图像模态塔和文本模态塔）在特征提取阶段互不干扰，分别输出图像和文本的特征向量。随后，两个向量会分别经过一个线性的投影层映射到<strong>维度相同</strong>的联合嵌入空间 (Joint Embedding Space) 中，并进行 L2 归一化。通过这一系列操作就可以直接计算两个向量的点积（即余弦相似度），来衡量"图"与"文"在语义上的匹配程度。</p><p>（2）对比学习</p><p>如图 19-7 所示，<strong>对比学习（Contrastive Learning）<strong>是 CLIP 的核心训练策略，它为双塔结构注入了“灵魂”，真正实现了</strong>让图像和文本在同一个 Embedding 空间中实现语义对齐</strong>。</p><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/19_2_3.png width=80% alt="CLIP 对比预训练"><br><em>图 19-7 CLIP 的对比预训练过程</em></p><p>我们可以结合图 19-7 来完整梳理一下这个<strong>跨模态对齐</strong>的过程。第一步是输入一个包含 $N$ 个图文对的 Batch（图中通过叠放的输入和下标 $1 \dots N$ 来示意），图像和文本会分别通过各自的 Encoder 变成特征向量。接下来，这些原始特征会被投影到<strong>同一个联合嵌入空间</strong>，分别形成图像 Embedding ($I_1, I_2, \dots, I_N$) 和文本 Embedding ($T_1, T_2, \dots, T_N$)。此时，它们已经变成了“同一种语言”（都是 $D$ 维向量）。接下来进行<strong>相似度矩阵</strong>的构建，模型会计算这两个序列中所有向量的两两点积，生成一个 $N \times N$ 的相似度矩阵（图中右侧的网格）。其中，<strong>对角线（蓝色块）<strong>代表 $I_k$ 和 $T_k$ 的匹配程度，这是原始数据中真实的“图文对”，即</strong>正样本</strong>；而<strong>非对角线（白色块）<strong>代表 $I_k$ 和 $T_j (j \neq k)$ 的匹配程度（比如“猫的图”配了“描述狗的字”），这是错误的组合，即</strong>负样本</strong>。最后的训练目标是<strong>最大化对角线上的数值，同时最小化非对角线上的数值</strong>。也就是说，当模型努力让 $I_{dog} \cdot T_{dog}$ 变大时，它实际上是在高维空间中<strong>推着</strong>“狗的图片向量”和“Dog 单词向量”相互靠近；反之，当模型努力让 $I_{cat} \cdot T_{dog}$ 变小时，它是在让它们相互远离。通过在 4 亿对数据上重复这个过程，CLIP 最终“学会”了将视觉概念和语言概念紧密地绑定在一起。这就实现了我们最初的构想，<strong>Embedding 不再是孤立的模态特征，而是成为了连接视觉与语言的通用货币。</strong></p><h3 id=22-零样本推理与提示工程>2.2 零样本推理与提示工程</h3><p>虽然 CLIP 在预训练阶段仅仅是学习了图文对齐，但它最具革命性的特性其实是它的<strong>零样本推理能力</strong>。传统的计算机视觉模型通常只能识别训练时定义好的类别，一旦遇到新类别就必须重新收集数据微调模型。而 CLIP 将“分类任务”彻底重构为“<strong>图文匹配任务</strong>”，打破了固定类别的限制。</p><p>为了让模型更好地理解类别名称，CLIP 还引入了<strong>提示工程</strong>的概念。当我们需要识别一张图像是否属于某个类别（例如“狗”）时，不再是让模型输出一个类别 ID，而是让模型去判断这张图与句子“一张狗的照片”之间的相似度（如图 19-8 所示）。由于训练数据多为句子而非单词，直接输入单词往往会造成歧义（例如论文中提到的 “boxer”，既可能是“拳师犬”，也可能是“拳击手”），且与预训练数据的分布存在差异。所以，我们可以将类别标签填入一个模板句子，如 <strong>&ldquo;A photo of a {label}.&rdquo;</strong>。在推理时，模型会将所有候选类别（如猫、狗、飞机）都填入模板，生成一组文本向量，然后找出与当前图像向量相似度最高的那句话，从而确定图像的类别。这种范式使得 CLIP 无需任何微调，就能直接迁移到任意的视觉分类任务中，成为一个真正的“开放词汇”分类器。</p><p align=center><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/19_2_4.png width=80% alt="CLIP Zero-Shot 推理"><br><em>图 19-8 CLIP 的 Zero-Shot 推理过程</em></p><h3 id=23-clip-的局限>2.3 CLIP 的局限</h3><p>作为多模态领域的里程碑，CLIP 的出现打通了视觉与语言的壁垒。它生成的 Embedding 具有很强的语义线性与鲁棒性，例如在 <strong>Stable Diffusion</strong> 等扩散模型中，通常会使用 <strong>CLIP/OpenCLIP 的文本编码器</strong>将提示词变成条件向量，达到在生成过程中提供语义约束的目的。它也启发并影响了后续大量视觉语言模型，为“图文对齐 + 下游任务适配”提供了关键范式。除此之外，由于在海量且多样化的互联网数据上训练，CLIP 对图像风格、光照变化、草图甚至卡通画的鲁棒性往往强于传统仅在 ImageNet 上训练的模型。</p><p>然而，CLIP 并非完美无缺。由于它是基于“图像整体”与“文本整体”的统计相关性进行训练的，它在处理<strong>细粒度分类</strong>（如区分波音747与波音777，或不同品种的特定花卉）时往往表现不佳，因为这些细微差别在海量图文对中可能被淹没。同时，CLIP 在<strong>逻辑计数</strong>（如“数一数图中有几个红色的气球”）或<strong>空间关系判断</strong>（如“车在房子的左边还是右边”）方面也存在短板，这通常被归因于对比学习损失函数难以捕捉复杂的组合性语义。最后，在医学影像或遥感图像等与其预训练数据分布差异巨大的<strong>专业领域</strong>，CLIP 的 Zero-Shot 性能也会显著下降，通常需要进行针对性的微调。</p><h2 id=三clip-代码实现>三、CLIP 代码实现</h2><blockquote><p><a class=link href=https://github.com/datawhalechina/base-llm/blob/main/docs/chapter19/02_clip.py target=_blank rel=noopener>本节完整代码</a></p></blockquote><p>（1）<strong>图像与文本编码器</strong></p><p>理解了 CLIP 的原理后，我们尝试用 PyTorch 实现一个简化版的 CLIP 模型。<strong>原始 CLIP 的两个编码器都是从零训练</strong>，并且会进行 <strong>L2 归一化 + 可学习温度（logit scale）缩放</strong>，这里为了跑通流程与降低门槛，我们直接加载预训练的模型。第一步可以先构建<strong>双塔结构</strong>的两个编码器。首先是 <strong>Image Encoder</strong>，利用 <code>timm</code> 库可以非常方便地加载预训练的 ViT 模型。这里我们选择 <code>vit_small_patch16_224</code> 这个型号，其中 <code>patch16</code> 表示将图像切分为 $16 \times 16$ 的块，<code>224</code> 表示输入分辨率。同时开启 <code>pretrained=True</code> 让模型加载在 ImageNet 上预训练好的权重，让模型拥有基础的“看图”能力。由于 <code>timm</code> 的 ViT 默认带有用于分类的 head，为了得到我们需要的图像 embedding，会显式加一个投影层把视觉特征映射到目标 embedding 维度（这样不会误把随机初始化的分类 head 当作 embedding）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>ImageEncoder</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;图像编码器&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>ImageEncoder</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># num_classes=0 会移除分类 head，输出 backbone 特征（维度为 vit.num_features）</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>vit</span> <span class=o>=</span> <span class=n>timm</span><span class=o>.</span><span class=n>create_model</span><span class=p>(</span><span class=s1>&#39;vit_small_patch16_224&#39;</span><span class=p>,</span> <span class=n>pretrained</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>num_classes</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>proj</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Linear</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>vit</span><span class=o>.</span><span class=n>num_features</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>,</span> <span class=n>bias</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>feat</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>vit</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>          <span class=c1># (Batch, vit.num_features)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>proj</span><span class=p>(</span><span class=n>feat</span><span class=p>)</span>      <span class=c1># (Batch, output_dim)</span>
+</span></span></code></pre></td></tr></table></div></div><p>对于 <strong>Text Encoder</strong>，为了贴近原始 CLIP 使用 Decoder-only 架构的设计，我们选择 <strong>GPT-2</strong> 作为近似替代。不过，GPT-2 是为文本生成设计的，默认没有 Padding Token，而在处理 Batch 数据时我们要对齐长度，所以需要将它的 <code>pad_token</code> 临时设置为 <code>eos_token</code>。在获取特征时，我们取序列<strong>最后一个非 padding token</strong>的隐藏状态作为整句话表征。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>TextEncoder</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;文本编码器&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>TextEncoder</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>GPT2Tokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;gpt2&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 解决 GPT-2 无 pad_token 的问题，将其设为 eos_token</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>eos_token</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span> <span class=o>=</span> <span class=n>GPT2Model</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=s1>&#39;gpt2&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>proj</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Linear</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>hidden_size</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>,</span> <span class=n>bias</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>texts</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>inputs</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=p>(</span><span class=n>texts</span><span class=p>,</span> <span class=n>return_tensors</span><span class=o>=</span><span class=s1>&#39;pt&#39;</span><span class=p>,</span> <span class=n>padding</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>output</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=p>(</span><span class=o>**</span><span class=n>inputs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 获取最后一个非 padding token 的输出作为句子表征</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 利用 attention_mask 找到每个样本的真实长度</span>
+</span></span><span class=line><span class=cl>        <span class=n>last_hidden_state</span> <span class=o>=</span> <span class=n>output</span><span class=o>.</span><span class=n>last_hidden_state</span>
+</span></span><span class=line><span class=cl>        <span class=n>attention_mask</span> <span class=o>=</span> <span class=n>inputs</span><span class=o>.</span><span class=n>attention_mask</span>
+</span></span><span class=line><span class=cl>        <span class=n>last_token_idx</span> <span class=o>=</span> <span class=n>attention_mask</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span> 
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 从 batch 中取出对应索引的向量</span>
+</span></span><span class=line><span class=cl>        <span class=n>batch_idx</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>last_hidden_state</span><span class=o>.</span><span class=n>size</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>last_token_idx</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>sent</span> <span class=o>=</span> <span class=n>last_hidden_state</span><span class=p>[</span><span class=n>batch_idx</span><span class=p>,</span> <span class=n>last_token_idx</span><span class=p>]</span>      <span class=c1># (Batch, hidden)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>proj</span><span class=p>(</span><span class=n>sent</span><span class=p>)</span>                                   <span class=c1># (Batch, output_dim)</span>
+</span></span></code></pre></td></tr></table></div></div><p>（2）<strong>投影与双塔对齐</strong></p><p>接下来我们将刚才实现的两个编码器组合起来实现一个完整的 CLIP 模型。图像编码器和文本编码器输出的特征通常是不同维度的。为了计算相似度，我们需要通过<strong>可学习的投影层</strong> 将它们映射到<strong>相同的维度</strong>（联合嵌入空间），并计算点积。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>CLIP</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;CLIP：双塔 + 线性投影 + 归一化 + 温度缩放&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>embed_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>CLIP</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>image_encoder</span> <span class=o>=</span> <span class=n>ImageEncoder</span><span class=p>(</span><span class=n>embed_dim</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>text_encoder</span> <span class=o>=</span> <span class=n>TextEncoder</span><span class=p>(</span><span class=n>embed_dim</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 可学习温度（论文中用 log 参数化的 logit_scale）</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>logit_scale</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Parameter</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>log</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=mi>1</span> <span class=o>/</span> <span class=mf>0.07</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>images</span><span class=p>,</span> <span class=n>texts</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 1) 提取 embedding</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>image_encoder</span><span class=p>(</span><span class=n>images</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>txt</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>text_encoder</span><span class=p>(</span><span class=n>texts</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 2) L2 归一化（点积 -&gt; 余弦相似度）</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>functional</span><span class=o>.</span><span class=n>normalize</span><span class=p>(</span><span class=n>img</span><span class=p>,</span> <span class=n>dim</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>txt</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>functional</span><span class=o>.</span><span class=n>normalize</span><span class=p>(</span><span class=n>txt</span><span class=p>,</span> <span class=n>dim</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 3) 温度缩放后的相似度矩阵 (Batch, Batch)</span>
+</span></span><span class=line><span class=cl>        <span class=n>scale</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>logit_scale</span><span class=o>.</span><span class=n>exp</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>logits</span> <span class=o>=</span> <span class=n>scale</span> <span class=o>*</span> <span class=p>(</span><span class=n>img</span> <span class=o>@</span> <span class=n>txt</span><span class=o>.</span><span class=n>T</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>logits</span>
+</span></span></code></pre></td></tr></table></div></div><p>（3）<strong>数据准备</strong></p><p>为了演示，我们使用 CIFAR-10 数据集。由于 ViT 模型默认的输入分辨率是 224x224，而 CIFAR-10 的图片大小是 32x32，所以我们需要在预处理阶段将图片 <strong>Resize</strong> 到 224。同时，为了匹配预训练模型的输入分布，我们还需要使用模型特定的均值和方差（通过 <code>vit.default_cfg</code> 获取）对图像进行归一化处理。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>load_cifar10_dataset</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>image_size</span><span class=o>=</span><span class=mi>224</span><span class=p>,</span> <span class=n>root</span><span class=o>=</span><span class=s1>&#39;./cifar10&#39;</span><span class=p>,</span> <span class=n>mean</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=kc>None</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;加载CIFAR10数据集&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>transform</span> <span class=o>=</span> <span class=n>transforms</span><span class=o>.</span><span class=n>Compose</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>Resize</span><span class=p>((</span><span class=n>image_size</span><span class=p>,</span> <span class=n>image_size</span><span class=p>)),</span> 
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>ToTensor</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>Normalize</span><span class=p>(</span><span class=n>mean</span><span class=o>=</span><span class=n>mean</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=n>std</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>train_dataset</span> <span class=o>=</span> <span class=n>CIFAR10</span><span class=p>(</span><span class=n>root</span><span class=o>=</span><span class=n>root</span><span class=p>,</span> <span class=n>train</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>download</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>transform</span><span class=o>=</span><span class=n>transform</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>loader</span> <span class=o>=</span> <span class=n>DataLoader</span><span class=p>(</span><span class=n>train_dataset</span><span class=p>,</span> <span class=n>batch_size</span><span class=o>=</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>shuffle</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>classes</span> <span class=o>=</span> <span class=n>train_dataset</span><span class=o>.</span><span class=n>classes</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>loader</span><span class=p>,</span> <span class=n>classes</span>
+</span></span></code></pre></td></tr></table></div></div><p>（4）<strong>对比训练过程</strong></p><p>最后的<strong>训练循环</strong>需要遍历数据集以构造 Batch 数据，获取一批图像及其对应的类别名称作为文本。随后将这些图像和文本同时输入模型，生成 $N \times N$ 的相似度矩阵 <code>logits</code>。由于第 $i$ 张图对应的正是第 $i$ 个文本，所以监督信号就是对角线的“匹配位置索引”，即 <code>targets=[0, 1, ..., N-1]</code>。接下来，我们分别计算“图像找文本”（行方向）和“文本找图像”（列方向）的损失，并将两者取平均值作为最终的优化目标。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>device</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>device</span><span class=p>(</span><span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>torch</span><span class=o>.</span><span class=n>cuda</span><span class=o>.</span><span class=n>is_available</span><span class=p>()</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Using device: </span><span class=si>{</span><span class=n>device</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 初始化模型</span>
+</span></span><span class=line><span class=cl>    <span class=n>clip_model</span> <span class=o>=</span> <span class=n>CLIP</span><span class=p>(</span><span class=n>embed_dim</span><span class=o>=</span><span class=mi>512</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>clip_model</span><span class=o>.</span><span class=n>text_encoder</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>cfg</span> <span class=o>=</span> <span class=n>clip_model</span><span class=o>.</span><span class=n>image_encoder</span><span class=o>.</span><span class=n>vit</span><span class=o>.</span><span class=n>default_cfg</span>
+</span></span><span class=line><span class=cl>    <span class=n>mean</span> <span class=o>=</span> <span class=n>cfg</span><span class=p>[</span><span class=s1>&#39;mean&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>std</span> <span class=o>=</span> <span class=n>cfg</span><span class=p>[</span><span class=s1>&#39;std&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_root</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=vm>__file__</span><span class=p>),</span> <span class=s2>&#34;cifar10&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>dataset</span><span class=p>,</span> <span class=n>classes</span> <span class=o>=</span> <span class=n>load_cifar10_dataset</span><span class=p>(</span><span class=n>batch_size</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span> <span class=n>root</span><span class=o>=</span><span class=n>data_root</span><span class=p>,</span> <span class=n>mean</span><span class=o>=</span><span class=n>mean</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=n>std</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 模拟训练循环</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=p>(</span><span class=n>images</span><span class=p>,</span> <span class=n>labels</span><span class=p>)</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>dataset</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>images</span> <span class=o>=</span> <span class=n>images</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 将标签转换为对应的文本描述 (例如 label 0 -&gt; &#34;airplane&#34;)</span>
+</span></span><span class=line><span class=cl>        <span class=n>texts</span> <span class=o>=</span> <span class=p>[</span><span class=n>classes</span><span class=p>[</span><span class=n>label</span><span class=o>.</span><span class=n>item</span><span class=p>()]</span> <span class=k>for</span> <span class=n>label</span> <span class=ow>in</span> <span class=n>labels</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 前向计算得到相似度矩阵</span>
+</span></span><span class=line><span class=cl>        <span class=n>logits</span> <span class=o>=</span> <span class=n>clip_model</span><span class=p>(</span><span class=n>images</span><span class=p>,</span> <span class=n>texts</span><span class=p>)</span> 
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 构造目标标签</span>
+</span></span><span class=line><span class=cl>        <span class=n>targets</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>logits</span><span class=o>.</span><span class=n>shape</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 计算损失</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss_i</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>CrossEntropyLoss</span><span class=p>()(</span><span class=n>logits</span><span class=p>,</span> <span class=n>targets</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss_t</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>CrossEntropyLoss</span><span class=p>()(</span><span class=n>logits</span><span class=o>.</span><span class=n>T</span><span class=p>,</span> <span class=n>targets</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss</span> <span class=o>=</span> <span class=p>(</span><span class=n>loss_i</span> <span class=o>+</span> <span class=n>loss_t</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Batch </span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>: Loss = </span><span class=si>{</span><span class=n>loss</span><span class=o>.</span><span class=n>item</span><span class=p>()</span><span class=si>:</span><span class=s2>.4f</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 仅演示前几个batch</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>i</span> <span class=o>&gt;=</span> <span class=mi>2</span><span class=p>:</span> <span class=k>break</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Batch 0: <span class=nv>Loss</span> <span class=o>=</span> ...
+</span></span><span class=line><span class=cl>Batch 1: <span class=nv>Loss</span> <span class=o>=</span> ...
+</span></span><span class=line><span class=cl>Batch 2: <span class=nv>Loss</span> <span class=o>=</span> ...
+</span></span></code></pre></td></tr></table></div></div><h2 id=clip-实现完整代码>CLIP 实现完整代码</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch.nn</span> <span class=k>as</span> <span class=nn>nn</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>torch.utils.data</span> <span class=kn>import</span> <span class=n>DataLoader</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torchvision.transforms</span> <span class=k>as</span> <span class=nn>transforms</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>torchvision.datasets</span> <span class=kn>import</span> <span class=n>CIFAR10</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>transformers</span> <span class=kn>import</span> <span class=n>GPT2Model</span><span class=p>,</span> <span class=n>GPT2Tokenizer</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>timm</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 模型定义</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ImageEncoder</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;图像编码器&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>ImageEncoder</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 使用来自timm的ViT模型</span>
+</span></span><span class=line><span class=cl>        <span class=c1># num_classes=0 会移除分类 head，输出 backbone 特征（维度为 vit.num_features）</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>vit</span> <span class=o>=</span> <span class=n>timm</span><span class=o>.</span><span class=n>create_model</span><span class=p>(</span><span class=s1>&#39;vit_small_patch16_224&#39;</span><span class=p>,</span> <span class=n>pretrained</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>num_classes</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>proj</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Linear</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>vit</span><span class=o>.</span><span class=n>num_features</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>,</span> <span class=n>bias</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>feat</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>vit</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>proj</span><span class=p>(</span><span class=n>feat</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>TextEncoder</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;文本编码器&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>TextEncoder</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>model_name</span> <span class=o>=</span> <span class=s1>&#39;gpt2&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span> <span class=o>=</span> <span class=n>GPT2Tokenizer</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># GPT-2默认没有pad_token，将其设为eos_token</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>pad_token</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=o>.</span><span class=n>eos_token</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span> <span class=o>=</span> <span class=n>GPT2Model</span><span class=o>.</span><span class=n>from_pretrained</span><span class=p>(</span><span class=n>model_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>proj</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Linear</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>hidden_size</span><span class=p>,</span> <span class=n>output_dim</span><span class=p>,</span> <span class=n>bias</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>texts</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 文本通过GPT-2</span>
+</span></span><span class=line><span class=cl>        <span class=n>inputs</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>tokenizer</span><span class=p>(</span><span class=n>texts</span><span class=p>,</span> <span class=n>return_tensors</span><span class=o>=</span><span class=s1>&#39;pt&#39;</span><span class=p>,</span> <span class=n>padding</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>truncation</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>output</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=p>(</span><span class=o>**</span><span class=n>inputs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 获取最后一个非 padding token 的输出</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 根据 attention_mask 计算每个样本的最后一个有效 token 索引</span>
+</span></span><span class=line><span class=cl>        <span class=n>last_hidden_state</span> <span class=o>=</span> <span class=n>output</span><span class=o>.</span><span class=n>last_hidden_state</span>
+</span></span><span class=line><span class=cl>        <span class=n>attention_mask</span> <span class=o>=</span> <span class=n>inputs</span><span class=o>.</span><span class=n>attention_mask</span>
+</span></span><span class=line><span class=cl>        <span class=n>last_token_idx</span> <span class=o>=</span> <span class=n>attention_mask</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span> <span class=c1># (B)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 从batch中取出对应索引的向量</span>
+</span></span><span class=line><span class=cl>        <span class=n>batch_idx</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>last_hidden_state</span><span class=o>.</span><span class=n>size</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>last_token_idx</span><span class=o>.</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>sent</span> <span class=o>=</span> <span class=n>last_hidden_state</span><span class=p>[</span><span class=n>batch_idx</span><span class=p>,</span> <span class=n>last_token_idx</span><span class=p>]</span> <span class=c1># (B, 768)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>proj</span><span class=p>(</span><span class=n>sent</span><span class=p>)</span> <span class=c1># (B, output_dim)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>CLIP</span><span class=p>(</span><span class=n>nn</span><span class=o>.</span><span class=n>Module</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;CLIP模型：结合图像和文本编码器&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>embed_dim</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>super</span><span class=p>(</span><span class=n>CLIP</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>image_encoder</span> <span class=o>=</span> <span class=n>ImageEncoder</span><span class=p>(</span><span class=n>embed_dim</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>text_encoder</span> <span class=o>=</span> <span class=n>TextEncoder</span><span class=p>(</span><span class=n>embed_dim</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 可学习温度系数（论文中用 log 参数化的 logit_scale）</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>logit_scale</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>Parameter</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>log</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>tensor</span><span class=p>(</span><span class=mi>1</span> <span class=o>/</span> <span class=mf>0.07</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>forward</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>images</span><span class=p>,</span> <span class=n>texts</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>image_encoder</span><span class=p>(</span><span class=n>images</span><span class=p>)</span>  <span class=c1># (B, embed_dim)</span>
+</span></span><span class=line><span class=cl>        <span class=n>txt</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>text_encoder</span><span class=p>(</span><span class=n>texts</span><span class=p>)</span>    <span class=c1># (B, embed_dim)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 归一化后点积即余弦相似度</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>functional</span><span class=o>.</span><span class=n>normalize</span><span class=p>(</span><span class=n>img</span><span class=p>,</span> <span class=n>dim</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>txt</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>functional</span><span class=o>.</span><span class=n>normalize</span><span class=p>(</span><span class=n>txt</span><span class=p>,</span> <span class=n>dim</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 温度缩放</span>
+</span></span><span class=line><span class=cl>        <span class=n>scale</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>logit_scale</span><span class=o>.</span><span class=n>exp</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>logits</span> <span class=o>=</span> <span class=n>scale</span> <span class=o>*</span> <span class=p>(</span><span class=n>img</span> <span class=o>@</span> <span class=n>txt</span><span class=o>.</span><span class=n>T</span><span class=p>)</span> <span class=c1># (B, B)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>logits</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 数据处理</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>load_cifar10_dataset</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>image_size</span><span class=o>=</span><span class=mi>224</span><span class=p>,</span> <span class=n>root</span><span class=o>=</span><span class=s1>&#39;./cifar10&#39;</span><span class=p>,</span> <span class=n>mean</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=kc>None</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;加载CIFAR10数据集&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>transform</span> <span class=o>=</span> <span class=n>transforms</span><span class=o>.</span><span class=n>Compose</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>Resize</span><span class=p>((</span><span class=n>image_size</span><span class=p>,</span> <span class=n>image_size</span><span class=p>)),</span> 
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>ToTensor</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>transforms</span><span class=o>.</span><span class=n>Normalize</span><span class=p>(</span><span class=n>mean</span><span class=o>=</span><span class=n>mean</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=n>std</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=c1># download=True 会自动下载</span>
+</span></span><span class=line><span class=cl>    <span class=n>train_dataset</span> <span class=o>=</span> <span class=n>CIFAR10</span><span class=p>(</span><span class=n>root</span><span class=o>=</span><span class=n>root</span><span class=p>,</span> <span class=n>train</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>download</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>transform</span><span class=o>=</span><span class=n>transform</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>loader</span> <span class=o>=</span> <span class=n>DataLoader</span><span class=p>(</span><span class=n>train_dataset</span><span class=p>,</span> <span class=n>batch_size</span><span class=o>=</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>shuffle</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>classes</span> <span class=o>=</span> <span class=n>train_dataset</span><span class=o>.</span><span class=n>classes</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>loader</span><span class=p>,</span> <span class=n>classes</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>device</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>device</span><span class=p>(</span><span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>torch</span><span class=o>.</span><span class=n>cuda</span><span class=o>.</span><span class=n>is_available</span><span class=p>()</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Using device: </span><span class=si>{</span><span class=n>device</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 初始化模型</span>
+</span></span><span class=line><span class=cl>    <span class=n>clip_model</span> <span class=o>=</span> <span class=n>CLIP</span><span class=p>(</span><span class=n>embed_dim</span><span class=o>=</span><span class=mi>512</span><span class=p>)</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>clip_model</span><span class=o>.</span><span class=n>text_encoder</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 加载数据</span>
+</span></span><span class=line><span class=cl>    <span class=n>cfg</span> <span class=o>=</span> <span class=n>clip_model</span><span class=o>.</span><span class=n>image_encoder</span><span class=o>.</span><span class=n>vit</span><span class=o>.</span><span class=n>default_cfg</span>
+</span></span><span class=line><span class=cl>    <span class=n>mean</span> <span class=o>=</span> <span class=n>cfg</span><span class=p>[</span><span class=s1>&#39;mean&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>std</span> <span class=o>=</span> <span class=n>cfg</span><span class=p>[</span><span class=s1>&#39;std&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_root</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=vm>__file__</span><span class=p>),</span> <span class=s2>&#34;cifar10&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>dataset</span><span class=p>,</span> <span class=n>classes</span> <span class=o>=</span> <span class=n>load_cifar10_dataset</span><span class=p>(</span><span class=n>batch_size</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span> <span class=n>root</span><span class=o>=</span><span class=n>data_root</span><span class=p>,</span> <span class=n>mean</span><span class=o>=</span><span class=n>mean</span><span class=p>,</span> <span class=n>std</span><span class=o>=</span><span class=n>std</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 3. 训练循环</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=p>(</span><span class=n>images</span><span class=p>,</span> <span class=n>labels</span><span class=p>)</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>dataset</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>images</span> <span class=o>=</span> <span class=n>images</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>texts</span> <span class=o>=</span> <span class=p>[</span><span class=n>classes</span><span class=p>[</span><span class=n>label</span><span class=o>.</span><span class=n>item</span><span class=p>()]</span> <span class=k>for</span> <span class=n>label</span> <span class=ow>in</span> <span class=n>labels</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 前向计算</span>
+</span></span><span class=line><span class=cl>        <span class=n>logits</span> <span class=o>=</span> <span class=n>clip_model</span><span class=p>(</span><span class=n>images</span><span class=p>,</span> <span class=n>texts</span><span class=p>)</span> <span class=c1># (B, B)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 计算损失</span>
+</span></span><span class=line><span class=cl>        <span class=n>targets</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>logits</span><span class=o>.</span><span class=n>shape</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span><span class=o>.</span><span class=n>to</span><span class=p>(</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss_i</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>CrossEntropyLoss</span><span class=p>()(</span><span class=n>logits</span><span class=p>,</span> <span class=n>targets</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss_t</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>CrossEntropyLoss</span><span class=p>()(</span><span class=n>logits</span><span class=o>.</span><span class=n>T</span><span class=p>,</span> <span class=n>targets</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>loss</span> <span class=o>=</span> <span class=p>(</span><span class=n>loss_i</span> <span class=o>+</span> <span class=n>loss_t</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Batch </span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>: Loss = </span><span class=si>{</span><span class=n>loss</span><span class=o>.</span><span class=n>item</span><span class=p>()</span><span class=si>:</span><span class=s2>.4f</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 仅演示前几个batch</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>i</span> <span class=o>&gt;=</span> <span class=mi>2</span><span class=p>:</span> <span class=k>break</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=小结>小结</h2><p>回顾第一节提到的<strong>多模态机器学习五大挑战</strong>（表征、转换、对齐、融合、协同学习），本节介绍的 <strong>ViT 解决了“表征”的统一性</strong>，它打破了 CNN 对视觉的统治，证明 Transformer 能作为通用的计算原语，通过 Patch Embedding 将图像“序列化”为 Token，从而在底层架构上与语言达成一致。而 <strong>CLIP 则解决了“对齐”的普适性</strong>，利用对比学习将异构的图文映射到同一<strong>联合嵌入空间</strong>，让 Embedding 真正成为连接不同模态的“桥梁”，无需微调即可实现零样本迁移。通过本节的代码实践，我们也亲手实现了这种“双塔+对比损失”的简洁架构。尽管 CLIP 在细粒度理解和复杂逻辑上仍有短板，但它为后续的<strong>多模态生成</strong>与<strong>复杂推理</strong>提供了关键的语义地基。</p><h2 id=参考文献>参考文献</h2><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a class=link href=https://arxiv.org/abs/2010.11929 target=_blank rel=noopener>Dosovitskiy, A., Beyer, L., Kolesnikov, A., et al. (2020). <em>An image is worth 16x16 words: Transformers for image recognition at scale</em>. ICLR.</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a class=link href=https://arxiv.org/abs/2103.00020 target=_blank rel=noopener>Radford, A., Kim, J. W., Hallacy, C., et al. (2021). <em>Learning transferable visual models from natural language supervision (CLIP)</em>. ICML.</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/>多模态</a>
+<a href=/blog/tags/clip/>CLIP</a>
+<a href=/blog/tags/vit/>ViT</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83%E7%AE%80%E5%8C%96%E7%89%88-omni-%E6%A8%A1%E5%9E%8B/><div class=article-details><h2 class=article-title>多模态——从头训练简化版 Omni 模型</h2></div></a></article><article><a href=/blog/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8B%E5%8E%9F%E7%94%9F%E7%BB%9F%E4%B8%80%E6%9E%B6%E6%9E%84/><div class=article-details><h2 class=article-title>图文多模态之原生统一架构</h2></div></a></article><article><a href=/blog/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8Bblip-2-%E4%B8%8E-llava/><div class=article-details><h2 class=article-title>图文多模态之BLIP-2 与 LLaVA</h2></div></a></article><article><a href=/blog/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A6%82%E8%BF%B0/><div class=article-details><h2 class=article-title>多模态概述</h2></div></a></article><article><a href=/blog/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/><div class=article-details><h2 class=article-title>RAG 简介及其简单实现</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
