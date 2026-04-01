@@ -101,11 +101,14 @@ alt="img"
 &gt;https://www.usememos.com/docs&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;开源地址： &lt;a class="link" href="https://github.com/usememos/memos" target="_blank" rel="noopener"
 &gt;https://github.com/usememos/memos&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id="介绍"&gt;介绍
+&lt;h3 id="特色介绍"&gt;特色介绍
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Memos&lt;/code&gt;是一个开源的碎片化笔记工具.&lt;/li&gt;
-&lt;li&gt;它小巧,功能强大,易于部署,且永久免费.&lt;/li&gt;
-&lt;li&gt;最重要区别于市面上其他的笔记软件的区别便是私有化.自托管.&lt;/li&gt;
+&lt;li&gt;隐私优先🏠：掌控你的数据。所有运行时数据都安全地存储在本地数据库中。&lt;/li&gt;
+&lt;li&gt;快速创建✍️：将内容保存为纯文本以便快速访问，并支持 Markdown 以实现快速格式化和轻松共享。&lt;/li&gt;
+&lt;li&gt;轻量但强大🤲：使用 Go、React.js 和紧凑的架构构建，我们的应用程序在轻量级的包中提供强大的性能。&lt;/li&gt;
+&lt;li&gt;可定制🧩：轻松自定义服务器名称、图标、描述、系统风格和执行脚本，使其独一无二。&lt;/li&gt;
+&lt;li&gt;开源🦦：Memos 拥抱开源的未来，所有代码在 GitHub 上可用，以实现透明度和协作。&lt;/li&gt;
+&lt;li&gt;免费使用💸：完全免费享受所有功能，任何内容都不会收取任何费用。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="功能"&gt;功能
 &lt;/h3&gt;&lt;ul&gt;
@@ -187,6 +190,79 @@ alt="9eb713eceaeabeaa3a5c0e9ad8852ec.jpg"
 &lt;li&gt;暗黑模式&lt;/li&gt;
 &lt;li&gt;数据库自动备份，当检测到启动的版本发生变化时，自动备份数据库文件到 &lt;code&gt;$DB&lt;/code&gt; 目录下&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="项目部署"&gt;项目部署
+&lt;/h2&gt;&lt;p&gt;部署平台推荐 ClawCloud 和 Render 。&lt;/p&gt;
+&lt;p&gt;Render 是一家来自旧金山的云平台公司，目标是打造开发者友好的全托管部署平台，支持 Web 服务、静态站点、后端 API、数据库、Cron Job 等。用户可以使用 Dockerfile 部署自定义服务，或直接部署 Git 仓库。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;官网：&lt;a class="link" href="https://link.zhihu.com/?target=https%3A//render.com/" target="_blank" rel="noopener"
+&gt;https://render.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;免费层：有免费 Web 服务（自动休眠）、PostgreSQL 数据库等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Clawcloud 是一个新兴的云平台，主打“简洁”、“极致性价比”、“对个人开发者友好”。在 2024 年底至 2025 年间快速崛起，因其&lt;strong&gt;不强制休眠的免费容器服务&lt;/strong&gt;和极低的延迟部署时间受到好评。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;官网：&lt;a class="link" href="https://link.zhihu.com/?target=https%3A//run.claw.cloud/" target="_blank" rel="noopener"
+&gt;https://run.claw.cloud/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;免费层：每日最多运行 12 小时的容器服务，月流量限制更宽松&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两者对比：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;对比项&lt;/th&gt;
+&lt;th&gt;Render 免费版&lt;/th&gt;
+&lt;th&gt;Clawcloud 免费版&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;运行时间限制&lt;/td&gt;
+&lt;td&gt;自动休眠（15 分钟无请求休眠，冷启动 30s 左右）&lt;/td&gt;
+&lt;td&gt;每天最多运行 12 小时（可配置时段），不强制休眠&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;支持 Docker&lt;/td&gt;
+&lt;td&gt;✅ 完全支持，需上传 Dockerfile&lt;/td&gt;
+&lt;td&gt;✅ 原生支持，直接上传镜像或 Dockerfile&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;自定义域名与 HTTPS&lt;/td&gt;
+&lt;td&gt;✅ 支持自动 HTTPS&lt;/td&gt;
+&lt;td&gt;✅ 支持自动 HTTPS，支持裸域&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;免费数据库&lt;/td&gt;
+&lt;td&gt;✅ PostgreSQL（256MB）&lt;/td&gt;
+&lt;td&gt;❌ 目前不提供数据库服务&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;月流量限制&lt;/td&gt;
+&lt;td&gt;~750 小时/月 + 100GB 出站流量&lt;/td&gt;
+&lt;td&gt;12 小时 * 30 天 + 100GB 出站流量（约等同）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;并发容器数量&lt;/td&gt;
+&lt;td&gt;单服务 + 限资源（512MB RAM）&lt;/td&gt;
+&lt;td&gt;单实例 + 限资源（512MB RAM）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;小结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clawcloud 更适合“轻量、全天候运行”的项目&lt;/strong&gt;，例如个人博客、Webhook 服务、定时任务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Render 更适合“对数据库有需求”的项目&lt;/strong&gt;，例如全栈应用、API 后端等&lt;/li&gt;
+&lt;li&gt;两者都限制资源，但对于轻量应用已足够使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;部署教程可以参考如下链接：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://memos.top/archives/262.html" target="_blank" rel="noopener"
+&gt;使用ClawCloud免费部署memos服务&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://blog.liushen.fun/posts/e0b4d5a/" target="_blank" rel="noopener"
-&gt;从Moments迁移到Ech0&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&gt;从Moments迁移到Ech0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://memos.top/archives/262.html" target="_blank" rel="noopener"
+&gt;使用ClawCloud免费部署memos服务&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://juejin.cn/post/7520471519417499689" target="_blank" rel="noopener"
+&gt;自建 Memos 服务：碎片化笔记 + 博客说说栏，一栈双用&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/SnowDreamXUE/article/details/147479400" target="_blank" rel="noopener"
+&gt;利用 Claw Cloud Run 免费应用部署前端网页&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1928867614056256405" target="_blank" rel="noopener"
+&gt;Render vs Clawcloud：免费的 Docker 应用部署平台推荐（2025）&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
