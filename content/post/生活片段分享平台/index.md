@@ -153,6 +153,29 @@ Memo：
 - 暗黑模式
 - 数据库自动备份，当检测到启动的版本发生变化时，自动备份数据库文件到 `$DB` 目录下
 
+## 瞬刻 - _更简洁、更现代化的内容发布平台_
+
+[瞬刻---更简洁更现代化的内容发布平台](https://github.com/reaishijie/moments)
+
+使用vercle快速部署：[![Deploy on Vercel](https://camo.githubusercontent.com/7015516519ae874ab75537283bc75f86b3d46386ed994093a3790a1180913164/68747470733a2f2f76657263656c2e636f6d2f627574746f6e)](https://vercel.com/new/clone?repository-url=https://github.com/reaishijie/moments&root-directory=frontend&env=VITE_API_BASE_URL&project-name=moments&repository-name=moments)
+
+### 项目概述
+
+瞬刻是一个现代化的社交媒体应用，专注于为用户提供简洁、流畅的内容分享体验。项目采用前后端分离架构，支持文字、图片、视频等多种内容类型的发布和交互。
+
+### 项目特色
+
+- 🚀 **现代化技术栈**: Vue 3 + Node.js + TypeScript + MySQL
+- 📱 **移动端优先**: 响应式设计，完美适配移动设备
+- 🔐 **完善的认证系统**: JWT 认证，支持游客访问和点赞
+- 💬 **多级评论系统**: 支持评论发表与回复
+- 📍 **位置服务**: 获取基础地理位置功能
+- 📊 **完整的日志系统**: 用户行为追踪和系统监控
+
+### 快速部署请查看：[doc/quickDeploy.md](https://github.com/reaishijie/moments/blob/main/doc/quickDeploy-readme.md)
+
+使用`build.sh`时候注意前端`.env`的接口修改为 `VITE_API_BASE_URL=/api` ，前后端分离则使用 `VITE_API_BASE_URL=http://localhost:9889/api`(记得替换成你真实后端地址）。
+
 ## 项目部署
 
 部署平台推荐 ClawCloud 和 Render 。
