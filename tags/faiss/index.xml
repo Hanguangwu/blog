@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FAISS on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/faiss/</link><description>Recent content in FAISS on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 02 Apr 2026 21:40:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/faiss/index.xml" rel="self" type="application/rss+xml"/><item><title>向量数据库简介——以FAISS为例</title><link>https://hanguangwu.github.io/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</link><pubDate>Thu, 02 Apr 2026 21:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</guid><description>&lt;h1 id="向量数据库简介以faiss为例"&gt;向量数据库简介——以FAISS为例
+&lt;/h1&gt;&lt;h2 id="一向量数据库的作用"&gt;一、向量数据库的作用
+&lt;/h2&gt;&lt;p&gt;在前面我们学习了如何使用嵌入模型将文本、图像等非结构化数据转换为高维向量。这些向量是 RAG 系统能够进行语义理解的基础。然而，当向量数量从几百个增长到数百万甚至数十亿时，一个核心问题随之而来：&lt;strong&gt;如何快速、准确地从海量向量中找到与用户查询最相似的那几个？&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="11-向量数据库主要功能"&gt;1.1 向量数据库主要功能
+&lt;/h3&gt;&lt;p&gt;向量数据库的核心价值在于其高效处理海量高维向量的能力。其主要功能可以概括为以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高效的相似性搜索&lt;/strong&gt;：这是向量数据库最重要的功能。它利用专门的索引技术（如 HNSW, IVF），能够在数十亿级别的向量中实现毫秒级的近似最近邻（ANN）查询，快速找到与给定查询最相似的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高维数据存储与管理&lt;/strong&gt;：专门为存储高维向量（通常维度成百上千）而优化，支持对向量数据进行增、删、改、查等基本操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;丰富的查询能力&lt;/strong&gt;：除了基本的相似性搜索，还支持按标量字段过滤查询（例如，在搜索相似图片的同时，指定&lt;code&gt;年份 &amp;gt; 2023&lt;/code&gt;）、范围查询和聚类分析等，满足复杂业务需求。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;可扩展与高可用&lt;/strong&gt;：现代向量数据库通常采用分布式架构，具备良好的水平扩展能力和容错性，能够通过增加节点来应对数据量的增长，并确保服务的稳定可靠。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据与模型生态集成&lt;/strong&gt;：与主流的 AI 框架（如 LangChain, LlamaIndex）和机器学习工作流无缝集成，简化了从模型训练到向量检索的应用开发流程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="12-向量数据库-vs-传统数据库"&gt;1.2 向量数据库 vs 传统数据库
+&lt;/h3&gt;&lt;p&gt;传统的数据库（如 MySQL）擅长处理结构化数据的精确匹配查询（例如，&lt;code&gt;WHERE age = 25&lt;/code&gt;），但它们并非为处理高维向量的相似性搜索而设计的。在庞大的向量集合中进行暴力、线性的相似度计算，其计算成本和时间延迟无法接受。&lt;strong&gt;向量数据库 (Vector Database)&lt;/strong&gt; 很好的解决了这一问题，它是一种专门设计用于高效存储、管理和查询高维向量的数据库系统。在 RAG 流程中，它扮演着“知识库”的角色，是连接数据与大语言模型的关键桥梁。&lt;/p&gt;
+&lt;p&gt;向量数据库与传统数据库的主要差异如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;&lt;strong&gt;维度&lt;/strong&gt;&lt;/th&gt;
+&lt;th style="text-align: left"&gt;&lt;strong&gt;向量数据库&lt;/strong&gt;&lt;/th&gt;
+&lt;th style="text-align: left"&gt;&lt;strong&gt;传统数据库 (RDBMS)&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;核心数据类型&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;高维向量 (Embeddings)&lt;/td&gt;
+&lt;td style="text-align: left"&gt;结构化数据 (文本、数字、日期)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;查询方式&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;相似性搜索&lt;/strong&gt; (ANN)&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;精确匹配&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;索引机制&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;HNSW, IVF, LSH 等 ANN 索引&lt;/td&gt;
+&lt;td style="text-align: left"&gt;B-Tree, Hash Index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;主要应用场景&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;AI 应用、RAG、推荐系统、图像/语音识别&lt;/td&gt;
+&lt;td style="text-align: left"&gt;业务系统 (ERP, CRM)、金融交易、数据报表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;数据规模&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;轻松应对千亿级向量&lt;/td&gt;
+&lt;td style="text-align: left"&gt;通常在千万到亿级行数据，更大规模需复杂分库分表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;性能特点&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;高维数据检索性能极高，计算密集型&lt;/td&gt;
+&lt;td style="text-align: left"&gt;结构化数据查询快，高维数据查询性能呈指数级下降&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;一致性&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;通常为最终一致性&lt;/td&gt;
+&lt;td style="text-align: left"&gt;强一致性 (ACID 事务)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;向量数据库和传统数据库并非相互替代的关系，而是&lt;strong&gt;互补关系&lt;/strong&gt;。在构建现代 AI 应用时，通常会将两者结合使用：利用传统数据库存储业务元数据和结构化信息，而向量数据库则专门负责处理和检索由 AI 模型产生的海量向量数据。&lt;/p&gt;
+&lt;h2 id="二工作原理"&gt;二、工作原理
+&lt;/h2&gt;&lt;p&gt;向量数据库的核心是高效处理高维向量的相似性搜索。向量是一组有序的数值，可以表示文本、图像、音频等复杂数据的特征或属性。在 RAG 系统中，向量一般通过嵌入模型将原始数据转换为高维向量表示，比如上一节的图文示例。向量数据库通常采用四层架构，通过存储层、索引层、查询层和服务层的协同工作来实现高效相似性搜索，其中存储层负责存储向量数据和元数据，优化存储效率并支持分布式存储；索引层维护索引算法（HNSW、LSH、PQ等），负责索引的创建与优化，并支持索引调整；查询层处理查询请求，支持混合查询并实现查询优化；服务层管理客户端连接，提供监控和日志能力，并实现安全管理。&lt;/p&gt;
+&lt;p&gt;主要技术手段包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基于树的方法&lt;/strong&gt;：如 Annoy 使用的随机投影树，通过树形结构实现对数复杂度的搜索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于哈希的方法&lt;/strong&gt;：如 LSH（局部敏感哈希），通过哈希函数将相似向量映射到同一“桶”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于图的方法&lt;/strong&gt;：如 HNSW（分层可导航小世界图），通过多层邻近图结构实现快速搜索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于量化的方法&lt;/strong&gt;：如 Faiss 的 IVF 和 PQ，通过聚类和量化压缩向量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="三主流向量数据库介绍"&gt;三、主流向量数据库介绍
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_3_1.webp"
+loading="lazy"
+alt="向量数据库分类图"
+&gt;&lt;/p&gt;
+&lt;p&gt;当前主流的向量数据库产品包括：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.pinecone.io/" target="_blank" rel="noopener"
+&gt; &lt;strong&gt;Pinecone&lt;/strong&gt; &lt;/a&gt;是一款完全托管的向量数据库服务，采用Serverless架构设计。它提供存储计算分离、自动扩展和负载均衡等企业级特性，并保证99.95%的SLA。Pinecone支持多种语言SDK，提供极高可用性和低延迟搜索（&amp;lt;100ms），特别适合企业级生产环境、高并发场景和大规模部署。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/milvus-io/milvus" target="_blank" rel="noopener"
+&gt; &lt;strong&gt;Milvus&lt;/strong&gt; &lt;/a&gt;是一款开源的分布式向量数据库，采用分布式架构设计，支持GPU加速和多种索引算法。它能够处理亿级向量检索，提供高性能GPU加速和完善的生态系统。Milvus特别适合大规模部署、高性能要求的场景，以及需要自定义开发的开源项目。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener"
+&gt; &lt;strong&gt;Qdrant&lt;/strong&gt; &lt;/a&gt;是一款高性能的开源向量数据库，采用Rust开发，支持二进制量化技术。它提供多种索引策略和向量混合搜索功能，能够实现极高的性能（RPS&amp;gt;4000）和低延迟搜索。Qdrant特别适合性能敏感应用、高并发场景以及中小规模部署。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/weaviate/weaviate" target="_blank" rel="noopener"
+&gt; &lt;strong&gt;Weaviate&lt;/strong&gt; &lt;/a&gt;是一款支持GraphQL的AI集成向量数据库，提供20+AI模块和多模态支持。它采用GraphQL API设计，支持RAG优化，特别适合AI开发、多模态处理和快速开发场景。Weaviate具有活跃的社区支持和易于集成的特点。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/chroma-core/chroma" target="_blank" rel="noopener"
+&gt; &lt;strong&gt;Chroma&lt;/strong&gt; &lt;/a&gt;是一款轻量级的开源向量数据库，采用本地优先设计，无依赖。它提供零配置安装、本地运行和低资源消耗等特性，特别适合原型开发、教育培训和小规模应用。Chroma的部署简单，适合快速原型开发。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;选择建议&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;新手入门/小型项目&lt;/strong&gt;：从 &lt;code&gt;ChromaDB&lt;/code&gt; 或 &lt;code&gt;FAISS&lt;/code&gt; 开始是最佳选择。它们与 LangChain/LlamaIndex 紧密集成，几行代码就能运行，且能满足基本的存储和检索需求。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;生产环境/大规模应用&lt;/strong&gt;：当数据量超过百万级，或需要高并发、实时更新、复杂元数据过滤时，应考虑更专业的解决方案，如 &lt;code&gt;Milvus&lt;/code&gt;、&lt;code&gt;Weaviate&lt;/code&gt; 或云服务 &lt;code&gt;Pinecone&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="四本地向量存储以-faiss-为例"&gt;四、本地向量存储：以 FAISS 为例
+&lt;/h2&gt;&lt;p&gt;FAISS (Facebook AI Similarity Search) 是一个由 Facebook AI Research 开发的高性能库，专门用于高效的相似性搜索和密集向量聚类。当与 LangChain 结合使用时，它可以作为一个强大的本地向量存储方案，非常适合快速原型设计和中小型应用。&lt;/p&gt;
+&lt;p&gt;与 ChromaDB 等数据库不同，FAISS 本质上是一个算法库，它将索引直接保存为本地文件（一个 &lt;code&gt;.faiss&lt;/code&gt; 索引文件和一个 &lt;code&gt;.pkl&lt;/code&gt; 映射文件），而非运行一个数据库服务。这种方式轻量且高效。&lt;/p&gt;
+&lt;h3 id="41-环境准备"&gt;4.1 环境准备
+&lt;/h3&gt;&lt;p&gt;在开始之前，请确保已安装所有必需的库：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当前requirements.txt安装的 &lt;code&gt;faiss-cpu&lt;/code&gt; 是 CPU 版本。如果你的机器有 GPU，可以安装 &lt;code&gt;faiss-gpu&lt;/code&gt; 以获得更好的性能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="42-基础示例faiss"&gt;4.2 基础示例(FAISS)
+&lt;/h3&gt;&lt;p&gt;下面的代码演示了使用 LangChain 和 FAISS 完成一个完整的“创建 -&amp;gt; 保存 -&amp;gt; 加载 -&amp;gt; 查询”流程。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain_community.vectorstores&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FAISS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain_community.embeddings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HuggingFaceEmbeddings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;langchain_core.documents&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Document&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 示例文本和嵌入模型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;texts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;张三是法外狂徒&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;FAISS是一个用于高效相似性搜索和密集向量聚类的库。&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;LangChain是一个用于开发由语言模型驱动的应用程序的框架。&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;docs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Document&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;texts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HuggingFaceEmbeddings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;BAAI/bge-small-zh-v1.5&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 创建向量存储并保存到本地&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vectorstore&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FAISS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_documents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;local_faiss_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;./faiss_index_store&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vectorstore&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save_local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_faiss_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;FAISS index has been saved to &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;local_faiss_path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 加载索引并执行查询&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 加载时需指定相同的嵌入模型，并允许反序列化&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;loaded_vectorstore&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FAISS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;local_faiss_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;allow_dangerous_deserialization&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 相似性搜索&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;FAISS是做什么的？&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;loaded_vectorstore&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;similarity_search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;查询: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;相似度最高的文档:&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;- &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;page_content&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;运行结果与解读&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;当你运行上述脚本时，会看到类似以下的输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;FAISS index has been saved to ./faiss_index_store
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;查询: &lt;span class="s1"&gt;&amp;#39;FAISS是做什么的？&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;相似度最高的文档:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- FAISS是一个用于高效相似性搜索和密集向量聚类的库。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;索引创建实现细节&lt;/strong&gt;：
+通过深入 LangChain 源码，可以发现索引创建是一个分层、解耦的过程，主要涉及以下几个方法的嵌套调用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;from_documents&lt;/code&gt; (封装层)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是我们直接调用的方法。它的职责很简单：从输入的 &lt;code&gt;Document&lt;/code&gt; 对象列表中提取出纯文本内容 (&lt;code&gt;page_content&lt;/code&gt;) 和元数据 (&lt;code&gt;metadata&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;然后，它将这些提取出的信息传递给核心的 &lt;code&gt;from_texts&lt;/code&gt; 方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;from_texts&lt;/code&gt; (向量化入口)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这个方法是面向用户的入口。它接收文本列表，并执行关键的第一步：调用 &lt;code&gt;embedding.embed_documents(texts)&lt;/code&gt;，将所有文本批量转换为向量。&lt;/li&gt;
+&lt;li&gt;完成向量化后，它并不直接处理索引构建，而是将生成的向量和其他所有信息（文本、元数据等）传递给一个内部的辅助方法 &lt;code&gt;__from&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;__from&lt;/code&gt; (构建索引框架)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个内部方法，负责搭建 FAISS 向量存储的“空框架”。&lt;/li&gt;
+&lt;li&gt;它会根据指定的距离策略（默认为 L2 欧氏距离）初始化一个空的 FAISS 索引结构（如 &lt;code&gt;faiss.IndexFlatL2&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;同时，它也准备好了用于存储文档原文的 &lt;code&gt;docstore&lt;/code&gt; 和用于连接 FAISS 索引与文档的 &lt;code&gt;index_to_docstore_id&lt;/code&gt; 映射。&lt;/li&gt;
+&lt;li&gt;最后，它调用另一个内部方法 &lt;code&gt;__add&lt;/code&gt; 来完成数据的填充。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;__add&lt;/code&gt; (填充数据)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;真正执行数据添加操作的核心。它接收到向量、文本和元数据后，执行以下关键操作：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;添加向量&lt;/strong&gt;: 将向量列表转换为 FAISS 需要的 &lt;code&gt;numpy&lt;/code&gt; 数组，并调用 &lt;code&gt;self.index.add(vector)&lt;/code&gt; 将其批量添加到 FAISS 索引中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存储文档&lt;/strong&gt;: 将文本和元数据打包成 &lt;code&gt;Document&lt;/code&gt; 对象，存入 &lt;code&gt;docstore&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;建立映射&lt;/strong&gt;: 更新 &lt;code&gt;index_to_docstore_id&lt;/code&gt; 字典，建立起 FAISS 内部的整数 ID（如 0, 1, 2&amp;hellip;）到我们文档唯一 ID 的映射关系。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="练习"&gt;练习
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;LlamaIndex 默认会将数据存储为透明可读的JSON格式，运行&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/03_llamaindex_vector.py" target="_blank" rel="noopener"
+&gt;03_llamaindex_vector.py&lt;/a&gt;文件，查看保存的json文件内容。&lt;/li&gt;
+&lt;li&gt;新建一个代码文件实现对 LlamaIndex 存储数据的加载和相似性搜索。&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>

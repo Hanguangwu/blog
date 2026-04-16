@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Embedding on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/embedding/</link><description>Recent content in Embedding on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 02 Apr 2026 20:40:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/embedding/index.xml" rel="self" type="application/rss+xml"/><item><title>RAG 中的向量嵌入和多模态嵌入</title><link>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</link><pubDate>Thu, 02 Apr 2026 20:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</guid><description>&lt;h1 id="rag-中的向量嵌入和多模态嵌入"&gt;RAG 中的向量嵌入和多模态嵌入
+&lt;/h1&gt;&lt;h2 id="第一节-向量嵌入"&gt;第一节 向量嵌入
+&lt;/h2&gt;&lt;h3 id="一向量嵌入基础"&gt;一、向量嵌入基础
+&lt;/h3&gt;&lt;h4 id="11-基础概念"&gt;1.1 基础概念
+&lt;/h4&gt;&lt;h5 id="111-什么是-embedding"&gt;1.1.1 什么是 Embedding
+&lt;/h5&gt;&lt;p&gt;向量嵌入（Embedding）是一种将真实世界中复杂、高维的数据对象（如文本、图像、音频、视频等）转换为数学上易于处理的、低维、稠密的连续数值向量的技术。&lt;/p&gt;
+&lt;p&gt;想象一下，我们将每一个词、每一段话、每一张图片都放在一个巨大的多维空间里，并给它一个独一无二的坐标。这个坐标就是一个向量，它“嵌入”了原始数据的所有关键信息。这个过程，就是 Embedding。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数据对象&lt;/strong&gt;：任何信息，如文本“你好世界”，或一张猫的图片。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedding 模型&lt;/strong&gt;：一个深度学习模型，负责接收数据对象并进行转换。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出向量&lt;/strong&gt;：一个固定长度的一维数组，例如 &lt;code&gt;[0.16, 0.29, -0.88, ...]&lt;/code&gt;。这个向量的维度（长度）通常在几百到几千之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_1_1.webp"
+loading="lazy"
+alt="Embedding 过程示意图"
+&gt;&lt;/p&gt;
+&lt;h5 id="112-向量空间的语义表示"&gt;1.1.2 向量空间的语义表示
+&lt;/h5&gt;&lt;p&gt;Embedding 的真正意义在于，它产生的向量不是随机数值的堆砌，而是对数据&lt;strong&gt;语义&lt;/strong&gt;的数学编码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心原则&lt;/strong&gt;：在 Embedding 构建的向量空间中，语义上相似的对象，其对应的向量在空间中的距离会更近；而语义上不相关的对象，它们的向量距离会更远。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键度量&lt;/strong&gt;：我们通常使用以下数学方法来衡量向量间的“距离”或“相似度”：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;余弦相似度 (Cosine Similarity)&lt;/strong&gt; ：计算两个向量夹角的余弦值。值越接近 1，代表方向越一致，语义越相似。这是最常用的度量方式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;点积 (Dot Product)&lt;/strong&gt; ：计算两个向量的乘积和。在向量归一化后，点积等价于余弦相似度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;欧氏距离 (Euclidean Distance)&lt;/strong&gt; ：计算两个向量在空间中的直线距离。距离越小，语义越相似。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="12-embedding-在-rag-中的作用"&gt;1.2 Embedding 在 RAG 中的作用
+&lt;/h4&gt;&lt;p&gt;在RAG流程中，Embedding 扮演着无可替代的重要角色。&lt;/p&gt;
+&lt;h6 id="121-语义检索的基础"&gt;1.2.1 语义检索的基础
+&lt;/h6&gt;&lt;p&gt;RAG 的“检索”环节通常以基于 Embedding 的语义搜索为核心。通用流程如下：
+（1）&lt;strong&gt;离线索引构建&lt;/strong&gt;：将知识库内文档切分后，使用 Embedding 模型将每个文档块（Chunk）转换为向量，存入专门的向量数据库中。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;在线查询检索&lt;/strong&gt;：当用户提出问题时，使用&lt;strong&gt;同一个&lt;/strong&gt; Embedding 模型将用户的问题也转换为一个向量。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;相似度计算&lt;/strong&gt;：在向量数据库中，计算“问题向量”与所有“文档块向量”的相似度。&lt;/p&gt;
+&lt;p&gt;（4）&lt;strong&gt;召回上下文&lt;/strong&gt;：选取相似度最高的 Top-K 个文档块，作为补充的上下文信息，与原始问题一同送给大语言模型（LLM）生成最终答案。&lt;/p&gt;
+&lt;h5 id="122-决定检索质量的关键"&gt;1.2.2 决定检索质量的关键
+&lt;/h5&gt;&lt;p&gt;Embedding 的质量直接决定了 RAG 检索召回内容的准确性与相关性。一个优秀的 Embedding 模型能够精准捕捉问题和文档之间的深层语义联系，即使用户的提问和原文的表述不完全一致。反之，一个劣质的 Embedding 模型可能会因为无法理解语义而召回不相关或错误的信息，从而“污染”提供给 LLM 的上下文，导致最终生成的答案质量低下。&lt;/p&gt;
+&lt;h3 id="二embedding-技术发展"&gt;二、Embedding 技术发展
+&lt;/h3&gt;&lt;p&gt;Embedding 技术的发展与自然语言处理（NLP）的进步紧密相连，尤其是在 RAG 框架出现后，对嵌入技术提出了新的要求。其演进路径大致可分为以下几个关键阶段。&lt;/p&gt;
+&lt;h4 id="21-静态词嵌入上下文无关的表示"&gt;2.1 静态词嵌入：上下文无关的表示
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;代表模型&lt;/strong&gt;：Word2Vec (2013), GloVe (2014)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;主要原理&lt;/strong&gt;：为词汇表中的每个单词生成一个固定的、与上下文无关的向量。例如，&lt;code&gt;Word2Vec&lt;/code&gt; 通过 Skip-gram 和 CBOW 架构，利用局部上下文窗口学习词向量，并验证了向量运算的语义能力（如 &lt;code&gt;国王 - 男人 + 女人 ≈ 王后&lt;/code&gt;）。&lt;code&gt;GloVe&lt;/code&gt; 则融合了全局词-词共现矩阵的统计信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;局限性&lt;/strong&gt;：无法处理一词多义问题。在“苹果公司发布了新手机”和“我吃了一个苹果”中，“苹果”的词向量是完全相同的，这限制了其在复杂语境下的语义表达能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="22-动态上下文嵌入"&gt;2.2 动态上下文嵌入
+&lt;/h4&gt;&lt;p&gt;2017年，&lt;code&gt;Transformer&lt;/code&gt; 架构的诞生带来了自注意力机制（Self-Attention），它允许模型在生成一个词的向量时，动态地考虑句子中所有其他词的影响。基于此，2018年 &lt;code&gt;BERT&lt;/code&gt; 模型利用 &lt;code&gt;Transformer&lt;/code&gt; 的编码器，通过掩码语言模型（MLM）等自监督任务进行预训练，生成了深度上下文相关的嵌入。同一个词在不同语境中会生成不同的向量，这有效解决了静态嵌入的一词多义难题。&lt;/p&gt;
+&lt;h4 id="23-rag-对嵌入技术的新要求"&gt;2.3 RAG 对嵌入技术的新要求
+&lt;/h4&gt;&lt;p&gt;在开篇我们就提到了 RAG 框架的提出&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，是为了解决大型语言模型 &lt;strong&gt;知识固化&lt;/strong&gt;（内部知识难以更新）和 &lt;strong&gt;幻觉&lt;/strong&gt;（生成的内容可能不符合事实且无法溯源）的问题。它通过“检索-生成”范式，动态地为 LLM 注入外部知识。这一过程的核心是 &lt;strong&gt;语义检索&lt;/strong&gt;，很大程度上依赖于高质量的向量嵌入。&lt;/p&gt;
+&lt;p&gt;后续 RAG 的兴起对嵌入技术提出了更高、更具体的要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;领域自适应能力&lt;/strong&gt;：通用的嵌入模型在专业领域（如法律、医疗）往往表现不佳，这就要求嵌入模型具备领域自适应的能力，能够通过微调或使用指令（如 INSTRUCTOR 模型）来适应特定领域的术语和语义。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多粒度与多模态支持&lt;/strong&gt;：RAG 系统需要处理的不仅仅是短句，还可能包括长文档、代码，甚至是图像和表格。这就要求嵌入模型能够处理不同长度和类型的输入数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;检索效率与混合检索&lt;/strong&gt;：嵌入向量的维度和模型大小直接影响存储成本和检索速度。同时，为了结合语义相似性（密集检索）和关键词匹配（稀疏检索）的优点，支持混合检索的嵌入模型（如 BGE-M3）应运而生，在某些任务中成为提升召回率的关键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="三嵌入模型训练原理"&gt;三、嵌入模型训练原理
+&lt;/h3&gt;&lt;p&gt;了解了嵌入模型的发展，我们来简单探究一下当前主流的嵌入模型（通常是基于 &lt;code&gt;BERT&lt;/code&gt; 的变体）是如何通过训练获得强大的语义理解能力的。&lt;/p&gt;
+&lt;p&gt;现代嵌入模型的核心通常是 Transformer 的编码器（Encoder）部分，&lt;code&gt;BERT&lt;/code&gt; 就是其中的典型代表。它通过堆叠多个 &lt;code&gt;Transformer Encoder&lt;/code&gt; 层来构建一个深度的双向表示学习网络。&lt;/p&gt;
+&lt;h4 id="31-主要训练任务"&gt;3.1 主要训练任务
+&lt;/h4&gt;&lt;p&gt;BERT 的成功很大程度上归功于 &lt;strong&gt;自监督学习&lt;/strong&gt; 策略，它允许模型从海量的、无标注的文本数据中学习知识。&lt;/p&gt;
+&lt;h5 id="任务一掩码语言模型-masked-language-model-mlm"&gt;任务一：掩码语言模型 (Masked Language Model, MLM)
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;过程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;随机地将输入句子中 15% 的词元（Token）替换为一个特殊的 &lt;code&gt;[MASK]&lt;/code&gt; 标记。&lt;/li&gt;
+&lt;li&gt;让模型去预测这些被遮盖住的原始词元是什么。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：通过这个任务，模型被迫学习每个词元与其上下文之间的关系，从而掌握深层次的语境语义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="任务二下一句预测-next-sentence-prediction-nsp"&gt;任务二：下一句预测 (Next Sentence Prediction, NSP)
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;过程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;构造训练样本，每个样本包含两个句子 A 和 B。&lt;/li&gt;
+&lt;li&gt;其中 50% 的样本，B 是 A 的真实下一句（IsNext）；另外 50% 的样本，B 是从语料库中随机抽取的句子（NotNext）。&lt;/li&gt;
+&lt;li&gt;让模型判断 B 是否是 A 的下一句。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：这个任务让模型学习句子与句子之间的逻辑关系、连贯性和主题相关性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重要说明&lt;/strong&gt;：后续的研究（如 RoBERTa）发现&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;，NSP 任务可能过于简单，甚至会损害模型性能。因此，许多现代的预训练模型（如 RoBERTa、SBERT）在预训练阶段移除了 NSP。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;更多细节可查看 &lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/docs/chapter5/13_Bert.md" target="_blank" rel="noopener"
+&gt;BERT 架构及应用&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="32-效果增强策略"&gt;3.2 效果增强策略
+&lt;/h4&gt;&lt;p&gt;虽然 MLM 和 NSP 赋予了模型强大的基础语义理解能力，但为了在检索任务中表现更佳，现代嵌入模型通常会引入更具针对性的训练策略。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;度量学习 (Metric Learning)&lt;/strong&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;思想&lt;/strong&gt;：直接以“相似度”作为优化目标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：收集大量相关的文本对（例如，（问题，答案）、（新闻标题，正文））。训练的目标是优化向量空间中的&lt;strong&gt;相对距离&lt;/strong&gt;：让“正例对”的向量表示在空间中被“拉近”，而“负例对”的向量表示被“推远”。关键在于优化排序关系，而非追求绝对的相似度值（如 1 或 0），因为过度追求极端值可能导致模型过拟合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;对比学习 (Contrastive Learning)&lt;/strong&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;思想&lt;/strong&gt;：在向量空间中，将相似的样本“拉近”，将不相似的样本“推远”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：构建一个三元组（Anchor, Positive, Negative）。其中，Anchor 和 Positive 是相关的（例如，同一个问题的两种不同问法），Anchor 和 Negative 是不相关的。训练的目标是让 &lt;code&gt;distance(Anchor, Positive)&lt;/code&gt; 尽可能小，同时让 &lt;code&gt;distance(Anchor, Negative)&lt;/code&gt; 尽可能大。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="四嵌入模型选型指南"&gt;四、嵌入模型选型指南
+&lt;/h3&gt;&lt;p&gt;理论已经了解，那么该如何选择最适合你项目的嵌入模型？&lt;/p&gt;
+&lt;h4 id="41-从-mteb-排行榜开始"&gt;4.1 从 MTEB 排行榜开始
+&lt;/h4&gt;&lt;p&gt;&lt;a class="link" href="https://huggingface.co/spaces/mteb/leaderboard" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;MTEB (Massive Text Embedding Benchmark)&lt;/strong&gt;&lt;/a&gt; 是一个由 Hugging Face 维护的、全面的文本嵌入模型评测基准。它涵盖了分类、聚类、检索、排序等多种任务，并提供了公开的排行榜，为评估和选择嵌入模型提供了重要的参考依据。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_1_2.webp"
+loading="lazy"
+alt="MTEB 排行榜"
+&gt;&lt;/p&gt;
+&lt;p&gt;下面这张图是网站中的模型评估图像，直观地展示了在选择开源嵌入模型时需要权衡的四个核心维度：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;横轴 - 模型参数量 (Number of Parameters)&lt;/strong&gt; ：代表了模型的大小。通常，参数量越大的模型（越靠右），其潜在能力越强，但对计算资源的要求也越高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;纵轴 - 平均任务得分 (Mean Task Score)&lt;/strong&gt; ：代表了模型的综合性能。这个分数是模型在分类、聚类、检索等一系列标准 NLP 任务上的平均表现。分数越高（越靠上），说明模型的通用语义理解能力越强。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;气泡大小 - 嵌入维度 (Embedding Size)&lt;/strong&gt; ：代表了模型输出向量的维度。气泡越大，维度越高，理论上能编码更丰富的语义细节，但同时也会占用更多的存储和计算资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;气泡颜色 - 最大处理长度 (Max Tokens)&lt;/strong&gt; ：代表了模型能处理的文本长度上限。颜色越深，表示模型能处理的 Token 数量越多，对长文本的适应性越好。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_1_3.webp"
+loading="lazy"
+alt="MTEB 排行榜多维度评估示意图"
+&gt;&lt;/p&gt;
+&lt;p&gt;MTEB 榜单可以帮助我们快速筛选掉大量不合适的模型。但需要注意，榜单上的得分是在通用数据集上评测的，可能无法完全反映模型在你特定业务场景下的表现。&lt;/p&gt;
+&lt;h4 id="42-关键评估维度"&gt;4.2 关键评估维度
+&lt;/h4&gt;&lt;p&gt;在查看榜单时，除了分数，还需要关注以下几个关键维度：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;任务 (Task)&lt;/strong&gt; ：对于 RAG 应用，需要重点关注模型在 &lt;code&gt;Retrieval&lt;/code&gt; (检索) 任务下的排名。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;语言 (Language)&lt;/strong&gt; ：模型是否支持你的业务数据所使用的语言？对于中文 RAG，应选择明确支持中文或多语言的模型。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型大小 (Size)&lt;/strong&gt; ：模型越大，通常性能越好，但对硬件（显存）的要求也越高，推理速度也越慢。需要根据你的部署环境和性能要求来权衡。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;维度 (Dimensions)&lt;/strong&gt; ：向量维度越高，能编码的信息越丰富，但也会占用更多的存储空间和计算资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最大 Token 数 (Max Tokens)&lt;/strong&gt; ：这决定了模型能处理的文本长度上限。这个参数是你设计文本分块（Chunking）策略时必须考虑的重要依据，块大小不应超过此限制。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;得分与机构 (Score &amp;amp; Publisher)&lt;/strong&gt; ：结合模型的得分排名和其发布机构的声誉进行初步筛选。知名机构发布的模型通常质量更有保障。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;成本 (Cost)&lt;/strong&gt; ：如果是使用 API 服务的模型，需要考虑其调用成本；如果是自部署开源模型，则需要评估其对硬件资源的消耗（如显存、内存）以及带来的运维成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="43-迭代测试与优化"&gt;4.3 迭代测试与优化
+&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;不要只依赖公开榜单做最终决定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;（1）&lt;strong&gt;确定基线 (Baseline)&lt;/strong&gt; ：根据上述维度，选择几个符合要求的模型作为你的初始基准模型。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;构建私有评测集&lt;/strong&gt; ：根据真实业务数据，手动创建一批高质量的评测样本，每个样本包含一个典型用户问题和它对应的标准答案（或最相关的文档块）。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;迭代优化&lt;/strong&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用基线模型在你的私有评测集上运行，评估其召回的准确率和相关性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果效果不理想，可以尝试更换模型，或者调整 RAG 流程的其他环节（如文本分块策略）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过几轮的对比测试和迭代优化，最终选出在你的特定场景下表现最佳的那个“心仪”模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="第二节-多模态嵌入"&gt;第二节 多模态嵌入
+&lt;/h2&gt;&lt;p&gt;现代 AI 的一项重要突破，是将简单的词向量发展成了能统一理解图文、音视频的复杂系统。这一发展建立在&lt;strong&gt;注意力机制、Transformer 架构和对比学习&lt;/strong&gt;等关键技术之上，它们解决了在共享向量空间中对齐不同数据模态的核心挑战。其发展环环相扣：Word2Vec 为 BERT 的上下文理解铺路，而 BERT 又为 CLIP 等模型的跨模态能力奠定了基础。&lt;/p&gt;
+&lt;h3 id="一为什么需要多模态嵌入"&gt;一、为什么需要多模态嵌入？
+&lt;/h3&gt;&lt;p&gt;前面的章节介绍了如何为文本创建向量嵌入。然而，仅有文本的世界是不完整的。现实世界的信息是多模态的，包含图像、音频、视频等。传统的文本嵌入无法理解“那张有红色汽车的图片”这样的查询，因为文本向量和图像向量处于相互隔离的空间，存在一堵“模态墙”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;多模态嵌入 (Multimodal Embedding)&lt;/strong&gt; 的目标正是为了打破这堵墙。其目的是将不同类型的数据（如图像和文本）映射到&lt;strong&gt;同一个共享的向量空间&lt;/strong&gt;。在这个统一的空间里，一段描述“一只奔跑的狗”的文字，其向量会非常接近一张真实小狗奔跑的图片向量。&lt;/p&gt;
+&lt;p&gt;实现这一目标的关键，在于解决 &lt;strong&gt;跨模态对齐 (Cross-modal Alignment)&lt;/strong&gt; 的挑战。以对比学习、视觉 Transformer (ViT) 等技术为代表的突破，让模型能够学习到不同模态数据之间的语义关联，最终催生了像 CLIP 这样的模型。&lt;/p&gt;
+&lt;h3 id="二clip-模型浅析"&gt;二、CLIP 模型浅析
+&lt;/h3&gt;&lt;p&gt;在图文多模态领域，OpenAI 的 &lt;strong&gt;CLIP (Contrastive Language-Image Pre-training)&lt;/strong&gt; 是一个很有影响力的模型，它为多模态嵌入定义了一个有效的范式。&lt;/p&gt;
+&lt;p&gt;CLIP 的架构清晰简洁。它采用&lt;strong&gt;双编码器架构 (Dual-Encoder Architecture)&lt;/strong&gt;，包含一个图像编码器和一个文本编码器，分别将图像和文本映射到同一个共享的向量空间中。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_2_1.webp"
+loading="lazy"
+alt="CLIP Architecture"
+&gt;
+&lt;em&gt;图：CLIP 的工作流程。(1) 通过对比学习训练双编码器，对齐图文向量空间。(2)和(3) 展示了如何利用该空间，通过图文相似度匹配实现零样本预测。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;为了让这两个编码器学会“对齐”不同模态的语义，CLIP 在训练时采用了&lt;strong&gt;对比学习 (Contrastive Learning)&lt;/strong&gt; 策略。在处理一批图文数据时，模型的目标是：最大化正确图文对的向量相似度，同时最小化所有错误配对的相似度。通过这种“拉近正例，推远负例”的方式，模型从海量数据中学会了将语义相关的图像和文本在向量空间中拉近。&lt;/p&gt;
+&lt;p&gt;这种大规模的对比学习赋予了 CLIP 有效的&lt;strong&gt;零样本（Zero-shot）识别能力&lt;/strong&gt;。它能将一个传统的分类任务，转化为一个“图文检索”问题——例如，要判断一张图片是不是猫，只需计算图片向量与“a photo of a cat”文本向量的相似度即可。这使得 CLIP 无需针对特定任务进行微调，就能实现对视觉概念的泛化理解。&lt;/p&gt;
+&lt;h3 id="三常用多模态嵌入模型以bge-visualized-m3为例"&gt;三、常用多模态嵌入模型(以bge-visualized-m3为例)
+&lt;/h3&gt;&lt;p&gt;虽然 CLIP 为图文预训练提供了重要基础，但多模态领域的研究迅速发展，涌现了许多针对不同目标和场景进行优化的模型。例如，BLIP 系列专注于提升细粒度的图文理解与生成能力，而 ALIGN 则证明了利用海量噪声数据进行大规模训练的有效性。&lt;/p&gt;
+&lt;p&gt;在众多优秀的模型中，由北京智源人工智能研究院（BAAI）开发的 &lt;strong&gt;bge-visualized-m3（Visualized-BGE 的 M3 版本）&lt;/strong&gt; 是一个很有代表性的现代多模态嵌入模型。它是在 &lt;strong&gt;BGE-M3&lt;/strong&gt;（文本嵌入底座）的基础上引入图像能力而来，体现了当前技术向“更统一、更全面”发展的趋势。&lt;/p&gt;
+&lt;p&gt;bge-visualized-m3 的核心特性也可以概括为“M3”（主要继承自其文本底座 BGE-M3）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;多语言性 (Multi-Linguality)&lt;/strong&gt;：支持超过 100 种语言的文本表示，可用于跨语言的图文检索（文本侧）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多功能性 (Multi-Functionality)&lt;/strong&gt;：在文本检索场景下，可按需求使用密集检索（Dense Retrieval）、多向量检索（Multi-Vector Retrieval）和稀疏检索（Sparse Retrieval）等不同范式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多粒度性 (Multi-Granularity)&lt;/strong&gt;：文本侧可处理从短句到长达 8192 个 token 的长文档，覆盖更广泛的应用需求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在技术架构上，bge-visualized-m3 会先用视觉编码器提取图像的 &lt;strong&gt;patch token&lt;/strong&gt;，再将其映射到与文本同维度的“图像 token”，与文本 token 一起送入 BGE 的 Transformer 编码器进行联合建模，最终得到可用于图文检索的统一向量表示。&lt;/p&gt;
+&lt;h3 id="四代码示例"&gt;四、代码示例
+&lt;/h3&gt;&lt;h4 id="41-环境准备"&gt;4.1 环境准备
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;步骤1：安装 visual_bge 模块&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 进入 visual_bge 目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; code/C3/visual_bge
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 安装 visual_bge 模块及其依赖&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -e .
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 返回上级目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ..
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;步骤2：下载模型权重&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 运行模型下载脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python download_model.py
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;模型下载脚本会自动检查 &lt;code&gt;../../models/bge/&lt;/code&gt; 目录下是否存在模型文件，如果不存在则从 Hugging Face 镜像站下载。&lt;/p&gt;
+&lt;h4 id="42-基础示例"&gt;4.2 基础示例
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;HF_ENDPOINT&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://hf-mirror.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;visual_bge.visual_bge.modeling&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Visualized_BGE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Visualized_BGE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name_bge&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;BAAI/bge-base-en-v1.5&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model_weight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../models/bge/Visualized_base_en_v1.5.pth&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;no_grad&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;text_emb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;datawhale开源组织的logo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;img_emb_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../data/C3/imgs/datawhale01.png&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;multi_emb_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../data/C3/imgs/datawhale01.png&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;datawhale开源组织的logo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;img_emb_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../data/C3/imgs/datawhale02.png&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;multi_emb_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../data/C3/imgs/datawhale02.png&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;datawhale开源组织的logo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 计算相似度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sim_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img_emb_1&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="n"&gt;img_emb_2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sim_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;img_emb_1&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="n"&gt;multi_emb_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sim_3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;text_emb&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="n"&gt;multi_emb_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sim_4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;multi_emb_1&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="n"&gt;multi_emb_2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;=== 相似度计算结果 ===&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;纯图像 vs 纯图像: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sim_1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;图文结合1 vs 纯图像: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sim_2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;图文结合1 vs 纯文本: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sim_3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;图文结合1 vs 图文结合2: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sim_4&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;代码解读：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型架构&lt;/strong&gt;: &lt;code&gt;Visualized_BGE&lt;/code&gt; 是通过将图像token嵌入集成到BGE文本嵌入框架中构建的通用多模态嵌入模型，具备处理超越纯文本的多模态数据的灵活性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型参数&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;model_name_bge&lt;/code&gt;: 指定底层BGE文本嵌入模型，继承其强大的文本表示能力。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;model_weight&lt;/code&gt;: Visual BGE的预训练权重文件，包含视觉编码器参数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多模态编码能力&lt;/strong&gt;: Visual BGE提供了编码多模态数据的多样性，支持纯文本、纯图像或图文组合的格式：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;纯文本编码&lt;/strong&gt;: 保持原始BGE模型的强大文本嵌入能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;纯图像编码&lt;/strong&gt;: 使用基于EVA-CLIP的视觉编码器处理图像。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;图文联合编码&lt;/strong&gt;: 将图像和文本特征融合到统一的向量空间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用场景&lt;/strong&gt;: 主要用于混合模态检索任务，包括多模态知识检索、组合图像检索、多模态查询的知识检索等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相似度计算&lt;/strong&gt;: 使用矩阵乘法计算余弦相似度，所有嵌入向量都被标准化到单位长度，确保相似度值在合理范围内。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;运行结果：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="nv"&gt;相似度计算结果&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;纯图像 vs 纯图像: tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.8318&lt;span class="o"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;图文结合1 vs 纯图像: tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.8291&lt;span class="o"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;图文结合1 vs 纯文本: tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.7627&lt;span class="o"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;图文结合1 vs 图文结合2: tensor&lt;span class="o"&gt;([[&lt;/span&gt;0.9058&lt;span class="o"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/01_bge_visualized.py" target="_blank" rel="noopener"
+&gt;完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="练习"&gt;练习
+&lt;/h3&gt;&lt;p&gt;尝试把代码中的部分文本替换一下，比如将&lt;code&gt;datawhale开源组织的logo&lt;/code&gt;替换为&lt;code&gt;blue whale&lt;/code&gt;看看结果有什么不同。&lt;/p&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener"
+&gt;Lewis et al. (2020). &lt;em&gt;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.comet.com/site/blog/roberta-a-modified-bert-model-for-nlp/" target="_blank" rel="noopener"
+&gt;&lt;em&gt;RoBERTa: A Modified BERT Model for NLP&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>

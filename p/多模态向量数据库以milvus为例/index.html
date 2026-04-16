@@ -1,0 +1,769 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文主要介绍多模态向量数据库。"><title>多模态向量数据库——以Milvus为例</title><link rel=canonical href=https://hanguangwu.github.io/blog/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/><link rel=stylesheet href=/blog/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="多模态向量数据库——以Milvus为例"><meta property='og:description' content="本文主要介绍多模态向量数据库。"><meta property='og:url' content='https://hanguangwu.github.io/blog/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='RAG'><meta property='article:tag' content='Milvus'><meta property='article:published_time' content='2026-04-02T22:40:25-08:00'><meta property='article:modified_time' content='2026-04-02T22:40:25-08:00'><meta name=twitter:title content="多模态向量数据库——以Milvus为例"><meta name=twitter:description content="本文主要介绍多模态向量数据库。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog/><img src=/blog/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/blog/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/blog/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/blog/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/blog/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hanguangwu.github.io/blog/en/>English</option><option value=https://hanguangwu.github.io/blog/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一简介>一、简介</a></li><li><a href=#二-部署安装>二、 部署安装</a><ol><li><a href=#1-环境准备>1. 环境准备</a></li><li><a href=#2-下载并启动-milvus>2. 下载并启动 Milvus</a></li><li><a href=#3-验证安装>3. 验证安装</a></li><li><a href=#4-常用管理命令>4. 常用管理命令</a></li></ol></li><li><a href=#三核心组件>三、核心组件</a><ol><li><a href=#31-collection-集合>3.1 Collection (集合)</a><ol><li><a href=#311-schema>3.1.1 Schema</a></li><li><a href=#312-partition-分区>3.1.2 Partition (分区)</a></li><li><a href=#313-alias-别名>3.1.3 Alias (别名)</a></li></ol></li><li><a href=#32-索引-index>3.2 索引 (Index)</a><ol><li><a href=#321-主要向量索引类型>3.2.1 主要向量索引类型</a></li><li><a href=#322-如何选择索引>3.2.2 如何选择索引？</a></li></ol></li><li><a href=#33-检索>3.3 检索</a><ol><li><a href=#331-基础向量检索-ann-search>3.3.1 基础向量检索 (ANN Search)</a></li><li><a href=#332-增强检索>3.3.2 增强检索</a></li></ol></li></ol></li><li><a href=#四milvus多模态实践>四、milvus多模态实践</a><ol><li><a href=#41-初始化与工具定义>4.1 初始化与工具定义</a></li><li><a href=#42-创建-collection>4.2 创建 Collection</a></li><li><a href=#43-准备并插入数据>4.3 准备并插入数据</a></li><li><a href=#44-创建索引>4.4 创建索引</a></li><li><a href=#45-执行多模态检索>4.5 执行多模态检索</a></li><li><a href=#46-可视化与清理>4.6 可视化与清理</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/blog/categories/ai/>AI
+</a><a href=/blog/categories/datawhale/>DataWhale
+</a><a href=/blog/categories/nlp/>NLP</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/>多模态向量数据库——以Milvus为例</a></h2><h3 class=article-subtitle>本文主要介绍多模态向量数据库。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Apr 02, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 18 分钟</time></div></footer></div></header><section class=article-content><h1 id=milvus介绍及多模态检索实践>Milvus介绍及多模态检索实践</h1><h2 id=一简介>一、简介</h2><p>Milvus 是一个开源的、专为大规模向量相似性搜索和分析而设计的向量数据库。它诞生于 Zilliz 公司，并已成为 LF AI & Data 基金会的顶级项目，在AI领域拥有广泛的应用。</p><p>与 FAISS、ChromaDB 等轻量级本地存储方案不同，Milvus 从设计之初就瞄准了<strong>生产环境</strong>。其采用云原生架构，具备高可用、高性能、易扩展的特性，能够处理十亿、百亿甚至更大规模的向量数据。</p><p><strong>官网地址</strong>: <a class=link href=https://milvus.io/ target=_blank rel=noopener>https://milvus.io/</a></p><p><strong>GitHub</strong>: <a class=link href=https://github.com/milvus-io/milvus target=_blank rel=noopener>https://github.com/milvus-io/milvus</a></p><h2 id=二-部署安装>二、 部署安装</h2><p>Milvus 提供了多种部署方式，这里以 <strong>Milvus Standalone (单机版)</strong> 为例。</p><h3 id=1-环境准备>1. 环境准备</h3><ul><li><strong>安装 Docker 与 Docker Compose</strong>: 确保系统中已安装并正在运行 Docker 和 Docker Compose。如果你对 Docker 不熟悉，可以参考这篇详细的教程：<a class=link href=https://mp.weixin.qq.com/s/u2es87JU5FNlGo3qDLY_ng target=_blank rel=noopener>Docker 万字教程：从入门到掌握</a>。</li></ul><blockquote><p>codespace 环境自带Docker Compose无需安装</p></blockquote><h3 id=2-下载并启动-milvus>2. 下载并启动 Milvus</h3><p>在你选定的工作目录下，打开终端（Terminal）或命令行工具（PowerShell），执行以下步骤：</p><p><strong>第一步：下载配置文件</strong></p><p>使用以下命令下载官方的 <code>docker-compose.yml</code> 文件。这个文件定义了 Milvus Standalone 及其运行所需的两个核心依赖服务：<code>etcd</code> 用于存储元数据，<code>MinIO</code> 用于对象存储（更多架构细节请参考<a class=link href=https://milvus.io/docs/architecture_overview.md target=_blank rel=noopener>官方文档</a>）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># macOS / Linux (使用 wget)</span>
+</span></span><span class=line><span class=cl>wget https://github.com/milvus-io/milvus/releases/download/v2.5.14/milvus-standalone-docker-compose.yml -O docker-compose.yml
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c># Windows (使用 PowerShell)</span>
+</span></span><span class=line><span class=cl><span class=nb>Invoke-WebRequest</span> <span class=n>-Uri</span> <span class=s2>&#34;https://github.com/milvus-io/milvus/releases/download/v2.5.14/milvus-standalone-docker-compose.yml&#34;</span> <span class=n>-OutFile</span> <span class=s2>&#34;docker-compose.yml&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>第二步：启动 Milvus 服务</strong></p><p>在 <code>docker-compose.yml</code> 文件所在的目录中，运行以下命令以后台模式启动 Milvus：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose up -d
+</span></span></code></pre></td></tr></table></div></div><p>Docker 将会自动拉取所需的镜像并启动三个容器：<code>milvus-standalone</code>, <code>milvus-minio</code>, 和 <code>milvus-etcd</code>。这个过程可能需要几分钟，具体取决于你的网络状况。</p><h3 id=3-验证安装>3. 验证安装</h3><p>可以通过以下方式验证 Milvus 是否成功启动：</p><ul><li><strong>查看 Docker 容器</strong>: 打开 Docker Desktop 的仪表盘 (Windows/macOS) 或在终端运行 <code>docker ps</code> 命令 (Linux)，确认三个 Milvus 相关容器（<code>milvus-standalone</code>, <code>milvus-minio</code>, <code>milvus-etcd</code>）都处于 <code>running</code> 或 <code>up</code> 状态。</li><li><strong>检查服务端口</strong>: Milvus Standalone 默认通过 <code>19530</code> 端口提供服务，这是后续代码连接时需要用到的地址。</li></ul><h3 id=4-常用管理命令>4. 常用管理命令</h3><ul><li><p><strong>停止服务</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose down
+</span></span></code></pre></td></tr></table></div></div><p>此命令会停止并移除容器，但保留存储的数据卷。</p></li><li><p><strong>彻底清理 (停止并删除数据)</strong>:
+如果想彻底删除所有数据（包括向量、元数据等），可以执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose down -v
+</span></span></code></pre></td></tr></table></div></div></li></ul><h2 id=三核心组件>三、核心组件</h2><h3 id=31-collection-集合>3.1 Collection (集合)</h3><p>可以用一个图书馆的比喻来理解 Collection：</p><ul><li><strong>Collection (集合)</strong>: 相当于一个<strong>图书馆</strong>，是所有数据的顶层容器。一个 Collection 可以包含多个 Partition，每个 Partition 可以包含多个 Entity。</li><li><strong>Partition (分区)</strong>: 相当于图书馆里的<strong>不同区域</strong>（如“小说区”、“科技区”），将数据物理隔离，让检索更高效。</li><li><strong>Schema (模式)</strong>: 相当于图书馆的<strong>图书卡片规则</strong>，定义了每本书（数据）必须登记哪些信息（字段）。</li><li><strong>Entity (实体)</strong>: 相当于<strong>一本具体的书</strong>，是数据本身。</li><li><strong>Alias (别名)</strong>: 相当于一个<strong>动态的推荐书单</strong>（如“本周精选”），它可以指向某个具体的 Collection，方便应用层调用，实现数据更新时的无缝切换。</li></ul><p><strong>Collection</strong> 是 Milvus 中最基本的数据组织单位，类似于关系型数据库中的一张<strong>表 (Table)</strong>。是我们存储、管理和查询向量及相关元数据的容器。所有的数据操作，如插入、删除、查询等，都是围绕 Collection 展开的。</p><p>一个 Collection 由其 <strong>Schema</strong> 定义，并包含以下重要的子概念和特性：</p><h4 id=311-schema>3.1.1 Schema</h4><p>在创建 Collection 之前，必须先定义它的 <strong>Schema</strong>。 <code>Schema</code> 规定了 Collection 的数据结构，定义了其中包含的所有<strong>字段 (Field)</strong> 及其属性。一个设计良好的 Schema 是能够保证数据一致性并提升查询性能。</p><p>Schema 通常包含以下几类字段：</p><ul><li><strong>主键字段 (Primary Key Field)</strong>: 每个 Collection 必须有且仅有一个主键字段，用于唯一标识每一条数据（实体）。它的值必须是唯一的，通常是整数或字符串类型。</li><li><strong>向量字段 (Vector Field)</strong>: 用于存储核心的向量数据。一个 Collection 可以有一个或多个向量字段，以满足多模态等复杂场景的需求。</li><li><strong>标量字段 (Scalar Field)</strong>: 用于存储除向量之外的元数据，如字符串、数字、布尔值、JSON 等。这些字段可以用于过滤查询，实现更精确的检索。</li></ul><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_4_1.webp loading=lazy alt="Schema 设计剖析"></p><p>上图以一篇新闻文章为例，展示了一个典型的多模态、混合向量 Schema 设计。它将一篇文章拆解为：唯一的 <code>Article (ID)</code>、文本元数据（如 <code>Title</code>、<code>Author Info</code>）、图像信息（<code>Image URL</code>），并为图像和摘要内容分别生成了密集向量（<code>Image Embedding</code>, <code>Summary Embedding</code>）和稀疏向量（<code>Summary Sparse Embedding</code>）。</p><h4 id=312-partition-分区>3.1.2 Partition (分区)</h4><p><strong>Partition</strong> 是 Collection 内部的一个逻辑划分。每个 Collection 在创建时都会有一个名为 <code>_default</code> 的默认分区。我们可以根据业务需求创建更多的分区，将数据按特定规则（如类别、日期等）存入不同分区。</p><p><strong>为什么使用分区？</strong></p><ul><li><strong>提升查询性能</strong>: 在查询时，可以指定只在一个或几个分区内进行搜索，从而大幅减少需要扫描的数据量，显著提升检索速度。</li><li><strong>数据管理</strong>: 便于对部分数据进行批量操作，如加载/卸载特定分区到内存，或者删除整个分区的数据。</li></ul><p>一个 Collection 最多可以有 1024 个分区。合理利用分区是 Milvus 性能优化的重要手段之一。</p><h4 id=313-alias-别名>3.1.3 Alias (别名)</h4><p><strong>Alias</strong> (别名) 是为 Collection 提供的一个“昵称”。通过为一个 Collection 设置别名，我们可以在应用程序中使用这个别名来执行所有操作，而不是直接使用真实的 Collection 名称。</p><p><strong>为什么使用别名？</strong></p><ul><li><strong>安全地更新数据</strong>：想象一下，你需要对一个在线服务的 Collection 进行大规模的数据更新或重建索引。直接在原 Collection 上操作风险很高。正确的做法是：<ol><li>创建一个新的 Collection (<code>collection_v2</code>) 并导入、索引好所有新数据。</li><li>将指向旧 Collection (<code>collection_v1</code>) 的别名（例如 <code>my_app_collection</code>）原子性地切换到新 Collection (<code>collection_v2</code>) 上。</li></ol></li><li><strong>代码解耦</strong>：整个切换过程对上层应用完全透明，无需修改任何代码或重启服务，实现了数据的平滑无缝升级。</li></ul><h3 id=32-索引-index>3.2 索引 (Index)</h3><p>如果说 Collection 是 Milvus 的骨架，那么<strong>索引 (Index)</strong> 就是其加速检索的神经系统。从宏观上看，索引本身就是一种<strong>为了加速查询而设计的复杂数据结构</strong>。对向量数据创建索引后，Milvus 可以极大地提升向量相似性搜索的速度，代价是会占用额外的存储和内存资源。</p><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_4_2.webp loading=lazy alt="Milvus 索引结构与工作原理"></p><p>上图清晰地展示了 Milvus 向量索引的内部组件及其工作流程：</p><ul><li><strong>数据结构</strong>：这是索引的骨架，定义了向量的组织方式（如 HNSW 中的图结构）。</li><li><strong>量化</strong>(可选)：数据压缩技术，通过降低向量精度来减少内存占用和加速计算。</li><li><strong>结果精炼</strong>(可选)：在找到初步候选集后，进行更精确的计算以优化最终结果。</li></ul><p>Milvus 支持对标量字段和向量字段分别创建索引。</p><ul><li><strong>标量字段索引</strong>：主要用于加速元数据过滤，常用的有 <code>INVERTED</code>、<code>BITMAP</code> 等。通常使用推荐的索引类型即可。</li><li><strong>向量字段索引</strong>：这是 Milvus 的核心。选择合适的向量索引是在查询性能、召回率和内存占用之间做出权衡的艺术。</li></ul><h4 id=321-主要向量索引类型>3.2.1 主要向量索引类型</h4><p>Milvus 提供了多种向量索引算法，以适应不同的应用场景。以下是几种最核心的类型：</p><ul><li><p><strong>FLAT (精确查找)</strong></p><ul><li><strong>原理</strong>：暴力搜索（Brute-force Search）。它会计算查询向量与集合中所有向量之间的实际距离，返回最精确的结果。</li><li><strong>优点</strong>：100% 的召回率，结果最准确。</li><li><strong>缺点</strong>：速度慢，内存占用大，不适合海量数据。</li><li><strong>适用场景</strong>：对精度要求极高，且数据规模较小（百万级以内）的场景。</li></ul></li><li><p><strong>IVF 系列 (倒排文件索引)</strong></p><ul><li><strong>原理</strong>：类似于书籍的目录。它首先通过聚类将所有向量分成多个“桶”(<code>nlist</code>)，查询时，先找到最相似的几个“桶”，然后只在这几个桶内进行精确搜索。<code>IVF_FLAT</code>、<code>IVF_SQ8</code>、<code>IVF_PQ</code> 是其不同变体，主要区别在于是否对桶内向量进行了压缩（量化）。</li><li><strong>优点</strong>：通过缩小搜索范围，极大地提升了检索速度，是性能和效果之间很好的平衡。</li><li><strong>缺点</strong>：召回率不是100%，因为相关向量可能被分到了未被搜索的桶中。</li><li><strong>适用场景</strong>：通用场景，尤其适合需要高吞吐量的大规模数据集。</li></ul></li><li><p><strong>HNSW (基于图的索引)</strong></p><ul><li><strong>原理</strong>：构建一个多层的邻近图。查询时从最上层的稀疏图开始，快速定位到目标区域，然后在下层的密集图中进行精确搜索。</li><li><strong>优点</strong>：检索速度极快，召回率高，尤其擅长处理高维数据和低延迟查询。</li><li><strong>缺点</strong>：内存占用非常大，构建索引的时间也较长。</li><li><strong>适用场景</strong>：对查询延迟有严格要求（如实时推荐、在线搜索）的场景。</li></ul></li><li><p><strong>DiskANN (基于磁盘的索引)</strong></p><ul><li><strong>原理</strong>：一种为在 SSD 等高速磁盘上运行而优化的图索引。</li><li><strong>优点</strong>：支持远超内存容量的海量数据集（十亿级甚至更多），同时保持较低的查询延迟。</li><li><strong>缺点</strong>：相比纯内存索引，延迟稍高。</li><li><strong>适用场景</strong>：数据规模巨大，无法全部加载到内存的场景。</li></ul></li></ul><h4 id=322-如何选择索引>3.2.2 如何选择索引？</h4><p>选择索引没有唯一的“最佳答案”，需要根据业务场景在<strong>数据规模、内存限制、查询性能和召回率</strong>之间进行权衡。</p><div class=table-wrapper><table><thead><tr><th style=text-align:left>场景</th><th style=text-align:left>推荐索引</th><th style=text-align:left>备注</th></tr></thead><tbody><tr><td style=text-align:left>数据可完全载入内存，追求低延迟</td><td style=text-align:left><strong>HNSW</strong></td><td style=text-align:left>内存占用较大，但查询性能和召回率都很优秀。</td></tr><tr><td style=text-align:left>数据可完全载入内存，追求高吞吐</td><td style=text-align:left><strong>IVF_FLAT / IVF_SQ8</strong></td><td style=text-align:left>性能和资源消耗的平衡之选。</td></tr><tr><td style=text-align:left>数据量巨大，无法载入内存</td><td style=text-align:left><strong>DiskANN</strong></td><td style=text-align:left>在 SSD 上性能优异，专为海量数据设计。</td></tr><tr><td style=text-align:left>追求 100% 准确率，数据量不大</td><td style=text-align:left><strong>FLAT</strong></td><td style=text-align:left>暴力搜索，确保结果最精确。</td></tr></tbody></table></div><p>在实际应用中，通常需要通过测试来找到最适合自己数据和查询模式的索引类型及其参数。</p><h3 id=33-检索>3.3 检索</h3><h4 id=331-基础向量检索-ann-search>3.3.1 基础向量检索 (ANN Search)</h4><p>拥有了数据容器 (Collection) 和检索引擎 (Index) 后，最后一步就是从海量数据中高效地检索信息。这是 Milvus 的核心功能之一，<strong>近似最近邻 (Approximate Nearest Neighbor, ANN) 检索</strong>。与需要计算全部数据的暴力检索（Brute-force Search）不同，ANN 检索利用预先构建好的索引，能够极速地从海量数据中找到与查询向量最相似的 Top-K 个结果。这是一种在速度和精度之间取得极致平衡的策略。</p><ul><li><strong>主要参数</strong>:<ul><li><code>anns_field</code>: 指定要在哪个向量字段上进行检索。</li><li><code>data</code>: 传入一个或多个查询向量。</li><li><code>limit</code> (或 <code>top_k</code>): 指定需要返回的最相似结果的数量。</li><li><code>search_params</code>: 指定检索时使用的参数，例如距离计算方式 (<code>metric_type</code>) 和索引相关的查询参数。</li></ul></li></ul><h4 id=332-增强检索>3.3.2 增强检索</h4><p>在基础的 ANN 检索之上，Milvus 提供了多种增强检索功能，以满足更复杂的业务需求。</p><p><strong>过滤检索 (Filtered Search)</strong></p><p>在实际应用中，我们很少只进行单纯的向量检索。更常见的需求是“在满足特定条件的向量中，查找最相似的结果”，这就是过滤检索。它将<strong>向量相似性检索</strong>与<strong>标量字段过滤</strong>结合在一起。</p><ul><li><strong>工作原理</strong>：先根据提供的过滤表达式 (<code>filter</code>) 筛选出符合条件的实体，然后仅在这个子集内执行 ANN 检索。这极大地提高了查询的精准度。</li><li><strong>应用示例</strong>：<ul><li><strong>电商</strong>：&ldquo;检索与这件红色连衣裙最相似的商品，但只看价格低于500元且有库存的。&rdquo;</li><li><strong>知识库</strong>：&ldquo;查找与‘人工智能’相关的文档，但只从‘技术’分类下、且发布于2023年之后的文章中寻找。&rdquo;</li></ul></li></ul><p><strong>范围检索 (Range Search)</strong></p><p>有时我们关心的不是最相似的 Top-K 个结果，而是“所有与查询向量的相似度在特定范围内的结果”。</p><ul><li><strong>工作原理</strong>：范围检索允许定义一个距离（或相似度）的阈值范围。Milvus 会返回所有与查询向量的距离落在这个范围内的实体。</li><li><strong>应用示例</strong>：<ul><li><strong>人脸识别</strong>：&ldquo;查找所有与目标人脸相似度超过 0.9 的人脸&rdquo;，用于身份验证。</li><li><strong>异常检测</strong>：&ldquo;查找所有与正常样本向量距离过大的数据点&rdquo;，用于发现异常。</li></ul></li></ul><p><strong>多向量混合检索 (Hybrid Search)</strong></p><p>这是 Milvus 提供的一种极其强大的高级检索模式，它允许在一个请求中同时检索<strong>多个向量字段</strong>，并将结果智能地融合在一起。</p><ul><li><p><strong>工作原理</strong>：</p><ol><li><strong>并行检索</strong>：应用针对不同的向量字段（如一个用于文本语义的密集向量，一个用于关键词匹配的稀疏向量，一个用于图像内容的多模态向量）分别发起 ANN 检索请求。</li><li><strong>结果融合 (Rerank)</strong>：Milvus 使用一个重排策略（Reranker）将来自不同检索流的结果合并成一个统一的、更高质量的排序列表。常用的策略有 <code>RRFRanker</code>（平衡各方结果）和 <code>WeightedRanker</code>（可为特定字段结果加权）。</li></ol></li><li><p><strong>应用示例</strong>：</p><ul><li><strong>多模态商品检索</strong>：用户输入文本“安静舒适的白色耳机”，系统可以同时检索商品的<strong>文本描述向量</strong>和<strong>图片内容向量</strong>，返回最匹配的商品。</li><li><strong>增强型 RAG</strong>: 结合<strong>密集向量</strong>（捕捉语义）和<strong>稀疏向量</strong>（精确匹配关键词），实现比单一向量更精准的文档检索效果。</li></ul></li></ul><p><strong>分组检索 (Grouping Search)</strong></p><p>分组检索解决了一个常见的痛点：检索结果多样性不足。想象一下，你检索“机器学习”，返回的前10篇文章都来自同一本教科书不同章节。这显然不是理想的结果。</p><ul><li><strong>工作原理</strong>：分组检索允许指定一个字段（如 <code>document_id</code>）对结果进行分组。Milvus 会在检索后，确保返回的结果中每个组（每个 <code>document_id</code>）只出现一次（或指定的次数），且返回的是该组内与查询最相似的那个实体。</li><li><strong>应用示例</strong>：<ul><li><strong>视频检索</strong>：检索“可爱的猫咪”，确保返回的视频来自不同的博主。</li><li><strong>文档检索</strong>：检索“数据库索引”，确保返回的结果来自不同的书籍或来源。</li></ul></li></ul><p>通过这些灵活的检索功能组合，开发者可以构建出满足各种复杂业务需求的向量检索应用。</p><h2 id=四milvus多模态实践>四、milvus多模态实践</h2><p>在本节中，我们将通过一个完整的示例，演示如何使用 Milvus 和 Visualized-BGE 模型构建一个端到端的图文多模态检索引擎。</p><h3 id=41-初始化与工具定义>4.1 初始化与工具定义</h3><p>首先导入所有必需的库，定义好模型路径、数据目录等常量。为了代码的整洁和复用，将 Visualized-BGE 模型的加载和编码逻辑封装在一个 <code>Encoder</code> 类中，并定义了一个 <code>visualize_results</code> 函数用于后续的结果可视化。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>tqdm</span> <span class=kn>import</span> <span class=n>tqdm</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>glob</span> <span class=kn>import</span> <span class=n>glob</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>visual_bge.visual_bge.modeling</span> <span class=kn>import</span> <span class=n>Visualized_BGE</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pymilvus</span> <span class=kn>import</span> <span class=n>MilvusClient</span><span class=p>,</span> <span class=n>FieldSchema</span><span class=p>,</span> <span class=n>CollectionSchema</span><span class=p>,</span> <span class=n>DataType</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 初始化设置</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL_NAME</span> <span class=o>=</span> <span class=s2>&#34;BAAI/bge-base-en-v1.5&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL_PATH</span> <span class=o>=</span> <span class=s2>&#34;../../models/bge/Visualized_base_en_v1.5.pth&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>DATA_DIR</span> <span class=o>=</span> <span class=s2>&#34;../../data/C3&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>COLLECTION_NAME</span> <span class=o>=</span> <span class=s2>&#34;multimodal_demo&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>MILVUS_URI</span> <span class=o>=</span> <span class=s2>&#34;http://localhost:19530&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 定义工具 (编码器和可视化函数)</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Encoder</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;编码器类，用于将图像和文本编码为向量。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>model_name</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>model_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span> <span class=o>=</span> <span class=n>Visualized_BGE</span><span class=p>(</span><span class=n>model_name_bge</span><span class=o>=</span><span class=n>model_name</span><span class=p>,</span> <span class=n>model_weight</span><span class=o>=</span><span class=n>model_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>eval</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>encode_query</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>text</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>list</span><span class=p>[</span><span class=nb>float</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>query_emb</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=n>image</span><span class=o>=</span><span class=n>image_path</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>query_emb</span><span class=o>.</span><span class=n>tolist</span><span class=p>()[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>encode_image</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>list</span><span class=p>[</span><span class=nb>float</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>query_emb</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=n>image</span><span class=o>=</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>query_emb</span><span class=o>.</span><span class=n>tolist</span><span class=p>()[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>visualize_results</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>retrieved_images</span><span class=p>:</span> <span class=nb>list</span><span class=p>,</span> <span class=n>img_height</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>300</span><span class=p>,</span> <span class=n>img_width</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>300</span><span class=p>,</span> <span class=n>row_count</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>3</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>np</span><span class=o>.</span><span class=n>ndarray</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;从检索到的图像列表创建一个全景图用于可视化。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_width</span> <span class=o>=</span> <span class=n>img_width</span> <span class=o>*</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_height</span> <span class=o>=</span> <span class=n>img_height</span> <span class=o>*</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_image</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>full</span><span class=p>((</span><span class=n>panoramic_height</span><span class=p>,</span> <span class=n>panoramic_width</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=mi>255</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>uint8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_display_area</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>full</span><span class=p>((</span><span class=n>panoramic_height</span><span class=p>,</span> <span class=n>img_width</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=mi>255</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>uint8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 处理查询图像</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_pil</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>)</span><span class=o>.</span><span class=n>convert</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_cv</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span><span class=n>query_pil</span><span class=p>)[:,</span> <span class=p>:,</span> <span class=p>::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>resized_query</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>query_cv</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span><span class=p>,</span> <span class=n>img_height</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>bordered_query</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>copyMakeBorder</span><span class=p>(</span><span class=n>resized_query</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=n>cv2</span><span class=o>.</span><span class=n>BORDER_CONSTANT</span><span class=p>,</span> <span class=n>value</span><span class=o>=</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_display_area</span><span class=p>[</span><span class=n>img_height</span> <span class=o>*</span> <span class=p>(</span><span class=n>row_count</span> <span class=o>-</span> <span class=mi>1</span><span class=p>):,</span> <span class=p>:]</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>bordered_query</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span><span class=p>,</span> <span class=n>img_height</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>cv2</span><span class=o>.</span><span class=n>putText</span><span class=p>(</span><span class=n>query_display_area</span><span class=p>,</span> <span class=s2>&#34;Query&#34;</span><span class=p>,</span> <span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=n>panoramic_height</span> <span class=o>-</span> <span class=mi>20</span><span class=p>),</span> <span class=n>cv2</span><span class=o>.</span><span class=n>FONT_HERSHEY_SIMPLEX</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>),</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 处理检索到的图像</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>img_path</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>retrieved_images</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>row</span><span class=p>,</span> <span class=n>col</span> <span class=o>=</span> <span class=n>i</span> <span class=o>//</span> <span class=n>row_count</span><span class=p>,</span> <span class=n>i</span> <span class=o>%</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_row</span><span class=p>,</span> <span class=n>start_col</span> <span class=o>=</span> <span class=n>row</span> <span class=o>*</span> <span class=n>img_height</span><span class=p>,</span> <span class=n>col</span> <span class=o>*</span> <span class=n>img_width</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>retrieved_pil</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>img_path</span><span class=p>)</span><span class=o>.</span><span class=n>convert</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>retrieved_cv</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span><span class=n>retrieved_pil</span><span class=p>)[:,</span> <span class=p>:,</span> <span class=p>::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>resized_retrieved</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>retrieved_cv</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span> <span class=o>-</span> <span class=mi>4</span><span class=p>,</span> <span class=n>img_height</span> <span class=o>-</span> <span class=mi>4</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>bordered_retrieved</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>copyMakeBorder</span><span class=p>(</span><span class=n>resized_retrieved</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=n>cv2</span><span class=o>.</span><span class=n>BORDER_CONSTANT</span><span class=p>,</span> <span class=n>value</span><span class=o>=</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>panoramic_image</span><span class=p>[</span><span class=n>start_row</span><span class=p>:</span><span class=n>start_row</span> <span class=o>+</span> <span class=n>img_height</span><span class=p>,</span> <span class=n>start_col</span><span class=p>:</span><span class=n>start_col</span> <span class=o>+</span> <span class=n>img_width</span><span class=p>]</span> <span class=o>=</span> <span class=n>bordered_retrieved</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 添加索引号</span>
+</span></span><span class=line><span class=cl>        <span class=n>cv2</span><span class=o>.</span><span class=n>putText</span><span class=p>(</span><span class=n>panoramic_image</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>),</span> <span class=p>(</span><span class=n>start_col</span> <span class=o>+</span> <span class=mi>10</span><span class=p>,</span> <span class=n>start_row</span> <span class=o>+</span> <span class=mi>30</span><span class=p>),</span> <span class=n>cv2</span><span class=o>.</span><span class=n>FONT_HERSHEY_SIMPLEX</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>),</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>np</span><span class=o>.</span><span class=n>hstack</span><span class=p>([</span><span class=n>query_display_area</span><span class=p>,</span> <span class=n>panoramic_image</span><span class=p>])</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-创建-collection>4.2 创建 Collection</h3><p>这是与 Milvus 交互的开始。首先初始化 Milvus 客户端，然后定义 Collection 的 Schema，它规定了集合的数据结构。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 3. 初始化客户端</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;--&gt; 正在初始化编码器和Milvus客户端...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>encoder</span> <span class=o>=</span> <span class=n>Encoder</span><span class=p>(</span><span class=n>MODEL_NAME</span><span class=p>,</span> <span class=n>MODEL_PATH</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span> <span class=o>=</span> <span class=n>MilvusClient</span><span class=p>(</span><span class=n>uri</span><span class=o>=</span><span class=n>MILVUS_URI</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. 创建 Milvus Collection</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在创建 Collection &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>has_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>milvus_client</span><span class=o>.</span><span class=n>drop_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已删除已存在的 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>image_list</span> <span class=o>=</span> <span class=n>glob</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;dragon&#34;</span><span class=p>,</span> <span class=s2>&#34;*.png&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>image_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>raise</span> <span class=ne>FileNotFoundError</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;在 </span><span class=si>{</span><span class=n>DATA_DIR</span><span class=si>}</span><span class=s2>/dragon/ 中未找到任何 .png 图像。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>dim</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>encoder</span><span class=o>.</span><span class=n>encode_image</span><span class=p>(</span><span class=n>image_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>fields</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;id&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>INT64</span><span class=p>,</span> <span class=n>is_primary</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>auto_id</span><span class=o>=</span><span class=kc>True</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>FLOAT_VECTOR</span><span class=p>,</span> <span class=n>dim</span><span class=o>=</span><span class=n>dim</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;image_path&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>VARCHAR</span><span class=p>,</span> <span class=n>max_length</span><span class=o>=</span><span class=mi>512</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建集合 Schema</span>
+</span></span><span class=line><span class=cl><span class=n>schema</span> <span class=o>=</span> <span class=n>CollectionSchema</span><span class=p>(</span><span class=n>fields</span><span class=p>,</span> <span class=n>description</span><span class=o>=</span><span class=s2>&#34;多模态图文检索&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Schema 结构:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>schema</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建集合</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>create_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>schema</span><span class=o>=</span><span class=n>schema</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;成功创建 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Collection 结构:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>milvus_client</span><span class=o>.</span><span class=n>describe_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出结果：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>--&gt; 正在创建 Collection <span class=s1>&#39;multimodal_demo&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Schema 结构:
+</span></span><span class=line><span class=cl><span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;auto_id&#39;</span>: True, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;多模态图文检索&#39;</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;fields&#39;</span>: <span class=o>[</span>
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;id&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.INT64: 5&gt;, <span class=s1>&#39;is_primary&#39;</span>: True, <span class=s1>&#39;auto_id&#39;</span>: True<span class=o>}</span>, 
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;vector&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.FLOAT_VECTOR: 101&gt;, <span class=s1>&#39;params&#39;</span>: <span class=o>{</span><span class=s1>&#39;dim&#39;</span>: 768<span class=o>}}</span>, 
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;image_path&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.VARCHAR: 21&gt;, <span class=s1>&#39;params&#39;</span>: <span class=o>{</span><span class=s1>&#39;max_length&#39;</span>: 512<span class=o>}}</span>
+</span></span><span class=line><span class=cl>    <span class=o>]</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;enable_dynamic_field&#39;</span>: False
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>成功创建 Collection: <span class=s1>&#39;multimodal_demo&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Collection 结构:
+</span></span><span class=line><span class=cl><span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;collection_name&#39;</span>: <span class=s1>&#39;multimodal_demo&#39;</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;auto_id&#39;</span>: True, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;num_shards&#39;</span>: 1, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;多模态图文检索&#39;</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;fields&#39;</span>: <span class=o>[</span>
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;field_id&#39;</span>: 100, <span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;id&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.INT64: 5&gt;, <span class=s1>&#39;params&#39;</span>: <span class=o>{}</span>, <span class=s1>&#39;auto_id&#39;</span>: True, <span class=s1>&#39;is_primary&#39;</span>: True<span class=o>}</span>, 
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;field_id&#39;</span>: 101, <span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;vector&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.FLOAT_VECTOR: 101&gt;, <span class=s1>&#39;params&#39;</span>: <span class=o>{</span><span class=s1>&#39;dim&#39;</span>: 768<span class=o>}}</span>, 
+</span></span><span class=line><span class=cl>        <span class=o>{</span><span class=s1>&#39;field_id&#39;</span>: 102, <span class=s1>&#39;name&#39;</span>: <span class=s1>&#39;image_path&#39;</span>, <span class=s1>&#39;description&#39;</span>: <span class=s1>&#39;&#39;</span>, <span class=s1>&#39;type&#39;</span>: &lt;DataType.VARCHAR: 21&gt;, <span class=s1>&#39;params&#39;</span>: <span class=o>{</span><span class=s1>&#39;max_length&#39;</span>: 512<span class=o>}}</span>
+</span></span><span class=line><span class=cl>    <span class=o>]</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;functions&#39;</span>: <span class=o>[]</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;aliases&#39;</span>: <span class=o>[]</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;collection_id&#39;</span>: 459243798405253751, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;consistency_level&#39;</span>: 2, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;properties&#39;</span>: <span class=o>{}</span>, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;num_partitions&#39;</span>: 1, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;enable_dynamic_field&#39;</span>: False, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;created_timestamp&#39;</span>: 459249546649403396, 
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;update_timestamp&#39;</span>: <span class=m>459249546649403396</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>上面的输出详细展示了刚刚创建的 <code>multimodal_demo</code> Collection 的完整结构。其 <strong>Schema</strong> 包含了三个核心字段（<strong>Field</strong>）：一个自增的 <code>id</code> 作为<strong>主键</strong>，一个 768 维的 <code>vector</code> <strong>向量字段</strong>用于存储图像嵌入，以及一个 <code>image_path</code> <strong>标量字段</strong>来记录原始图片路径。</p><h3 id=43-准备并插入数据>4.3 准备并插入数据</h3><p>创建好 Collection 后，需要将数据填充进去。通过遍历指定目录下的所有图片，将它们逐一编码成向量，然后与图片路径一起组织成符合 Schema 结构的格式，最后批量插入到 Collection 中。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 5. 准备并插入数据</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在向 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 插入数据&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>data_to_insert</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>image_path</span> <span class=ow>in</span> <span class=n>tqdm</span><span class=p>(</span><span class=n>image_list</span><span class=p>,</span> <span class=n>desc</span><span class=o>=</span><span class=s2>&#34;生成图像嵌入&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>vector</span> <span class=o>=</span> <span class=n>encoder</span><span class=o>.</span><span class=n>encode_image</span><span class=p>(</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_to_insert</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;vector&#34;</span><span class=p>:</span> <span class=n>vector</span><span class=p>,</span> <span class=s2>&#34;image_path&#34;</span><span class=p>:</span> <span class=n>image_path</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>data_to_insert</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>insert</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>data</span><span class=o>=</span><span class=n>data_to_insert</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;成功插入 </span><span class=si>{</span><span class=n>result</span><span class=p>[</span><span class=s1>&#39;insert_count&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2> 条数据。&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=44-创建索引>4.4 创建索引</h3><p>为了实现快速检索，需要为向量字段创建索引。这里选择 <code>HNSW</code> 索引，它在召回率和查询性能之间有着很好的平衡。创建索引后，必须调用 <code>load_collection</code> 将集合加载到内存中才能进行搜索。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 6. 创建索引</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在为 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 创建索引&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>index_params</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>prepare_index_params</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>index_params</span><span class=o>.</span><span class=n>add_index</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>field_name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>index_type</span><span class=o>=</span><span class=s2>&#34;HNSW&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>metric_type</span><span class=o>=</span><span class=s2>&#34;COSINE&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;M&#34;</span><span class=p>:</span> <span class=mi>16</span><span class=p>,</span> <span class=s2>&#34;efConstruction&#34;</span><span class=p>:</span> <span class=mi>256</span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>create_index</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>index_params</span><span class=o>=</span><span class=n>index_params</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;成功为向量字段创建 HNSW 索引。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;索引详情:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>milvus_client</span><span class=o>.</span><span class=n>describe_index</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>index_name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>load_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已加载 Collection 到内存中。&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出结果：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>--&gt; 正在为 <span class=s1>&#39;multimodal_demo&#39;</span> 创建索引
+</span></span><span class=line><span class=cl>成功为向量字段创建 HNSW 索引。
+</span></span><span class=line><span class=cl>索引详情:
+</span></span><span class=line><span class=cl><span class=o>{</span><span class=s1>&#39;M&#39;</span>: <span class=s1>&#39;16&#39;</span>, <span class=s1>&#39;efConstruction&#39;</span>: <span class=s1>&#39;256&#39;</span>, <span class=s1>&#39;metric_type&#39;</span>: <span class=s1>&#39;COSINE&#39;</span>, <span class=s1>&#39;index_type&#39;</span>: <span class=s1>&#39;HNSW&#39;</span>, <span class=s1>&#39;field_name&#39;</span>: <span class=s1>&#39;vector&#39;</span>, <span class=s1>&#39;index_name&#39;</span>: <span class=s1>&#39;vector&#39;</span>, <span class=s1>&#39;total_rows&#39;</span>: 0, <span class=s1>&#39;indexed_rows&#39;</span>: 0, <span class=s1>&#39;pending_index_rows&#39;</span>: 0, <span class=s1>&#39;state&#39;</span>: <span class=s1>&#39;Finished&#39;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl>已加载 Collection 到内存中。
+</span></span></code></pre></td></tr></table></div></div><p>可以看出，索引创建成功，在 <code>vector</code> 字段上成功创建了 <code>HNSW</code> 索引，并使用 <code>COSINE</code> 作为距离度量。<code>M: '16'</code> 和 <code>efConstruction: '256'</code> 是 HNSW 索引的两个关键参数，分别控制着图中每个节点的最大连接数和索引构建时的搜索范围，这些参数直接影响检索的性能和准确性。<code>state: 'Finished'</code> 状态表明索引已成功构建。</p><h3 id=45-执行多模态检索>4.5 执行多模态检索</h3><p>这里通过定义一个包含图片和文本的组合查询，将其编码为查询向量，然后调用 <code>search</code> 方法在 Milvus 中执行近似最近邻搜索。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 7. 执行多模态检索</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 中执行检索&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>query_image_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;dragon&#34;</span><span class=p>,</span> <span class=s2>&#34;query.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>query_text</span> <span class=o>=</span> <span class=s2>&#34;一条龙&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>query_vector</span> <span class=o>=</span> <span class=n>encoder</span><span class=o>.</span><span class=n>encode_query</span><span class=p>(</span><span class=n>image_path</span><span class=o>=</span><span class=n>query_image_path</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=n>query_text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>search_results</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>search</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=o>=</span><span class=p>[</span><span class=n>query_vector</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_fields</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;image_path&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>limit</span><span class=o>=</span><span class=mi>5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>search_params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;metric_type&#34;</span><span class=p>:</span> <span class=s2>&#34;COSINE&#34;</span><span class=p>,</span> <span class=s2>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span><span class=s2>&#34;ef&#34;</span><span class=p>:</span> <span class=mi>128</span><span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>retrieved_images</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;检索结果:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>hit</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>search_results</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  Top </span><span class=si>{</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=si>}</span><span class=s2>: ID=</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>, 距离=</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;distance&#39;</span><span class=p>]</span><span class=si>:</span><span class=s2>.4f</span><span class=si>}</span><span class=s2>, 路径=&#39;</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;entity&#39;</span><span class=p>][</span><span class=s1>&#39;image_path&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>retrieved_images</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;entity&#39;</span><span class=p>][</span><span class=s1>&#39;image_path&#39;</span><span class=p>])</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出结果：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>--&gt; 正在 <span class=s1>&#39;multimodal_demo&#39;</span> 中执行检索
+</span></span><span class=line><span class=cl>检索结果:
+</span></span><span class=line><span class=cl>  Top 1: <span class=nv>ID</span><span class=o>=</span>459243798403756667, <span class=nv>距离</span><span class=o>=</span>0.9411, <span class=nv>路径</span><span class=o>=</span><span class=s1>&#39;../../data/C3\dragon\dragon01.png&#39;</span>
+</span></span><span class=line><span class=cl>  Top 2: <span class=nv>ID</span><span class=o>=</span>459243798403756668, <span class=nv>距离</span><span class=o>=</span>0.5818, <span class=nv>路径</span><span class=o>=</span><span class=s1>&#39;../../data/C3\dragon\dragon02.png&#39;</span>
+</span></span><span class=line><span class=cl>  Top 3: <span class=nv>ID</span><span class=o>=</span>459243798403756671, <span class=nv>距离</span><span class=o>=</span>0.5731, <span class=nv>路径</span><span class=o>=</span><span class=s1>&#39;../../data/C3\dragon\dragon05.png&#39;</span>
+</span></span><span class=line><span class=cl>  Top 4: <span class=nv>ID</span><span class=o>=</span>459243798403756670, <span class=nv>距离</span><span class=o>=</span>0.4894, <span class=nv>路径</span><span class=o>=</span><span class=s1>&#39;../../data/C3\dragon\dragon04.png&#39;</span>
+</span></span><span class=line><span class=cl>  Top 5: <span class=nv>ID</span><span class=o>=</span>459243798403756669, <span class=nv>距离</span><span class=o>=</span>0.4100, <span class=nv>路径</span><span class=o>=</span><span class=s1>&#39;../../data/C3\dragon\dragon03.png&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这段输出展示了与图文组合查询最相似的5个<strong>实体 (Entity)</strong>。<code>distance</code> 字段代表了<strong>余弦相似度</strong>，值越接近 1 表示越相似。可以看到，<code>Top 1</code> 结果正是查询图片本身，其相似度得分最高（0.9411），这说明了检索的有效性。其余结果也都是龙的图片，并按相似度从高到低精确排列。</p><h3 id=46-可视化与清理>4.6 可视化与清理</h3><p>最后，将检索到的图片路径用于可视化，生成一张直观的结果对比图。在完成所有操作后，应该释放 Milvus 中的资源，包括从内存中卸载 Collection 和删除整个 Collection。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 8. 可视化与清理</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在可视化结果并清理资源&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>retrieved_images</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;没有检索到任何图像。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_image</span> <span class=o>=</span> <span class=n>visualize_results</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>,</span> <span class=n>retrieved_images</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>combined_image_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;search_result.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>cv2</span><span class=o>.</span><span class=n>imwrite</span><span class=p>(</span><span class=n>combined_image_path</span><span class=p>,</span> <span class=n>panoramic_image</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;结果图像已保存到: </span><span class=si>{</span><span class=n>combined_image_path</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>combined_image_path</span><span class=p>)</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>release_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已从内存中释放 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>drop_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已删除 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_4_3.png loading=lazy alt=检索结果可视化></p><p>通过上图可以看出，这个多模态检索引擎成功地理解了“一条龙”这个图文组合查询的意图，并从图库中找到了最相关的几张图片并进行排序。</p><blockquote><p><a class=link href=https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/04_multi_milvus.py target=_blank rel=noopener>本节完整代码</a></p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>tqdm</span> <span class=kn>import</span> <span class=n>tqdm</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>glob</span> <span class=kn>import</span> <span class=n>glob</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>torch</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>visual_bge.visual_bge.modeling</span> <span class=kn>import</span> <span class=n>Visualized_BGE</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pymilvus</span> <span class=kn>import</span> <span class=n>MilvusClient</span><span class=p>,</span> <span class=n>FieldSchema</span><span class=p>,</span> <span class=n>CollectionSchema</span><span class=p>,</span> <span class=n>DataType</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 初始化设置</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL_NAME</span> <span class=o>=</span> <span class=s2>&#34;BAAI/bge-base-en-v1.5&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>MODEL_PATH</span> <span class=o>=</span> <span class=s2>&#34;../../models/bge/Visualized_base_en_v1.5.pth&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>DATA_DIR</span> <span class=o>=</span> <span class=s2>&#34;../../data/C3&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>COLLECTION_NAME</span> <span class=o>=</span> <span class=s2>&#34;multimodal_demo&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>MILVUS_URI</span> <span class=o>=</span> <span class=s2>&#34;http://localhost:19530&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 定义工具 (编码器和可视化函数)</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Encoder</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;编码器类，用于将图像和文本编码为向量。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>model_name</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>model_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span> <span class=o>=</span> <span class=n>Visualized_BGE</span><span class=p>(</span><span class=n>model_name_bge</span><span class=o>=</span><span class=n>model_name</span><span class=p>,</span> <span class=n>model_weight</span><span class=o>=</span><span class=n>model_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>eval</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>encode_query</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>text</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>list</span><span class=p>[</span><span class=nb>float</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>query_emb</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=n>image</span><span class=o>=</span><span class=n>image_path</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>query_emb</span><span class=o>.</span><span class=n>tolist</span><span class=p>()[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>encode_image</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>list</span><span class=p>[</span><span class=nb>float</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>query_emb</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=n>image</span><span class=o>=</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>query_emb</span><span class=o>.</span><span class=n>tolist</span><span class=p>()[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>visualize_results</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>retrieved_images</span><span class=p>:</span> <span class=nb>list</span><span class=p>,</span> <span class=n>img_height</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>300</span><span class=p>,</span> <span class=n>img_width</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>300</span><span class=p>,</span> <span class=n>row_count</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>3</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>np</span><span class=o>.</span><span class=n>ndarray</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;从检索到的图像列表创建一个全景图用于可视化。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_width</span> <span class=o>=</span> <span class=n>img_width</span> <span class=o>*</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_height</span> <span class=o>=</span> <span class=n>img_height</span> <span class=o>*</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_image</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>full</span><span class=p>((</span><span class=n>panoramic_height</span><span class=p>,</span> <span class=n>panoramic_width</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=mi>255</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>uint8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_display_area</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>full</span><span class=p>((</span><span class=n>panoramic_height</span><span class=p>,</span> <span class=n>img_width</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=mi>255</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>uint8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 处理查询图像</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_pil</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>)</span><span class=o>.</span><span class=n>convert</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_cv</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span><span class=n>query_pil</span><span class=p>)[:,</span> <span class=p>:,</span> <span class=p>::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>resized_query</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>query_cv</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span><span class=p>,</span> <span class=n>img_height</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>bordered_query</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>copyMakeBorder</span><span class=p>(</span><span class=n>resized_query</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=n>cv2</span><span class=o>.</span><span class=n>BORDER_CONSTANT</span><span class=p>,</span> <span class=n>value</span><span class=o>=</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>query_display_area</span><span class=p>[</span><span class=n>img_height</span> <span class=o>*</span> <span class=p>(</span><span class=n>row_count</span> <span class=o>-</span> <span class=mi>1</span><span class=p>):,</span> <span class=p>:]</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>bordered_query</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span><span class=p>,</span> <span class=n>img_height</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>cv2</span><span class=o>.</span><span class=n>putText</span><span class=p>(</span><span class=n>query_display_area</span><span class=p>,</span> <span class=s2>&#34;Query&#34;</span><span class=p>,</span> <span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=n>panoramic_height</span> <span class=o>-</span> <span class=mi>20</span><span class=p>),</span> <span class=n>cv2</span><span class=o>.</span><span class=n>FONT_HERSHEY_SIMPLEX</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>),</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 处理检索到的图像</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>img_path</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>retrieved_images</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>row</span><span class=p>,</span> <span class=n>col</span> <span class=o>=</span> <span class=n>i</span> <span class=o>//</span> <span class=n>row_count</span><span class=p>,</span> <span class=n>i</span> <span class=o>%</span> <span class=n>row_count</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_row</span><span class=p>,</span> <span class=n>start_col</span> <span class=o>=</span> <span class=n>row</span> <span class=o>*</span> <span class=n>img_height</span><span class=p>,</span> <span class=n>col</span> <span class=o>*</span> <span class=n>img_width</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>retrieved_pil</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>img_path</span><span class=p>)</span><span class=o>.</span><span class=n>convert</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>retrieved_cv</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span><span class=n>retrieved_pil</span><span class=p>)[:,</span> <span class=p>:,</span> <span class=p>::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>resized_retrieved</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>resize</span><span class=p>(</span><span class=n>retrieved_cv</span><span class=p>,</span> <span class=p>(</span><span class=n>img_width</span> <span class=o>-</span> <span class=mi>4</span><span class=p>,</span> <span class=n>img_height</span> <span class=o>-</span> <span class=mi>4</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>bordered_retrieved</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>copyMakeBorder</span><span class=p>(</span><span class=n>resized_retrieved</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=n>cv2</span><span class=o>.</span><span class=n>BORDER_CONSTANT</span><span class=p>,</span> <span class=n>value</span><span class=o>=</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>panoramic_image</span><span class=p>[</span><span class=n>start_row</span><span class=p>:</span><span class=n>start_row</span> <span class=o>+</span> <span class=n>img_height</span><span class=p>,</span> <span class=n>start_col</span><span class=p>:</span><span class=n>start_col</span> <span class=o>+</span> <span class=n>img_width</span><span class=p>]</span> <span class=o>=</span> <span class=n>bordered_retrieved</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 添加索引号</span>
+</span></span><span class=line><span class=cl>        <span class=n>cv2</span><span class=o>.</span><span class=n>putText</span><span class=p>(</span><span class=n>panoramic_image</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>),</span> <span class=p>(</span><span class=n>start_col</span> <span class=o>+</span> <span class=mi>10</span><span class=p>,</span> <span class=n>start_row</span> <span class=o>+</span> <span class=mi>30</span><span class=p>),</span> <span class=n>cv2</span><span class=o>.</span><span class=n>FONT_HERSHEY_SIMPLEX</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>),</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>np</span><span class=o>.</span><span class=n>hstack</span><span class=p>([</span><span class=n>query_display_area</span><span class=p>,</span> <span class=n>panoramic_image</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. 初始化客户端</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;--&gt; 正在初始化编码器和Milvus客户端...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>encoder</span> <span class=o>=</span> <span class=n>Encoder</span><span class=p>(</span><span class=n>MODEL_NAME</span><span class=p>,</span> <span class=n>MODEL_PATH</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span> <span class=o>=</span> <span class=n>MilvusClient</span><span class=p>(</span><span class=n>uri</span><span class=o>=</span><span class=n>MILVUS_URI</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. 创建 Milvus Collection</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在创建 Collection &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>has_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>milvus_client</span><span class=o>.</span><span class=n>drop_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已删除已存在的 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>image_list</span> <span class=o>=</span> <span class=n>glob</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;dragon&#34;</span><span class=p>,</span> <span class=s2>&#34;*.png&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>image_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>raise</span> <span class=ne>FileNotFoundError</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;在 </span><span class=si>{</span><span class=n>DATA_DIR</span><span class=si>}</span><span class=s2>/dragon/ 中未找到任何 .png 图像。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>dim</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>encoder</span><span class=o>.</span><span class=n>encode_image</span><span class=p>(</span><span class=n>image_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>fields</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;id&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>INT64</span><span class=p>,</span> <span class=n>is_primary</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>auto_id</span><span class=o>=</span><span class=kc>True</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>FLOAT_VECTOR</span><span class=p>,</span> <span class=n>dim</span><span class=o>=</span><span class=n>dim</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>FieldSchema</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;image_path&#34;</span><span class=p>,</span> <span class=n>dtype</span><span class=o>=</span><span class=n>DataType</span><span class=o>.</span><span class=n>VARCHAR</span><span class=p>,</span> <span class=n>max_length</span><span class=o>=</span><span class=mi>512</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建集合 Schema</span>
+</span></span><span class=line><span class=cl><span class=n>schema</span> <span class=o>=</span> <span class=n>CollectionSchema</span><span class=p>(</span><span class=n>fields</span><span class=p>,</span> <span class=n>description</span><span class=o>=</span><span class=s2>&#34;多模态图文检索&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Schema 结构:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>schema</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建集合</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>create_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>schema</span><span class=o>=</span><span class=n>schema</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;成功创建 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Collection 结构:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>milvus_client</span><span class=o>.</span><span class=n>describe_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 5. 准备并插入数据</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在向 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 插入数据&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>data_to_insert</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>image_path</span> <span class=ow>in</span> <span class=n>tqdm</span><span class=p>(</span><span class=n>image_list</span><span class=p>,</span> <span class=n>desc</span><span class=o>=</span><span class=s2>&#34;生成图像嵌入&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>vector</span> <span class=o>=</span> <span class=n>encoder</span><span class=o>.</span><span class=n>encode_image</span><span class=p>(</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data_to_insert</span><span class=o>.</span><span class=n>append</span><span class=p>({</span><span class=s2>&#34;vector&#34;</span><span class=p>:</span> <span class=n>vector</span><span class=p>,</span> <span class=s2>&#34;image_path&#34;</span><span class=p>:</span> <span class=n>image_path</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>data_to_insert</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>insert</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>data</span><span class=o>=</span><span class=n>data_to_insert</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;成功插入 </span><span class=si>{</span><span class=n>result</span><span class=p>[</span><span class=s1>&#39;insert_count&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2> 条数据。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 6. 创建索引</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在为 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 创建索引&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>index_params</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>prepare_index_params</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>index_params</span><span class=o>.</span><span class=n>add_index</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>field_name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>index_type</span><span class=o>=</span><span class=s2>&#34;HNSW&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>metric_type</span><span class=o>=</span><span class=s2>&#34;COSINE&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;M&#34;</span><span class=p>:</span> <span class=mi>16</span><span class=p>,</span> <span class=s2>&#34;efConstruction&#34;</span><span class=p>:</span> <span class=mi>256</span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>create_index</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>index_params</span><span class=o>=</span><span class=n>index_params</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;成功为向量字段创建 HNSW 索引。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;索引详情:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>milvus_client</span><span class=o>.</span><span class=n>describe_index</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span> <span class=n>index_name</span><span class=o>=</span><span class=s2>&#34;vector&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>load_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已加载 Collection 到内存中。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 7. 执行多模态检索</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在 &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39; 中执行检索&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>query_image_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;dragon&#34;</span><span class=p>,</span> <span class=s2>&#34;query.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>query_text</span> <span class=o>=</span> <span class=s2>&#34;一条龙&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>query_vector</span> <span class=o>=</span> <span class=n>encoder</span><span class=o>.</span><span class=n>encode_query</span><span class=p>(</span><span class=n>image_path</span><span class=o>=</span><span class=n>query_image_path</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=n>query_text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>search_results</span> <span class=o>=</span> <span class=n>milvus_client</span><span class=o>.</span><span class=n>search</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=o>=</span><span class=p>[</span><span class=n>query_vector</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_fields</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;image_path&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>limit</span><span class=o>=</span><span class=mi>5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>search_params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;metric_type&#34;</span><span class=p>:</span> <span class=s2>&#34;COSINE&#34;</span><span class=p>,</span> <span class=s2>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span><span class=s2>&#34;ef&#34;</span><span class=p>:</span> <span class=mi>128</span><span class=p>}}</span>
+</span></span><span class=line><span class=cl><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>retrieved_images</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;检索结果:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>hit</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>search_results</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  Top </span><span class=si>{</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=si>}</span><span class=s2>: ID=</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>, 距离=</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;distance&#39;</span><span class=p>]</span><span class=si>:</span><span class=s2>.4f</span><span class=si>}</span><span class=s2>, 路径=&#39;</span><span class=si>{</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;entity&#39;</span><span class=p>][</span><span class=s1>&#39;image_path&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>retrieved_images</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>hit</span><span class=p>[</span><span class=s1>&#39;entity&#39;</span><span class=p>][</span><span class=s1>&#39;image_path&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 8. 可视化与清理</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>--&gt; 正在可视化结果并清理资源&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>retrieved_images</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;没有检索到任何图像。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>panoramic_image</span> <span class=o>=</span> <span class=n>visualize_results</span><span class=p>(</span><span class=n>query_image_path</span><span class=p>,</span> <span class=n>retrieved_images</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>combined_image_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>DATA_DIR</span><span class=p>,</span> <span class=s2>&#34;search_result.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>cv2</span><span class=o>.</span><span class=n>imwrite</span><span class=p>(</span><span class=n>combined_image_path</span><span class=p>,</span> <span class=n>panoramic_image</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;结果图像已保存到: </span><span class=si>{</span><span class=n>combined_image_path</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>combined_image_path</span><span class=p>)</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>release_collection</span><span class=p>(</span><span class=n>collection_name</span><span class=o>=</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已从内存中释放 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>milvus_client</span><span class=o>.</span><span class=n>drop_collection</span><span class=p>(</span><span class=n>COLLECTION_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已删除 Collection: &#39;</span><span class=si>{</span><span class=n>COLLECTION_NAME</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/blog/tags/rag/>RAG</a>
+<a href=/blog/tags/milvus/>Milvus</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/><div class=article-details><h2 class=article-title>向量数据库中的索引优化</h2></div></a></article><article><a href=/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/><div class=article-details><h2 class=article-title>向量数据库简介——以FAISS为例</h2></div></a></article><article><a href=/blog/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/><div class=article-details><h2 class=article-title>RAG 中的向量嵌入和多模态嵌入</h2></div></a></article><article><a href=/blog/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/><div class=article-details><h2 class=article-title>RAG 中的数据准备</h2></div></a></article><article><a href=/blog/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/><div class=article-details><h2 class=article-title>RAG 简介及其简单实现</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

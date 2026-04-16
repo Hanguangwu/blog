@@ -1,4 +1,372 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LlamaIndex on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/llamaindex/</link><description>Recent content in LlamaIndex on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 31 Mar 2026 20:40:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/llamaindex/index.xml" rel="self" type="application/rss+xml"/><item><title>RAG 中的数据准备</title><link>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</link><pubDate>Tue, 31 Mar 2026 20:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</guid><description>&lt;h1 id="rag-中的数据准备"&gt;RAG 中的数据准备
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LlamaIndex on 酒中仙</title><link>https://hanguangwu.github.io/blog/tags/llamaindex/</link><description>Recent content in LlamaIndex on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 02 Apr 2026 23:14:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/tags/llamaindex/index.xml" rel="self" type="application/rss+xml"/><item><title>向量数据库中的索引优化</title><link>https://hanguangwu.github.io/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</link><pubDate>Thu, 02 Apr 2026 23:14:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="向量数据库中的索引优化"&gt;向量数据库中的索引优化
+&lt;/h1&gt;&lt;p&gt;在上一章的文本分块部分，已经简单介绍了一些索引优化的策略。本节将基于 LlamaIndex 的高性能生产级RAG构建方案&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，对索引优化进行更深入的探讨。&lt;/p&gt;
+&lt;h2 id="一上下文扩展"&gt;一、上下文扩展
+&lt;/h2&gt;&lt;p&gt;在RAG系统中，常常面临一个权衡问题：使用小块文本进行检索可以获得更高的精确度，但小块文本缺乏足够的上下文，可能导致大语言模型（LLM）无法生成高质量的答案；而使用大块文本虽然上下文丰富，却容易引入噪音，降低检索的相关性。为了解决这一矛盾，LlamaIndex 提出了一种实用的索引策略——&lt;strong&gt;句子窗口检索（Sentence Window Retrieval）&lt;/strong&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。该技术巧妙地结合了两种方法的优点：它在检索时聚焦于高度精确的单个句子，在送入LLM生成答案前，又智能地将上下文扩展回一个更宽的“窗口”，从而同时保证检索的准确性和生成的质量。&lt;/p&gt;
+&lt;h3 id="11-主要思路"&gt;1.1 主要思路
+&lt;/h3&gt;&lt;p&gt;句子窗口检索的思想可以概括为：&lt;strong&gt;为检索精确性而索引小块，为上下文丰富性而检索大块&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;其工作流程如下：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;索引阶段&lt;/strong&gt;：在构建索引时，文档被分割成&lt;strong&gt;单个句子&lt;/strong&gt;。每个句子都作为一个独立的“节点（Node）”存入向量数据库。同时，每个句子节点都会在元数据（metadata）中存储其&lt;strong&gt;上下文窗口&lt;/strong&gt;，即该句子原文中的前N个和后N个句子。这个窗口内的文本不会被索引，仅仅是作为元数据存储。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;检索阶段&lt;/strong&gt;：当用户发起查询时，系统会在所有&lt;strong&gt;单一句子节点&lt;/strong&gt;上执行相似度搜索。因为句子是表达完整语义的最小单位，所以这种方式可以非常精确地定位到与用户问题最相关的核心信息。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;后处理阶段&lt;/strong&gt;：在检索到最相关的句子节点后，系统会使用一个名为 &lt;code&gt;MetadataReplacementPostProcessor&lt;/code&gt; 的后处理模块。该模块会读取到检索到的句子节点的元数据，并用元数据中存储的&lt;strong&gt;完整上下文窗口&lt;/strong&gt;来替换节点中原来的单一句子内容。&lt;/p&gt;
+&lt;p&gt;（4）&lt;strong&gt;生成阶段&lt;/strong&gt;：最后，这些被替换了内容的、包含丰富上下文的节点被传递给LLM，用于生成最终的答案。&lt;/p&gt;
+&lt;h3 id="12-代码实现"&gt;1.2 代码实现
+&lt;/h3&gt;&lt;p&gt;下面通过 LlamaIndex 官网的示例，来演示如何实现句子窗口检索，并与常规的检索方法进行对比。该示例将加载一份PDF格式的IPCC气候报告，并就其中的专业问题进行提问。&lt;/p&gt;
+&lt;p&gt;核心代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 假设 Settings.llm 和 Settings.embed_model 已经预先配置好&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 加载文档&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;documents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SimpleDirectoryReader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;input_files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;../../data/C3/pdf/IPCC_AR6_WGII_Chapter03.pdf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_data&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 创建节点与构建索引&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2.1 句子窗口索引&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;node_parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SentenceWindowNodeParser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_defaults&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;window_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;window_metadata_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;window&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;original_text_metadata_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;original_text&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sentence_nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;node_parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_nodes_from_documents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;documents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sentence_index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VectorStoreIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentence_nodes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;根据 LlamaIndex 的底层源码，&lt;code&gt;SentenceWindowNodeParser&lt;/code&gt; 的核心逻辑位于 &lt;code&gt;build_window_nodes_from_documents&lt;/code&gt; 方法中。其实现过程可以分解为以下几个关键步骤：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;句子切分 (&lt;code&gt;sentence_splitter&lt;/code&gt;)&lt;/strong&gt; ：解析器首先接收一个文档（&lt;code&gt;Document&lt;/code&gt;），然后调用 &lt;code&gt;self.sentence_splitter(doc.text)&lt;/code&gt; 方法。这个 &lt;code&gt;sentence_splitter&lt;/code&gt; 是一个可配置的函数，默认为 &lt;code&gt;split_by_sentence_tokenizer&lt;/code&gt;，它负责将文档的全部文本精确地切分成一个句子列表（&lt;code&gt;text_splits&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;创建基础节点 (&lt;code&gt;build_nodes_from_splits&lt;/code&gt;)&lt;/strong&gt; ：切分出的 &lt;code&gt;text_splits&lt;/code&gt; 列表被传递给 &lt;code&gt;build_nodes_from_splits&lt;/code&gt; 工具函数。这个函数会为列表中的&lt;strong&gt;每一个句子&lt;/strong&gt;都创建一个独立的 &lt;code&gt;TextNode&lt;/code&gt;。此时，每个 &lt;code&gt;TextNode&lt;/code&gt; 的 &lt;code&gt;text&lt;/code&gt; 属性就是这个句子的内容。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;构建窗口并填充元数据 (主要循环)&lt;/strong&gt; ：接下来，解析器会遍历所有新创建的 &lt;code&gt;TextNode&lt;/code&gt;。对于位于第 &lt;code&gt;i&lt;/code&gt; 个位置的节点，它会执行以下操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;定位窗口&lt;/strong&gt;：通过列表切片 &lt;code&gt;nodes[max(0, i - self.window_size) : min(i + self.window_size + 1, len(nodes))]&lt;/code&gt; 来获取一个包含中心句子及其前后 &lt;code&gt;window_size&lt;/code&gt;（默认为3）个邻近节点的列表（&lt;code&gt;window_nodes&lt;/code&gt;）。这个切片操作很巧妙地处理了文档开头和结尾的边界情况。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;组合窗口文本&lt;/strong&gt;：将 &lt;code&gt;window_nodes&lt;/code&gt; 列表中所有节点的 &lt;code&gt;text&lt;/code&gt;（即所有在窗口内的句子）用空格拼接成一个长字符串。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;填充元数据&lt;/strong&gt;：将上一步生成的长字符串（完整的上下文窗口）存入当前节点（第&lt;code&gt;i&lt;/code&gt;个节点）的元数据中，键为 &lt;code&gt;self.window_metadata_key&lt;/code&gt;（默认为 &lt;code&gt;&amp;quot;window&amp;quot;&lt;/code&gt;）。同时，也会将节点自身的文本（原始句子）存入元数据，键为 &lt;code&gt;self.original_text_metadata_key&lt;/code&gt;（默认为 &lt;code&gt;&amp;quot;original_text&amp;quot;&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;&lt;strong&gt;设置元数据排除项&lt;/strong&gt;：这是一个非常关键的细节。在填充完元数据后，代码会执行 &lt;code&gt;node.excluded_embed_metadata_keys.extend(...)&lt;/code&gt; 和 &lt;code&gt;node.excluded_llm_metadata_keys.extend(...)&lt;/code&gt;。这行代码的作用是告诉后续的嵌入模型和LLM，在处理这个节点时，&lt;strong&gt;应当忽略&lt;/strong&gt; &lt;code&gt;&amp;quot;window&amp;quot;&lt;/code&gt; 和 &lt;code&gt;&amp;quot;original_text&amp;quot;&lt;/code&gt; 这两个元数据字段。这确保了只有单个句子的纯净文本被用于生成向量嵌入，从而保证了检索的高精度。而 &lt;code&gt;&amp;quot;window&amp;quot;&lt;/code&gt; 字段仅供后续的 &lt;code&gt;MetadataReplacementPostProcessor&lt;/code&gt; 使用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过以上步骤，&lt;code&gt;SentenceWindowNodeParser&lt;/code&gt; 最终返回一个 &lt;code&gt;TextNode&lt;/code&gt; 列表。列表中的每个节点都代表一个独立的句子，其 &lt;code&gt;text&lt;/code&gt; 属性用于精确检索，而其 &lt;code&gt;metadata&lt;/code&gt; 中则“隐藏”了用于生成答案的丰富上下文窗口。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2.2 常规分块索引 (基准)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;base_parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SentenceSplitter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;base_nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;base_parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_nodes_from_documents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;documents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;base_index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VectorStoreIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_nodes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 构建查询引擎&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sentence_query_engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sentence_index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_query_engine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;similarity_top_k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;node_postprocessors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;MetadataReplacementPostProcessor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target_metadata_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;window&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;base_query_engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;base_index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_query_engine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;similarity_top_k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 执行查询并对比结果&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;What are the concerns surrounding the AMOC?&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;查询: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;--- 句子窗口检索结果 ---&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;window_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sentence_query_engine&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;回答: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;window_response&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;--- 常规检索结果 ---&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;base_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;base_query_engine&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;回答: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;base_response&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（1）&lt;strong&gt;构建句子窗口索引&lt;/strong&gt;：这一步利用了 &lt;code&gt;SentenceWindowNodeParser&lt;/code&gt;。它将文档解析为以单个句子为单位的 &lt;code&gt;Node&lt;/code&gt;，同时将包含上下文的“窗口”文本（默认为前后各3个句子）存储在每个 &lt;code&gt;Node&lt;/code&gt; 的元数据中。这一步是实现“为检索精确性而索引小块”思想的关键。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;构建查询引擎与后处理&lt;/strong&gt;：查询引擎的构建是实现“为生成质量而扩展上下文”的关键。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在创建 &lt;code&gt;sentence_query_engine&lt;/code&gt; 时，配置中加入了一个重要的后处理器 &lt;code&gt;MetadataReplacementPostProcessor&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;它的作用是：当检索器根据用户查询找到最相关的节点（也就是单个句子）后，这个后处理器会立即介入。&lt;/li&gt;
+&lt;li&gt;它会从该节点的元数据中读取出预先存储的完整“窗口”文本，并用它&lt;strong&gt;替换&lt;/strong&gt;掉节点中原来的单个句子内容。&lt;/li&gt;
+&lt;li&gt;这样，最终传递给大语言模型的就不再是孤立的句子，而是包含丰富上下文的完整文本段落，从而确保了生成答案的质量和连贯性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们向两个引擎提出的问题是：“关于大西洋经向翻转环流（AMOC），人们主要担忧什么？” (What are the concerns surrounding the AMOC?)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码输出如下：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;查询: What are the concerns surrounding the AMOC?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;--- 句子窗口检索结果 ---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;回答: The Atlantic Meridional Overturning Circulation &lt;span class="o"&gt;(&lt;/span&gt;AMOC&lt;span class="o"&gt;)&lt;/span&gt; is projected to decline over the 21st century with high confidence, though there is low confidence in quantitative projections of this decline. Observational records since the mid-2000s are too short to determine the relative contributions of internal variability, natural forcing, and anthropogenic forcing to AMOC changes. Additionally, there is low confidence in reconstructed and modeled AMOC changes &lt;span class="k"&gt;for&lt;/span&gt; the 20th century due to limited agreement in quantitative trends. While an abrupt collapse before &lt;span class="m"&gt;2100&lt;/span&gt; is not expected, the decline could have significant implications &lt;span class="k"&gt;for&lt;/span&gt; global climate patterns.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;--- 常规检索结果 ---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;回答: The concerns surrounding the Atlantic Meridional Overturning Circulation &lt;span class="o"&gt;(&lt;/span&gt;AMOC&lt;span class="o"&gt;)&lt;/span&gt; primarily involve its projected decline over the 21st century across all Shared Socioeconomic Pathway &lt;span class="o"&gt;(&lt;/span&gt;SSP&lt;span class="o"&gt;)&lt;/span&gt; scenarios. While an abrupt collapse before &lt;span class="m"&gt;2100&lt;/span&gt; is not expected, there is high confidence in this decline, though quantitative projections remain uncertain. Observational records since the mid-2000s are too short to clearly distinguish the contributions of internal variability, natural forcing, and anthropogenic forcing to these changes. This uncertainty highlights the need &lt;span class="k"&gt;for&lt;/span&gt; further research to better understand and predict AMOC behavior and its broader climate impacts.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;从输出结果中可以观察到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;两个答案都抓住了核心&lt;/strong&gt;：两个引擎都正确地识别出，对AMOC的主要担忧是其在21世纪预计的衰退。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;句子窗口检索的答案更详尽、更连贯&lt;/strong&gt;：句子窗口检索的回答不仅指出了衰退的趋势，还补充了关于“定量预测的置信度低”、“观测记录时间过短”、“20世纪重建和模拟的变化置信度低”等多个维度的细节。这使得答案的信息量更大，上下文更完整，更像一个综述。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;常规检索的答案相对宽泛&lt;/strong&gt;：常规检索的回答虽然正确，但内容相对概括，最后以“需要进一步研究”这样较为笼同的结论收尾。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种差异正是句子窗口检索策略优势的体现。它通过“精确检索小文本块（单个句子），再扩展上下文（句子窗口）”的方式，为大语言模型提供了高度相关且信息丰富的上下文，从而生成了质量更高的答案。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/05_sentence_window_retrieval.py" target="_blank" rel="noopener"
+&gt;完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="二结构化索引"&gt;二、结构化索引
+&lt;/h2&gt;&lt;p&gt;随着知识库的规模不断扩大（例如，包含数百个PDF文件），传统的RAG方法（即对所有文本块进行top-k相似度搜索）会遇到瓶颈。当一个查询可能只与其中一两个文档相关时，在整个文档库中进行无差别的向量搜索，不仅效率低下，还容易被不相关的文本块干扰，导致检索结果不精确。&lt;/p&gt;
+&lt;p&gt;为了解决这个问题，一个有效的方法是利用&lt;strong&gt;结构化索引&lt;/strong&gt;。其原理是在索引文本块的同时，为其附加结构化的&lt;strong&gt;元数据（Metadata）&lt;/strong&gt;。这些元数据可以是任何有助于筛选和定位信息的标签，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件名&lt;/li&gt;
+&lt;li&gt;文档创建日期&lt;/li&gt;
+&lt;li&gt;章节标题&lt;/li&gt;
+&lt;li&gt;作者&lt;/li&gt;
+&lt;li&gt;任何自定义的分类标签&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/3_5_1.webp"
+loading="lazy"
+alt="结构化索引"
+&gt;&lt;/p&gt;
+&lt;p&gt;实际上，在第二章“文本分块”中介绍的&lt;strong&gt;基于文档结构的分块&lt;/strong&gt;方法，就是实现结构化索引的一种前置步骤。例如，在使用 &lt;code&gt;MarkdownHeaderTextSplitter&lt;/code&gt; 时，分块器会自动将Markdown文档的各级标题（如 &lt;code&gt;Header 1&lt;/code&gt;, &lt;code&gt;Header 2&lt;/code&gt; 等）提取并存入每个文本块的元数据中。这些标题信息就是非常有价值的结构化数据，可以直接用于后续的元数据过滤。&lt;/p&gt;
+&lt;p&gt;通过这种方式，可以在检索时实现“元数据过滤”和“向量搜索”的结合。例如，当用户查询“请总结一下2023年第二季度财报中关于AI的论述”时，系统可以：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;元数据预过滤&lt;/strong&gt;：首先通过元数据筛选，只在 &lt;code&gt;document_type == '财报'&lt;/code&gt;、&lt;code&gt;year == 2023&lt;/code&gt; 且 &lt;code&gt;quarter == 'Q2'&lt;/code&gt; 的文档子集中进行搜索。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;向量搜索&lt;/strong&gt;：然后，在经过滤的、范围更小的文本块集合中，执行针对查询“关于AI的论述”的向量相似度搜索。&lt;/p&gt;
+&lt;p&gt;这种“先过滤，再搜索”的策略，能够极大地缩小检索范围，显著提升大规模知识库场景下RAG应用的检索效率和准确性。LlamaIndex 提供了包括“自动检索”（Auto-Retrieval）在内的多种工具来支持这种结构化的检索范式。&lt;/p&gt;
+&lt;h3 id="21-代码实现基于多表格的递归检索"&gt;2.1 代码实现：基于多表格的递归检索
+&lt;/h3&gt;&lt;p&gt;在更复杂的场景中，结构化数据可能分布在多个来源中，例如一个包含多个工作表（Sheet）的 Excel 文件，每个工作表都代表一个独立的表格。在这种情况下，需要一种更强大的策略：&lt;strong&gt;递归检索&lt;/strong&gt;&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;。它能实现“路由”功能，先将查询引导至正确的知识来源（正确的表格），然后再在该来源内部执行精确查询。&lt;/p&gt;
+&lt;p&gt;下面使用一个包含多个工作表的电影数据 Excel 文件（&lt;code&gt;movie.xlsx&lt;/code&gt;）来演示，其中每个工作表（如 &lt;code&gt;年份_1994&lt;/code&gt;, &lt;code&gt;年份_2002&lt;/code&gt; 等）都存储了对应年份的电影信息。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 为每个工作表创建查询引擎和摘要节点&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;excel_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;../../data/C3/excel/movie.xlsx&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;xls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ExcelFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;excel_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;df_query_engines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;all_nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sheet_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sheet_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_excel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xls&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sheet_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sheet_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 为当前工作表创建一个 PandasQueryEngine&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;query_engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PandasQueryEngine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 为当前工作表创建一个摘要节点（IndexNode）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sheet_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;年份_&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;summary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;这个表格包含了年份为 &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; 的电影信息，可以用来回答关于这一年电影的具体问题。&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;IndexNode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sheet_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;all_nodes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 存储工作表名称到其查询引擎的映射&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;df_query_engines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sheet_name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;query_engine&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 创建顶层索引（只包含摘要节点）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vector_index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VectorStoreIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;all_nodes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 创建递归检索器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vector_retriever&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vector_index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_retriever&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;similarity_top_k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;recursive_retriever&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RecursiveRetriever&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;vector&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;retriever_dict&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;vector&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vector_retriever&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;query_engine_dict&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df_query_engines&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 创建查询引擎&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;query_engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RetrieverQueryEngine&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;recursive_retriever&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. 执行查询&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;1994年评分人数最多的电影是哪一部？&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;查询: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;query_engine&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;回答: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;创建 PandasQueryEngine&lt;/strong&gt; ：遍历 Excel 中的每个工作表，为每个工作表（即一个独立的 DataFrame）都实例化一个 &lt;code&gt;PandasQueryEngine&lt;/code&gt;。其强大之处在于，它能将关于表格的自然语言问题（如“评分人数最多的是哪个”）转换成实际的 Pandas 代码（如 &lt;code&gt;df.sort_values('评分人数').iloc[-1]&lt;/code&gt;）来执行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;创建摘要节点 (&lt;code&gt;IndexNode&lt;/code&gt;)&lt;/strong&gt; ：对每个工作表，都创建一个 &lt;code&gt;IndexNode&lt;/code&gt;，其内容是关于这个表格的一段摘要文本。这个节点将作为顶层检索的“指针”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;构建顶层索引&lt;/strong&gt; ：使用所有创建的 &lt;code&gt;IndexNode&lt;/code&gt; 构建一个 &lt;code&gt;VectorStoreIndex&lt;/code&gt;。这个索引不包含任何表格的详细数据，只包含指向各个表格的“指针”信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;创建 &lt;code&gt;RecursiveRetriever&lt;/code&gt;&lt;/strong&gt; ：这是实现递归检索的核心。将其配置为：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;retriever_dict&lt;/code&gt;: 指定顶层的检索器，即在摘要节点中进行检索的 &lt;code&gt;vector_retriever&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query_engine_dict&lt;/code&gt;: 提供一个从节点 ID（即工作表名称）到其对应查询引擎的映射。当顶层检索器匹配到某个摘要节点后，递归检索器就知道该调用哪个 &lt;code&gt;PandasQueryEngine&lt;/code&gt; 来处理后续查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;运行结果：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;查询: 1994年评分人数最少的电影是哪一部？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; Retrieving with query id None: 1994年评分人数最少的电影是哪一部？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; Retrieved node with id, entering: 年份_1994
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; Retrieving with query id 年份_1994: 1994年评分人数最少的电影是哪一部？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; Pandas Instructions:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;df[df[&amp;lsquo;年份&amp;rsquo;] == 1994].nsmallest(1, &amp;lsquo;评分人数&amp;rsquo;)[&amp;lsquo;电影名称&amp;rsquo;].iloc[0]&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; Pandas Output: 燃情岁月
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;回答: 燃情岁月
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;从输出中可以清晰地看到递归检索的完整流程：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;顶层路由&lt;/strong&gt;：&lt;code&gt;Retrieving with query id None&lt;/code&gt;，系统首先在顶层的摘要索引中检索，根据问题“1994年&amp;hellip;”匹配到了摘要节点 &lt;code&gt;年份_1994&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;进入子层&lt;/strong&gt;：&lt;code&gt;Retrieved node with id, entering: 年份_1994&lt;/code&gt;，系统决定进入与“年份_1994”这个工作表关联的查询引擎。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;子层查询&lt;/strong&gt;：&lt;code&gt;Retrieving with query id 年份_1994&lt;/code&gt;，&lt;code&gt;PandasQueryEngine&lt;/code&gt; 接管查询，并将问题发送给 LLM，让其生成 Pandas 代码。&lt;/p&gt;
+&lt;p&gt;（4）&lt;strong&gt;代码生成与执行&lt;/strong&gt;：LLM 生成了 &lt;code&gt;df[df['年份'] == 1994].nsmallest(1, '评分人数')['电影名称'].iloc[0]&lt;/code&gt;，引擎执行后得到输出 &lt;code&gt;燃情岁月&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/06_recursive_retrieval.py" target="_blank" rel="noopener"
+&gt;完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;重要安全警告&lt;/strong&gt;：实际上在 LlamaIndex 的官网有提到，&lt;code&gt;PandasQueryEngine&lt;/code&gt; 是一个实验性功能，具有潜在的安全风险。它的工作原理是让 LLM 生成 Python 代码，然后使用 &lt;code&gt;eval()&lt;/code&gt; 函数在本地执行。这意味着，在没有严格沙箱隔离的环境下，理论上可能执行任意代码。&lt;strong&gt;因此，强烈不建议在生产环境中使用此工具&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="22-另一种实现方式"&gt;2.2 另一种实现方式
+&lt;/h3&gt;&lt;p&gt;鉴于 &lt;code&gt;PandasQueryEngine&lt;/code&gt; 的安全风险，还可以采用一种更安全的方式来实现类似的多表格查询，思路是&lt;strong&gt;将路由和检索彻底分离&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这种改进方法的具体步骤如下：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;创建两个独立的向量索引&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;摘要索引（用于路由）&lt;/strong&gt;：为每个Excel工作表（例如，“1994年电影数据”）创建一个非常简短的摘要性&lt;code&gt;Document&lt;/code&gt;，例如：“此文档包含1994年的电影信息”。然后，用所有这些摘要文档构建一个轻量级的向量索引。这个索引的唯一目的就是充当“路由器”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容索引（用于问答）&lt;/strong&gt;：将每个工作表的实际数据（例如，整个表格）转换为一个大的文本&lt;code&gt;Document&lt;/code&gt;，并为其附加一个关键的元数据标签，如 &lt;code&gt;{&amp;quot;sheet_name&amp;quot;: &amp;quot;年份_1994&amp;quot;}&lt;/code&gt;。然后，用所有这些包含真实内容的文档构建一个向量索引。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（2）&lt;strong&gt;执行两步查询&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;第一步：路由&lt;/strong&gt;。当用户提问（例如，“1994年评分人数最少的电影是哪一部？”）时，首先在“摘要索引”中进行检索。由于问题中的“1994年”与“此文档包含1994年的电影信息”这个摘要高度相关，检索器会快速返回其对应的元数据，告诉系统目标是 &lt;code&gt;年份_1994&lt;/code&gt; 这个工作表。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第二步：检索&lt;/strong&gt;。拿到 &lt;code&gt;年份_1994&lt;/code&gt; 这个目标后，系统会在“内容索引”中进行检索，但这次会附加一个&lt;strong&gt;元数据过滤器&lt;/strong&gt;（&lt;code&gt;MetadataFilter&lt;/code&gt;），强制要求只在 &lt;code&gt;sheet_name == &amp;quot;年份_1994&amp;quot;&lt;/code&gt; 的文档中进行搜索。这样，LLM就能在正确的、经过筛选的数据范围内找到问题的答案。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过这种“先路由，后用元数据过滤检索”的方式，既实现了跨多个数据源的查询能力，又避免了执行代码的安全隐患。LlamaIndex 官方也提供了类似的结构化分层检索&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref"&gt;4&lt;/a&gt;&lt;/sup&gt;可以参考。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/07_recursive_retrieval_v2.py" target="_blank" rel="noopener"
+&gt;完整代码&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="题外话关于框架"&gt;题外话：关于框架
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;有些人可能疑惑，为什么本教程不专注于一个框架（如 LlamaIndex 或 LangChain），而是混合使用，甚至造轮子？&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;框架是加速开发的强大工具，是帮助我们快速跨越技术鸿沟的“桥梁”。但任何桥梁都有其设计边界和局限性。我们的目标不是成为一个熟练的“过桥者”，而是成为一个懂得如何设计和建造桥梁的“工程师”。&lt;/p&gt;
+&lt;p&gt;因此，本教程选择的路径是：&lt;/p&gt;
+&lt;p&gt;（1）&lt;strong&gt;以原理为主&lt;/strong&gt;：我们优先关心的是“它是如何工作的？”而不是“我该调用哪个函数？”。理解了底层的思想，你将能更快地掌握任何现有或未来的框架。&lt;/p&gt;
+&lt;p&gt;（2）&lt;strong&gt;拥抱灵活性&lt;/strong&gt;：真实世界的业务需求往往比框架预设的场景更复杂。当框架无法满足需求，或者像本节使用的 &lt;code&gt;PandasQueryEngine&lt;/code&gt; 那样存在安全隐患时，懂得原理的话，就有能力去修改它，或者像本节的示例一样，用更底层的模块组合出更安全、合适的解决方案。&lt;/p&gt;
+&lt;p&gt;（3）&lt;strong&gt;培养解决问题的能力&lt;/strong&gt;：只学习使用框架，好比是照着菜谱做菜，虽然能快速复刻出指定的菜肴，但一旦缺少某个食材或遇到意外情况，就可能束手无策。而理解原理，则像是学会了烹饪的精髓。这让你不仅能轻松地做出各种美食，还能创造新菜式。&lt;/p&gt;
+&lt;p&gt;如果你希望深入某个框架的细节，它的官方文档永远是最好、最权威的学习资料。而本教程的使命，是帮助你建立起关于 RAG 的坚实知识体系，让你无论面对何种工具，都能游刃有余。&lt;/p&gt;
+&lt;h2 id="参考文献"&gt;参考文献
+&lt;/h2&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a class="link" href="https://docs.llamaindex.ai/en/stable/optimizing/production_rag/" target="_blank" rel="noopener"
+&gt;&lt;em&gt;Building Performant RAG Applications for Production&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;a class="link" href="https://docs.llamaindex.ai/en/stable/examples/node_postprocessor/MetadataReplacementDemo/#metadata-replacement-node-sentence-window" target="_blank" rel="noopener"
+&gt;&lt;em&gt;LlamaIndex - Sentence Window Retrieval&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;&lt;a class="link" href="https://docs.llamaindex.ai/en/stable/examples/query_engine/pdf_tables/recursive_retriever" target="_blank" rel="noopener"
+&gt;&lt;em&gt;Recursive Retriever + Query Engine Demo&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;a class="link" href="https://docs.llamaindex.ai/en/stable/examples/query_engine/multi_doc_auto_retrieval/multi_doc_auto_retrieval/" target="_blank" rel="noopener"
+&gt;&lt;em&gt;Structured Hierarchical Retrieval&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>RAG 中的数据准备</title><link>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</link><pubDate>Tue, 31 Mar 2026 20:40:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</guid><description>&lt;h1 id="rag-中的数据准备"&gt;RAG 中的数据准备
 &lt;/h1&gt;&lt;h2 id="第一节-数据加载"&gt;第一节 数据加载
 &lt;/h2&gt;&lt;p&gt;虽然本节内容在实际应用中非常重要，但是由于各种文档加载器的迭代更新，以及各类 AI 应用的不同需求，具体选择需要根据实际情况。本节仅作简单引入，但请务必&lt;strong&gt;重视数据加载&lt;/strong&gt;环节，&lt;strong&gt;“垃圾进，垃圾出 (Garbage In, Garbage Out)”&lt;/strong&gt; ——高质量输入是高质量输出的前提。&lt;/p&gt;
 &lt;h3 id="一文档加载器"&gt;一、文档加载器
