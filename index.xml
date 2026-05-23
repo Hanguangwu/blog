@@ -1,4 +1,582 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>https://hanguangwu.github.io/blog/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 25 Apr 2026 16:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>https://hanguangwu.github.io/blog/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>https://hanguangwu.github.io/blog/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 14 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>多媒体数字资源合集FMHY</title><link>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
+&lt;/h2&gt;&lt;p&gt;FMHY​（Free Media Heck Yeah）是一个开源的网络资源导航项目，旨在为用户提供全面的免费媒体资源、工具和服务指南。该项目通过精心整理的分类和详细说明，帮助用户安全、高效地获取各种数字资源，包括流媒体、下载工具、隐私保护方案等。&lt;/p&gt;
+&lt;p&gt;🔗 ​&lt;strong&gt;GitHub地址&lt;/strong&gt;​：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY" title="https://github.com/fmhy/FMHY"
+target="_blank" rel="noopener"
+&gt;https://github.com/fmhy/FMHY&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;🌐 ​&lt;strong&gt;官方网站&lt;/strong&gt;​：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://fmhy.net/" title="https://fmhy.net/"
+target="_blank" rel="noopener"
+&gt;https://fmhy.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;⚡ ​&lt;strong&gt;核心价值&lt;/strong&gt;​：&lt;/p&gt;
+&lt;p&gt;资源导航 · 隐私保护 · 工具推荐 · 社区驱动&lt;/p&gt;
+&lt;h2 id="fmhyfree-media-heck-yeah-wiki"&gt;&lt;strong&gt;FMHY&lt;/strong&gt;​（Free Media Heck Yeah） wiki
+&lt;/h2&gt;&lt;h3 id="-beginners-guide"&gt;&lt;a class="link" href="https://fmhy.net/beginners-guide" target="_blank" rel="noopener"
+&gt;📚 Beginners Guide&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;A Guide for Beginners + FAQs&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-adblocking--privacy"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Adblock" target="_blank" rel="noopener"
+&gt;📛 Adblocking / Privacy&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Adblocking, Privacy, VPNs, Proxies, Antivirus&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-artificial-intelligence"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Artificial-Intelligence" target="_blank" rel="noopener"
+&gt;🤖 Artificial Intelligence&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Chat Bots, Text Generators, Image Generators, Chatbot Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-movies--tv--anime"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Streaming" target="_blank" rel="noopener"
+&gt;📺 Movies / TV / Anime&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Stream Videos, Download Videos, Torrent Videos&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-music--podcasts--radio"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Music" target="_blank" rel="noopener"
+&gt;🎵 Music / Podcasts / Radio&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Stream Audio, Download Audio, Torrent Audio&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-gaming--emulation"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Gaming" target="_blank" rel="noopener"
+&gt;🎮 Gaming / Emulation&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Download Games, ROMs, Gaming Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-books--comics--manga"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Reading" target="_blank" rel="noopener"
+&gt;📗 Books / Comics / Manga&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Books, Comics, Magazines, Newspapers&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-downloading"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Downloading" target="_blank" rel="noopener"
+&gt;💾 Downloading&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Download Sites, Software Sites, Open Directories&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-torrenting"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Torrenting" target="_blank" rel="noopener"
+&gt;🌀 Torrenting&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Torrent Clients, Torrent Sites, Trackers&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-educational"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Educational" target="_blank" rel="noopener"
+&gt;🧠 Educational&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Courses, Documentaries, Learning Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-tools"&gt;&lt;a class="link" href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/tools-index" target="_blank" rel="noopener"
+&gt;🔧 Tools&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Internet Tools, System Tools, Audio Tools, Video Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-android--ios"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Mobile" target="_blank" rel="noopener"
+&gt;📱 Android / iOS&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Apps, Jailbreaking, Android Emulators&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-linux--macos"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Linux" target="_blank" rel="noopener"
+&gt;🐧 Linux / macOS&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Apps, Software Sites, Gaming&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-non-english"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Non-Eng" target="_blank" rel="noopener"
+&gt;🌏 Non-English&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;International Piracy Sites&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-miscellaneous"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Misc" target="_blank" rel="noopener"
+&gt;📂 Miscellaneous&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Extensions, Indexes, News, Health, Food, Fun&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-changelog"&gt;&lt;a class="link" href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/comments/1pl8vl0/fmhy_changelog/" target="_blank" rel="noopener"
+&gt;📑 Changelog&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Recent Additions and Updates&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h3 id="-backups"&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY/wiki/Backups" target="_blank" rel="noopener"
+&gt;🔒 Backups&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;FMHY Backups&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="chinese--华语资源"&gt;Chinese / 华语资源 
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://233heji.com/" target="_blank" rel="noopener"
+&gt;heji&lt;/a&gt;&lt;/strong&gt; or &lt;a class="link" href="https://www.bajins.com/" target="_blank" rel="noopener"
+&gt;bajins&lt;/a&gt; - Chinese Sites / Tools Indexes&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://github.com/Wechat-ggGitHub/Awesome-GitHub-Repo" target="_blank" rel="noopener"
+&gt;Awesome GitHub Repo&lt;/a&gt;&lt;/strong&gt; - Programming Resources Index&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://github.com/jackhawks/rectg" target="_blank" rel="noopener"
+&gt;RecTG&lt;/a&gt;&lt;/strong&gt; - Chinese Telegram Groups / Bots&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.ixigua.com/" target="_blank" rel="noopener"
+&gt;ixigua.com&lt;/a&gt; - Chinese Alternative to YouTube and TikTok&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://linux.do/" target="_blank" rel="noopener"
+&gt;Linux Do&lt;/a&gt; - AI, Tech and Linux Forum&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://arch.icekylin.online/" target="_blank" rel="noopener"
+&gt;⁠Arch Linux Concise Guide&lt;/a&gt; or &lt;a class="link" href="https://archlinuxcn.org/" target="_blank" rel="noopener"
+&gt;⁠ArchlinuxCN&lt;/a&gt; - Arch Linux Guides&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://forum.blackfox.qzz.io/posts/speed-up-github-in-china-70e2a7/" target="_blank" rel="noopener"
+&gt;GitHub Speed Guide&lt;/a&gt; - Guide to Speed Up GitHub&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://assbbs.com/" target="_blank" rel="noopener"
+&gt;Diaosi Forum&lt;/a&gt; - Piracy Discussion Forum&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://assrt.net/" target="_blank" rel="noopener"
+&gt;assrt&lt;/a&gt;, &lt;a class="link" href="https://srtku.com/" target="_blank" rel="noopener"
+&gt;srtku&lt;/a&gt; or &lt;a class="link" href="https://zimuku.org/" target="_blank" rel="noopener"
+&gt;zimuku&lt;/a&gt; - Subtitles&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bangumi.moe/" target="_blank" rel="noopener"
+&gt;Bangumi&lt;/a&gt; - Anime Subtitles&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://tool.lu/" target="_blank" rel="noopener"
+&gt;Tool.lu&lt;/a&gt; - Online Tools&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://anti-ad.net/" target="_blank" rel="noopener"
+&gt;Anti-Ad&lt;/a&gt; - Adblock Filters&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://winmoes.com/" target="_blank" rel="noopener"
+&gt;Winmoes&lt;/a&gt; - Anime Windows Themes / Wallpapers&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://open.gridea.dev/" target="_blank" rel="noopener"
+&gt;Gridea&lt;/a&gt; - Blog Writing Client&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://ji.taioan.org/" target="_blank" rel="noopener"
+&gt;taioan&lt;/a&gt; - Chinese Spell Check&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://itaigi.tw/" target="_blank" rel="noopener"
+&gt;itaigi&lt;/a&gt; - Chinese to Taiwanese Translator&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://catocr.com/" target="_blank" rel="noopener"
+&gt;CatoCR&lt;/a&gt; - Image to Text&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://chinese.todaiinews.com/" target="_blank" rel="noopener"
+&gt;todaiinews&lt;/a&gt; - Language Learning&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://oh.taigi.info/" target="_blank" rel="noopener"
+&gt;Oh.Taigi&lt;/a&gt; - Learn Taiwanese&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bangumi.tv/" target="_blank" rel="noopener"
+&gt;Bangumi&lt;/a&gt;, &lt;a class="link" href="https://chii.in/" target="_blank" rel="noopener"
+&gt;2&lt;/a&gt; - Media Database / &lt;a class="link" href="https://github.com/czy0729/Bangumi" target="_blank" rel="noopener"
+&gt;Android Client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://tophub.today/" target="_blank" rel="noopener"
+&gt;TopHub&lt;/a&gt;, &lt;a class="link" href="https://rebang.today/" target="_blank" rel="noopener"
+&gt;Rebang&lt;/a&gt; or &lt;a class="link" href="https://cn.chinadaily.com.cn/" target="_blank" rel="noopener"
+&gt;Chinadaily&lt;/a&gt; - News&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.ithome.com/" target="_blank" rel="noopener"
+&gt;IT Home&lt;/a&gt; - Tech News&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.jialezi.net/" target="_blank" rel="noopener"
+&gt;jialezi&lt;/a&gt; - Tech Tutorials&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.lofter.com/" target="_blank" rel="noopener"
+&gt;Lofter&lt;/a&gt; - Novel Fan Art&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://scriptcat.org/" target="_blank" rel="noopener"
+&gt;⁠ScriptCat Index&lt;/a&gt; - Userscript Index&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.bing.com/?mkt=zh-CN" target="_blank" rel="noopener"
+&gt;Bing China&lt;/a&gt;, &lt;a class="link" href="https://www.toutiao.com/" target="_blank" rel="noopener"
+&gt;Toutiao&lt;/a&gt;, &lt;a class="link" href="https://www.sogou.com/" target="_blank" rel="noopener"
+&gt;sogou&lt;/a&gt; or &lt;a class="link" href="http://yisou.com/" target="_blank" rel="noopener"
+&gt;yisou&lt;/a&gt; - Search Engines&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.iciba.com/" target="_blank" rel="noopener"
+&gt;ICIBA&lt;/a&gt; / &lt;a class="link" href="https://cp.iciba.com/" target="_blank" rel="noopener"
+&gt;Client&lt;/a&gt;, &lt;a class="link" href="https://fanyi.qq.com/" target="_blank" rel="noopener"
+&gt;Fanyi&lt;/a&gt; or &lt;a class="link" href="https://fanyi.youdao.com/" target="_blank" rel="noopener"
+&gt;YouDao&lt;/a&gt; - Translators&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hack-games.com/" target="_blank" rel="noopener"
+&gt;Hack Game&lt;/a&gt; - Incremental Games&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://fuun.fun/" target="_blank" rel="noopener"
+&gt;Funn&lt;/a&gt; - Fun Sites&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://v2ex.com/" target="_blank" rel="noopener"
+&gt;V2EX&lt;/a&gt;, &lt;a class="link" href="https://www.cnblogs.com/" target="_blank" rel="noopener"
+&gt;CNBlogs&lt;/a&gt; or &lt;a class="link" href="https://www.zongscan.com/" target="_blank" rel="noopener"
+&gt;ZongScan&lt;/a&gt; - Developer / Programming Forums&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.bookstack.cn/" target="_blank" rel="noopener"
+&gt;BookStack&lt;/a&gt; - Developer / Programming Guides&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://gitee.com/" target="_blank" rel="noopener"
+&gt;Gitee&lt;/a&gt; - GitHub Alternative&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hellogithub.com/" target="_blank" rel="noopener"
+&gt;HelloGitHub&lt;/a&gt; - GitHub Projects&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="http://www.cslds.org/hkslbrowser/index.jsp" target="_blank" rel="noopener"
+&gt;hkslbrowser&lt;/a&gt; or &lt;a class="link" href="https://special.moe.gov.tw/signlanguage/" target="_blank" rel="noopener"
+&gt;special.moe&lt;/a&gt; - Chinese Sign Language Dictionaries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="great-firewall"&gt;Great Firewall
+&lt;/h3&gt;&lt;p&gt;TIP: Keep in mind some VPNs claiming to bypass GFW are made by Chinese agencies as a way to get user info. We recommend avoiding any generic ones, and sticking to ones listed in the &lt;a class="link" href="https://fmhy.net/privacy/#vpn" target="_blank" rel="noopener"
+&gt;VPN section&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;️ &lt;strong&gt;&lt;a class="link" href="https://fmhy.net/privacy/#anti-censorship" target="_blank" rel="noopener"
+&gt;Anti-Censorship Tools&lt;/a&gt;&lt;/strong&gt; / &lt;strong&gt;&lt;a class="link" href="https://fmhy.net/privacy/#proxy" target="_blank" rel="noopener"
+&gt;Proxy Tools&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://cbg.fmhy.bid/" target="_blank" rel="noopener"
+&gt;Censorship Bypass Guide&lt;/a&gt;&lt;/strong&gt; or &lt;a class="link" href="https://rentry.co/chinese-censorship-bypass-guide" target="_blank" rel="noopener"
+&gt;Censorship Bypass&lt;/a&gt; - Censorship Bypass Guide&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/gfwlist/gfwlist" target="_blank" rel="noopener"
+&gt;gfwlist&lt;/a&gt; - Blocked Sites List&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.reddit.com/r/dumbclub/" target="_blank" rel="noopener"
+&gt;r/dumbclub&lt;/a&gt; - GFW Discussion&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://gfw.report/" target="_blank" rel="noopener"
+&gt;gfw.report&lt;/a&gt; - GFW Information&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://ghproxy.link/" target="_blank" rel="noopener"
+&gt;GHProxy&lt;/a&gt; - GitHub Proxy (not blocked by GFW)&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/eli32-vlc/gfwmass" target="_blank" rel="noopener"
+&gt;⁠GFWMass&lt;/a&gt; - Proxy Deployment Tool / &lt;a class="link" href="https://forum.blackfox.qzz.io/posts/introduction-to-gfwmass/" target="_blank" rel="noopener"
+&gt;Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/URenko/Accesser/" target="_blank" rel="noopener"
+&gt;Accesser&lt;/a&gt; - SNI RST Solver&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.dotcom-tools.com/china-firewall-test" target="_blank" rel="noopener"
+&gt;China Firewall Test&lt;/a&gt;, &lt;a class="link" href="http://www.chinafirewalltest.com/" target="_blank" rel="noopener"
+&gt;ChinaFirewallTest&lt;/a&gt;, &lt;a class="link" href="https://www.comparitech.com/privacy-security-tools/blockedinchina/" target="_blank" rel="noopener"
+&gt;BlockedInChina&lt;/a&gt; or &lt;a class="link" href="https://viewdns.info/chinesefirewall/" target="_blank" rel="noopener"
+&gt;Chinese Firewall&lt;/a&gt; - Chinese Firewall Blocking Test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading--下载"&gt;Downloading / 下载
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://haisou.cc/" target="_blank" rel="noopener"
+&gt;HaiSo ⁠海搜u&lt;/a&gt; - Video / Audio / Books&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bbs.itzmx.com/" target="_blank" rel="noopener"
+&gt;⁠ZMX&lt;/a&gt; - Video / Audio&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://t.me/AnimeNep" target="_blank" rel="noopener"
+&gt;AnimeNep&lt;/a&gt; - Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://jpop.xyz/category/c-pop/" target="_blank" rel="noopener"
+&gt;J-pop Music Download&lt;/a&gt; - Music / FLAC / MP3&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.icourse163.org/" target="_blank" rel="noopener"
+&gt;icourse163&lt;/a&gt; / &lt;a class="link" href="https://greasyfork.org/en/scripts/372684" target="_blank" rel="noopener"
+&gt;Icourse163 Downloader&lt;/a&gt; - Courses&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/clinlx/CN_GreenLumaGUI" target="_blank" rel="noopener"
+&gt;CN GreenLumaGUI&lt;/a&gt; - Offline Steam DRM Bypass / DLC Unlocker&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://t.me/SuperLosslessMusic" target="_blank" rel="noopener"
+&gt;SuperLosslessMusic&lt;/a&gt; - Audio / FLAC&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://t.me/flac_file" target="_blank" rel="noopener"
+&gt;flac_file&lt;/a&gt; - Audio / FLAC&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://t.me/VmoMusic" target="_blank" rel="noopener"
+&gt;VmoMusic&lt;/a&gt; - Audio / FLAC&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.feiku6.com/" target="_blank" rel="noopener"
+&gt;feiku6&lt;/a&gt; - Books / Reading / Listening&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://book.tstrs.me/search" target="_blank" rel="noopener"
+&gt;Salty Leo&lt;/a&gt; - Books / Fiction / Non-Fiction / Downloading&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="torrenting--下载种子"&gt;Torrenting / 下载种子
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/c0re100/qBittorrent-Enhanced-Edition" target="_blank" rel="noopener"
+&gt;qBittorrent Enhanced&lt;/a&gt; - QBitorrent for Chinese Users&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://bt.orzx.im/" target="_blank" rel="noopener"
+&gt;Csze BT&lt;/a&gt; - Video / Audio / Books&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.acgnx.se/" target="_blank" rel="noopener"
+&gt;acgnx&lt;/a&gt; - Video / Audio / Books / NSFW&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://share.dmhy.org/" target="_blank" rel="noopener"
+&gt;Share.dmhy&lt;/a&gt; - Video / Anime / NSFW&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://xiazai001.org/" target="_blank" rel="noopener"
+&gt;XiaZai001&lt;/a&gt; - Video / Audio&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.dydytt.net/" target="_blank" rel="noopener"
+&gt;dytt8&lt;/a&gt; - Video / Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.dygang.cc/" target="_blank" rel="noopener"
+&gt;dygang&lt;/a&gt; - Video&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.seedhub.cc/" target="_blank" rel="noopener"
+&gt;seedhub&lt;/a&gt; - Video&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.btbtla.com/" target="_blank" rel="noopener"
+&gt;btbtla&lt;/a&gt; - Video&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://acg.rip/" target="_blank" rel="noopener"
+&gt;ACG.rip&lt;/a&gt; - Anime / Audio&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.miobt.com/" target="_blank" rel="noopener"
+&gt;MioBT&lt;/a&gt; - Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://vcb-s.com/" target="_blank" rel="noopener"
+&gt;VCB-S&lt;/a&gt; - Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://share.acgnx.se/" target="_blank" rel="noopener"
+&gt;ACGNX&lt;/a&gt; - Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://snow-raws.com/" target="_blank" rel="noopener"
+&gt;Snow-Raws&lt;/a&gt; - Anime / &lt;a class="link" href="https://www.skyey2.com/" target="_blank" rel="noopener"
+&gt;Official Tracker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://mikanani.me/" target="_blank" rel="noopener"
+&gt;Mikan&lt;/a&gt; - Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/EstrellaXD/Auto_Bangumi" target="_blank" rel="noopener"
+&gt;Auto_Bangumi&lt;/a&gt; - Anime Torrent Auto Download&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/DeSireFire/animeTrackerList" target="_blank" rel="noopener"
+&gt;AnimeTrackerList&lt;/a&gt; - Anime Trackers List&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="streaming--流媒体"&gt;Streaming / 流媒体
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://www.reddit.com/r/CDrama/wiki/streaming" target="_blank" rel="noopener"
+&gt;Chinese Drama Site Index&lt;/a&gt;&lt;/strong&gt; - Chinese Drama Sites Index&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://klyingshi.com/" target="_blank" rel="noopener"
+&gt;klyingshi&lt;/a&gt;&lt;/strong&gt; - Chinese Streaming Sites Index&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://577938.vip/" target="_blank" rel="noopener"
+&gt;555dy&lt;/a&gt;&lt;/strong&gt; - Movies / TV / Anime / NSFW / Sub / 1080p&lt;/li&gt;
+&lt;li&gt; &lt;strong&gt;&lt;a class="link" href="https://www.bilibili.com/" target="_blank" rel="noopener"
+&gt;BiliBili&lt;/a&gt;&lt;/strong&gt; or &lt;a class="link" href="https://www.bilibili.tv/" target="_blank" rel="noopener"
+&gt;BiliBili.tv&lt;/a&gt; / &lt;a class="link" href="https://fmhy.net/social-media-tools/#bilibili-tools" target="_blank" rel="noopener"
+&gt;Resources / Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://v.qq.com/" target="_blank" rel="noopener"
+&gt;Tencent Video&lt;/a&gt; - Movies / TV / Anime / Cartoons / Sub / Dub / 1080p / &lt;a class="link" href="https://weibomiaopai.com/online-video-downloader/tencent" target="_blank" rel="noopener"
+&gt;Downloader&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://momovod.app/" target="_blank" rel="noopener"
+&gt;MoMoVOD&lt;/a&gt; - Movies / TV / Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://vidhub.me/" target="_blank" rel="noopener"
+&gt;VidHub&lt;/a&gt; - Movies / TV / Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://ztv.tw/" target="_blank" rel="noopener"
+&gt;ztv.tw&lt;/a&gt; - Movies / TV / Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://chinaq.app/" target="_blank" rel="noopener"
+&gt;chinaq.app&lt;/a&gt; - Movies / TV / Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://xigua2.com/" target="_blank" rel="noopener"
+&gt;xigua2&lt;/a&gt; - Movies / TV / Sub&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.j315.cc/" target="_blank" rel="noopener"
+&gt;j315&lt;/a&gt; - Movies / TV / Anime&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://imaple8.co/" target="_blank" rel="noopener"
+&gt;Imaple&lt;/a&gt; - Movies / TV / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://xiaoyakankan.com/" target="_blank" rel="noopener"
+&gt;xiaoyakankan&lt;/a&gt; - Movies / TV / 720p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.iyf.tv/" target="_blank" rel="noopener"
+&gt;IYF&lt;/a&gt; - Movies / TV / Sub / Dub / 720p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://gimytw.cc/" target="_blank" rel="noopener"
+&gt;gimytw&lt;/a&gt; - Movies / TV / Cartoons / Dub&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://viu.tv/" target="_blank" rel="noopener"
+&gt;viu&lt;/a&gt; - Movies / TV / Free w/ Ads&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hoy.tv/" target="_blank" rel="noopener"
+&gt;hoy&lt;/a&gt; - Movies / TV / Free w/ Ads&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://kokotv.me/" target="_blank" rel="noopener"
+&gt;KokoTV&lt;/a&gt; - Drama / Sub / Dub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://nunuju.com/" target="_blank" rel="noopener"
+&gt;nunuju&lt;/a&gt; - Drama / Sub / Dub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://dramaq.xyz/" target="_blank" rel="noopener"
+&gt;dramaq&lt;/a&gt; - Drama / Sub / Dub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://duanjuhk.com/" target="_blank" rel="noopener"
+&gt;duanjuhk&lt;/a&gt; - Short Drama / Sub / Dub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://ccdm.cc/" target="_blank" rel="noopener"
+&gt;CC動漫&lt;/a&gt; - Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.xgcartoon.com/" target="_blank" rel="noopener"
+&gt;xgcartoon&lt;/a&gt; - Anime / Sub / Dub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://anime1.me/" target="_blank" rel="noopener"
+&gt;Anime1&lt;/a&gt; - Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://myself-bbs.com/" target="_blank" rel="noopener"
+&gt;Myself-BBS&lt;/a&gt; - Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.agedm.tv/" target="_blank" rel="noopener"
+&gt;AGE Anime&lt;/a&gt; - Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.bimiacg14.net/" target="_blank" rel="noopener"
+&gt;bimiacg&lt;/a&gt; - Anime / Sub / 1080p&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://music.163.com/" target="_blank" rel="noopener"
+&gt;music.163&lt;/a&gt; - Music&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="http://www.5nd.com/" target="_blank" rel="noopener"
+&gt;5nd&lt;/a&gt; - Music&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.missevan.com/" target="_blank" rel="noopener"
+&gt;MissEvan&lt;/a&gt; - Music / Podcasts / Audio Comics&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://kilakila.cn/" target="_blank" rel="noopener"
+&gt;Kilamanbo&lt;/a&gt; - Audio Comic Drama&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.huya.com/" target="_blank" rel="noopener"
+&gt;Huya&lt;/a&gt; - Live Streaming&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://iptv807.com/" target="_blank" rel="noopener"
+&gt;IPTV807&lt;/a&gt; - Live TV&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://space.bilibili.com/521685904" target="_blank" rel="noopener"
+&gt;數學老師張旭&lt;/a&gt; - Math Lessons&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/resumejob/free-project-course" target="_blank" rel="noopener"
+&gt;free-project-course&lt;/a&gt; - Programming Courses&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://greasyfork.org/en/scripts/426952-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%B0%8A%E4%BA%AB-vip-%E8%A7%A3%E9%94%81%E8%A7%86%E9%A2%91%E5%80%8D%E6%95%B0-%E8%A7%A3%E9%94%81%E5%85%A8%E9%83%A8%E6%B8%85%E6%99%B0%E5%BA%A6" target="_blank" rel="noopener"
+&gt;Baidu SkyDrive Video Player&lt;/a&gt; - Baidu VIP Video Player&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.acfun.cn/" target="_blank" rel="noopener"
+&gt;acfun.cn&lt;/a&gt; - Video Streaming / YouTube Alt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="reading--阅读"&gt;Reading / 阅读
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt; &lt;strong&gt;&lt;a class="link" href="https://www.69shuba.com/" target="_blank" rel="noopener"
+&gt;69xinshu&lt;/a&gt;&lt;/strong&gt; - Fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.jiumodiary.com/" target="_blank" rel="noopener"
+&gt;Jiumo&lt;/a&gt; - Book Search Engine&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://t.me/BooksThatMakeYouThink" target="_blank" rel="noopener"
+&gt;BooksThatMakeYouThink&lt;/a&gt; - Nonfiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.qiufengshuwu.com/" target="_blank" rel="noopener"
+&gt;AutumnWindBookstore&lt;/a&gt; - Fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://ixdzs8.tw/" target="_blank" rel="noopener"
+&gt;ixdzs&lt;/a&gt; - Fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://99csw.com/" target="_blank" rel="noopener"
+&gt;99csw.com&lt;/a&gt; - Fiction / Non-fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://nunubook.com/" target="_blank" rel="noopener"
+&gt;nunubook.com&lt;/a&gt; - Fiction / Non-fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://haodoo.org/" target="_blank" rel="noopener"
+&gt;haodoo&lt;/a&gt; - Fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://tuotuoshu.com/" target="_blank" rel="noopener"
+&gt;tuotuoshu&lt;/a&gt; - Fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://24hbook.com/" target="_blank" rel="noopener"
+&gt;24hbook&lt;/a&gt; - Fiction / Non-fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://5165.org/" target="_blank" rel="noopener"
+&gt;5165.org&lt;/a&gt; - Fiction / Nonfiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.52shuku.vip/" target="_blank" rel="noopener"
+&gt;52shuku&lt;/a&gt; - Books / Light-Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://books.l3zc.com/" target="_blank" rel="noopener"
+&gt;books.l3zc&lt;/a&gt; - Fiction / Non-fiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.ttkan.co/" target="_blank" rel="noopener"
+&gt;ttkan&lt;/a&gt; - Books / Light-Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.piaotia.com/" target="_blank" rel="noopener"
+&gt;Piaotian&lt;/a&gt; - Books / Light-Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.qqszz.net/" target="_blank" rel="noopener"
+&gt;qqszz&lt;/a&gt; - Books / Light-Novels / Requires Sign-Up&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.yodu.org/" target="_blank" rel="noopener"
+&gt;yodu&lt;/a&gt; - Books / Light-Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.256zw.org/" target="_blank" rel="noopener"
+&gt;256zw&lt;/a&gt; - Light-Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.trxs.me/" target="_blank" rel="noopener"
+&gt;Doujin Fiction Network&lt;/a&gt; or &lt;a class="link" href="https://t.me/Readfine" target="_blank" rel="noopener"
+&gt;Readfine&lt;/a&gt; / &lt;a class="link" href="https://t.me/ReadfineChat" target="_blank" rel="noopener"
+&gt;Discussion&lt;/a&gt; - FanFiction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.shuge.org/" target="_blank" rel="noopener"
+&gt;shuge&lt;/a&gt; - Rare / Ancient Books&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://ctext.org/" target="_blank" rel="noopener"
+&gt;CText&lt;/a&gt;, &lt;a class="link" href="https://chinesenotes.com/texts.html" target="_blank" rel="noopener"
+&gt;ChineseNotes&lt;/a&gt; or &lt;a class="link" href="https://www.quanxue.cn/" target="_blank" rel="noopener"
+&gt;quanxue&lt;/a&gt; - Chinese Historic Text Archives&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="http://www.guoxue.com/" target="_blank" rel="noopener"
+&gt;guoxue&lt;/a&gt; - History / Journals&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://ng-tech.icu/" target="_blank" rel="noopener"
+&gt;NG Tech&lt;/a&gt; - Documents&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/XWHQSJ/ebooks" target="_blank" rel="noopener"
+&gt;ebooks&lt;/a&gt;, &lt;a class="link" href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="noopener"
+&gt;Chinese Programming Books&lt;/a&gt; or &lt;a class="link" href="http://www.banshujiang.cn/" target="_blank" rel="noopener"
+&gt;Banshujiang&lt;/a&gt; - Programming Books&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://kangxizidian.com/" target="_blank" rel="noopener"
+&gt;kangxizidian&lt;/a&gt; - Chinese Kangxi Dictionary&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.shufazidian.com/" target="_blank" rel="noopener"
+&gt;Shufazidian&lt;/a&gt; - Chinese Calligraphy Dictionary&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.owlook.com.cn/" target="_blank" rel="noopener"
+&gt;owlook&lt;/a&gt; - Chinese Web Novel Search / [&lt;/p&gt;
+&lt;p&gt;](&lt;a class="link" href="https://github.com/howie6879/owllook" target="_blank" rel="noopener"
+&gt;https://github.com/howie6879/owllook&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="http://www.ccamc.co/" target="_blank" rel="noopener"
+&gt;CCams&lt;/a&gt; - Chinese Character Search&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.cbeta.org/" target="_blank" rel="noopener"
+&gt;CBeta&lt;/a&gt; or &lt;a class="link" href="http://goodweb.net.cn/sutra/" target="_blank" rel="noopener"
+&gt;Goodweb&lt;/a&gt; - Chinese Buddhist Scriptures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="http://open-lit.com/html/" target="_blank" rel="noopener"
+&gt;Open Literature&lt;/a&gt; - Classic Chinese Novels&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://21dzk.l.u-tokyo.ac.jp/SAT/index.html" target="_blank" rel="noopener"
+&gt;21dzk&lt;/a&gt; - Chinese Buddhist Scriptures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://pypi.org/project/wenku/" target="_blank" rel="noopener"
+&gt;wenku&lt;/a&gt; - Baidu Wenku Downloader&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://trtag.com/" target="_blank" rel="noopener"
+&gt;Trtag&lt;/a&gt; - Movies / TV Encyclopedia&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="light-novels"&gt;Light Novels
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://jpxs123.cc/" target="_blank" rel="noopener"
+&gt;jpxs123.cc&lt;/a&gt; - Light-Novels / Use &lt;a class="link" href="https://fmhy.net/privacy/#adblocking" target="_blank" rel="noopener"
+&gt;Adblock&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.kanunu8.com/" target="_blank" rel="noopener"
+&gt;kanunu8&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://hetushu.com/" target="_blank" rel="noopener"
+&gt;hetushu&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.zongheng.com/" target="_blank" rel="noopener"
+&gt;Zongheng&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.bixiange.top/" target="_blank" rel="noopener"
+&gt;Bixiange&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.qinkan.net/" target="_blank" rel="noopener"
+&gt;qinkan&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://ffxs8.com/" target="_blank" rel="noopener"
+&gt;ffxs8&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://powanjuan.cc/" target="_blank" rel="noopener"
+&gt;powanjuan&lt;/a&gt; - Light-Novels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="manga"&gt;Manga
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://ac.qq.com/" target="_blank" rel="noopener"
+&gt;AC.QQ&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://manga.bilibili.com/" target="_blank" rel="noopener"
+&gt;BiliBili&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.dm5.com/" target="_blank" rel="noopener"
+&gt;DM5&lt;/a&gt;, &lt;a class="link" href="https://tel.1kkk.com/" target="_blank" rel="noopener"
+&gt;2&lt;/a&gt; - Manga / Manhua&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://godamh.com/" target="_blank" rel="noopener"
+&gt;godamanga.site&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://xmanhua.com/" target="_blank" rel="noopener"
+&gt;xmanhua.com&lt;/a&gt; - Manga / Some NSFW&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.tvbsmh.com/" target="_blank" rel="noopener"
+&gt;tvbsmh&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.manhuagui.com/" target="_blank" rel="noopener"
+&gt;manhuagui&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.colamanga.com/" target="_blank" rel="noopener"
+&gt;colamanga&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://rumanhua.com/" target="_blank" rel="noopener"
+&gt;rumanhua&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.mkzhan.com/" target="_blank" rel="noopener"
+&gt;mkzhan&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="http://www.manhuapi.cc/" target="_blank" rel="noopener"
+&gt;manhuapi&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.36mh.org/" target="_blank" rel="noopener"
+&gt;36mh&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://komiic.com/" target="_blank" rel="noopener"
+&gt;komiic&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://happymh.com/" target="_blank" rel="noopener"
+&gt;happymh.com&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.manben.com/" target="_blank" rel="noopener"
+&gt;manben&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.manhuazhan.com/" target="_blank" rel="noopener"
+&gt;manhuazhan&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.rumanhua.com/" target="_blank" rel="noopener"
+&gt;rumanhua&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://godamh.com/" target="_blank" rel="noopener"
+&gt;godamh&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.fengchemh.com/" target="_blank" rel="noopener"
+&gt;fengchemh&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.yibenmanhua.com/" target="_blank" rel="noopener"
+&gt;yibenmanhua&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.dongmanmanhua.cn/" target="_blank" rel="noopener"
+&gt;dongmanmanhua&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.2animx.com/" target="_blank" rel="noopener"
+&gt;2animx&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://baozimh.one/" target="_blank" rel="noopener"
+&gt;baozimh&lt;/a&gt; - Manhua&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://comic.acgn.cc/" target="_blank" rel="noopener"
+&gt;acgn.cc&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.mangabz.com/" target="_blank" rel="noopener"
+&gt;Mangabz&lt;/a&gt; - Manga&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://baozimh.org/" target="_blank" rel="noopener"
+&gt;Baozimh&lt;/a&gt; - Manga / Manhua / Manhwa&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.baozimh.com/" target="_blank" rel="noopener"
+&gt;Baozimh&lt;/a&gt; - Webtoons&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>https://hanguangwu.github.io/blog/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;哈喽，各位自学小伙伴～ 本章咱们正式进入“高阶玩法”——多智能体协作与复杂流程管控！&lt;/p&gt;
 &lt;p&gt;不同于上一章的基础图结构开发，本章内容会更加工程化一些，核心是教大家用LangGraph ，搭建能“分工协作”“自我纠错”“人机配合”的智能系统。&lt;/p&gt;
