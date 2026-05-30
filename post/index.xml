@@ -1,4 +1,302 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://hanguangwu.github.io/blog/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 14 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>多媒体数字资源合集FMHY</title><link>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://hanguangwu.github.io/blog/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>https://hanguangwu.github.io/blog/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;这里分享一些辅助学习的AI工具。&lt;/p&gt;
+&lt;h2 id="open-notebooklm一个私密多模型100本地化功能齐全的-notebook-lm-替代方案"&gt;Open NotebookLM——一个私密、多模型、100%本地化、功能齐全的 Notebook LM 替代方案
+&lt;/h2&gt;&lt;p&gt;项目地址：&lt;a class="link" href="https://github.com/lfnovo/open-notebook" target="_blank" rel="noopener"
+&gt;https://github.com/lfnovo/open-notebook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在人工智能主导的世界里，拥有思考 🧠 和获取新知识 💡 的能力，不应是少数人的特权，也不应局限于单一供应商。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Open Notebook 使您能够：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔒 &lt;strong&gt;掌控你的数据&lt;/strong&gt; - 保持研究内容的私密与安全&lt;/li&gt;
+&lt;li&gt;🤖 &lt;strong&gt;选择你的AI模型&lt;/strong&gt; - 支持包括 OpenAI、Anthropic、Ollama、LM Studio 等在内的 18+ 家提供商&lt;/li&gt;
+&lt;li&gt;📚 &lt;strong&gt;组织多模态内容&lt;/strong&gt; - PDF、视频、音频、网页等&lt;/li&gt;
+&lt;li&gt;🎙️ &lt;strong&gt;生成专业播客&lt;/strong&gt; - 先进的多说话人播客生成&lt;/li&gt;
+&lt;li&gt;🔍 &lt;strong&gt;智能搜索&lt;/strong&gt; - 对所有内容进行全文和向量搜索&lt;/li&gt;
+&lt;li&gt;💬 &lt;strong&gt;基于上下文聊天&lt;/strong&gt; - 由你的研究驱动的AI对话&lt;/li&gt;
+&lt;li&gt;🌐 &lt;strong&gt;多语言用户界面&lt;/strong&gt; - 支持英语、葡萄牙语、中文（简体与繁体）、日语、俄语和孟加拉语&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;了解更多项目信息请访问 &lt;a class="link" href="https://www.open-notebook.ai/" target="_blank" rel="noopener"
+&gt;https://www.open-notebook.ai&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-open-notebook-与-google-notebook-lm-对比"&gt;🆚 Open Notebook 与 Google Notebook LM 对比
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;功能特性&lt;/th&gt;
+&lt;th&gt;Open Notebook&lt;/th&gt;
+&lt;th&gt;Google Notebook LM&lt;/th&gt;
+&lt;th&gt;优势&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;隐私与控制&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;自托管，您的数据&lt;/td&gt;
+&lt;td&gt;仅限 Google 云&lt;/td&gt;
+&lt;td&gt;完全的数据主权&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AI 提供商选择&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;18+ 家提供商 (OpenAI, Anthropic, Ollama, LM Studio 等)&lt;/td&gt;
+&lt;td&gt;仅限 Google 模型&lt;/td&gt;
+&lt;td&gt;灵活性与成本优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;播客发言人&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1-4 位发言人，支持自定义配置&lt;/td&gt;
+&lt;td&gt;仅限 2 位发言人&lt;/td&gt;
+&lt;td&gt;极高的灵活性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;内容转换&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;自定义与内置转换&lt;/td&gt;
+&lt;td&gt;选项有限&lt;/td&gt;
+&lt;td&gt;无限的处理能力&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;API 访问&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;完整的 REST API&lt;/td&gt;
+&lt;td&gt;无 API&lt;/td&gt;
+&lt;td&gt;完全的自动化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;部署方式&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Docker、云端或本地&lt;/td&gt;
+&lt;td&gt;仅限 Google 托管&lt;/td&gt;
+&lt;td&gt;随处部署&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;引用功能&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;基础引用（将改进）&lt;/td&gt;
+&lt;td&gt;附带来源的全面引用&lt;/td&gt;
+&lt;td&gt;研究完整性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;自定义能力&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;开源，完全可定制&lt;/td&gt;
+&lt;td&gt;封闭系统&lt;/td&gt;
+&lt;td&gt;无限的可扩展性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;成本&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;仅需支付 AI 使用费&lt;/td&gt;
+&lt;td&gt;免费层级 + 月度订阅&lt;/td&gt;
+&lt;td&gt;透明且可控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;为何选择 Open Notebook？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔒 &lt;strong&gt;隐私优先&lt;/strong&gt;：您的敏感研究数据完全保持私密&lt;/li&gt;
+&lt;li&gt;💰 &lt;strong&gt;成本控制&lt;/strong&gt;：可选择更经济的AI服务提供商，或通过Ollama本地运行&lt;/li&gt;
+&lt;li&gt;🎙️ &lt;strong&gt;更优质的播客&lt;/strong&gt;：完整脚本控制与多说话人灵活性，相比有限的双人深度对话格式&lt;/li&gt;
+&lt;li&gt;🔧 &lt;strong&gt;无限定制&lt;/strong&gt;：按需修改、扩展和集成&lt;/li&gt;
+&lt;li&gt;🌐 &lt;strong&gt;无供应商锁定&lt;/strong&gt;：自由切换服务提供商，随处部署，完全拥有您的数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="技术栈"&gt;技术栈
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://www.python.org/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&amp;amp;logo=python&amp;amp;logoColor=white"
+loading="lazy"
+alt="Python"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://nextjs.org/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&amp;amp;logo=next.js&amp;amp;logoColor=white"
+loading="lazy"
+alt="Next.js"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://reactjs.org/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&amp;amp;logo=react&amp;amp;logoColor=black"
+loading="lazy"
+alt="React"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://surrealdb.com/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/SurrealDB-FF5E00?style=for-the-badge&amp;amp;logo=databricks&amp;amp;logoColor=white"
+loading="lazy"
+alt="SurrealDB"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://www.langchain.com/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/LangChain-3A3A3A?style=for-the-badge&amp;amp;logo=chainlink&amp;amp;logoColor=white"
+loading="lazy"
+alt="LangChain"
+&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="-快速开始-2-分钟"&gt;🚀 快速开始 (2 分钟)
+&lt;/h3&gt;&lt;h4 id="环境要求"&gt;环境要求
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;已安装 &lt;a class="link" href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener"
+&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;就这些！(API 密钥稍后在 UI 中配置)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="步骤-1获取-docker-composeyml-文件"&gt;步骤 1：获取 docker-compose.yml 文件
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;选项 A:&lt;/strong&gt; 直接下载&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;选项 B:&lt;/strong&gt; 手动创建文件 将以下内容复制到一个名为 &lt;code&gt;docker-compose.yml&lt;/code&gt; 的新文件中：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;surrealdb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;surrealdb/surrealdb:v2&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;command&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;start --log info --user root --pass root rocksdb:/mydata/mydatabase.db&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;root&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="s2"&gt;&amp;#34;8000:8000&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;./surreal_data:/mydata&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;always&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;open_notebook&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;lfnovo/open_notebook:v1-latest&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="s2"&gt;&amp;#34;8502:8502&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="s2"&gt;&amp;#34;5055:5055&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;OPEN_NOTEBOOK_ENCRYPTION_KEY=change-me-to-a-secret-string&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;SURREAL_URL=ws://surrealdb:8000/rpc&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;SURREAL_USER=root&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;SURREAL_PASSWORD=root&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;SURREAL_NAMESPACE=open_notebook&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;SURREAL_DATABASE=open_notebook&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;./notebook_data:/app/data&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;surrealdb&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;always&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="步骤-2设置您的加密密钥"&gt;步骤 2：设置您的加密密钥
+&lt;/h4&gt;&lt;p&gt;编辑 &lt;code&gt;docker-compose.yml&lt;/code&gt; 并更改这一行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- &lt;span class="l"&gt;OPEN_NOTEBOOK_ENCRYPTION_KEY=change-me-to-a-secret-string&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为任意密钥值 (例如：&lt;code&gt;my-super-secret-key-123&lt;/code&gt;)&lt;/p&gt;
+&lt;h4 id="步骤-3启动服务"&gt;步骤 3：启动服务
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;等待 15-20 秒，然后打开：&lt;strong&gt;&lt;a class="link" href="http://localhost:8502/" target="_blank" rel="noopener"
+&gt;http://localhost:8502&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id="步骤-4配置-ai-提供商"&gt;步骤 4：配置 AI 提供商
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;前往 &lt;strong&gt;设置&lt;/strong&gt; → &lt;strong&gt;API 密钥&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;添加凭证&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;选择您的提供商 (OpenAI, Anthropic, Google 等)&lt;/li&gt;
+&lt;li&gt;粘贴您的 API 密钥并点击 &lt;strong&gt;保存&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;测试连接&lt;/strong&gt; → &lt;strong&gt;发现模型&lt;/strong&gt; → &lt;strong&gt;注册模型&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成！您可以开始创建您的第一个笔记本了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;需要 API 密钥？&lt;/strong&gt; 从以下获取： &lt;a class="link" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener"
+&gt;OpenAI&lt;/a&gt; · &lt;a class="link" href="https://console.anthropic.com/" target="_blank" rel="noopener"
+&gt;Anthropic&lt;/a&gt; · &lt;a class="link" href="https://aistudio.google.com/" target="_blank" rel="noopener"
+&gt;Google&lt;/a&gt; · &lt;a class="link" href="https://console.groq.com/" target="_blank" rel="noopener"
+&gt;Groq&lt;/a&gt; (免费套餐)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;想要免费的本地 AI？&lt;/strong&gt; 查看 &lt;a class="link" href="https://github.com/lfnovo/open-notebook/blob/main/examples/" target="_blank" rel="noopener"
+&gt;examples/docker-compose-ollama.yml&lt;/a&gt; 了解 Ollama 设置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id="-核心功能"&gt;✨ 核心功能
+&lt;/h3&gt;&lt;h4 id="核心能力"&gt;核心能力
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;🔒 隐私优先&lt;/strong&gt;: 您的数据始终由您掌控 - 无云端依赖&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🎯 多笔记本组织&lt;/strong&gt;: 无缝管理多个研究项目&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📚 通用内容支持&lt;/strong&gt;: PDF、视频、音频、网页、Office 文档等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🤖 多模型 AI 支持&lt;/strong&gt;: 支持 18+ 家提供商，包括 OpenAI、Anthropic、Ollama、Google、LM Studio 等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🎙️ 专业播客生成&lt;/strong&gt;: 支持多说话者的高级播客，带有剧集配置文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🔍 智能搜索&lt;/strong&gt;: 对所有内容进行全文和向量搜索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;💬 上下文感知聊天&lt;/strong&gt;: 由您的研究资料驱动的 AI 对话&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📝 AI 辅助笔记&lt;/strong&gt;: 生成见解或手动撰写笔记&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="高级功能"&gt;高级功能
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;⚡ 推理模型支持&lt;/strong&gt;：全面支持DeepSeek-R1和Qwen3等思维模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🔧 内容转换&lt;/strong&gt;：强大的可定制操作，用于总结和提取见解&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🌐 完整REST API&lt;/strong&gt;：提供完整的编程接口，支持自定义集成&lt;a class="link" href="http://localhost:5055/docs" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/API-%E6%96%87%E6%A1%A3-blue?style=flat-square"
+loading="lazy"
+alt="API文档"
+&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🔐 可选密码保护&lt;/strong&gt;：通过身份验证确保公共部署的安全性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📊 细粒度上下文控制&lt;/strong&gt;：精确选择与AI模型共享的内容&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📎 引用功能&lt;/strong&gt;：获取带有准确来源引用的答案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="专属-ai-导师deeptutor"&gt;专属 AI 导师——DeepTutor
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener"
+&gt;将任何文档转化为多智能体驱动的互动学习体验，打造你的专属 AI 导师。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;DeepTutor &amp;ndash; Agent-native, Open-sourced Personalized Tutoring. &lt;a class="link" href="https://deeptutor.info/" target="_blank" rel="noopener"
+&gt;https://deeptutor.info/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;DeepTutor 是由香港大学数据智能实验室（HKUDS）开发的开源 Agent-Native 个性化教学平台。它不仅仅是一个文档问答工具，而是通过多智能体协作架构，将教材、论文和手册转化为深度互动的学习环境。DeepTutor 能够构建基于知识图谱的学习路径，提供带有精准引用的逐步解题指导，并能根据用户的学习进度自动演化出个性化的记忆与档案，真正实现从“被动搜索”到“主动引导”的学习范式转移。 该平台集成了深度研究、题目生成、数学动画生成以及交互式可视化等多种前沿能力。无论是科研工作者进行文献综述，还是学生进行针对性的考前练习，DeepTutor 都能通过其独特的“TutorBot”系统提供 24/7 的陪伴式教学。其底层支持 RAG（检索增强生成）与轻量化 Agent 引擎，确保了回答的严谨性与逻辑性，是当前开源社区中极具竞争力的 AI 教育解决方案。&lt;/p&gt;
+&lt;h3 id="核心功能"&gt;核心功能
+&lt;/h3&gt;&lt;p&gt;多智能体协同解题：采用双循环推理架构，模拟人类导师的思考过程，提供带有文档来源引用的深度逻辑解答，而非简单的文字堆砌。&lt;/p&gt;
+&lt;p&gt;智能互动“活手册”：利用 Book Engine 将静态资料编译为包含 14 种组件的互动电子书，支持即时测验、知识图谱映射和交互式演示。&lt;/p&gt;
+&lt;p&gt;持久化个性化记忆：系统会自动记录用户的学习轨迹、偏好与薄弱环节，随着使用时间的增长，AI 导师会越来越懂你的学习节奏。&lt;/p&gt;
+&lt;p&gt;多模态与数学可视化：原生支持 LaTeX 数学公式、代码执行以及基于 Manim 的数学动画，将抽象概念具象化为易于理解的动态图表。&lt;/p&gt;
+&lt;h3 id="-核心亮点"&gt;✨ 核心亮点
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;工作面&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chat —— Chat、Solve、Quiz、Research、Visualize 共享同一会话、知识库与引用历史,可在对话中逐级升级而不丢失上下文。&lt;/li&gt;
+&lt;li&gt;Co-Writer —— 分栏 Markdown 工作区,任意选区都可改写、扩写或缩写,可选择由 KB 或网络支撑。草稿可一键存入笔记本。&lt;/li&gt;
+&lt;li&gt;Book Engine —— 多智能体流水线把你的材料编译成交互式「活书」,包含 13 种块类型:测验、闪卡、时间线、概念图、内嵌的 GeoGebra 浏览器、动画等。页面对 KB 做指纹标记,任何漂移都可检测。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;你的资料库&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Knowledge Bases —— 版本化、可用于 RAG 的文档集合,端到端基于 LlamaIndex。每次(重新)索引都被追踪、可比较、可回滚。&lt;/li&gt;
+&lt;li&gt;Space —— 个人复习库,聚合聊天历史、笔记本、题库与用户自建的 Skills(&lt;code&gt;SKILL.md&lt;/code&gt;),后者可切换 DeepTutor 的人格。&lt;/li&gt;
+&lt;li&gt;三层 Memory —— 仅追加的 L1 轨迹、L2 按工作面整理且带引用的事实、L3 跨工作面的综合。可审查的工作台与 Memory Graph 让你审视 DeepTutor「为什么知道」这些信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;可扩展性与可控性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可组合的工具 —— RAG、网络搜索、代码执行、推理、头脑风暴、论文搜索、GeoGebra 分析,以及聊天助手(&lt;code&gt;ask_user&lt;/code&gt;、&lt;code&gt;web_fetch&lt;/code&gt;、&lt;code&gt;write_note&lt;/code&gt;、&lt;code&gt;list_notebook&lt;/code&gt;、&lt;code&gt;github_query&lt;/code&gt;)。MCP 服务器与内置工具并列接入。&lt;/li&gt;
+&lt;li&gt;个人 TutorBot —— 持续、自主的导师,各自拥有工作区、Soul、Skills 与频道(Telegram、Discord、Slack、Matrix、Zulip 等)。基于 &lt;a class="link" href="https://github.com/HKUDS/nanobot" target="_blank" rel="noopener"
+&gt;nanobot&lt;/a&gt; 构建。&lt;/li&gt;
+&lt;li&gt;统一 Settings —— 唯一的草稿 / Apply 工作台,统管外观、模型、嵌入、搜索、能力、记忆、MCP 服务器与工具,并共享按调用计费的成本跟踪。&lt;/li&gt;
+&lt;li&gt;智能体原生 CLI —— 每个能力、KB、会话与 TutorBot 一条命令搞定;人类看富文本,智能体看结构化 JSON。把根目录的 &lt;a class="link" href="https://github.com/HKUDS/DeepTutor/blob/main/SKILL.md" target="_blank" rel="noopener"
+&gt;&lt;code&gt;SKILL.md&lt;/code&gt;&lt;/a&gt; 交给任意可调用工具的 LLM,它就能自己驾驭 DeepTutor。&lt;/li&gt;
+&lt;li&gt;可选身份认证 —— 默认关闭;启用后即可部署多用户场景,具备 bcrypt + JWT、管理员面板,以及可选的 PocketBase / OAuth 侧车。&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>多媒体数字资源合集FMHY</title><link>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
 &lt;/h2&gt;&lt;p&gt;FMHY​（Free Media Heck Yeah）是一个开源的网络资源导航项目，旨在为用户提供全面的免费媒体资源、工具和服务指南。该项目通过精心整理的分类和详细说明，帮助用户安全、高效地获取各种数字资源，包括流媒体、下载工具、隐私保护方案等。&lt;/p&gt;
 &lt;p&gt;🔗 ​&lt;strong&gt;GitHub地址&lt;/strong&gt;​：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY" title="https://github.com/fmhy/FMHY"
@@ -50217,8 +50515,8 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;When&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;user&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directly&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;asks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;about&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;can Claude Code do...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;does Claude Code have...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;asks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;person&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;are you able...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;can you do...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;WebFetch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gather&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="err"&gt;当用户直接询问有关&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;的问题（例如&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Claude Code 能做...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Claude Code 有...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;）或以第二人称提问（例如&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;你能...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;你能做...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;）时，首先使用&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;WebFetch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;工具从&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;文档中收集信息来回答问题。&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Extended&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;thinking&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pasting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resume&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ide&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;mcp&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;actions&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;troubleshooting&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;third&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;party&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;amazon&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bedrock&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vertex&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ai&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;corporate&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gateway&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;devcontainer&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;iam&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;permissions&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;security&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;monitoring&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;OTel&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;costs&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reference&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyboard&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shortcuts&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;slash&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;hooks&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;可用的子页面包括&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（概述）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（快速入门）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（内存管理和&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（扩展思维、粘贴图像、&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resume&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ide&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;IDE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;集成）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;mcp&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;actions&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;troubleshooting&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（故障排除）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;third&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;party&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（第三方集成）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;amazon&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bedrock&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vertex&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ai&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;corporate&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（企业代理）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gateway&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;devcontainer&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;iam&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（认证、权限）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;security&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（安全）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;monitoring&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（监控使用情况&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OTel&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;costs&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（成本）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reference&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;CLI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;参考）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（交互模式&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;键盘快捷键）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;slash&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（斜杠命令）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（设置&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;文件、环境变量、工具）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;hooks&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（钩子）。&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Extended&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;thinking&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pasting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--resume), `ide-integrations`, `mcp`, `github-actions`, `sdk`, `troubleshooting`, `third-party-integrations`, `amazon-bedrock`, `google-vertex-ai`, `corporate-proxy`, `llm-gateway`, `devcontainer`, `iam` (auth, permissions), `security`, `monitoring-usage` (OTel), `costs`, `cli-reference`, `interactive-mode` (keyboard shortcuts), `slash-commands`, `settings` (settings json files, env vars, tools), `hooks`.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;可用的子页面包括&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（概述）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（快速入门）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（内存管理和&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（扩展思维、粘贴图像、&lt;/span&gt;&lt;span class="c1"&gt;--resume）, `ide-integrations`（IDE 集成）, `mcp`, `github-actions`, `sdk`, `troubleshooting`（故障排除）, `third-party-integrations`（第三方集成）, `amazon-bedrock`, `google-vertex-ai`, `corporate-proxy`（企业代理）, `llm-gateway`, `devcontainer`, `iam`（认证、权限）, `security`（安全）, `monitoring-usage`（监控使用情况 OTel）, `costs`（成本）, `cli-reference`（CLI 参考）, `interactive-mode`（交互模式 键盘快捷键）, `slash-commands`（斜杠命令）, `settings`（设置 JSON 文件、环境变量、工具）, `hooks`（钩子）。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;示例&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
@@ -50745,11 +51043,11 @@ loading="lazy"
 &lt;/span&gt;&lt;span class="lnt"&gt;21
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;name: pdf-processing
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pdf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;processing&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;从&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PDF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;中提取文本和表格，填写表单，并合并文档&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PDF 处理
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;## 使用场景
@@ -51109,11 +51407,11 @@ loading="lazy"
 &lt;/span&gt;&lt;span class="lnt"&gt;13
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;name: Python 内部命名规范技能
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;内部命名规范技能&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;当用户要求重构、审查或编写&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;代码时，请参考此规范。&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;## 指令
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;所有的内部辅助函数必须以&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;_internal_&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;前缀命名。&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;如果发现不符合此规则的代码，请自动提出修改建议。&lt;/span&gt;&lt;span class="w"&gt;
