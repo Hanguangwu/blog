@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>https://hanguangwu.github.io/blog/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>https://hanguangwu.github.io/blog/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>blog.zwzhang.com/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="blog.zwzhang.com/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里分享一些辅助学习的AI工具。&lt;/p&gt;
 &lt;h2 id="open-notebooklm一个私密多模型100本地化功能齐全的-notebook-lm-替代方案"&gt;Open NotebookLM——一个私密、多模型、100%本地化、功能齐全的 Notebook LM 替代方案
@@ -296,7 +296,7 @@ alt="API文档"
 &lt;li&gt;智能体原生 CLI —— 每个能力、KB、会话与 TutorBot 一条命令搞定;人类看富文本,智能体看结构化 JSON。把根目录的 &lt;a class="link" href="https://github.com/HKUDS/DeepTutor/blob/main/SKILL.md" target="_blank" rel="noopener"
 &gt;&lt;code&gt;SKILL.md&lt;/code&gt;&lt;/a&gt; 交给任意可调用工具的 LLM,它就能自己驾驭 DeepTutor。&lt;/li&gt;
 &lt;li&gt;可选身份认证 —— 默认关闭;启用后即可部署多用户场景,具备 bcrypt + JWT、管理员面板,以及可选的 PocketBase / OAuth 侧车。&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>多媒体数字资源合集FMHY</title><link>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
+&lt;/ul&gt;</description></item><item><title>多媒体数字资源合集FMHY</title><link>blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
 &lt;/h2&gt;&lt;p&gt;FMHY​（Free Media Heck Yeah）是一个开源的网络资源导航项目，旨在为用户提供全面的免费媒体资源、工具和服务指南。该项目通过精心整理的分类和详细说明，帮助用户安全、高效地获取各种数字资源，包括流媒体、下载工具、隐私保护方案等。&lt;/p&gt;
 &lt;p&gt;🔗 ​&lt;strong&gt;GitHub地址&lt;/strong&gt;​：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY" title="https://github.com/fmhy/FMHY"
@@ -874,7 +874,7 @@ target="_blank" rel="noopener"
 &gt;Baozimh&lt;/a&gt; - Manga / Manhua / Manhwa&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://www.baozimh.com/" target="_blank" rel="noopener"
 &gt;Baozimh&lt;/a&gt; - Webtoons&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>新型信息源</title><link>https://hanguangwu.github.io/blog/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</link><pubDate>Sat, 07 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</guid><description>&lt;h1 id="新型信息源"&gt;新型信息源
+&lt;/ul&gt;</description></item><item><title>新型信息源</title><link>blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</link><pubDate>Sat, 07 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</guid><description>&lt;h1 id="新型信息源"&gt;新型信息源
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;以后可以做定制化一个！&lt;/p&gt;
 &lt;h2 id="newsnow---一个开源的实时热门新闻程序"&gt;NewsNow - 一个开源的实时热门新闻程序
@@ -3374,7 +3374,7 @@ target="_blank" rel="noopener"
 &gt;https://understandingwar.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;提供深入战况分析报告、地缘政治解读和交互式地图产品&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://link.zhihu.com/?target=https%3A//yeeach.com/2975/" target="_blank" rel="noopener"
-&gt;https://yeeach.com/2975/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>寻觅被遗忘的网络账号</title><link>https://hanguangwu.github.io/blog/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</link><pubDate>Fri, 06 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</guid><description>&lt;h1 id="寻觅被遗忘的网络账号"&gt;寻觅被遗忘的网络账号
+&gt;https://yeeach.com/2975/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>寻觅被遗忘的网络账号</title><link>blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</link><pubDate>Fri, 06 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</guid><description>&lt;h1 id="寻觅被遗忘的网络账号"&gt;寻觅被遗忘的网络账号
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;开源情报（Open Source Intelligence，OSINT）&lt;/strong&gt; 是指通过公开渠道收集和分析信息的过程。它涉及从可公开访问的来源（如社交媒体、新闻报道、政府档案等）收集数据，以帮助决策、调查或研究。OSINT的应用广泛，包括政府监测、商业竞争情报和安全分析等领域。通过合法的方式收集信息，企业可以更深入地了解市场和竞争对手，从而做出明智的决策。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noopener"
@@ -4053,7 +4053,7 @@ target="_blank" rel="noopener"
 &lt;li&gt;匿名身份（马甲）构建（虚拟电话、加密邮箱、VPN、虚拟机）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;此外，文章还提供了数十个实用工具和网站，帮助你在合法合规的前提下高效完成情报收集任务。无论你是安全研究员、OSINT爱好者，还是CTF选手，这篇指南都能助你提升信息挖掘能力。&lt;/p&gt;
-&lt;p&gt;在文章最后，会实战分析一道OSINT类型的题目。&lt;/p&gt;</description></item><item><title>知乎爬虫——ZhiZhu项目分析</title><link>https://hanguangwu.github.io/blog/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</link><pubDate>Thu, 05 Mar 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="知乎爬虫zhizhu项目分析"&gt;知乎爬虫——ZhiZhu项目分析
+&lt;p&gt;在文章最后，会实战分析一道OSINT类型的题目。&lt;/p&gt;</description></item><item><title>知乎爬虫——ZhiZhu项目分析</title><link>blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</link><pubDate>Thu, 05 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="知乎爬虫zhizhu项目分析"&gt;知乎爬虫——ZhiZhu项目分析
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/HeroBlast10/ZhiZhu" target="_blank" rel="noopener"
 &gt;ZhiZhu (知蛛) ——爬取指定知乎用户的所有回答和所有文章，以高保真 Markdown 格式保存到本地。 &lt;/a&gt;&lt;/p&gt;
@@ -5555,7 +5555,7 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Docker可部署项目合集</title><link>https://hanguangwu.github.io/blog/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</link><pubDate>Sat, 07 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/div&gt;</description></item><item><title>Docker可部署项目合集</title><link>blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</link><pubDate>Sat, 07 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;中文docker项目集成项目： &lt;a class="link" href="https://github.com/coracoo/awesome_docker_cn" target="_blank" rel="noopener"
 &gt;https://github.com/coracoo/awesome_docker_cn&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -8325,7 +8325,7 @@ target="_blank" rel="noopener"
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;hr&gt;</description></item><item><title>PDF转Markdown工具</title><link>https://hanguangwu.github.io/blog/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf转markdown工具"&gt;PDF转Markdown工具
+&lt;hr&gt;</description></item><item><title>PDF转Markdown工具</title><link>blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf转markdown工具"&gt;PDF转Markdown工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;在大语言模型（LLM）迅速发展的时代，文档处理和转换变得尤为重要。当我们需要将各种格式的文档（如 PDF、Word、PowerPoint 等）输入到 LLM 中进行分析或处理时，首先需要将这些文档转换为文本格式。然而，简单的文本转换往往会丢失文档的结构信息，如标题、列表、表格等重要元素。Microsoft 开源的 MarkItDown 项目就是为解决这一问题而诞生的。它能将各种格式的文档转换为 Markdown 格式，既保留了原文档的结构信息，又保证了输出内容的简洁性，特别适合与 LLM 配合使用。本文将深入探讨 MarkItDown 的功能特点、应用场景和使用方法，帮助开发者更好地利用这一强大工具。&lt;/p&gt;
 &lt;h2 id="markitdown"&gt;markitdown
@@ -8638,7 +8638,7 @@ loading="lazy"
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/711487482" target="_blank" rel="noopener"
 &gt;六个开源的PDF转Markdown项目&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1900486359417853286" target="_blank" rel="noopener"
-&gt;MarkItDown：微软开源的文档转 Markdown 工具及其在 LLM 时代的应用&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PDF电子书制作工具</title><link>https://hanguangwu.github.io/blog/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf电子书制作工具"&gt;PDF电子书制作工具
+&gt;MarkItDown：微软开源的文档转 Markdown 工具及其在 LLM 时代的应用&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PDF电子书制作工具</title><link>blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf电子书制作工具"&gt;PDF电子书制作工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本文介绍一些PDF电子书制作工具。&lt;/p&gt;
 &lt;h2 id="mdbook-pdf"&gt;MdBook-PDF
@@ -9156,7 +9156,7 @@ loading="lazy"
 &lt;p&gt;&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md" target="_blank" rel="noopener"
 &gt;https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/lookscanned/lookscanned.io" target="_blank" rel="noopener"
-&gt;https://github.com/lookscanned/lookscanned.io&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Windows 应用的自定义与扩展工具 Windhawk</title><link>https://hanguangwu.github.io/blog/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</link><pubDate>Sun, 01 Feb 2026 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</guid><description>&lt;h1 id="windows-应用的自定义与扩展工具windhawk"&gt;Windows 应用的自定义与扩展工具Windhawk
+&gt;https://github.com/lookscanned/lookscanned.io&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Windows 应用的自定义与扩展工具 Windhawk</title><link>blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</link><pubDate>Sun, 01 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</guid><description>&lt;h1 id="windows-应用的自定义与扩展工具windhawk"&gt;Windows 应用的自定义与扩展工具Windhawk
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://windhawk.net/" target="_blank" rel="noopener"
 &gt;The customization marketplace for Windows programs:&lt;/a&gt;&lt;/p&gt;
@@ -9221,7 +9221,7 @@ loading="lazy"
 &lt;p&gt;Windhawk 提供了一种非常强大且相对简单的方法来改造 Windows 并添加高级功能，而无需直接修改系统文件。 **前提是你选择值得信赖的模组，查看它们的评分，并在安装时运用常识。**凭借这种谨慎和好奇心的结合，你可以打造一个充满实用快捷方式的精美桌面，而不会不必要地危及电脑的稳定性。&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.pchardwarepro.com/zh-CN/Windhawk-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%EF%BC%8C%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-Windows/" target="_blank" rel="noopener"
-&gt;Windhawk-完整教程，教你如何自定义-Windows&lt;/a&gt;&lt;/p&gt;</description></item><item><title>最小的编程助手智能体nanocode</title><link>https://hanguangwu.github.io/blog/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</link><pubDate>Sat, 31 Jan 2026 21:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</guid><description>&lt;h1 id="最小的编程助手智能体nanocode"&gt;最小的编程助手智能体nanocode
+&gt;Windhawk-完整教程，教你如何自定义-Windows&lt;/a&gt;&lt;/p&gt;</description></item><item><title>最小的编程助手智能体nanocode</title><link>blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</link><pubDate>Sat, 31 Jan 2026 21:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</guid><description>&lt;h1 id="最小的编程助手智能体nanocode"&gt;最小的编程助手智能体nanocode
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;今天听了一场“function call is all you need”的AI 编程演讲，演讲者从一个大语言模型和一个Bash命令行工具开始增加文件读写等功能，然后搭建一个编程助手智能体。这让我觉得很神奇，后续也就知道了nanocode这个项目。这里详细解释一下nanocode的源码，方便我开发自己的编程助手智能体。&lt;/p&gt;
 &lt;h2 id="简介"&gt;简介
@@ -10775,7 +10775,7 @@ loading="lazy"
 &lt;li&gt;该代码是一个&lt;strong&gt;轻量级、零依赖的AI编程智能体&lt;/strong&gt;，核心是通过工具调用闭环完成编程辅助任务，结构清晰且易于扩展。&lt;/li&gt;
 &lt;li&gt;核心模块分为「工具实现」和「智能体循环」，工具负责具体操作，循环负责决策与反馈，解耦设计提升了可维护性。&lt;/li&gt;
 &lt;li&gt;亮点是便携性和完整的智能体逻辑，局限性是缺乏安全防护和持久化存储，适合用于学习和个人轻量场景，不适合生产环境。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>GitHub优秀资源索引</title><link>https://hanguangwu.github.io/blog/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</link><pubDate>Thu, 29 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</guid><description>&lt;h1 id="github优秀资源中文索引"&gt;Github优秀资源中文索引
+&lt;/ol&gt;</description></item><item><title>GitHub优秀资源索引</title><link>blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</link><pubDate>Thu, 29 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</guid><description>&lt;h1 id="github优秀资源中文索引"&gt;Github优秀资源中文索引
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/gamedilong/awesome-cn" target="_blank" rel="noopener"
 &gt;本项目&lt;/a&gt;翻译自&lt;em&gt;&lt;strong&gt;Awesome&lt;/strong&gt;&lt;/em&gt;,目的是为了提升查阅文档效率。&lt;/p&gt;
@@ -12188,7 +12188,7 @@ Unicode标准，特性，软件包和资源&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/caufieldjh/awesome-bioie#readme" target="_blank" rel="noopener"
 &gt;生物医学信息提取&lt;/a&gt; - 如何从非结构化生物医学数据和文本中提取信息。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>加速神器——Xget</title><link>https://hanguangwu.github.io/blog/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
+&lt;/ul&gt;</description></item><item><title>加速神器——Xget</title><link>blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/xixu-me/xget" target="_blank" rel="noopener"
 &gt;Ultra-high-performance, secure, all-in-one acceleration engine for developer resources&lt;/a&gt;&lt;/p&gt;
@@ -17111,7 +17111,7 @@ A: 检查 URL 路径格式，确认平台前缀正确使用。&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;开源性质声明&lt;/strong&gt;：本存储库为开源项目，作者与贡献者不承担提供技术支持、错误修复或持续维护的义务。外部贡献的合并不代表对特定用途或效果的承诺与背书&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;名称使用规范&lt;/strong&gt;：严禁任何可能暗示作者或贡献者提供商业合作、技术支持、担保或背书的表述。涉及存储库名称或作者标识的使用应遵循相关法律法规及通用规范&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;免责声明更新&lt;/strong&gt;：本免责声明可能随存储库发展或法律环境变化进行更新修订。使用者继续使用、复制、分发或修改本存储库即视为接受最新版本的免责声明&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
+&lt;/ul&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
 &lt;/h1&gt;&lt;p&gt;在手写数字识别的实践中，很多同学会遇到模型权重与 Web 应用不兼容的问题，最常见的就是通道数不匹配、模型结构冲突导致的运行报错。今天这篇博客，我们就来完整走一遍流程 —— 从从头训练兼容的&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;权重文件，到搭建一个无需前端经验的 Gradio Web 识别工具，全程避坑，确保最终成果可以直接落地使用。&lt;/p&gt;
 &lt;h2 id="第一部分从头训练-mnist-模型生成兼容权重文件cnn_model_basicpth"&gt;第一部分：从头训练 MNIST 模型，生成兼容权重文件&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;
 &lt;/h2&gt;&lt;p&gt;我们的核心目标是训练出一个与后续 Web 应用完全兼容的模型权重，彻底解决&lt;code&gt;expected 1 channels, but got 3 channels&lt;/code&gt;这类兼容性错误，同时保证模型具备较高的识别准确率。&lt;/p&gt;
@@ -18006,7 +18006,7 @@ loading="lazy"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>https://hanguangwu.github.io/blog/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
+&lt;/div&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
 &lt;/h1&gt;&lt;p&gt;🌈谷粒-Chrome插件英雄榜, 为优秀的Chrome插件写一本中文说明书, 让Chrome插件英雄们造福人类~
 ChromeAppHeroes, Write a Chinese manual for the excellent Chrome plugin, let the Chrome plugin heroes benefit the human~&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/zhaoolee/ChromeAppHeroes/master/README/17106763830728faCQ0DR.png"
@@ -18819,7 +18819,7 @@ alt="谷粒VI设计.png"
 &gt;Chrome扩展资源站点推荐&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="chrome扩展程序相关网站推荐"&gt;Chrome扩展程序相关网站推荐
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.chajian5.com/" target="_blank" rel="noopener"
-&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>https://hanguangwu.github.io/blog/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
+&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;一个通过与 AI 结对编程，将想法变为现实的终极工作站&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/tukuaiai/vibe-coding-cn" target="_blank" rel="noopener"
 &gt;来源——GitHub Repo&lt;/a&gt;&lt;/p&gt;
@@ -19741,7 +19741,7 @@ alt="谷粒VI设计.png"
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/details&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>https://hanguangwu.github.io/blog/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
+&lt;/details&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p align="center"&gt;
 🚀&lt;a href="https://mineru.net/?source=github"&gt;MinerU 官网入口→✅ 免装在线版 ✅ 全功能客户端 ✅ 开发者API在线调用，省去部署麻烦，多种产品形态一键get，速冲！&lt;/a&gt;
@@ -20012,7 +20012,7 @@ alt="HuggingFace"
 &gt;Magic-Doc (Fast speed ppt/pptx/doc/docx/pdf extraction tool)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://github.com/MigoXLab/dingo" target="_blank" rel="noopener"
 &gt;Dingo: A Comprehensive AI Data Quality Evaluation Tool&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>https://hanguangwu.github.io/blog/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
+&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
 &lt;/h1&gt;&lt;p&gt;本工具中的一些特色功能值得深入研究一下，比如热键控制、手势控制等。&lt;/p&gt;
 &lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://xiaoyi.vc/screenbox.html" target="_blank" rel="noopener"
@@ -20044,7 +20044,7 @@ alt="HuggingFace"
 &gt;https://www.123pan.com/s/c8zA-mZ5N3.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;微软商店：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://apps.microsoft.com/store/detail/9NTSNMSVCB5L" target="_blank" rel="noopener"
-&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>https://hanguangwu.github.io/blog/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
+&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://feijiqun.github.io/" title="https://feijiqun.github.io"
 target="_blank" rel="noopener"
 &gt;专注于“电报群 / 飞机群 / Telegram群组”的高质量导航平台。我们精心整理全球范围内的热门 Telegram 群组与频道，涵盖学习、资源、娱乐、投资等各大分类，并支持关键词智能搜索与标签筛选，让你不错过每一个优质社群。&lt;/a&gt;&lt;/p&gt;
@@ -27580,7 +27580,7 @@ target="_blank" rel="noopener"
 &lt;/table&gt;
 &lt;h2 id="-合作请联系-newlinkauditbot-1"&gt;📨 合作请联系 &lt;a class="link" href="https://t.me/NewLinkAuditBot" target="_blank" rel="noopener"
 &gt;@NewLinkAuditBot&lt;/a&gt;
-&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>https://hanguangwu.github.io/blog/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
+&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank" rel="noopener"
 &gt;GitHub-MAS&lt;/a&gt;&lt;/p&gt;
@@ -27629,7 +27629,7 @@ loading="lazy"
 &lt;p&gt;选择“3”：TSForge是一款由MAS团队开发的工具，能够绕过微软的在线验证机制，实现Windows和Office的永久激活。&lt;/p&gt;
 &lt;p&gt;选择“4”：采用 KMS38 激活方式，激活 Windows/Server 到2038年，无需联网。&lt;/p&gt;
 &lt;p&gt;选择“5”： 采用 Online KMS 激活方式，激活 Windows/Server/Office 一次180天，到期自动续，需要联网。&lt;/p&gt;
-&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>https://hanguangwu.github.io/blog/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
+&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="http://jb.ide.to/" target="_blank" rel="noopener"
 &gt;颠覆所有——一键激活所有 JetBrains 产品&lt;/a&gt;&lt;/p&gt;
@@ -27788,7 +27788,7 @@ alt="image.png"
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>https://hanguangwu.github.io/blog/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
+&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Raphire/Win11Debloat" target="_blank" rel="noopener"
 &gt;A simple, lightweight PowerShell script to remove pre-installed apps, disable telemetry, as well as perform various other changes to customize, declutter and improve your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.&lt;/a&gt;&lt;/p&gt;
@@ -27869,7 +27869,7 @@ loading="lazy"
 alt="Win11Debloat"
 &gt;&lt;/p&gt;
 &lt;p&gt;建議您在使用 Win11Debloat 應用程式之前先建立還原點，以防遇到問題。&lt;/p&gt;
-&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>https://hanguangwu.github.io/blog/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
+&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;由于沉浸式翻译存在安全问题，这里推荐FluentRead。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://fluent.thinkstu.com/" target="_blank" rel="noopener"
@@ -27959,7 +27959,7 @@ alt="流畅阅读（FluentRead）.webp"
 &lt;li&gt;配置指南&lt;/li&gt;
 &lt;li&gt;使用教程&lt;/li&gt;
 &lt;li&gt;常见问题&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>https://hanguangwu.github.io/blog/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
+&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;随着数字时代的到来，越来越多的人开始使用电子设备进行笔记和创作。作为一款专注于手写体验的笔记软件，&lt;strong&gt;RNote&lt;/strong&gt;以其独特的设计理念和强大功能，成为众多用户心中的优选。本文将从软件特点、使用体验、设计理念等方面，为大家全面介绍RNote，希望能够帮助你更好地了解和使用这款高效的手写笔记工具。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/flxzt/rnote" target="_blank" rel="noopener"
@@ -28006,7 +28006,7 @@ target="_blank" rel="noopener"
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="link" href="https://pizarra.categulario.xyz/en/" target="_blank" rel="noopener"
 &gt;Pizarra官网&lt;/a&gt;（灵感来源，优秀的无限缩放绘图工具）&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Ubuntu24.04LTS安装Docker</title><link>https://hanguangwu.github.io/blog/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</link><pubDate>Wed, 16 Apr 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</guid><description>&lt;h1 id="ubuntu-24041-lts-安装-docker国内源版全程可访问"&gt;Ubuntu 24.04.1 LTS 安装 Docker（国内源版，全程可访问）
+&lt;/ul&gt;</description></item><item><title>Ubuntu24.04LTS安装Docker</title><link>blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</link><pubDate>Wed, 16 Apr 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</guid><description>&lt;h1 id="ubuntu-24041-lts-安装-docker国内源版全程可访问"&gt;Ubuntu 24.04.1 LTS 安装 Docker（国内源版，全程可访问）
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://www.cnblogs.com/boradviews/p/19329796" target="_blank" rel="noopener"
 &gt;https://www.cnblogs.com/boradviews/p/19329796&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;以下是适配 Ubuntu 24.04 的 Docker 安装命令，全程使用阿里云国内源，避免官方源访问慢/超时问题，步骤简洁且可直接复制执行：&lt;/p&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on Hanguangwu</title><link>https://hanguangwu.github.io/blog/en/categories/ai/</link><description>Recent content in AI on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 10 Feb 2026 18:34:25 -0800</lastBuildDate><atom:link href="https://hanguangwu.github.io/blog/en/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Awesome LLM Apps</title><link>https://hanguangwu.github.io/blog/en/p/awesome-llm-apps/</link><pubDate>Tue, 10 Feb 2026 18:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/awesome-llm-apps/</guid><description>&lt;h1 id="-awesome-llm-apps"&gt;🌟 Awesome LLM Apps
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on Hanguangwu</title><link>blog.zwzhang.com/en/categories/ai/</link><description>Recent content in AI on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 10 Feb 2026 18:34:25 -0800</lastBuildDate><atom:link href="blog.zwzhang.com/en/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Awesome LLM Apps</title><link>blog.zwzhang.com/en/p/awesome-llm-apps/</link><pubDate>Tue, 10 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/awesome-llm-apps/</guid><description>&lt;h1 id="-awesome-llm-apps"&gt;🌟 Awesome LLM Apps
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;A curated collection of &lt;strong&gt;Awesome LLM apps built with RAG, AI Agents, Multi-agent Teams, MCP, Voice Agents, and more.&lt;/strong&gt; This repository features LLM apps that use models from &lt;img src="https://cdn.simpleicons.org/openai" alt="openai logo" width="25" height="15"&gt;&lt;strong&gt;OpenAI&lt;/strong&gt; , &lt;img src="https://cdn.simpleicons.org/anthropic" alt="anthropic logo" width="25" height="15"&gt;&lt;strong&gt;Anthropic&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/googlegemini" alt="google logo" width="25" height="18"&gt;&lt;strong&gt;Google&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/x" alt="X logo" width="25" height="15"&gt;&lt;strong&gt;xAI&lt;/strong&gt; and open-source models like &lt;img src="https://cdn.simpleicons.org/alibabacloud" alt="alibaba logo" width="25" height="15"&gt;&lt;strong&gt;Qwen&lt;/strong&gt; or &lt;img src="https://cdn.simpleicons.org/meta" alt="meta logo" width="25" height="15"&gt;&lt;strong&gt;Llama&lt;/strong&gt; that you can run locally on your computer.&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener"
@@ -69,7 +69,7 @@
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_coding_agent_team/" &gt;💻 Multimodal Coding Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_design_agent_team/" &gt;✨ Multimodal Design Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_uiux_feedback_agent_team/" &gt;🎨 🍌 Multimodal UI/UX Feedback Agent Team with Nano Banana&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="link" href="https://hanguangwu.github.io/blog/advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/" &gt;🌏 AI Travel Planner Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="blog.zwzhang.com/advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/" &gt;🌏 AI Travel Planner Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="-voice-ai-agents"&gt;🗣️ Voice AI Agents
 &lt;/h3&gt;&lt;ul&gt;
@@ -189,7 +189,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Follow the project-specific instructions&lt;/strong&gt; in each project&amp;rsquo;s &lt;code&gt;README.md&lt;/code&gt; file to set up and run the app.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>500+ AI Agent Projects / UseCases</title><link>https://hanguangwu.github.io/blog/en/p/500-ai-agent-projects-/-usecases/</link><pubDate>Mon, 02 Feb 2026 17:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/500-ai-agent-projects-/-usecases/</guid><description>&lt;h1 id="-500-ai-agent-projects--usecases"&gt;🌟 500+ AI Agent Projects / UseCases
+&lt;/ol&gt;</description></item><item><title>500+ AI Agent Projects / UseCases</title><link>blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</link><pubDate>Mon, 02 Feb 2026 17:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</guid><description>&lt;h1 id="-500-ai-agent-projects--usecases"&gt;🌟 500+ AI Agent Projects / UseCases
 &lt;/h1&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260202175639846.png"
 loading="lazy"
 &gt;&lt;/p&gt;
@@ -2115,7 +2115,7 @@ alt="AI Agent Code - Python"
 &gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Free-LLM-API-Resources</title><link>https://hanguangwu.github.io/blog/en/p/free-llm-api-resources/</link><pubDate>Sat, 03 Jan 2026 15:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/free-llm-api-resources/</guid><description>&lt;h1 id="free-llm-api-resources"&gt;Free LLM API resources
+&lt;/table&gt;</description></item><item><title>Free-LLM-API-Resources</title><link>blog.zwzhang.com/en/p/free-llm-api-resources/</link><pubDate>Sat, 03 Jan 2026 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/free-llm-api-resources/</guid><description>&lt;h1 id="free-llm-api-resources"&gt;Free LLM API resources
 &lt;/h1&gt;&lt;p&gt;This lists various services that provide free access or credits towards API-based LLM usage.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;[!NOTE]&lt;br&gt;
@@ -2547,7 +2547,7 @@ Models tend to be context window limited.&lt;/p&gt;
 &lt;li&gt;qwen3-coder-30b-a3b-instruct&lt;/li&gt;
 &lt;li&gt;qwen3-embedding-8b&lt;/li&gt;
 &lt;li&gt;voxtral-small-24b-2507&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Fundamentals-of-Large-Language-Models</title><link>https://hanguangwu.github.io/blog/en/p/fundamentals-of-large-language-models/</link><pubDate>Mon, 29 Dec 2025 12:34:25 -0800</pubDate><guid>https://hanguangwu.github.io/blog/en/p/fundamentals-of-large-language-models/</guid><description>&lt;h1 id="fundamentals-of-large-language-models"&gt;Fundamentals of Large Language Models
+&lt;/ul&gt;</description></item><item><title>Fundamentals-of-Large-Language-Models</title><link>blog.zwzhang.com/en/p/fundamentals-of-large-language-models/</link><pubDate>Mon, 29 Dec 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/fundamentals-of-large-language-models/</guid><description>&lt;h1 id="fundamentals-of-large-language-models"&gt;Fundamentals of Large Language Models
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/hello-agents/#/en/README_EN.md" target="_blank" rel="noopener"
 &gt;Source Web Page&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The first two chapters introduced the definition and development history of agents. This chapter will focus entirely on large language models themselves to answer a key question: How do modern agents work? We will start from the basic definition of language models, and through learning these principles, lay a solid foundation for understanding how LLMs acquire powerful knowledge reserves and reasoning capabilities.&lt;/p&gt;
