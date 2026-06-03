@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>blog.zwzhang.com/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="blog.zwzhang.com/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酒中仙</title><link>https://blog.zwzhang.com/</link><description>Recent content on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里分享一些辅助学习的AI工具。&lt;/p&gt;
 &lt;h2 id="open-notebooklm一个私密多模型100本地化功能齐全的-notebook-lm-替代方案"&gt;Open NotebookLM——一个私密、多模型、100%本地化、功能齐全的 Notebook LM 替代方案
@@ -296,7 +296,7 @@ alt="API文档"
 &lt;li&gt;智能体原生 CLI —— 每个能力、KB、会话与 TutorBot 一条命令搞定;人类看富文本,智能体看结构化 JSON。把根目录的 &lt;a class="link" href="https://github.com/HKUDS/DeepTutor/blob/main/SKILL.md" target="_blank" rel="noopener"
 &gt;&lt;code&gt;SKILL.md&lt;/code&gt;&lt;/a&gt; 交给任意可调用工具的 LLM,它就能自己驾驭 DeepTutor。&lt;/li&gt;
 &lt;li&gt;可选身份认证 —— 默认关闭;启用后即可部署多用户场景,具备 bcrypt + JWT、管理员面板,以及可选的 PocketBase / OAuth 侧车。&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>多媒体数字资源合集FMHY</title><link>blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
+&lt;/ul&gt;</description></item><item><title>多媒体数字资源合集FMHY</title><link>https://blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</link><pubDate>Thu, 14 May 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E5%AD%97%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86fmhy/</guid><description>&lt;h2 id="概览"&gt;概览
 &lt;/h2&gt;&lt;p&gt;FMHY​（Free Media Heck Yeah）是一个开源的网络资源导航项目，旨在为用户提供全面的免费媒体资源、工具和服务指南。该项目通过精心整理的分类和详细说明，帮助用户安全、高效地获取各种数字资源，包括流媒体、下载工具、隐私保护方案等。&lt;/p&gt;
 &lt;p&gt;🔗 ​&lt;strong&gt;GitHub地址&lt;/strong&gt;​：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/fmhy/FMHY" title="https://github.com/fmhy/FMHY"
@@ -874,7 +874,7 @@ target="_blank" rel="noopener"
 &gt;Baozimh&lt;/a&gt; - Manga / Manhua / Manhwa&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://www.baozimh.com/" target="_blank" rel="noopener"
 &gt;Baozimh&lt;/a&gt; - Webtoons&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
+&lt;/ul&gt;</description></item><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;哈喽，各位自学小伙伴～ 本章咱们正式进入“高阶玩法”——多智能体协作与复杂流程管控！&lt;/p&gt;
 &lt;p&gt;不同于上一章的基础图结构开发，本章内容会更加工程化一些，核心是教大家用LangGraph ，搭建能“分工协作”“自我纠错”“人机配合”的智能系统。&lt;/p&gt;
@@ -8491,7 +8491,7 @@ target="_blank" rel="noopener"
 &lt;h3 id="48-深度思考"&gt;4.8 深度思考
 &lt;/h3&gt;&lt;p&gt;为什么在综合实践的案例中，等待用户审核要用Interrupts机制？使用这种机制的好处是什么？如果是企业级应用，多个用户调用智能体的时候怎么保证不同任务中断后能继续顺利启动？&lt;/p&gt;
 &lt;p&gt;上面的问题没有标准答案，每个人有不同见解~&lt;/p&gt;
-&lt;p&gt;好啦，以上就是本节的全部内容，祝大家学习愉快！&lt;/p&gt;</description></item><item><title>LangGraph基础：有状态工作流与核心概念</title><link>blog.zwzhang.com/p/langgraph%E5%9F%BA%E7%A1%80%E6%9C%89%E7%8A%B6%E6%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</link><pubDate>Sat, 25 Apr 2026 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/langgraph%E5%9F%BA%E7%A1%80%E6%9C%89%E7%8A%B6%E6%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</guid><description>&lt;h1 id="langgraph基础有状态工作流与核心概念"&gt;LangGraph基础：有状态工作流与核心概念
+&lt;p&gt;好啦，以上就是本节的全部内容，祝大家学习愉快！&lt;/p&gt;</description></item><item><title>LangGraph基础：有状态工作流与核心概念</title><link>https://blog.zwzhang.com/p/langgraph%E5%9F%BA%E7%A1%80%E6%9C%89%E7%8A%B6%E6%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</link><pubDate>Sat, 25 Apr 2026 15:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/langgraph%E5%9F%BA%E7%A1%80%E6%9C%89%E7%8A%B6%E6%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</guid><description>&lt;h1 id="langgraph基础有状态工作流与核心概念"&gt;LangGraph基础：有状态工作流与核心概念
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;各位同学，上一章我们掌握了LangChain的基础工作流构建，当面对更复杂的任务——比如需要循环迭代、动态分支、状态回溯的场景时，LangChain的链式流就显得有些局限了。&lt;/p&gt;
 &lt;p&gt;这一章我们聚焦LangGraph，它作为LangChain生态中负责复杂工作流编排的核心框架，1.0版本后更是强化了生产级特性，能帮我们实现有状态、可追溯、高灵活度的工作流。&lt;/p&gt;
@@ -11531,7 +11531,7 @@ alt="6-6"
 &lt;li&gt;强化容错设计：生产级流程需添加异常捕获、重试机制、循环终止条件，避免工具调用失败、逻辑错误导致流程卡死。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="53-实践练习"&gt;5.3 实践练习
-&lt;/h3&gt;&lt;p&gt;完成本章中的langgraph学习案例，从实践中感悟langgraph的特性，完成综合实操的3个案例，针对案例3进行优化，进一步提升智能体的效果。&lt;/p&gt;</description></item><item><title>向量数据库中的索引优化</title><link>blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</link><pubDate>Thu, 02 Apr 2026 23:14:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="向量数据库中的索引优化"&gt;向量数据库中的索引优化
+&lt;/h3&gt;&lt;p&gt;完成本章中的langgraph学习案例，从实践中感悟langgraph的特性，完成综合实操的3个案例，针对案例3进行优化，进一步提升智能体的效果。&lt;/p&gt;</description></item><item><title>向量数据库中的索引优化</title><link>https://blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</link><pubDate>Thu, 02 Apr 2026 23:14:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="向量数据库中的索引优化"&gt;向量数据库中的索引优化
 &lt;/h1&gt;&lt;p&gt;在上一章的文本分块部分，已经简单介绍了一些索引优化的策略。本节将基于 LlamaIndex 的高性能生产级RAG构建方案&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，对索引优化进行更深入的探讨。&lt;/p&gt;
 &lt;h2 id="一上下文扩展"&gt;一、上下文扩展
 &lt;/h2&gt;&lt;p&gt;在RAG系统中，常常面临一个权衡问题：使用小块文本进行检索可以获得更高的精确度，但小块文本缺乏足够的上下文，可能导致大语言模型（LLM）无法生成高质量的答案；而使用大块文本虽然上下文丰富，却容易引入噪音，降低检索的相关性。为了解决这一矛盾，LlamaIndex 提出了一种实用的索引策略——&lt;strong&gt;句子窗口检索（Sentence Window Retrieval）&lt;/strong&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;。该技术巧妙地结合了两种方法的优点：它在检索时聚焦于高度精确的单个句子，在送入LLM生成答案前，又智能地将上下文扩展回一个更宽的“窗口”，从而同时保证检索的准确性和生成的质量。&lt;/p&gt;
@@ -11899,7 +11899,7 @@ alt="结构化索引"
 &gt;&lt;em&gt;Structured Hierarchical Retrieval&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>多模态向量数据库——以Milvus为例</title><link>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/</link><pubDate>Thu, 02 Apr 2026 22:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/</guid><description>&lt;h1 id="milvus介绍及多模态检索实践"&gt;Milvus介绍及多模态检索实践
+&lt;/div&gt;</description></item><item><title>多模态向量数据库——以Milvus为例</title><link>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/</link><pubDate>Thu, 02 Apr 2026 22:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5milvus%E4%B8%BA%E4%BE%8B/</guid><description>&lt;h1 id="milvus介绍及多模态检索实践"&gt;Milvus介绍及多模态检索实践
 &lt;/h1&gt;&lt;h2 id="一简介"&gt;一、简介
 &lt;/h2&gt;&lt;p&gt;Milvus 是一个开源的、专为大规模向量相似性搜索和分析而设计的向量数据库。它诞生于 Zilliz 公司，并已成为 LF AI &amp;amp; Data 基金会的顶级项目，在AI领域拥有广泛的应用。&lt;/p&gt;
 &lt;p&gt;与 FAISS、ChromaDB 等轻量级本地存储方案不同，Milvus 从设计之初就瞄准了&lt;strong&gt;生产环境&lt;/strong&gt;。其采用云原生架构，具备高可用、高性能、易扩展的特性，能够处理十亿、百亿甚至更大规模的向量数据。&lt;/p&gt;
@@ -13008,7 +13008,7 @@ alt="检索结果可视化"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;已删除 Collection: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;COLLECTION_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>向量数据库简介——以FAISS为例</title><link>blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</link><pubDate>Thu, 02 Apr 2026 21:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</guid><description>&lt;h1 id="向量数据库简介以faiss为例"&gt;向量数据库简介——以FAISS为例
+&lt;/div&gt;</description></item><item><title>向量数据库简介——以FAISS为例</title><link>https://blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</link><pubDate>Thu, 02 Apr 2026 21:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B%E4%BB%A5faiss%E4%B8%BA%E4%BE%8B/</guid><description>&lt;h1 id="向量数据库简介以faiss为例"&gt;向量数据库简介——以FAISS为例
 &lt;/h1&gt;&lt;h2 id="一向量数据库的作用"&gt;一、向量数据库的作用
 &lt;/h2&gt;&lt;p&gt;在前面我们学习了如何使用嵌入模型将文本、图像等非结构化数据转换为高维向量。这些向量是 RAG 系统能够进行语义理解的基础。然而，当向量数量从几百个增长到数百万甚至数十亿时，一个核心问题随之而来：&lt;strong&gt;如何快速、准确地从海量向量中找到与用户查询最相似的那几个？&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id="11-向量数据库主要功能"&gt;1.1 向量数据库主要功能
@@ -13262,7 +13262,7 @@ alt="向量数据库分类图"
 &lt;li&gt;LlamaIndex 默认会将数据存储为透明可读的JSON格式，运行&lt;a class="link" href="https://github.com/datawhalechina/all-in-rag/blob/main/code/C3/03_llamaindex_vector.py" target="_blank" rel="noopener"
 &gt;03_llamaindex_vector.py&lt;/a&gt;文件，查看保存的json文件内容。&lt;/li&gt;
 &lt;li&gt;新建一个代码文件实现对 LlamaIndex 存储数据的加载和相似性搜索。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>RAG 中的向量嵌入和多模态嵌入</title><link>blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</link><pubDate>Thu, 02 Apr 2026 20:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</guid><description>&lt;h1 id="rag-中的向量嵌入和多模态嵌入"&gt;RAG 中的向量嵌入和多模态嵌入
+&lt;/ol&gt;</description></item><item><title>RAG 中的向量嵌入和多模态嵌入</title><link>https://blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</link><pubDate>Thu, 02 Apr 2026 20:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E5%92%8C%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5/</guid><description>&lt;h1 id="rag-中的向量嵌入和多模态嵌入"&gt;RAG 中的向量嵌入和多模态嵌入
 &lt;/h1&gt;&lt;h2 id="第一节-向量嵌入"&gt;第一节 向量嵌入
 &lt;/h2&gt;&lt;h3 id="一向量嵌入基础"&gt;一、向量嵌入基础
 &lt;/h3&gt;&lt;h4 id="11-基础概念"&gt;1.1 基础概念
@@ -13596,7 +13596,7 @@ alt="CLIP Architecture"
 &gt;&lt;em&gt;RoBERTa: A Modified BERT Model for NLP&lt;/em&gt;&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>RAG 中的数据准备</title><link>blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</link><pubDate>Tue, 31 Mar 2026 20:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</guid><description>&lt;h1 id="rag-中的数据准备"&gt;RAG 中的数据准备
+&lt;/div&gt;</description></item><item><title>RAG 中的数据准备</title><link>https://blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</link><pubDate>Tue, 31 Mar 2026 20:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/rag-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/</guid><description>&lt;h1 id="rag-中的数据准备"&gt;RAG 中的数据准备
 &lt;/h1&gt;&lt;h2 id="第一节-数据加载"&gt;第一节 数据加载
 &lt;/h2&gt;&lt;p&gt;虽然本节内容在实际应用中非常重要，但是由于各种文档加载器的迭代更新，以及各类 AI 应用的不同需求，具体选择需要根据实际情况。本节仅作简单引入，但请务必&lt;strong&gt;重视数据加载&lt;/strong&gt;环节，&lt;strong&gt;“垃圾进，垃圾出 (Garbage In, Garbage Out)”&lt;/strong&gt; ——高质量输入是高质量输出的前提。&lt;/p&gt;
 &lt;h3 id="一文档加载器"&gt;一、文档加载器
@@ -14135,7 +14135,7 @@ alt="文本分块示意图"
 &gt;Nelson F. Liu, et al. (2023). &lt;em&gt;Lost in the Middle: How Language Models Use Long Contexts&lt;/em&gt;&lt;/a&gt;.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>生活片段分享平台</title><link>blog.zwzhang.com/p/%E7%94%9F%E6%B4%BB%E7%89%87%E6%AE%B5%E5%88%86%E4%BA%AB%E5%B9%B3%E5%8F%B0/</link><pubDate>Mon, 30 Mar 2026 18:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E7%94%9F%E6%B4%BB%E7%89%87%E6%AE%B5%E5%88%86%E4%BA%AB%E5%B9%B3%E5%8F%B0/</guid><description>&lt;h1 id="生活片段分享平台"&gt;生活片段分享平台
+&lt;/div&gt;</description></item><item><title>生活片段分享平台</title><link>https://blog.zwzhang.com/p/%E7%94%9F%E6%B4%BB%E7%89%87%E6%AE%B5%E5%88%86%E4%BA%AB%E5%B9%B3%E5%8F%B0/</link><pubDate>Mon, 30 Mar 2026 18:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%94%9F%E6%B4%BB%E7%89%87%E6%AE%B5%E5%88%86%E4%BA%AB%E5%B9%B3%E5%8F%B0/</guid><description>&lt;h1 id="生活片段分享平台"&gt;生活片段分享平台
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;去年夏天，我搭建了一个 Life-Moments 的平台用于分享自己的生活，但是因为数据存储的问题，这个工具没能成为我日常工具的一部分。&lt;/p&gt;
 &lt;p&gt;类似微信朋友圈的工具有很多，比如Moments、Memos 和 Ech0。&lt;/p&gt;
@@ -14424,7 +14424,7 @@ alt="Deploy on Vercel"
 &lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/SnowDreamXUE/article/details/147479400" target="_blank" rel="noopener"
 &gt;利用 Claw Cloud Run 免费应用部署前端网页&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1928867614056256405" target="_blank" rel="noopener"
-&gt;Render vs Clawcloud：免费的 Docker 应用部署平台推荐（2025）&lt;/a&gt;&lt;/p&gt;</description></item><item><title>RAG 简介及其简单实现</title><link>blog.zwzhang.com/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link><pubDate>Sat, 28 Mar 2026 20:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="rag-简介及其简单实现"&gt;RAG 简介及其简单实现
+&gt;Render vs Clawcloud：免费的 Docker 应用部署平台推荐（2025）&lt;/a&gt;&lt;/p&gt;</description></item><item><title>RAG 简介及其简单实现</title><link>https://blog.zwzhang.com/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link><pubDate>Sat, 28 Mar 2026 20:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/rag-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="rag-简介及其简单实现"&gt;RAG 简介及其简单实现
 &lt;/h1&gt;&lt;h2 id="一什么是-rag"&gt;一、什么是 RAG？
 &lt;/h2&gt;&lt;h3 id="11-核心定义"&gt;1.1 核心定义
 &lt;/h3&gt;&lt;p&gt;从本质上讲，RAG（Retrieval-Augmented Generation）是一种旨在解决大语言模型（LLM）“知其然不知其所以然”问题的技术范式。它的核心是将模型内部学到的“&lt;strong&gt;参数化知识&lt;/strong&gt;”（模型权重中固化的、模糊的“记忆”），与来自外部知识库的“&lt;strong&gt;非参数化知识&lt;/strong&gt;”（精准、可随时更新的外部数据）相结合。其运作逻辑就是在 LLM 生成文本前，先通过检索机制从外部知识库中动态获取相关信息，并将这些“参考资料”融入生成过程，从而提升输出的准确性和时效性 &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt; &lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
@@ -15035,7 +15035,7 @@ alt="Deploy on Vercel"
 &gt;&lt;em&gt;TinyRAG: GitHub项目&lt;/em&gt;&lt;/a&gt;.&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>多模态——从头训练简化版 Omni 模型</title><link>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83%E7%AE%80%E5%8C%96%E7%89%88-omni-%E6%A8%A1%E5%9E%8B/</link><pubDate>Fri, 27 Mar 2026 23:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83%E7%AE%80%E5%8C%96%E7%89%88-omni-%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="多模态从-0-训练简化版-omni-模型"&gt;多模态——从 0 训练简化版 Omni 模型
+&lt;/div&gt;</description></item><item><title>多模态——从头训练简化版 Omni 模型</title><link>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83%E7%AE%80%E5%8C%96%E7%89%88-omni-%E6%A8%A1%E5%9E%8B/</link><pubDate>Fri, 27 Mar 2026 23:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83%E7%AE%80%E5%8C%96%E7%89%88-omni-%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="多模态从-0-训练简化版-omni-模型"&gt;多模态——从 0 训练简化版 Omni 模型
 &lt;/h1&gt;&lt;p&gt;经过了这么多章节的漫长学习，想必大家已经对大模型技术的完整演进脉络有了相对全面的认知。本节我们来把此前所学的知识进行融会贯通，在单张消费级显卡上从 0 开始，使用 PyTorch 实现一个简版的 Omni 模型。我们的目标是构建一个能够同时接收&lt;strong&gt;文本&lt;/strong&gt;和&lt;strong&gt;图像&lt;/strong&gt;两路输入的多模态基座。在这个模型中，我们将通过投影与注入机制，将提取好的视觉特征与文本序列相结合，构建一个端到端联合计算与生成的多模态大模型。&lt;/p&gt;
 &lt;h2 id="一数据准备与预处理"&gt;一、数据准备与预处理
 &lt;/h2&gt;&lt;h3 id="11-获取训练数据"&gt;1.1 获取训练数据
@@ -18023,7 +18023,7 @@ alt="Deploy on Vercel"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;那么现在全部的核心内容我们就写完了。接下来，只需要在相关模块里补齐工程化的封装收口（例如通过 &lt;code&gt;__init__.py&lt;/code&gt; 暴露对外 API、在 &lt;code&gt;__main__.py&lt;/code&gt; 中提供 &lt;code&gt;python -m ...&lt;/code&gt; 的启动入口，并将训练阶段的参数收拢到 &lt;code&gt;config.py&lt;/code&gt; / YAML 等配置文件中统一管理），就可以使用 &lt;code&gt;uv run python -m seeker_omni&lt;/code&gt; 命令将整套训练跑起来了。&lt;/p&gt;</description></item><item><title>图文多模态之原生统一架构</title><link>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8B%E5%8E%9F%E7%94%9F%E7%BB%9F%E4%B8%80%E6%9E%B6%E6%9E%84/</link><pubDate>Fri, 27 Mar 2026 22:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8B%E5%8E%9F%E7%94%9F%E7%BB%9F%E4%B8%80%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="图文多模态之原生统一架构"&gt;图文多模态之原生统一架构
+&lt;/div&gt;&lt;p&gt;那么现在全部的核心内容我们就写完了。接下来，只需要在相关模块里补齐工程化的封装收口（例如通过 &lt;code&gt;__init__.py&lt;/code&gt; 暴露对外 API、在 &lt;code&gt;__main__.py&lt;/code&gt; 中提供 &lt;code&gt;python -m ...&lt;/code&gt; 的启动入口，并将训练阶段的参数收拢到 &lt;code&gt;config.py&lt;/code&gt; / YAML 等配置文件中统一管理），就可以使用 &lt;code&gt;uv run python -m seeker_omni&lt;/code&gt; 命令将整套训练跑起来了。&lt;/p&gt;</description></item><item><title>图文多模态之原生统一架构</title><link>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8B%E5%8E%9F%E7%94%9F%E7%BB%9F%E4%B8%80%E6%9E%B6%E6%9E%84/</link><pubDate>Fri, 27 Mar 2026 22:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8B%E5%8E%9F%E7%94%9F%E7%BB%9F%E4%B8%80%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="图文多模态之原生统一架构"&gt;图文多模态之原生统一架构
 &lt;/h1&gt;&lt;p&gt;上节我们介绍了以 &lt;strong&gt;BLIP-2&lt;/strong&gt; 和 &lt;strong&gt;LLaVA&lt;/strong&gt; 为代表的“&lt;strong&gt;连接&lt;/strong&gt;”方法。这类方法通过轻量级适配模块连接&lt;strong&gt;冻结的视觉编码器&lt;/strong&gt;与 &lt;strong&gt;大语言模型&lt;/strong&gt;，虽极大降低了训练成本，但底层模态的分离和输入端的生硬拼接限制了其在实时音频/视频交互等场景下的表现。为了突破这些局限，学术界与工业界正加速向&lt;strong&gt;原生统一&lt;/strong&gt;的架构演进。&lt;/p&gt;
 &lt;h2 id="一迈向统一的探索"&gt;一、迈向统一的探索
 &lt;/h2&gt;&lt;h3 id="11-flamingo-架构设计"&gt;1.1 Flamingo 架构设计
@@ -18274,7 +18274,7 @@ alt="Deploy on Vercel"
 &gt;OpenBMB. (2026). &lt;em&gt;MiniCPM-o 4.5&lt;/em&gt; (GitHub repository).&lt;/a&gt;&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>图文多模态之BLIP-2 与 LLaVA</title><link>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8Bblip-2-%E4%B8%8E-llava/</link><pubDate>Fri, 27 Mar 2026 21:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8Bblip-2-%E4%B8%8E-llava/</guid><description>&lt;h1 id="图文多模态之blip-2-与-llava"&gt;图文多模态之BLIP-2 与 LLaVA
+&lt;/div&gt;</description></item><item><title>图文多模态之BLIP-2 与 LLaVA</title><link>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8Bblip-2-%E4%B8%8E-llava/</link><pubDate>Fri, 27 Mar 2026 21:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B9%8Bblip-2-%E4%B8%8E-llava/</guid><description>&lt;h1 id="图文多模态之blip-2-与-llava"&gt;图文多模态之BLIP-2 与 LLaVA
 &lt;/h1&gt;&lt;h2 id="一从对齐到生成"&gt;一、从对齐到生成
 &lt;/h2&gt;&lt;h3 id="11-如何高效构建多模态生成能力"&gt;1.1 如何高效构建多模态生成能力？
 &lt;/h3&gt;&lt;p&gt;CLIP 通过对比学习让图像和文本在特征空间实现了对齐，但这仅仅完成了“理解”的第一步。作为典型的&lt;strong&gt;双塔判别式&lt;/strong&gt;模型，CLIP 更擅长做“给定候选文本算相似度”的检索/分类式判断，而不是&lt;strong&gt;自由形式的文本生成&lt;/strong&gt;；所以它不能像语言模型那样，直接对“画里有什么？”这类开放式问题给出自然语言答案。&lt;strong&gt;为了突破这一局限&lt;/strong&gt;，我们需要赋予模型“&lt;strong&gt;开口说话&lt;/strong&gt;”的能力，在强大的语义基础之上构建&lt;strong&gt;生成能力&lt;/strong&gt;。为此，DeepMind 的 &lt;strong&gt;Flamingo&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt; 等先驱尝试了在冻结的视觉编码器与语言模型之间&lt;strong&gt;插入跨注意力等新模块&lt;/strong&gt;，并在海量交错图文数据上训练这些新增模块以实现强大的生成与对话能力。虽然效果惊艳，但数据与训练成本&lt;strong&gt;并非普通实验室所能承受&lt;/strong&gt;。&lt;/p&gt;
@@ -18353,7 +18353,7 @@ alt="Deploy on Vercel"
 &gt;Liu, H., Li, C., Wu, Q., &amp;amp; Lee, Y. J. (2023). &lt;em&gt;Visual Instruction Tuning&lt;/em&gt;. NeurIPS.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>图文多模态及其实现</title><link>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 27 Mar 2026 20:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="图文多模态及其实现"&gt;图文多模态及其实现
+&lt;/div&gt;</description></item><item><title>图文多模态及其实现</title><link>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 27 Mar 2026 20:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9B%BE%E6%96%87%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="图文多模态及其实现"&gt;图文多模态及其实现
 &lt;/h1&gt;&lt;p&gt;虽然多模态领域涵盖了音频、视频、3D 点云、热成像等多种数据形式，且“多模态”的边界正在不断拓展，但**图文（Image-Text）**始终是目前研究最深入、应用最广泛，也是最能体现跨模态交互逻辑的基础组合。本节我们将深入探讨两个具有代表性的模型架构，分别是将 Transformer 引入视觉领域的 &lt;strong&gt;ViT&lt;/strong&gt;，以及连接文本与图像语义的 &lt;strong&gt;CLIP&lt;/strong&gt;。&lt;/p&gt;
 &lt;h2 id="一视觉的-transformer-化"&gt;一、视觉的 Transformer 化
 &lt;/h2&gt;&lt;p&gt;在过去十年里，计算机视觉领域长期以 CNN（卷积神经网络，如 ResNet）为主流，而 NLP 领域自 2017 年后则由 Transformer 主导。虽然两者都能通过网络设计获得全局信息，但在基础算子的特性上仍有明显区别。2020年，Google 提出了 &lt;strong&gt;ViT (Vision Transformer)&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，&lt;strong&gt;既然 Transformer 擅长处理 Token 序列，能不能把图像切成 Patch（图像块），把每个 Patch 当作一个 Token，直接用 Transformer 来做图像识别？&lt;/strong&gt;&lt;/p&gt;
@@ -18972,7 +18972,7 @@ $$&lt;p&gt;其中 $\mathbf{z}_L^{0}$ 表示 &lt;strong&gt;Transformer Encoder �
 &gt;Radford, A., Kim, J. W., Hallacy, C., et al. (2021). &lt;em&gt;Learning transferable visual models from natural language supervision (CLIP)&lt;/em&gt;. ICML.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>多模态概述</title><link>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A6%82%E8%BF%B0/</link><pubDate>Fri, 27 Mar 2026 16:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A6%82%E8%BF%B0/</guid><description>&lt;h1 id="多模态概述"&gt;多模态概述
+&lt;/div&gt;</description></item><item><title>多模态概述</title><link>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A6%82%E8%BF%B0/</link><pubDate>Fri, 27 Mar 2026 16:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A6%82%E8%BF%B0/</guid><description>&lt;h1 id="多模态概述"&gt;多模态概述
 &lt;/h1&gt;&lt;p&gt;在前面的章节中，我们主要围绕文本（Text）这一单一模态系统性学习了 NLP 与 LLM 的主线能力。但真实世界的信息并不只以文字存在，图片、视频、语音、音乐、传感器、布局与结构化信号……共同构成了人类认知的“输入流”。&lt;strong&gt;多模态学习&lt;/strong&gt;关注的就是如何让模型在这些异构信息之间建立联系，完成理解、生成与决策。&lt;/p&gt;
 &lt;p align="center"&gt;
 &lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/19_1_1.png" width="80%" alt="多模态交互示意图" /&gt;
@@ -19118,7 +19118,7 @@ $$&lt;p&gt;其中 $\mathbf{z}_L^{0}$ 表示 &lt;strong&gt;Transformer Encoder �
 &gt;Anand, P. (2021). &lt;em&gt;5 Core Challenges In Multimodal Machine Learning&lt;/em&gt;. Mercari Engineering Blog.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:9" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>分布式训练框架 DeepSpeed</title><link>blog.zwzhang.com/p/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6-deepspeed/</link><pubDate>Fri, 27 Mar 2026 15:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6-deepspeed/</guid><description>&lt;h1 id="分布式训练框架-deepspeed"&gt;分布式训练框架 DeepSpeed
+&lt;/div&gt;</description></item><item><title>分布式训练框架 DeepSpeed</title><link>https://blog.zwzhang.com/p/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6-deepspeed/</link><pubDate>Fri, 27 Mar 2026 15:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6-deepspeed/</guid><description>&lt;h1 id="分布式训练框架-deepspeed"&gt;分布式训练框架 DeepSpeed
 &lt;/h1&gt;&lt;h2 id="一deepspeed-全家桶一览"&gt;一、DeepSpeed 全家桶一览
 &lt;/h2&gt;&lt;h3 id="11-deepspeed-概述"&gt;1.1 DeepSpeed 概述
 &lt;/h3&gt;&lt;p&gt;我们在前面已经通过 QLoRA、PEFT、RLHF 等技术，体验了在&lt;strong&gt;单机单卡&lt;/strong&gt;甚至消费级显卡上完成大模型微调的可能性。但如果目标从“微调一个 7B 模型”升级为&lt;strong&gt;从零预训练、全量微调甚至训练万亿参数模型&lt;/strong&gt;，仅靠量化与 LoRA 显然还不够，此时就需要引入微软开源的 &lt;strong&gt;PyTorch 分布式训练与推理优化库 &lt;a class="link" href="https://www.deepspeed.ai/" target="_blank" rel="noopener"
@@ -19436,7 +19436,7 @@ $$&lt;blockquote&gt;
 &gt;DeepSpeed Team, Majumder, R., &amp;amp; Wang, J. (2020). &lt;em&gt;DeepSpeed: Extreme-scale model training for everyone&lt;/em&gt;. Microsoft Research Blog.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:9" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>模型量化实战</title><link>blog.zwzhang.com/p/%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E5%AE%9E%E6%88%98/</link><pubDate>Fri, 27 Mar 2026 14:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="模型量化实战"&gt;模型量化实战
+&lt;/div&gt;</description></item><item><title>模型量化实战</title><link>https://blog.zwzhang.com/p/%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E5%AE%9E%E6%88%98/</link><pubDate>Fri, 27 Mar 2026 14:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="模型量化实战"&gt;模型量化实战
 &lt;/h1&gt;&lt;p&gt;在前面的实战章节中，为了在消费级显卡上加载大模型，我们已经初步体验了量化技术的魔力——只需几行代码配置 &lt;code&gt;BitsAndBytesConfig&lt;/code&gt;，庞大的模型就能“塞”进显存。但你是否好奇，这背后的 &lt;code&gt;int8&lt;/code&gt; 或 &lt;code&gt;nf4&lt;/code&gt; 到底发生了什么？除了微调时用到的 BitsAndBytes，还有哪些量化技术更适合推理部署？&lt;/p&gt;
 &lt;h2 id="一小资源干大活"&gt;一、小资源干大活
 &lt;/h2&gt;&lt;h3 id="11-冗余与压缩"&gt;1.1 冗余与压缩
@@ -20131,7 +20131,7 @@ $$ \mathbf{C}_{f16} \approx \underbrace{\sum_{h \in O} \mathbf{X}_{f16}^h \mathb
 &gt;vLLM Team. &lt;em&gt;LLM Compressor Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>基于 LLaMA-Factory 的RLHF（DPO）实战</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</link><pubDate>Fri, 27 Mar 2026 13:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="基于-llama-factory-的rlhfdpo实战"&gt;基于 LLaMA-Factory 的RLHF（DPO）实战
+&lt;/div&gt;</description></item><item><title>基于 LLaMA-Factory 的RLHF（DPO）实战</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</link><pubDate>Fri, 27 Mar 2026 13:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-llama-factory-%E7%9A%84rlhfdpo%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="基于-llama-factory-的rlhfdpo实战"&gt;基于 LLaMA-Factory 的RLHF（DPO）实战
 &lt;/h1&gt;&lt;p&gt;我们在上一节详细介绍了 RLHF 的原理以及目前主流的 &lt;strong&gt;DPO（Direct Preference Optimization）&lt;/strong&gt; 算法。相比于传统的 PPO，DPO 省去了训练独立的奖励模型（Reward Model）和复杂的强化学习采样过程，直接在偏好数据上优化策略，更加稳定且高效。&lt;/p&gt;
 &lt;p&gt;本节我们将使用开源社区流行的微调框架 &lt;strong&gt;LLaMA-Factory&lt;/strong&gt;，配合阿里发布的轻量级指令模型 &lt;strong&gt;Qwen2.5-0.5B-Instruct&lt;/strong&gt;，在单张消费级显卡（甚至 CPU）上跑通 DPO 对齐流程。&lt;/p&gt;
 &lt;h2 id="一llama-factory-简介"&gt;一、LLaMA-Factory 简介
@@ -20365,7 +20365,7 @@ $$ \mathbf{C}_{f16} \approx \underbrace{\sum_{h \in O} \mathbf{X}_{f16}^h \mathb
 &lt;p&gt;这就是 RLHF 的价值——不仅仅是让模型“做对题”，更是让模型学会人类偏好的&lt;strong&gt;交互风格&lt;/strong&gt;。通过 &lt;code&gt;dpo_zh_demo&lt;/code&gt; 数据集的训练，模型初步对齐了数据集中这种“诚实且严谨”的偏好风格。&lt;/p&gt;
 &lt;h2 id="本章小结"&gt;本章小结
 &lt;/h2&gt;&lt;p&gt;本章我们探讨了让大语言模型“更懂人类”技术——RLHF。在理论层面，我们不仅剖析了模型对齐的必要性，对比了 SFT 与 RLHF 的核心差异，还详细解析了从经典的 &lt;strong&gt;PPO&lt;/strong&gt; 到高效的 &lt;strong&gt;DPO&lt;/strong&gt;，再到驱动 DeepSeek-R1 等推理模型涌现的 &lt;strong&gt;GRPO&lt;/strong&gt; 算法。特别是 GRPO 与 RLVR 的结合，展示了通过强化学习激发模型长链推理能力的巨大潜力。&lt;/p&gt;
-&lt;p&gt;在实战环节，借助 LLaMA-Factory 这一高效框架，成功在消费级硬件上完成了 Qwen2.5 模型的 DPO 训练。通过对比训练前后的对话效果，我们直观地看到了模型在行为风格上的转变，即从简单武断的回答，进化为能够遵循复杂指令、展示推理过程的严谨回复。这不仅验证了 DPO 算法的有效性，也展示了如何通过偏好数据低成本地定制模型的“性格”。此外，虽然可视化界面便于上手，但在实际使用中，开发者往往更倾向于使用命令行方式，以获取对训练过程更细致的控制。&lt;/p&gt;</description></item><item><title>基于人类反馈的强化学习（RLHF） 技术详解</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</link><pubDate>Fri, 27 Mar 2026 12:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="基于人类反馈的强化学习rlhf-技术详解"&gt;基于人类反馈的强化学习（RLHF） 技术详解
+&lt;p&gt;在实战环节，借助 LLaMA-Factory 这一高效框架，成功在消费级硬件上完成了 Qwen2.5 模型的 DPO 训练。通过对比训练前后的对话效果，我们直观地看到了模型在行为风格上的转变，即从简单武断的回答，进化为能够遵循复杂指令、展示推理过程的严谨回复。这不仅验证了 DPO 算法的有效性，也展示了如何通过偏好数据低成本地定制模型的“性格”。此外，虽然可视化界面便于上手，但在实际使用中，开发者往往更倾向于使用命令行方式，以获取对训练过程更细致的控制。&lt;/p&gt;</description></item><item><title>基于人类反馈的强化学习（RLHF） 技术详解</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</link><pubDate>Fri, 27 Mar 2026 12:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0rlhf-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="基于人类反馈的强化学习rlhf-技术详解"&gt;基于人类反馈的强化学习（RLHF） 技术详解
 &lt;/h1&gt;&lt;p&gt;通过前面的学习，我们已经知道如何通过 PEFT，用较低的成本让大语言模型适应下游任务。无论是 PEFT 还是全量微调，主要方法大多是&lt;strong&gt;有监督微调（Supervised Fine-tuning, SFT）&lt;/strong&gt;，即用成对的“(指令, 回答)”数据来训练模型。但是，SFT 存在一个重要的局限。它教会模型&lt;strong&gt;模仿&lt;/strong&gt;高质量的范例，但无法让模型理解&lt;strong&gt;人类的偏好&lt;/strong&gt;。一个 SFT 模型或许能很好地回答“中国的首都是哪里？”，但当面对更开放、更复杂的指令，如“为我的项目写一个既专业又有创意的介绍”时，SFT 的局限性就暴露无遗：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;缺乏泛化能力&lt;/strong&gt;：模型只能很好地响应数据集中出现过的指令模式，无法覆盖用户千奇百怪的真实意图。&lt;/li&gt;
@@ -20637,7 +20637,7 @@ $$&lt;/li&gt;
 &gt;Cui, B., Lu, Y., et al. (2024). &lt;em&gt;RLHF: A Comprehensive Survey for Cultural, Multimodal and Low Latency Alignment Methods&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>学术论文批量翻译</title><link>blog.zwzhang.com/p/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91/</link><pubDate>Thu, 26 Mar 2026 12:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91/</guid><description>&lt;h1 id="学术论文批量翻译"&gt;学术论文批量翻译
+&lt;/div&gt;</description></item><item><title>学术论文批量翻译</title><link>https://blog.zwzhang.com/p/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91/</link><pubDate>Thu, 26 Mar 2026 12:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91/</guid><description>&lt;h1 id="学术论文批量翻译"&gt;学术论文批量翻译
 &lt;/h1&gt;&lt;h2 id="使用-pdf2zh_next-翻译学术论文"&gt;使用 pdf2zh_next 翻译学术论文
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;告别 API 报错！Python 批量翻译 PDF 论文：遍历文件夹 + 调用 pdf2zh_next 终端命令（100% 可用）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;在使用 &lt;strong&gt;PDFMathTranslate-next (pdf2zh_next)&lt;/strong&gt; 翻译学术论文时，很多朋友都会遇到 Python API 调用的各种坑：导入错误、配置校验失败、类缺失、版本冲突…… 折腾半天根本跑不起来。&lt;/p&gt;
@@ -21066,7 +21066,7 @@ $$&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;📂 一次丢进来一堆 PDF，挨个翻译，每个文件独立跟踪进度&lt;/li&gt;
 &lt;li&gt;🎯 智能文件识别，只翻 PDF，不怕误操作&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>基于 peft 库的 LoRA 实战</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/</link><pubDate>Wed, 25 Mar 2026 22:40:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="基于-peft-库的-lora-实战"&gt;基于 peft 库的 LoRA 实战
+&lt;/ul&gt;</description></item><item><title>基于 peft 库的 LoRA 实战</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/</link><pubDate>Wed, 25 Mar 2026 22:40:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-peft-%E5%BA%93%E7%9A%84-lora-%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="基于-peft-库的-lora-实战"&gt;基于 peft 库的 LoRA 实战
 &lt;/h1&gt;&lt;p&gt;在前两个小节中，探讨了参数高效微调（PEFT）的理论背景和主流方法，特别是 LoRA 的核心原理。这些知识为我们提供了理论支撑，但要真正驾驭这些技术，还需要一个强大而易用的工具。本节将进入实战环节，学习使用当前社区常用的 PEFT 工具库——Hugging Face 的 &lt;code&gt;peft&lt;/code&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。
 &lt;code&gt;peft&lt;/code&gt; 库的设计理念与 Hugging Face 生态系统一脉相承，它希望将复杂的 PEFT 技术（如 LoRA, Prefix Tuning, Adapter 等）抽象成统一、简洁的接口，让开发者能够以最小的代码改动，将这些高效微调方法无缝地应用到 Hugging Face Hub 上的大模型上。如图 11-11，&lt;code&gt;peft&lt;/code&gt; 库的官方文档将其内容划分为快速入门、方法指南、概念指南和参考手册，便于开发者上手。&lt;/p&gt;
 &lt;p align="center"&gt;
@@ -21653,7 +21653,7 @@ $$&lt;/li&gt;
 &gt;Hugging Face PEFT Documentation. (2024).&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>使用 Qwen2.5 微调私有数据</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 25 Mar 2026 22:39:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/</guid><description>&lt;h1 id="使用qwen25-微调私有数据"&gt;使用Qwen2.5 微调私有数据
+&lt;/div&gt;</description></item><item><title>使用 Qwen2.5 微调私有数据</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 25 Mar 2026 22:39:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8-qwen2.5-%E5%BE%AE%E8%B0%83%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/</guid><description>&lt;h1 id="使用qwen25-微调私有数据"&gt;使用Qwen2.5 微调私有数据
 &lt;/h1&gt;&lt;p&gt;在前几节的学习中，我们已经构建起一套完整的参数高效微调知识体系。手握“道”（PEFT 理论）与“器”（&lt;code&gt;peft&lt;/code&gt; 库）之后，本节将以 Qwen2.5 模型为例，应用 QLoRA 技术进行微调实战。&lt;/p&gt;
 &lt;p&gt;在开始之前，需要先对模型有一定的了解。模型的架构范式、关键组件（如注意力机制的实现、激活函数的选择）以及预训练时采用的技巧——从根本上决定了微调的正确“姿势”。例如，在上一节对 Pythia 模型的微调中，我们在 &lt;code&gt;LoraConfig&lt;/code&gt; 里指定了 &lt;code&gt;target_modules=[&amp;quot;query_key_value&amp;quot;, &amp;quot;dense&amp;quot;]&lt;/code&gt;。这个参数并非随意设置，而是由 Pythia 模型的具体结构决定的。如果将这套配置原封不动地用于 Qwen2.5，结果很可能是失败的。基于以上讨论，下面我们先了解一下 Qwen2.5 的架构特点。&lt;/p&gt;
 &lt;h2 id="一qwen25-模型要点解析"&gt;一、Qwen2.5 模型要点解析
@@ -22563,7 +22563,7 @@ $$&lt;/li&gt;
 &gt;Qwen Team. (2024). &lt;em&gt;Qwen2.5 Technical Report&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>低秩近似（LoRA） 方法详解</title><link>blog.zwzhang.com/p/%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BClora-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 25 Mar 2026 22:38:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BClora-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="低秩近似lora-方法详解"&gt;低秩近似（LoRA） 方法详解
+&lt;/div&gt;</description></item><item><title>低秩近似（LoRA） 方法详解</title><link>https://blog.zwzhang.com/p/%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BClora-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 25 Mar 2026 22:38:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BClora-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="低秩近似lora-方法详解"&gt;低秩近似（LoRA） 方法详解
 &lt;/h1&gt;&lt;p&gt;在上一节中，我们探讨了以 Adapter 和各类 Prompt Tuning 为代表的 PEFT 技术。它们通过在模型中&lt;strong&gt;插入&lt;/strong&gt;新的模块或在输入端&lt;strong&gt;添加&lt;/strong&gt;可学习的提示，巧妙地实现了高效微调。这些方法的核心，都是在尽量不“打扰”原始模型权重的前提下，通过影响模型的&lt;strong&gt;激活值&lt;/strong&gt;来适应新任务。&lt;/p&gt;
 &lt;p&gt;本节，我们将介绍一种另辟蹊径，也是当前社区应用最广泛的 PEFT 方法——&lt;strong&gt;LoRA（Low-Rank Adaptation of Large Language Models）&lt;/strong&gt;。它不再“绕道而行”，而是直击模型的&lt;strong&gt;权重矩阵&lt;/strong&gt;，并提出一个观点。那就是大模型的参数更新，或许并不需要那么“兴师动众”。&lt;/p&gt;
 &lt;h2 id="一低秩近似的核心思想"&gt;一、低秩近似的核心思想
@@ -22881,7 +22881,7 @@ $$&lt;ul&gt;
 &gt;Dettmers, T., Pagnoni, A., Holtzman, A., &amp;amp; Zettlemoyer, L. (2023). &lt;em&gt;QLoRA: Efficient Finetuning of Quantized LLMs&lt;/em&gt;. arXiv preprint arXiv:2305.14314.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>参数高效微调（PEFT）技术综述</title><link>blog.zwzhang.com/p/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83peft%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</link><pubDate>Wed, 25 Mar 2026 22:36:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83peft%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</guid><description>&lt;h1 id="参数高效微调peft技术综述"&gt;参数高效微调（PEFT）技术综述
+&lt;/div&gt;</description></item><item><title>参数高效微调（PEFT）技术综述</title><link>https://blog.zwzhang.com/p/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83peft%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</link><pubDate>Wed, 25 Mar 2026 22:36:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83peft%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</guid><description>&lt;h1 id="参数高效微调peft技术综述"&gt;参数高效微调（PEFT）技术综述
 &lt;/h1&gt;&lt;p&gt;从本章开始，我们将步入对大模型微调的学习。之所以将 PEFT 作为学习的起点，是因为它不仅是当前应对大模型训练高昂成本的主流解决方案，更代表了我们与超大模型互动和应用范式上的一次重要变革。理解 PEFT，是掌握如何在资源有限的条件下，高效、灵活地驾驭大模型强大能力的关键第一步。&lt;/p&gt;
 &lt;h2 id="一大模型时代的微调困境"&gt;一、大模型时代的“微调”困境
 &lt;/h2&gt;&lt;p&gt;自 BERT 模型发布以来，“预训练-微调”（Pre-train and Fine-tune）的范式在自然语言处理领域取得了巨大成功。不过，当模型参数规模从 BERT 的数亿级别跃升至 GPT-3 的千亿级别时，传统的全量微调（Full Fine-Tuning）遇到了挑战：&lt;/p&gt;
@@ -23017,7 +23017,7 @@ $$[h_0, h_1, ..., h_i], \text{"capital"}, \text{"Britain"}, [h_{i+1}, ..., h_m],
 &gt;Liu, X., Ji, K., Fu, Y., et al. (2021). &lt;em&gt;P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks&lt;/em&gt;. arXiv preprint arXiv:2110.07602.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>命名实体识别全流程</title><link>blog.zwzhang.com/p/%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%85%A8%E6%B5%81%E7%A8%8B/</link><pubDate>Wed, 25 Mar 2026 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%85%A8%E6%B5%81%E7%A8%8B/</guid><description>&lt;h1 id="命名实体识别全流程"&gt;命名实体识别全流程
+&lt;/div&gt;</description></item><item><title>命名实体识别全流程</title><link>https://blog.zwzhang.com/p/%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%85%A8%E6%B5%81%E7%A8%8B/</link><pubDate>Wed, 25 Mar 2026 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%85%A8%E6%B5%81%E7%A8%8B/</guid><description>&lt;h1 id="命名实体识别全流程"&gt;命名实体识别全流程
 &lt;/h1&gt;&lt;h2 id="第一节-命名实体识别概要"&gt;第一节 命名实体识别概要
 &lt;/h2&gt;&lt;h4 id="一命名实体识别简介"&gt;一、命名实体识别简介
 &lt;/h4&gt;&lt;p&gt;在上一章节中，我们学习了如何对整个文本进行分类，这是一种对文本的宏观理解。现在，我们将从宏观走向微观，深入文本内部，学习如何精准识别出句子中的人名、地名等具有特定意义的词语或短语，这就是理论部分多次提到的 &lt;strong&gt;命名实体识别 (Named Entity Recognition, NER)&lt;/strong&gt;。作为信息抽取、知识图谱构建、智能问答等众多高级应用的 &lt;strong&gt;关键环节&lt;/strong&gt;，NER的目标是从非结构化文本中，精准地定位并分类出业务所关心的实体对象。&lt;/p&gt;
@@ -28082,7 +28082,7 @@ alt="数据加载器输出示例"
 &gt;Vinyals, O., Fortunato, M., &amp;amp; Jaitly, N. (2015). &lt;em&gt;Pointer Networks&lt;/em&gt;.&lt;/a&gt;&lt;a class="link" href="#fnref-4" &gt;↩︎&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://arxiv.org/abs/2105.06804" target="_blank" rel="noopener"
 &gt;Shen, Y., Ma, X., Tan, Z., Zhang, S., Wang, W., &amp;amp; Lu, W. (2021). &lt;em&gt;Locate and Label: A Two-stage Identifier for Nested Named Entity Recognition&lt;/em&gt;.&lt;/a&gt;&lt;a class="link" href="#fnref-5" &gt;↩︎&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>微调 BERT 模型进行文本分类</title><link>blog.zwzhang.com/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</link><pubDate>Wed, 25 Mar 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="微调-bert-模型进行文本分类"&gt;微调 BERT 模型进行文本分类
+&lt;/ol&gt;</description></item><item><title>微调 BERT 模型进行文本分类</title><link>https://blog.zwzhang.com/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</link><pubDate>Wed, 25 Mar 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%BE%AE%E8%B0%83-bert-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="微调-bert-模型进行文本分类"&gt;微调 BERT 模型进行文本分类
 &lt;/h1&gt;&lt;p&gt;回顾前两节的内容，我们依次实现了一个基于全连接网络的“词袋”模型和一个基于 LSTM 的序列模型。这两次的运行结果揭示了一个有趣的现象，对于当前的新闻分类任务，结构更复杂的 LSTM 模型在性能上并未超越更简单的全连接模型。这说明，对于这个特定任务，捕捉“关键词”比分析“词序”更关键。不过，这两种模型都是从零开始训练的，它们对语言的理解完全依赖于我们提供的小规模 &lt;code&gt;20 Newsgroups&lt;/code&gt; 数据集。那么我们能否利用在更大、更通用语料库上预先学到的知识，来帮助模型更好地理解文本，从而提升分类性能呢？&lt;/p&gt;
 &lt;p&gt;这就是&lt;strong&gt;预训练语言模型&lt;/strong&gt;，特别是 BERT，所要解决的问题。在&lt;strong&gt;第五章第一节&lt;/strong&gt;中，我们已经学习了 BERT 的原理。它通过在海量原始文本上以&lt;strong&gt;自监督&lt;/strong&gt;的方式构造“掩码语言模型”和“下一句预测”等训练任务（无需人工标注标签），学习到了丰富的语言学知识和世界知识。本节是文本分类系列实战的最后一站。我们将把模型架构迁移为 BERT，探索从“从零训练”到“微调”这一范式转变所带来的性能提升。&lt;/p&gt;
 &lt;h2 id="一从序列建模到预训练微调"&gt;一、从“序列建模”到“预训练微调”
@@ -28816,7 +28816,7 @@ alt="数据加载器输出示例"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[{&amp;#39;label&amp;#39;: &amp;#39;LABEL_0&amp;#39;, &amp;#39;score&amp;#39;: 0.9373114109039307}]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;效果明显好了很多。&lt;/p&gt;</description></item><item><title>基于 LSTM 的文本分类</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</link><pubDate>Wed, 25 Mar 2026 17:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="基于-lstm-的文本分类"&gt;基于 LSTM 的文本分类
+&lt;/div&gt;&lt;p&gt;效果明显好了很多。&lt;/p&gt;</description></item><item><title>基于 LSTM 的文本分类</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</link><pubDate>Wed, 25 Mar 2026 17:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-lstm-%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="基于-lstm-的文本分类"&gt;基于 LSTM 的文本分类
 &lt;/h1&gt;&lt;p&gt;在上一节，我们实现了一个基于全连接层的文本分类模型。该模型虽然简单有效，但它的核心是将所有词元的特征向量进行平均池化，这本质上是一种“词袋”模型。这种方法的&lt;strong&gt;一个显著局限是它忽略了文本中词语的顺序&lt;/strong&gt;，而语序在多数 NLP 任务中是很重要的。那么，对于文本分类任务，捕捉序列信息是否总能带来性能提升呢？为了验证这一点，我们自然会想到循环神经网络（RNN）及其变体，如LSTM。在&lt;strong&gt;第三章第二节&lt;/strong&gt;中我们已经学习了 LSTM 的原理。理论上，它能够通过处理序列信息来捕捉更丰富的语义。本节将进行一次实验，我们将上一节的全连接模型改造为基于LSTM的模型，来&lt;strong&gt;探索&lt;/strong&gt;在本新闻分类任务上，序列建模是否会比简单的词袋模型更有效。&lt;/p&gt;
 &lt;h2 id="一从词袋到序列建模"&gt;一、从“词袋”到序列建模
 &lt;/h2&gt;&lt;p&gt;先回顾一下基线模型的主要操作：&lt;/p&gt;
@@ -29425,7 +29425,7 @@ alt="数据加载器输出示例"
 &lt;p&gt;&lt;strong&gt;相比于全连接模型（~0.8469）&lt;/strong&gt;：经过正则化后，LSTM模型的性能已经非常接近，但仍然略逊于更简单的基线模型。再次证明了对于这个特定的、以关键词为驱动的新闻分类任务，一个高效的“词袋”模型已经足够强大。试图用更复杂的序列模型来捕捉此处并不关键的语序信息，即使在组合了多种正则化策略后，也难以带来超越性的优势。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这个系列的实验也印证了著名的“奥卡姆剃刀原理”——&lt;strong&gt;如无必要，勿增实体&lt;/strong&gt;。在模型选择上，我们应该&lt;strong&gt;从一个基线开始，逐步增加复杂性，并通过实验去验证每一步改动是否真的带来了收益&lt;/strong&gt;。&lt;/p&gt;</description></item><item><title>文本分类简单实现</title><link>blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link><pubDate>Wed, 25 Mar 2026 16:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="文本分类简单实现"&gt;文本分类简单实现
+&lt;p&gt;这个系列的实验也印证了著名的“奥卡姆剃刀原理”——&lt;strong&gt;如无必要，勿增实体&lt;/strong&gt;。在模型选择上，我们应该&lt;strong&gt;从一个基线开始，逐步增加复杂性，并通过实验去验证每一步改动是否真的带来了收益&lt;/strong&gt;。&lt;/p&gt;</description></item><item><title>文本分类简单实现</title><link>https://blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link><pubDate>Wed, 25 Mar 2026 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="文本分类简单实现"&gt;文本分类简单实现
 &lt;/h1&gt;&lt;h2 id="一文本分类任务概述"&gt;一、文本分类任务概述
 &lt;/h2&gt;&lt;p&gt;文本分类是 NLP 中常见的任务之一，它的目标是将给定的文本自动分配到一个或多个预定义的类别中。这项技术的实际应用广泛，例如&lt;strong&gt;情感分析&lt;/strong&gt;可以判断商品评价或电影评论的情感倾向是正面、负面还是中性；&lt;strong&gt;新闻分类&lt;/strong&gt;能够将新闻报道自动归入体育、财经、科技或娱乐等不同频道；在智能客服或语音助手中，&lt;strong&gt;意图识别&lt;/strong&gt;技术用于判断用户输入的指令属于查询天气还是播放音乐等特定意图；而&lt;strong&gt;垃圾邮件过滤&lt;/strong&gt;则能自动识别并拦截收件箱中的垃圾邮件，净化沟通环境。&lt;/p&gt;
 &lt;p&gt;在理论篇的&lt;strong&gt;第二章&lt;/strong&gt;中，我们已经学习了如何将文本进行分词，并通过词向量技术将其转换为模型可以理解的数值形式。本节将在此基础上，以一个经典的新闻分类任务为例，详细讲解如何从零开始，一步步构建、训练和评估一个用于文本分类的深度学习模型。这个过程将涵盖数据处理、模型设计、训练循环、推理预测等所有核心环节。&lt;/p&gt;
@@ -30552,7 +30552,7 @@ alt="数据加载器输出示例"
 &lt;p&gt;（2）&lt;strong&gt;随机 Token 遮盖&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这是一种数据增强方法，具体操作是在&lt;strong&gt;训练过程&lt;/strong&gt;中，随机地将文本中的一部分词元（例如15%）替换为&lt;code&gt;&amp;lt;UNK&amp;gt;&lt;/code&gt;。使得模型不能过度依赖个别“明星词汇”，而是要学习更全面的上下文语义来进行判断，继而提升模型的泛化能力。这个修改可以在&lt;code&gt;TextClassificationDataset&lt;/code&gt;类的&lt;code&gt;__getitem__&lt;/code&gt;方法中，在返回数据前增加一个随机替换的步骤。不过要注意，这个操作只应在训练时进行。&lt;/p&gt;
 &lt;p&gt;（3）&lt;strong&gt;Dropout&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;它的核心是在训练过程中，以一定的概率p随机地将神经网络中某些神经元的输出置为零。可以防止神经元之间形成过于复杂的共适应关系，迫使网络学习到更鲁棒、更泛化的特征。可以在 &lt;code&gt;TextClassifier&lt;/code&gt; 模型的 &lt;code&gt;feature_extractor&lt;/code&gt; 模块中，于 &lt;code&gt;nn.Linear&lt;/code&gt; 层和 &lt;code&gt;nn.ReLU&lt;/code&gt; 激活函数之后加入 &lt;code&gt;nn.Dropout(p)&lt;/code&gt; 层。&lt;/p&gt;</description></item><item><title>大模型上下文学习与提示词技术</title><link>blog.zwzhang.com/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E6%9C%AF/</link><pubDate>Tue, 24 Mar 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E6%9C%AF/</guid><description>&lt;h1 id="大模型上下文学习与提示词技术"&gt;大模型上下文学习与提示词技术
+&lt;p&gt;它的核心是在训练过程中，以一定的概率p随机地将神经网络中某些神经元的输出置为零。可以防止神经元之间形成过于复杂的共适应关系，迫使网络学习到更鲁棒、更泛化的特征。可以在 &lt;code&gt;TextClassifier&lt;/code&gt; 模型的 &lt;code&gt;feature_extractor&lt;/code&gt; 模块中，于 &lt;code&gt;nn.Linear&lt;/code&gt; 层和 &lt;code&gt;nn.ReLU&lt;/code&gt; 激活函数之后加入 &lt;code&gt;nn.Dropout(p)&lt;/code&gt; 层。&lt;/p&gt;</description></item><item><title>大模型上下文学习与提示词技术</title><link>https://blog.zwzhang.com/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E6%9C%AF/</link><pubDate>Tue, 24 Mar 2026 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E6%9C%AF/</guid><description>&lt;h1 id="大模型上下文学习与提示词技术"&gt;大模型上下文学习与提示词技术
 &lt;/h1&gt;&lt;p&gt;在学习 GPT 结构的过程中，我们提到过&lt;strong&gt;上下文学习&lt;/strong&gt;以及它所包含的各种提示模式（Zero-shot、One-shot、Few-shot）。可以了解到，这是一种只需提供不同数量的参考示例，在推理阶段不发生任何梯度反向传播或权重更新，主要依靠提示词就能让大模型在许多任务上获得可观效果的交互范式。既然没有实际的学习更新过程，模型是如何做到这一点的？本节我们就深入探究它的工作机制，以及当遇到难度瓶颈时，如何利用提示词技术进一步激发模型的推理潜能。&lt;/p&gt;
 &lt;h2 id="一零样本与少样本机制"&gt;一、零样本与少样本机制
 &lt;/h2&gt;&lt;h3 id="11-零样本学习"&gt;1.1 零样本学习
@@ -30795,7 +30795,7 @@ alt="数据加载器输出示例"
 &gt;Yao, S., Yu, D., Zhao, J., et al. (2023). &lt;em&gt;Tree of Thoughts: Deliberate Problem Solving with Large Language Models&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:8" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>手撕大模型文本生成策略</title><link>blog.zwzhang.com/p/%E6%89%8B%E6%92%95%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5/</link><pubDate>Tue, 24 Mar 2026 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%89%8B%E6%92%95%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5/</guid><description>&lt;h1 id="手撕大模型文本生成策略"&gt;手撕大模型文本生成策略
+&lt;/div&gt;</description></item><item><title>手撕大模型文本生成策略</title><link>https://blog.zwzhang.com/p/%E6%89%8B%E6%92%95%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5/</link><pubDate>Tue, 24 Mar 2026 13:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%89%8B%E6%92%95%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5/</guid><description>&lt;h1 id="手撕大模型文本生成策略"&gt;手撕大模型文本生成策略
 &lt;/h1&gt;&lt;p&gt;前两节我们通过 Llama2 和 MoE，深入理解了大模型的&lt;strong&gt;网络架构&lt;/strong&gt;（即“大脑”是如何构造的）。但仅有架构还不够，模型前向传播输出的仅仅是概率分布（Logits），如何将这些概率一步步转化为流畅的文本，就是本节要探讨的核心——&lt;strong&gt;解码策略&lt;/strong&gt;。我们将回到成熟的 &lt;strong&gt;Transformers&lt;/strong&gt; 库，以 GPT 模型为例，避开繁琐的数学公式，直接通过&lt;strong&gt;代码调试&lt;/strong&gt;的方式，探究 &lt;code&gt;model.generate()&lt;/code&gt; 的底层工作原理，看看从“输入 Prompt”到“输出文本”的完整数据流是如何在代码中流转的。&lt;/p&gt;
 &lt;h2 id="一逐-token-生成在做什么"&gt;一、“逐 token 生成”在做什么
 &lt;/h2&gt;&lt;h3 id="11-从-pipeline-入手调试准备"&gt;1.1 从 Pipeline 入手调试准备
@@ -31040,7 +31040,7 @@ alt="数据加载器输出示例"
 &lt;p&gt;到了 &lt;code&gt;_forward()&lt;/code&gt; 方法后，继续步过。需要注意在步过的同时我们还需要关注变量窗口，看看有没有什么可能有用的变量。当我们步过 &lt;code&gt;output = self.model.generate(...)&lt;/code&gt;，明显会得到一个大概率有用的 output 变量，那就在 &lt;code&gt;output = self.model.generate(...)&lt;/code&gt; 这行下个断点，然后中止调试后重启调试。回到 &lt;code&gt;output = self.model.generate(...)&lt;/code&gt; 后，两次步入就来到了 &lt;code&gt;generate()&lt;/code&gt; 方法。在 &lt;code&gt;generate()&lt;/code&gt; 中可以看到清晰的 1~9 的步骤注释，这有助于我们定位到需要分析的代码行。当然不是所有代码中都有这么清晰的注释，所以当前我们已知 &lt;code&gt;output&lt;/code&gt; 的值是最后 return 来的，那就直接定位到最后的 &lt;code&gt;return result&lt;/code&gt;。然后开始通过 Ctrl + B 转到定义回溯这个 &lt;code&gt;result&lt;/code&gt; 是哪来的，这样就定位到了 &lt;code&gt;result = decoding_method(&lt;/code&gt;，在这里下个断点。接着看 &lt;code&gt;decoding_method()&lt;/code&gt; 中传入的参数，比如我想了解 &lt;code&gt;stopping_criteria=prepared_stopping_criteria&lt;/code&gt; 这个参数是干嘛的，继续通过 Ctrl + B 转到定义回溯这个 &lt;code&gt;prepared_stopping_criteria&lt;/code&gt; 是哪来的，然后下断点。以此类推，最后我们就回到了 &lt;code&gt;generate()&lt;/code&gt; 开头的地方，这个时候需要的断点也已经都下好了。恢复程序后，顺着所下断点进行步过步入等操作后，我们就能完整分析出整个过程的数据流。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="参考资料"&gt;参考资料
-&lt;/h2&gt;</description></item><item><title>MoE 架构解析</title><link>blog.zwzhang.com/p/moe-%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/</link><pubDate>Tue, 24 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/moe-%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/</guid><description>&lt;h1 id="moe-架构解析"&gt;MoE 架构解析
+&lt;/h2&gt;</description></item><item><title>MoE 架构解析</title><link>https://blog.zwzhang.com/p/moe-%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/</link><pubDate>Tue, 24 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/moe-%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/</guid><description>&lt;h1 id="moe-架构解析"&gt;MoE 架构解析
 &lt;/h1&gt;&lt;p&gt;我们在上一节详细解析了 Llama2 的架构。像 Llama2、GPT-3 这样的模型，通常被称为&lt;strong&gt;稠密模型（Dense Model）&lt;/strong&gt;。这意味着，对于每一个输入的 Token，模型中&lt;strong&gt;所有的&lt;/strong&gt;参数（从第一层到最后一层）都会参与计算。&lt;/p&gt;
 &lt;p&gt;但是，随着模型规模向万亿级别迈进，全量参数计算带来的算力成本变得不可承受。这就引出了本节的主角——&lt;strong&gt;混合专家模型（Mixture of Experts, MoE）&lt;/strong&gt;。MoE 技术通过一种 &lt;strong&gt;“稀疏激活”&lt;/strong&gt; 的机制，兼具了大规模参数的知识容量与极低的推理成本。Mistral 8x7B 等模型的出现，更是证明了 MoE 在开源大模型领域的巨大潜力，使其成为当前最受关注的技术方向之一。&lt;/p&gt;
 &lt;h2 id="一moe-的来龙去脉"&gt;一、MoE 的来龙去脉
@@ -31663,7 +31663,7 @@ $$ \mathbf{y} = \underbrace{\sum_{i \in \mathcal{S}} \mathbf{E}_i(\mathbf{x})}_{
 &gt;Dai, D., Deng, C., Zhao, C., et al. (2024). &lt;em&gt;DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:10" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>手搓Llama2大模型</title><link>blog.zwzhang.com/p/%E6%89%8B%E6%90%93llama2%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link><pubDate>Tue, 24 Mar 2026 11:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%89%8B%E6%90%93llama2%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="手搓llama2大模型"&gt;手搓Llama2大模型
+&lt;/div&gt;</description></item><item><title>手搓Llama2大模型</title><link>https://blog.zwzhang.com/p/%E6%89%8B%E6%90%93llama2%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link><pubDate>Tue, 24 Mar 2026 11:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%89%8B%E6%90%93llama2%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="手搓llama2大模型"&gt;手搓Llama2大模型
 &lt;/h1&gt;&lt;p&gt;前面我们已经深入学习了 &lt;strong&gt;注意力机制&lt;/strong&gt;、&lt;strong&gt;Transformer 架构&lt;/strong&gt;，以及基于其 Encoder 衍生的 &lt;strong&gt;BERT&lt;/strong&gt; 和基于 Decoder 衍生的 &lt;strong&gt;GPT&lt;/strong&gt;。接下来尝试亲手实现一个（曾经的）前沿大语言模型，看看它的模型结构究竟有什么不同。本节将聚焦于 Llama2，一个由 Meta AI 推出的开源大模型。我们不再依赖 &lt;code&gt;transformers&lt;/code&gt; 库的高度封装，而是从零开始，先梳理关键思想与设计取舍，再逐步落地到代码实现。这一过程将有助于学习原理，深化对大模型内部工作的理解。&lt;/p&gt;
 &lt;h2 id="一llama2-架构总览"&gt;一、Llama2 架构总览
 &lt;/h2&gt;&lt;p&gt;Llama2 遵循了 GPT 系列开创的 &lt;strong&gt;Decoder-Only&lt;/strong&gt; 架构，也就意味着它完全由 &lt;strong&gt;Transformer 解码器层&lt;/strong&gt;堆叠而成，天然适用于自回归的文本生成任务。如图 6-1 所示，Llama2 的核心是 N 个相同的 Transformer Block 堆叠，其内部数据流展示了多项关键设计。与经典 Transformer 的后归一化不同，输入在进入注意力层和前馈网络&lt;strong&gt;之前&lt;/strong&gt;，都会先经过一次 &lt;code&gt;RMS Norm&lt;/code&gt; 进行预归一化（Pre-Normalization），正如当初 GPT-2/3 转向 Pre-Norm 解决了深层网络的训练难题一样，这种预归一化被认为是提升大模型训练稳定性的关键。其次在组件升级上，模型支持了 &lt;code&gt;Grouped-Query Attention（GQA）&lt;/code&gt;（如 Llama2-70B 采用 &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，小模型可视为 &lt;code&gt;n_kv_heads == n_heads&lt;/code&gt; 的 MHA 特例），前馈网络采用了 &lt;code&gt;SwiGLU&lt;/code&gt;，并且归一化统一使用 &lt;code&gt;RMSNorm&lt;/code&gt;。除此之外，位置信息并不是在输入端与词嵌入相加，而是通过 &lt;code&gt;RoPE&lt;/code&gt;（旋转位置编码）操作在注意力层内部动态地施加于查询（Q）和键（K）向量之上。最后，每个诸如注意力层和前馈网络等子层的输出都通过残差连接（&lt;code&gt;+&lt;/code&gt;号）与子层的输入相加，从而完整且无损地保留了原始信息流。整个模型的数据流自下而上贯穿所有 Transformer Block，最后经过一次最终的 &lt;code&gt;RMS Norm&lt;/code&gt; 和一个线性输出层，得到 Logits。&lt;/p&gt;
@@ -32378,7 +32378,7 @@ $$&lt;p&gt;这种门控结构允许网络动态地控制信息流，被认为是
 &gt;Shazeer, N. (2020). &lt;em&gt;GLU Variants Improve Transformer&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>Hugging Face 生态与核心库</title><link>blog.zwzhang.com/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</link><pubDate>Mon, 23 Mar 2026 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</guid><description>&lt;h1 id="hugging-face-生态与核心库"&gt;Hugging Face 生态与核心库
+&lt;/div&gt;</description></item><item><title>Hugging Face 生态与核心库</title><link>https://blog.zwzhang.com/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</link><pubDate>Mon, 23 Mar 2026 15:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/hugging-face-%E7%94%9F%E6%80%81%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%BA%93/</guid><description>&lt;h1 id="hugging-face-生态与核心库"&gt;Hugging Face 生态与核心库
 &lt;/h1&gt;&lt;p&gt;我们在前面的学习中简单尝试了 BERT、GPT 和 T5 三大模型的应用。可以发现，无论使用哪种架构，都离不开一个核心工具库——&lt;strong&gt;Hugging Face Transformers&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;如今，Hugging Face 已经从一家 NLP 初创公司演变为 &lt;strong&gt;AI 时代的基础设施&lt;/strong&gt;。它构建了一个涵盖模型开发全生命周期的完整生态系统——从数据获取、模型开发、训练微调到最终的评估与部署。本节将深入剖析 Hugging Face 的生态构成，并以 &lt;strong&gt;Transformers&lt;/strong&gt; 库为核心，结合 &lt;strong&gt;Datasets&lt;/strong&gt; 和 &lt;strong&gt;Tokenizers&lt;/strong&gt;，展示现代化模型开发链路。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/datawhalechina/base-nlp/blob/main/code/C5/04_hf_usage.ipynb" target="_blank" rel="noopener"
@@ -32918,7 +32918,7 @@ Transformers 早已突破 NLP 边界，支持 CV 和 Audio 等多个领域。&lt
 &gt;Hugging Face. &lt;em&gt;Evaluate Documentation&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>T5 结构及应用</title><link>blog.zwzhang.com/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="t5-结构及应用"&gt;T5 结构及应用
+&lt;/div&gt;</description></item><item><title>T5 结构及应用</title><link>https://blog.zwzhang.com/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/t5-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="t5-结构及应用"&gt;T5 结构及应用
 &lt;/h1&gt;&lt;p&gt;在前两节中，我们分别学习了基于 &lt;strong&gt;Encoder&lt;/strong&gt; 的 BERT（擅长理解）和基于 &lt;strong&gt;Decoder&lt;/strong&gt; 的 GPT（擅长生成）。那 Transformer 最原始的 &lt;strong&gt;Encoder-Decoder&lt;/strong&gt; 结构去哪了？&lt;/p&gt;
 &lt;p&gt;本节的主角 &lt;strong&gt;T5 (Text-to-Text Transfer Transformer)&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt; 回归了这一经典架构。BERT 擅长&lt;strong&gt;理解&lt;/strong&gt;（如分类、实体识别），GPT 擅长&lt;strong&gt;生成&lt;/strong&gt;（如续写、对话），而 T5 则试图在&lt;strong&gt;输入输出形式&lt;/strong&gt;上寻找一种通解。如图 5-5，它将所有 NLP 任务都视为 &lt;strong&gt;“文本到文本” (Text-to-Text)&lt;/strong&gt; 的转换问题，以此来统一处理理解与生成任务。&lt;/p&gt;
 &lt;div align="center"&gt;
@@ -33310,7 +33310,7 @@ Transformers 早已突破 NLP 边界，支持 CV 和 Audio 等多个领域。&lt
 &gt;Xue, L., et al. (2020). &lt;em&gt;mT5: A Massively Multilingual Pre-trained Text-to-Text Transformer&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>GPT 结构及应用</title><link>blog.zwzhang.com/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="gpt-结构及应用"&gt;GPT 结构及应用
+&lt;/div&gt;</description></item><item><title>GPT 结构及应用</title><link>https://blog.zwzhang.com/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 13:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/gpt-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="gpt-结构及应用"&gt;GPT 结构及应用
 &lt;/h1&gt;&lt;p&gt;在 Transformer 催生的众多预训练模型中，除了应用广泛的基于的 BERT，还有一条专注于&lt;strong&gt;生成&lt;/strong&gt;的技术路线。那就是完全基于 &lt;strong&gt;Transformer 解码器&lt;/strong&gt; 构建的 &lt;strong&gt;GPT（Generative Pre-trained Transformer）&lt;/strong&gt; 系列模型。与 BERT 致力于通过双向上下文来“理解”语言不同，GPT 的重心在“生成”语言。它的设计初衷就是为了根据给定的上文，以自回归的方式预测下一个最可能的词元，这种特性使其在文本生成、对话系统、内容续写等任务上展现出无与伦比的能力。从早期的 GPT-1，到引爆全球AI热潮的 ChatGPT (其背后是 GPT-3.5/4)，OpenAI 沿着解码器这条路，不断刷新着我们对语言模型能力的认知。&lt;/p&gt;
 &lt;h2 id="一gpt-的设计思想与技术发展"&gt;一、GPT 的设计思想与技术发展
 &lt;/h2&gt;&lt;p&gt;与 BERT 类似，早期的 GPT 也遵循 &lt;strong&gt;“预训练 + 微调”&lt;/strong&gt; 的思路。不过，随着模型规模的指数级增长（尤其是到了 GPT-3），&lt;strong&gt;提示（Prompt）&lt;/strong&gt; 和&lt;strong&gt;上下文学习（In-context Learning）&lt;/strong&gt; 开始成为主流，允许用户在不更新参数的情况下完成任务。虽然现代大模型依然会使用微调，但目的和形式已与 BERT 时代针对特定任务的微调有了本质不同。&lt;/p&gt;
@@ -33983,7 +33983,7 @@ $$&lt;p&gt;这个看似简单的目标，却迫使模型必须学习到语言的
 &gt;Hugging Face. GPT-2 tokenizer and model documentation.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>BERT 结构及应用</title><link>blog.zwzhang.com/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="bert-结构及应用"&gt;BERT 结构及应用
+&lt;/div&gt;</description></item><item><title>BERT 结构及应用</title><link>https://blog.zwzhang.com/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 23 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/bert-%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="bert-结构及应用"&gt;BERT 结构及应用
 &lt;/h1&gt;&lt;p&gt;我们在前面的章节中探讨了 Transformer 架构，它的结构是由一个编码器和一个解码器组成，而这两部分内部又分别由 N 个相同的层堆叠而成。Transformer 的提出催生了许多强大的预训练模型。有趣的是，这些后续模型往往只采用了 Transformer 架构的一部分。其中，以 GPT 为代表的模型&lt;strong&gt;采用解码器结构&lt;/strong&gt;，主要任务是预测下一个词元，这种特性使其天然适用于文本生成任务。而本章的主角 &lt;strong&gt;BERT（Bidirectional Encoder Representations from Transformers）&lt;/strong&gt;，则完全基于&lt;strong&gt;编码器结构&lt;/strong&gt;构建 &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
 &lt;p&gt;正如其名，BERT 的核心优势在于其&lt;strong&gt;双向性&lt;/strong&gt;。通过 Transformer 编码器中自注意力机制能够同时关注上下文的特性，BERT 在理解语言的深层语义方面取得了突破性进展。这一设计也决定了 BERT 的核心应用场景，它是一个强大的&lt;strong&gt;语言理解&lt;/strong&gt;模型，但在不进行结构改造的前提下，&lt;strong&gt;不适用于文本生成&lt;/strong&gt;。这是因为它在预测时能够“看到”整个输入序列，而以 GPT 为代表的生成模型在预测下一个词时，必须严格遵守“只能看到过去”的单向规则。&lt;/p&gt;
 &lt;h2 id="一bert-的设计原理与预训练策略"&gt;一、BERT 的设计原理与预训练策略
@@ -34655,7 +34655,7 @@ $$&lt;p&gt;对应的结构示意见图 5-2。&lt;/p&gt;
 &gt;Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault,T., Louf, R., Funtowicz, M., Brew, J. (2020). &lt;em&gt;Transformers: State-of-the-Art Natural Language Processing&lt;/em&gt;. EMNLP 2020 System Demonstrations.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>使用Python获取中国历史资料</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/</link><pubDate>Fri, 20 Mar 2026 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/</guid><description>&lt;h1 id="使用python获取中国历史资料"&gt;使用Python获取中国历史资料
+&lt;/div&gt;</description></item><item><title>使用Python获取中国历史资料</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/</link><pubDate>Fri, 20 Mar 2026 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/</guid><description>&lt;h1 id="使用python获取中国历史资料"&gt;使用Python获取中国历史资料
 &lt;/h1&gt;&lt;h2 id="基本流程"&gt;基本流程
 &lt;/h2&gt;&lt;p&gt;资料来源： &lt;a class="link" href="https://www.ilishi.com.cn" target="_blank" rel="noopener"
 &gt;https://www.ilishi.com.cn&lt;/a&gt;&lt;/p&gt;
@@ -35438,7 +35438,7 @@ $$&lt;p&gt;对应的结构示意见图 5-2。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| 西元-831年 | 在公元前831年，撒缦以色遭到乌拉尔图人的反抗。公元前831年，周共和十一年 鲁真公二十五年 陈僖公元年 宋国君僖公卒，子惠公覸（jian）即位。陈幽公十二年，幽公二十三年卒就可以推定为公元前&amp;lt;br/&amp;gt;公元前831年 - 周宣王&amp;lt;br/&amp;gt;周宣王七年（公元前831年），随申伯平定申、甫、许三个小国，此时仲氏也随父亲孙子仲到甫国，并留下《汝坟》和《汉广》等诗。宣王八年到十年，尹吉甫奉命东征鲁国，担任监建营房一职。即至三年后回家时，父母却为他娶了一名姜姓女子，致使仲氏被休回娘家。&amp;lt;br/&amp;gt;在公元前831年，撒缦以色遭到乌拉尔图人的反抗。子举，子鲍祀之子，公元前858~前831年，宋厘公，葬于河南永城市芒山镇僖山 春秋时期: 子 见:子举之子，公元前830~前800年，宋惠公，葬于河南商丘旧城区地下待考 子□□:子见之子，公元前800~前800年，宋哀公，葬于河南商丘旧城区地下待考 子□□:宋哀公之子。&amp;lt;br/&amp;gt;公元前831年 - 厉王奔彘&amp;lt;br/&amp;gt;幽公十二年，周厉王奔于彘。二十三年，幽公卒，子釐公孝立。釐公六年，周宣王即位。(《陈杞世家》36.1575、1576)按照这个记载，宣壬“即位”的年代应在厉王奔彘以后17年。如上面己经指定，厉王奔彘年为公元前842年。此年等于陈幽公十二年，幽公二十三年卒就可以推定为公元前831年。子釐公按照古时通例以次年即公元前830年为元年，在位6年“周宣王即位”就是公元前825年。&amp;lt;br/&amp;gt;除了《陈杞世家》以外，其他的古书也反映宣王时代曾使用过两个相隔二年的年历。《史记·秦本纪》里定秦仲的卒年为宣王六年:秦仲立三年，周厉王无道，诸侯或叛之。西戎反王室，灭犬丘大骆之族。周宣王即位，乃以秦仲为大夫，诛西戎。西戎杀秦仲。秦仲立二十三年，死于戎。 |
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>基于Translategemma模型的反思型翻译智能体实现</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Etranslategemma%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%8D%E6%80%9D%E5%9E%8B%E7%BF%BB%E8%AF%91%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 20 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Etranslategemma%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%8D%E6%80%9D%E5%9E%8B%E7%BF%BB%E8%AF%91%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="基于translategemma模型的反思型翻译智能体实现"&gt;基于Translategemma模型的反思型翻译智能体实现
+&lt;/div&gt;</description></item><item><title>基于Translategemma模型的反思型翻译智能体实现</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Etranslategemma%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%8D%E6%80%9D%E5%9E%8B%E7%BF%BB%E8%AF%91%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 20 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Etranslategemma%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%8D%E6%80%9D%E5%9E%8B%E7%BF%BB%E8%AF%91%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="基于translategemma模型的反思型翻译智能体实现"&gt;基于Translategemma模型的反思型翻译智能体实现
 &lt;/h1&gt;&lt;h2 id="基本流程"&gt;基本流程
 &lt;/h2&gt;&lt;p&gt;先使用 MinerU 或 Marker-pdf 转换电子书为 Markdown 文件。&lt;/p&gt;
 &lt;p&gt;命令：&lt;/p&gt;
@@ -36016,7 +36016,7 @@ $$&lt;p&gt;对应的结构示意见图 5-2。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/andrewyng/translation-agent" target="_blank" rel="noopener"
 &gt;Translation Agent: Agentic translation using reflection workflow&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://doc.courtbouillon.org/weasyprint/stable/index.html" target="_blank" rel="noopener"
-&gt;WeasyPrint 68.1 documentation&lt;/a&gt;&lt;/p&gt;</description></item><item><title>多智能体系统架构设计案例</title><link>blog.zwzhang.com/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</link><pubDate>Tue, 17 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</guid><description>&lt;h1 id="多智能体系统架构设计案例"&gt;多智能体系统架构设计案例
+&gt;WeasyPrint 68.1 documentation&lt;/a&gt;&lt;/p&gt;</description></item><item><title>多智能体系统架构设计案例</title><link>https://blog.zwzhang.com/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</link><pubDate>Tue, 17 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/</guid><description>&lt;h1 id="多智能体系统架构设计案例"&gt;多智能体系统架构设计案例
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里搜集了一些多智能体系统实现的案例。&lt;/p&gt;
 &lt;h2 id="框架流metagpt"&gt;框架流——MetaGPT
@@ -37842,7 +37842,7 @@ target="_blank" rel="noopener"
 &lt;td&gt;内阁可否决不合理方案&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>从头实现属于自己的 OpenClaw</title><link>blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</link><pubDate>Sun, 15 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</guid><description>&lt;h1 id="从头实现属于自己的-openclaw"&gt;从头实现属于自己的 OpenClaw
+&lt;/table&gt;</description></item><item><title>从头实现属于自己的 OpenClaw</title><link>https://blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</link><pubDate>Sun, 15 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84-openclaw/</guid><description>&lt;h1 id="从头实现属于自己的-openclaw"&gt;从头实现属于自己的 OpenClaw
 &lt;/h1&gt;&lt;h2 id="claw0-简介"&gt;claw0 简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/shareAI-lab/claw0" target="_blank" rel="noopener"
 &gt;项目链接&lt;/a&gt;&lt;/p&gt;
@@ -44142,7 +44142,7 @@ AI agent 就是一个 &lt;code&gt;while True&lt;/code&gt; 循环加上一张分�
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>新型信息源</title><link>blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</link><pubDate>Sat, 07 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</guid><description>&lt;h1 id="新型信息源"&gt;新型信息源
+&lt;/div&gt;</description></item><item><title>新型信息源</title><link>https://blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</link><pubDate>Sat, 07 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%96%B0%E5%9E%8B%E4%BF%A1%E6%81%AF%E6%BA%90/</guid><description>&lt;h1 id="新型信息源"&gt;新型信息源
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;以后可以做定制化一个！&lt;/p&gt;
 &lt;h2 id="newsnow---一个开源的实时热门新闻程序"&gt;NewsNow - 一个开源的实时热门新闻程序
@@ -46642,7 +46642,7 @@ target="_blank" rel="noopener"
 &gt;https://understandingwar.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;提供深入战况分析报告、地缘政治解读和交互式地图产品&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://link.zhihu.com/?target=https%3A//yeeach.com/2975/" target="_blank" rel="noopener"
-&gt;https://yeeach.com/2975/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>寻觅被遗忘的网络账号</title><link>blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</link><pubDate>Fri, 06 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</guid><description>&lt;h1 id="寻觅被遗忘的网络账号"&gt;寻觅被遗忘的网络账号
+&gt;https://yeeach.com/2975/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>寻觅被遗忘的网络账号</title><link>https://blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</link><pubDate>Fri, 06 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%AF%BB%E8%A7%85%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E7%BD%91%E7%BB%9C%E8%B4%A6%E5%8F%B7/</guid><description>&lt;h1 id="寻觅被遗忘的网络账号"&gt;寻觅被遗忘的网络账号
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;开源情报（Open Source Intelligence，OSINT）&lt;/strong&gt; 是指通过公开渠道收集和分析信息的过程。它涉及从可公开访问的来源（如社交媒体、新闻报道、政府档案等）收集数据，以帮助决策、调查或研究。OSINT的应用广泛，包括政府监测、商业竞争情报和安全分析等领域。通过合法的方式收集信息，企业可以更深入地了解市场和竞争对手，从而做出明智的决策。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noopener"
@@ -47321,7 +47321,7 @@ target="_blank" rel="noopener"
 &lt;li&gt;匿名身份（马甲）构建（虚拟电话、加密邮箱、VPN、虚拟机）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;此外，文章还提供了数十个实用工具和网站，帮助你在合法合规的前提下高效完成情报收集任务。无论你是安全研究员、OSINT爱好者，还是CTF选手，这篇指南都能助你提升信息挖掘能力。&lt;/p&gt;
-&lt;p&gt;在文章最后，会实战分析一道OSINT类型的题目。&lt;/p&gt;</description></item><item><title>知乎爬虫——ZhiZhu项目分析</title><link>blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</link><pubDate>Thu, 05 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="知乎爬虫zhizhu项目分析"&gt;知乎爬虫——ZhiZhu项目分析
+&lt;p&gt;在文章最后，会实战分析一道OSINT类型的题目。&lt;/p&gt;</description></item><item><title>知乎爬虫——ZhiZhu项目分析</title><link>https://blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</link><pubDate>Thu, 05 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%9F%A5%E4%B9%8E%E7%88%AC%E8%99%ABzhizhu%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="知乎爬虫zhizhu项目分析"&gt;知乎爬虫——ZhiZhu项目分析
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/HeroBlast10/ZhiZhu" target="_blank" rel="noopener"
 &gt;ZhiZhu (知蛛) ——爬取指定知乎用户的所有回答和所有文章，以高保真 Markdown 格式保存到本地。 &lt;/a&gt;&lt;/p&gt;
@@ -48823,7 +48823,7 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>常见大语言模型编程工具提示词</title><link>blog.zwzhang.com/p/%E5%B8%B8%E8%A7%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E6%8F%90%E7%A4%BA%E8%AF%8D/</link><pubDate>Wed, 04 Mar 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%B8%B8%E8%A7%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E6%8F%90%E7%A4%BA%E8%AF%8D/</guid><description>&lt;h1 id="常见大语言模型编程工具提示词"&gt;常见大语言模型编程工具提示词
+&lt;/div&gt;</description></item><item><title>常见大语言模型编程工具提示词</title><link>https://blog.zwzhang.com/p/%E5%B8%B8%E8%A7%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E6%8F%90%E7%A4%BA%E8%AF%8D/</link><pubDate>Wed, 04 Mar 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%B8%B8%E8%A7%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E6%8F%90%E7%A4%BA%E8%AF%8D/</guid><description>&lt;h1 id="常见大语言模型编程工具提示词"&gt;常见大语言模型编程工具提示词
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;Every agent is function call.&lt;/p&gt;
 &lt;p&gt;Everything of AI is about prompt.&lt;/p&gt;
@@ -50789,7 +50789,7 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;${Last 5 Recent commits}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>AI编程之Skills教程</title><link>blog.zwzhang.com/p/ai%E7%BC%96%E7%A8%8B%E4%B9%8Bskills%E6%95%99%E7%A8%8B/</link><pubDate>Sat, 28 Feb 2026 21:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/ai%E7%BC%96%E7%A8%8B%E4%B9%8Bskills%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="skills-教程"&gt;Skills 教程
+&lt;/div&gt;</description></item><item><title>AI编程之Skills教程</title><link>https://blog.zwzhang.com/p/ai%E7%BC%96%E7%A8%8B%E4%B9%8Bskills%E6%95%99%E7%A8%8B/</link><pubDate>Sat, 28 Feb 2026 21:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/ai%E7%BC%96%E7%A8%8B%E4%B9%8Bskills%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="skills-教程"&gt;Skills 教程
 &lt;/h1&gt;&lt;h2 id="agent-skills-相关资源整理"&gt;Agent Skills 相关资源整理
 &lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
@@ -51514,7 +51514,7 @@ loading="lazy"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;运行脚本：使用工具执行 ./scripts/process.py
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;hr&gt;</description></item><item><title>从头实现 mini claude code</title><link>blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-mini-claude-code/</link><pubDate>Sat, 28 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-mini-claude-code/</guid><description>&lt;h1 id="从头实现-mini-claude-code"&gt;从头实现 mini claude code
+&lt;/div&gt;&lt;hr&gt;</description></item><item><title>从头实现 mini claude code</title><link>https://blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-mini-claude-code/</link><pubDate>Sat, 28 Feb 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-mini-claude-code/</guid><description>&lt;h1 id="从头实现-mini-claude-code"&gt;从头实现 mini claude code
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;模型就是智能体。我们的工作就是给它工具, 然后让开。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;项目地址：&lt;/p&gt;
@@ -54329,7 +54329,7 @@ s12 仅提供教学用途的最小 append-only 生命周期事件流。&lt;/li&g
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>AI 写作去痕工具（中文版）</title><link>blog.zwzhang.com/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/</link><pubDate>Sat, 28 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/</guid><description>&lt;h1 id="ai-写作去痕工具中文版"&gt;AI 写作去痕工具（中文版）
+&lt;/div&gt;</description></item><item><title>AI 写作去痕工具（中文版）</title><link>https://blog.zwzhang.com/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/</link><pubDate>Sat, 28 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/ai-%E5%86%99%E4%BD%9C%E5%8E%BB%E7%97%95%E5%B7%A5%E5%85%B7%E4%B8%AD%E6%96%87%E7%89%88/</guid><description>&lt;h1 id="ai-写作去痕工具中文版"&gt;AI 写作去痕工具（中文版）
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;使用Reddit输入框很难输入——，也很难输出简体中文的弯体引号“”，于是便有了&lt;a class="link" href="https://mp.weixin.qq.com/s/s7OumZ8EX3_eBLTT9_cmdw?clicktime=1751640158&amp;amp;enterid=1751640158&amp;amp;scene=90&amp;amp;subscene=236&amp;amp;xtrack=1" target="_blank" rel="noopener"
 &gt;AI杀死了破折号，也绞杀了语文。&lt;/a&gt;这篇文章。我修改了&lt;a class="link" href="https://github.com/op7418/Humanizer-zh" target="_blank" rel="noopener"
@@ -55701,7 +55701,7 @@ s12 仅提供教学用途的最小 append-only 生命周期事件流。&lt;/li&g
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="err"&gt;关键见解：&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;LLM 使用统计算法来猜测接下来应该是什么。结果倾向于适用于最广泛情况的统计上最可能的结果。&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>使用Python实现文本加密</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/</link><pubDate>Fri, 27 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/</guid><description>&lt;h1 id="使用python实现文本加密"&gt;使用Python实现文本加密
+&lt;/div&gt;</description></item><item><title>使用Python实现文本加密</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/</link><pubDate>Fri, 27 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/</guid><description>&lt;h1 id="使用python实现文本加密"&gt;使用Python实现文本加密
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本脚本的核心功能如下所示：&lt;/p&gt;
 &lt;ol&gt;
@@ -56138,7 +56138,7 @@ s12 仅提供教学用途的最小 append-only 生命周期事件流。&lt;/li&g
 &lt;p&gt;&lt;a class="link" href="https://www.runoob.com/python3/python-hashlib.html" target="_blank" rel="noopener"
 &gt;https://www.runoob.com/python3/python-hashlib.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://cryptools.github.io/" target="_blank" rel="noopener"
-&gt;https://cryptools.github.io/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>基于低代码平台的搭建智能体</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/</link><pubDate>Thu, 19 Feb 2026 16:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/</guid><description>&lt;h1 id="基于低代码平台的智能体搭建"&gt;基于低代码平台的智能体搭建
+&gt;https://cryptools.github.io/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>基于低代码平台的搭建智能体</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/</link><pubDate>Thu, 19 Feb 2026 16:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E%E4%BD%8E%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93/</guid><description>&lt;h1 id="基于低代码平台的智能体搭建"&gt;基于低代码平台的智能体搭建
 &lt;/h1&gt;&lt;p&gt;在前一章中，通过编写 Python 代码，从零开始实现了 ReAct、Plan-and-Solve 和 Reflection 多种经典的智能体工作流。这个过程为我们打下了坚实的技术基础，让我们深刻理解了智能体内部的运作机理。然而，对于一个快速发展的领域而言，纯代码的开发模式并非总是最高效的选择，尤其是在需要快速验证想法、或者非专业开发者希望参与构建的场景中。&lt;/p&gt;
 &lt;h2 id="51-平台化构建的兴起"&gt;5.1 平台化构建的兴起
 &lt;/h2&gt;&lt;p&gt;随着技术的成熟，我们看到越来越多的能力正在被“平台化”。正如网站的开发从手写 HTML/CSS/JS，演进到了可以使用 WordPress、Wix 等建站平台一样，智能体的构建也迎来了平台化的浪潮。本章将聚焦于如何利用图形化、模块化的低代码平台，来快速、直观地搭建、调试和部署智能体应用，将我们的重心从“实现细节”转向“业务逻辑”。&lt;/p&gt;
@@ -57359,7 +57359,7 @@ Marketplace 包含：
 &lt;p&gt;[2] Dify - 开源的 LLM 应用开发平台. &lt;a class="link" href="https://dify.ai/" target="_blank" rel="noopener"
 &gt;https://dify.ai/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[3] n8n - 工作流自动化工具. &lt;a class="link" href="https://n8n.io/" target="_blank" rel="noopener"
-&gt;https://n8n.io/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>经典智能体范式</title><link>blog.zwzhang.com/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/</link><pubDate>Thu, 19 Feb 2026 15:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/</guid><description>&lt;h1 id="智能体经典范式构建"&gt;智能体经典范式构建
+&gt;https://n8n.io/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>经典智能体范式</title><link>https://blog.zwzhang.com/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/</link><pubDate>Thu, 19 Feb 2026 15:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%BB%8F%E5%85%B8%E6%99%BA%E8%83%BD%E4%BD%93%E8%8C%83%E5%BC%8F/</guid><description>&lt;h1 id="智能体经典范式构建"&gt;智能体经典范式构建
 &lt;/h1&gt;&lt;p&gt;我们之前深入探讨了作为现代智能体“大脑”的大语言模型。我们了解了其内部的Transformer架构、与之交互的方法，以及它的能力边界。现在，是时候将这些理论知识转化为实践，亲手构建智能体了。&lt;/p&gt;
 &lt;p&gt;一个现代的智能体，其核心能力在于能将大语言模型的推理能力与外部世界联通。它能够自主地理解用户意图、拆解复杂任务，并通过调用代码解释器、搜索引擎、API等一系列“工具”，来获取信息、执行操作，最终达成目标。 然而，智能体并非万能，它同样面临着来自大模型本身的“幻觉”问题、在复杂任务中可能陷入推理循环、以及对工具的错误使用等挑战，这些也构成了智能体的能力边界。&lt;/p&gt;
 &lt;p&gt;为了更好地组织智能体的“思考”与“行动”过程，业界涌现出了多种经典的架构范式。在本章中，我们将聚焦于其中最具代表性的三种，并一步步从零实现它们：&lt;/p&gt;
@@ -59375,7 +59375,7 @@ $$&lt;div align="center"&gt;
 &lt;h2 id="参考文献"&gt;参考文献
 &lt;/h2&gt;&lt;p&gt;[1] Yao S, Zhao J, Yu D, et al. React: Synergizing reasoning and acting in language models[C]//International Conference on Learning Representations (ICLR). 2023.&lt;/p&gt;
 &lt;p&gt;[2] Wang L, Xu W, Lan Y, et al. Plan-and-solve prompting: Improving zero-shot chain-of-thought reasoning by large language models[J]. arXiv preprint arXiv:2305.04091, 2023.&lt;/p&gt;
-&lt;p&gt;[3] Shinn N, Cassano F, Gopinath A, et al. Reflexion: Language agents with verbal reinforcement learning[J]. Advances in Neural Information Processing Systems, 2023, 36: 8634-8652.&lt;/p&gt;</description></item><item><title>智能体发展简史</title><link>blog.zwzhang.com/p/%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2/</link><pubDate>Thu, 19 Feb 2026 12:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2/</guid><description>&lt;h1 id="智能体发展史"&gt;智能体发展史
+&lt;p&gt;[3] Shinn N, Cassano F, Gopinath A, et al. Reflexion: Language agents with verbal reinforcement learning[J]. Advances in Neural Information Processing Systems, 2023, 36: 8634-8652.&lt;/p&gt;</description></item><item><title>智能体发展简史</title><link>https://blog.zwzhang.com/p/%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2/</link><pubDate>Thu, 19 Feb 2026 12:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2/</guid><description>&lt;h1 id="智能体发展史"&gt;智能体发展史
 &lt;/h1&gt;&lt;h1 id="第一章-初识智能体"&gt;第一章 初识智能体
 &lt;/h1&gt;&lt;p&gt;欢迎来到智能体的世界！在人工智能浪潮席卷全球的今天，&lt;strong&gt;智能体（Agent）&lt;/strong&gt;已成为驱动技术变革与应用创新的核心概念之一。无论你的志向是成为 AI 领域的研究者、工程师，还是希望深刻理解技术前沿的观察者，掌握智能体的本质，都将是你知识体系中不可或缺的一环。&lt;/p&gt;
 &lt;p&gt;因此，在本章，让我们回到原点，一起探讨几个问题：智能体是什么？它有哪些主要的类型？它又是如何与我们所处的世界进行交互的？通过这些讨论，希望能为你未来的学习和探索打下坚实的基础。&lt;/p&gt;
@@ -61369,7 +61369,7 @@ $$&lt;div align="center"&gt;
 &lt;p&gt;[8] RUMELHART D E, MCCLELLAND J L, PDP RESEARCH GROUP. Parallel distributed processing: explorations in the microstructure of cognition[M]. Cambridge, MA: MIT Press, 1986.&lt;/p&gt;
 &lt;p&gt;[9] SILVER D, HUANG A, MADDISON C J, ed. Mastering the game of Go with deep neural networks and tree search[J]. Nature, 2016, 529(7587): 484-489.&lt;/p&gt;
 &lt;p&gt;[10] LETTA. The AI agents stack[EB/OL]. (2024-11) [2025-09-07]. &lt;a class="link" href="https://www.letta.com/blog/ai-agents-stack" target="_blank" rel="noopener"
-&gt;https://www.letta.com/blog/ai-agents-stack&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>大语言模型文本数据处理</title><link>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link><pubDate>Thu, 19 Feb 2026 10:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid><description>&lt;h1 id="大语言模型文本数据处理"&gt;大语言模型文本数据处理
+&gt;https://www.letta.com/blog/ai-agents-stack&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>大语言模型文本数据处理</title><link>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link><pubDate>Thu, 19 Feb 2026 10:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid><description>&lt;h1 id="大语言模型文本数据处理"&gt;大语言模型文本数据处理
 &lt;/h1&gt;&lt;p&gt;本补充章节旨在对大模型数据处理做一个简单的梳理与具体的代码实现，帮助大家对于大模型的数据处理有一个更加清晰的认识。&lt;/p&gt;
 &lt;h2 id="1理解词嵌入"&gt;1.理解词嵌入
 &lt;/h2&gt;&lt;p&gt;在深度神经网络模型中，由于文本是分类数据，模型无法直接处理原始文本，因此需要将词语表示为连续值向量传输给模型。这一处理过程我们称之为词嵌入，其本质是将&lt;strong&gt;离散对象&lt;/strong&gt;（如词语）映射到&lt;strong&gt;连续向量&lt;/strong&gt;空间中的点，目的是将非数值数据转换为神经网络可处理的格式。&lt;/p&gt;
@@ -64433,7 +64433,7 @@ is: 0.6605
 位置 0: tensor([-0.3552, -0.5629, -1.4778, 0.7029, -0.0278], grad_fn=&amp;lt;SliceBackward0&amp;gt;)
 位置 1: tensor([-0.7520, 0.3258, 0.5109, -1.2897, 0.2495], grad_fn=&amp;lt;SliceBackward0&amp;gt;)
 位置 2: tensor([-0.6930, 0.9321, -0.9753, 0.5288, 0.8013], grad_fn=&amp;lt;SliceBackward0&amp;gt;)
-&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Python执行cURL命令的三种实战方法</title><link>blog.zwzhang.com/p/python%E6%89%A7%E8%A1%8Ccurl%E5%91%BD%E4%BB%A4%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E6%88%98%E6%96%B9%E6%B3%95/</link><pubDate>Fri, 13 Feb 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/python%E6%89%A7%E8%A1%8Ccurl%E5%91%BD%E4%BB%A4%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E6%88%98%E6%96%B9%E6%B3%95/</guid><description>&lt;h2 id="为什么需要在python中执行curl命令"&gt;为什么需要在Python中执行cURL命令？
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Python执行cURL命令的三种实战方法</title><link>https://blog.zwzhang.com/p/python%E6%89%A7%E8%A1%8Ccurl%E5%91%BD%E4%BB%A4%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E6%88%98%E6%96%B9%E6%B3%95/</link><pubDate>Fri, 13 Feb 2026 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/python%E6%89%A7%E8%A1%8Ccurl%E5%91%BD%E4%BB%A4%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E6%88%98%E6%96%B9%E6%B3%95/</guid><description>&lt;h2 id="为什么需要在python中执行curl命令"&gt;为什么需要在Python中执行cURL命令？
 &lt;/h2&gt;&lt;p&gt;在自动化测试、API集成或数据爬取场景中，我们常需通过Python发送HTTP请求。&lt;strong&gt;cURL命令行工具&lt;/strong&gt;是系统级的HTTP客户端，但直接在Python中调用它能避免命令行依赖、提升代码可读性。本文将深入解析三种&lt;strong&gt;安全可靠&lt;/strong&gt;的实现方案。&lt;/p&gt;
 &lt;h2 id="方法一使用-requests-库推荐场景"&gt;方法一：使用 &lt;code&gt;requests&lt;/code&gt; 库（推荐场景）
 &lt;/h2&gt;&lt;blockquote&gt;
@@ -64673,7 +64673,7 @@ is: 0.6605
 &lt;/blockquote&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://apifox.com/apiskills/how-to-run-curl-in-python/" target="_blank" rel="noopener"
-&gt;Python 中如何执行 cURL 命令？图文教程&lt;/a&gt;&lt;/p&gt;</description></item><item><title>深入解析 Transformer 架构</title><link>blog.zwzhang.com/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-transformer-%E6%9E%B6%E6%9E%84/</link><pubDate>Sat, 07 Feb 2026 20:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-transformer-%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="深入解析-transformer"&gt;深入解析 Transformer
+&gt;Python 中如何执行 cURL 命令？图文教程&lt;/a&gt;&lt;/p&gt;</description></item><item><title>深入解析 Transformer 架构</title><link>https://blog.zwzhang.com/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-transformer-%E6%9E%B6%E6%9E%84/</link><pubDate>Sat, 07 Feb 2026 20:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-transformer-%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="深入解析-transformer"&gt;深入解析 Transformer
 &lt;/h1&gt;&lt;p&gt;注意力机制通过动态加权的方式，克服了传统 Seq2Seq 模型中的“信息瓶颈”问题。但是，这些模型依然依赖于 RNN 来处理序列信息，也就是说它们必须按顺序，一个词元接一个词元地进行计算，这在处理长序列时效率低下，并且存在长距离依赖信息丢失的问题。&lt;/p&gt;
 &lt;p&gt;2017年，Google 的研究团队发表了一篇名为《Attention Is All You Need》的论文，提出了一种全新的架构——&lt;strong&gt;Transformer&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;。这篇论文的标题很有冲击力，其思想也同样有颠覆性。它抛弃了传统的 RNN 和卷积网络，整个模型基于注意力机制来构建。Transformer 的提出在自然语言处理领域具有划时代的意义。它不仅凭借其出色的并行计算能力极大地提升了训练效率，还更有效地捕捉了文本中的长距离依赖关系，为后续的 BERT、GPT 等大规模预训练模型的诞生提供了架构基础。&lt;/p&gt;
 &lt;h2 id="一自注意力机制"&gt;一、自注意力机制
@@ -66185,7 +66185,7 @@ $$&lt;p&gt;其中 $\gamma$ 和 $\beta$ 是可学习的缩放和平移参数。&l
 &gt;Su, J., Lu, Y., Pan, S., Wen, Y. (2021). &lt;em&gt;RoFormer: Enhanced Transformer with Rotary Position Embedding&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>注意力机制</title><link>blog.zwzhang.com/p/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</link><pubDate>Sat, 07 Feb 2026 19:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</guid><description>&lt;h1 id="注意力机制"&gt;注意力机制
+&lt;/div&gt;</description></item><item><title>注意力机制</title><link>https://blog.zwzhang.com/p/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</link><pubDate>Sat, 07 Feb 2026 19:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</guid><description>&lt;h1 id="注意力机制"&gt;注意力机制
 &lt;/h1&gt;&lt;p&gt;在上一节的结尾，讨论了标准 Seq2Seq 架构存在的一个核心缺陷：&lt;strong&gt;信息瓶颈&lt;/strong&gt;。编码器需要将源序列的所有信息，不论长短，全部压缩成一个固定长度的上下文向量 $C$。这种机制在处理长序列时，很容易丢失序列开头的关键信息，同时也无法让解码器在生成不同词元时，有选择性地关注输入的不同部分。&lt;/p&gt;
 &lt;p&gt;用上一节提到的对联任务举例，当上联是“两个黄鹂鸣翠柳”时，期望模型在生成下联时：&lt;/p&gt;
 &lt;ul&gt;
@@ -66724,7 +66724,7 @@ $$&lt;p&gt;这个公式准确概括了注意力的计算步骤：&lt;/p&gt;
 &gt;Luong, M. T., Pham, H., &amp;amp; Manning, C. D. (2015). &lt;em&gt;Effective approaches to attention-based neural machine translation&lt;/em&gt;. arXiv preprint arXiv:1508.04025.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>Seq2Seq 架构</title><link>blog.zwzhang.com/p/seq2seq-%E6%9E%B6%E6%9E%84/</link><pubDate>Sat, 07 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/seq2seq-%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="seq2seq-架构"&gt;Seq2Seq 架构
+&lt;/div&gt;</description></item><item><title>Seq2Seq 架构</title><link>https://blog.zwzhang.com/p/seq2seq-%E6%9E%B6%E6%9E%84/</link><pubDate>Sat, 07 Feb 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/seq2seq-%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="seq2seq-架构"&gt;Seq2Seq 架构
 &lt;/h1&gt;&lt;p&gt;前面我们已经学习了如何使用 RNN 和 LSTM 处理序列数据。这些模型在三类任务中表现出色：&lt;/p&gt;
 &lt;p&gt;（1）&lt;strong&gt;多对一（Many-to-One）&lt;/strong&gt;：将整个序列信息压缩成一个特征向量，用于文本分类、情感分析等任务。&lt;/p&gt;
 &lt;p&gt;（2）&lt;strong&gt;多对多（Many-to-Many, Aligned）&lt;/strong&gt;：为输入序列的每一个词元（Token）都生成一个对应的输出，如词性标注、命名实体识别等。&lt;/p&gt;
@@ -67716,7 +67716,7 @@ $$&lt;p&gt;这个公式准确概括了注意力的计算步骤：&lt;/p&gt;
 &gt;Bengio, S., Vinyals, O., Jaitly, N., &amp;amp; Shazeer, N. (2015). &lt;em&gt;Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks&lt;/em&gt;. Advances in Neural Information Processing Systems (NeurIPS).&lt;/a&gt;&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>Docker可部署项目合集</title><link>blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</link><pubDate>Sat, 07 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/div&gt;</description></item><item><title>Docker可部署项目合集</title><link>https://blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</link><pubDate>Sat, 07 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/docker%E5%8F%AF%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%90%88%E9%9B%86/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;中文docker项目集成项目： &lt;a class="link" href="https://github.com/coracoo/awesome_docker_cn" target="_blank" rel="noopener"
 &gt;https://github.com/coracoo/awesome_docker_cn&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -70486,7 +70486,7 @@ $$&lt;p&gt;这个公式准确概括了注意力的计算步骤：&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;hr&gt;</description></item><item><title>PDF转Markdown工具</title><link>blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf转markdown工具"&gt;PDF转Markdown工具
+&lt;hr&gt;</description></item><item><title>PDF转Markdown工具</title><link>https://blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/pdf%E8%BD%ACmarkdown%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf转markdown工具"&gt;PDF转Markdown工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;在大语言模型（LLM）迅速发展的时代，文档处理和转换变得尤为重要。当我们需要将各种格式的文档（如 PDF、Word、PowerPoint 等）输入到 LLM 中进行分析或处理时，首先需要将这些文档转换为文本格式。然而，简单的文本转换往往会丢失文档的结构信息，如标题、列表、表格等重要元素。Microsoft 开源的 MarkItDown 项目就是为解决这一问题而诞生的。它能将各种格式的文档转换为 Markdown 格式，既保留了原文档的结构信息，又保证了输出内容的简洁性，特别适合与 LLM 配合使用。本文将深入探讨 MarkItDown 的功能特点、应用场景和使用方法，帮助开发者更好地利用这一强大工具。&lt;/p&gt;
 &lt;h2 id="markitdown"&gt;markitdown
@@ -70799,7 +70799,7 @@ loading="lazy"
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/711487482" target="_blank" rel="noopener"
 &gt;六个开源的PDF转Markdown项目&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1900486359417853286" target="_blank" rel="noopener"
-&gt;MarkItDown：微软开源的文档转 Markdown 工具及其在 LLM 时代的应用&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PDF电子书制作工具</title><link>blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf电子书制作工具"&gt;PDF电子书制作工具
+&gt;MarkItDown：微软开源的文档转 Markdown 工具及其在 LLM 时代的应用&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PDF电子书制作工具</title><link>https://blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 05 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/pdf%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="pdf电子书制作工具"&gt;PDF电子书制作工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本文介绍一些PDF电子书制作工具。&lt;/p&gt;
 &lt;h2 id="mdbook-pdf"&gt;MdBook-PDF
@@ -71317,7 +71317,7 @@ loading="lazy"
 &lt;p&gt;&lt;a class="link" href="https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md" target="_blank" rel="noopener"
 &gt;https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/lookscanned/lookscanned.io" target="_blank" rel="noopener"
-&gt;https://github.com/lookscanned/lookscanned.io&lt;/a&gt;&lt;/p&gt;</description></item><item><title>乐理入门</title><link>blog.zwzhang.com/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</link><pubDate>Wed, 04 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</guid><description>&lt;h1 id="乐理入门"&gt;乐理入门
+&gt;https://github.com/lookscanned/lookscanned.io&lt;/a&gt;&lt;/p&gt;</description></item><item><title>乐理入门</title><link>https://blog.zwzhang.com/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</link><pubDate>Wed, 04 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%B9%90%E7%90%86%E5%85%A5%E9%97%A8/</guid><description>&lt;h1 id="乐理入门"&gt;乐理入门
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;B站最通俗易懂的乐理课程（30集），零基础轻松学！适用于作曲编曲、钢琴、吉他、声乐。&lt;/p&gt;
 &lt;div class="video-wrapper"&gt;
@@ -71592,7 +71592,7 @@ loading="lazy"
 &lt;/h3&gt;&lt;p&gt;易用性和成本也是选择工具时需要考虑的重要因素，包括操作简单性、免费额度、订阅价格和按量计费等。对于个人用户和小规模使用，建议选择提供免费额度的工具，如Suno、Udio等；对于大规模商业使用，建议选择企业方案。比较不同工具的性价比，选择符合预算且易用的工具。&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://alignify.co/zh/tools/music-generator" target="_blank" rel="noopener"
-&gt;主流音乐生成工具对比&lt;/a&gt;&lt;/p&gt;</description></item><item><title>循环神经网络</title><link>blog.zwzhang.com/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Mon, 02 Feb 2026 21:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="循环神经网络"&gt;循环神经网络
+&gt;主流音乐生成工具对比&lt;/a&gt;&lt;/p&gt;</description></item><item><title>循环神经网络</title><link>https://blog.zwzhang.com/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Mon, 02 Feb 2026 21:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="循环神经网络"&gt;循环神经网络
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/base-llm" target="_blank" rel="noopener"
 &gt;本文来源于Datawhale教程&lt;/a&gt;&lt;/p&gt;
@@ -72285,7 +72285,7 @@ $$&lt;p&gt;这种方式不仅使得模型逻辑更直观，还减少了模型的
 &lt;p&gt;[4]: &lt;a class="link" href="https://doi.org/10.1109/IJCNN.2000.861302" target="_blank" rel="noopener"
 &gt;Gers, F. A., Schmidhuber, J. (2000). &lt;em&gt;Recurrent nets that time and count&lt;/em&gt;. Proceedings of the IEEE-INNS-ENNS International Joint Conference on Neural Networks (IJCNN), 3, 189-194.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[5]: &lt;a class="link" href="https://doi.org/10.1109/TNNLS.2016.2582924" target="_blank" rel="noopener"
-&gt;Greff, K., Srivastava, R. K., Koutník, J., Steunebrink, B. R., &amp;amp; Schmidhuber, J. (2017). &lt;em&gt;LSTM: A search space odyssey&lt;/em&gt;. IEEE Transactions on Neural Networks and Learning Systems, 28(10), 2222-2232.&lt;/a&gt;&lt;/p&gt;</description></item><item><title>文本表示与词向量</title><link>blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%AF%8D%E5%90%91%E9%87%8F/</link><pubDate>Mon, 02 Feb 2026 20:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%AF%8D%E5%90%91%E9%87%8F/</guid><description>&lt;h1 id="文本表示与词向量"&gt;&lt;strong&gt;文本表示与词向量&lt;/strong&gt;
+&gt;Greff, K., Srivastava, R. K., Koutník, J., Steunebrink, B. R., &amp;amp; Schmidhuber, J. (2017). &lt;em&gt;LSTM: A search space odyssey&lt;/em&gt;. IEEE Transactions on Neural Networks and Learning Systems, 28(10), 2222-2232.&lt;/a&gt;&lt;/p&gt;</description></item><item><title>文本表示与词向量</title><link>https://blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%AF%8D%E5%90%91%E9%87%8F/</link><pubDate>Mon, 02 Feb 2026 20:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%AF%8D%E5%90%91%E9%87%8F/</guid><description>&lt;h1 id="文本表示与词向量"&gt;&lt;strong&gt;文本表示与词向量&lt;/strong&gt;
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/base-llm" target="_blank" rel="noopener"
 &gt;本文来源于Datawhale课程&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="第一节-初级分词技术"&gt;第一节 初级分词技术
@@ -73759,7 +73759,7 @@ $$&lt;p&gt;两个向量的点积是余弦相似度公式的分子部分。因此
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;加载后，&amp;#39;球队&amp;#39; 和 &amp;#39;球员&amp;#39; 的相似度: -0.1552
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;通过 Gensim，可以非常方便地训练自己的 Word2Vec 模型，并利用其强大的语义捕捉能力进行相似度计算、语义类比等 NLP 任务。&lt;/p&gt;</description></item><item><title>脑机接口资源汇总</title><link>blog.zwzhang.com/p/%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</guid><description>&lt;h1 id="脑机接口资源汇总"&gt;脑机接口资源汇总
+&lt;/div&gt;&lt;p&gt;通过 Gensim，可以非常方便地训练自己的 Word2Vec 模型，并利用其强大的语义捕捉能力进行相似度计算、语义类比等 NLP 任务。&lt;/p&gt;</description></item><item><title>脑机接口资源汇总</title><link>https://blog.zwzhang.com/p/%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</guid><description>&lt;h1 id="脑机接口资源汇总"&gt;脑机接口资源汇总
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/apachecn/awesome-bci-zh" target="_blank" rel="noopener"
 &gt;脑机接口资源汇总&lt;/a&gt;&lt;/p&gt;
@@ -74224,7 +74224,7 @@ J. &lt;a class="link" href="https://github.com/NeuroTechX/awesome-bci#other-reso
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;科技创新 2030 —“脑科学与类脑研究”重大项目2021年度，&lt;a class="link" href="https://service.most.gov.cn/u/cms/static/202109/%E9%99%84%E4%BB%B61-%E6%8C%87%E5%8D%97_20210916181751.pdf" target="_blank" rel="noopener"
 &gt;https://service.most.gov.cn/u/cms/static/202109/%E9%99%84%E4%BB%B61-%E6%8C%87%E5%8D%97_20210916181751.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>Windows 应用的自定义与扩展工具 Windhawk</title><link>blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</link><pubDate>Sun, 01 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</guid><description>&lt;h1 id="windows-应用的自定义与扩展工具windhawk"&gt;Windows 应用的自定义与扩展工具Windhawk
+&lt;/ol&gt;</description></item><item><title>Windows 应用的自定义与扩展工具 Windhawk</title><link>https://blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</link><pubDate>Sun, 01 Feb 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/windows-%E5%BA%94%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-windhawk/</guid><description>&lt;h1 id="windows-应用的自定义与扩展工具windhawk"&gt;Windows 应用的自定义与扩展工具Windhawk
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://windhawk.net/" target="_blank" rel="noopener"
 &gt;The customization marketplace for Windows programs:&lt;/a&gt;&lt;/p&gt;
@@ -74289,7 +74289,7 @@ loading="lazy"
 &lt;p&gt;Windhawk 提供了一种非常强大且相对简单的方法来改造 Windows 并添加高级功能，而无需直接修改系统文件。 **前提是你选择值得信赖的模组，查看它们的评分，并在安装时运用常识。**凭借这种谨慎和好奇心的结合，你可以打造一个充满实用快捷方式的精美桌面，而不会不必要地危及电脑的稳定性。&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.pchardwarepro.com/zh-CN/Windhawk-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%EF%BC%8C%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-Windows/" target="_blank" rel="noopener"
-&gt;Windhawk-完整教程，教你如何自定义-Windows&lt;/a&gt;&lt;/p&gt;</description></item><item><title>最小的编程助手智能体nanocode</title><link>blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</link><pubDate>Sat, 31 Jan 2026 21:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</guid><description>&lt;h1 id="最小的编程助手智能体nanocode"&gt;最小的编程助手智能体nanocode
+&gt;Windhawk-完整教程，教你如何自定义-Windows&lt;/a&gt;&lt;/p&gt;</description></item><item><title>最小的编程助手智能体nanocode</title><link>https://blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</link><pubDate>Sat, 31 Jan 2026 21:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%9C%80%E5%B0%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E6%99%BA%E8%83%BD%E4%BD%93nanocode/</guid><description>&lt;h1 id="最小的编程助手智能体nanocode"&gt;最小的编程助手智能体nanocode
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;今天听了一场“function call is all you need”的AI 编程演讲，演讲者从一个大语言模型和一个Bash命令行工具开始增加文件读写等功能，然后搭建一个编程助手智能体。这让我觉得很神奇，后续也就知道了nanocode这个项目。这里详细解释一下nanocode的源码，方便我开发自己的编程助手智能体。&lt;/p&gt;
 &lt;h2 id="简介"&gt;简介
@@ -75843,7 +75843,7 @@ loading="lazy"
 &lt;li&gt;该代码是一个&lt;strong&gt;轻量级、零依赖的AI编程智能体&lt;/strong&gt;，核心是通过工具调用闭环完成编程辅助任务，结构清晰且易于扩展。&lt;/li&gt;
 &lt;li&gt;核心模块分为「工具实现」和「智能体循环」，工具负责具体操作，循环负责决策与反馈，解耦设计提升了可维护性。&lt;/li&gt;
 &lt;li&gt;亮点是便携性和完整的智能体逻辑，局限性是缺乏安全防护和持久化存储，适合用于学习和个人轻量场景，不适合生产环境。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>GitHub优秀资源索引</title><link>blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</link><pubDate>Thu, 29 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</guid><description>&lt;h1 id="github优秀资源中文索引"&gt;Github优秀资源中文索引
+&lt;/ol&gt;</description></item><item><title>GitHub优秀资源索引</title><link>https://blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</link><pubDate>Thu, 29 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/github%E4%BC%98%E7%A7%80%E8%B5%84%E6%BA%90%E7%B4%A2%E5%BC%95/</guid><description>&lt;h1 id="github优秀资源中文索引"&gt;Github优秀资源中文索引
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/gamedilong/awesome-cn" target="_blank" rel="noopener"
 &gt;本项目&lt;/a&gt;翻译自&lt;em&gt;&lt;strong&gt;Awesome&lt;/strong&gt;&lt;/em&gt;,目的是为了提升查阅文档效率。&lt;/p&gt;
@@ -77256,7 +77256,7 @@ Unicode标准，特性，软件包和资源&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/caufieldjh/awesome-bioie#readme" target="_blank" rel="noopener"
 &gt;生物医学信息提取&lt;/a&gt; - 如何从非结构化生物医学数据和文本中提取信息。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Windows 11 双 GitHub 账号使用指南</title><link>blog.zwzhang.com/p/windows-11-%E5%8F%8C-github-%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 25 Jan 2026 20:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/windows-11-%E5%8F%8C-github-%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="windows-11-双github账号使用指南"&gt;Windows 11 双GitHub账号使用指南
+&lt;/ul&gt;</description></item><item><title>Windows 11 双 GitHub 账号使用指南</title><link>https://blog.zwzhang.com/p/windows-11-%E5%8F%8C-github-%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 25 Jan 2026 20:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/windows-11-%E5%8F%8C-github-%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="windows-11-双github账号使用指南"&gt;Windows 11 双GitHub账号使用指南
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;你是否和我一样，有两个 GitHub 账号？一个用于协作团队项目，另一个用于个人创作。想让它们在本地和远端完全隔离，互不干扰？&lt;/p&gt;
 &lt;p&gt;问题是，Git 默认用全局 &lt;code&gt;user.name&lt;/code&gt; 和 &lt;code&gt;user.email&lt;/code&gt;，这会让提交记录看起来混淆身份。更复杂的是，SSH 密钥是权限的关键，每个密钥只能归属于一个账号。电脑默认使用一个 SSH key 连接 github.com，也导致只能无密码访问其中一个账号。&lt;/p&gt;
@@ -77713,7 +77713,7 @@ Unicode标准，特性，软件包和资源&lt;/p&gt;
 &gt;Win11 配置多个 GitHub 账号&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://git-scm.com/book/zh/v2/" target="_blank" rel="noopener"
 &gt;Git 配置教程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>自然语言处理基础概念</title><link>blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</link><pubDate>Thu, 22 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</guid><description>&lt;h1 id="自然语言处理基础概念"&gt;自然语言处理基础概念
+&lt;/ul&gt;</description></item><item><title>自然语言处理基础概念</title><link>https://blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</link><pubDate>Thu, 22 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</guid><description>&lt;h1 id="自然语言处理基础概念"&gt;自然语言处理基础概念
 &lt;/h1&gt;&lt;p&gt;自然语言处理（Natural Language Processing，NLP）作为人工智能领域的一个重要分支，旨在使计算机能够理解和处理人类语言，实现人机之间的自然交流。随着信息技术的飞速发展，文本数据已成为我们日常生活中不可或缺的一部分，NLP技术的进步为我们从海量文本中提取有用信息、理解语言的深层含义提供了强有力的工具。从早期的基于规则的方法，到后来的统计学习方法，再到当前深度学习技术的广泛应用，NLP领域经历了多次技术革新，文本表示作为NLP的核心技术之一，其研究和进步对于提升NLP系统的性能具有决定性的作用。&lt;/p&gt;
 &lt;p&gt;欢迎大家来到 NLP 基础概念的学习，本章节将为大家介绍 NLP 的基础概念，帮助大家更好地理解和回顾 NLP 的相关知识。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/happy-llm/#/./chapter1/%E7%AC%AC%E4%B8%80%E7%AB%A0%20NLP%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" target="_blank" rel="noopener"
@@ -78041,7 +78041,7 @@ alt="NLP的发展历程"
 &lt;p&gt;[6] Salton, G., Wong, A., Yang, C. S. (1975). &lt;em&gt;A vector space model for automatic indexing.&lt;/em&gt; Communications of the ACM, 18(11), 613–620. &lt;a class="link" href="https://doi.org/10.1145/361219.361220" target="_blank" rel="noopener"
 &gt;https://doi.org/10.1145/361219.361220&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;[7] 赵京胜,宋梦雪,高祥,等.自然语言处理中的文本表示研究[J].软件学报,2022,33(01):102-128.DOI:10.13328/j.cnki.jos.006304.&lt;/p&gt;
-&lt;p&gt;[8] 中文信息处理发展报告（2016）前言[C]//中文信息处理发展报告（2016）.中国中文信息学会;,2016:2-3.DOI:10.26914/c.cnkihy.2016.003326.&lt;/p&gt;</description></item><item><title>吃货指南</title><link>blog.zwzhang.com/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 18 Jan 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;p&gt;[8] 中文信息处理发展报告（2016）前言[C]//中文信息处理发展报告（2016）.中国中文信息学会;,2016:2-3.DOI:10.26914/c.cnkihy.2016.003326.&lt;/p&gt;</description></item><item><title>吃货指南</title><link>https://blog.zwzhang.com/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 18 Jan 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%90%83%E8%B4%A7%E6%8C%87%E5%8D%97/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里暂时收纳了一些介绍中国菜肴的GitHub仓库，日后我要结合学过的《中国饮食文化》课程等做一份适合自己的全球食谱！还可以考虑抗炎、「轻断食」等方面。&lt;/p&gt;
 &lt;p&gt;作为一个吃货，未来可期！&lt;/p&gt;
 &lt;h2 id="吃啥好呢"&gt;吃啥好呢
@@ -78113,7 +78113,7 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如需下载 PDF 版本，可以在浏览器中访问 &lt;a class="link" href="https://cook.aiursoft.com/document.pdf" target="_blank" rel="noopener"
-&gt;/document.pdf&lt;/a&gt;&lt;/p&gt;</description></item><item><title>使用Python处理文件名与拼音转换</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/</link><pubDate>Sun, 18 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/</guid><description>&lt;h2 id="前言"&gt;前言
+&gt;/document.pdf&lt;/a&gt;&lt;/p&gt;</description></item><item><title>使用Python处理文件名与拼音转换</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/</link><pubDate>Sun, 18 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;为了在GitHub Releases中存储从Z-Library上下载的书籍，我需要这个脚本处理一下文件名。&lt;/p&gt;
 &lt;p&gt;本 Python 脚本要完成读取指定目录文件、清理文件名中的&lt;code&gt;(Z-Library)&lt;/code&gt;、生成中文文件名的 Markdown 有序列表（含拼音），并保存为&lt;code&gt;list.md&lt;/code&gt;。以下是结构清晰、包含错误处理的完整实现。&lt;/p&gt;
 &lt;ol&gt;
@@ -78743,7 +78743,7 @@ target="_blank" rel="noopener"
 &lt;/ol&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://blog.asroads.com/post/4e1d3fc2.html" target="_blank" rel="noopener"
-&gt;Python3如何将文件夹内文件名汉字转拼音&lt;/a&gt;&lt;/p&gt;</description></item><item><title>具身智能概述</title><link>blog.zwzhang.com/p/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0/</link><pubDate>Fri, 16 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0/</guid><description>&lt;h1 id="从虚拟大脑到世界行者万字长文深度解析具身智能"&gt;&lt;strong&gt;从“虚拟大脑”到“世界行者”：万字长文深度解析「具身智能」&lt;/strong&gt;
+&gt;Python3如何将文件夹内文件名汉字转拼音&lt;/a&gt;&lt;/p&gt;</description></item><item><title>具身智能概述</title><link>https://blog.zwzhang.com/p/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0/</link><pubDate>Fri, 16 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0/</guid><description>&lt;h1 id="从虚拟大脑到世界行者万字长文深度解析具身智能"&gt;&lt;strong&gt;从“虚拟大脑”到“世界行者”：万字长文深度解析「具身智能」&lt;/strong&gt;
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;AI的终局，不是在屏幕上输出文字和图片，而是真正走进我们的物理世界，理解并与之一同呼吸。今天，让我们一同推开通往未来的大门，迎接人工智能的下一次范式革命——具身智能（Embodied AI）。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -78885,7 +78885,7 @@ alt="RT-2: Vision-Language-Action Models"
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;结语：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;从虚拟世界的“思考者”，到物理世界的“行动者”，具身智能正在引领AI开启下一段伟大的征程。它不仅是技术的飞跃，更关乎我们如何定义“智能”，以及我们期望与一个怎样的智能物种共存。&lt;/p&gt;
-&lt;p&gt;这扇门已经打开，门后的世界，既充满挑战，也蕴藏着无限的可能。让我们共同见证，这个由代码和齿轮驱动的“新物种”，将如何学习、成长，并最终改变世界。&lt;/p&gt;</description></item><item><title>大语言模型安全——威胁建模及风险分析</title><link>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E5%8F%8A%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90/</link><pubDate>Thu, 15 Jan 2026 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E5%8F%8A%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="大语言模型安全威胁建模及风险分析"&gt;大语言模型安全——威胁建模及风险分析
+&lt;p&gt;这扇门已经打开，门后的世界，既充满挑战，也蕴藏着无限的可能。让我们共同见证，这个由代码和齿轮驱动的“新物种”，将如何学习、成长，并最终改变世界。&lt;/p&gt;</description></item><item><title>大语言模型安全——威胁建模及风险分析</title><link>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E5%8F%8A%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90/</link><pubDate>Thu, 15 Jan 2026 13:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E5%8F%8A%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="大语言模型安全威胁建模及风险分析"&gt;大语言模型安全——威胁建模及风险分析
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/base-llm/#/chapter16/02_threat_modeling_analysis" target="_blank" rel="noopener"
 &gt;本文来源于Datawhale NLP base 课程&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="一owasp-top-10-for-llm-applications2025核心风险详解"&gt;一、OWASP Top 10 for LLM Applications（2025）核心风险详解
@@ -79200,7 +79200,7 @@ alt="RT-2: Vision-Language-Action Models"
 &gt;Li, Y., et al. (2025). &lt;em&gt;ThinkTrap: Denial-of-Service Attacks against Black-box LLM Services via Infinite Thinking&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:10" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>大语言模型安全总览</title><link>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link><pubDate>Thu, 15 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid><description>&lt;h1 id="大语言模型安全总览"&gt;大语言模型安全总览
+&lt;/div&gt;</description></item><item><title>大语言模型安全总览</title><link>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link><pubDate>Thu, 15 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid><description>&lt;h1 id="大语言模型安全总览"&gt;大语言模型安全总览
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://datawhalechina.github.io/base-llm/#/chapter16/01_LLM_safety_overview" target="_blank" rel="noopener"
 &gt;文章来源于Datawhale NLP Base 课程&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;通过前面的章节，我们已经从 NLP 基础、预训练模型到大模型微调与部署，构建了一套完整的技术路径。接下来，本节将从更高一层的“系统视角”出发，梳理大模型在真实落地中的安全问题与防护思路，为后续具体攻防与治理章节打下统一的概念基础。与传统软件不同，大语言模型一旦投入使用，就会持续与用户、数据和外部系统交互。如果不了解这些风险从何而来、如何在全链路上构建防线，模型很容易在“越狱提示”“错误决策”“数据泄露”等场景中成为问题的放大器，而不是解决方案的一部分。&lt;/p&gt;
@@ -79380,7 +79380,7 @@ alt="RT-2: Vision-Language-Action Models"
 &gt;Aisha Alansari, et al. (2025). &lt;em&gt;Large Language Models Hallucination: A Comprehensive Survey&lt;/em&gt;.&lt;/a&gt;&amp;#160;&lt;a href="#fnref:12" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>批量下载 Cloudflare R2 中的文件</title><link>blog.zwzhang.com/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/</link><pubDate>Wed, 14 Jan 2026 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/</guid><description>&lt;h1 id="批量下载-cloudflare-r2-中的文件"&gt;批量下载 Cloudflare R2 中的文件
+&lt;/div&gt;</description></item><item><title>批量下载 Cloudflare R2 中的文件</title><link>https://blog.zwzhang.com/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/</link><pubDate>Wed, 14 Jan 2026 15:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/</guid><description>&lt;h1 id="批量下载-cloudflare-r2-中的文件"&gt;批量下载 Cloudflare R2 中的文件
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里可以使用Python脚本，也可以使用r2clone工具。当然也可以使用CloudFlare R2第三方客户端。&lt;/p&gt;
 &lt;p&gt;本文资料来源如下所示：&lt;/p&gt;
@@ -80092,7 +80092,7 @@ alt="RT-2: Vision-Language-Action Models"
 &gt;rclone 官方文档&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://developers.cloudflare.com/r2/api/" target="_blank" rel="noopener"
 &gt;Cloudflare R2 API 文档&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>反向面试</title><link>blog.zwzhang.com/p/%E5%8F%8D%E5%90%91%E9%9D%A2%E8%AF%95/</link><pubDate>Wed, 14 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%8F%8D%E5%90%91%E9%9D%A2%E8%AF%95/</guid><description>&lt;h1 id="反向面试"&gt;反向面试
+&lt;/ul&gt;</description></item><item><title>反向面试</title><link>https://blog.zwzhang.com/p/%E5%8F%8D%E5%90%91%E9%9D%A2%E8%AF%95/</link><pubDate>Wed, 14 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%8F%8D%E5%90%91%E9%9D%A2%E8%AF%95/</guid><description>&lt;h1 id="反向面试"&gt;反向面试
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;反向面试就是技术面试最后反问面试官。&lt;/p&gt;
 &lt;p&gt;不同情况下面试者需要提出不同的问题来获得更多的信息，推荐在问问题时表露自己对公司及业务的了解。&lt;/p&gt;
@@ -80327,7 +80327,7 @@ alt="RT-2: Vision-Language-Action Models"
 &gt;The Joel Test: 12 Steps to Better Code&lt;/a&gt; by Joel Spolsky&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://jvns.ca/blog/2013/12/30/questions-im-asking-in-interviews/" target="_blank" rel="noopener"
 &gt;Questions I&amp;rsquo;m asking in interviews&lt;/a&gt; by Julia Evans&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>加速神器——Xget</title><link>blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
+&lt;/ul&gt;</description></item><item><title>加速神器——Xget</title><link>https://blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</link><pubDate>Sat, 10 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8xget/</guid><description>&lt;h1 id="加速神器xget-"&gt;加速神器——Xget 🚀
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/xixu-me/xget" target="_blank" rel="noopener"
 &gt;Ultra-high-performance, secure, all-in-one acceleration engine for developer resources&lt;/a&gt;&lt;/p&gt;
@@ -85250,7 +85250,7 @@ A: 检查 URL 路径格式，确认平台前缀正确使用。&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;开源性质声明&lt;/strong&gt;：本存储库为开源项目，作者与贡献者不承担提供技术支持、错误修复或持续维护的义务。外部贡献的合并不代表对特定用途或效果的承诺与背书&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;名称使用规范&lt;/strong&gt;：严禁任何可能暗示作者或贡献者提供商业合作、技术支持、担保或背书的表述。涉及存储库名称或作者标识的使用应遵循相关法律法规及通用规范&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;免责声明更新&lt;/strong&gt;：本免责声明可能随存储库发展或法律环境变化进行更新修订。使用者继续使用、复制、分发或修改本存储库即视为接受最新版本的免责声明&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>自定义数据集实现猫狗分类</title><link>blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</link><pubDate>Thu, 08 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="自定义数据集实现猫狗分类"&gt;自定义数据集实现猫狗分类
+&lt;/ul&gt;</description></item><item><title>自定义数据集实现猫狗分类</title><link>https://blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</link><pubDate>Thu, 08 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</guid><description>&lt;h1 id="自定义数据集实现猫狗分类"&gt;自定义数据集实现猫狗分类
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;写作本文主要是为了学会使用本地数据集，而不是直接下载数据集。&lt;/p&gt;
 &lt;p&gt;本文代码还使用了&lt;code&gt;torchsummary&lt;/code&gt;、&lt;code&gt;tqdm&lt;/code&gt;等工具。&lt;/p&gt;
@@ -86864,7 +86864,7 @@ loading="lazy"
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.cnblogs.com/vIgorself/articles/19452791" target="_blank" rel="noopener"
 &gt;https://www.cnblogs.com/vIgorself/articles/19452791&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/Ironman-creator/Cat-Dog-Recognition-Project" target="_blank" rel="noopener"
-&gt;https://github.com/Ironman-creator/Cat-Dog-Recognition-Project&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Web3D库Threejs入门教程</title><link>blog.zwzhang.com/p/web3d%E5%BA%93threejs%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link><pubDate>Tue, 06 Jan 2026 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/web3d%E5%BA%93threejs%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="web3d库threejs入门教程"&gt;Web3D库Threejs入门教程
+&gt;https://github.com/Ironman-creator/Cat-Dog-Recognition-Project&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Web3D库Threejs入门教程</title><link>https://blog.zwzhang.com/p/web3d%E5%BA%93threejs%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link><pubDate>Tue, 06 Jan 2026 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/web3d%E5%BA%93threejs%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="web3d库threejs入门教程"&gt;Web3D库Threejs入门教程
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;Three.js 是一个功能强大的 JavaScript 图形库，用于在浏览器中创建三维图形和交互式可视化效果。它由 Ethan Demello 和 Mike Bosted 于 2010 年开发，并迅速成为前端开发者必备的工具之一。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://threejs.org/" target="_blank" rel="noopener"
@@ -87528,7 +87528,7 @@ loading="lazy"
 &lt;p&gt;&lt;a class="link" href="https://threejs-learning.com/zh/" target="_blank" rel="noopener"
 &gt;全面的 Three.js 学习平台 • 丰富的交互式示例 • 深入的着色器教程 • 系统性的 GLSL 文档 • 实战项目指导&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://www.w3ccoo.com/threejs/index.html" target="_blank" rel="noopener"
-&gt;Three.js 是一个开源 JavaScript 库，您可以使用它来创建具有 2D 和 3D 图形的动态交互式网站。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>基于 ResNet18 实现 CIFAR100 图像分类Web应用</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/</link><pubDate>Tue, 06 Jan 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="从-9-到-70resnet18cifar100-图像分类优化实战含-web-可视化工具"&gt;从 9% 到 70%+！ResNet18+CIFAR100 图像分类优化实战（含 Web 可视化工具）
+&gt;Three.js 是一个开源 JavaScript 库，您可以使用它来创建具有 2D 和 3D 图形的动态交互式网站。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>基于 ResNet18 实现 CIFAR100 图像分类Web应用</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/</link><pubDate>Tue, 06 Jan 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8E-resnet18-%E5%AE%9E%E7%8E%B0-cifar100-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BBweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="从-9-到-70resnet18cifar100-图像分类优化实战含-web-可视化工具"&gt;从 9% 到 70%+！ResNet18+CIFAR100 图像分类优化实战（含 Web 可视化工具）
 &lt;/h1&gt;&lt;p&gt;在使用 ResNet18 进行 CIFAR100 图像分类时，很容易遇到测试准确率极低（如仅 9.43%）的问题。本文将拆解核心问题，梳理预训练、微调、Web 页面实现的关键要点，并详细说明全流程优化方案，帮助大家实现准确率的大幅提升。&lt;/p&gt;
 &lt;h2 id="一核心模块关键要点"&gt;一、核心模块关键要点
 &lt;/h2&gt;&lt;h3 id="一预训练模型选择与基础配置"&gt;（一）预训练模型选择与基础配置
@@ -89549,7 +89549,7 @@ loading="lazy"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;build_gradio_interface&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
+&lt;/div&gt;</description></item><item><title>基于Python实现数字识别Web应用</title><link>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 05 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%ABweb%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="手把手教你训练-mnist-手写数字识别模型搭建可直接使用的-web-识别工具"&gt;手把手教你：训练 MNIST 手写数字识别模型，搭建可直接使用的 Web 识别工具
 &lt;/h1&gt;&lt;p&gt;在手写数字识别的实践中，很多同学会遇到模型权重与 Web 应用不兼容的问题，最常见的就是通道数不匹配、模型结构冲突导致的运行报错。今天这篇博客，我们就来完整走一遍流程 —— 从从头训练兼容的&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;权重文件，到搭建一个无需前端经验的 Gradio Web 识别工具，全程避坑，确保最终成果可以直接落地使用。&lt;/p&gt;
 &lt;h2 id="第一部分从头训练-mnist-模型生成兼容权重文件cnn_model_basicpth"&gt;第一部分：从头训练 MNIST 模型，生成兼容权重文件&lt;code&gt;cnn_model_basic.pth&lt;/code&gt;
 &lt;/h2&gt;&lt;p&gt;我们的核心目标是训练出一个与后续 Web 应用完全兼容的模型权重，彻底解决&lt;code&gt;expected 1 channels, but got 3 channels&lt;/code&gt;这类兼容性错误，同时保证模型具备较高的识别准确率。&lt;/p&gt;
@@ -90444,7 +90444,7 @@ loading="lazy"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>免费开发工具及服务清单</title><link>blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%B8%85%E5%8D%95/</link><pubDate>Sun, 04 Jan 2026 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%B8%85%E5%8D%95/</guid><description>&lt;h1 id="免费开发工具及服务清单"&gt;免费开发工具及服务清单
+&lt;/div&gt;</description></item><item><title>免费开发工具及服务清单</title><link>https://blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%B8%85%E5%8D%95/</link><pubDate>Sun, 04 Jan 2026 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%B8%85%E5%8D%95/</guid><description>&lt;h1 id="免费开发工具及服务清单"&gt;免费开发工具及服务清单
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/tvvocold/free-for-dev-zh" target="_blank" rel="noopener"
 &gt;GitHub-Repo-免费开发工具及服务清单&lt;/a&gt;&lt;/p&gt;
@@ -90570,7 +90570,7 @@ loading="lazy"
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class="link" href="https://pingxx.com/" target="_blank" rel="noopener"
 &gt;Ping++&lt;/a&gt; - 轻便高效的聚合支付模块，支持微信、支付宝、银联等主流支付渠道。每月前十万笔成功交易免费，超出部分 0.01元/笔。&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>开发者出海工具库</title><link>blog.zwzhang.com/p/%E5%BC%80%E5%8F%91%E8%80%85%E5%87%BA%E6%B5%B7%E5%B7%A5%E5%85%B7%E5%BA%93/</link><pubDate>Sun, 04 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%BC%80%E5%8F%91%E8%80%85%E5%87%BA%E6%B5%B7%E5%B7%A5%E5%85%B7%E5%BA%93/</guid><description>&lt;h1 id="开发者出海工具库"&gt;开发者出海工具库
+&lt;/ul&gt;</description></item><item><title>开发者出海工具库</title><link>https://blog.zwzhang.com/p/%E5%BC%80%E5%8F%91%E8%80%85%E5%87%BA%E6%B5%B7%E5%B7%A5%E5%85%B7%E5%BA%93/</link><pubDate>Sun, 04 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%BC%80%E5%8F%91%E8%80%85%E5%87%BA%E6%B5%B7%E5%B7%A5%E5%85%B7%E5%BA%93/</guid><description>&lt;h1 id="开发者出海工具库"&gt;开发者出海工具库
 &lt;/h1&gt;&lt;h2 id="-开发者出海选对工具是关键"&gt;🌍 &lt;strong&gt;开发者出海，选对工具是关键！&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/XiaomingX/indie-hacker-tools-plus" target="_blank" rel="noopener"
 &gt;GitHub-Repo-indie-hacker-tools-plus&lt;/a&gt;&lt;/p&gt;
@@ -91688,7 +91688,7 @@ loading="lazy"
 &lt;td&gt;- 与众多知名企业合作，提供优质岗位信息和智能推荐服务.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>免费的大语言模型API汇总</title><link>blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8Bapi%E6%B1%87%E6%80%BB/</link><pubDate>Sat, 03 Jan 2026 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8Bapi%E6%B1%87%E6%80%BB/</guid><description>&lt;h1 id="免费的大语言模型api汇总"&gt;免费的大语言模型API汇总
+&lt;/table&gt;</description></item><item><title>免费的大语言模型API汇总</title><link>https://blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8Bapi%E6%B1%87%E6%80%BB/</link><pubDate>Sat, 03 Jan 2026 15:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8Bapi%E6%B1%87%E6%80%BB/</guid><description>&lt;h1 id="免费的大语言模型api汇总"&gt;免费的大语言模型API汇总
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/cheahjs/free-llm-api-resources" target="_blank" rel="noopener"
 &gt;GitHub-Repo-地址&lt;/a&gt;&lt;/p&gt;
@@ -91953,7 +91953,7 @@ loading="lazy"
 &lt;/ul&gt;
 &lt;p&gt;我们会定期根据使用量进行相应的扩容，只要不被官方制裁我们会一直提供免费API，如果该项目对你有帮助，还请为我们点一个_&lt;strong&gt;Star&lt;/strong&gt;_。如果遇到问题可以在&lt;a class="link" href="https://github.com/chatanywhere/GPT_API_free/issues" target="_blank" rel="noopener"
 &gt;Issues&lt;/a&gt;中反馈，有空会解答。&lt;/p&gt;
-&lt;p&gt;该API Key用于转发API，需要将Host改为&lt;code&gt;api.chatanywhere.tech&lt;/code&gt;(国内首选)或者&lt;code&gt;api.chatanywhere.org&lt;/code&gt;(国外使用)。&lt;/p&gt;</description></item><item><title>从 VAE 到 CVAE：解锁生成模型的 “可控” 魔法</title><link>blog.zwzhang.com/p/%E4%BB%8E-vae-%E5%88%B0-cvae%E8%A7%A3%E9%94%81%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84-%E5%8F%AF%E6%8E%A7-%E9%AD%94%E6%B3%95/</link><pubDate>Fri, 02 Jan 2026 19:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BB%8E-vae-%E5%88%B0-cvae%E8%A7%A3%E9%94%81%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84-%E5%8F%AF%E6%8E%A7-%E9%AD%94%E6%B3%95/</guid><description>&lt;h1 id="从-vae-到-cvae解锁生成模型的-可控-魔法"&gt;从 VAE 到 CVAE：解锁生成模型的 “可控” 魔法
+&lt;p&gt;该API Key用于转发API，需要将Host改为&lt;code&gt;api.chatanywhere.tech&lt;/code&gt;(国内首选)或者&lt;code&gt;api.chatanywhere.org&lt;/code&gt;(国外使用)。&lt;/p&gt;</description></item><item><title>从 VAE 到 CVAE：解锁生成模型的 “可控” 魔法</title><link>https://blog.zwzhang.com/p/%E4%BB%8E-vae-%E5%88%B0-cvae%E8%A7%A3%E9%94%81%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84-%E5%8F%AF%E6%8E%A7-%E9%AD%94%E6%B3%95/</link><pubDate>Fri, 02 Jan 2026 19:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BB%8E-vae-%E5%88%B0-cvae%E8%A7%A3%E9%94%81%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84-%E5%8F%AF%E6%8E%A7-%E9%AD%94%E6%B3%95/</guid><description>&lt;h1 id="从-vae-到-cvae解锁生成模型的-可控-魔法"&gt;从 VAE 到 CVAE：解锁生成模型的 “可控” 魔法
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;在生成式人工智能的浪潮里，变分自编码器（Variational Autoencoder，VAE）绝对是绕不开的经典模型。它凭借优雅的概率建模思想，打破了传统自编码器 “确定性生成” 的局限；而它的改进版 —— 条件变分自编码器（Conditional Variational Autoencoder，CVAE），更是给生成任务加上了 “可控开关”，让机器能按我们的指令生成想要的内容。今天，我们就来聊聊 VAE 和 CVAE 的核心原理，以及它们在现实世界中的精彩应用。&lt;/p&gt;
 &lt;p&gt;本文将使用 PyTorch 实现变分自编码器（VAE）和 条件变分自编码器(CVAE)，并在 MNIST 数据集上进行训练与评估。&lt;/p&gt;
@@ -93391,7 +93391,7 @@ loading="lazy"
 &lt;li&gt;本实现完整覆盖了 CVAE 的核心组件：类别嵌入层、带条件的编码器 / 解码器、重参数化技巧，且针对 MNIST 数据集做了优化，兼容 Python 3.8。&lt;/li&gt;
 &lt;li&gt;实现了训练误差的实时打印与可视化，同时支持默认全数字生成和手动指定数字生成，生成图像存储路径清晰，结果可复现。&lt;/li&gt;
 &lt;li&gt;代码结构清晰，注释详细，便于后续扩展（如迁移到其他数据集、添加卷积层提升生成质量）。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>Python 实现图片的算术编码压缩与解码</title><link>blog.zwzhang.com/p/python-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E7%A0%81/</link><pubDate>Fri, 02 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/python-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E7%A0%81/</guid><description>&lt;h1 id="python-实现图片的算术编码压缩与解码含压缩比评估"&gt;Python 实现图片的算术编码压缩与解码（含压缩比评估）
+&lt;/ol&gt;</description></item><item><title>Python 实现图片的算术编码压缩与解码</title><link>https://blog.zwzhang.com/p/python-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E7%A0%81/</link><pubDate>Fri, 02 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/python-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E7%A0%81/</guid><description>&lt;h1 id="python-实现图片的算术编码压缩与解码含压缩比评估"&gt;Python 实现图片的算术编码压缩与解码（含压缩比评估）
 &lt;/h1&gt;&lt;h2 id="项目说明"&gt;项目说明
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;图片处理流程：先将图片转换为灰度图（简化数据维度，便于算术编码处理），再提取像素数据转为可编码序列，后续进行&lt;strong&gt;自适应算术编码&lt;/strong&gt;（无需预先统计像素概率，编码过程中动态更新概率分布，适配图片像素的复杂分布，压缩效果更优）。&lt;/li&gt;
@@ -94353,7 +94353,7 @@ loading="lazy"
 &lt;li&gt;本代码实现了图片的&lt;strong&gt;自适应算术编码无损压缩&lt;/strong&gt;全流程，结构清晰、注释齐全，满足 “编码→保存→解码→还原→指标评估” 的全部需求。&lt;/li&gt;
 &lt;li&gt;核心亮点是采用自适应算术编码，无需预先统计像素概率，适配图片的复杂数据分布，保证了压缩效果与通用性。&lt;/li&gt;
 &lt;li&gt;输出的压缩比、压缩效率等指标可直观评估压缩效果，像素一致性验证确保了压缩过程的无损性，可作为算术编码在图片压缩领域的入门实践参考。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>一文读懂算术编码原理：从核心思想到实战示例</title><link>blog.zwzhang.com/p/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8E%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%88%B0%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B/</link><pubDate>Thu, 01 Jan 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8E%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%88%B0%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B/</guid><description>&lt;h1 id="一文读懂算术编码原理从核心思想到实战示例"&gt;一文读懂算术编码原理：从核心思想到实战示例
+&lt;/ol&gt;</description></item><item><title>一文读懂算术编码原理：从核心思想到实战示例</title><link>https://blog.zwzhang.com/p/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8E%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%88%B0%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B/</link><pubDate>Thu, 01 Jan 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E7%AE%97%E6%9C%AF%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8E%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%88%B0%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B/</guid><description>&lt;h1 id="一文读懂算术编码原理从核心思想到实战示例"&gt;一文读懂算术编码原理：从核心思想到实战示例
 &lt;/h1&gt;&lt;p&gt;算术编码（Arithmetic Coding）是一种高效的无损数据压缩算法，与霍夫曼编码齐名，但在处理短序列、高冗余数据时往往能实现更高的压缩比。它打破了 “一个符号对应一个编码码字” 的传统思路，而是将整个待编码数据序列映射为一个 &lt;code&gt;[0,1)&lt;/code&gt; 区间内的小数 ，最终通过输出这个小数的二进制表示实现压缩。本文将从核心原理入手，结合具体示例逐步拆解，并通过 Python 代码实现一个简易版算术编码与解码。&lt;/p&gt;
 &lt;h2 id="一算术编码的核心思想"&gt;一、算术编码的核心思想
 &lt;/h2&gt;&lt;p&gt;与霍夫曼编码的 “符号→码字” 一对一映射不同，算术编码的核心逻辑可以概括为 3 点：&lt;/p&gt;
@@ -95422,7 +95422,7 @@ loading="lazy"
 &lt;p&gt;&lt;a class="link" href="https://mohammad-gholizadeh.github.io/Post-3-Arithmetic%20with%20Python.html" target="_blank" rel="noopener"
 &gt;Arithmetic Encoding and Decoding with Python&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://tommyodland.com/articles/2024/arithmetic-coding-in-python/" target="_blank" rel="noopener"
-&gt;Arithmetic coding in Python&lt;/a&gt;&lt;/p&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
+&gt;Arithmetic coding in Python&lt;/a&gt;&lt;/p&gt;</description></item><item><title>谷粒-Chrome插件英雄榜</title><link>https://blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</link><pubDate>Wed, 31 Dec 2025 14:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%B0%B7%E7%B2%92-chrome%E6%8F%92%E4%BB%B6%E8%8B%B1%E9%9B%84%E6%A6%9C/</guid><description>&lt;h1 id="谷粒-chrome插件英雄榜"&gt;谷粒-Chrome插件英雄榜
 &lt;/h1&gt;&lt;p&gt;🌈谷粒-Chrome插件英雄榜, 为优秀的Chrome插件写一本中文说明书, 让Chrome插件英雄们造福人类~
 ChromeAppHeroes, Write a Chinese manual for the excellent Chrome plugin, let the Chrome plugin heroes benefit the human~&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://raw.githubusercontent.com/zhaoolee/ChromeAppHeroes/master/README/17106763830728faCQ0DR.png"
@@ -96235,7 +96235,7 @@ alt="谷粒VI设计.png"
 &gt;Chrome扩展资源站点推荐&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="chrome扩展程序相关网站推荐"&gt;Chrome扩展程序相关网站推荐
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.chajian5.com/" target="_blank" rel="noopener"
-&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
+&gt;chajian5: 收藏好用的Chrome插件，不推荐评分低的还有多年不更新的插件。支持百度网盘和360云盘转存或下载，方便快捷。&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Vibe Coding 指南</title><link>https://blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 29 Dec 2025 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/vibe-coding-%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="vibe-coding-指南"&gt;Vibe Coding 指南
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;一个通过与 AI 结对编程，将想法变为现实的终极工作站&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/tukuaiai/vibe-coding-cn" target="_blank" rel="noopener"
 &gt;来源——GitHub Repo&lt;/a&gt;&lt;/p&gt;
@@ -97157,7 +97157,7 @@ alt="谷粒VI设计.png"
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/details&gt;</description></item><item><title>大语言模型基础</title><link>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 29 Dec 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="大语言模型基础"&gt;大语言模型基础
+&lt;/details&gt;</description></item><item><title>大语言模型基础</title><link>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 29 Dec 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="大语言模型基础"&gt;大语言模型基础
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本文来源于DataWhale组织《Hello-Agents》课程，课程链接为&lt;a class="link" href="https://datawhalechina.github.io/hello-agents/#/./chapter3/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80" target="_blank" rel="noopener"
 &gt;第三章大语言模型基础&lt;/a&gt;。&lt;/p&gt;
@@ -99008,7 +99008,7 @@ $$PE_{(pos,2i)}=\sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)，$$$$P
 &lt;p&gt;[11] Ji, Z., Lee, N., Fries, R., Yu, T., &amp;amp; Su, D. (2023). Survey of Hallucination in Large Language Models.&lt;/p&gt;
 &lt;p&gt;[12] Bender, E. M., Gebru, T., McMillan-Major, A., &amp;amp; Mitchell, M. (2021). On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? .&lt;/p&gt;
 &lt;p&gt;[13] Christiano, P., Leike, J., Brown, T. B., Martic, M., Legg, S., &amp;amp; Amodei, D. (2017). Deep reinforcement learning from human preferences. &lt;em&gt;arXiv preprint arXiv:1706.03741&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;[14] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goswami, N., &amp;hellip; &amp;amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. In &lt;em&gt;Advances in neural information processing systems&lt;/em&gt; (pp. 9459-9474).&lt;/p&gt;</description></item><item><title>如何从 pnpm 还原使用 npm ？</title><link>blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E4%BB%8E-pnpm-%E8%BF%98%E5%8E%9F%E4%BD%BF%E7%94%A8-npm/</link><pubDate>Sun, 28 Dec 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E4%BB%8E-pnpm-%E8%BF%98%E5%8E%9F%E4%BD%BF%E7%94%A8-npm/</guid><description>&lt;h1 id="如何从-pnpm-还原使用-npm-"&gt;如何从 pnpm 还原使用 npm ？
+&lt;p&gt;[14] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goswami, N., &amp;hellip; &amp;amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. In &lt;em&gt;Advances in neural information processing systems&lt;/em&gt; (pp. 9459-9474).&lt;/p&gt;</description></item><item><title>如何从 pnpm 还原使用 npm ？</title><link>https://blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E4%BB%8E-pnpm-%E8%BF%98%E5%8E%9F%E4%BD%BF%E7%94%A8-npm/</link><pubDate>Sun, 28 Dec 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E4%BB%8E-pnpm-%E8%BF%98%E5%8E%9F%E4%BD%BF%E7%94%A8-npm/</guid><description>&lt;h1 id="如何从-pnpm-还原使用-npm-"&gt;如何从 pnpm 还原使用 npm ？
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://www.levenx.com/issues/how-to-revert-from-pnpm-to-npm/531241811290" target="_blank" rel="noopener"
 &gt;如何从 pnpm 还原使用 npm ？&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;理解各种包管理器及其互操作性是很重要的。从 pnpm 还原到 npm，主要步骤如下：&lt;/p&gt;
@@ -99029,7 +99029,7 @@ $$PE_{(pos,2i)}=\sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)，$$$$P
 &lt;/h3&gt;&lt;p&gt;假设我之前使用 pnpm 管理一个 Node.js 项目，该项目依赖于 Express 和 React。转换过程中，我会首先删除由 pnpm 创建的锁文件和 &lt;code&gt;node_modules&lt;/code&gt; 文件夹，然后使用 npm 重新安装依赖，并确保通过所有测试。&lt;/p&gt;
 &lt;p&gt;这个过程保证了从一个包管理器到另一个包管理器的平滑过渡，同时确保项目的稳定性和一致性。&lt;/p&gt;
 &lt;h3 id="结论"&gt;结论
-&lt;/h3&gt;&lt;p&gt;虽然 pnpm 提供了优异的性能和磁盘空间优化，但在某些团队或项目中可能需要统一使用 npm。以上步骤可以帮助实现从 pnpm 到 npm 的无缝过渡。&lt;/p&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
+&lt;/h3&gt;&lt;p&gt;虽然 pnpm 提供了优异的性能和磁盘空间优化，但在某些团队或项目中可能需要统一使用 npm。以上步骤可以帮助实现从 pnpm 到 npm 的无缝过渡。&lt;/p&gt;</description></item><item><title>PDF文档格式转换处理工具MinerU</title><link>https://blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</link><pubDate>Fri, 26 Dec 2025 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/pdf%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7mineru/</guid><description>&lt;h1 id="pdf文档格式转换处理工具mineru"&gt;PDF文档格式转换处理工具MinerU
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p align="center"&gt;
 🚀&lt;a href="https://mineru.net/?source=github"&gt;MinerU 官网入口→✅ 免装在线版 ✅ 全功能客户端 ✅ 开发者API在线调用，省去部署麻烦，多种产品形态一键get，速冲！&lt;/a&gt;
@@ -99300,7 +99300,7 @@ alt="HuggingFace"
 &gt;Magic-Doc (Fast speed ppt/pptx/doc/docx/pdf extraction tool)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://github.com/MigoXLab/dingo" target="_blank" rel="noopener"
 &gt;Dingo: A Comprehensive AI Data Quality Evaluation Tool&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
+&lt;/ul&gt;</description></item><item><title>播放器软件Screenbox</title><link>https://blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</link><pubDate>Fri, 26 Dec 2025 13:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%92%AD%E6%94%BE%E5%99%A8%E8%BD%AF%E4%BB%B6screenbox/</guid><description>&lt;h1 id="简约高颜值本地免费开源播放器screenbox"&gt;简约、高颜值、本地免费开源播放器：Screenbox
 &lt;/h1&gt;&lt;p&gt;本工具中的一些特色功能值得深入研究一下，比如热键控制、手势控制等。&lt;/p&gt;
 &lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://xiaoyi.vc/screenbox.html" target="_blank" rel="noopener"
@@ -99332,7 +99332,7 @@ alt="HuggingFace"
 &gt;https://www.123pan.com/s/c8zA-mZ5N3.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;微软商店：&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://apps.microsoft.com/store/detail/9NTSNMSVCB5L" target="_blank" rel="noopener"
-&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>新机必备软件个人版</title><link>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6%E4%B8%AA%E4%BA%BA%E7%89%88/</link><pubDate>Mon, 22 Dec 2025 11:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6%E4%B8%AA%E4%BA%BA%E7%89%88/</guid><description>&lt;h1 id="新机windows11系统配置"&gt;新机Windows11系统配置
+&gt;https://apps.microsoft.com/store/detail/9NTSNMSVCB5L&lt;/a&gt;&lt;/p&gt;</description></item><item><title>新机必备软件个人版</title><link>https://blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6%E4%B8%AA%E4%BA%BA%E7%89%88/</link><pubDate>Mon, 22 Dec 2025 11:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6%E4%B8%AA%E4%BA%BA%E7%89%88/</guid><description>&lt;h1 id="新机windows11系统配置"&gt;新机Windows11系统配置
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;软件安装还是有些讲究的~&lt;/p&gt;
 &lt;p&gt;破解Jetbrains IDE可以一行代码解决~&lt;/p&gt;
@@ -99390,7 +99390,7 @@ target="_blank" rel="noopener"
 &lt;p&gt;&lt;a class="link" href="https://git-scm.com/install/windows" target="_blank" rel="noopener"
 &gt;https://git-scm.com/install/windows&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://gohugo.com.cn/installation/windows/" target="_blank" rel="noopener"
-&gt;https://gohugo.com.cn/installation/windows/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>如何写出一篇一流论文</title><link>blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E4%B8%80%E6%B5%81%E8%AE%BA%E6%96%87/</link><pubDate>Wed, 10 Dec 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E4%B8%80%E6%B5%81%E8%AE%BA%E6%96%87/</guid><description>&lt;h1 id="如何写出一篇一流的论文"&gt;&lt;strong&gt;如何写出一篇一流的论文&lt;/strong&gt;
+&gt;https://gohugo.com.cn/installation/windows/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>如何写出一篇一流论文</title><link>https://blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E4%B8%80%E6%B5%81%E8%AE%BA%E6%96%87/</link><pubDate>Wed, 10 Dec 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E4%B8%80%E6%B5%81%E8%AE%BA%E6%96%87/</guid><description>&lt;h1 id="如何写出一篇一流的论文"&gt;&lt;strong&gt;如何写出一篇一流的论文&lt;/strong&gt;
 &lt;/h1&gt;&lt;p&gt;Six experts offer advice on producing a manuscript that will get published and pull in readers.&lt;/p&gt;
 &lt;p&gt;六位专家就撰写将发表并吸引读者的手稿提供了建议。&lt;/p&gt;
 &lt;p&gt;Find a new job找一份新工作&lt;/p&gt;
@@ -99465,7 +99465,7 @@ target="_blank" rel="noopener"
 &lt;p&gt;Those findings tie in with my experience. My biggest piece of advice is to get to the point. Authors spend a lot of time setting up long-winded arguments to knock down possible objections before they actually state their case. Make your point clearly and concisely — if possible in non-specialist language, so that readers from other fields can quickly make sense of it.&lt;/p&gt;
 &lt;p&gt;这些发现与我的经验相吻合。我最大的建议是切入主题。作者在真正陈述自己的观点之前，花费了大量时间来提出冗长的论点，以消除可能的反对意见。清楚、简洁地表达你的观点——如果可能的话，使用非专业语言，以便其他领域的读者可以快速理解它。&lt;/p&gt;
 &lt;p&gt;If you write in a way that is accessible to non-specialists, you are not only opening yourself up to citations by experts in other fields, but you are also making your writing available to laypeople, which is especially important in the biomedical fields. My Altmetric colleague Amy Rees notes that she sees a trend towards academics being more deliberate and thoughtful in how they disseminate their work. For example, we see more scientists writing lay summaries in publications such as The Conversation, a media outlet through which academics share news and opinions.&lt;/p&gt;
-&lt;p&gt;如果您以非专业人士可以理解的方式写作，那么您不仅可以被其他领域的专家引用，而且还可以让外行人可以阅读您的作品，这在生物医学领域尤其重要。我的 Altmetric 同事艾米·里斯 (Amy Rees) 指出，她认为学者们在传播其研究成果时更加深思熟虑和深思熟虑。例如，我们看到越来越多的科学家在《对话》（The Conversation）等出版物上撰写简明摘要，这是学者们分享新闻和观点的媒体渠道。&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
+&lt;p&gt;如果您以非专业人士可以理解的方式写作，那么您不仅可以被其他领域的专家引用，而且还可以让外行人可以阅读您的作品，这在生物医学领域尤其重要。我的 Altmetric 同事艾米·里斯 (Amy Rees) 指出，她认为学者们在传播其研究成果时更加深思熟虑和深思熟虑。例如，我们看到越来越多的科学家在《对话》（The Conversation）等出版物上撰写简明摘要，这是学者们分享新闻和观点的媒体渠道。&lt;/p&gt;</description></item><item><title>Telegram群组推荐</title><link>https://blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</link><pubDate>Sun, 26 Oct 2025 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/telegram%E7%BE%A4%E7%BB%84%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="导航网址"&gt;导航网址
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://feijiqun.github.io/" title="https://feijiqun.github.io"
 target="_blank" rel="noopener"
 &gt;专注于“电报群 / 飞机群 / Telegram群组”的高质量导航平台。我们精心整理全球范围内的热门 Telegram 群组与频道，涵盖学习、资源、娱乐、投资等各大分类，并支持关键词智能搜索与标签筛选，让你不错过每一个优质社群。&lt;/a&gt;&lt;/p&gt;
@@ -107001,7 +107001,7 @@ target="_blank" rel="noopener"
 &lt;/table&gt;
 &lt;h2 id="-合作请联系-newlinkauditbot-1"&gt;📨 合作请联系 &lt;a class="link" href="https://t.me/NewLinkAuditBot" target="_blank" rel="noopener"
 &gt;@NewLinkAuditBot&lt;/a&gt;
-&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
+&lt;/h2&gt;</description></item><item><title>MAS：一条命令永久激活Windows和Office</title><link>https://blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</link><pubDate>Wed, 15 Oct 2025 17:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/mas%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BBwindows%E5%92%8Coffice/</guid><description>&lt;h1 id="mas一条命令永久激活windows和office"&gt;MAS：一条命令永久激活Windows和Office
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank" rel="noopener"
 &gt;GitHub-MAS&lt;/a&gt;&lt;/p&gt;
@@ -107050,7 +107050,7 @@ loading="lazy"
 &lt;p&gt;选择“3”：TSForge是一款由MAS团队开发的工具，能够绕过微软的在线验证机制，实现Windows和Office的永久激活。&lt;/p&gt;
 &lt;p&gt;选择“4”：采用 KMS38 激活方式，激活 Windows/Server 到2038年，无需联网。&lt;/p&gt;
 &lt;p&gt;选择“5”： 采用 Online KMS 激活方式，激活 Windows/Server/Office 一次180天，到期自动续，需要联网。&lt;/p&gt;
-&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
+&lt;p&gt;选择相应数字，回车之后，稍等片刻，成功激活！&lt;/p&gt;</description></item><item><title>一键激活所有 JetBrains 产品</title><link>https://blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</link><pubDate>Wed, 15 Oct 2025 15:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%B8%80%E9%94%AE%E6%BF%80%E6%B4%BB%E6%89%80%E6%9C%89-jetbrains-%E4%BA%A7%E5%93%81/</guid><description>&lt;h1 id="一键激活所有-jetbrains-产品"&gt;一键激活所有 JetBrains 产品
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="http://jb.ide.to/" target="_blank" rel="noopener"
 &gt;颠覆所有——一键激活所有 JetBrains 产品&lt;/a&gt;&lt;/p&gt;
@@ -107209,7 +107209,7 @@ alt="image.png"
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
+&lt;p&gt;通过以上步骤，您已经成功安装IDEA 2024。让更多人受益！ 😊&lt;/p&gt;</description></item><item><title>新机必备——删除预装软件的程序Win11Debloat</title><link>https://blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</link><pubDate>Wed, 15 Oct 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E5%88%A0%E9%99%A4%E9%A2%84%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%A8%8B%E5%BA%8Fwin11debloat/</guid><description>&lt;h1 id="新机必备win11debloat"&gt;新机必备——Win11Debloat
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Raphire/Win11Debloat" target="_blank" rel="noopener"
 &gt;A simple, lightweight PowerShell script to remove pre-installed apps, disable telemetry, as well as perform various other changes to customize, declutter and improve your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.&lt;/a&gt;&lt;/p&gt;
@@ -107290,7 +107290,7 @@ loading="lazy"
 alt="Win11Debloat"
 &gt;&lt;/p&gt;
 &lt;p&gt;建議您在使用 Win11Debloat 應用程式之前先建立還原點，以防遇到問題。&lt;/p&gt;
-&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>程序员做饭指南</title><link>blog.zwzhang.com/p/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%81%9A%E9%A5%AD%E6%8C%87%E5%8D%97/</link><pubDate>Tue, 14 Oct 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%81%9A%E9%A5%AD%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="程序员做饭指南"&gt;程序员做饭指南
+&lt;p&gt;Win11Debloat 所做的所有變更都可以輕鬆還原，幾乎所有的應用程式都可以透過 Microsoft Store 重新安裝。&lt;/p&gt;</description></item><item><title>程序员做饭指南</title><link>https://blog.zwzhang.com/p/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%81%9A%E9%A5%AD%E6%8C%87%E5%8D%97/</link><pubDate>Tue, 14 Oct 2025 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%81%9A%E9%A5%AD%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="程序员做饭指南"&gt;程序员做饭指南
 &lt;/h1&gt;&lt;h2 id="简介"&gt;简介
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://cook.aiursoft.cn/" target="_blank" rel="noopener"
 &gt;程序员在家做饭方法指南&lt;/a&gt;&lt;/p&gt;
@@ -108143,7 +108143,7 @@ alt="Win11Debloat"
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class="link" href="https://www.bilibili.com/video/BV1ys411u7Z4" target="_blank" rel="noopener"
 &gt;美食作家王刚R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
+&lt;/ul&gt;</description></item><item><title>沉浸式开源浏览器翻译插件FluentRead</title><link>https://blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</link><pubDate>Tue, 14 Oct 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%BC%80%E6%BA%90%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6fluentread/</guid><description>&lt;h1 id="沉浸式开源浏览器翻译插件fluentread"&gt;沉浸式开源浏览器翻译插件FluentRead
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;由于沉浸式翻译存在安全问题，这里推荐FluentRead。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://fluent.thinkstu.com/" target="_blank" rel="noopener"
@@ -108233,7 +108233,7 @@ alt="流畅阅读（FluentRead）.webp"
 &lt;li&gt;配置指南&lt;/li&gt;
 &lt;li&gt;使用教程&lt;/li&gt;
 &lt;li&gt;常见问题&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
+&lt;/ul&gt;</description></item><item><title>手写笔记软件RNote</title><link>https://blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</link><pubDate>Mon, 13 Oct 2025 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%89%8B%E5%86%99%E7%AC%94%E8%AE%B0%E8%BD%AF%E4%BB%B6rnote/</guid><description>&lt;h1 id="rnote-手写笔记软件详解"&gt;RNote 手写笔记软件详解
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;随着数字时代的到来，越来越多的人开始使用电子设备进行笔记和创作。作为一款专注于手写体验的笔记软件，&lt;strong&gt;RNote&lt;/strong&gt;以其独特的设计理念和强大功能，成为众多用户心中的优选。本文将从软件特点、使用体验、设计理念等方面，为大家全面介绍RNote，希望能够帮助你更好地了解和使用这款高效的手写笔记工具。&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/flxzt/rnote" target="_blank" rel="noopener"
@@ -108280,7 +108280,7 @@ target="_blank" rel="noopener"
 &lt;ul&gt;
 &lt;li&gt;&lt;a class="link" href="https://pizarra.categulario.xyz/en/" target="_blank" rel="noopener"
 &gt;Pizarra官网&lt;/a&gt;（灵感来源，优秀的无限缩放绘图工具）&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>使用Java和Redis实现抢红包功能</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8java%E5%92%8Credis%E5%AE%9E%E7%8E%B0%E6%8A%A2%E7%BA%A2%E5%8C%85%E5%8A%9F%E8%83%BD/</link><pubDate>Sat, 06 Sep 2025 23:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8java%E5%92%8Credis%E5%AE%9E%E7%8E%B0%E6%8A%A2%E7%BA%A2%E5%8C%85%E5%8A%9F%E8%83%BD/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/ul&gt;</description></item><item><title>使用Java和Redis实现抢红包功能</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8java%E5%92%8Credis%E5%AE%9E%E7%8E%B0%E6%8A%A2%E7%BA%A2%E5%8C%85%E5%8A%9F%E8%83%BD/</link><pubDate>Sat, 06 Sep 2025 23:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8java%E5%92%8Credis%E5%AE%9E%E7%8E%B0%E6%8A%A2%E7%BA%A2%E5%8C%85%E5%8A%9F%E8%83%BD/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;抢红包功能实现主要包括发红包、抢红包、记红包和拆红包四块。&lt;/p&gt;
 &lt;p&gt;教程来源：&lt;a class="link" href="https://www.bilibili.com/video/BV13R4y1v7sP" target="_blank" rel="noopener"
 &gt;BV13R4y1v7sP&lt;/a&gt;&lt;/p&gt;
@@ -109343,7 +109343,7 @@ allowfullscreen="true"
 &lt;/div&gt;&lt;p&gt;注意：如果你明确知道存入的是某一类具体对象，可以将 &lt;code&gt;Jackson2JsonRedisSerializer&lt;/code&gt; 的泛型改为该对象类型，以提升反序列化的安全性和效率。&lt;/p&gt;
 &lt;h3 id="参考资料"&gt;参考资料
 &lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/cdnight/article/details/88803869" target="_blank" rel="noopener"
-&gt;redisTemplate中leftPushAll隐性bug的问题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Redis缓存模式详解：提升系统性能的艺术</title><link>blog.zwzhang.com/p/redis%E7%BC%93%E5%AD%98%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E6%8F%90%E5%8D%87%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E8%89%BA%E6%9C%AF/</link><pubDate>Thu, 31 Jul 2025 22:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/redis%E7%BC%93%E5%AD%98%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E6%8F%90%E5%8D%87%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E8%89%BA%E6%9C%AF/</guid><description>&lt;h1 id="redis缓存模式详解提升系统性能的艺术"&gt;Redis缓存模式详解：提升系统性能的艺术
+&gt;redisTemplate中leftPushAll隐性bug的问题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Redis缓存模式详解：提升系统性能的艺术</title><link>https://blog.zwzhang.com/p/redis%E7%BC%93%E5%AD%98%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E6%8F%90%E5%8D%87%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E8%89%BA%E6%9C%AF/</link><pubDate>Thu, 31 Jul 2025 22:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/redis%E7%BC%93%E5%AD%98%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E6%8F%90%E5%8D%87%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E8%89%BA%E6%9C%AF/</guid><description>&lt;h1 id="redis缓存模式详解提升系统性能的艺术"&gt;Redis缓存模式详解：提升系统性能的艺术
 &lt;/h1&gt;&lt;h2 id="引言"&gt;引言
 &lt;/h2&gt;&lt;p&gt;在现代分布式系统中，缓存是提高系统性能和减轻数据库压力的关键技术。Redis作为一种高性能的内存数据存储系统，提供了多种缓存模式，每种模式都有其独特的应用场景和优缺点。本文将深入探讨三种主要的Redis缓存模式：Cache Aside、Read Through和Write Through。&lt;/p&gt;
 &lt;h2 id="1-cache-aside模式旁路缓存"&gt;1. Cache Aside模式（旁路缓存）
@@ -109546,7 +109546,7 @@ alt="write-through"
 &lt;/h2&gt;&lt;p&gt;理解和正确使用Redis缓存模式是构建高性能、高可靠系统的关键。根据具体业务场景选择合适的缓存模式，能显著提升系统整体性能和用户体验。&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/150740291" target="_blank" rel="noopener"
-&gt;缓存模式（Cache Aside、Read Through、Write Through）&lt;/a&gt;&lt;/p&gt;</description></item><item><title>从零开始实现区块链货币</title><link>blog.zwzhang.com/p/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B4%A7%E5%B8%81/</link><pubDate>Tue, 29 Jul 2025 10:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B4%A7%E5%B8%81/</guid><description>&lt;h2 id="前言"&gt;前言
+&gt;缓存模式（Cache Aside、Read Through、Write Through）&lt;/a&gt;&lt;/p&gt;</description></item><item><title>从零开始实现区块链货币</title><link>https://blog.zwzhang.com/p/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B4%A7%E5%B8%81/</link><pubDate>Tue, 29 Jul 2025 10:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B4%A7%E5%B8%81/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;
 &lt;div class="video-wrapper"&gt;
 &lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV14E411v7eS"
@@ -111220,7 +111220,7 @@ allowfullscreen="true"
 &lt;li&gt;公钥：通过椭圆曲线点乘生成&lt;/li&gt;
 &lt;li&gt;地址：公钥哈希后Base58编码&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这两个机制共同构成了比特币网络的安全基础，确保了交易的可靠性和网络的去中心化特性。&lt;/p&gt;</description></item><item><title>12个炫酷的大屏可视化开源项目推荐</title><link>blog.zwzhang.com/p/12%E4%B8%AA%E7%82%AB%E9%85%B7%E7%9A%84%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</link><pubDate>Thu, 19 Jun 2025 18:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/12%E4%B8%AA%E7%82%AB%E9%85%B7%E7%9A%84%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="12个炫酷的大屏可视化开源项目推荐太高级了"&gt;12个炫酷的大屏可视化开源项目推荐，太高级了！
+&lt;p&gt;这两个机制共同构成了比特币网络的安全基础，确保了交易的可靠性和网络的去中心化特性。&lt;/p&gt;</description></item><item><title>12个炫酷的大屏可视化开源项目推荐</title><link>https://blog.zwzhang.com/p/12%E4%B8%AA%E7%82%AB%E9%85%B7%E7%9A%84%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</link><pubDate>Thu, 19 Jun 2025 18:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/12%E4%B8%AA%E7%82%AB%E9%85%B7%E7%9A%84%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</guid><description>&lt;h1 id="12个炫酷的大屏可视化开源项目推荐太高级了"&gt;12个炫酷的大屏可视化开源项目推荐，太高级了！
 &lt;/h1&gt;&lt;p&gt;大屏可视化作为数据展示和信息汇聚的重要形式，越来越受到开发者和设计师的关注。不论是学习、毕业设计，还是工作参考，一款优秀的大屏可视化开源项目都能帮助我们快速入门，提升项目质量。本文整理了12个超炫酷的开源大屏可视化项目，涵盖Vue、React、Three.js、ECharts、Cesium等多种技术栈，非常适合学习与参考，绝对干货满满，快收藏起来吧！&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="1-vue--threejs-的数据可视化项目"&gt;1. Vue + Three.js 的数据可视化项目
@@ -111348,7 +111348,7 @@ allowfullscreen="true"
 &lt;p&gt;结合Vue2、Vuex、Router和ECharts，支持基于缩放的屏幕适配，保障大屏在不同设备上良好的显示效果。图表进行了封装，方便快速传入数据使用。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id="总结"&gt;总结
-&lt;/h1&gt;&lt;p&gt;以上这12个开源大屏项目，囊括了目前主流的技术栈和流行的可视化组件。无论你是想研究3D可视化、智能城市大屏，还是动态数据展示或企业级PPT设计，均能找到合适的学习资源。收藏点赞，助你玩转大屏可视化，升级技能，打造高质量项目！&lt;/p&gt;</description></item><item><title>Rust 连接 MongoDB 和 MySQL 数据库完整教程</title><link>blog.zwzhang.com/p/rust-%E8%BF%9E%E6%8E%A5-mongodb-%E5%92%8C-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/</link><pubDate>Mon, 26 May 2025 18:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/rust-%E8%BF%9E%E6%8E%A5-mongodb-%E5%92%8C-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="rust-连接-mongodb-和-mysql-数据库完整教程"&gt;Rust 连接 MongoDB 和 MySQL 数据库完整教程
+&lt;/h1&gt;&lt;p&gt;以上这12个开源大屏项目，囊括了目前主流的技术栈和流行的可视化组件。无论你是想研究3D可视化、智能城市大屏，还是动态数据展示或企业级PPT设计，均能找到合适的学习资源。收藏点赞，助你玩转大屏可视化，升级技能，打造高质量项目！&lt;/p&gt;</description></item><item><title>Rust 连接 MongoDB 和 MySQL 数据库完整教程</title><link>https://blog.zwzhang.com/p/rust-%E8%BF%9E%E6%8E%A5-mongodb-%E5%92%8C-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/</link><pubDate>Mon, 26 May 2025 18:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/rust-%E8%BF%9E%E6%8E%A5-mongodb-%E5%92%8C-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="rust-连接-mongodb-和-mysql-数据库完整教程"&gt;Rust 连接 MongoDB 和 MySQL 数据库完整教程
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本文将详细讲解如何在 Rust 项目中连接 MongoDB 和 MySQL 数据库，包括从 &lt;code&gt;.env&lt;/code&gt; 文件读取配置，初始化连接，以及解决常见的连接和配置问题。文章分为两部分：&lt;/p&gt;
 &lt;ul&gt;
@@ -111637,7 +111637,7 @@ allowfullscreen="true"
 &lt;li&gt;对 MySQL，使用 &lt;code&gt;mysql_async&lt;/code&gt; 创建连接池并测试连接。&lt;/li&gt;
 &lt;li&gt;运行程序时只需修改 &lt;code&gt;.env&lt;/code&gt;，无需改动代码即可切换数据库配置和环境。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;希望本文能帮你快速上手 Rust 中 MongoDB 和 MySQL 的数据库连接。&lt;/p&gt;</description></item><item><title>Windows 批处理文件（.bat）应用详解与实用示例</title><link>blog.zwzhang.com/p/windows-%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6.bat%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B/</link><pubDate>Mon, 26 May 2025 12:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/windows-%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6.bat%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B/</guid><description>&lt;h1 id="windows-批处理文件bat应用详解与实用示例"&gt;Windows 批处理文件（.bat）应用详解与实用示例
+&lt;p&gt;希望本文能帮你快速上手 Rust 中 MongoDB 和 MySQL 的数据库连接。&lt;/p&gt;</description></item><item><title>Windows 批处理文件（.bat）应用详解与实用示例</title><link>https://blog.zwzhang.com/p/windows-%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6.bat%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B/</link><pubDate>Mon, 26 May 2025 12:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/windows-%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6.bat%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B/</guid><description>&lt;h1 id="windows-批处理文件bat应用详解与实用示例"&gt;Windows 批处理文件（.bat）应用详解与实用示例
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;在 Windows 环境下，批处理文件（Batch file，扩展名 &lt;code&gt;.bat&lt;/code&gt;）是自动执行一系列命令和任务的强大工具。无论是自动化重复性工作、简化日常操作，还是批量管理系统设置，批处理脚本都能显著提高效率，减少人为错误，特别适合 Windows 11 用户日常运维和办公自动化。&lt;/p&gt;
 &lt;p&gt;本文将从零开始，系统讲解 Windows 11 如何创建、编辑和运行批处理文件，并通过丰富示例展示其实际应用场景及写法技巧。&lt;/p&gt;
@@ -111853,7 +111853,7 @@ allowfullscreen="true"
 &lt;/h2&gt;&lt;p&gt;Windows 批处理文件为广大用户提供了一种低成本、门槛低的自动化解决方案。掌握它，可以轻松完成文件管理、软件启动、网络驱动映射、自动化文本处理等多种任务。希望本教程能帮助你快速上手批处理编程，从此高效管理你的 Windows 电脑。&lt;/p&gt;
 &lt;h2 id="参考资料"&gt;参考资料
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.windows11.pro/251520.html" target="_blank" rel="noopener"
-&gt;在 Windows 11上创建批处理 （.bat） 文件的 5 种方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>跨平台桌面应用工具Tauri2.0入门教程</title><link>blog.zwzhang.com/p/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7tauri2.0%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link><pubDate>Sat, 24 May 2025 20:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7tauri2.0%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="跨平台桌面应用工具tauri-20入门"&gt;跨平台桌面应用工具Tauri 2.0入门
+&gt;在 Windows 11上创建批处理 （.bat） 文件的 5 种方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>跨平台桌面应用工具Tauri2.0入门教程</title><link>https://blog.zwzhang.com/p/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7tauri2.0%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link><pubDate>Sat, 24 May 2025 20:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7tauri2.0%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid><description>&lt;h1 id="跨平台桌面应用工具tauri-20入门"&gt;跨平台桌面应用工具Tauri 2.0入门
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;em&gt;Tauri&lt;/em&gt; 是一款基于 Rust 的跨平台桌面应用开发框架，能够让开发者使用熟悉的前端技术（HTML、CSS、JavaScript 或现代框架如 React、Vue 等）来构建轻量级、高性能且安全的应用。相比 Electron，Tauri 打包体积更小（约4MB 对比 Electron 50MB），性能更优，占用资源更少。&lt;/p&gt;
 &lt;p&gt;本教程将带你从零开始创建一个基础的 Tauri 2.0 项目，包含环境搭建、项目初始化、前后端交互、构建打包等步骤，轻松打造跨平台桌面应用。&lt;/p&gt;
@@ -112219,7 +112219,7 @@ alt="运行效果示意"
 &lt;hr&gt;
 &lt;h2 id="小结"&gt;小结
 &lt;/h2&gt;&lt;p&gt;通过以上两种方式，无论是全新开发，还是在已有项目基础上集成，你都能轻松在 Windows 上快速启动 Tauri 应用。&lt;br&gt;
-接下来，我们将深入学习 Tauri API，掌握如何利用 Rust 后端增强应用功能，实现更复杂的交互与功能扩展。&lt;/p&gt;</description></item><item><title>相机标定及棋盘格标定法详解</title><link>blog.zwzhang.com/p/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8F%8A%E6%A3%8B%E7%9B%98%E6%A0%BC%E6%A0%87%E5%AE%9A%E6%B3%95%E8%AF%A6%E8%A7%A3/</link><pubDate>Tue, 20 May 2025 18:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8F%8A%E6%A3%8B%E7%9B%98%E6%A0%BC%E6%A0%87%E5%AE%9A%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="相机标定及棋盘格标定法详解"&gt;相机标定及棋盘格标定法详解
+接下来，我们将深入学习 Tauri API，掌握如何利用 Rust 后端增强应用功能，实现更复杂的交互与功能扩展。&lt;/p&gt;</description></item><item><title>相机标定及棋盘格标定法详解</title><link>https://blog.zwzhang.com/p/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8F%8A%E6%A3%8B%E7%9B%98%E6%A0%BC%E6%A0%87%E5%AE%9A%E6%B3%95%E8%AF%A6%E8%A7%A3/</link><pubDate>Tue, 20 May 2025 18:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8F%8A%E6%A3%8B%E7%9B%98%E6%A0%BC%E6%A0%87%E5%AE%9A%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="相机标定及棋盘格标定法详解"&gt;相机标定及棋盘格标定法详解
 &lt;/h1&gt;&lt;h2 id="什么是相机标定"&gt;什么是相机标定？
 &lt;/h2&gt;&lt;p&gt;相机标定（Camera Calibration）是指通过一组已知空间几何结构的物体（如棋盘格）拍摄图像，计算出相机的内参矩阵和畸变系数的过程。&lt;/p&gt;
 &lt;p&gt;这一步使得我们能够从二维图像像素坐标恢复三维空间信息，或者进行精准的图像几何校正。标定结果通常包括：&lt;/p&gt;
@@ -112787,7 +112787,7 @@ $$\min_{K, R_i, t_i} \sum_{i=1}^N \sum_{j=1}^M | x_{ij} - \hat{x}_{ij} |^2$$&lt;
 &lt;hr&gt;
 &lt;h1 id="总结"&gt;总结
 &lt;/h1&gt;&lt;p&gt;本文介绍了相机标定的基本原理和基于棋盘格的经典标定方法，结合数学模型重点阐述了相机内参数与变换关系。&lt;/p&gt;
-&lt;p&gt;通过重写的姿态估计代码，提供了实际如何利用OpenCV接口进行姿态求解与3D物体投影的实践示例，代码更规范，注释及变量命名清晰，便于学习和扩展。&lt;/p&gt;</description></item><item><title>Flutter入门指南与常用命令详解</title><link>blog.zwzhang.com/p/flutter%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</link><pubDate>Fri, 25 Apr 2025 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/flutter%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="flutter-入门指南与常用命令详解"&gt;Flutter 入门指南与常用命令详解
+&lt;p&gt;通过重写的姿态估计代码，提供了实际如何利用OpenCV接口进行姿态求解与3D物体投影的实践示例，代码更规范，注释及变量命名清晰，便于学习和扩展。&lt;/p&gt;</description></item><item><title>Flutter入门指南与常用命令详解</title><link>https://blog.zwzhang.com/p/flutter%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</link><pubDate>Fri, 25 Apr 2025 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/flutter%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h1 id="flutter-入门指南与常用命令详解"&gt;Flutter 入门指南与常用命令详解
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;本文介绍三个Flutter入门项目的基本操作及Flutter常用命令，帮助开发者快速上手Flutter开发。&lt;/p&gt;
 &lt;ul&gt;
@@ -113603,7 +113603,7 @@ $$\min_{K, R_i, t_i} \sum_{i=1}^N \sum_{j=1}^M | x_{ij} - \hat{x}_{ij} |^2$$&lt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>使用Pybind11调用C++函数</title><link>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8pybind11%E8%B0%83%E7%94%A8c-%E5%87%BD%E6%95%B0/</link><pubDate>Wed, 16 Apr 2025 22:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8pybind11%E8%B0%83%E7%94%A8c-%E5%87%BD%E6%95%B0/</guid><description>&lt;h1 id="使用pybind11调用c函数"&gt;使用Pybind11调用C++函数
+&lt;/div&gt;</description></item><item><title>使用Pybind11调用C++函数</title><link>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8pybind11%E8%B0%83%E7%94%A8c-%E5%87%BD%E6%95%B0/</link><pubDate>Wed, 16 Apr 2025 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BD%BF%E7%94%A8pybind11%E8%B0%83%E7%94%A8c-%E5%87%BD%E6%95%B0/</guid><description>&lt;h1 id="使用pybind11调用c函数"&gt;使用Pybind11调用C++函数
 &lt;/h1&gt;&lt;h2 id="pybind11-的作用"&gt;pybind11 的作用
 &lt;/h2&gt;&lt;p&gt;鉴于 Python 脚本的运行速度相对较慢，而 C++ 具有显著的性能优势，&lt;strong&gt;Pybind11&lt;/strong&gt; 成为了解决 Python 性能瓶颈的关键工具。它允许 Python 代码&lt;strong&gt;无缝调用&lt;/strong&gt;高性能的 C++ 程序，从而大幅提升脚本的执行效率。此外，Pybind11 还提供了&lt;strong&gt;双向互操作性&lt;/strong&gt;，支持 C++ 程序反向调用 Python 脚本，实现了两种语言的灵活集成。&lt;/p&gt;
 &lt;h2 id="使用包管理器-pypi-或-conda-安装-pybind11"&gt;使用包管理器 (PyPI 或 Conda) 安装 pybind11
@@ -113893,7 +113893,7 @@ $$\min_{K, R_i, t_i} \sum_{i=1}^N \sum_{j=1}^M | x_{ij} - \hat{x}_{ij} |^2$$&lt;
 &lt;p&gt;&lt;a class="link" href="https://cloud.tencent.com/developer/ask/sof/107426067" target="_blank" rel="noopener"
 &gt;Cmake find_package没有找到Pybind11，即使有提示？&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/151811267" target="_blank" rel="noopener"
-&gt;如何从根本上解决 find_package() 找不到第三方库的问题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Ubuntu24.04LTS安装Docker</title><link>blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</link><pubDate>Wed, 16 Apr 2025 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</guid><description>&lt;h1 id="ubuntu-24041-lts-安装-docker国内源版全程可访问"&gt;Ubuntu 24.04.1 LTS 安装 Docker（国内源版，全程可访问）
+&gt;如何从根本上解决 find_package() 找不到第三方库的问题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Ubuntu24.04LTS安装Docker</title><link>https://blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</link><pubDate>Wed, 16 Apr 2025 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/ubuntu24.04lts%E5%AE%89%E8%A3%85docker/</guid><description>&lt;h1 id="ubuntu-24041-lts-安装-docker国内源版全程可访问"&gt;Ubuntu 24.04.1 LTS 安装 Docker（国内源版，全程可访问）
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://www.cnblogs.com/boradviews/p/19329796" target="_blank" rel="noopener"
 &gt;https://www.cnblogs.com/boradviews/p/19329796&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;以下是适配 Ubuntu 24.04 的 Docker 安装命令，全程使用阿里云国内源，避免官方源访问慢/超时问题，步骤简洁且可直接复制执行：&lt;/p&gt;
@@ -114087,7 +114087,7 @@ $$\min_{K, R_i, t_i} \sum_{i=1}^N \sum_{j=1}^M | x_{ij} - \hat{x}_{ij} |^2$$&lt;
 确认已执行第七步的用户组配置，或重新登录终端（如 SSH 连接需重新连接）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;启动 Docker 失败&lt;/strong&gt;：&lt;br&gt;
 检查 containerd 状态：&lt;code&gt;sudo systemctl status containerd&lt;/code&gt;，若未启动则执行 &lt;code&gt;sudo systemctl start containerd&lt;/code&gt; 后再重启 Docker。&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>项目代码行数统计</title><link>blog.zwzhang.com/p/%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1/</link><pubDate>Sat, 05 Apr 2025 18:34:25 +0800</pubDate><guid>blog.zwzhang.com/p/%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1/</guid><description>&lt;h1 id="前言"&gt;前言
+&lt;/ol&gt;</description></item><item><title>项目代码行数统计</title><link>https://blog.zwzhang.com/p/%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1/</link><pubDate>Sat, 05 Apr 2025 18:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1/</guid><description>&lt;h1 id="前言"&gt;前言
 &lt;/h1&gt;&lt;p&gt;最近写了一个大项目，想知道这个项目有多少行代码就找了一些相关命令和工具，于是便有了这篇博文。&lt;/p&gt;
 &lt;p&gt;我使用下面的Linux命令计算Python、JavaScript、CSS和Vue文件中的代码行数，但过滤掉&lt;code&gt;node_modules&lt;/code&gt;目录下的文件。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -114454,7 +114454,7 @@ $$\min_{K, R_i, t_i} \sum_{i=1}^N \sum_{j=1}^M | x_{ij} - \hat{x}_{ij} |^2$$&lt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h1 id="参考资料"&gt;参考资料
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/jimojianghu/article/details/129792250" target="_blank" rel="noopener"
-&gt;在项目开发中统计代码行数的 6 种方式&lt;/a&gt;&lt;/p&gt;</description></item><item><title>MERN全栈项目——TravelStory简述</title><link>blog.zwzhang.com/p/mern%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AEtravelstory%E7%AE%80%E8%BF%B0/</link><pubDate>Sat, 28 Sep 2024 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/p/mern%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AEtravelstory%E7%AE%80%E8%BF%B0/</guid><description>&lt;h2 id="前言"&gt;前言
+&gt;在项目开发中统计代码行数的 6 种方式&lt;/a&gt;&lt;/p&gt;</description></item><item><title>MERN全栈项目——TravelStory简述</title><link>https://blog.zwzhang.com/p/mern%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AEtravelstory%E7%AE%80%E8%BF%B0/</link><pubDate>Sat, 28 Sep 2024 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/mern%E5%85%A8%E6%A0%88%E9%A1%B9%E7%9B%AEtravelstory%E7%AE%80%E8%BF%B0/</guid><description>&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;原作者用的是commonJS语法， 代码结构也很混乱特别是后端部分，这里按照我在别处学到的内容做了一些修改，确保一个文件中不会有太多代码。&lt;/p&gt;
 &lt;p&gt;作者没有开源源代码，这里的代码可能存在一些小问题。&lt;/p&gt;
 &lt;p&gt;主要技术栈：MongoDB, Express, React, Node.js&lt;/p&gt;
@@ -115465,7 +115465,7 @@ alt="enter image description here"
 &lt;p&gt;&lt;a class="link" href="https://picsvg.com/" target="_blank" rel="noopener"
 &gt;Picsvg&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Need to convert a picture to SVG format ?&lt;/p&gt;
-&lt;p&gt;Picsvg is a free online converter that can convert an image to a SVG file.You can upload an image file (jpg,gif,png) up to 4 Mb, then you can select effects to enhance the SVG image result.&lt;/p&gt;</description></item><item><title>归档</title><link>blog.zwzhang.com/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>blog.zwzhang.com/archives/</guid><description/></item><item><title>关于</title><link>blog.zwzhang.com/%E5%85%B3%E4%BA%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>blog.zwzhang.com/%E5%85%B3%E4%BA%8E/</guid><description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;</description></item><item><title>搜索</title><link>blog.zwzhang.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>blog.zwzhang.com/search/</guid><description/></item><item><title>友链</title><link>blog.zwzhang.com/%E5%8F%8B%E9%93%BE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>blog.zwzhang.com/%E5%8F%8B%E9%93%BE/</guid><description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
+&lt;p&gt;Picsvg is a free online converter that can convert an image to a SVG file.You can upload an image file (jpg,gif,png) up to 4 Mb, then you can select effects to enhance the SVG image result.&lt;/p&gt;</description></item><item><title>归档</title><link>https://blog.zwzhang.com/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://blog.zwzhang.com/archives/</guid><description/></item><item><title>关于</title><link>https://blog.zwzhang.com/%E5%85%B3%E4%BA%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.zwzhang.com/%E5%85%B3%E4%BA%8E/</guid><description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;</description></item><item><title>搜索</title><link>https://blog.zwzhang.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.zwzhang.com/search/</guid><description/></item><item><title>友链</title><link>https://blog.zwzhang.com/%E5%8F%8B%E9%93%BE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.zwzhang.com/%E5%8F%8B%E9%93%BE/</guid><description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;

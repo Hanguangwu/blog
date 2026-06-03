@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub on Hanguangwu</title><link>blog.zwzhang.com/en/categories/github/</link><description>Recent content in GitHub on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 30 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="blog.zwzhang.com/en/categories/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Awesome Law Tech</title><link>blog.zwzhang.com/en/p/awesome-law-tech/</link><pubDate>Sat, 30 May 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/awesome-law-tech/</guid><description>&lt;h1 id="awesome-legaltech"&gt;Awesome Legaltech
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub on Hanguangwu</title><link>https://blog.zwzhang.com/en/categories/github/</link><description>Recent content in GitHub on Hanguangwu</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 30 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/en/categories/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Awesome Law Tech</title><link>https://blog.zwzhang.com/en/p/awesome-law-tech/</link><pubDate>Sat, 30 May 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/awesome-law-tech/</guid><description>&lt;h1 id="awesome-legaltech"&gt;Awesome Legaltech
 &lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Vaquill-AI/awesome-legaltech" target="_blank" rel="noopener"
 &gt;Legal technology (legaltech)&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -2219,7 +2219,7 @@
 &gt;openlegaldata/awesome-legal-data&lt;/a&gt; - Curated collection of legal text-processing datasets and resources.&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://github.com/Jeryi-Sun/LLM-and-Law" target="_blank" rel="noopener"
 &gt;Jeryi-Sun/LLM-and-Law&lt;/a&gt; - Continually-updated paper list on LLMs applied to law.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>GitHub Repo Deep-Learning-Based-Image-Compression</title><link>blog.zwzhang.com/en/p/github-repo-deep-learning-based-image-compression/</link><pubDate>Mon, 23 Mar 2026 13:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/github-repo-deep-learning-based-image-compression/</guid><description>&lt;h1 id="awesome-public-datasets"&gt;Awesome Public Datasets
+&lt;/ul&gt;</description></item><item><title>GitHub Repo Deep-Learning-Based-Image-Compression</title><link>https://blog.zwzhang.com/en/p/github-repo-deep-learning-based-image-compression/</link><pubDate>Mon, 23 Mar 2026 13:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/github-repo-deep-learning-based-image-compression/</guid><description>&lt;h1 id="awesome-public-datasets"&gt;Awesome Public Datasets
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/ppingzhang/Deep-Learning-Based-Image-Compression" target="_blank" rel="noopener"
 &gt;The paper list about deep learning based image compression&lt;/a&gt;&lt;/p&gt;
@@ -4172,7 +4172,7 @@ Learning with Denoising&lt;/strong&gt; Cheng, Ka Leong and Xie, Yueqi and Chen, 
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="2018"&gt;✔2018
-&lt;/h2&gt;&lt;hr&gt;</description></item><item><title>Awesome LLM Apps</title><link>blog.zwzhang.com/en/p/awesome-llm-apps/</link><pubDate>Tue, 10 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/awesome-llm-apps/</guid><description>&lt;h1 id="-awesome-llm-apps"&gt;🌟 Awesome LLM Apps
+&lt;/h2&gt;&lt;hr&gt;</description></item><item><title>Awesome LLM Apps</title><link>https://blog.zwzhang.com/en/p/awesome-llm-apps/</link><pubDate>Tue, 10 Feb 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/awesome-llm-apps/</guid><description>&lt;h1 id="-awesome-llm-apps"&gt;🌟 Awesome LLM Apps
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;A curated collection of &lt;strong&gt;Awesome LLM apps built with RAG, AI Agents, Multi-agent Teams, MCP, Voice Agents, and more.&lt;/strong&gt; This repository features LLM apps that use models from &lt;img src="https://cdn.simpleicons.org/openai" alt="openai logo" width="25" height="15"&gt;&lt;strong&gt;OpenAI&lt;/strong&gt; , &lt;img src="https://cdn.simpleicons.org/anthropic" alt="anthropic logo" width="25" height="15"&gt;&lt;strong&gt;Anthropic&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/googlegemini" alt="google logo" width="25" height="18"&gt;&lt;strong&gt;Google&lt;/strong&gt;, &lt;img src="https://cdn.simpleicons.org/x" alt="X logo" width="25" height="15"&gt;&lt;strong&gt;xAI&lt;/strong&gt; and open-source models like &lt;img src="https://cdn.simpleicons.org/alibabacloud" alt="alibaba logo" width="25" height="15"&gt;&lt;strong&gt;Qwen&lt;/strong&gt; or &lt;img src="https://cdn.simpleicons.org/meta" alt="meta logo" width="25" height="15"&gt;&lt;strong&gt;Llama&lt;/strong&gt; that you can run locally on your computer.&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener"
@@ -4243,7 +4243,7 @@ Learning with Denoising&lt;/strong&gt; Cheng, Ka Leong and Xie, Yueqi and Chen, 
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_coding_agent_team/" &gt;💻 Multimodal Coding Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_design_agent_team/" &gt;✨ Multimodal Design Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_uiux_feedback_agent_team/" &gt;🎨 🍌 Multimodal UI/UX Feedback Agent Team with Nano Banana&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="link" href="blog.zwzhang.com/advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/" &gt;🌏 AI Travel Planner Agent Team&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.zwzhang.com/advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/" &gt;🌏 AI Travel Planner Agent Team&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="-voice-ai-agents"&gt;🗣️ Voice AI Agents
 &lt;/h3&gt;&lt;ul&gt;
@@ -4363,7 +4363,7 @@ Learning with Denoising&lt;/strong&gt; Cheng, Ka Leong and Xie, Yueqi and Chen, 
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Follow the project-specific instructions&lt;/strong&gt; in each project&amp;rsquo;s &lt;code&gt;README.md&lt;/code&gt; file to set up and run the app.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>New Era ERP System-ERPNext</title><link>blog.zwzhang.com/en/p/new-era-erp-system-erpnext/</link><pubDate>Mon, 02 Feb 2026 18:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/new-era-erp-system-erpnext/</guid><description>&lt;h1 id="new-era-erp-system-erpnext"&gt;New Era ERP System-ERPNext
+&lt;/ol&gt;</description></item><item><title>New Era ERP System-ERPNext</title><link>https://blog.zwzhang.com/en/p/new-era-erp-system-erpnext/</link><pubDate>Mon, 02 Feb 2026 18:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/new-era-erp-system-erpnext/</guid><description>&lt;h1 id="new-era-erp-system-erpnext"&gt;New Era ERP System-ERPNext
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/frappe/erpnext" target="_blank" rel="noopener"
 &gt;100% Open-Source ERP system to help you run your business.&lt;/a&gt;&lt;/p&gt;
@@ -4499,7 +4499,7 @@ Learning with Denoising&lt;/strong&gt; Cheng, Ka Leong and Xie, Yueqi and Chen, 
 &gt;Discussion Forum&lt;/a&gt; - Engage with community of ERPNext users and service providers.&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://erpnext_public.t.me" target="_blank" rel="noopener"
 &gt;Telegram Group&lt;/a&gt; - Get instant help from huge community of users.&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>500+ AI Agent Projects / UseCases</title><link>blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</link><pubDate>Mon, 02 Feb 2026 17:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</guid><description>&lt;h1 id="-500-ai-agent-projects--usecases"&gt;🌟 500+ AI Agent Projects / UseCases
+&lt;/ol&gt;</description></item><item><title>500+ AI Agent Projects / UseCases</title><link>https://blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</link><pubDate>Mon, 02 Feb 2026 17:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/500-ai-agent-projects-/-usecases/</guid><description>&lt;h1 id="-500-ai-agent-projects--usecases"&gt;🌟 500+ AI Agent Projects / UseCases
 &lt;/h1&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20260202175639846.png"
 loading="lazy"
 &gt;&lt;/p&gt;
@@ -6425,7 +6425,7 @@ alt="AI Agent Code - Python"
 &gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>NeuroTechEDU's Awesome List of BCI-related Resources</title><link>blog.zwzhang.com/en/p/neurotechedus-awesome-list-of-bci-related-resources/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>blog.zwzhang.com/en/p/neurotechedus-awesome-list-of-bci-related-resources/</guid><description>&lt;h1 id="neurotechedus-awesome-list-of-bci-related-resources"&gt;NeuroTechEDU&amp;rsquo;s Awesome List of BCI-related Resources
+&lt;/table&gt;</description></item><item><title>NeuroTechEDU's Awesome List of BCI-related Resources</title><link>https://blog.zwzhang.com/en/p/neurotechedus-awesome-list-of-bci-related-resources/</link><pubDate>Mon, 02 Feb 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/en/p/neurotechedus-awesome-list-of-bci-related-resources/</guid><description>&lt;h1 id="neurotechedus-awesome-list-of-bci-related-resources"&gt;NeuroTechEDU&amp;rsquo;s Awesome List of BCI-related Resources
 &lt;/h1&gt;&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/NeuroTechX/awesome-bci" target="_blank" rel="noopener"
 &gt;Curated Collection of BCI resources&lt;/a&gt;&lt;/p&gt;
