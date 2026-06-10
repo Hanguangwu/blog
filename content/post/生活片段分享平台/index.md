@@ -153,6 +153,158 @@ Memo：
 - 暗黑模式
 - 数据库自动备份，当检测到启动的版本发生变化时，自动备份数据库文件到 `$DB` 目录下
 
+## Moments · Cloudflare 版
+
+[极简朋友圈moments项目cloudflare版本](https://github.com/jkjoy/moments-cloudflare)
+
+> 基于 **Cloudflare Workers + D1 + R2 + Pages** 的极简朋友圈 / 说说系统，前后端分离，可一键部署到 Cloudflare 免费额度内运行。
+
+本项目是 [kingwrcy/moments](https://github.com/kingwrcy/moments) 的 Cloudflare 技术栈重构版本：后端用 Hono 运行在 Workers 上，数据存 D1，图片存 R2，前端是 Nuxt 3 静态站点托管在 Pages。
+
+---
+
+### ✨ 功能特性
+
+- 📝 **发布动态**：文字、图片、标签、地理位置、外部链接
+- 🔒 **可见性控制**：公开 / 私密，支持置顶
+- ❤️ **互动**：点赞、评论（支持匿名评论与回复）
+- 🛡️ **评论防刷**：可选 Cloudflare Turnstile 人机校验
+- 📧 **邮件通知**：基于 [Resend](https://resend.com/) 的新评论通知
+- 🏷️ **标签系统**：按标签筛选动态
+- 🔗 **友情链接**：友链管理
+- 🎬 **豆瓣抓取**：自动获取豆瓣影片 / 书籍信息
+- 🎵 **多媒体**：网易云音乐解析、Bilibili 视频解析
+- ✍️ **Markdown**：内容支持 Markdown，并用 Shiki 做代码高亮
+- 📅 **日历视图**：按时间浏览动态
+- 🌗 **深色模式**：跟随系统 / 手动切换
+- ⚙️ **后台设置**：站点标题、图标、自定义 CSS/JS、注册开关、评论开关等
+- 📱 **响应式设计**：移动端与桌面端自适应
+
+### 📖 使用指南
+
+#### 默认管理员账号
+
+|用户名|密码|
+|---|---|
+|`admin`|`admin123`|
+
+> ⚠️ 首次登录后请立即在「用户设置」中修改密码。
+
+#### 发布动态
+
+1. 登录后点击 **发布**
+2. 输入内容（支持 Markdown）
+3. 可选：上传图片、添加标签、地理位置、外部链接、豆瓣 / 音乐 / 视频
+4. 选择可见性（公开 / 私密）
+5. 点击 **发布**
+
+#### 后台系统设置（管理员）
+
+进入「系统设置」可调整以下配置（持久化在 D1 的 `SysConfig` 表）：
+
+|配置项|说明|
+|---|---|
+|`title` / `favicon`|站点标题与图标|
+|`css` / `js`|自定义 CSS / JS|
+|`enableRegister`|是否开放注册|
+|`enableComment`|是否开启评论|
+|`enableAutoLoadNextPage`|列表是否自动加载下一页|
+|`commentOrder`|评论排序（`asc` / `desc`）|
+|`maxCommentLength`|评论最大字数|
+|`memoMaxHeight`|动态最大高度（超出折叠，0 不限制）|
+|`timeFormat`|时间显示格式（如 `timeAgo`）|
+|`enableTurnstile` / `turnstileSiteKey`|评论 Turnstile 校验与 Site Key|
+|`enableEmail` / `resendApiKey` / `emailFrom`|新评论邮件通知（Resend）|
+
+> **开启 Turnstile 评论校验**：在系统设置中打开开关并填入 Turnstile **Site Key**，同时确保后端已配置 `TURNSTILE_SECRET_KEY`。开启后匿名评论必须通过校验，已登录用户默认跳过。
+
+## Memos on Cloudflare
+
+[基于Cloudflare workers + D1 + R2 + AI 实现Memos v0.28大部分功能](https://github.com/jkjoy/memos-on-cloudflare)
+
+[memos.timellow.com](https://memos.timellow.com/ "https://memos.timellow.com")
+
+[Memos on Cloudflare 发布](https://memos.top/archives/273.html)
+
+将 [Memos](https://github.com/usememos/memos) 笔记应用完整迁移到 Cloudflare 边缘平台，使用 Workers + D1 + R2 替代原有的 Go + SQLite + 本地存储架构。
+
+### 技术栈
+
+| 层级   | 技术                              |
+| ---- | ------------------------------- |
+| 运行时  | Cloudflare Workers              |
+| 后端框架 | Hono                            |
+| 数据库  | Cloudflare D1 (SQLite)          |
+| 文件存储 | Cloudflare R2                   |
+| AI   | Cloudflare Workers AI (Whisper) |
+| 前端   | React + Vite + TailwindCSS      |
+| 认证   | JWT (HS256) + bcrypt            |
+
+### 功能特性
+
+- Markdown 备忘录（支持标签、代码块、任务列表、Mermaid 图表）
+- 多用户支持（管理员/普通用户）
+- 备忘录可见性（私有/工作区/公开）
+- 文件附件上传（最大 100MB）
+- 备忘录分享链接（可设过期时间）
+- 备忘录评论和表情反应
+- 音频录制 + AI 转写
+- SSO 单点登录
+- 多语言支持（中文、英文等 30+ 语言）
+- 暗色/亮色主题
+- 日历热力图
+- 标签管理
+- Webhook 通知
+
+### 与原版 Memos 的区别
+
+|项目|原版 Memos|本项目|
+|---|---|---|
+|后端|Go + gRPC|Cloudflare Workers + Hono|
+|数据库|SQLite (本地文件)|Cloudflare D1 (托管 SQLite)|
+|文件存储|本地/S3|Cloudflare R2|
+|AI|OpenAI/Gemini API|Cloudflare Workers AI|
+|部署|Docker/二进制|`wrangler deploy`|
+|运维|需要服务器|无服务器，零运维|
+|前端通信|Connect RPC (protobuf)|REST JSON|
+
+### 常见问题
+
+**Q: 部署后访问显示空白页？**
+
+确认 `npm run build:web` 已执行且 `web/dist/` 目录存在。`wrangler deploy` 会自动上传该目录。
+
+**Q: 访问 `/api/*` 返回前端 404 页面？**
+
+确认 `wrangler.toml` 的 `[assets]` 配置包含：
+
+```toml
+run_worker_first = ["/api/*", "/file/*", "/u/*"]
+```
+
+否则 Cloudflare 静态资源层可能会先处理请求，并把不存在的 API 路径回退到 SPA 的 `index.html`，最终显示前端 404 页面，而不是进入 Worker API 路由。
+
+**Q: 数据库报错 "table not found"？**
+
+执行 `npm run db:migrate:remote` 初始化远程数据库 schema。
+
+**Q: 如何备份数据？**
+
+```shell
+# 导出 D1 数据库
+wrangler d1 export cfmemos-db --remote --output=backup.sql
+
+# R2 文件可通过 rclone 或 Cloudflare Dashboard 下载
+```
+
+**Q: 上传大小限制？**
+
+附件上传硬编码为 100MB。Workers 免费版单次请求体限制为 100MB，付费版无此限制。
+
+**Q: 免费额度够用吗？**
+
+Cloudflare Workers Free Plan 包含：每天 10 万次请求、D1 5GB 存储、R2 10GB 存储 + 每月 1000 万次读取。个人使用完全足够。
+
 ## 瞬刻 - _更简洁、更现代化的内容发布平台_
 
 [瞬刻---更简洁更现代化的内容发布平台](https://github.com/reaishijie/moments)
@@ -212,6 +364,8 @@ Clawcloud 是一个新兴的云平台，主打“简洁”、“极致性价比�
 [使用ClawCloud免费部署memos服务](https://memos.top/archives/262.html)
 
 ## 参考资料
+
+[Memos on Cloudflare 发布](https://memos.top/archives/273.html)
 
 [从Moments迁移到Ech0](https://blog.liushen.fun/posts/e0b4d5a/)
 
