@@ -1,13 +1,14 @@
 ---
 title: Vercel项目部署+CloudFlare自定义域名配置｜解决国内访问卡顿无法访问问题
 description: 本文介绍Vercel项目部署+CloudFlare自定义域名配置流程。
-date: 2025-10-14T12:34:25-08:00
+date: 2026-06-11T12:34:25-08:00
 draft: false
 categories:
 - APP
 tags:
 - GitHub
-- FluentRead
+- Vercel
+- CloudFlare
 ---
 
 # Vercel项目部署+CloudFlare自定义域名配置｜解决国内访问卡顿无法访问问题
