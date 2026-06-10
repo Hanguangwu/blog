@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>域名设置 on 酒中仙</title><link>https://blog.zwzhang.com/tags/%E5%9F%9F%E5%90%8D%E8%AE%BE%E7%BD%AE/</link><description>Recent content in 域名设置 on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Fri, 05 Jun 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/tags/%E5%9F%9F%E5%90%8D%E8%AE%BE%E7%BD%AE/index.xml" rel="self" type="application/rss+xml"/><item><title>自定义GitHub Pages域名</title><link>https://blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89github-pages%E5%9F%9F%E5%90%8D/</link><pubDate>Fri, 05 Jun 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%87%AA%E5%AE%9A%E4%B9%89github-pages%E5%9F%9F%E5%90%8D/</guid><description>&lt;h1 id="为-github-pages-配置-cloudflare-域名指南"&gt;为 GitHub Pages 配置 CloudFlare 域名指南
+&lt;/h1&gt;&lt;h2 id="关键步骤"&gt;关键步骤
+&lt;/h2&gt;&lt;h3 id="第二步在-cloudflare-添加域名"&gt;第二步｜在 Cloudflare 添加域名
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;目标：&lt;/strong&gt; 在 Cloudflare 中接管你的域名&lt;/p&gt;
+&lt;h4 id="操作步骤"&gt;操作步骤：
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 登录 Cloudflare Dashboard&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;访问 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
+&gt;https://dash.cloudflare.com/&lt;/a&gt; 并登录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 点击添加网站&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Dashboard 首页，点击 &lt;strong&gt;Add a Site&lt;/strong&gt;（添加网站）按钮。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 输入你的域名&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在输入框中输入你的域名（只输入根域名，不带 www）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;example.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;点击 &lt;strong&gt;Add Site&lt;/strong&gt; 继续。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 选择套餐&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;选择 &lt;strong&gt;Free&lt;/strong&gt; 套餐（个人博客/网站完全够用），点击 &lt;strong&gt;Continue&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. 选择导入现有 DNS 记录（可选）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Cloudflare 会尝试扫描你域名现有的 DNS 记录。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 如果这是新域名，没有任何重要记录，可以选择 &lt;strong&gt;Skip&lt;/strong&gt; 跳过这一步。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;6. 记录 Cloudflare 分配的 Nameservers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;这是关键步骤！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Cloudflare 页面会显示类似下面的信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;We have assigned the following nameservers to your zone:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;amir.ns.cloudflare.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;violet.ns.cloudflare.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;重要&lt;/strong&gt;：Spaceship 和 Cloudflare 都显示这两组 Nameserver 信息是&lt;strong&gt;正常的&lt;/strong&gt;。只要你第一步在 Spaceship 填的是 Cloudflare 的 Nameserver，现在两边显示相同就对了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;7. 完成设置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;点击 &lt;strong&gt;Done, take me to DNS&lt;/strong&gt; 进入 DNS 设置页面。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="第三步在-cloudflare-配置-dns-记录"&gt;第三步｜在 Cloudflare 配置 DNS 记录
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;目标：&lt;/strong&gt; 将域名指向 GitHub Pages&lt;/p&gt;
+&lt;h4 id="基础知识dns-记录类型"&gt;基础知识｜DNS 记录类型
+&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;记录类型&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;A 记录&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;将域名指向一个 IPv4 地址&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;example.com&lt;/code&gt; → &lt;code&gt;185.199.108.153&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;CNAME&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;将子域名指向另一个域名&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;www.example.com&lt;/code&gt; → &lt;code&gt;example.com&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;TXT&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;用于验证、SPF 邮件安全等&lt;/td&gt;
+&lt;td&gt;验证域名所有权&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AAAA&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;将域名指向 IPv6 地址&lt;/td&gt;
+&lt;td&gt;较少使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;CNAME 记录不能用于根域名（@）！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;DNS 规范规定 CNAME 记录不能与其他记录类型共存。根域名通常需要同时存在 SOA、NS、A 等记录，所以&lt;strong&gt;根域名不能使用 CNAME&lt;/strong&gt;。这是 DNS 协议的限制，不是 Cloudflare 或 GitHub 的限制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="github-pages-的-ip-地址"&gt;GitHub Pages 的 IP 地址
+&lt;/h4&gt;&lt;p&gt;GitHub Pages 使用的固定 IP 地址：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.108.153
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.109.153
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.110.153
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.111.153
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="配置-dns-记录"&gt;配置 DNS 记录
+&lt;/h4&gt;&lt;p&gt;进入 Cloudflare Dashboard → 你的域名 → &lt;strong&gt;DNS&lt;/strong&gt; → &lt;strong&gt;Records&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;点击 &lt;strong&gt;Add record&lt;/strong&gt;，按以下方式配置：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;记录 1：根域名（A 记录）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;设置项&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Type&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;A&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;A 记录类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;@&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;表示根域名（你的域名本身）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IPv4 address&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;185.199.108.153&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;GitHub Pages 的第一个 IP&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Proxy status&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;DNS only&lt;/strong&gt;（⚪ 灰色云）&lt;/td&gt;
+&lt;td&gt;⚠️ GitHub Pages 必须用灰色云！&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;记录 2-4：备用 A 记录&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;重复上述步骤，添加另外三个 IP 地址：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.109.153
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.110.153
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;185.199.111.153
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 四个 A 记录同时存在，GitHub 会自动选择最快响应的 IP。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;记录 5：www 子域名（CNAME）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;设置项&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Type&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;CNAME&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;CNAME 记录类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;www&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;www 子域名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Target&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;username.github.io&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;⚠️ 把 &lt;code&gt;username&lt;/code&gt; 换成你的 GitHub 用户名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Proxy status&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;DNS only&lt;/strong&gt;（⚪ 灰色云）&lt;/td&gt;
+&lt;td&gt;⚠️ GitHub Pages 必须用灰色云！&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id="dns-记录配置完成后的样子"&gt;DNS 记录配置完成后的样子
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| 类型 | 名称 | IPv4 地址 / 目标 | 代理状态 |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;|------|------|---------------------------|----------|
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| A | @ | 185.199.108.153 | DNS only |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| A | @ | 185.199.109.153 | DNS only |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| A | @ | 185.199.110.153 | DNS only |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| A | @ | 185.199.111.153 | DNS only |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;| CNAME| www | username.github.io | DNS only |
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;代理状态（Proxy Status）必须是灰色云！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;橙色云 ☁️ = Cloudflare CDN 代理 灰色云 ⚪ = 仅 DNS 解析&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub Pages 的 DNS 记录必须设为灰色云&lt;/strong&gt;，因为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Cloudflare 的 CDN 代理会干扰 GitHub 的 SSL 证书自动验证&lt;/li&gt;
+&lt;li&gt;GitHub 要求直接连接到他们的服务器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;你可以为其他子域名（如 &lt;code&gt;api.example.com&lt;/code&gt;）使用橙色云，但 &lt;strong&gt;@ 和 www&lt;/strong&gt; 这两条 GitHub Pages 的记录必须用灰色云。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id="第四步在-github-配置自定义域名"&gt;第四步｜在 GitHub 配置自定义域名
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;目标：&lt;/strong&gt; 告诉 GitHub：“这个域名是我的，请用这个域名来托管我的网站”。&lt;/p&gt;
+&lt;p&gt;每次发表新博客文章后，触发GitHub的自动构建时，自定义域名就没了，需要重新去GitHub保存，很麻烦。只需要在Hugo的静态目录增加一个CNAME文件，指向自定义域名即可。&lt;/p&gt;
+&lt;h4 id="前置条件"&gt;前置条件
+&lt;/h4&gt;&lt;p&gt;确保你的仓库已经启用了 GitHub Pages：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入你的仓库（如 &lt;code&gt;https://github.com/username/text-matrix&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Settings&lt;/strong&gt; → &lt;strong&gt;Pages&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;确认 &lt;strong&gt;Source&lt;/strong&gt; 设置为 &lt;strong&gt;Deploy from a branch&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;选择 &lt;strong&gt;main&lt;/strong&gt; 分支和 &lt;strong&gt;/ (root)&lt;/strong&gt; 文件夹&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="操作步骤-1"&gt;操作步骤：
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 进入仓库设置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;登录 GitHub，进入你的仓库页面。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 打开 Pages 设置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;左侧菜单点击 &lt;strong&gt;Pages&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 配置自定义域名&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 &lt;strong&gt;Custom domain&lt;/strong&gt; 输入框中输入你的域名：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;example.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 输入后 GitHub 会立即开始 DNS 检查&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;4. 保存设置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. 等待 DNS 验证&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;GitHub 会自动检查你的 DNS 配置是否正确。检查项目：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;✓ DNS check passed
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;或错误信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;✗ DNS check failed
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 原因1：DNS 记录尚未传播（等待 5 分钟到 24 小时）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 原因2：DNS 记录配置错误（检查第三步）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 原因3：使用了 Cloudflare 橙色云代理（改为灰色云）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;如何加速验证？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;等待 5-10 分钟后再试&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;dig www.example.com&lt;/code&gt; 命令检查 DNS 是否已生效&lt;/li&gt;
+&lt;li&gt;清除浏览器缓存或使用无痕模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;6. 勾选 Enforce HTTPS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当 DNS 验证通过后，勾选 &lt;strong&gt;Enforce HTTPS&lt;/strong&gt;（强制使用 HTTPS）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 GitHub 会使用 Let’s Encrypt 自动为你的域名申请 SSL 证书。这个过程可能需要 &lt;strong&gt;24-48 小时&lt;/strong&gt;。在证书生效前，HTTPS 可能会有警告，这是正常现象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://txtmix.com/posts/tech/cloudflare-github-pages-custom-domain-guide/" target="_blank" rel="noopener"
+&gt;Cloudflare + GitHub Pages 自定义域名配置指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://me.onlyra1n.top/posts/a72e" target="_blank" rel="noopener"
+&gt;Cloudflare DNS 托管+Github Pages HTTPS加密避坑&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/1886365022571176637" target="_blank" rel="noopener"
+&gt;小白学网站部署，手把手教你，Github Pages 如何自定义域名&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://cloud.tencent.com/developer/article/2654949" target="_blank" rel="noopener"
+&gt;我的「个人Python网站制作」第三部曲：Cloudflare完美加速GitHub Pages国内访问速度，嘎嘎快那种&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://bingkaer.github.io/p/github-pages-cname/" target="_blank" rel="noopener"
+&gt;Hugo构建时自动CNAME到自定义域名&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
