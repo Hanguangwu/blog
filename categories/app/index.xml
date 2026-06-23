@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>https://blog.zwzhang.com/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 23 May 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>辅助学习的AI工具</title><link>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APP on 酒中仙</title><link>https://blog.zwzhang.com/categories/app/</link><description>Recent content in APP on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 11 Jun 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/app/index.xml" rel="self" type="application/rss+xml"/><item><title>Vercel项目部署+CloudFlare自定义域名配置｜解决国内访问卡顿无法访问问题</title><link>https://blog.zwzhang.com/p/vercel%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-cloudflare%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E5%8D%A1%E9%A1%BF%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 11 Jun 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/vercel%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-cloudflare%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E5%8D%A1%E9%A1%BF%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/</guid><description>&lt;h1 id="vercel项目部署cloudflare自定义域名配置解决国内访问卡顿无法访问问题"&gt;Vercel项目部署+CloudFlare自定义域名配置｜解决国内访问卡顿无法访问问题
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;只要有一个自己的域名，我们就可以充分利用两大赛博善人资源搭建自己的新天地！&lt;/p&gt;
+&lt;p&gt;依托Github Education福利可白嫖name.com一年免费域名，搭配Vercel免费部署、CloudFlare免费CDN，零成本搭建个人站点、AI前端项目。&lt;/p&gt;
+&lt;p&gt;原生Vercel节点国内直连延迟高、时常打不开站点，官方解析方案适配海外网络，本文整理了一套完整实操方案：一套&lt;strong&gt;专属国内加速优化方案&lt;/strong&gt;（适配ChatGPT-Next-Web/NextChat类AI项目）、一套&lt;strong&gt;通用CloudFlare域名接入方案&lt;/strong&gt;，全程免费、新手可复刻。&lt;/p&gt;
+&lt;h2 id="详细步骤"&gt;详细步骤
+&lt;/h2&gt;&lt;h3 id="第一步将你的域名添加到-cloudflare"&gt;第一步：将你的域名添加到 CloudFlare
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;登录你的 CloudFlare 账户。&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Add a site&lt;/strong&gt; 按钮，输入你的根域名（如 &lt;code&gt;your-domain.com&lt;/code&gt;），然后点击 &lt;strong&gt;Add site&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://www.wyattyuan.studio/_astro/cloudflare-add-site.CwHEqj6Q_Z1r2xho.webp"
+loading="lazy"
+alt="添加站点到CloudFlare"
+&gt;&lt;/li&gt;
+&lt;li&gt;选择 &lt;strong&gt;Free（免费）&lt;/strong&gt; 套餐，点击 &lt;strong&gt;Continue&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;CloudFlare 会自动扫描你域名现有的 DNS 记录，等待扫描完成后点击 &lt;strong&gt;Continue&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="第二步修改域名的-nameservers-ns-记录"&gt;第二步：修改域名的 Nameservers (NS 记录)
+&lt;/h3&gt;&lt;p&gt;这是最关键的一步，目的是将你域名的解析管理权正式交给 CloudFlare。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;CloudFlare 会显示你域名当前的 Nameservers，并提供两个新的 CloudFlare Nameservers，例如：&lt;br&gt;
+&lt;code&gt;melissa.ns.cloudclare.com&lt;/code&gt; 和 &lt;code&gt;skip.ns.cloudflare.com&lt;/code&gt; &lt;img src="https://www.wyattyuan.studio/_astro/cloudflare-1.H_ABvNi__yAuns.webp"
+loading="lazy"
+alt="CloudFlare-1"
+&gt;&lt;/li&gt;
+&lt;li&gt;登录你购买域名的平台（如 GoDaddy、NameSilo、阿里云/万网），这里以 name.com 为例。&lt;/li&gt;
+&lt;li&gt;找到你域名的 DNS 管理或 Nameserver 管理设置。&lt;/li&gt;
+&lt;li&gt;删除原有的 Nameserver 地址，填入 CloudFlare 提供的两个新地址。&lt;/li&gt;
+&lt;li&gt;保存更改。此更改全球生效可能需要几分钟到数小时。你可以回到 CloudFlare 页面，点击 &lt;strong&gt;Done, check nameservers&lt;/strong&gt; 让 CloudFlare 定期检查。生效后 CloudFlare 会邮件通知你。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="第三步在-cloudflare-中配置-dns-记录并开启代理"&gt;第三步：在 CloudFlare 中配置 DNS 记录（并开启代理）
+&lt;/h3&gt;&lt;p&gt;在等待 NS 记录生效的同时，可以先配置好 DNS 记录：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在 CloudFlare 网站左侧菜单选择 &lt;strong&gt;DNS&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;根据 Vercel 要求，添加一条 &lt;strong&gt;A 记录&lt;/strong&gt; 或 &lt;strong&gt;CNAME 记录&lt;/strong&gt; 指向 Vercel：
+&lt;strong&gt;推荐：A 记录（用于根域名）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Type: A
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Name: @ （代表你的根域名 your-domain.com）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;IPv4 address: 76.223.126.88
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Proxy status: 确保云朵图标是橙色的（Proxied），表示流量会经过 CloudFlare 的 CDN。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果你想用 www 子域名（如 &lt;a class="link" href="http://www.your-domain.com/" target="_blank" rel="noopener"
+&gt;www.your-domain.com&lt;/a&gt; ）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Type: CNAME&lt;/li&gt;
+&lt;li&gt;Name: www&lt;/li&gt;
+&lt;li&gt;Target: cname.vercel-dns.com&lt;/li&gt;
+&lt;li&gt;Proxy status: 确保云朵图标是橙色的（Proxied）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;点击 &lt;strong&gt;Save&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="第四步配置-ssltls-加密模式非常重要"&gt;第四步：配置 SSL/TLS 加密模式（非常重要）
+&lt;/h3&gt;&lt;p&gt;这一步配置错误会导致网站无法访问或出现重定向循环。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 CloudFlare 网站左侧菜单选择 &lt;strong&gt;SSL/TLS&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;在 &lt;strong&gt;Overview&lt;/strong&gt; 选项卡中，选择 &lt;strong&gt;Full (Strict)&lt;/strong&gt; 模式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;为什么？&lt;/strong&gt;&lt;br&gt;
+Vercel 会自动为你的自定义域名部署 SSL 证书，实现 HTTPS 加密。Full (Strict) 模式要求从用户浏览器到 CloudFlare，以及从 CloudFlare 到 Vercel 源服务器的全程都使用严格的、受信任的证书进行加密，这是最安全且与 Vercel 兼容性最好的模式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="第五步在-vercel-中添加你的自定义域名"&gt;第五步：在 Vercel 中添加你的自定义域名
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;回到你的 Vercel 项目控制台。&lt;/li&gt;
+&lt;li&gt;进入项目的 &lt;strong&gt;Settings → Domains&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;输入你的自定义域名（如 your-domain.com 或 &lt;a class="link" href="http://www.your-domain.com/" target="_blank" rel="noopener"
+&gt;www.your-domain.com&lt;/a&gt; ），点击 &lt;strong&gt;Add&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;由于你已在 CloudFlare 配置好 DNS，Vercel 应能很快检测到并显示 &lt;strong&gt;Valid Configuration&lt;/strong&gt;，并自动处理 SSL 证书签发。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;完成以上所有步骤后，等待几分钟，你的网站应该就可以通过自定义域名在国内顺畅访问了。&lt;/p&gt;
+&lt;h2 id="完整流程示例"&gt;完整流程示例
+&lt;/h2&gt;&lt;p&gt;下面以在Vercel商部署NextChat项目为例展示具体过程。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i-blog.csdnimg.cn/direct/ca7b2f1f90e64bee95f258b1bbde3249.png"
+loading="lazy"
+alt="w"
+&gt;&lt;/p&gt;
+&lt;p&gt;在Vercel上部署项目后，我们需要在CloudFlare的DNS记录中添加一条CNAME记录，指向cname-china.vercel-dns.com，但不要开启代理。&lt;/p&gt;
+&lt;p&gt;如果CloudFlare绑定的域名是chwz.us.kg，我们想用 gpt.chwz.us.kg 访问上面的Vercel项目，就应该如下配置：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i-blog.csdnimg.cn/direct/a647b8d9797c4e7baa5753bb6e669edb.png"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;配置好后，回到Vercel页面，找到绑定域名设置，加入你要绑定的域名，例如一开始的gpt.chwz.us.kg：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i-blog.csdnimg.cn/direct/fb5b5c453ccf4d2ba5a7532a73c43563.png"
+loading="lazy"
+alt="image3"
+&gt;&lt;/p&gt;
+&lt;p&gt;等到出现两个蓝勾后，再次回到CloudFlare页面，将CNAME中一开始填入的cname-china.vercel-dns.com改为vercel-cname.xingpingcn.top，保存后回到Vercel等待两个蓝勾出现。&lt;/p&gt;
+&lt;p&gt;这时候如果访问gpt.chwz.us.kg，就会发现速度非常快，加速的目的也就实现了。&lt;/p&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/2402_88233879/article/details/145651455" target="_blank" rel="noopener"
+&gt;CloudFlare + Vercel 实现网站中国访问加速&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.wyattyuan.studio/blog/web-dev/CloudFlare-vercel/" target="_blank" rel="noopener"
+&gt;Cloudfare解决Vercel部署后无法访问的问题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://juejin.cn/post/7383894687302434825" target="_blank" rel="noopener"
+&gt;使用Vercel免费部署上线你的前端项目，并使用Cloudfare解决 Vercel 部署网站在国内被墙的问题&lt;/a&gt;
+&lt;a class="link" href="https://docs.tangly1024.com/article/vercel-accelerate" target="_blank" rel="noopener"
+&gt;Vercel域名加速&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://github.com/xingpingcn/enhanced-FaaS-in-China" target="_blank" rel="noopener"
+&gt;enhanced-FaaS-in-China&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.yt-blog.top/9952/" target="_blank" rel="noopener"
+&gt;推一下 Vercel 加速节点&lt;/a&gt;&lt;/p&gt;</description></item><item><title>辅助学习的AI工具</title><link>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 23 May 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E7%9A%84ai%E5%B7%A5%E5%85%B7/</guid><description>&lt;h1 id="辅助学习的ai工具"&gt;辅助学习的AI工具
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这里分享一些辅助学习的AI工具。&lt;/p&gt;
 &lt;h2 id="open-notebooklm一个私密多模型100本地化功能齐全的-notebook-lm-替代方案"&gt;Open NotebookLM——一个私密、多模型、100%本地化、功能齐全的 Notebook LM 替代方案

@@ -2552,6 +2552,110 @@
 &lt;li&gt;✅ &lt;strong&gt;备选方案&lt;/strong&gt;：AWS CLI、GUI 工具、编程 SDK&lt;/li&gt;
 &lt;li&gt;❌ &lt;strong&gt;不推荐&lt;/strong&gt;：wrangler CLI（不支持批量操作）&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="其他工具"&gt;其他工具
+&lt;/h2&gt;&lt;h3 id="cloudflare-r2-cli"&gt;Cloudflare R2 CLI
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/pxgo/cloudflare-r2-cli" target="_blank" rel="noopener"
+&gt;cloudflare-r2-cli&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cloudflare R2 CLI 是一个简单的命令行工具，旨在帮助用户通过命令行轻松管理 Cloudflare R2 存储。该工具使用 Node.js 和 AWS SDK 构建，为 Cloudflare R2 提供上传、下载、重命名、删除等基本的文件操作功能。&lt;/p&gt;
+&lt;h4 id="特性"&gt;特性
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文件上传&lt;/strong&gt;：将本地文件上传到指定的 Cloudflare R2 存储桶&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件下载&lt;/strong&gt;：从 Cloudflare R2 存储桶下载文件到本地&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列出文件&lt;/strong&gt;：显示存储桶中的所有文件及其详细信息&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件信息&lt;/strong&gt;：查看指定文件的元数据和访问链接&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件重命名/移动&lt;/strong&gt;：支持文件重命名或在存储桶内移动文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件删除&lt;/strong&gt;：从存储桶中删除指定文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列出存储桶&lt;/strong&gt;：显示账户中所有存储桶列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="安装"&gt;安装
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;克隆仓库：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/pxgo/cloudflare-r2-cli.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; cloudflare-r2-cli
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;安装依赖项：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;设置环境变量：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;R2_ACCOUNT_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;your_account_id&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;R2_ACCESS_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;your_access_key&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;R2_SECRET_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;your_secret_key&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;编译&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bun build index.ts --compile --outfile&lt;span class="o"&gt;=&lt;/span&gt;build/r2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="使用说明"&gt;使用说明
+&lt;/h4&gt;&lt;p&gt;可用命令:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;upload &amp;lt;bucketName&amp;gt; &amp;lt;filePath&amp;gt; &amp;lt;key&amp;gt;&lt;/code&gt; - 上传文件到 R2&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;download &amp;lt;bucketName&amp;gt; &amp;lt;key&amp;gt; &amp;lt;downloadPath&amp;gt;&lt;/code&gt; - 从 R2 下载文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;list &amp;lt;bucketName&amp;gt;&lt;/code&gt; - 显示存储桶中的文件列表&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;info &amp;lt;bucketName&amp;gt; &amp;lt;key&amp;gt;&lt;/code&gt; - 显示文件的信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rename &amp;lt;bucketName&amp;gt; &amp;lt;oldKey&amp;gt; &amp;lt;newKey&amp;gt;&lt;/code&gt; - 修改文件的目录或文件名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;delete &amp;lt;bucketName&amp;gt; &amp;lt;key&amp;gt;&lt;/code&gt; - 删除文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;buckets&lt;/code&gt; - 列出所有存储桶&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;r2 upload books ~/JavaScript从入门到入狱.pdf 武林秘籍.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="r2-文件管理系统"&gt;R2 文件管理系统
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/zhao-zg/Cloudflare-Workers-R2" target="_blank" rel="noopener"
+&gt;一个基于 Cloudflare Workers 和 R2 的现代化文件管理系统，支持文件上传、下载、移动、重命名等操作。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;基于 &lt;strong&gt;Cloudflare Workers + R2&lt;/strong&gt; 的轻量文件管理面板。&lt;/p&gt;
+&lt;p&gt;未登录：浏览 / 下载；登录：上传、删除、移动、重命名、批量操作。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="-功能"&gt;✨ 功能
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;游客：浏览文件 &amp;amp; 文件夹、下载、（可选）复制直链&lt;/li&gt;
+&lt;li&gt;管理员：以上全部 + 上传（多文件）、创建文件夹、批量选择、移动、重命名、删除&lt;/li&gt;
+&lt;li&gt;自动重试上传（指数退避 1s/2s/4s/8s/16s）&lt;/li&gt;
+&lt;li&gt;纯前端界面 + Worker 代理后端（不暴露密钥）&lt;/li&gt;
+&lt;li&gt;零构建依赖，直接粘贴部署&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="r2client"&gt;&lt;a class="link" href="https://r2client.com/zh" target="_blank" rel="noopener"
+&gt;R2Client&lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://r2client.com/zh" target="_blank" rel="noopener"
+&gt;让 Cloudflare R2 像本地磁盘一样好用&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="参考资料"&gt;参考资料
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class="link" href="https://developers.cloudflare.com/r2/examples/rclone/" target="_blank" rel="noopener"
