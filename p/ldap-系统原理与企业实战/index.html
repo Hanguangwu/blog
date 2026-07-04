@@ -1,0 +1,515 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍LDAP 系统原理及其企业实战。"><title>LDAP 系统原理与企业实战</title><link rel=canonical href=https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/><link rel=stylesheet href=/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="LDAP 系统原理与企业实战"><meta property='og:description' content="本文介绍LDAP 系统原理及其企业实战。"><meta property='og:url' content='https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='LDAP'><meta property='article:tag' content='Python'><meta property='article:published_time' content='2026-06-23T12:34:25-08:00'><meta property='article:modified_time' content='2026-06-23T12:34:25-08:00'><meta name=twitter:title content="LDAP 系统原理与企业实战"><meta name=twitter:description content="本文介绍LDAP 系统原理及其企业实战。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://blog.zwzhang.com/en/>English</option><option value=https://blog.zwzhang.com/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一ldap-是什么>一、LDAP 是什么</a></li><li><a href=#二ldap-数据模型>二、LDAP 数据模型</a><ol><li><a href=#21-树形结构>2.1 树形结构</a></li><li><a href=#22-关键术语>2.2 关键术语</a></li><li><a href=#23-常见对象属性>2.3 常见对象属性</a></li></ol></li><li><a href=#三ldap-认证流程生产级>三、LDAP 认证流程（生产级）</a></li><li><a href=#四python-实战使用-ldap3-连接-ad>四、Python 实战：使用 ldap3 连接 AD</a><ol><li><a href=#41-环境准备>4.1 环境准备</a></li><li><a href=#42-配置管理>4.2 配置管理</a></li><li><a href=#43-跳过-ad-自签名证书>4.3 跳过 AD 自签名证书</a></li><li><a href=#44-服务账号绑定>4.4 服务账号绑定</a></li><li><a href=#45-搜索用户>4.5 搜索用户</a></li><li><a href=#46-完整认证流程>4.6 完整认证流程</a></li><li><a href=#47-超时兜底保护>4.7 超时兜底保护</a></li></ol></li><li><a href=#五完整查询脚本与示例输出>五、完整查询脚本与示例输出</a><ol><li><a href=#51-示例输出>5.1 示例输出</a></li><li><a href=#52-查询特定用户详情>5.2 查询特定用户详情</a></li></ol></li><li><a href=#六企业场景中的-ldap-最佳实践>六、企业场景中的 LDAP 最佳实践</a><ol><li><a href=#61-连接策略>6.1 连接策略</a></li><li><a href=#62-搜索优化>6.2 搜索优化</a></li><li><a href=#63-属性访问差异重要>6.3 属性访问差异（重要）</a></li><li><a href=#64-安全防范>6.4 安全防范</a></li><li><a href=#65-异常处理分类>6.5 异常处理分类</a></li></ol></li><li><a href=#七常见问题排查>七、常见问题排查</a><ol><li><a href=#71-连接失败>7.1 连接失败</a></li><li><a href=#72-绑定失败>7.2 绑定失败</a></li><li><a href=#73-搜索结果为空>7.3 搜索结果为空</a></li></ol></li><li><a href=#八总结>八、总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E7%BC%96%E7%A8%8B/>编程
+</a><a href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/>LDAP 系统原理与企业实战</a></h2><h3 class=article-subtitle>本文介绍LDAP 系统原理及其企业实战。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jun 23, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 8 分钟</time></div></footer></div></header><section class=article-content><h1 id=ldap-系统原理与企业实战从协议到-python-集成>LDAP 系统原理与企业实战：从协议到 Python 集成</h1><p>LDAP（Lightweight Directory Access Protocol，轻量级目录访问协议）是企业 IT 基础设施中最常见却又最容易被低估的组件。无论是员工登录公司 Wi-Fi、访问内网 Wiki、提交请假审批，还是 CI/CD 流水线拉取部署权限，背后几乎都有 LDAP 的身影。</p><p>本文将从协议原理出发，结合 Active Directory（AD）的实际生产环境，完整演示如何使用 Python 的 <code>ldap3</code> 库进行 LDAP 查询和认证，并给出可直接运行的示例代码与输出。</p><hr><h2 id=一ldap-是什么>一、LDAP 是什么</h2><p>LDAP 是一种<strong>基于 TCP/IP 的目录访问协议</strong>，由 IETF 标准化（RFC 4511）。它与数据库不同：</p><ul><li><strong>数据库</strong>擅长事务处理（OLTP）：增删改查、事务回滚、复杂 Join</li><li><strong>目录服务</strong>擅长快速读取：大量读请求、极少写操作、树形结构、属性稀疏</li></ul><p>典型 LDAP 存储的数据：</p><div class=table-wrapper><table><thead><tr><th>数据类型</th><th>LDAP 对象类</th><th>示例</th></tr></thead><tbody><tr><td>组织单元</td><td><code>organizationalUnit</code></td><td><code>OU=Engineering,DC=company,DC=com</code></td></tr><tr><td>域用户</td><td><code>user</code> + <code>person</code></td><td>工号、姓名、邮箱、上级、部门</td></tr><tr><td>安全组</td><td><code>group</code></td><td>项目组、权限组</td></tr><tr><td>计算机</td><td><code>computer</code></td><td>主机名、操作系统、IP</td></tr></tbody></table></div><hr><h2 id=二ldap-数据模型>二、LDAP 数据模型</h2><h3 id=21-树形结构>2.1 树形结构</h3><p>LDAP 以<strong>树状层级</strong>组织数据，类似文件系统：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>DC=ITD,DC=local                          ← 根（Domain Component）
+</span></span><span class=line><span class=cl>├── OU=ITD-Group                          ← 顶层组织单元
+</span></span><span class=line><span class=cl>│   ├── OU=Services
+</span></span><span class=line><span class=cl>│   │   └── OU=ServiceAccounts
+</span></span><span class=line><span class=cl>│   │       └── CN=sa_wx11jenkins         ← 服务账号
+</span></span><span class=line><span class=cl>│   └── OU=COM
+</span></span><span class=line><span class=cl>│       └── OU=Wx11                       ← 用户组织单元
+</span></span><span class=line><span class=cl>│           ├── CN=张三                    ← 用户
+</span></span><span class=line><span class=cl>│           └── CN=李四
+</span></span><span class=line><span class=cl>├── CN=Users
+</span></span><span class=line><span class=cl>├── CN=Computers
+</span></span><span class=line><span class=cl>└── CN=Groups
+</span></span></code></pre></td></tr></table></div></div><h3 id=22-关键术语>2.2 关键术语</h3><div class=table-wrapper><table><thead><tr><th>术语</th><th>含义</th><th>示例</th></tr></thead><tbody><tr><td><strong>DN</strong></td><td>Distinguished Name，全局唯一路径</td><td><code>CN=张三,OU=Wx11,OU=COM,OU=ITD,DC=ITD,DC=local</code></td></tr><tr><td><strong>RDN</strong></td><td>Relative DN，相对父节点的名称</td><td><code>CN=张三</code></td></tr><tr><td><strong>Base DN</strong></td><td>搜索根节点</td><td><code>DC=ITD,DC=local</code></td></tr><tr><td><strong>sAMAccountName</strong></td><td>AD 用户登录名（兼容 Windows 2000 前）</td><td><code>zhangsan</code></td></tr><tr><td><strong>UPN</strong></td><td>用户主体名（邮箱格式登录名）</td><td><code>zhangsan@ITD.local</code></td></tr><tr><td><strong>objectClass</strong></td><td>对象类型标识</td><td><code>user</code>, <code>group</code>, <code>organizationalUnit</code></td></tr></tbody></table></div><h3 id=23-常见对象属性>2.3 常见对象属性</h3><p>以 AD 用户对象为例，关键属性如下：</p><div class=table-wrapper><table><thead><tr><th>属性</th><th>说明</th><th>示例值</th></tr></thead><tbody><tr><td><code>sAMAccountName</code></td><td>域登录账号</td><td><code>zhangsan</code></td></tr><tr><td><code>cn</code></td><td>通用名称</td><td><code>张三</code></td></tr><tr><td><code>displayName</code></td><td>显示名称</td><td><code>张三 (Zhang San)</code></td></tr><tr><td><code>mail</code></td><td>电子邮件</td><td><code>zhangsan@ITD.local</code></td></tr><tr><td><code>department</code></td><td>部门</td><td><code>技术部</code></td></tr><tr><td><code>manager</code></td><td>上级 DN</td><td><code>CN=李四,OU=...,DC=ITD,DC=local</code></td></tr><tr><td><code>memberOf</code></td><td>所属组（多值）</td><td><code>CN=VPN Users,CN=Groups,DC=ITD,DC=local</code></td></tr><tr><td><code>userAccountControl</code></td><td>账户状态标志位</td><td><code>512</code>（正常启用）</td></tr><tr><td><code>whenCreated</code></td><td>创建时间</td><td><code>2024-03-15 09:30:00 UTC</code></td></tr></tbody></table></div><hr><h2 id=三ldap-认证流程生产级>三、LDAP 认证流程（生产级）</h2><p>企业 LDAP 认证通常分三步：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>┌─────────┐   ① 服务账号 Bind    ┌────────────┐
+</span></span><span class=line><span class=cl>│  客户端  │ ──────────────────→  │  LDAP Server│
+</span></span><span class=line><span class=cl>│         │   ② 搜索用户 DN      │            │
+</span></span><span class=line><span class=cl>│         │ ←──────────────────  │  (AD/LDAP) │
+</span></span><span class=line><span class=cl>│         │   ③ 用户密码 Bind    │            │
+</span></span><span class=line><span class=cl>│         │ ──────────────────→  │            │
+</span></span><span class=line><span class=cl>└─────────┘                      └────────────┘
+</span></span></code></pre></td></tr></table></div></div><p><strong>为什么需要三步？</strong> 因为 LDAP 服务器通常不允许匿名搜索。首先用<strong>服务账号</strong>（有搜索权限，无实际用户权限）绑定，查找到目标用户的 DN，再用该 DN 和用户密码验证身份。这样做的好处是服务账号密码可以定期轮换，不影响用户认证逻辑。</p><hr><h2 id=四python-实战使用-ldap3-连接-ad>四、Python 实战：使用 ldap3 连接 AD</h2><h3 id=41-环境准备>4.1 环境准备</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install ldap3
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-配置管理>4.2 配置管理</h3><p>生产环境中不应将 LDAP 凭据硬编码在代码中：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># config.py — 使用环境变量</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>ssl</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>LDAP_CONFIG</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;server&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_SERVER&#34;</span><span class=p>],</span>        <span class=c1># ldaps://ldap.company.com</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;port&#34;</span><span class=p>:</span> <span class=nb>int</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;LDAP_PORT&#34;</span><span class=p>,</span> <span class=mi>636</span><span class=p>)),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;use_ssl&#34;</span><span class=p>:</span> <span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;base_dn&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BASE_DN&#34;</span><span class=p>],</span>      <span class=c1># DC=company,DC=com</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;bind_dn&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BIND_DN&#34;</span><span class=p>],</span>       <span class=c1># CN=svc_ldap,OU=ServiceAccounts,...</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;bind_password&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BIND_PASSWORD&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;search_base&#34;</span><span class=p>:</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;LDAP_SEARCH_BASE&#34;</span><span class=p>,</span> <span class=s2>&#34;DC=company,DC=com&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=43-跳过-ad-自签名证书>4.3 跳过 AD 自签名证书</h3><p>企业 AD 几乎都使用自签名证书，直接连接会抛出 SSL 错误：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3</span> <span class=kn>import</span> <span class=n>Tls</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>tls</span> <span class=o>=</span> <span class=n>Tls</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>validate</span><span class=o>=</span><span class=n>ssl</span><span class=o>.</span><span class=n>CERT_NONE</span><span class=p>,</span>        <span class=c1># 跳过 AD 自签名证书验证</span>
+</span></span><span class=line><span class=cl>    <span class=n>version</span><span class=o>=</span><span class=n>ssl</span><span class=o>.</span><span class=n>PROTOCOL_TLS_CLIENT</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>安全说明</strong>：<code>CERT_NONE</code> 意味着不验证 LDAP 服务器的证书合法性。在企业内网环境中，AD 证书由内部 CA 签发，客户端通常信任内部 CA 根证书。如果你的环境已部署 AD 证书信任链，可以改回 <code>ssl.CERT_REQUIRED</code> 以获得完整验证。</p></blockquote><h3 id=44-服务账号绑定>4.4 服务账号绑定</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3</span> <span class=kn>import</span> <span class=n>Server</span><span class=p>,</span> <span class=n>Connection</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>server</span> <span class=o>=</span> <span class=n>Server</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAP_CONFIG</span><span class=p>[</span><span class=s2>&#34;server&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>port</span><span class=o>=</span><span class=n>LDAP_CONFIG</span><span class=p>[</span><span class=s2>&#34;port&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>use_ssl</span><span class=o>=</span><span class=n>LDAP_CONFIG</span><span class=p>[</span><span class=s2>&#34;use_ssl&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>tls</span><span class=o>=</span><span class=n>tls</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>get_info</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>                  <span class=c1># 重要：不拉取 Schema（AD 极慢）</span>
+</span></span><span class=line><span class=cl>    <span class=n>connect_timeout</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>conn</span> <span class=o>=</span> <span class=n>Connection</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>server</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>user</span><span class=o>=</span><span class=n>LDAP_CONFIG</span><span class=p>[</span><span class=s2>&#34;bind_dn&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>password</span><span class=o>=</span><span class=n>LDAP_CONFIG</span><span class=p>[</span><span class=s2>&#34;bind_password&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>auto_bind</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>raise_exceptions</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>receive_timeout</span><span class=o>=</span><span class=mi>30</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=45-搜索用户>4.5 搜索用户</h3><p>搜索 <code>sAMAccountName</code> 为 <code>zhangsan</code> 的用户：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>search_user</span><span class=p>(</span><span class=n>conn</span><span class=p>,</span> <span class=n>username</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>search_base</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>search_filter</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;(&amp;(objectClass=user)(sAMAccountName=</span><span class=si>{</span><span class=n>username</span><span class=si>}</span><span class=s2>))&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_base</span><span class=o>=</span><span class=n>search_base</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_filter</span><span class=o>=</span><span class=n>search_filter</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_scope</span><span class=o>=</span><span class=n>SUBTREE</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>attributes</span><span class=o>=</span><span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;sAMAccountName&#34;</span><span class=p>,</span> <span class=s2>&#34;cn&#34;</span><span class=p>,</span> <span class=s2>&#34;displayName&#34;</span><span class=p>,</span> <span class=s2>&#34;mail&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;department&#34;</span><span class=p>,</span> <span class=s2>&#34;title&#34;</span><span class=p>,</span> <span class=s2>&#34;manager&#34;</span><span class=p>,</span> <span class=s2>&#34;memberOf&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;distinguishedName&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>        <span class=n>time_limit</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span>              <span class=c1># 搜索操作超时</span>
+</span></span><span class=line><span class=cl>        <span class=n>size_limit</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>               <span class=c1># 只取第一个匹配</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=k>if</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span> <span class=k>else</span> <span class=kc>None</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=46-完整认证流程>4.6 完整认证流程</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3</span> <span class=kn>import</span> <span class=n>SUBTREE</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3.core.exceptions</span> <span class=kn>import</span> <span class=n>LDAPException</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>authenticate</span><span class=p>(</span><span class=n>username</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>password</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>dict</span> <span class=o>|</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># Step 1: 服务账号绑定</span>
+</span></span><span class=line><span class=cl>    <span class=n>server</span> <span class=o>=</span> <span class=n>_build_server</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>svc_conn</span> <span class=o>=</span> <span class=n>Connection</span><span class=p>(</span><span class=n>server</span><span class=p>,</span> <span class=n>user</span><span class=o>=</span><span class=n>bind_dn</span><span class=p>,</span> <span class=n>password</span><span class=o>=</span><span class=n>bind_pwd</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                          <span class=n>auto_bind</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>raise_exceptions</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># Step 2: 搜索用户 DN</span>
+</span></span><span class=line><span class=cl>        <span class=n>entry</span> <span class=o>=</span> <span class=n>search_user</span><span class=p>(</span><span class=n>svc_conn</span><span class=p>,</span> <span class=n>username</span><span class=p>,</span> <span class=n>search_base</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>entry</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>user_dn</span> <span class=o>=</span> <span class=n>entry</span><span class=o>.</span><span class=n>entry_dn</span>
+</span></span><span class=line><span class=cl>        <span class=n>svc_conn</span><span class=o>.</span><span class=n>unbind</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># Step 3: 用户密码认证</span>
+</span></span><span class=line><span class=cl>        <span class=n>user_conn</span> <span class=o>=</span> <span class=n>Connection</span><span class=p>(</span><span class=n>server</span><span class=p>,</span> <span class=n>user</span><span class=o>=</span><span class=n>user_dn</span><span class=p>,</span> <span class=n>password</span><span class=o>=</span><span class=n>password</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                               <span class=n>auto_bind</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>raise_exceptions</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>user_conn</span><span class=o>.</span><span class=n>unbind</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># Step 4: 重新搜索获取完整属性</span>
+</span></span><span class=line><span class=cl>        <span class=n>svc_conn2</span> <span class=o>=</span> <span class=n>Connection</span><span class=p>(</span><span class=n>server</span><span class=p>,</span> <span class=n>user</span><span class=o>=</span><span class=n>bind_dn</span><span class=p>,</span> <span class=n>password</span><span class=o>=</span><span class=n>bind_pwd</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                               <span class=n>auto_bind</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>raise_exceptions</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>entry2</span> <span class=o>=</span> <span class=n>search_user</span><span class=p>(</span><span class=n>svc_conn2</span><span class=p>,</span> <span class=n>username</span><span class=p>,</span> <span class=n>search_base</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>svc_conn2</span><span class=o>.</span><span class=n>unbind</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>entry2</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;username&#34;</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>entry2</span><span class=o>.</span><span class=n>sAMAccountName</span><span class=o>.</span><span class=n>value</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;email&#34;</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>entry2</span><span class=o>.</span><span class=n>mail</span><span class=o>.</span><span class=n>value</span><span class=p>)</span> <span class=k>if</span> <span class=n>entry2</span><span class=o>.</span><span class=n>mail</span><span class=o>.</span><span class=n>value</span> <span class=k>else</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;display_name&#34;</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>entry2</span><span class=o>.</span><span class=n>displayName</span><span class=o>.</span><span class=n>value</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;department&#34;</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>entry2</span><span class=o>.</span><span class=n>department</span><span class=o>.</span><span class=n>value</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>LDAPException</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>raise</span> <span class=ne>RuntimeError</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;LDAP 认证失败: </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=47-超时兜底保护>4.7 超时兜底保护</h3><p>TLS 握手是阻塞操作，<code>receive_timeout</code> 不覆盖它。需要使用 <code>ThreadPoolExecutor</code> 做硬超时：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>concurrent.futures</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>LDAP_HARD_TIMEOUT</span> <span class=o>=</span> <span class=mi>25</span>  <span class=c1># 秒</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>ldap_authenticate</span><span class=p>(</span><span class=n>username</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>password</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>ThreadPoolExecutor</span><span class=p>(</span><span class=n>max_workers</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span> <span class=k>as</span> <span class=n>pool</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>future</span> <span class=o>=</span> <span class=n>pool</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>authenticate</span><span class=p>,</span> <span class=n>username</span><span class=p>,</span> <span class=n>password</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>future</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>timeout</span><span class=o>=</span><span class=n>LDAP_HARD_TIMEOUT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>TimeoutError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>RuntimeError</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;LDAP 操作超时（&gt;</span><span class=si>{</span><span class=n>LDAP_HARD_TIMEOUT</span><span class=si>}</span><span class=s2>秒）&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=五完整查询脚本与示例输出>五、完整查询脚本与示例输出</h2><p>以下脚本演示如何连接 AD 并执行多种查询，适合在项目初期做 LDAP 连通性验证：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>ldap_inspector.py — LDAP 连通性检查与信息浏览脚本
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>ssl</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3</span> <span class=kn>import</span> <span class=n>Server</span><span class=p>,</span> <span class=n>Connection</span><span class=p>,</span> <span class=n>SUBTREE</span><span class=p>,</span> <span class=n>Tls</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 配置（从环境变量读取）</span>
+</span></span><span class=line><span class=cl><span class=n>LDAP_SERVER</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_SERVER&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>LDAP_PORT</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;LDAP_PORT&#34;</span><span class=p>,</span> <span class=mi>636</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>LDAP_BASE_DN</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BASE_DN&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>LDAP_BIND_DN</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BIND_DN&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>LDAP_BIND_PASSWORD</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;LDAP_BIND_PASSWORD&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>tls</span> <span class=o>=</span> <span class=n>Tls</span><span class=p>(</span><span class=n>validate</span><span class=o>=</span><span class=n>ssl</span><span class=o>.</span><span class=n>CERT_NONE</span><span class=p>,</span> <span class=n>version</span><span class=o>=</span><span class=n>ssl</span><span class=o>.</span><span class=n>PROTOCOL_TLS_CLIENT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>server</span> <span class=o>=</span> <span class=n>Server</span><span class=p>(</span><span class=n>LDAP_SERVER</span><span class=p>,</span> <span class=n>port</span><span class=o>=</span><span class=n>LDAP_PORT</span><span class=p>,</span> <span class=n>use_ssl</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=n>tls</span><span class=o>=</span><span class=n>tls</span><span class=p>,</span> <span class=n>get_info</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span> <span class=n>connect_timeout</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>conn</span> <span class=o>=</span> <span class=n>Connection</span><span class=p>(</span><span class=n>server</span><span class=p>,</span> <span class=n>user</span><span class=o>=</span><span class=n>LDAP_BIND_DN</span><span class=p>,</span> <span class=n>password</span><span class=o>=</span><span class=n>LDAP_BIND_PASSWORD</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                  <span class=n>auto_bind</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>raise_exceptions</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>receive_timeout</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查询 1：组织单元</span>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>LDAP_BASE_DN</span><span class=p>,</span> <span class=s2>&#34;(objectClass=organizationalUnit)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>SUBTREE</span><span class=p>,</span> <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;ou&#34;</span><span class=p>,</span> <span class=s2>&#34;distinguishedName&#34;</span><span class=p>],</span> <span class=n>time_limit</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;OU: </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>)</span><span class=si>}</span><span class=s2> 条&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>e</span> <span class=ow>in</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>[:</span><span class=mi>5</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>e</span><span class=o>.</span><span class=n>entry_dn</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查询 2：域用户</span>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>LDAP_BASE_DN</span><span class=p>,</span> <span class=s2>&#34;(&amp;(objectClass=user)(objectCategory=person))&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>SUBTREE</span><span class=p>,</span> <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;sAMAccountName&#34;</span><span class=p>,</span> <span class=s2>&#34;displayName&#34;</span><span class=p>,</span> <span class=s2>&#34;mail&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=n>time_limit</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span> <span class=n>size_limit</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>用户: </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>)</span><span class=si>}</span><span class=s2> 条（取前10）&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>e</span> <span class=ow>in</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>e</span><span class=o>.</span><span class=n>sAMAccountName</span><span class=o>.</span><span class=n>value</span> <span class=ow>or</span> <span class=s1>&#39;&#39;</span><span class=si>:</span><span class=s2>20s</span><span class=si>}</span><span class=s2> </span><span class=si>{</span><span class=n>e</span><span class=o>.</span><span class=n>displayName</span><span class=o>.</span><span class=n>value</span> <span class=ow>or</span> <span class=s1>&#39;&#39;</span><span class=si>:</span><span class=s2>20s</span><span class=si>}</span><span class=s2> </span><span class=si>{</span><span class=n>e</span><span class=o>.</span><span class=n>mail</span><span class=o>.</span><span class=n>value</span> <span class=ow>or</span> <span class=s1>&#39;&#39;</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查询 3：安全组</span>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>LDAP_BASE_DN</span><span class=p>,</span> <span class=s2>&#34;(objectClass=group)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>SUBTREE</span><span class=p>,</span> <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;cn&#34;</span><span class=p>,</span> <span class=s2>&#34;member&#34;</span><span class=p>],</span> <span class=n>time_limit</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span> <span class=n>size_limit</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>安全组: </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>)</span><span class=si>}</span><span class=s2> 条（取前10）&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>e</span> <span class=ow>in</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>members</span> <span class=o>=</span> <span class=n>e</span><span class=o>.</span><span class=n>member</span><span class=o>.</span><span class=n>values</span> <span class=k>if</span> <span class=nb>hasattr</span><span class=p>(</span><span class=n>e</span><span class=o>.</span><span class=n>member</span><span class=p>,</span> <span class=s1>&#39;values&#39;</span><span class=p>)</span> <span class=k>else</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>e</span><span class=o>.</span><span class=n>cn</span><span class=o>.</span><span class=n>value</span> <span class=ow>or</span> <span class=s1>&#39;&#39;</span><span class=si>:</span><span class=s2>30s</span><span class=si>}</span><span class=s2> 成员数: </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>members</span><span class=p>)</span> <span class=k>if</span> <span class=n>members</span> <span class=ow>and</span> <span class=n>members</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=k>else</span> <span class=mi>0</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>unbind</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=51-示例输出>5.1 示例输出</h3><p>连接到真实的 AD 环境后，输出类似如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>OU: 24 条
+</span></span><span class=line><span class=cl>  OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>  OU=Services,OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>  OU=ServiceAccounts,OU=Services,OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>  OU=COM,OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>  OU=Wx11,OU=COM,OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>用户: 156 条（取前10）
+</span></span><span class=line><span class=cl>  zhangsan             张三                       zhangsan@ITD.local
+</span></span><span class=line><span class=cl>  lisi                 李四                       lisi@ITD.local
+</span></span><span class=line><span class=cl>  wangwu               王五                       wangwu@ITD.local
+</span></span><span class=line><span class=cl>  jenkins_build        构建机器人                   builds@ITD.local
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>安全组: 43 条（取前10）
+</span></span><span class=line><span class=cl>  Domain Admins                     成员数: 5
+</span></span><span class=line><span class=cl>  Domain Users                      成员数: 187
+</span></span><span class=line><span class=cl>  VPN Access                        成员数: 34
+</span></span><span class=line><span class=cl>  Jenkins Agents                    成员数: 12
+</span></span><span class=line><span class=cl>  ...
+</span></span></code></pre></td></tr></table></div></div><h3 id=52-查询特定用户详情>5.2 查询特定用户详情</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=sa>f</span><span class=s2>&#34;OU=Wx11,OU=COM,OU=ITD-Group,</span><span class=si>{</span><span class=n>LDAP_BASE_DN</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;(&amp;(objectClass=user)(sAMAccountName=zhangsan))&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>SUBTREE</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;*&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>time_limit</span><span class=o>=</span><span class=mi>15</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>entry</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>entries</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;DN: </span><span class=si>{</span><span class=n>entry</span><span class=o>.</span><span class=n>entry_dn</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;显示名称:   </span><span class=si>{</span><span class=n>entry</span><span class=o>.</span><span class=n>displayName</span><span class=o>.</span><span class=n>value</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;邮箱:       </span><span class=si>{</span><span class=n>entry</span><span class=o>.</span><span class=n>mail</span><span class=o>.</span><span class=n>value</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;部门:       </span><span class=si>{</span><span class=n>entry</span><span class=o>.</span><span class=n>department</span><span class=o>.</span><span class=n>value</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;上级:       </span><span class=si>{</span><span class=n>entry</span><span class=o>.</span><span class=n>manager</span><span class=o>.</span><span class=n>value</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;所属组:     </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>entry</span><span class=o>.</span><span class=n>memberOf</span><span class=o>.</span><span class=n>values</span><span class=p>)</span><span class=si>}</span><span class=s2> 个&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出类似：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>DN: CN=张三,OU=Wx11,OU=COM,OU=ITD-Group,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>显示名称:   张三 (Zhang San)
+</span></span><span class=line><span class=cl>邮箱:       zhangsan@ITD.local
+</span></span><span class=line><span class=cl>部门:       研发中心
+</span></span><span class=line><span class=cl>上级:       CN=李四,OU=...,DC=ITD,DC=local
+</span></span><span class=line><span class=cl>所属组:     8 个
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=六企业场景中的-ldap-最佳实践>六、企业场景中的 LDAP 最佳实践</h2><h3 id=61-连接策略>6.1 连接策略</h3><div class=table-wrapper><table><thead><tr><th>实践</th><th>说明</th></tr></thead><tbody><tr><td><strong>使用 LDAPS（636）</strong></td><td>明文 LDAP（389）会泄露凭据，必须使用 TLS 加密</td></tr><tr><td><strong>连接池复用</strong></td><td>每次请求都新建/销毁 TCP 连接是昂贵的，使用 <code>ldap3</code> 的连接池或自行复用 <code>Connection</code> 对象</td></tr><tr><td><strong>硬超时保护</strong></td><td>TLS 握手是内核级阻塞，<code>receive_timeout</code> 不覆盖，必须用 <code>ThreadPoolExecutor</code> + <code>future.result(timeout=...)</code> 做兜底</td></tr><tr><td><strong>增量同步</strong></td><td>如需同步大量用户（如 HR 系统），使用 AD 的 <code>USNChanged</code> 或 <code>DirSync</code> 而非全量搜索</td></tr></tbody></table></div><h3 id=62-搜索优化>6.2 搜索优化</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># ❌ 差（返回所有属性，扫描整个目录树）</span>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=s2>&#34;DC=ITD,DC=local&#34;</span><span class=p>,</span> <span class=s2>&#34;(objectClass=user)&#34;</span><span class=p>,</span> <span class=n>SUBTREE</span><span class=p>,</span> <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;*&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ✅ 好（指定属性 + 缩小搜索范围 + time_limit）</span>
+</span></span><span class=line><span class=cl><span class=n>conn</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=s2>&#34;OU=Wx11,DC=ITD,DC=local&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;(&amp;(objectClass=user)(sAMAccountName=zhangsan))&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>SUBTREE</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>attributes</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;sAMAccountName&#34;</span><span class=p>,</span> <span class=s2>&#34;mail&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=n>time_limit</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span> <span class=n>size_limit</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><div class=table-wrapper><table><thead><tr><th>优化手段</th><th>效果</th></tr></thead><tbody><tr><td>指定 <code>attributes</code>（而不是 <code>["*"]</code>）</td><td>减少网络传输，避免二进制属性反序列化</td></tr><tr><td>设置 <code>size_limit</code></td><td>防止海量结果撑爆内存</td></tr><tr><td>设置 <code>time_limit</code></td><td>防止慢查询拖垮应用</td></tr><tr><td>缩小 <code>search_base</code></td><td>减少扫描节点数，搜索 OU 比 Base DN 快数倍</td></tr><tr><td>使用索引属性</td><td><code>sAMAccountName</code>、<code>cn</code> 通常有索引，避免搜索 <code>description</code> 等无索引字段</td></tr></tbody></table></div><h3 id=63-属性访问差异重要>6.3 属性访问差异（重要）</h3><p>不同版本的 <code>ldap3</code> 对属性访问的 API 有差异，这在迁移代码时是常见的坑点：</p><div class=table-wrapper><table><thead><tr><th>访问方式</th><th>旧版 ldap3</th><th>新版 ldap3（≥2.9）</th></tr></thead><tbody><tr><td>DN</td><td><code>entry.dn</code></td><td><code>entry.entry_dn</code></td></tr><tr><td>标量属性</td><td><code>entry.attributes["cn"]</code></td><td><code>entry.cn.value</code></td></tr><tr><td>多值属性</td><td><code>entry.attributes["memberOf"]</code></td><td><code>entry.memberOf.values</code></td></tr><tr><td>获取所有属性名</td><td><code>entry.attributes.keys()</code></td><td><code>entry.entry_attributes</code></td></tr></tbody></table></div><p>推荐统一使用新 API：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 统一写法（兼容性好）</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_attr</span><span class=p>(</span><span class=n>entry</span><span class=p>,</span> <span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;安全获取 ldap3 Entry 的属性值，标量返回 str，多值返回 list&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>attr</span> <span class=o>=</span> <span class=nb>getattr</span><span class=p>(</span><span class=n>entry</span><span class=p>,</span> <span class=n>name</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>attr</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>hasattr</span><span class=p>(</span><span class=n>attr</span><span class=p>,</span> <span class=s1>&#39;value&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>attr</span><span class=o>.</span><span class=n>value</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>hasattr</span><span class=p>(</span><span class=n>attr</span><span class=p>,</span> <span class=s1>&#39;values&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>attr</span><span class=o>.</span><span class=n>values</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>attr</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=64-安全防范>6.4 安全防范</h3><ul><li><strong>LDAP 注入</strong>：用户输入中可能包含 <code>*</code>, <code>(</code>, <code>)</code>, <code>\</code> 等特殊字符，必须转义</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>escape_ldap_filter</span><span class=p>(</span><span class=n>value</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;转义 LDAP 搜索过滤表达式中的特殊字符&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>escape_chars</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>5c&#39;</span><span class=p>,</span> <span class=s1>&#39;*&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>2a&#39;</span><span class=p>,</span> <span class=s1>&#39;(&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>28&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;)&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>29&#39;</span><span class=p>,</span> <span class=s1>&#39;</span><span class=se>\x00</span><span class=s1>&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>00&#39;</span><span class=p>,</span> <span class=s1>&#39;/&#39;</span><span class=p>:</span> <span class=s1>&#39;</span><span class=se>\\</span><span class=s1>2f&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s1>&#39;&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>escape_chars</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>c</span><span class=p>,</span> <span class=n>c</span><span class=p>)</span> <span class=k>for</span> <span class=n>c</span> <span class=ow>in</span> <span class=n>value</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li><strong>凭据管理</strong>：服务账号密码应定期轮换，通过密钥管理服务（Vault/KMS）下发，不要硬编码在配置文件里</li></ul><h3 id=65-异常处理分类>6.5 异常处理分类</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>ldap3.core.exceptions</span> <span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAPBindError</span><span class=p>,</span>          <span class=c1># 绑定失败：密码错误 / 账号锁定</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAPCommunicationError</span><span class=p>,</span> <span class=c1># 网络异常：DNS 解析失败 / 连接被拒 / TLS 握手失败</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAPSearchError</span><span class=p>,</span>        <span class=c1># 搜索语法错误</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAPTimeLimitExceeded</span><span class=p>,</span>  <span class=c1># 搜索超时（服务器端中断）</span>
+</span></span><span class=line><span class=cl>    <span class=n>LDAPSizeLimitExceeded</span><span class=p>,</span>  <span class=c1># 结果过多被截断</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=七常见问题排查>七、常见问题排查</h2><h3 id=71-连接失败>7.1 连接失败</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>LDAPCommunicationError: socket connection error while opening socket
+</span></span></code></pre></td></tr></table></div></div><p><strong>排查步骤</strong>：</p><ol><li>确认网络可达：<code>Test-NetConnection ITD.local -Port 636</code>（Windows）或 <code>nc -zv ITD.local 636</code>（Linux）</li><li>确认 DNS 解析：<code>nslookup ITD.local</code></li><li>检查证书：<code>openssl s_client -connect ITD.local:636 -showcerts</code></li><li>确认 TLS 版本：Windows Server 2012 R2 默认仅支持 TLS 1.0，Python 3.8+ 默认要求 TLS 1.2+</li></ol><h3 id=72-绑定失败>7.2 绑定失败</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>LDAPBindError: invalidCredentials
+</span></span></code></pre></td></tr></table></div></div><p>可能原因：</p><ul><li>服务账号 DN 格式错误（常见：逗号前后拼写错误）</li><li>密码包含特殊字符未正确处理</li><li>账号已过期或被禁用</li><li>&ldquo;账户被锁定&rdquo;（多次输错密码后 AD 策略锁定）</li></ul><h3 id=73-搜索结果为空>7.3 搜索结果为空</h3><p>可能原因：</p><ul><li><code>search_base</code> 写错了子 OU，用户不在该路径下</li><li>搜索过滤器语法错误（<code>&</code> 少写一个括号？）</li><li>权限不足：服务账号没有搜索该 OU 的权限</li><li>用了 <code>objectCategory=person</code> 但 AD 中用户是 <code>inetOrgPerson</code>（OpenLDAP 场景）</li></ul><hr><h2 id=八总结>八、总结</h2><p>LDAP 作为企业身份管理的事实标准，虽已有三十余年历史，但在现代 IT 架构中仍扮演不可替代的角色。掌握 LDAP 协议基础与 <code>ldap3</code> 库的正确使用方式，对于开发企业内部系统（OA、HR、CI/CD、Wi-Fi 认证）至关重要。</p><p>从本文的实战可以看到，正确使用 LDAP 的关键在于三点：</p><ol><li><strong>理解数据模型</strong>：树形结构、DN/RDN、对象类与属性</li><li><strong>正确处理证书</strong>：企业 AD 的自签名证书需要跳过验证或配置信任链</li><li><strong>防御式编程</strong>：注入转义、多层超时、异常分类、属性访问兼容</li></ol><p>将这些原则落地到代码中，就能构建出稳定、安全的 LDAP 集成模块。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/ldap/>LDAP</a>
+<a href=/tags/python/>Python</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/redis%E7%BC%93%E5%AD%98%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E6%8F%90%E5%8D%87%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E8%89%BA%E6%9C%AF/><div class=article-details><h2 class=article-title>Redis缓存模式详解：提升系统性能的艺术</h2></div></a></article><article><a href=/p/rust-%E8%BF%9E%E6%8E%A5-mongodb-%E5%92%8C-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/><div class=article-details><h2 class=article-title>Rust 连接 MongoDB 和 MySQL 数据库完整教程</h2></div></a></article><article><a href=/p/windows-%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6.bat%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B/><div class=article-details><h2 class=article-title>Windows 批处理文件（.bat）应用详解与实用示例</h2></div></a></article><article><a href=/p/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7tauri2.0%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/><div class=article-details><h2 class=article-title>跨平台桌面应用工具Tauri2.0入门教程</h2></div></a></article><article><a href=/p/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8F%8A%E6%A3%8B%E7%9B%98%E6%A0%BC%E6%A0%87%E5%AE%9A%E6%B3%95%E8%AF%A6%E8%A7%A3/><div class=article-details><h2 class=article-title>相机标定及棋盘格标定法详解</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

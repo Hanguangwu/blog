@@ -1,4 +1,244 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 酒中仙</title><link>https://blog.zwzhang.com/categories/ai/</link><description>Recent content in AI on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 25 Apr 2026 16:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 酒中仙</title><link>https://blog.zwzhang.com/categories/ai/</link><description>Recent content in AI on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 23 Jun 2026 16:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>自然语言检测器完全指南：从传统第三方库到AI方案的选型与实践</title><link>https://blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%A3%80%E6%B5%8B%E5%99%A8%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%E4%BB%8E%E4%BC%A0%E7%BB%9F%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%88%B0ai%E6%96%B9%E6%A1%88%E7%9A%84%E9%80%89%E5%9E%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link><pubDate>Tue, 23 Jun 2026 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%A3%80%E6%B5%8B%E5%99%A8%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%E4%BB%8E%E4%BC%A0%E7%BB%9F%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%88%B0ai%E6%96%B9%E6%A1%88%E7%9A%84%E9%80%89%E5%9E%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid><description>&lt;h1 id="语言检测器完全指南从传统库到ai方案的选型与实践"&gt;语言检测器完全指南：从传统库到AI方案的选型与实践
+&lt;/h1&gt;&lt;p&gt;在全球化应用开发与多语言数据处理中，&lt;strong&gt;语言检测（Language Identification）&lt;/strong&gt; 是一个基础但关键的环节。无论是路由用户到正确的翻译管道、对多语言语料进行分类，还是实现智能化的文本分析，选对检测工具都能事半功倍。&lt;/p&gt;
+&lt;p&gt;本文将深入对比当前主流的语言检测方案，从&lt;strong&gt;直接使用大语言模型（LLM）&lt;/strong&gt; 到&lt;strong&gt;Python 第三方库&lt;/strong&gt;，涵盖精度、速度、语言覆盖面等维度，帮你做出最优选择。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;推荐优先使用&lt;/strong&gt;：&lt;a class="link" href="https://pypi.org/project/lingua-language-detector/" target="_blank" rel="noopener"
+&gt;lingua-language-detector&lt;/a&gt; —— 精度优先、速度出色、支持 75 种语言。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="方案一直接使用大语言模型检测"&gt;方案一：直接使用大语言模型检测
+&lt;/h2&gt;&lt;p&gt;随着 LLM 能力的提升，直接用 AI 做语言识别成为了一种零配置的便捷方案。&lt;/p&gt;
+&lt;h3 id="ai-language-detector"&gt;AI Language Detector
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/sunnyloooo/language-detector-ai" target="_blank" rel="noopener"
+&gt;Sunnyloooo/language-detector-ai&lt;/a&gt; 是一个轻量级 Web 应用，利用 AI 技术自动检测文本语言，支持在线体验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub 仓库&lt;/strong&gt;：&lt;a class="link" href="https://github.com/sunnyloooo/language-detector-ai" target="_blank" rel="noopener"
+&gt;github.com/sunnyloooo/language-detector-ai&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在线 Demo&lt;/strong&gt;：&lt;a class="link" href="https://sunnyloooo.github.io/language-detector-ai/" target="_blank" rel="noopener"
+&gt;sunnyloooo.github.io/language-detector-ai&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;支持 &lt;strong&gt;40+ 种语言&lt;/strong&gt;，涵盖：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;分类&lt;/th&gt;
+&lt;th&gt;语言&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;亚洲语言&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;繁体中文 🇹🇼、简体中文 🇨🇳、日语 🇯🇵、韩语 🇰🇷&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;欧洲语言&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;英语 🇺🇸、西班牙语 🇪🇸、法语 🇫🇷、德语 🇩🇪、意大利语 🇮🇹&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;其他&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;阿拉伯语 🇸🇦、印地语 🇮🇳、俄语 🇷🇺、葡萄牙语 🇵🇹&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：无需安装、零配置、对自然语言理解能力强，适合快速验证与非结构化文本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：依赖网络 / API 调用（或本地部署成本高），不适合批量离线处理。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="方案二使用-python-第三方库识别推荐"&gt;方案二：使用 Python 第三方库识别（推荐）
+&lt;/h2&gt;&lt;p&gt;对于生产环境或批量场景，Python 生态中有多种成熟的语言检测库。以下逐一对比。&lt;/p&gt;
+&lt;h3 id="lingua-language-detector--首推"&gt;lingua-language-detector ⭐ 首推
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://pypi.org/project/lingua-language-detector/" target="_blank" rel="noopener"
+&gt;lingua-language-detector&lt;/a&gt; 的核心哲学是 &lt;strong&gt;quality over quantity&lt;/strong&gt;——在一小批语言上做到高精度，再稳步扩展。目前支持 &lt;strong&gt;75 种语言&lt;/strong&gt;，在实测中表现极为出色。&lt;/p&gt;
+&lt;h4 id="安装"&gt;安装
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install lingua-language-detector
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="示例代码"&gt;示例代码
+&lt;/h4&gt;&lt;p&gt;以下示例演示如何同时检测一段混合文本中的多种语言：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lingua&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LanguageDetectorBuilder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ENGLISH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FRENCH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GERMAN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;detector&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LanguageDetectorBuilder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_languages&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;languages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sentence&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Parlez-vous français? &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; \
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;Ich spreche Französisch nur ein bisschen. &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; \
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;A little bit is better than nothing.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;detector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect_multiple_languages_of&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start_index&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end_index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="输出结果"&gt;输出结果
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;FRENCH: &amp;#39;Parlez-vous français? &amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;GERMAN: &amp;#39;Ich spreche Französisch nur ein bisschen. &amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ENGLISH: &amp;#39;A little bit is better than nothing.&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="实测准确率"&gt;实测准确率
+&lt;/h4&gt;&lt;p&gt;在 &lt;strong&gt;50 种常见语言&lt;/strong&gt; 的本地测试中，lingua 可以&lt;strong&gt;正确识别 46 种&lt;/strong&gt;，准确率高达 &lt;strong&gt;92%&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id="速度表现"&gt;速度表现
+&lt;/h4&gt;&lt;p&gt;Lingua 在多线程模式下展现了极佳的速度。以下是官方在 iMac 3.6 GHz 8-Core Intel Core i9 / 40 GB RAM 上，对 75 种语言各 3000 条文本的分类测试结果：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;检测器&lt;/th&gt;
+&lt;th&gt;耗时&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CLD 2&lt;/td&gt;
+&lt;td&gt;8.65 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lingua（低精度模式，多线程）&lt;/td&gt;
+&lt;td&gt;11.81 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CLD 3&lt;/td&gt;
+&lt;td&gt;16.77 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lingua（高精度模式，多线程）&lt;/td&gt;
+&lt;td&gt;21.13 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Simplemma&lt;/td&gt;
+&lt;td&gt;2 分 36.44 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Langid&lt;/td&gt;
+&lt;td&gt;3 分 50.40 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Langdetect&lt;/td&gt;
+&lt;td&gt;10 分 43.96 秒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Lingua 在多线程模式下是&lt;strong&gt;最快的纯 Python 方案之一&lt;/strong&gt;，与底层 C/C++ 实现的 CLD 2/3 几乎持平，而纯 Python 实现的 Simplemma、Langid、Langdetect 则显著慢得多。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="xlm-roberta-base-language-detection深度学习方案"&gt;xlm-roberta-base-language-detection（深度学习方案）
+&lt;/h3&gt;&lt;p&gt;如果场景偏向&lt;strong&gt;深度语义理解&lt;/strong&gt;，可以选用基于 XLM-RoBERTa 的模型：&lt;a class="link" href="https://huggingface.co/papluca/xlm-roberta-base-language-detection" target="_blank" rel="noopener"
+&gt;xlm-roberta-base-language-detection&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;该模型基于大型多语言 Transformer，目前支持 &lt;strong&gt;20 种语言&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;arabic (ar), bulgarian (bg), german (de), modern greek (el),
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;english (en), spanish (es), french (fr), hindi (hi), italian (it),
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;japanese (ja), dutch (nl), polish (pl), portuguese (pt),
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;russian (ru), swahili (sw), thai (th), turkish (tr), urdu (ur),
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vietnamese (vi), chinese (zh)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="对应论文"&gt;对应论文
+&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Unsupervised Cross-lingual Representation Learning at Scale&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This paper shows that pretraining multilingual language models at scale leads to significant performance gains for a wide range of cross-lingual transfer tasks. We train a Transformer-based masked language model on one hundred languages, using more than two terabytes of filtered CommonCrawl data. Our model, dubbed &lt;strong&gt;XLM-R&lt;/strong&gt;, significantly outperforms multilingual BERT (mBERT) on a variety of cross-lingual benchmarks, including +14.6% average accuracy on XNLI, +13% average F1 score on MLQA, and +2.4% F1 score on NER. XLM-R performs particularly well on low-resource languages, improving 15.7% in XNLI accuracy for Swahili and 11.4% for Urdu over previous XLM models. &amp;hellip; — &lt;em&gt;Conneau et al., 2020&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：需要理解上下文语义而非仅靠 n-gram 统计特征的场景（如短文本、含噪音文本），但语言覆盖面和推理速度不如 lingua。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="方案对比总览"&gt;方案对比总览
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;维度&lt;/th&gt;
+&lt;th&gt;lingua-language-detector&lt;/th&gt;
+&lt;th&gt;xlm-roberta&lt;/th&gt;
+&lt;th&gt;AI Language Detector&lt;/th&gt;
+&lt;th&gt;CLD 2/3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;语言数量&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;75&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;40+&lt;/td&gt;
+&lt;td&gt;80+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;精度&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐⭐&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐⭐&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;速度&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+&lt;td&gt;⭐⭐&lt;/td&gt;
+&lt;td&gt;取决于 API&lt;/td&gt;
+&lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;离线可用&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌（需 API）&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;部署难度&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;低（pip）&lt;/td&gt;
+&lt;td&gt;中（HuggingFace）&lt;/td&gt;
+&lt;td&gt;低（在线）&lt;/td&gt;
+&lt;td&gt;低&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;推荐场景&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;生产环境、批量处理&lt;/td&gt;
+&lt;td&gt;语义敏感场景&lt;/td&gt;
+&lt;td&gt;快速验证、原型&lt;/td&gt;
+&lt;td&gt;极致速度要求&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="工具排行榜"&gt;工具排行榜
+&lt;/h2&gt;&lt;p&gt;更多语言检测工具的综合排名，可参考：&lt;a class="link" href="https://www.libhunt.com/topic/language-identification" target="_blank" rel="noopener"
+&gt;libhunt.com/topic/language-identification&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="总结建议"&gt;总结建议
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;选 lingua-language-detector 不会错&lt;/strong&gt;——它在精度、速度、语言覆盖和易用性上取得了最佳平衡，是绝大多数场景的首选。&lt;/li&gt;
+&lt;li&gt;若文本极短或高度依赖语义（例如社交媒体推文），考虑 &lt;strong&gt;xlm-roberta&lt;/strong&gt; 或 LLM 方案。&lt;/li&gt;
+&lt;li&gt;若对速度有极致要求且能容忍略低的召回，&lt;strong&gt;CLD 2&lt;/strong&gt; 仍是最快的选择。&lt;/li&gt;
+&lt;li&gt;对于快速原型或个人项目，&lt;strong&gt;AI Language Detector&lt;/strong&gt;（在线 Demo）无需安装即可上手。&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>LangGraph进阶：多智能体协作与复杂流程管控</title><link>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</link><pubDate>Sat, 25 Apr 2026 16:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/langgraph%E8%BF%9B%E9%98%B6%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%8E%E5%A4%8D%E6%9D%82%E6%B5%81%E7%A8%8B%E7%AE%A1%E6%8E%A7/</guid><description>&lt;h1 id="langgraph进阶多智能体协作与复杂流程管控"&gt;LangGraph进阶：多智能体协作与复杂流程管控
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;哈喽，各位自学小伙伴～ 本章咱们正式进入“高阶玩法”——多智能体协作与复杂流程管控！&lt;/p&gt;
 &lt;p&gt;不同于上一章的基础图结构开发，本章内容会更加工程化一些，核心是教大家用LangGraph ，搭建能“分工协作”“自我纠错”“人机配合”的智能系统。&lt;/p&gt;
