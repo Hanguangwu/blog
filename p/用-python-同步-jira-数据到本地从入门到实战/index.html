@@ -1,0 +1,432 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文介绍用 Python 同步 JIRA 数据到本地的基本过程。"><title>用 Python 同步 JIRA 数据到本地：从入门到实战</title><link rel=canonical href=https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/><link rel=stylesheet href=/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css><meta property='og:title' content="用 Python 同步 JIRA 数据到本地：从入门到实战"><meta property='og:description' content="本文介绍用 Python 同步 JIRA 数据到本地的基本过程。"><meta property='og:url' content='https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Python'><meta property='article:tag' content='JIRA'><meta property='article:published_time' content='2026-07-14T12:34:25-08:00'><meta property='article:modified_time' content='2026-07-14T12:34:25-08:00'><meta name=twitter:title content="用 Python 同步 JIRA 数据到本地：从入门到实战"><meta name=twitter:description content="本文介绍用 Python 同步 JIRA 数据到本地的基本过程。"><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://blog.zwzhang.com/en/>English</option><option value=https://blog.zwzhang.com/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一jira-是什么>一、JIRA 是什么？</a></li><li><a href=#二为什么要把-jira-数据同步到本地>二、为什么要把 JIRA 数据同步到本地？</a></li><li><a href=#三python-调用-jira-的准备工作>三、Python 调用 JIRA 的准备工作</a><ol><li><a href=#安装依赖>安装依赖</a></li><li><a href=#配置-env-文件>配置 <code>.env</code> 文件</a></li><li><a href=#什么是-api-token>什么是 API Token？</a></li></ol></li><li><a href=#四基础用法示例>四、基础用法示例</a><ol><li><a href=#41-连接并列出所有项目>4.1 连接并列出所有项目</a></li><li><a href=#42-搜索指定项目的-issue>4.2 搜索指定项目的 Issue</a></li><li><a href=#43-获取-issue-完整详情>4.3 获取 Issue 完整详情</a></li></ol></li><li><a href=#五实战把整个-jira-同步到本地>五、实战：把整个 JIRA 同步到本地</a><ol><li><a href=#完整代码>完整代码</a></li><li><a href=#运行效果>运行效果</a></li><li><a href=#输出的-json-结构>输出的 JSON 结构</a></li></ol></li><li><a href=#六进阶技巧>六、进阶技巧</a><ol><li><a href=#61-只获取变更的-issue增量同步>6.1 只获取变更的 Issue（增量同步）</a></li><li><a href=#62-导出为-csv-而非-json>6.2 导出为 CSV 而非 JSON</a></li><li><a href=#63-处理大项目分批导出>6.3 处理大项目（分批导出）</a></li><li><a href=#64-从本地-json-还原数据到新-jira>6.4 从本地 JSON 还原数据到新 JIRA</a></li></ol></li><li><a href=#七常见问题>七、常见问题</a><ol><li><a href=#q-jql-报错-the-character--is-a-reserved-jql-character>Q: JQL 报错 &ldquo;The character &lsquo;*&rsquo; is a reserved JQL character&rdquo;</a></li><li><a href=#q-project-object-has-no-attribute-lead>Q: <code>Project</code> object has no attribute ’lead’</a></li><li><a href=#q-如何处理-jira-的-rate-limit>Q: 如何处理 JIRA 的 rate limit？</a></li></ol></li><li><a href=#八总结>八、总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E7%BC%96%E7%A8%8B/>编程</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/>用 Python 同步 JIRA 数据到本地：从入门到实战</a></h2><h3 class=article-subtitle>本文介绍用 Python 同步 JIRA 数据到本地的基本过程。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jul 14, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 6 分钟</time></div></footer></div></header><section class=article-content><h1 id=用-python-同步-jira-数据到本地从入门到实战>用 Python 同步 JIRA 数据到本地：从入门到实战</h1><h2 id=一jira-是什么>一、JIRA 是什么？</h2><p><strong>JIRA</strong> 是 Atlassian 公司开发的一款<strong>项目管理和问题追踪工具</strong>，广泛应用于软件团队的敏捷开发、Bug 跟踪、需求管理和任务协作中。</p><p>简单来说，JIRA 就是一个"一切皆 Issue"的工作流引擎：</p><ul><li><strong>需求</strong>（Story）是一个 Issue</li><li><strong>Bug</strong> 是一个 Issue</li><li><strong>子任务</strong>（Sub-task）也是一个 Issue</li><li>每个 Issue 有自己的<strong>类型、状态、优先级、经办人、时间估算、自定义字段</strong>等</li></ul><p>JIRA 的核心价值在于：</p><div class=table-wrapper><table><thead><tr><th>能力</th><th>说明</th></tr></thead><tbody><tr><td><strong>工作流定制</strong></td><td>每个 Issue 在不同状态间流转（待办→进行中→已完成），可自定义步骤和条件</td></tr><tr><td><strong>敏捷看板</strong></td><td>Scrum / Kanban 面板，拖拽管理任务</td></tr><tr><td><strong>自定义字段</strong></td><td>不限于内置字段，可随意添加业务需要的字段</td></tr><tr><td><strong>强大的 JQL</strong></td><td>JIRA Query Language，类似 SQL 的灵活搜索语言</td></tr><tr><td><strong>权限体系</strong></td><td>颗粒度到字段级别的权限控制</td></tr><tr><td><strong>集成生态</strong></td><td>与 Git、CI/CD、Slack、Confluence 深度集成</td></tr></tbody></table></div><h2 id=二为什么要把-jira-数据同步到本地>二、为什么要把 JIRA 数据同步到本地？</h2><p>虽然 JIRA 提供了 Web UI 和 REST API，但有些场景下把数据拉到本地更高效：</p><ol><li><strong>离线备份</strong> — 防止 JIRA 服务故障或配置丢失</li><li><strong>自定义分析</strong> — 在本地用 Pandas / SQL 做更灵活的统计报表</li><li><strong>数据迁移</strong> — 从 JIRA 迁移到其他平台前的数据整理</li><li><strong>自动化处理</strong> — 批量修改、批量提取 Gherkin 用例、合规审计等</li><li><strong>性能考量</strong> — 大规模查询时，本地处理比轮询 JIRA API 快得多</li></ol><h2 id=三python-调用-jira-的准备工作>三、Python 调用 JIRA 的准备工作</h2><h3 id=安装依赖>安装依赖</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install jira python-dotenv
+</span></span></code></pre></td></tr></table></div></div><ul><li><code>jira</code> — Atlassian 官方推荐的 Python 客户端库</li><li><code>python-dotenv</code> — 从 <code>.env</code> 文件加载配置，避免硬编码凭据</li></ul><h3 id=配置-env-文件>配置 <code>.env</code> 文件</h3><p>在项目目录下创建 <code>.env</code>，写入以下内容（<strong>请使用你自己的实际值替换示例</strong>）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>JIRA_SERVER</span><span class=o>=</span>https://your-company.atlassian.net/
+</span></span><span class=line><span class=cl><span class=nv>JIRA_USERNAME</span><span class=o>=</span>your-email@example.com
+</span></span><span class=line><span class=cl><span class=nv>JIRA_PASSWORD</span><span class=o>=</span>your-api-token-or-password
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>安全提示：</strong> 永远不要将包含真实凭据的 <code>.env</code> 文件提交到 Git。请在 <code>.gitignore</code> 中添加 <code>.env</code>。</p></blockquote><h3 id=什么是-api-token>什么是 API Token？</h3><p>Atlassian 推荐使用 API Token 而非密码认证：</p><ol><li>登录 <a class=link href=https://id.atlassian.com/manage-profile/security/api-tokens target=_blank rel=noopener>https://id.atlassian.com/manage-profile/security/api-tokens</a></li><li>点击"Create API token"</li><li>复制生成的 token 作为 <code>JIRA_PASSWORD</code> 的值</li></ol><h2 id=四基础用法示例>四、基础用法示例</h2><h3 id=41-连接并列出所有项目>4.1 连接并列出所有项目</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>jira</span> <span class=kn>import</span> <span class=n>JIRA</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>dotenv</span> <span class=kn>import</span> <span class=n>load_dotenv</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>load_dotenv</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>jira_server</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_SERVER&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>jira_user</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_USERNAME&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>jira_pass</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_PASSWORD&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>jr</span> <span class=o>=</span> <span class=n>JIRA</span><span class=p>(</span><span class=n>server</span><span class=o>=</span><span class=n>jira_server</span><span class=p>,</span> <span class=n>basic_auth</span><span class=o>=</span><span class=p>(</span><span class=n>jira_user</span><span class=p>,</span> <span class=n>jira_pass</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>projects</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>projects</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;共发现 </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>projects</span><span class=p>)</span><span class=si>}</span><span class=s2> 个项目：&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>projects</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  </span><span class=si>{</span><span class=n>p</span><span class=o>.</span><span class=n>key</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>p</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>输出示例：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>共发现 12 个项目：
+</span></span><span class=line><span class=cl>  PROJ: 我的项目
+</span></span><span class=line><span class=cl>  BUGS: 缺陷追踪
+</span></span><span class=line><span class=cl>  DOCS: 文档管理
+</span></span><span class=line><span class=cl>  ...
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-搜索指定项目的-issue>4.2 搜索指定项目的 Issue</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 搜索所有 JQL 都支持的功能</span>
+</span></span><span class=line><span class=cl><span class=n>issues</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;project = &#34;PROJ&#34; AND status = &#34;进行中&#34;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>maxResults</span><span class=o>=</span><span class=mi>50</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fields</span><span class=o>=</span><span class=s2>&#34;summary,status,assignee,created&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>issue</span> <span class=ow>in</span> <span class=n>issues</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>issue</span><span class=o>.</span><span class=n>key</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>summary</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>常用 JQL 示例：</strong></p><div class=table-wrapper><table><thead><tr><th>JQL</th><th>含义</th></tr></thead><tbody><tr><td><code>project = PROJ</code></td><td>PROJ 项目所有 Issue</td></tr><tr><td><code>assignee = currentUser()</code></td><td>指派给我的</td></tr><tr><td><code>updated >= -7d</code></td><td>最近一周更新的</td></tr><tr><td><code>status in (Open, "In Progress")</code></td><td>未关闭的</td></tr><tr><td><code>ORDER BY created DESC</code></td><td>按创建时间倒序</td></tr></tbody></table></div><h3 id=43-获取-issue-完整详情>4.3 获取 Issue 完整详情</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>issue</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>issue</span><span class=p>(</span><span class=s2>&#34;PROJ-123&#34;</span><span class=p>,</span> <span class=n>fields</span><span class=o>=</span><span class=s2>&#34;*all&#34;</span><span class=p>,</span> <span class=n>expand</span><span class=o>=</span><span class=s2>&#34;changelog&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>issue</span><span class=o>.</span><span class=n>raw</span><span class=p>)</span>  <span class=c1># 完整的 JSON 数据</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>fields="*all"</code> 返回所有字段（包括自定义字段），<code>expand="changelog"</code> 返回变更历史。</p><h2 id=五实战把整个-jira-同步到本地>五、实战：把整个 JIRA 同步到本地</h2><p>下面是一个完整的脚本，它会遍历所有项目、分页拉取全部 Issue、保存为本地 JSON 文件。</p><h3 id=完整代码>完整代码</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>jira</span> <span class=kn>import</span> <span class=n>JIRA</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datetime</span> <span class=kn>import</span> <span class=n>datetime</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>dotenv</span> <span class=kn>import</span> <span class=n>load_dotenv</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 加载 .env 配置</span>
+</span></span><span class=line><span class=cl><span class=n>load_dotenv</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>JIRA_SERVER</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_SERVER&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>JIRA_USERNAME</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_USERNAME&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>JIRA_PASSWORD</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getenv</span><span class=p>(</span><span class=s2>&#34;JIRA_PASSWORD&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=nb>all</span><span class=p>([</span><span class=n>JIRA_SERVER</span><span class=p>,</span> <span class=n>JIRA_USERNAME</span><span class=p>,</span> <span class=n>JIRA_PASSWORD</span><span class=p>]):</span>
+</span></span><span class=line><span class=cl>    <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;请在 .env 中配置 JIRA_SERVER、JIRA_USERNAME、JIRA_PASSWORD&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 连接 JIRA</span>
+</span></span><span class=line><span class=cl><span class=n>jr</span> <span class=o>=</span> <span class=n>JIRA</span><span class=p>(</span><span class=n>server</span><span class=o>=</span><span class=n>JIRA_SERVER</span><span class=p>,</span> <span class=n>basic_auth</span><span class=o>=</span><span class=p>(</span><span class=n>JIRA_USERNAME</span><span class=p>,</span> <span class=n>JIRA_PASSWORD</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已连接 JIRA: </span><span class=si>{</span><span class=n>JIRA_SERVER</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. 获取所有项目</span>
+</span></span><span class=line><span class=cl><span class=n>projects</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>projects</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>共发现 </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>projects</span><span class=p>)</span><span class=si>}</span><span class=s2> 个项目:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>projects</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  - </span><span class=si>{</span><span class=n>p</span><span class=o>.</span><span class=n>key</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>p</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建输出目录</span>
+</span></span><span class=line><span class=cl><span class=n>output_dir</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=vm>__file__</span><span class=p>),</span> <span class=s2>&#34;jira_backup&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>output_dir</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. 遍历每个项目，获取全部 Issue</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>project</span> <span class=ow>in</span> <span class=n>projects</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>project_key</span> <span class=o>=</span> <span class=n>project</span><span class=o>.</span><span class=n>key</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>正在同步项目: </span><span class=si>{</span><span class=n>project_key</span><span class=si>}</span><span class=s2> - </span><span class=si>{</span><span class=n>project</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>all_issues</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>start_at</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=n>page_size</span> <span class=o>=</span> <span class=mi>100</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>issues</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=sa>f</span><span class=s1>&#39;project = &#34;</span><span class=si>{</span><span class=n>project_key</span><span class=si>}</span><span class=s1>&#34;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>startAt</span><span class=o>=</span><span class=n>start_at</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>maxResults</span><span class=o>=</span><span class=n>page_size</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>fields</span><span class=o>=</span><span class=s2>&#34;*all&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>expand</span><span class=o>=</span><span class=s2>&#34;changelog&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>issues</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>issue</span> <span class=ow>in</span> <span class=n>issues</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 逐个获取完整详情</span>
+</span></span><span class=line><span class=cl>            <span class=n>full_issue</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>issue</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                <span class=n>issue</span><span class=o>.</span><span class=n>key</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=n>fields</span><span class=o>=</span><span class=s2>&#34;*all&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=n>expand</span><span class=o>=</span><span class=s2>&#34;changelog,renderedFields&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>all_issues</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>full_issue</span><span class=o>.</span><span class=n>raw</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  ✓ </span><span class=si>{</span><span class=n>issue</span><span class=o>.</span><span class=n>key</span><span class=si>}</span><span class=s2>: </span><span class=si>{</span><span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>summary</span><span class=p>[:</span><span class=mi>60</span><span class=p>]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>start_at</span> <span class=o>+=</span> <span class=nb>len</span><span class=p>(</span><span class=n>issues</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>issues</span><span class=p>)</span> <span class=o>&lt;</span> <span class=n>page_size</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 保存到 JSON 文件</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>output_dir</span><span class=p>,</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>project_key</span><span class=si>}</span><span class=s2>.json&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>output_file</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>json</span><span class=o>.</span><span class=n>dump</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;project_key&#34;</span><span class=p>:</span> <span class=n>project_key</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;project_name&#34;</span><span class=p>:</span> <span class=n>project</span><span class=o>.</span><span class=n>name</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;synced_at&#34;</span><span class=p>:</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>isoformat</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;total_issues&#34;</span><span class=p>:</span> <span class=nb>len</span><span class=p>(</span><span class=n>all_issues</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;issues&#34;</span><span class=p>:</span> <span class=n>all_issues</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span> <span class=n>f</span><span class=p>,</span> <span class=n>ensure_ascii</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>indent</span><span class=o>=</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;  已保存 </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>all_issues</span><span class=p>)</span><span class=si>}</span><span class=s2> 个 Issue → </span><span class=si>{</span><span class=n>output_file</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>全部同步完成！数据保存在: </span><span class=si>{</span><span class=n>output_dir</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=运行效果>运行效果</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>已连接 JIRA: https://your-company.atlassian.net/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>共发现 12 个项目:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  - PROJ: 我的项目
+</span></span><span class=line><span class=cl>  - BUGS: 缺陷追踪
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>正在同步项目: PROJ - 我的项目
+</span></span><span class=line><span class=cl>  ✓ PROJ-1: 用户登录功能开发
+</span></span><span class=line><span class=cl>  ✓ PROJ-2: 修复首页白屏问题
+</span></span><span class=line><span class=cl>  ✓ PROJ-3: 数据导出性能优化
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>  已保存 128 个 Issue → jira_backup/PROJ.json
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>全部同步完成！数据保存在: jira_backup/
+</span></span></code></pre></td></tr></table></div></div><h3 id=输出的-json-结构>输出的 JSON 结构</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;project_key&#34;</span><span class=p>:</span> <span class=s2>&#34;PROJ&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;project_name&#34;</span><span class=p>:</span> <span class=s2>&#34;我的项目&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;synced_at&#34;</span><span class=p>:</span> <span class=s2>&#34;2026-07-14T11:00:00&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;total_issues&#34;</span><span class=p>:</span> <span class=mi>128</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;issues&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;10001&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;key&#34;</span><span class=p>:</span> <span class=s2>&#34;PROJ-1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;self&#34;</span><span class=p>:</span> <span class=s2>&#34;https://your-company.atlassian.net/rest/api/2/issue/10001&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;fields&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;summary&#34;</span><span class=p>:</span> <span class=s2>&#34;用户登录功能开发&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;issuetype&#34;</span><span class=p>:</span> <span class=p>{</span> <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;故事&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;status&#34;</span><span class=p>:</span> <span class=p>{</span> <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;进行中&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;assignee&#34;</span><span class=p>:</span> <span class=p>{</span> <span class=nt>&#34;displayName&#34;</span><span class=p>:</span> <span class=s2>&#34;张三&#34;</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;created&#34;</span><span class=p>:</span> <span class=s2>&#34;2026-06-01T10:00:00.000+0800&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;updated&#34;</span><span class=p>:</span> <span class=s2>&#34;2026-07-10T15:30:00.000+0800&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;customfield_10602&#34;</span><span class=p>:</span> <span class=s2>&#34;Gherkin 用例文本...&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;作为用户，我想要...&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;comment&#34;</span><span class=p>:</span> <span class=p>{</span> <span class=nt>&#34;comments&#34;</span><span class=p>:</span> <span class=p>[</span><span class=err>...</span><span class=p>]</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=err>...</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=六进阶技巧>六、进阶技巧</h2><h3 id=61-只获取变更的-issue增量同步>6.1 只获取变更的 Issue（增量同步）</h3><p>如果每天同步一次，没必要每次都全量拉取。用 JQL 按更新日期过滤：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datetime</span> <span class=kn>import</span> <span class=n>datetime</span><span class=p>,</span> <span class=n>timedelta</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>since</span> <span class=o>=</span> <span class=p>(</span><span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span> <span class=o>-</span> <span class=n>timedelta</span><span class=p>(</span><span class=n>days</span><span class=o>=</span><span class=mi>1</span><span class=p>))</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s2>&#34;%Y-%m-</span><span class=si>%d</span><span class=s2> %H:%M&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>jql</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;project = &#34;PROJ&#34; AND updated &gt;= &#34;</span><span class=si>{</span><span class=n>since</span><span class=si>}</span><span class=s1>&#34;&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>issues</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span><span class=n>jql</span><span class=p>,</span> <span class=n>fields</span><span class=o>=</span><span class=s2>&#34;*all&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=62-导出为-csv-而非-json>6.2 导出为 CSV 而非 JSON</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>csv</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;jira_export.csv&#34;</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>newline</span><span class=o>=</span><span class=s2>&#34;&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8-sig&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>writer</span> <span class=o>=</span> <span class=n>csv</span><span class=o>.</span><span class=n>writer</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>writer</span><span class=o>.</span><span class=n>writerow</span><span class=p>([</span><span class=s2>&#34;Issue Key&#34;</span><span class=p>,</span> <span class=s2>&#34;Summary&#34;</span><span class=p>,</span> <span class=s2>&#34;Status&#34;</span><span class=p>,</span> <span class=s2>&#34;Assignee&#34;</span><span class=p>,</span> <span class=s2>&#34;Created&#34;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>issue</span> <span class=ow>in</span> <span class=n>issues</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>writer</span><span class=o>.</span><span class=n>writerow</span><span class=p>([</span>
+</span></span><span class=line><span class=cl>            <span class=n>issue</span><span class=o>.</span><span class=n>key</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>summary</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>status</span><span class=o>.</span><span class=n>name</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nb>getattr</span><span class=p>(</span><span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>assignee</span><span class=p>,</span> <span class=s2>&#34;displayName&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=n>issue</span><span class=o>.</span><span class=n>fields</span><span class=o>.</span><span class=n>created</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>])</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=63-处理大项目分批导出>6.3 处理大项目（分批导出）</h3><p>超过 1000 条 Issue 时务必分页，JIRA API 默认单页最多 100 条：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>start_at</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>page_size</span> <span class=o>=</span> <span class=mi>100</span>
+</span></span><span class=line><span class=cl><span class=n>all_issues</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>batch</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;project = &#34;PROJ&#34;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>startAt</span><span class=o>=</span><span class=n>start_at</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>maxResults</span><span class=o>=</span><span class=n>page_size</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>batch</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>break</span>
+</span></span><span class=line><span class=cl>    <span class=n>all_issues</span><span class=o>.</span><span class=n>extend</span><span class=p>(</span><span class=n>batch</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>start_at</span> <span class=o>+=</span> <span class=nb>len</span><span class=p>(</span><span class=n>batch</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已获取 </span><span class=si>{</span><span class=n>start_at</span><span class=si>}</span><span class=s2> 条...&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=64-从本地-json-还原数据到新-jira>6.4 从本地 JSON 还原数据到新 JIRA</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;jira_backup/PROJ.json&#34;</span><span class=p>,</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>issue_data</span> <span class=ow>in</span> <span class=n>data</span><span class=p>[</span><span class=s2>&#34;issues&#34;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>    <span class=n>fields</span> <span class=o>=</span> <span class=n>issue_data</span><span class=p>[</span><span class=s2>&#34;fields&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>new_issue</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>create_issue</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>project</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;key&#34;</span><span class=p>:</span> <span class=s2>&#34;PROJ&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=n>summary</span><span class=o>=</span><span class=n>fields</span><span class=p>[</span><span class=s2>&#34;summary&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>        <span class=n>description</span><span class=o>=</span><span class=n>fields</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;description&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=n>issuetype</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;name&#34;</span><span class=p>:</span> <span class=n>fields</span><span class=p>[</span><span class=s2>&#34;issuetype&#34;</span><span class=p>][</span><span class=s2>&#34;name&#34;</span><span class=p>]},</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;已创建: </span><span class=si>{</span><span class=n>new_issue</span><span class=o>.</span><span class=n>key</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=七常见问题>七、常见问题</h2><h3 id=q-jql-报错-the-character--is-a-reserved-jql-character>Q: JQL 报错 &ldquo;The character &lsquo;*&rsquo; is a reserved JQL character&rdquo;</h3><p><code>*</code> 是 JQL 的保留通配符，必须用引号括起来。错误写法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span><span class=s2>&#34;PROJ:*&#34;</span><span class=p>)</span>        <span class=c1># ❌ 会报 400 错误</span>
+</span></span></code></pre></td></tr></table></div></div><p>正确写法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>jr</span><span class=o>.</span><span class=n>search_issues</span><span class=p>(</span><span class=s1>&#39;project = &#34;PROJ&#34;&#39;</span><span class=p>)</span>  <span class=c1># ✅</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=q-project-object-has-no-attribute-lead>Q: <code>Project</code> object has no attribute &rsquo;lead&rsquo;</h3><p><code>jr.projects()</code> 返回的是轻量级 Project 对象，不包含 <code>lead</code> 属性。如果确实需要 lead 信息：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>full_project</span> <span class=o>=</span> <span class=n>jr</span><span class=o>.</span><span class=n>project</span><span class=p>(</span><span class=s2>&#34;PROJ&#34;</span><span class=p>)</span>  <span class=c1># 单独获取完整项目信息</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>full_project</span><span class=o>.</span><span class=n>lead</span><span class=o>.</span><span class=n>displayName</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=q-如何处理-jira-的-rate-limit>Q: 如何处理 JIRA 的 rate limit？</h3><p>JIRA Cloud 对 API 有速率限制。建议：</p><ul><li>每页获取 100 条（最大值），减少请求次数</li><li>在每次请求之间添加 <code>time.sleep(0.5)</code></li><li>考虑使用 JIRA Software Data Center（自托管）免除限制</li></ul><h2 id=八总结>八、总结</h2><p>JIRA 的 Python API 非常成熟，用 <code>jira</code> 库几十行代码就能完成数据同步。核心要点：</p><ol><li><strong>凭据管理</strong> — 用 <code>.env</code> + <code>python-dotenv</code>，绝不硬编码</li><li><strong>JQL 查询</strong> — 注意 JQL 保留字符（<code>*</code>、<code>?</code>、<code>[</code> 等）需要引号</li><li><strong>分页</strong> — 超过 100 条必须分页遍历</li><li><strong>字段选择</strong> — 用 <code>fields="*all"</code> 获取全部字段，<code>expand="changelog"</code> 获取变更历史</li><li><strong>增量同步</strong> — 按 <code>updated >= "日期"</code> 过滤，避免全量重复拉取</li></ol><hr><p><em>本文中的代码示例均使用模拟域名和凭据，实际运行时请替换为你自己的 JIRA 配置。</em></p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>Python</a>
+<a href=/tags/jira/>JIRA</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/><div class=article-details><h2 class=article-title>LDAP 系统原理与企业实战</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/><div class=article-details><h2 class=article-title>使用Python获取中国历史资料</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/><div class=article-details><h2 class=article-title>使用Python实现文本加密</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/><div class=article-details><h2 class=article-title>使用Python处理文件名与拼音转换</h2></div></a></article><article><a href=/p/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-cloudflare-r2-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/><div class=article-details><h2 class=article-title>批量下载 Cloudflare R2 中的文件</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
