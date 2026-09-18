@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
         with:
           ref: main
           submodules: true
-          fetch_depth: 1
+          fetch-depth: 1
 
       - name: Get Theme
         run: git submodule update --init --recursive
@@ -33,7 +33,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.157.0'
 
       - name: Build
         run: hugo --theme=hugo-theme-stack --buildDrafts --gc --minify
