@@ -1,4 +1,356 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://blog.zwzhang.com/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 14 Jul 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>用 Python 同步 JIRA 数据到本地：从入门到实战</title><link>https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link><pubDate>Tue, 14 Jul 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="用-python-同步-jira-数据到本地从入门到实战"&gt;用 Python 同步 JIRA 数据到本地：从入门到实战
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://blog.zwzhang.com/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 17 Sep 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>美国PhD申请指南</title><link>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</link><pubDate>Thu, 17 Sep 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="北美地区-phd-申请指南"&gt;北美地区 PhD 申请指南
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;这几天整理了一下浏览器收藏夹里的各种关于北美 PhD 申请的攻略文章，分了类并且写了简短的中文导读，另外也添加了一些自己常用的网站。下面的部分文章和 CS 强相关，所以如果你申请的不是 CS 方向的 PhD，请选择性的阅读这些文章。有一些文章的内容包含了非常全面的内容，我在这些文章的标题后面打上星号。&lt;/p&gt;
+&lt;p&gt;本文来自于 GitHub 仓库：&lt;strong&gt;&lt;a class="link" href="https://github.com/binhu02/Collection-of-advice-for-PhD-application" target="_blank" rel="noopener"
+&gt;binhu02/Collection-of-advice-for-PhD-application&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="选校该不该读-phd"&gt;选校/该不该读 PHD
+&lt;/h2&gt;&lt;h3 id="phd-学生们的建议"&gt;PhD 学生们的建议
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.nelsonliu.me/2019/10/24/student-perspectives-on-applying-to-nlp-phd-programs/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Student Perspectives on Applying to NLP PhD Programs&lt;/strong&gt;*&lt;/a&gt; &amp;ndash; Akari Asai, John Hewitt, Sidd Karamcheti, Kalpesh Krishna, Nelson Liu, Roma Patel, and Nicholas Tomlin&lt;/p&gt;
+&lt;p&gt;（这篇建议除了选校之外，也包含了标化考试、文书、推荐信、面试等因素会怎样影响你的录取，非常详细，并有部分代入国际申请人的视角，非常推荐在了解下面的内容之前看完。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://nlp.stanford.edu//~johnhew//undergrad-researchers.html" target="_blank" rel="noopener"
+&gt;Undergrad to PhD, or not - advice for undergrads interested in research&lt;/a&gt;&lt;/strong&gt; &amp;ndash; John Hewitt&lt;/p&gt;
+&lt;p&gt;（这篇建议给出了不同的途径来探索PhD是否适合自己，以及本科四年里可以准备什么。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://timdettmers.com/2022/03/13/how-to-choose-your-grad-school/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;How to Choose Your Grad School&lt;/strong&gt;&lt;/a&gt; &amp;ndash; Tim Dettmers&lt;/p&gt;
+&lt;p&gt;（这篇建议通过多种视角告诉你如何选择合适自己的学校、组和导师。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="以顶会-paper-数量为依据的-cs-院校排名"&gt;以顶会 paper 数量为依据的 CS 院校排名
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://csrankings.org/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;CS Rankings&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个人建议在左侧只勾选你感兴趣的领域，并把时间段设置为最近五年。CS Rankings 可以作为“找到实验室主页”的入口，但请&lt;u&gt;理性看待&lt;/u&gt;排名的位次和分数。&lt;/p&gt;
+&lt;h3 id="强-committeeprofessor-院校"&gt;强 Committee/Professor 院校
+&lt;/h3&gt;&lt;p&gt;这会影响在审核申请的过程中所重视的指标，以及影响你是否应该在申请前与教授取得联系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;什么是强 Committee/Professor 院校？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://blog.1point3acres.com/%E7%BE%8E%E5%9B%BD%E5%BD%95%E5%8F%96%E5%A7%94%E5%91%98%E4%BC%9A%E5%88%B6%E6%8B%9B%E7%94%9F%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/" target="_blank" rel="noopener"
+&gt;美国大学申请录取委员会制度是怎么回事(上)&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Warald@一亩三分地&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://blog.1point3acres.com/%E7%BE%8E%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%B3%E8%AF%B7%E5%BD%95%E5%8F%96%E5%A7%94%E5%91%98%E4%BC%9A%E5%88%B6%E5%BA%A6%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%E4%B8%8B/" target="_blank" rel="noopener"
+&gt;美国大学申请录取委员会制度是怎么回事(下)&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Warald@一亩三分地&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;（可能不准的）院校分类&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://opencs.app/phdinfo/" target="_blank" rel="noopener"
+&gt;Open CS Application 上的总结&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/128037373" target="_blank" rel="noopener"
+&gt;Frankdark@知乎 的总结&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;强committee院校项目审材料经历分享&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class="link" href="https://www.1point3acres.com/bbs/thread-585851-1-1.html" target="_blank" rel="noopener"
+&gt;也从审材料的角度讲讲如何准备cs phd申请!&lt;/a&gt;&lt;/strong&gt; &amp;ndash; 谢南加@一亩三分地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="生活成本计算"&gt;生活成本计算
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://livingwage.mit.edu/" target="_blank" rel="noopener"
+&gt;Living Wage Calculator&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;MIT维护的生活成本计算器。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="推荐信"&gt;推荐信
+&lt;/h2&gt;&lt;h3 id="怎么请别人写推荐信"&gt;怎么请别人写推荐信
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://matt.might.net/articles/how-to-recommendation-letter/" target="_blank" rel="noopener"
+&gt;Asking for a letter of recommendation&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Matt Might&lt;/p&gt;
+&lt;p&gt;Matt Might 是阿拉巴马大学的教授。在这篇文章中他从一个写推荐信的人的视角，给出了如何请别人写推荐信的建议，包括什么时候、向哪些人索要推荐信，以及附上哪些材料、怎么跟进你的请求等。&lt;/p&gt;
+&lt;h3 id="如何让来自工业界的推荐人帮你写好推荐信"&gt;如何让来自工业界的推荐人帮你写好推荐信
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://cs.brown.edu/~sk/Memos/Grad-School-Recos/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Advice to Graduate School Recommendation Letter Writers&lt;/strong&gt;&lt;/a&gt; &amp;ndash; Shriram Krishnamurthi&lt;/p&gt;
+&lt;p&gt;Shriram Krishnamurthi 是布朗大学的教授。这篇文章主要讲“怎么写好推荐信”，一般来说这并不是我们关注的问题，并且很多教授对于写推荐信早就很有经验。但是如果你希望从工业界获得推荐信，你的推荐人可能会纠结推荐信的内容。这篇文章的 &lt;u&gt;Corporate Letters&lt;/u&gt; 章节可能会有帮助。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="邮件套磁"&gt;邮件/套磁
+&lt;/h2&gt;&lt;h3 id="你是否应该给教授发邮件"&gt;你是否应该给教授发邮件
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://yonatanbisk.com/emailing_professors.html" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;A Note about Emailing Professors&lt;/strong&gt;&lt;/a&gt; &amp;ndash; Yonantan Bisk&lt;/p&gt;
+&lt;p&gt;Yonantan Bisk 是 CMU 的助理教授。在这篇文章里他阐述了在什么时候、就何种事由你才应该给教授发邮件，以及你应该对得到何种回复以及此番邮件通讯的影响有何期待。&lt;/p&gt;
+&lt;p&gt;这篇文章中他同样解答了一些在申请研究生阶段学生的常见疑惑，比如何时开始准备申请、要不要读五年硕、对于面试的期望以及谁来写推荐信等。&lt;/p&gt;
+&lt;h3 id="套磁信的一些规范"&gt;套磁信的一些规范
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://www.1point3acres.com/bbs/thread-6769-1-1.html" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;分享个套磁 tips&lt;/strong&gt;&lt;/a&gt; &amp;ndash; PoundKey@一亩三分地&lt;/p&gt;
+&lt;p&gt;作者浏览了很多教授的个人主页，并且总结了常见的对于套磁信的要求。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="文书-statement-of-proposal"&gt;文书 (Statement of Proposal)
+&lt;/h2&gt;&lt;h3 id="学校希望在文书里看到什么"&gt;学校希望在文书里看到什么
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://www.clsp.jhu.edu/apply-for-phd/#toc-1.1" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Apply for PhD - Essays&lt;/strong&gt;&lt;/a&gt; &amp;ndash; JHU&lt;/p&gt;
+&lt;p&gt;约翰霍普金斯大学语言语音处理中心的申请人指南，在 essays 章节列举了应该在文书中包含哪些内容。&lt;/p&gt;
+&lt;h3 id="详细的文书写作指南"&gt;详细的文书写作指南
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://nschneid.medium.com/inside-ph-d-admissions-what-readers-look-for-in-a-statement-of-purpose-3db4e6081f80" target="_blank" rel="noopener"
+&gt;Inside Ph.D. admissions: What readers look for in a Statement of Purpose&lt;/a&gt;&lt;/strong&gt; &amp;ndash; Nathan Schneider&lt;/p&gt;
+&lt;p&gt;Nathan Schneider 是乔治城大学的助理教授。他在这篇文章里非常详细的介绍了一篇优秀文书的要求，包括篇幅、内容，以及如何修改文书。&lt;/p&gt;
+&lt;h3 id="nelson-liu-的文书示例"&gt;Nelson Liu 的文书示例
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://blog.nelsonliu.me/2020/11/11/phd-personal-statement/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;PhD Statement of Purpose&lt;/strong&gt;&lt;/a&gt; &amp;ndash; Nelson Liu&lt;/p&gt;
+&lt;p&gt;Nelson Liu 是斯坦福大学的博士生，他在这篇文章中分享了他的 PS 的全文，以及在入学几年后，他对于这篇文书的新的看法以及反思。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="标化考试成绩单-托福gre等"&gt;标化考试/成绩单 (托福、GRE等)
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://lijinzhang.com/post/2022-03-03-tutorial-phd-app" target="_blank" rel="noopener"
+&gt;北美博士申请攻略*&lt;/a&gt;&lt;/strong&gt; &amp;ndash; 张沥今&lt;/p&gt;
+&lt;p&gt;张沥今是斯坦福大学的心理学博士生，于2022年入学。在这篇文章中她详细地阐述了各项标化考试成绩该如何准备、它们的重要性，以及如何递送成绩单等内容，几乎涵盖了PhD申请过程所有需要注意的点。作者申请的专业是心理学，但是这些标化考试的经验是广泛通用的。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.nelsonliu.me/2019/10/24/student-perspectives-on-applying-to-nlp-phd-programs/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Student Perspectives on Applying to NLP PhD Programs&lt;/strong&gt;*&lt;/a&gt; &amp;ndash; Akari Asai, John Hewitt, Sidd Karamcheti, Kalpesh Krishna, Nelson Liu, Roma Patel, and Nicholas Tomlin&lt;/p&gt;
+&lt;p&gt;本合集的第一篇文章。其中阐述了标化成绩以及出版物等材料的相对重要性。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="简历-cv"&gt;简历 (CV)
+&lt;/h2&gt;&lt;p&gt;请不要在CV上放照片。&lt;/p&gt;
+&lt;h3 id="cv和resume的区别"&gt;CV和Resume的区别
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://icc.ucdavis.edu/materials/resume/resumecv" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Resume vs. Curriculum Vitae: What&amp;rsquo;s the Difference?&lt;/strong&gt;&lt;/a&gt; &amp;ndash; UC Davis&lt;/p&gt;
+&lt;p&gt;答案是与用途有关。CV偏重于学术，常囊括学术经历的完整列表。Resume偏重于工作技能，长度有限制。所以在申请PhD项目的时候要准备的是CV。&lt;/p&gt;
+&lt;h3 id="哈佛大学的-cv-指南"&gt;哈佛大学的 CV 指南
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;GSAS CV &amp;amp; Cover Letter Guide&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章详细阐释了CV的每一部分写些什么，以及一些固定的格式惯例（如：分点描述经历的时候使用动词过去式开头）。此外还给出了许多CV案例。&lt;/p&gt;
+&lt;h3 id="overleaf-上的-cv-模板"&gt;Overleaf 上的 CV 模板
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://www.overleaf.com/latex/templates/tagged/cv" target="_blank" rel="noopener"
+&gt;Templates - CV - Overleaf&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;需要会使用Latex，用于制作排版精美的CV。&lt;/p&gt;
+&lt;h3 id="word格式的cv模板"&gt;Word格式的CV模板
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://gradcareers.nd.edu/assets/345420/overall_cv_template.docx" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;General CV Template.docx&lt;/strong&gt;&lt;/a&gt; &amp;ndash; U of Notre Dame&lt;/p&gt;
+&lt;p&gt;圣母大学提供的一个排版美观且正式的Word格式的CV模板。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="个人主页"&gt;个人主页
+&lt;/h2&gt;&lt;h3 id="免费静态网站托管服务"&gt;免费静态网站托管服务
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://pages.github.com/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;GitHub Pages&lt;/strong&gt;&lt;/a&gt; (默认域名在.github.io 下，也可自定义域名)&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://docs.netlify.com/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Netlify&lt;/strong&gt;&lt;/a&gt; (默认域名在.netlify.app 下，也可自定义域名)&lt;/p&gt;
+&lt;p&gt;中科大之类的院校有学校域名下的 tilde pages 给学生使用。&lt;strong&gt;&lt;a class="link" href="https://jenny42.com/20150225-how-to-use-ustc-student-server/" target="_blank" rel="noopener"
+&gt;[中科大的教程]&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="网页生成器"&gt;网页生成器
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://jekyllrb.com/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://gohugo.io/" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;Hugo&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="常用的学术主页模板"&gt;常用的学术主页模板
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;网页生成器模板（不需要会前端）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://github.com/academicpages/academicpages.github.io" target="_blank" rel="noopener"
+&gt;Academic Pages&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://themes.gohugo.io/themes/starter-hugo-academic/" target="_blank" rel="noopener"
+&gt;Hugo Academic&lt;/a&gt;&lt;/strong&gt; &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener"
+&gt;al-folio&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;其他模板（需要会一点前端）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/jonbarron/website" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;jonbarron/website&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="更多链接"&gt;更多链接
+&lt;/h2&gt;&lt;h3 id="内地高校飞跃手册"&gt;内地高校飞跃手册
+&lt;/h3&gt;&lt;p&gt;很多内地学校都有自己的《飞跃手册》，一般是一本很大很全的申研攻略，其中一些的链接如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://hust-feiyue.github.io/" target="_blank" rel="noopener"
+&gt;华中科技大学飞跃手册&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://survivesjtu.github.io/SJTU-Application" target="_blank" rel="noopener"
+&gt;上海交通大学飞跃手册&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://github.com/SUSTech-Application/2019-Fall" target="_blank" rel="noopener"
+&gt;南方科技大学飞跃手册&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="uiuc-的暑研数据库"&gt;UIUC 的暑研数据库
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://researchops.web.illinois.edu/" target="_blank" rel="noopener"
+&gt;Undergraduate Summer Research Opportunities Database&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个数据库包括美国范围内的很多学校的暑研机会。&lt;/p&gt;
+&lt;h3 id="phd-申请总结帖"&gt;PhD 申请总结帖
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://www.zhihu.com/question/360515552" target="_blank" rel="noopener"
+&gt;2023 Fall 你都申请了哪些学校的 MA/MS/PhD/JD/MD/MFA，录取结果如何？&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;知乎上的PhD申请结果分享楼。可以按照类似格式搜索往年的帖子。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://opencs.app/blog/" target="_blank" rel="noopener"
+&gt;Blog - Open CS Application&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Open CS Application上的PhD申请经历分享贴合集。&lt;/p&gt;
+&lt;h3 id="常见问题的答疑如硕转博"&gt;常见问题的答疑（如硕转博）
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;a class="link" href="https://opencs.app/faq/" target="_blank" rel="noopener"
+&gt;FAQ - Open CS Application&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Open CS Application上同时有MS和PhD项目申请的内容，阅读时请注意两者的申请要求有差异（虽然有时很接近）。&lt;/p&gt;
+&lt;h3 id="phd学生的生存手册"&gt;PhD学生的生存手册
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/pliang279/awesome-phd-advice" target="_blank" rel="noopener"
+&gt;&lt;strong&gt;awesome-phd-advice&lt;/strong&gt;&lt;/a&gt; &amp;ndash; Paul Liang&lt;/p&gt;
+&lt;p&gt;一个很大的，收集给现PhD学生的建议的仓库，包括做助教、申请奖学金等。也有一些给PhD申请者的建议。&lt;/p&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;本网站使用这个模板。需要go lang的版本不高于1.16。&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>汽车测试领域常见名词中英文对照表</title><link>https://blog.zwzhang.com/p/%E6%B1%BD%E8%BD%A6%E6%B5%8B%E8%AF%95%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D%E4%B8%AD%E8%8B%B1%E6%96%87%E5%AF%B9%E7%85%A7%E8%A1%A8/</link><pubDate>Wed, 05 Aug 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E6%B1%BD%E8%BD%A6%E6%B5%8B%E8%AF%95%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D%E4%B8%AD%E8%8B%B1%E6%96%87%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid><description>&lt;h1 id="汽车测试领域常见名词中英文对照表"&gt;汽车测试领域常见名词中英文对照表
+&lt;/h1&gt;&lt;h2 id="引言"&gt;引言
+&lt;/h2&gt;&lt;p&gt;随着汽车电子电气架构的不断演进，硬件在环测试、总线通信、空中升级等技术已深度融入整车开发流程。随之而来的，是大量中英文缩写词在测试计划、评审文档与日常协作中的高频出现。对于新入职的测试工程师而言，正确理解 HIL、DBC、CAN、OTA 等术语的确切含义，是快速融入工作的第一道门槛；而对于经验丰富的从业者，这些缩写在不同语境下的细微差异，同样可能成为沟通中的潜在障碍。&lt;/p&gt;
+&lt;p&gt;本文基于一线汽车测试团队的实测经验整理，按技术领域分类，系统梳理汽车测试行业常见名词的中英文对照，明确其在测试场景下的核心含义与典型应用，并对若干易混淆术语作专项澄清，以期成为团队日常工作的统一参考。&lt;/p&gt;
+&lt;h2 id="一硬件--系统测试"&gt;一、硬件 / 系统测试
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;缩写&lt;/th&gt;
+&lt;th&gt;英文全称&lt;/th&gt;
+&lt;th&gt;核心含义&lt;/th&gt;
+&lt;th&gt;测试场景示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;HIL&lt;/td&gt;
+&lt;td&gt;Hardware-in-the-Loop&lt;/td&gt;
+&lt;td&gt;硬件在环测试：以仿真环境（如车辆模型）实时验证 ECU（电子控制单元）的功能&lt;/td&gt;
+&lt;td&gt;验证 ABS 刹车系统在仿真路面上的响应&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CAN&lt;/td&gt;
+&lt;td&gt;Controller Area Network&lt;/td&gt;
+&lt;td&gt;车载总线协议：汽车电子设备间通信的底层标准（如车灯、发动机数据传输）&lt;/td&gt;
+&lt;td&gt;使用 CANalyzer 抓包分析 ECU 通信错误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DBC&lt;/td&gt;
+&lt;td&gt;Database CAN&lt;/td&gt;
+&lt;td&gt;CAN 总线数据库文件（非协议）：定义 CAN 信号的格式、单位与发送频率&lt;/td&gt;
+&lt;td&gt;使用 CANoe 加载 DBC 文件解析车身数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="术语辨析dbc-与-dbc-协议数据"&gt;术语辨析：DBC 与 DBC 协议数据
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DBC 协议数据&lt;/strong&gt;：指 DBC 文件中定义的信号数据，如&amp;quot;车速 = 0x123，单位 km/h&amp;quot;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DBC&lt;/strong&gt;：指 &lt;code&gt;*.dbc&lt;/code&gt; 文件格式，是解析 CAN 数据所依赖的配置载体。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;二者易被混淆，而测试中因 DBC 文件配置错误导致的数据解析失败，是较为常见的问题来源，建议在文档中严格区分使用。&lt;/p&gt;
+&lt;h2 id="二功能--状态控制"&gt;二、功能 / 状态控制
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;缩写&lt;/th&gt;
+&lt;th&gt;英文全称&lt;/th&gt;
+&lt;th&gt;核心含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ACC / ON&lt;/td&gt;
+&lt;td&gt;Adaptive Cruise Control / On&lt;/td&gt;
+&lt;td&gt;自适应巡航 / 车辆电源状态。测试语境下多指电源状态：ACC 为 ACC 模式开启，ON 为点火&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Start&lt;/td&gt;
+&lt;td&gt;Start&lt;/td&gt;
+&lt;td&gt;发动机启动状态，是验证 ECU 启动逻辑时的关键状态&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;OFF&lt;/td&gt;
+&lt;td&gt;Off&lt;/td&gt;
+&lt;td&gt;车辆关闭状态，用于测试断电保护功能&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;OTA&lt;/td&gt;
+&lt;td&gt;Over-The-Air&lt;/td&gt;
+&lt;td&gt;空中升级：远程更新车辆软件。测试重点为升级失败回滚机制与安全验证&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HUD&lt;/td&gt;
+&lt;td&gt;Head-Up Display&lt;/td&gt;
+&lt;td&gt;抬头显示器：测试显示亮度、视角及与驾驶环境的相互干扰（如强光下的可见性）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其中，&lt;code&gt;ACC&lt;/code&gt; 需特别注意：在测试文档中其通常指车辆电源状态，而非自适应巡航功能，测试关注点在于 ECU 在不同电源状态下的行为逻辑。&lt;code&gt;OTA&lt;/code&gt; 的测试核心同样容易被低估——实际测试中约 80% 的问题集中在升级失败后的回滚环节，而非升级流程本身。&lt;/p&gt;
+&lt;h2 id="三测试类型--质量分析"&gt;三、测试类型 / 质量分析
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;缩写&lt;/th&gt;
+&lt;th&gt;英文全称&lt;/th&gt;
+&lt;th&gt;核心含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;EMC&lt;/td&gt;
+&lt;td&gt;Electromagnetic Compatibility&lt;/td&gt;
+&lt;td&gt;电磁兼容性测试：验证车辆对外部电磁干扰的抗扰能力（如手机信号对仪表盘的干扰）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ESD&lt;/td&gt;
+&lt;td&gt;Electrostatic Discharge&lt;/td&gt;
+&lt;td&gt;静电放电测试：模拟人体接触车门所产生的静电冲击，属 EMC 测试的子项&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HMI&lt;/td&gt;
+&lt;td&gt;Human-Machine Interface&lt;/td&gt;
+&lt;td&gt;人机交互界面：测试中控屏、语音系统的响应性能（如语音指令识别率）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IVI&lt;/td&gt;
+&lt;td&gt;In-Vehicle Infotainment&lt;/td&gt;
+&lt;td&gt;车载信息娱乐系统：测试导航、蓝牙、影音等功能，常与 HMI 联动测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ROI&lt;/td&gt;
+&lt;td&gt;Return on Investment&lt;/td&gt;
+&lt;td&gt;投资回报率：非技术类缩写，测试团队用以评估自动化工具的投入产出比（如以 AI 生成用例节省工时，ROI 提升 30%）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;ROI&lt;/code&gt; 源自财务领域而非工程技术，在汽车测试语境下衡量的是测试自动化投入与效率提升之间的关系，应用时应避免与&amp;quot;质量回报&amp;quot;等表述混用。&lt;/p&gt;
+&lt;h2 id="四易混淆术语澄清"&gt;四、易混淆术语澄清
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;术语&lt;/th&gt;
+&lt;th&gt;正确理解&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ICTIM&lt;/td&gt;
+&lt;td&gt;非标准缩写。行业通用术语为 ITM（Integrated Test Management，集成测试管理）。ICTIM 疑为企业内部误写，实际应为 ITM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;质量 ROI 分析&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;质量&amp;quot;为干扰性表述，正确表述应为&amp;quot;测试 ROI 分析&amp;rdquo;，指测试投入与效率提升之间的评估&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此类不规范表述在跨团队文档中时有出现，建议遇到时结合上下文判断，必要时向文档作者核实，避免在歧义上消耗不必要的排查时间。&lt;/p&gt;
+&lt;h2 id="五术语解释的编制原则"&gt;五、术语解释的编制原则
+&lt;/h2&gt;&lt;p&gt;本对照表的编制遵循以下原则，以确保内容的实用性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;剔除噪音&lt;/strong&gt;：&lt;code&gt;ACC&lt;/code&gt; 在测试语境下指车辆电源状态而非自适应巡航功能；&lt;code&gt;ROI&lt;/code&gt; 在汽车测试中衡量测试自动化的投入产出比，而非&amp;quot;质量回报&amp;quot;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;直指测试痛点&lt;/strong&gt;：&lt;code&gt;DBC&lt;/code&gt; 明确为文件格式（非协议），避免与 &lt;code&gt;CAN&lt;/code&gt; 混淆；&lt;code&gt;OTA&lt;/code&gt; 突出升级失败回滚这一测试核心环节。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标注行业黑话&lt;/strong&gt;：对 &lt;code&gt;ICTIM&lt;/code&gt; 等非标准缩写作明确标注，避免误导；区分 &lt;code&gt;HMI&lt;/code&gt; 与 &lt;code&gt;IVI&lt;/code&gt;——IVI 为功能系统，HMI 为交互界面，测试时需分别验证。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="六工程师速查口诀"&gt;六、工程师速查口诀
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;HIL 测 ECU，CAN 传数据，DBC 是文件，OTA 升软件，EMC/ESD 保安全，HMI/IVI 看界面，ROI 算投入！&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="结语"&gt;结语
+&lt;/h2&gt;&lt;p&gt;汽车测试领域缩写密度高、中英文混用普遍、同词异义与笔误现象并存，是团队协作中不可忽视的沟通成本来源。本文所列对照表以一线测试团队的实测场景为基准编制，力求贴合真实工作、避免理论堆砌。建议作为团队内部的统一术语参考，供新员工入门学习与跨团队沟通对齐使用。&lt;/p&gt;</description></item><item><title>用 Python 同步 JIRA 数据到本地：从入门到实战</title><link>https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link><pubDate>Tue, 14 Jul 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="用-python-同步-jira-数据到本地从入门到实战"&gt;用 Python 同步 JIRA 数据到本地：从入门到实战
 &lt;/h1&gt;&lt;h2 id="一jira-是什么"&gt;一、JIRA 是什么？
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;JIRA&lt;/strong&gt; 是 Atlassian 公司开发的一款&lt;strong&gt;项目管理和问题追踪工具&lt;/strong&gt;，广泛应用于软件团队的敏捷开发、Bug 跟踪、需求管理和任务协作中。&lt;/p&gt;
 &lt;p&gt;简单来说，JIRA 就是一个&amp;quot;一切皆 Issue&amp;quot;的工作流引擎：&lt;/p&gt;
@@ -53345,8 +53697,8 @@ target="_blank" rel="noopener"
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;When&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;user&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directly&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;asks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;about&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;can Claude Code do...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;does Claude Code have...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;asks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;person&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;are you able...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;can you do...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;WebFetch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gather&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="err"&gt;当用户直接询问有关&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;的问题（例如&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Claude Code 能做...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Claude Code 有...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;）或以第二人称提问（例如&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;你能...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;你能做...&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;）时，首先使用&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;WebFetch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;工具从&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Claude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;文档中收集信息来回答问题。&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Extended&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;thinking&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pasting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--resume), `ide-integrations`, `mcp`, `github-actions`, `sdk`, `troubleshooting`, `third-party-integrations`, `amazon-bedrock`, `google-vertex-ai`, `corporate-proxy`, `llm-gateway`, `devcontainer`, `iam` (auth, permissions), `security`, `monitoring-usage` (OTel), `costs`, `cli-reference`, `interactive-mode` (keyboard shortcuts), `slash-commands`, `settings` (settings json files, env vars, tools), `hooks`.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;可用的子页面包括&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（概述）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（快速入门）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（内存管理和&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（扩展思维、粘贴图像、&lt;/span&gt;&lt;span class="c1"&gt;--resume）, `ide-integrations`（IDE 集成）, `mcp`, `github-actions`, `sdk`, `troubleshooting`（故障排除）, `third-party-integrations`（第三方集成）, `amazon-bedrock`, `google-vertex-ai`, `corporate-proxy`（企业代理）, `llm-gateway`, `devcontainer`, `iam`（认证、权限）, `security`（安全）, `monitoring-usage`（监控使用情况 OTel）, `costs`（成本）, `cli-reference`（CLI 参考）, `interactive-mode`（交互模式 键盘快捷键）, `slash-commands`（斜杠命令）, `settings`（设置 JSON 文件、环境变量、工具）, `hooks`（钩子）。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Extended&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;thinking&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pasting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resume&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ide&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;mcp&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;actions&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;troubleshooting&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;third&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;party&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;amazon&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bedrock&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vertex&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ai&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;corporate&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gateway&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;devcontainer&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;iam&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;permissions&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;security&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;monitoring&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;OTel&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;costs&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reference&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyboard&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shortcuts&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;slash&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;hooks&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;可用的子页面包括&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;overview&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（概述）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（快速入门）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（内存管理和&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CLAUDE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;workflows&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（扩展思维、粘贴图像、&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resume&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ide&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;IDE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;集成）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;mcp&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;actions&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;troubleshooting&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（故障排除）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;third&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;party&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;integrations&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（第三方集成）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;amazon&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bedrock&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vertex&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ai&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;corporate&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（企业代理）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gateway&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;devcontainer&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;iam&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（认证、权限）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;security&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（安全）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;monitoring&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（监控使用情况&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OTel&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;costs&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（成本）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reference&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;CLI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;参考）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（交互模式&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;键盘快捷键）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;slash&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（斜杠命令）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（设置&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;文件、环境变量、工具）&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;hooks&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="err"&gt;（钩子）。&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;示例&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;anthropic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;claude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
@@ -53873,11 +54225,11 @@ loading="lazy"
 &lt;/span&gt;&lt;span class="lnt"&gt;21
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pdf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;processing&lt;/span&gt;&lt;span class="w"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;name: pdf-processing
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;从&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PDF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;中提取文本和表格，填写表单，并合并文档&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PDF 处理
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;## 使用场景
@@ -54237,11 +54589,11 @@ loading="lazy"
 &lt;/span&gt;&lt;span class="lnt"&gt;13
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;内部命名规范技能&lt;/span&gt;&lt;span class="w"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-mysql" data-lang="mysql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;name: Python 内部命名规范技能
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;当用户要求重构、审查或编写&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;代码时，请参考此规范。&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;---
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="c1"&gt;--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;## 指令
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;所有的内部辅助函数必须以&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;_internal_&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;前缀命名。&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;如果发现不符合此规则的代码，请自动提出修改建议。&lt;/span&gt;&lt;span class="w"&gt;
