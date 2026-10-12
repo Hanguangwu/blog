@@ -1,4 +1,761 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://blog.zwzhang.com/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Thu, 17 Sep 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>美国PhD申请指南</title><link>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</link><pubDate>Thu, 17 Sep 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="北美地区-phd-申请指南"&gt;北美地区 PhD 申请指南
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酒中仙</title><link>https://blog.zwzhang.com/post/</link><description>Recent content in Posts on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Sat, 19 Sep 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>内存池原理及其C++简单实现</title><link>https://blog.zwzhang.com/p/%E5%86%85%E5%AD%98%E6%B1%A0%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6c-%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link><pubDate>Sat, 19 Sep 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%86%85%E5%AD%98%E6%B1%A0%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6c-%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h1 id="从-0-到-1-手写-c-内存池固定预分配版--自动扩容版两种实现详解"&gt;从 0 到 1 手写 C++ 内存池：固定预分配版 + 自动扩容版两种实现详解
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;关键词：C++、内存池、memory pool、operator new、性能优化、面试
+适合人群：想搞懂内存池原理、准备 C++ 后端/游戏开发面试、需要在高频小对象场景做性能优化的工程师
+阅读时间：约 15 分钟&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="开篇为什么我们需要内存池"&gt;开篇：为什么我们需要内存池？
+&lt;/h2&gt;&lt;p&gt;先看一个非常典型的性能问题。&lt;/p&gt;
+&lt;p&gt;在 C++ 服务端或游戏引擎里，我们经常写出这样的代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Msg&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Msg&lt;/span&gt;&lt;span class="p"&gt;(...);&lt;/span&gt; &lt;span class="c1"&gt;// 一次 new
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 一次 delete
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;看起来没毛病，但 &lt;code&gt;new/delete&lt;/code&gt; 在底层其实是在调用 &lt;code&gt;malloc/free&lt;/code&gt;，这背后至少干了三件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;用户态 → 内核态切换&lt;/strong&gt;，陷入系统调用；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍历空闲链表&lt;/strong&gt;寻找合适大小的块；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;维护堆元数据&lt;/strong&gt;，合并/拆分空闲块。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在每秒百万级小对象创建销毁的场景下，这三件事的开销会被放大到非常夸张的程度，还会留下大量&lt;strong&gt;内存碎片&lt;/strong&gt;——明明总内存还够用，却因为没有一块连续的大块而分配失败。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内存池（Memory Pool）就是为了解决这个问题而生的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;它的核心思想一句话：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;自己向操作系统一次性要一大块内存（Chunk），切成若干固定大小的小格子（Block），以后 &lt;code&gt;new&lt;/code&gt; 就从格子里拿一个，&lt;code&gt;delete&lt;/code&gt; 就把格子挂回去，全程不再找操作系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="一内存池核心概念chunk-与-block"&gt;一、内存池核心概念：Chunk 与 Block
+&lt;/h2&gt;&lt;p&gt;在动手写代码之前，先把两个关键概念对齐，后面所有实现都围绕它们展开。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;术语&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;类比&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Chunk（大块内存）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;内存池向操作系统一次性申请的连续内存区域，是内存池的&amp;quot;进货单位&amp;quot;&lt;/td&gt;
+&lt;td&gt;批发进来的一整箱货&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Block（对象块）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Chunk 内部被切分出来的最小分配单元，大小通常对齐到业务对象大小&lt;/td&gt;
+&lt;td&gt;箱子里一个个独立的小包装盒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;FreeList（空闲链表）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;把所有空闲 Block 串成的单向链表，分配时摘头，释放时插头&lt;/td&gt;
+&lt;td&gt;空盒子的台账&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;整个内存池的数据结构长这样：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────── Chunk 1 ────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ChunkHeader │ Block0 │ Block1 │ Block2 │ ... │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└─────────────┴────────┴────────┴────────┴─────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ ↑
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └────────┘ Block 内部空闲时存下一个 Block 地址
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (FreeList 链表)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;一个非常巧妙的设计是：&lt;strong&gt;空闲 Block 不需要额外的指针空间&lt;/strong&gt;，直接利用 Block 自己的前 8 个字节存下一个空闲 Block 的地址。这样除了 ChunkHeader 那一点点元数据，分配对象几乎零开销。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="二内存池的优缺点与适用场景"&gt;二、内存池的优缺点与适用场景
+&lt;/h2&gt;&lt;h3 id="-优势"&gt;✅ 优势
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;大幅减少系统调用&lt;/strong&gt;：从每对象一次 &lt;code&gt;malloc&lt;/code&gt; 变成每 N 个对象一次大块申请；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;消除内存碎片&lt;/strong&gt;：所有 Block 大小一致，归还后立刻可复用，不会产生&amp;quot;你一块我一块&amp;quot;的细碎碎片；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分配/释放 O(1)&lt;/strong&gt;：摘头插头，不遍历、不合并、不找空位；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;耗时稳定&lt;/strong&gt;：没有系统调用抖动，适合游戏帧循环、实时控制系统这类对延迟敏感的场景。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="-代价"&gt;❌ 代价
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;预占内存&lt;/strong&gt;：哪怕一个对象都没 new，Chunk 已经占住了；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现复杂度&lt;/strong&gt;：比直接 &lt;code&gt;malloc&lt;/code&gt; 多了对齐、链表、扩容、析构释放等逻辑；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;固定块大小&lt;/strong&gt;：经典实现只适合同尺寸对象，不适合大块/变长对象；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线程安全要自己加锁&lt;/strong&gt;：FreeList 是非线程安全的，多线程环境必须包 &lt;code&gt;std::mutex&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="-典型适用场景"&gt;🎯 典型适用场景
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;游戏：粒子、子弹、NPC、UI 元素等海量小对象；&lt;/li&gt;
+&lt;li&gt;网络：消息报文、连接对象、缓冲区；&lt;/li&gt;
+&lt;li&gt;高性能服务器：数据库/Session/请求对象；&lt;/li&gt;
+&lt;li&gt;嵌入式/实时系统：需要确定的分配延迟。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="三实现一fixedmempool--单-chunk-固定预分配版"&gt;三、实现一：FixedMemPool —— 单 Chunk 固定预分配版
+&lt;/h2&gt;&lt;p&gt;先从最简单的版本开始：&lt;strong&gt;一次性向系统要一块内存，用完就没了&lt;/strong&gt;。这个版本最适合用来理解内存池的本质。&lt;/p&gt;
+&lt;h3 id="31-完整代码"&gt;3.1 完整代码
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;span class="lnt"&gt;52
+&lt;/span&gt;&lt;span class="lnt"&gt;53
+&lt;/span&gt;&lt;span class="lnt"&gt;54
+&lt;/span&gt;&lt;span class="lnt"&gt;55
+&lt;/span&gt;&lt;span class="lnt"&gt;56
+&lt;/span&gt;&lt;span class="lnt"&gt;57
+&lt;/span&gt;&lt;span class="lnt"&gt;58
+&lt;/span&gt;&lt;span class="lnt"&gt;59
+&lt;/span&gt;&lt;span class="lnt"&gt;60
+&lt;/span&gt;&lt;span class="lnt"&gt;61
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 单 Chunk 固定预分配内存池
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FixedMemPool&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * @param blockSize 单个 Block 的字节大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * @param blockNum 预分配 Block 总数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;blockNum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;m_blockNum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blockNum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// ① 一次性向操作系统申请一整块连续内存（Chunk）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_chunkStart&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;static_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blockSize&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;blockNum&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_chunkStart&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// ② 把所有 Block 串成单向空闲链表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_chunkStart&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;blockNum&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 每个 Block 的前 8 字节，存下一个空闲 Block 的地址
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 最后一个 Block 尾巴置空
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// ③ 析构时整块释放，一次性还给操作系统
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m_chunkStart&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 禁止拷贝，内存池不能被复制
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 从空闲链表头摘一个 Block
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;allocate&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;[FixedMemPool] 内存池已耗尽！&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 把 Block 挂回空闲链表头
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;deallocate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;static_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;m_chunkStart&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// Chunk 起始地址
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 空闲 Block 链表头
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 单个 Block 大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;m_blockNum&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// Block 总数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="32-测试用-placement-new-在-block-上构造对象"&gt;3.2 测试：用 placement new 在 Block 上构造对象
+&lt;/h3&gt;&lt;p&gt;这个版本&lt;strong&gt;不重载 operator new&lt;/strong&gt;，所以需要用 placement new 手动在拿到的 Block 上调用构造函数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;TestObj&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;构造 TestObj a=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;, b=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;析构 TestObj a=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;, b=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// Block 大小至少要能放下 TestObj，还要能存下链表指针
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;blockSize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;FixedMemPool&lt;/span&gt; &lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;===== FixedMemPool 测试开始 =====&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// ① allocate() 拿到一块原始内存
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// ② placement new 在这块内存上调用构造函数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;o1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allocate&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;o2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allocate&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 释放：必须先手动调用析构函数，再把 Block 归还
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;o1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;~&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deallocate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;o1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;o2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;~&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deallocate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;o2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="33-运行结果"&gt;3.3 运行结果
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;===== FixedMemPool 测试开始 =====
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=1, b=1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=2, b=2.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=1, b=1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=2, b=2.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="34-这个版本的局限"&gt;3.4 这个版本的局限
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;只有 &lt;strong&gt;1 个 Chunk&lt;/strong&gt;，Block 用完就 &lt;code&gt;nullptr&lt;/code&gt;，不能扩容；&lt;/li&gt;
+&lt;li&gt;使用起来啰嗦：必须手动 &lt;code&gt;new (addr) T()&lt;/code&gt; + &lt;code&gt;obj-&amp;gt;~T()&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;没有任何越界/重复释放保护。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="四实现二expandablemempool--多-chunk-自动扩容版"&gt;四、实现二：ExpandableMemPool —— 多 Chunk 自动扩容版
+&lt;/h2&gt;&lt;p&gt;工程上更常见的是&lt;strong&gt;自动扩容版&lt;/strong&gt;：Block 用光了就再向系统要一个新 Chunk，并且把它切成新的 Block 串进 FreeList。&lt;/p&gt;
+&lt;p&gt;更进一步，我们直接重载 &lt;code&gt;TestObj&lt;/code&gt; 的 &lt;code&gt;operator new / operator delete&lt;/code&gt;，让业务代码写 &lt;code&gt;new TestObj()&lt;/code&gt; 时&lt;strong&gt;自动走内存池&lt;/strong&gt;，一行 placement new 都不用写。&lt;/p&gt;
+&lt;h3 id="41-完整代码"&gt;4.1 完整代码
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;span class="lnt"&gt;52
+&lt;/span&gt;&lt;span class="lnt"&gt;53
+&lt;/span&gt;&lt;span class="lnt"&gt;54
+&lt;/span&gt;&lt;span class="lnt"&gt;55
+&lt;/span&gt;&lt;span class="lnt"&gt;56
+&lt;/span&gt;&lt;span class="lnt"&gt;57
+&lt;/span&gt;&lt;span class="lnt"&gt;58
+&lt;/span&gt;&lt;span class="lnt"&gt;59
+&lt;/span&gt;&lt;span class="lnt"&gt;60
+&lt;/span&gt;&lt;span class="lnt"&gt;61
+&lt;/span&gt;&lt;span class="lnt"&gt;62
+&lt;/span&gt;&lt;span class="lnt"&gt;63
+&lt;/span&gt;&lt;span class="lnt"&gt;64
+&lt;/span&gt;&lt;span class="lnt"&gt;65
+&lt;/span&gt;&lt;span class="lnt"&gt;66
+&lt;/span&gt;&lt;span class="lnt"&gt;67
+&lt;/span&gt;&lt;span class="lnt"&gt;68
+&lt;/span&gt;&lt;span class="lnt"&gt;69
+&lt;/span&gt;&lt;span class="lnt"&gt;70
+&lt;/span&gt;&lt;span class="lnt"&gt;71
+&lt;/span&gt;&lt;span class="lnt"&gt;72
+&lt;/span&gt;&lt;span class="lnt"&gt;73
+&lt;/span&gt;&lt;span class="lnt"&gt;74
+&lt;/span&gt;&lt;span class="lnt"&gt;75
+&lt;/span&gt;&lt;span class="lnt"&gt;76
+&lt;/span&gt;&lt;span class="lnt"&gt;77
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;cstdlib&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 多 Chunk 可扩容内存池
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ExpandableMemPool&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * @param blockSize 单个 Block 大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * @param expandCnt 每次新增 Chunk 时切出多少个 Block
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;expandCnt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blockSize&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;m_expandCnt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expandCnt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;m_chunkList&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;expandChunk&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 初始化就申请第一个 Chunk
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 遍历所有 Chunk，整块释放
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;cur&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_chunkList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cur&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cur&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nextChunk&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cur&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;cur&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;allocate&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 空闲 Block 用光 → 自动申请新 Chunk
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="k"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;expandChunk&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;deallocate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;static_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 每个 Chunk 头部记录下一个 Chunk 的地址，便于析构时整体释放
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;ChunkHeader&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;nextChunk&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 申请一个新 Chunk，切成 m_expandCnt 个 Block，串到 FreeList 头部
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;expandChunk&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;m_expandCnt&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;chunk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;static_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nextChunk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_chunkList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_chunkList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 跳过头部
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;m_expandCnt&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;reinterpret_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;[扩容] 新建一个 Chunk，包含 &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;m_expandCnt&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34; 个 Block&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;m_freeList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 空闲 Block 链表头
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ChunkHeader&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;m_chunkList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 所有 Chunk 的链表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;m_blockSize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;m_expandCnt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="42-让业务类自动走内存池重载-operator-new"&gt;4.2 让业务类自动走内存池：重载 operator new
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;TestObj&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_a&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;构造 TestObj a=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;, b=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;析构 TestObj a=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;, b=&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 全局只存在一个内存池，所有 TestObj 共用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt; &lt;span class="n"&gt;s_pool&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 重载 operator new：new TestObj() 时自动调用这里
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;bad_alloc&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s_pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allocate&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 重载 operator delete：delete p 时自动调用这里
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="nf"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;noexcept&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;s_pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deallocate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 静态成员必须在类外初始化：Block=sizeof(TestObj)，每次扩容 5 个
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ExpandableMemPool&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;s_pool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="43-业务代码跟普通-new-一模一样"&gt;4.3 业务代码：跟普通 new 一模一样
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;===== ExpandableMemPool 测试开始 =====&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;3.3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;4.4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p5&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;6.6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ← 这里会自动触发扩容
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;-- delete 前三个，Block 归还 --&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;-- 复用归还的 Block 再次 new --&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p7&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;TestObj&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;7.7&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p7&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;-- 释放剩余对象 --&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;p6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="44-运行结果"&gt;4.4 运行结果
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[扩容] 新建一个 Chunk，包含 5 个 Block
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;===== ExpandableMemPool 测试开始 =====
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=1, b=1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=2, b=2.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=3, b=3.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=4, b=4.4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=5, b=5.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[扩容] 新建一个 Chunk，包含 5 个 Block
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=6, b=6.6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- delete 前三个，Block 归还 --
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=1, b=1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=2, b=2.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=3, b=3.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- 复用归还的 Block 再次 new --
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;构造 TestObj a=7, b=7.7
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=7, b=7.7
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- 释放剩余对象 --
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=4, b=4.4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=5, b=5.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;析构 TestObj a=6, b=6.6
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意看：第 6 个 &lt;code&gt;new TestObj&lt;/code&gt; 时，第一个 Chunk 的 5 个 Block 刚好用完，内存池&lt;strong&gt;自动新建了第二个 Chunk&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="五两种实现对比"&gt;五、两种实现对比
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;对比维度&lt;/th&gt;
+&lt;th&gt;FixedMemPool（单 Chunk）&lt;/th&gt;
+&lt;th&gt;ExpandableMemPool（多 Chunk）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Chunk 数量&lt;/td&gt;
+&lt;td&gt;1 个，固定不变&lt;/td&gt;
+&lt;td&gt;多个，按需追加&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;扩容能力&lt;/td&gt;
+&lt;td&gt;❌ 用完返回 nullptr&lt;/td&gt;
+&lt;td&gt;✅ 自动新建 Chunk&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;业务侧写法&lt;/td&gt;
+&lt;td&gt;必须 placement new + 手动析构&lt;/td&gt;
+&lt;td&gt;重载 operator new，直接 &lt;code&gt;new T()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;适用场景&lt;/td&gt;
+&lt;td&gt;数量上限已知、资源受限的嵌入式环境&lt;/td&gt;
+&lt;td&gt;数量不确定的服务端/游戏高频小对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;代码复杂度&lt;/td&gt;
+&lt;td&gt;极简，约 60 行&lt;/td&gt;
+&lt;td&gt;中等，约 120 行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;学习价值&lt;/td&gt;
+&lt;td&gt;理解内存池本质&lt;/td&gt;
+&lt;td&gt;贴近工程实践&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="六面试高频追问建议背下来"&gt;六、面试高频追问（建议背下来）
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Q1：内存池为什么能提升性能？&lt;/strong&gt;
+A：三点——① 减少系统调用，避免用户态/内核态切换；② 消除小块分配产生的堆碎片；③ 分配释放都是 O(1) 的链表操作，耗时稳定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q2：空闲 Block 为什么不另外开个 map 记录？&lt;/strong&gt;
+A：利用 Block 自身的前 8 字节存下一个空闲块指针，&lt;strong&gt;复用已分配内存做元数据&lt;/strong&gt;，零额外开销，这是 SGI STL 二级空间配置器的经典做法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q3：为什么要区分 Chunk 和 Block？&lt;/strong&gt;
+A：Chunk 是&amp;quot;进货单位&amp;quot;，决定了向 OS 要多少内存；Block 是&amp;quot;售卖单位&amp;quot;，决定了用户每次拿到多大。两者解耦才能在 Block 耗尽时只追加 Chunk，而不影响已分配对象。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q4：这个实现有什么问题？&lt;/strong&gt;
+A：① 只支持固定大小 Block，不能分配任意尺寸；② 非线程安全，多线程要加 &lt;code&gt;std::mutex&lt;/code&gt;；③ 没有重复释放/越界校验；④ 析构时如果还有对象没 delete 会内存泄漏，需要额外的调试钩子。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q5：工业级内存池还会做什么？&lt;/strong&gt;
+A：多尺寸分级（类似 SGI 的 16 级自由链表）、Thread Cache 线程本地缓存、批量归还、内存对齐对齐到 cache line 减少伪共享、stats 统计等。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="七编译运行"&gt;七、编译运行
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 固定预分配版&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ fixed_pool.cpp -o fixed_pool -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 -Wall
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./fixed_pool
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 自动扩容版&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ expand_pool.cpp -o expand_pool -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 -Wall
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./expand_pool
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="写在最后"&gt;写在最后
+&lt;/h2&gt;&lt;p&gt;内存池看起来是个&amp;quot;面试八股&amp;quot;，但它的思想贯穿了整个 C++ 性能优化生态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;STL 的 &lt;code&gt;std::allocator&lt;/code&gt; 背后就是分级内存池；&lt;/li&gt;
+&lt;li&gt;jemalloc / tcmalloc 是更强壮的多尺寸内存池；&lt;/li&gt;
+&lt;li&gt;游戏引擎里的 &lt;code&gt;ObjectPool&lt;/code&gt; 几乎都是这个套路。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;理解了 Chunk + Block + FreeList 这三件套，再去看任何工业级内存池源码，你会发现骨架都差不多——只是多了线程缓存、大小分级、统计监控这些&amp;quot;装修&amp;quot;。&lt;/p&gt;</description></item><item><title>美国PhD申请指南</title><link>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</link><pubDate>Thu, 17 Sep 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%BE%8E%E5%9B%BDphd%E7%94%B3%E8%AF%B7%E6%8C%87%E5%8D%97/</guid><description>&lt;h1 id="北美地区-phd-申请指南"&gt;北美地区 PhD 申请指南
 &lt;/h1&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;这几天整理了一下浏览器收藏夹里的各种关于北美 PhD 申请的攻略文章，分了类并且写了简短的中文导读，另外也添加了一些自己常用的网站。下面的部分文章和 CS 强相关，所以如果你申请的不是 CS 方向的 PhD，请选择性的阅读这些文章。有一些文章的内容包含了非常全面的内容，我在这些文章的标题后面打上星号。&lt;/p&gt;
 &lt;p&gt;本文来自于 GitHub 仓库：&lt;strong&gt;&lt;a class="link" href="https://github.com/binhu02/Collection-of-advice-for-PhD-application" target="_blank" rel="noopener"
