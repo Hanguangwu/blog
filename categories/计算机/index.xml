@@ -1,4 +1,171 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计算机 on 酒中仙</title><link>https://blog.zwzhang.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link><description>Recent content in 计算机 on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 23 Jun 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>LDAP 系统原理与企业实战</title><link>https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/</link><pubDate>Tue, 23 Jun 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="ldap-系统原理与企业实战从协议到-python-集成"&gt;LDAP 系统原理与企业实战：从协议到 Python 集成
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计算机 on 酒中仙</title><link>https://blog.zwzhang.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link><description>Recent content in 计算机 on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 12 Oct 2026 22:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>从ATT&amp;CK到ATLAS：读懂网络安全标杆MITRE，看懂攻防框架的进化</title><link>https://blog.zwzhang.com/p/%E4%BB%8Eattck%E5%88%B0atlas%E8%AF%BB%E6%87%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A0%87%E6%9D%86mitre%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E6%A1%86%E6%9E%B6%E7%9A%84%E8%BF%9B%E5%8C%96/</link><pubDate>Mon, 12 Oct 2026 22:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E4%BB%8Eattck%E5%88%B0atlas%E8%AF%BB%E6%87%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A0%87%E6%9D%86mitre%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E6%A1%86%E6%9E%B6%E7%9A%84%E8%BF%9B%E5%8C%96/</guid><description>&lt;h1 id="从attck到atlas读懂网络安全标杆mitre看懂攻防框架的进化"&gt;从ATT&amp;amp;CK到ATLAS：读懂网络安全标杆MITRE，看懂攻防框架的进化
+&lt;/h1&gt;&lt;p&gt;在网络安全行业，如果你做威胁狩猎、红队评估、攻防演练，几乎一定会碰到MITRE ATT&amp;amp;CK；而随着大模型、AI应用快速落地，它的“AI安全兄弟”——MITRE ATLAS，正在成为AI红队、LLM风险治理的新标准。这两套框架都出自同一家非营利机构：MITRE。今天我们就一起梳理MITRE、ATT&amp;amp;CK与ATLAS的来龙去脉，重点拆解两大框架的内核、战术、技术与落地用法。&lt;/p&gt;
+&lt;h2 id="一mitre不止是安全框架的幕后推手"&gt;一、MITRE：不止是安全框架的“幕后推手”
+&lt;/h2&gt;&lt;p&gt;很多人只知道ATT&amp;amp;CK，但并不了解MITRE本身。MITRE（The MITRE Corporation）是一家诞生于1958年的美国非营利组织，前身是麻省理工学院林肯实验室，起源可以追溯到冷战时期为美国空军打造SAGE半自动防空系统的项目。&lt;/p&gt;
+&lt;p&gt;它的定位很特殊：作为联邦资助研发中心（FFRDC），以公共利益为导向，不和商业公司争抢市场，专门承接政府机构的前沿系统工程研发，客户包括美国国防部、国土安全部、联邦航空管理局等。业务边界也远不止网络安全，覆盖航空、公共卫生、人工智能、量子科学、空间安全等众多方向。疫情期间它推出Sara Alert™工具辅助流行病追踪；2026年，MITRE也参与了英伟达牵头、面向6G的安全AI原生平台联合倡议。&lt;/p&gt;
+&lt;p&gt;但让MITRE在全球安全圈封神的，还是它输出的一系列通用标准：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CVE&lt;/strong&gt;：漏洞编号字典，给每一个公开漏洞分配唯一ID，是全球漏洞互通的基础；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE&lt;/strong&gt;：通用缺陷列表，用来梳理软件底层缺陷类型，是代码安全、SAST工具的参考基线；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MITRE ATT&amp;amp;CK&lt;/strong&gt;：传统网络攻防行为知识库；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MITRE ATLAS&lt;/strong&gt;：面向AI系统的对抗威胁知识库。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MITRE的核心价值，就是给分散的安全行业提供一套&lt;strong&gt;统一语言&lt;/strong&gt;：让攻防双方、厂商、甲方、研究人员，对攻击者行为有一致的描述口径。&lt;/p&gt;
+&lt;h2 id="二mitre-attck传统网络攻防的通用行为字典"&gt;二、MITRE ATT&amp;amp;CK：传统网络攻防的通用“行为字典”
+&lt;/h2&gt;&lt;p&gt;ATT&amp;amp;CK全称 &lt;strong&gt;Adversarial Tactics, Techniques, and Common Knowledge（对抗战术、技术与常识）&lt;/strong&gt;。概念诞生于2013年，2015年正式对外发布，是一套&lt;strong&gt;基于真实攻击观测、持续迭代维护的公开攻防知识库&lt;/strong&gt;，它跳出了传统“漏洞+利用”的单点视角，站在攻击者的完整杀伤链视角，把攻击行为标准化建模。&lt;/p&gt;
+&lt;h3 id="21-attck核心概念tactic--technique--sub-technique--procedure"&gt;2.1 ATT&amp;amp;CK核心概念：Tactic / Technique / Sub-technique / Procedure
+&lt;/h3&gt;&lt;p&gt;这是理解ATT&amp;amp;CK最核心的四层结构：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Tactic（战术，TA开头）：代表攻击者的目标（为什么这么做）&lt;/strong&gt;
+战术是攻击阶段、攻击者想要达成的目的，是分类的顶层维度；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technique（技术，T开头）：攻击者实现目标的方法（做什么）&lt;/strong&gt;
+描述一类攻击行为；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sub-technique（子技术，T.xxx）：细分的具体实现方式&lt;/strong&gt;
+同一个技术下的不同变种；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Procedure（流程）：真实威胁组织、APT团伙实际使用的操作步骤&lt;/strong&gt;
+把技术落地到真实攻击中的实例。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ATT&amp;amp;CK不是线性的杀伤链，而是&lt;strong&gt;矩阵&lt;/strong&gt;——攻击者可以跳跃、回退、重复执行战术，更贴合真实入侵的非线性特点。&lt;/p&gt;
+&lt;h3 id="22-三大矩阵领域matrix"&gt;2.2 三大矩阵领域（Matrix）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise（企业域）&lt;/strong&gt;：使用最广泛，覆盖Windows/Linux/macOS终端、云、身份、服务器、SaaS等企业IT环境；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mobile（移动域）&lt;/strong&gt;：针对安卓、iOS手机、移动终端的攻击行为；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ICS（工业控制系统域）&lt;/strong&gt;：面向工控、电力、油气等关键基础设施，是工控安全评估、工控红队的标准参考。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Enterprise ATT&amp;amp;CK主流14个战术，简要说明：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;侦察 Reconnaissance(TA0043)&lt;/strong&gt;：收集目标信息，比如域名、员工邮箱、系统版本；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;资源开发 Resource Development(TA0042)&lt;/strong&gt;：搭建攻击资源，C2服务器、钓鱼页面、恶意样本；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始访问 Initial Access(TA0001)&lt;/strong&gt;：拿下第一个入口，钓鱼邮件、漏洞利用、弱口令；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行 Execution(TA0002)&lt;/strong&gt;：在目标机器运行恶意代码；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持久化 Persistence(TA0003)&lt;/strong&gt;：重启后依然保有访问权限，计划任务、注册表、服务；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权限提升 Privilege Escalation(TA0004)&lt;/strong&gt;：从普通用户拿到管理员权限；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;防御规避 Defense Evasion(TA0005)&lt;/strong&gt;：绕过EDR、防火墙、日志审计，删日志、混淆代码；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;凭据访问 Credential Access(TA0006)&lt;/strong&gt;：窃取账号密码、Token、Hash；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;发现 Discovery(TA0007)&lt;/strong&gt;：在内网踩点，扫描网段、查看进程、用户列表；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;横向移动 Lateral Movement(TA0008)&lt;/strong&gt;：从一台机器跳到另一台；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;收集 Collection(TA0009)&lt;/strong&gt;：抓取文档、截图、数据库数据；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;命令与控制 Command and Control(TA0011)&lt;/strong&gt;：被控主机和攻击者C2通信；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据渗出 Exfiltration(TA0010)&lt;/strong&gt;：把窃取的数据外传；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;影响 Impact(TA0040)&lt;/strong&gt;：勒索加密、破坏系统、业务中断。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="23-版本迭代与生态工具"&gt;2.3 版本迭代与生态工具
+&lt;/h3&gt;&lt;p&gt;ATT&amp;amp;CK是&lt;strong&gt;社区驱动的活态知识库&lt;/strong&gt;，常规每半年发布新版本，吸纳全球安全社区上报的真实攻击案例：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;v14（2023）：新增社会工程、“人类漏洞”相关非技术攻击；&lt;/li&gt;
+&lt;li&gt;截至2025更新至v18；&lt;/li&gt;
+&lt;li&gt;2026年MITRE成立ATT&amp;amp;CK顾问委员会，长期治理框架演进。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配套工具生态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ATT&amp;amp;CK Navigator&lt;/strong&gt;：最常用的可视化矩阵工具，可以标记检测覆盖、红队测试范围，导出矩阵图；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATT&amp;amp;CK Workbench&lt;/strong&gt;：本地部署，自定义矩阵、维护内部威胁库；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATT&amp;amp;CK Evaluations（ATT&amp;amp;CK评估）&lt;/strong&gt;：第三方厂商的安全产品能力测评，看EDR、SIEM能覆盖多少ATT&amp;amp;CK技术。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="24-attck典型落地场景"&gt;2.4 ATT&amp;amp;CK典型落地场景
+&lt;/h3&gt;&lt;p&gt;红队方案设计、SOC检测规则建设、威胁狩猎、事件响应复盘、安全产品测评、甲方防御能力矩阵评估、威胁情报标准化描述。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一句话概括ATT&amp;amp;CK：它描述&lt;strong&gt;攻击者在传统IT基础设施上会做哪些动作&lt;/strong&gt;，让防御者从“盯漏洞”升级为“盯攻击者行为”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="三mitre-atlas面向ai系统的专属attck"&gt;三、MITRE ATLAS：面向AI系统的专属ATT&amp;amp;CK
+&lt;/h2&gt;&lt;p&gt;随着大模型、机器学习、AI智能体大规模上线，传统ATT&amp;amp;CK只能描述入侵服务器、窃取API密钥这类底层IT攻击，&lt;strong&gt;无法描述针对模型本身的AI原生攻击&lt;/strong&gt;：提示注入、模型投毒、对抗样本、模型窃取、越狱等。于是MITRE推出 &lt;strong&gt;ATLAS（Adversarial Threat Landscape for Artificial-Intelligence Systems）&lt;/strong&gt;，是专门针对AI/ML系统的对抗威胁知识库。&lt;/p&gt;
+&lt;p&gt;ATLAS完全继承ATT&amp;amp;CK的设计范式：同样是Tactic-Technique-Subtechnique的矩阵结构、同样基于真实攻击事件+AI红队测试案例，作为ATT&amp;amp;CK的补充框架，&lt;strong&gt;而不是替代&lt;/strong&gt;。很多真实攻击是组合链路：攻击者先用ATT&amp;amp;CK的方式拿下训练服务器，再执行ATLAS里的模型投毒。&lt;/p&gt;
+&lt;h3 id="31-atlas的定位与16个战术"&gt;3.1 ATLAS的定位与16个战术
+&lt;/h3&gt;&lt;p&gt;ATLAS一共16个战术，大部分继承自ATT&amp;amp;CK，额外增加两个AI独有的战术：&lt;strong&gt;ML Model Access（模型访问）、ML Attack Staging（AI攻击筹备）&lt;/strong&gt;，完整覆盖AI全生命周期：数据采集、训练、微调、部署推理、模型调用。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261012231926018.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;ATLAS典型AI攻击技术（AML开头编号）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提示注入 Prompt Injection：直接在输入里诱导LLM绕过安全护栏、泄露提示词；&lt;/li&gt;
+&lt;li&gt;越狱 Jailbreak：绕过模型对齐、安全限制，生成有害内容；&lt;/li&gt;
+&lt;li&gt;数据投毒 Data Poisoning：污染训练集，让模型出现定向错误；&lt;/li&gt;
+&lt;li&gt;模型投毒 Model Poisoning：后门植入到权重，特定触发词触发异常输出；&lt;/li&gt;
+&lt;li&gt;对抗样本 Adversarial Example：给图像/音频加微小扰动，让CV模型误识别；&lt;/li&gt;
+&lt;li&gt;模型窃取/提取 Model Extraction：通过API查询，复刻出近似模型；&lt;/li&gt;
+&lt;li&gt;训练数据泄露 Training Data Exfiltration：从模型里还原训练数据、隐私信息；&lt;/li&gt;
+&lt;li&gt;模型反转 Model Inversion：利用模型输出反推训练集中的敏感样本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="32-atlas的应用方式"&gt;3.2 ATLAS的应用方式
+&lt;/h3&gt;&lt;p&gt;ATLAS主要服务AI红队、大模型安全评估、AI风险建模：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;给AI红队提供标准化测试用例库，定义攻击编号、步骤、检测思路；&lt;/li&gt;
+&lt;li&gt;和OWASP LLM Top10、NIST AI RMF、ISO 42001组合使用：
+&lt;ul&gt;
+&lt;li&gt;OWASP：梳理LLM应用层风险优先级；&lt;/li&gt;
+&lt;li&gt;ATLAS：对AI对抗行为建模、红队测试；&lt;/li&gt;
+&lt;li&gt;NIST AI RMF / ISO42001：整体AI安全治理、风险评估；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;微软开源Counterfit工具，可自动化执行ATLAS收录的各类AI对抗攻击，批量验证模型鲁棒性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配套衍生框架AERS，专门用来评估ATLAS在防御数据投毒场景下的落地效果，把ATLAS战术映射到杀伤链，给AI防御做定性评级。
+ATLAS官网：&lt;a class="link" href="https://atlas.mitre.org" target="_blank" rel="noopener"
+&gt;https://atlas.mitre.org&lt;/a&gt;，开源、社区持续更新，包含大量真实AI攻击案例。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一句话概括ATLAS：它描述&lt;strong&gt;攻击者针对AI模型、训练流水线、模型推理能力本身的攻击行为&lt;/strong&gt;，补齐了传统ATT&amp;amp;CK在生成式AI、机器学习安全上的空白。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="四attck-vs-atlas详细对比表"&gt;四、ATT&amp;amp;CK vs ATLAS：详细对比表
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;MITRE ATT&amp;amp;CK&lt;/th&gt;
+&lt;th&gt;MITRE ATLAS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;全称&lt;/td&gt;
+&lt;td&gt;Adversarial Tactics, Techniques, and Common Knowledge&lt;/td&gt;
+&lt;td&gt;Adversarial Threat Landscape for Artificial-Intelligence Systems&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;保护对象&lt;/td&gt;
+&lt;td&gt;终端、服务器、云、账号、工控、移动设备（IT/OT基础设施）&lt;/td&gt;
+&lt;td&gt;LLM、CV模型、机器学习流水线、AI智能体、训练数据集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心关注点&lt;/td&gt;
+&lt;td&gt;入侵、内网移动、持久化、数据窃取、系统破坏&lt;/td&gt;
+&lt;td&gt;模型操纵、提示注入、投毒、对抗样本、模型窃取、越狱&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;战术数量&lt;/td&gt;
+&lt;td&gt;Enterprise共14个战术&lt;/td&gt;
+&lt;td&gt;16个战术（14个继承ATT&amp;amp;CK + 2个AI专属战术）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;编号前缀&lt;/td&gt;
+&lt;td&gt;T（技术）、TA（战术）&lt;/td&gt;
+&lt;td&gt;AML-T（AI攻击技术）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;起源时间&lt;/td&gt;
+&lt;td&gt;2013构思，2015正式发布&lt;/td&gt;
+&lt;td&gt;AI安全兴起后推出，对标ATT&amp;amp;CK体系&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;典型使用者&lt;/td&gt;
+&lt;td&gt;SOC蓝队、传统红队、威胁情报、工控安全工程师&lt;/td&gt;
+&lt;td&gt;AI安全工程师、LLM红队、模型风控、AI合规治理岗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;二者关系&lt;/td&gt;
+&lt;td&gt;基础框架，描述底层IT入侵&lt;/td&gt;
+&lt;td&gt;扩展框架，描述AI原生攻击；攻击链路经常组合使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="五写在最后框架不是银弹是通用语言"&gt;五、写在最后：框架不是银弹，是通用语言
+&lt;/h2&gt;&lt;p&gt;很多新手容易把ATT&amp;amp;CK或者ATLAS当成“一键防护工具”，这是一个常见误区。它们本质上是&lt;strong&gt;分类体系、威胁词汇表、攻击行为参考库&lt;/strong&gt;，本身不会帮你直接检测攻击。它的价值在于统一认知：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;红队写报告，用ATT&amp;amp;CK/ATLAS编号描述攻击步骤，蓝队一眼就能理解；&lt;/li&gt;
+&lt;li&gt;建设检测能力时，可以对照矩阵，排查自己哪些战术场景缺少检测规则；&lt;/li&gt;
+&lt;li&gt;评估大模型安全时，对照ATLAS梳理投毒、提示注入等风险点，完成红队测试方案。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从冷战时期的防空系统，到CVE、CWE，再到ATT&amp;amp;CK，如今延伸到AI安全领域的ATLAS，MITRE一直在做一件事：把复杂、零散的攻击者行为标准化。在AI快速普及的当下，ATLAS正在复刻当年ATT&amp;amp;CK的路径，慢慢成为生成式AI安全领域的通用基线。&lt;/p&gt;
+&lt;p&gt;如果你正在做SOC建设、红队评估、LLM安全测试，不妨从Navigator和ATLAS官网入手，把这两套框架放进自己的安全流程里。&lt;/p&gt;</description></item><item><title>LDAP 系统原理与企业实战</title><link>https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/</link><pubDate>Tue, 23 Jun 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="ldap-系统原理与企业实战从协议到-python-集成"&gt;LDAP 系统原理与企业实战：从协议到 Python 集成
 &lt;/h1&gt;&lt;p&gt;LDAP（Lightweight Directory Access Protocol，轻量级目录访问协议）是企业 IT 基础设施中最常见却又最容易被低估的组件。无论是员工登录公司 Wi-Fi、访问内网 Wiki、提交请假审批，还是 CI/CD 流水线拉取部署权限，背后几乎都有 LDAP 的身影。&lt;/p&gt;
 &lt;p&gt;本文将从协议原理出发，结合 Active Directory（AD）的实际生产环境，完整演示如何使用 Python 的 &lt;code&gt;ldap3&lt;/code&gt; 库进行 LDAP 查询和认证，并给出可直接运行的示例代码与输出。&lt;/p&gt;
 &lt;hr&gt;

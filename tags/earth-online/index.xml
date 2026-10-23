@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Earth Online on 酒中仙</title><link>https://blog.zwzhang.com/tags/earth-online/</link><description>Recent content in Earth Online on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Mon, 12 Oct 2026 12:34:25 -0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/tags/earth-online/index.xml" rel="self" type="application/rss+xml"/><item><title>地球Online开发实例</title><link>https://blog.zwzhang.com/p/%E5%9C%B0%E7%90%83online%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B/</link><pubDate>Mon, 12 Oct 2026 12:34:25 -0800</pubDate><guid>https://blog.zwzhang.com/p/%E5%9C%B0%E7%90%83online%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B/</guid><description>&lt;h1 id="earth-online-game"&gt;Earth Online Game
+&lt;/h1&gt;&lt;h2 id="商业化实践-eto"&gt;商业化实践 ETO
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://earthonline.org.cn/" target="_blank" rel="noopener"
+&gt;https://earthonline.org.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="简介"&gt;简介
+&lt;/h3&gt;&lt;p&gt;“地球Online”这一创意及其相关表达来自广大粉丝、网友长期以来的共同讨论、传播和丰富，具有鲜明的网络文化与集体创作背景。我们非常尊重这一创意来源，不主张将“把现实世界理解或描述为网络游戏”等抽象构思、网络热梗、通用设定、常见玩法、公共话题或网友已有表达据为平台独有，也无权限制任何人围绕相同题材进行独立创作，但我们不会接受未经许可的大规模代码复制、素材挪用及整体性仿制。&lt;/p&gt;
+&lt;p&gt;感谢所有用户、开发者和关注者的支持。相关证据和处理进展将在符合法律要求、且不影响后续程序的前提下继续公布。&lt;/p&gt;
+&lt;p&gt;地球在线(成都)大数据科技有限公司EARTH.ONLINE 项目组&lt;/p&gt;
+&lt;h3 id="页面展示"&gt;页面展示
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261012140533892.png"
+loading="lazy"
+&gt;
+本任务期奖励&amp;quot;创世水晶&amp;quot;为限定纪念道具，无任何市场价值。&lt;br&gt;
+它只是&amp;quot;这一期我们一起做成了一件事&amp;quot;的证据。&lt;/p&gt;
+&lt;h3 id="进展"&gt;进展
+&lt;/h3&gt;&lt;p&gt;地球Online 完成 C1 轮融资 840000 元&lt;/p&gt;
+&lt;p&gt;本轮由「ETO共投资本」领投，全部资金注入《核心着陆区》研发。&lt;/p&gt;
+&lt;h2 id="玩梗地球online-地球online"&gt;玩梗地球online——🌍 地球Online
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/zmccyy/earth-online" target="_blank" rel="noopener"
+&gt;https://github.com/zmccyy/earth-online&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一款&lt;strong&gt;强制登录、无法退游、不支持存档&lt;/strong&gt;的网页版人生 MMORPG。 投胎即开号,家境是开局难度,高考是新手村最终 Boss,上班是每日任务, 内卷是 PVP 排位,躺平是挂机,买房是毕业装备,死亡是注销账号。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;基于&amp;quot;地球online&amp;quot;网络梗重制的 Web 游戏版,前后端分离:FastAPI 游戏引擎 + 原生 JS 前端。&lt;/p&gt;
+&lt;h3 id="-玩法"&gt;🎮 玩法
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;投胎&lt;/strong&gt;:随机分配姓名/性别/家境(牛马→拆迁户五档)/出生地/初始面板,玄学重抽次数有限。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;活过每一年&lt;/strong&gt;:属性会随年龄成长与老化,收支自动结算,随机事件与人生里程碑轮番上阵。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;做选择&lt;/strong&gt;:几乎每个事件都有多个选项——卷还是躺、氪还是省、组队还是单排。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;通关结算&lt;/strong&gt;:死亡后生成人生评分(SSS 天选剧本 → D 删号重练)、人生走马灯、好评差评。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;成就图鉴&lt;/strong&gt;:29 枚梗味徽章跨局持久化(存 localStorage),目标:全收集。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="梗点速查"&gt;梗点速查
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;系统&lt;/th&gt;
+&lt;th&gt;梗&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;投胎&lt;/td&gt;
+&lt;td&gt;角色创建/抽卡,氪金玩家与拆迁户是 SSR/UR 开局&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;高考&lt;/td&gt;
+&lt;td&gt;新手村最终 Boss,700 分触发&amp;quot;学神本神&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;找工作&lt;/td&gt;
+&lt;td&gt;考编(宇宙的尽头)/大厂福报/小公司/继承家业/摆摊&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;买房&lt;/td&gt;
+&lt;td&gt;毕业装备,全款 or 三十年分期订阅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;生娃&lt;/td&gt;
+&lt;td&gt;练小号,无底洞氪金项目&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;内卷/躺平&lt;/td&gt;
+&lt;td&gt;PVP 排位赛 / 挂机大师&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;钓鱼/广场舞&lt;/td&gt;
+&lt;td&gt;退休服两大主流玩法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;灵魂觉醒&lt;/td&gt;
+&lt;td&gt;50 岁后低概率触发的&lt;strong&gt;真结局:通关&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;孟婆来电&lt;/td&gt;
+&lt;td&gt;梦境彩蛋:&amp;ldquo;你那个账号当时可以充值的&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="-项目结构"&gt;🗂️ 项目结构
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;backend/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; main.py FastAPI 入口(路由 + 静态托管)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; api.py REST API 契约层
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; session.py 内存会话存储
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; engine/ 纯逻辑引擎(不依赖 Web 框架,可独立单测)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; character.py 投胎系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; life.py 年度推进/阶段/死亡
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; events.py 条件引擎 + 事件调度 + 效果结算
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; achievements.py 成就触发
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; rating.py 人生评分与结算
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; content/ 数据驱动内容(事件57+ / 成就29 / 风味文案)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;frontend/ 无构建原生 JS 前端(五屏 + 图鉴)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tests/ pytest 引擎单测 + API 集成测试
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docs/ARCHITECTURE.md 架构决策与机制说明
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="-技术栈"&gt;🛠️ 技术栈
+&lt;/h3&gt;&lt;p&gt;Python 3.10+ / FastAPI / Pydantic / 原生 ES Modules / pytest&lt;/p&gt;
+&lt;h2 id="纯前端人生模拟地球online"&gt;纯前端人生模拟——地球Online
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/Stone5618/earth-online" target="_blank" rel="noopener"
+&gt;将现实生活比喻为大型多人在线角色扮演游戏(MMORPG)的Web应用！&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一个纯前端的人生模拟游戏，使用 React + TypeScript + Vite 构建。&lt;/p&gt;
+&lt;h3 id="技术栈"&gt;技术栈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;前端框架：React 19 + TypeScript&lt;/li&gt;
+&lt;li&gt;构建工具：Vite&lt;/li&gt;
+&lt;li&gt;样式：Tailwind CSS&lt;/li&gt;
+&lt;li&gt;动画：Framer Motion + GSAP&lt;/li&gt;
+&lt;li&gt;状态管理：React useReducer + Context API&lt;/li&gt;
+&lt;li&gt;UI 组件：Radix UI (shadcn/ui)&lt;/li&gt;
+&lt;li&gt;音效：Howler.js&lt;/li&gt;
+&lt;li&gt;图标：Lucide React&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="项目结构"&gt;项目结构
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;app/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── public/ # 静态资源
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── images/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── src/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── components/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── game/ # 游戏组件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── ui/ # UI 组件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── config/ # 游戏配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── game/ # 游戏核心逻辑
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── sections/ # 页面区域
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── types/ # 类型定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── App.tsx
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── main.tsx
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── package.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── tsconfig.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── vite.config.ts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── ...其他配置
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="主要功能"&gt;主要功能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;出生系统：随机家庭背景、天赋/缺陷&lt;/li&gt;
+&lt;li&gt;职业系统：多行业、晋升机制&lt;/li&gt;
+&lt;li&gt;教育系统：从小学到博士的教育路径&lt;/li&gt;
+&lt;li&gt;事件系统：随机人生事件&lt;/li&gt;
+&lt;li&gt;健康系统：健康管理、疾病治疗&lt;/li&gt;
+&lt;li&gt;经济系统：收入、支出、债务管理&lt;/li&gt;
+&lt;li&gt;技能系统：14种可升级技能&lt;/li&gt;
+&lt;li&gt;存档系统：自动/手动存档&lt;/li&gt;
+&lt;li&gt;成就系统：游戏成就解锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="地球online---人生成就系统-"&gt;地球Online - 人生成就系统 🌍
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/LKlingkong/EarthOnline-Achievement" target="_blank" rel="noopener"
+&gt;地球Online人生成就系统&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;把人生当作一款 MMORPG，记录你解锁的每一个成就。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://camo.githubusercontent.com/03212f4d323a11e84376ae8c88ac5be77b7f0ffe616d1ec11fee048ec540cfc7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545372538392538382545362539432541432d76323032362e30362d676f6c64" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/03212f4d323a11e84376ae8c88ac5be77b7f0ffe616d1ec11fee048ec540cfc7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545372538392538382545362539432541432d76323032362e30362d676f6c64"
+loading="lazy"
+alt="地球Online"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://camo.githubusercontent.com/df6013a179820b423dc89f0110703765c77fe130dc6b6f9d9efab67b2352cb10/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545362538412538302545362539432541462d25453725424125414648544d4c352d6f72616e6765" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/df6013a179820b423dc89f0110703765c77fe130dc6b6f9d9efab67b2352cb10/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545362538412538302545362539432541462d25453725424125414648544d4c352d6f72616e6765"
+loading="lazy"
+alt="HTML5"
+&gt;&lt;/a&gt; &lt;a class="link" href="https://camo.githubusercontent.com/9653de742d19fea4cbf7c6575402d03928509b85b110b456ea34be2aee59d424/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545342542452539442545382542352539362d2545362539372541302d627269676874677265656e" target="_blank" rel="noopener"
+&gt;&lt;img src="https://camo.githubusercontent.com/9653de742d19fea4cbf7c6575402d03928509b85b110b456ea34be2aee59d424/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545342542452539442545382542352539362d2545362539372541302d627269676874677265656e"
+loading="lazy"
+alt="无依赖"
+&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="-功能特性"&gt;✨ 功能特性
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;60 个精心设计的成就&lt;/strong&gt;，涵盖学业、职业、情感、生活、旅行、财富等 12 个类别&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4 级稀有度&lt;/strong&gt;：普通 → 稀有 → 史诗 → 传说，越稀有越难达成&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;暗色主题 + 金色高亮&lt;/strong&gt;：已解锁成就金色闪耀，未解锁成就灰色暗淡&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;按难度自动排序&lt;/strong&gt;：传说成就排最前，普通成就排最后&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;点击查看详情&lt;/strong&gt;：每个成就都有专属故事描述&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;搜索与筛选&lt;/strong&gt;：支持关键词搜索，按分类筛选&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;本地存档&lt;/strong&gt;：解锁进度自动保存到浏览器 localStorage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导出 / 导入&lt;/strong&gt;：可将成就进度导出为 JSON 文件，分享给朋友导入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重置进度&lt;/strong&gt;：一键清除本地存档，恢复初始状态&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;完全离线&lt;/strong&gt;：纯前端实现，无需服务器，打开即用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-使用说明"&gt;🎮 使用说明
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;浏览成就&lt;/strong&gt;：滚动页面查看所有 60 个人生成就&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解锁成就&lt;/strong&gt;：点击任意成就卡片 → 在弹窗中点击「✨ 解锁此成就」&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;筛选分类&lt;/strong&gt;：点击顶部分类标签（学业 / 职业 / 情感等）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;搜索&lt;/strong&gt;：在搜索框输入关键词，快速定位成就&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;按难度排序&lt;/strong&gt;：点击「解锁难度」按钮切换升序 / 降序&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导出进度&lt;/strong&gt;：点击「📥 导出」将存档保存为 JSON 文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导入进度&lt;/strong&gt;：点击「📤 导入」选择 JSON 存档文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重置&lt;/strong&gt;：点击「🔄 重置」清除本地所有进度&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="-成就稀有度"&gt;📊 成就稀有度
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;稀有度&lt;/th&gt;
+&lt;th&gt;达成率范围&lt;/th&gt;
+&lt;th&gt;颜色&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;🏆 传说&lt;/td&gt;
+&lt;td&gt;&amp;lt; 10%&lt;/td&gt;
+&lt;td&gt;金色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🌟 史诗&lt;/td&gt;
+&lt;td&gt;10% ~ 20%&lt;/td&gt;
+&lt;td&gt;紫色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;🔷 稀有&lt;/td&gt;
+&lt;td&gt;20% ~ 50%&lt;/td&gt;
+&lt;td&gt;蓝色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;· 普通&lt;/td&gt;
+&lt;td&gt;&amp;gt; 50%&lt;/td&gt;
+&lt;td&gt;灰色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="-技术栈-1"&gt;🛠️ 技术栈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;纯 HTML5 + CSS3 + Vanilla JavaScript&lt;/li&gt;
+&lt;li&gt;无任何外部依赖&lt;/li&gt;
+&lt;li&gt;数据持久化：localStorage&lt;/li&gt;
+&lt;li&gt;单文件，可完全离线运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="地球online--中国"&gt;地球Online · 中国
+&lt;/h2&gt;&lt;p&gt;14亿玩家同时在线。出生点遍布山河四省，每一个抉择都将塑造独一无二的命运线。&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://stellarcn2020.github.io/Earth-Online/" target="_blank" rel="noopener"
+&gt;https://stellarcn2020.github.io/Earth-Online/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="开放世界--永久在线"&gt;开放世界 · 永久在线
+&lt;/h3&gt;&lt;p&gt;地球Online是一款大型多人在线现实模拟游戏，由熵增与进化法则联合开发，运营已超46亿年。当前中国区在线玩家14亿+，每位玩家拥有独一无二的生命轨迹。&lt;/p&gt;
+&lt;h3 id="核心玩法"&gt;核心玩法
+&lt;/h3&gt;&lt;p&gt;探索、建造、交易、社交、传承……无固定主线，每个抉择都实时改变世界状态。技能树高度自由，隐藏职业多达数百种。&lt;/p&gt;
+&lt;h3 id="角色创建"&gt;角色创建
+&lt;/h3&gt;&lt;p&gt;出生地随机分配至34个省级行政区，初始天赋受地域影响。后期可通过学习与历练重塑属性。&lt;/p&gt;
+&lt;h2 id="地球online-3d-web"&gt;地球Online 3D Web
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://a330900neo.github.io/EarthOnlinememe/" target="_blank" rel="noopener"
+&gt;https://a330900neo.github.io/EarthOnlinememe/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261012140933124.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h2 id="地球online-文字版-web"&gt;地球Online 文字版 Web
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://pgy521.github.io/-online/" target="_blank" rel="noopener"
+&gt;https://a330900neo.github.io/EarthOnlinememe/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261012141153338.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h2 id="-地球online指南"&gt;🌍 地球Online指南
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/PensiveFei/earth-online-guide" target="_blank" rel="noopener"
+&gt;地球Online指南：从蒸米饭到坐高铁——写给「第一次」的全场景生活技能手册&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从蒸米饭到坐高铁——写给「第一次」的全场景生活技能手册。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class="link" href="https://eartholguide.com/" target="_blank" rel="noopener"
+&gt;&lt;img src="https://github.com/PensiveFei/earth-online-guide/raw/main/docs/public/og/home.jpg"
+loading="lazy"
+alt="地球Online指南：写给「第一次」的全场景生活技能手册"
+&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在线阅读：&lt;a class="link" href="https://eartholguide.com/" target="_blank" rel="noopener"
+&gt;https://eartholguide.com/&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本项目是一份面向「地球服新手玩家」的开源攻略手册。 收录现实世界各种任务流程、基础技能、避坑指南、隐藏规则。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;共 47 篇已上线&lt;/strong&gt;：🍚 饮食做饭 11 · 🚄 出行交通 10 · 🏠 租房搬家 7 · 🏥 就医问诊 4 · 🛒 购物防骗 5 · 🧺 日常家务 10&lt;/p&gt;
+&lt;p&gt;做饭板块刻意做「精简版」——追求进阶菜谱请移步 &lt;a class="link" href="https://github.com/Anduin2017/HowToCook" target="_blank" rel="noopener"
+&gt;HowToCook&lt;/a&gt;（102k★，我们致敬的同类前辈）。&lt;/p&gt;</description></item></channel></rss>
