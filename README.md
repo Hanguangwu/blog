@@ -8,7 +8,7 @@
 ---
 title: 沉浸式开源浏览器翻译插件FluentRead
 description: 本文介绍浏览器翻译插件FluentRead。
-date: 2025-10-14T12:34:25-08:00
+date: 2026-10-14T12:34:25+08:00
 draft: false
 categories:
 - APP

@@ -38,7 +38,9 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
+          # Stack 主题用 SCSS（toCSS/libsass），必须用 extended 版 Hugo
           hugo-version: '0.157.0'
+          extended: true
 
       - name: Build
         # --buildFuture: 避免因 front matter 时区写错（日期比构建时间晚）导致新文章被 Hugo 丢弃
