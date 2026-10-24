@@ -1,7 +1,7 @@
 ---
 title: 微调 BERT 模型进行文本分类
 description: 本文介绍基于微调 BERT 模型进行文本分类的过程。
-date: 2026-03-25T18:34:25-08:00
+date: 2026-03-25T18:34:25+08:00
 draft: false
 categories:
 - AI

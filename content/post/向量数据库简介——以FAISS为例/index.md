@@ -1,7 +1,7 @@
 ---
 title: 向量数据库简介——以FAISS为例
 description: 本文主要介绍向量数据库。
-date: 2026-04-02T21:40:25-08:00
+date: 2026-04-02T21:40:25+08:00
 draft: false
 categories:
 - AI

@@ -1,7 +1,7 @@
 ---
 title: 图文多模态之BLIP-2 与 LLaVA
 description: 本文主要介绍图文多模态中的 BLIP-2 与 LLaVA 模型。
-date: 2026-03-27T21:40:25-08:00
+date: 2026-03-27T21:40:25+08:00
 draft: false
 categories:
 - AI

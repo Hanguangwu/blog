@@ -1,7 +1,7 @@
 ---
 title: 基于 LLaMA-Factory 的RLHF（DPO）实战
 description: 本文主要介绍基于 LLaMA-Factory 的RLHF（DPO）实战。
-date: 2026-03-27T13:40:25-08:00
+date: 2026-03-27T13:40:25+08:00
 draft: false
 categories:
 - AI

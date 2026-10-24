@@ -1,7 +1,7 @@
 ---
 title: 基于 peft 库的 LoRA 实战
 description: 本文介绍基于 peft 库的 LoRA 实战的过程。
-date: 2026-03-25T22:40:25-08:00
+date: 2026-03-25T22:40:25+08:00
 draft: false
 categories:
 - AI

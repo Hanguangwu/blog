@@ -1,7 +1,7 @@
 ---
 title: 基于Python实现数字识别Web应用
 description: 本文介绍使用Python实现数字识别Web应用开发的过程。
-date: 2026-01-05T12:34:25-08:00
+date: 2026-01-05T12:34:25+08:00
 draft: false
 categories:
 - APP

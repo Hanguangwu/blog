@@ -1,7 +1,7 @@
 ---
 title: 汽车测试领域常见名词中英文对照表
 description: 本文介绍汽车测试领域常见名词。
-date: 2026-08-05T12:34:25-08:00
+date: 2026-08-05T12:34:25+08:00
 draft: false
 categories:
 - Programming

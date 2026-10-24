@@ -1,7 +1,7 @@
 ---
 title: 基于Translategemma模型的反思型翻译智能体实现
 description: 本文介绍反思型翻译智能体的一种实现。
-date: 2026-03-20T12:34:25-08:00
+date: 2026-03-20T12:34:25+08:00
 draft: false
 categories:
 - AI

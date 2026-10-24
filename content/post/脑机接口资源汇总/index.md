@@ -1,7 +1,7 @@
 ---
 title: 脑机接口资源汇总
 description: 本文介绍脑机接口资源。
-date: 2026-02-02T12:34:25-08:00
+date: 2026-02-02T12:34:25+08:00
 draft: false
 categories:
 - GitHub

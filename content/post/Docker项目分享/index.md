@@ -1,7 +1,7 @@
 ---
 title: Docker可部署项目合集
 description: 本文介绍一些有趣的Docker项目。
-date: 2026-02-07T12:34:25-08:00
+date: 2026-02-07T12:34:25+08:00
 draft: false
 categories:
 - APP

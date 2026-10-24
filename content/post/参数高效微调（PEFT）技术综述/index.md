@@ -1,7 +1,7 @@
 ---
 title: 参数高效微调（PEFT）技术综述
 description: 本文介绍参数高效微调（PEFT）技术。
-date: 2026-03-25T22:36:25-08:00
+date: 2026-03-25T22:36:25+08:00
 draft: false
 categories:
 - AI

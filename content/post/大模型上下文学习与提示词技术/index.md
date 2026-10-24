@@ -1,7 +1,7 @@
 ---
 title: 大模型上下文学习与提示词技术
 description: 本文介绍大模型上下文学习与提示词技术。
-date: 2026-03-24T14:34:25-08:00
+date: 2026-03-24T14:34:25+08:00
 draft: false
 categories:
 - AI

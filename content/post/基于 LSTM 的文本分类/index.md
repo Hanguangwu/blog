@@ -1,7 +1,7 @@
 ---
 title: 基于 LSTM 的文本分类
 description: 本文介绍基于 LSTM 的文本分类的过程。
-date: 2026-03-25T17:34:25-08:00
+date: 2026-03-25T17:34:25+08:00
 draft: false
 categories:
 - AI

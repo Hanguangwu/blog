@@ -1,7 +1,7 @@
 ---
 title: RNote Introduction
 description: Rnote is an open-source vector-based drawing app for sketching, handwritten notes and to annotate documents and pictures.
-date: 2025-10-13T18:34:25-08:00
+date: 2025-10-13T18:34:25+08:00
 draft: false
 categories:
 - APP

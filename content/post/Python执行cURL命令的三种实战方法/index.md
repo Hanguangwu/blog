@@ -1,7 +1,7 @@
 ---
 title: Python执行cURL命令的三种实战方法
 description: 详解在Python中执行HTTP请求的三种高效方案，附安全提示与场景建议
-date: 2026-02-13T14:34:25-08:00
+date: 2026-02-13T14:34:25+08:00
 draft: false
 categories:
 - Python

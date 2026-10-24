@@ -1,7 +1,7 @@
 ---
 title: 图文多模态之原生统一架构
 description: 本文主要介绍图文多模态中的原生统一架构。
-date: 2026-03-27T22:40:25-08:00
+date: 2026-03-27T22:40:25+08:00
 draft: false
 categories:
 - AI

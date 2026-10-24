@@ -1,7 +1,7 @@
 ---
 title: GitHub Repo Awesome Public Datasets
 description: This article introduces a list of public dataset.
-date: 2025-12-31T13:34:25-08:00
+date: 2025-12-31T13:34:25+08:00
 draft: false
 categories:
 - Awesome

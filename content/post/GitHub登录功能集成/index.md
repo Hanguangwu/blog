@@ -1,7 +1,7 @@
 ---
 title: GitHub OAuth App 与 GitHub App：登录、仓库权限与 Webhook 该怎么选
 description: 本文介绍GitHub OAuth App 与 GitHub App。
-date: 2026-10-23T12:34:25-08:00
+date: 2026-10-23T12:34:25+08:00
 draft: false
 categories:
 - 编程

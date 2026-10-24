@@ -1,7 +1,7 @@
 ---
 title: T5 结构及应用
 description: 本文介绍 T5 结构及应用。
-date: 2026-03-23T14:34:25-08:00
+date: 2026-03-23T14:34:25+08:00
 draft: false
 categories:
 - AI

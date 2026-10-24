@@ -1,7 +1,7 @@
 ---
 title: 自定义数据集实现猫狗分类
 description: 本文介绍自定义数据集实现猫狗分类的过程。
-date: 2026-01-08T12:34:25-08:00
+date: 2026-01-08T12:34:25+08:00
 draft: false
 categories:
 - 编程

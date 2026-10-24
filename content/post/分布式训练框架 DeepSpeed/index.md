@@ -1,7 +1,7 @@
 ---
 title: 分布式训练框架 DeepSpeed 
 description: 本文主要介绍分布式训练框架 DeepSpeed。
-date: 2026-03-27T15:40:25-08:00
+date: 2026-03-27T15:40:25+08:00
 draft: false
 categories:
 - AI

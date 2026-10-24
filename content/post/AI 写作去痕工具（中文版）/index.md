@@ -1,7 +1,7 @@
 ---
 title: AI 写作去痕工具（中文版）
 description: 本文介绍 AI 去 AI 化工具 Humanizer-zh 的使用说明。
-date: 2026-02-28T12:34:25-08:00
+date: 2026-02-28T12:34:25+08:00
 draft: false
 categories:
 - AI

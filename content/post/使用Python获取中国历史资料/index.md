@@ -1,7 +1,7 @@
 ---
 title: 使用Python获取中国历史资料
 description: 本文介绍如何使用Python获取中国历史资料。
-date: 2026-03-20T22:34:25-08:00
+date: 2026-03-20T22:34:25+08:00
 draft: false
 categories:
 - 编程

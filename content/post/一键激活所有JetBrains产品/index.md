@@ -1,7 +1,7 @@
 ---
 title: 一键激活所有 JetBrains 产品
 description: 本文介绍如何激活所有 JetBrains 产品。
-date: 2025-10-15T15:34:25-08:00
+date: 2025-10-15T15:34:25+08:00
 draft: false
 categories:
 - APP

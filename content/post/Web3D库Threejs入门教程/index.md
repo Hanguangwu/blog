@@ -1,7 +1,7 @@
 ---
 title: Web3D库Threejs入门教程
 description: 本文介绍Web3D库Threejs。
-date: 2026-01-06T22:34:25-08:00
+date: 2026-01-06T22:34:25+08:00
 draft: false
 categories:
 - 开发

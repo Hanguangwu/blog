@@ -1,7 +1,7 @@
 ---
 title: GitHub Awesome NeuroScience
 description: This article is about NeuroScience.
-date: 2026-01-29T15:35:25-08:00
+date: 2026-01-29T15:35:25+08:00
 draft: false
 categories:
 - APP

@@ -1,7 +1,7 @@
 ---
 title: 低秩近似（LoRA） 方法详解
 description: 本文介绍低秩近似（LoRA） 方法。
-date: 2026-03-25T22:38:25-08:00
+date: 2026-03-25T22:38:25+08:00
 draft: false
 categories:
 - AI

@@ -1,7 +1,7 @@
 ---
 title: LDAP 系统原理与企业实战
 description: 本文介绍LDAP 系统原理及其企业实战。
-date: 2026-06-23T12:34:25-08:00
+date: 2026-06-23T12:34:25+08:00
 draft: false
 categories:
 - 编程

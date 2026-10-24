@@ -1,7 +1,7 @@
 ---
 title: 大语言模型基础
 description: 本文是《Hello-Agents》课程中第三章的内容。
-date: 2025-12-29T12:34:25-08:00
+date: 2025-12-29T12:34:25+08:00
 draft: false
 math: true
 categories:

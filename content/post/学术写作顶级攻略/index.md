@@ -1,7 +1,7 @@
 ---
 title: 如何写出一篇一流论文
 description: 学术写作建议。
-date: 2025-12-10T12:34:25-08:00
+date: 2025-12-10T12:34:25+08:00
 draft: false
 categories:
 - Writing

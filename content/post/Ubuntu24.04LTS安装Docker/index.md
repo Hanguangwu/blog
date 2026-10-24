@@ -1,7 +1,7 @@
 ---
 title: Ubuntu24.04LTS安装Docker
 description: 本文介绍Ubuntu24.04LTS安装Docker及配置阿里云源。
-date: 2025-04-16T12:34:25-08:00
+date: 2025-04-16T12:34:25+08:00
 draft: false
 categories:
 - APP

@@ -1,7 +1,7 @@
 ---
 title: RAG 简介及其简单实现
 description: 本文主要介绍 RAG。
-date: 2026-03-28T20:40:25-08:00
+date: 2026-03-28T20:40:25+08:00
 draft: false
 categories:
 - AI

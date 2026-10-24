@@ -1,7 +1,7 @@
 ---
 title: 多模态向量数据库——以Milvus为例
 description: 本文主要介绍多模态向量数据库。
-date: 2026-04-02T22:40:25-08:00
+date: 2026-04-02T22:40:25+08:00
 draft: false
 categories:
 - AI

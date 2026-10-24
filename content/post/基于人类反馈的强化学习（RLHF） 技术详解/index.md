@@ -1,7 +1,7 @@
 ---
 title: 基于人类反馈的强化学习（RLHF） 技术详解
 description: 本文主要介绍 RLHF 技术。
-date: 2026-03-27T12:40:25-08:00
+date: 2026-03-27T12:40:25+08:00
 draft: false
 categories:
 - AI

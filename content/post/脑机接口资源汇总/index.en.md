@@ -1,7 +1,7 @@
 ---
 title: NeuroTechEDU's Awesome List of BCI-related Resources
 description: This article is copied from NeuroTechEDU's Awesome List of BCI-related Resources.
-date: 2026-02-02T12:34:25-08:00
+date: 2026-02-02T12:34:25+08:00
 draft: false
 categories:
 - GitHub

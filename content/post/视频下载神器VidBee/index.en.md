@@ -1,7 +1,7 @@
 ---
 title: Video Downloader VidBee
 description: This article is an introduction of video downloader VidBee.
-date: 2026-01-10T22:34:25-08:00
+date: 2026-01-10T22:34:25+08:00
 draft: false
 categories:
 - APP

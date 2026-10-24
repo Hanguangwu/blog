@@ -1,7 +1,7 @@
 ---
 title: How to be a CEO of a start-up?
 description: This article is about start-up.
-date: 2026-01-19T12:34:25-08:00
+date: 2026-01-19T12:34:25+08:00
 draft: false
 categories:
 - Business

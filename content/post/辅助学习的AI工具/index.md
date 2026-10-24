@@ -1,7 +1,7 @@
 ---
 title: 辅助学习的AI工具
 description: 本文介绍辅助学习的AI工具——open notebook和deeptutor。
-date: 2026-05-23T12:34:25-08:00
+date: 2026-05-23T12:34:25+08:00
 draft: false
 categories:
 - APP

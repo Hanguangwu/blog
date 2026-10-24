@@ -1,7 +1,7 @@
 ---
 title: 具身智能概述
 description: 本文介绍具身智能。
-date: 2026-01-16T12:34:25-08:00
+date: 2026-01-16T12:34:25+08:00
 draft: false
 categories:
 - AI

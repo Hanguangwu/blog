@@ -1,7 +1,7 @@
 ---
 title: 向量数据库中的索引优化
 description: 本文主要介绍向量数据库中的索引优化。
-date: 2026-04-02T23:14:25-08:00
+date: 2026-04-02T23:14:25+08:00
 draft: false
 categories:
 - AI

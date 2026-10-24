@@ -1,7 +1,7 @@
 ---
 title: Awesome Law Tech
 description: A curated list of awesome LegalTech resources - open source platforms, AI models, MCP servers, companies, datasets, and tools for the global legal ecosystem.
-date: 2026-05-30T12:34:25-08:00
+date: 2026-05-30T12:34:25+08:00
 draft: false
 categories:
 - Awesome

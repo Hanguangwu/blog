@@ -1,7 +1,7 @@
 ---
 title: 从ATT&CK到ATLAS：读懂网络安全标杆MITRE，看懂攻防框架的进化
 description: 本文介绍网络安全标杆MITRE。
-date: 2026-10-12T22:34:25-08:00
+date: 2026-10-12T22:34:25+08:00
 draft: false
 categories:
 - 网络安全

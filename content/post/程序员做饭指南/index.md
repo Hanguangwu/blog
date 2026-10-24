@@ -1,7 +1,7 @@
 ---
 title: 程序员做饭指南
 description: 本文介绍程序员如何做出可口的饭菜。
-date: 2025-10-14T22:34:25-08:00
+date: 2025-10-14T22:34:25+08:00
 draft: false
 categories:
 - Life

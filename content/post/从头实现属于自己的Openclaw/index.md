@@ -1,7 +1,7 @@
 ---
 title: 从头实现属于自己的 OpenClaw
 description: 本文介绍claw0项目。
-date: 2026-03-15T12:34:25-08:00
+date: 2026-03-15T12:34:25+08:00
 draft: false
 categories:
 - AI

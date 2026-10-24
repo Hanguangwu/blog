@@ -1,7 +1,7 @@
 ---
 title: A list of toolkit for free dev
 description: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
-date: 2026-01-04T15:34:25-08:00
+date: 2026-01-04T15:34:25+08:00
 draft: false
 categories:
 - Dev

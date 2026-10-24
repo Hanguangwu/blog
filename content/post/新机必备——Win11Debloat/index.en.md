@@ -1,7 +1,7 @@
 ---
 title: How to use Win11Debloat to declutter and improve your Windows experience
 description: Win11Debloat is a simple, easy to use and lightweight PowerShell script that allows you to quickly declutter and improve your Windows experience.
-date: 2025-10-15T12:34:25-08:00
+date: 2025-10-15T12:34:25+08:00
 draft: false
 categories:
 - APP

@@ -1,7 +1,7 @@
 ---
 title: 文本分类简单实现
 description: 本文介绍文本分类简单实现的过程。
-date: 2026-03-25T16:34:25-08:00
+date: 2026-03-25T16:34:25+08:00
 draft: false
 categories:
 - AI

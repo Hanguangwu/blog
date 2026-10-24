@@ -1,7 +1,7 @@
 ---
 title: Vibe Coding 指南
 description: 本文介绍Vibe Coding。
-date: 2025-12-29T22:34:25-08:00
+date: 2025-12-29T22:34:25+08:00
 draft: false
 categories:
 - APP

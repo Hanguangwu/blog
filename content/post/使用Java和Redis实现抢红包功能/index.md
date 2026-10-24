@@ -1,9 +1,11 @@
 ---
 title: 使用Java和Redis实现抢红包功能
 description: 本文简要描述了使用Java和Redis实现抢红包功能的流程。
-date: 2025-09-06T23:34:25-08:00
-draft: true
+date: 2025-09-06T23:34:25+08:00
+draft: false
 categories:
+- 编程
+tags:
 - Java
 - Redis
 ---

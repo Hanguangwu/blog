@@ -1,7 +1,7 @@
 ---
 title: 多模态——从头训练简化版 Omni 模型
 description: 本文主要介绍简化版 Omni 模型训练过程。
-date: 2026-03-27T23:40:25-08:00
+date: 2026-03-27T23:40:25+08:00
 draft: false
 categories:
 - AI

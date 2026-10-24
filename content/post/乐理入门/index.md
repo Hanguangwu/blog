@@ -1,7 +1,7 @@
 ---
 title: 乐理入门
 description: 本文介绍乐理基础知识。
-date: 2026-02-04T12:34:25-08:00
+date: 2026-02-04T12:34:25+08:00
 draft: false
 categories:
 - 好学

@@ -1,7 +1,7 @@
 ---
 title: Fundamentals-of-Large-Language-Models
 description: This article introduces fundamentals of Large Language Models.
-date: 2025-12-29T12:34:25-08:00
+date: 2025-12-29T12:34:25+08:00
 draft: false
 math: true
 categories:

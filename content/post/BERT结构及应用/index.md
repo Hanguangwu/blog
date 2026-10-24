@@ -1,7 +1,7 @@
 ---
 title: BERT 结构及应用
 description: 本文介绍 BERT 结构及应用。
-date: 2026-03-23T12:34:25-08:00
+date: 2026-03-23T12:34:25+08:00
 draft: false
 categories:
 - AI

@@ -1,7 +1,7 @@
 ---
 title: 学术论文批量翻译
 description: 本文主要介绍 pdf2zh_next。
-date: 2026-03-26T12:40:25-08:00
+date: 2026-03-26T12:40:25+08:00
 draft: false
 categories:
 - AI

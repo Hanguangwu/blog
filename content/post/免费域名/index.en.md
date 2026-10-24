@@ -1,7 +1,7 @@
 ---
 title: Free Domain From DigitalPlat
 description: This article is about how to get a free domain。
-date: 2026-01-10T15:34:25-08:00
+date: 2026-01-10T15:34:25+08:00
 draft: false
 categories:
 - APP

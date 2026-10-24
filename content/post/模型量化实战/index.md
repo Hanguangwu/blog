@@ -1,7 +1,7 @@
 ---
 title: 模型量化实战
 description: 本文主要介绍模型量化。
-date: 2026-03-27T14:40:25-08:00
+date: 2026-03-27T14:40:25+08:00
 draft: false
 categories:
 - AI

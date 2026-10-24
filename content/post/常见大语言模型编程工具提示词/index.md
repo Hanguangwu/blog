@@ -1,7 +1,7 @@
 ---
 title: 常见大语言模型编程工具提示词
 description: 本文介绍常见大语言模型的提示词。
-date: 2026-03-04T12:34:25-08:00
+date: 2026-03-04T12:34:25+08:00
 draft: false
 categories:
 - AI

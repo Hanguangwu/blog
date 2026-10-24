@@ -1,7 +1,7 @@
 ---
 title: Awesome-Selfhosted Toolkits
 description: A list of Free Software network services and web applications which can be hosted on your own servers.
-date: 2026-01-08T22:34:25-08:00
+date: 2026-01-08T22:34:25+08:00
 draft: false
 categories:
 - APP

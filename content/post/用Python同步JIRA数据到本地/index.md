@@ -1,7 +1,7 @@
 ---
 title: 用 Python 同步 JIRA 数据到本地：从入门到实战
 description: 本文介绍用 Python 同步 JIRA 数据到本地的基本过程。
-date: 2026-07-14T12:34:25-08:00
+date: 2026-07-14T12:34:25+08:00
 draft: false
 categories:
 - 编程

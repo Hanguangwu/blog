@@ -1,7 +1,7 @@
 ---
 title: Microsoft Activation Scripts (MAS)
 description: Open-source Windows and Office activator featuring HWID, Ohook, TSforge, KMS38, and Online KMS activation methods, along with advanced troubleshooting.
-date: 2025-10-15T17:34:25-08:00
+date: 2025-10-15T17:34:25+08:00
 draft: false
 categories:
 - APP

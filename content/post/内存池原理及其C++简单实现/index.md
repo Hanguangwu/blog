@@ -1,7 +1,7 @@
 ---
 title: 内存池原理及其C++简单实现
 description: 本文介绍内存池的原理、用途和实现。
-date: 2026-09-19T12:34:25-08:00
+date: 2026-09-19T12:34:25+08:00
 draft: false
 categories:
 - 编程

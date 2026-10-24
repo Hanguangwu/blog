@@ -1,7 +1,7 @@
 ---
 title: 如何从 pnpm 还原使用 npm ？
 description: 本文介绍pnpm到npm的切换。
-date: 2025-12-28T12:34:25-08:00
+date: 2025-12-28T12:34:25+08:00
 draft: false
 categories:
 - 开发

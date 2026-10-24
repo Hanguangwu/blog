@@ -13,6 +13,11 @@ on:
       - main
   workflow_dispatch:
 
+# 同一时间只跑一个部署，避免连续两次推送时旧构建覆盖新构建
+concurrency:
+  group: hugo-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -36,7 +41,9 @@ jobs:
           hugo-version: '0.157.0'
 
       - name: Build
-        run: hugo --theme=hugo-theme-stack --buildDrafts --gc --minify
+        # --buildFuture: 避免因 front matter 时区写错（日期比构建时间晚）导致新文章被 Hugo 丢弃
+        # --cleanDestinationDir: 清掉 public/ 中残留的旧文件，避免把历史构建产物一起发布
+        run: hugo --theme=hugo-theme-stack --gc --minify --buildFuture --cleanDestinationDir
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

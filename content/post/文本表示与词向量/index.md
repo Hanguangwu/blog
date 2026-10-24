@@ -1,7 +1,7 @@
 ---
 title: 文本表示与词向量
 description: 本文介绍自然语言处理中文本表示与词向量。
-date: 2026-02-02T20:34:25-08:00
+date: 2026-02-02T20:34:25+08:00
 draft: false
 math: true
 categories:

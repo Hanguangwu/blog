@@ -1,7 +1,7 @@
 ---
 title: 生活片段分享平台
 description: 本文主要介绍三个生活片段分享平台。
-date: 2026-03-30T18:40:25-08:00
+date: 2026-03-30T18:40:25+08:00
 draft: false
 categories:
 - Life

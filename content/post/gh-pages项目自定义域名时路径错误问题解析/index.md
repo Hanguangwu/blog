@@ -1,7 +1,7 @@
 ---
 title: gh-pages项目自定义域名时路径错误问题解析
 description: 本文介绍解决 gh-pages 项目自定义域名时路径错误问题的方法。
-date: 2026-07-04T12:34:25-08:00
+date: 2026-07-04T12:34:25+08:00
 draft: false
 categories:
 - GitHub

@@ -1,7 +1,7 @@
 ---
 title: 多模态概述
 description: 本文主要介绍多模态。
-date: 2026-03-27T16:40:25-08:00
+date: 2026-03-27T16:40:25+08:00
 draft: false
 categories:
 - AI

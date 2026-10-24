@@ -1,7 +1,7 @@
 ---
 title: 基于 ResNet18 实现 CIFAR100 图像分类Web应用
 description: 本文介绍基于ResNet18实现CIFAR100图像分类Web应用的过程。
-date: 2026-01-06T18:34:25-08:00
+date: 2026-01-06T18:34:25+08:00
 draft: false
 categories:
 - AI

@@ -1,7 +1,7 @@
 ---
 title: 美国PhD申请指南
 description: 本文介绍一些关于美国PhD申请的建议。
-date: 2026-09-17T12:34:25-08:00
+date: 2026-09-17T12:34:25+08:00
 draft: false
 categories:
 - 自我提升

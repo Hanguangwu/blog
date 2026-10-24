@@ -1,7 +1,7 @@
 ---
 title: GitHub-Build_Your_Own_X
 description: This post introduces some app ideas and its implementation from GitHub.
-date: 2025-10-12T18:34:25-08:00
+date: 2025-10-12T18:34:25+08:00
 draft: false
 categories:
 - Idea

@@ -1,7 +1,7 @@
 ---
 title: Free-LLM-API-Resources
 description: This article introduces a list of free LLM inference resources accessible via API.
-date: 2026-01-03T15:34:25-08:00
+date: 2026-01-03T15:34:25+08:00
 draft: false
 categories:
 - AI

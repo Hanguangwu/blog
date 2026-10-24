@@ -1,7 +1,7 @@
 ---
 title: RAG 中的向量嵌入和多模态嵌入
 description: 本文主要介绍 RAG 中的嵌入模型。
-date: 2026-04-02T20:40:25-08:00
+date: 2026-04-02T20:40:25+08:00
 draft: false
 categories:
 - AI

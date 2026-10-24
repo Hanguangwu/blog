@@ -1,7 +1,7 @@
 ---
 title: MAS：一条命令永久激活Windows和Office
 description: 本文介绍MAS激活工具。
-date: 2025-10-15T17:34:25-08:00
+date: 2025-10-15T17:34:25+08:00
 draft: false
 categories:
 - APP

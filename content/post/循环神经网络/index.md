@@ -1,7 +1,7 @@
 ---
 title: 循环神经网络
 description: 本文介绍循环神经网络RNN。
-date: 2026-02-02T21:34:25-08:00
+date: 2026-02-02T21:34:25+08:00
 draft: false
 math: true
 categories:

@@ -1,7 +1,7 @@
 ---
 title: Seq2Seq 架构
 description: 本文介绍Seq2Seq 架构。
-date: 2026-02-07T18:34:25-08:00
+date: 2026-02-07T18:34:25+08:00
 draft: false
 math: true
 categories:

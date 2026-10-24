@@ -1,7 +1,7 @@
 ---
 title: 从 VAE 到 CVAE：解锁生成模型的 “可控” 魔法
 description: 本文介绍变分自编码器原理及实践。
-date: 2026-01-02T19:34:25-08:00
+date: 2026-01-02T19:34:25+08:00
 draft: false
 math: true
 categories:

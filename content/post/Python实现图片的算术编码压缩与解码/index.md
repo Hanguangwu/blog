@@ -1,7 +1,7 @@
 ---
 title: Python 实现图片的算术编码压缩与解码
 description: 本文介绍使用 Python 实现图片的算术编码压缩与解码的过程。
-date: 2026-01-02T12:34:25-08:00
+date: 2026-01-02T12:34:25+08:00
 draft: false
 categories:
 - 编程

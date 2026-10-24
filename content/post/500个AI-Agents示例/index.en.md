@@ -1,7 +1,7 @@
 ---
 title:  500+ AI Agent Projects / UseCases
 description: This article is copied from GitHub.
-date: 2026-02-02T17:34:25-08:00
+date: 2026-02-02T17:34:25+08:00
 draft: false
 categories:
 - AI

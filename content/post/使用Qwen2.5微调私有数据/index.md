@@ -1,7 +1,7 @@
 ---
 title: 使用 Qwen2.5 微调私有数据
 description: 本文介绍使用 Qwen2.5 微调私有数据的过程。
-date: 2026-03-25T22:39:25-08:00
+date: 2026-03-25T22:39:25+08:00
 draft: false
 categories:
 - AI

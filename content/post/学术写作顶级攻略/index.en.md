@@ -1,7 +1,7 @@
 ---
 title: How to write a first-class paper
 description: This is a Nature column article。
-date: 2025-12-10T12:34:25-08:00
+date: 2025-12-10T12:34:25+08:00
 draft: false
 categories:
 - Writing

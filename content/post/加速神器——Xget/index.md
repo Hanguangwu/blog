@@ -1,7 +1,7 @@
 ---
 title: 加速神器——Xget
 description: 本文介绍加速神器——Xget。
-date: 2026-01-10T12:34:25-08:00
+date: 2026-01-10T12:34:25+08:00
 draft: false
 categories:
 - APP

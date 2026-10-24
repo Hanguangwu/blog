@@ -1,7 +1,7 @@
 ---
 title: 深入解析 Transformer 架构
 description: 本文介绍Transformer架构。
-date: 2026-02-07T20:34:25-08:00
+date: 2026-02-07T20:34:25+08:00
 draft: false
 math: true
 categories:

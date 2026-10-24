@@ -1,7 +1,7 @@
 ---
 title: APP Ideas
 description: This article introduces some app ideas。
-date: 2025-12-31T12:34:25-08:00
+date: 2025-12-31T12:34:25+08:00
 draft: false
 categories:
 - APP

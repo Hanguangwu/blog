@@ -1,7 +1,7 @@
 ---
 title: AI编程之Skills教程
 description: 本文介绍Skills。
-date: 2026-02-28T21:34:25-08:00
+date: 2026-02-28T21:34:25+08:00
 draft: false
 categories:
 - AI

@@ -1,7 +1,7 @@
 ---
 title: 图文多模态及其实现
 description: 本文主要介绍图文多模态、ViT 与 CLIP 模型。
-date: 2026-03-27T20:40:25-08:00
+date: 2026-03-27T20:40:25+08:00
 draft: false
 categories:
 - AI

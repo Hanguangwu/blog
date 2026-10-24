@@ -1,7 +1,7 @@
 ---
 title: GitHub优秀资源索引
 description: 本文介绍awesome仓库。
-date: 2026-01-29T12:34:25-08:00
+date: 2026-01-29T12:34:25+08:00
 draft: false
 categories:
 - APP

@@ -1,7 +1,7 @@
 ---
 title: RAG 中的数据准备
 description: 本文主要介绍 RAG 数据处理。
-date: 2026-03-31T20:40:25-08:00
+date: 2026-03-31T20:40:25+08:00
 draft: false
 categories:
 - AI
