@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OAuth on 酒中仙</title><link>https://blog.zwzhang.com/tags/oauth/</link><description>Recent content in OAuth on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Fri, 23 Oct 2026 12:34:25 +0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/tags/oauth/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub OAuth App 与 GitHub App：登录、仓库权限与 Webhook 该怎么选</title><link>https://blog.zwzhang.com/p/github-oauth-app-%E4%B8%8E-github-app%E7%99%BB%E5%BD%95%E4%BB%93%E5%BA%93%E6%9D%83%E9%99%90%E4%B8%8E-webhook-%E8%AF%A5%E6%80%8E%E4%B9%88%E9%80%89/</link><pubDate>Fri, 23 Oct 2026 12:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/github-oauth-app-%E4%B8%8E-github-app%E7%99%BB%E5%BD%95%E4%BB%93%E5%BA%93%E6%9D%83%E9%99%90%E4%B8%8E-webhook-%E8%AF%A5%E6%80%8E%E4%B9%88%E9%80%89/</guid><description>&lt;h1 id="github-oauth-app-与-github-app登录仓库权限与-webhook-该怎么选"&gt;GitHub OAuth App 与 GitHub App：登录、仓库权限与 Webhook 该怎么选
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;面向需要「GitHub 登录 + 代表应用发 Issue 评论 / 创建 PR」的应用开发者。&lt;br&gt;
+本文讲清 OAuth App 与 GitHub App 的差异、创建时要填的字段、回调地址、权限、Token 流程和常见坑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="先给结论"&gt;先给结论
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;只做用户登录&lt;/strong&gt;：用 &lt;strong&gt;GitHub OAuth App&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;需要代表应用读写仓库、发 Issue 评论、创建 PR、接收 Webhook&lt;/strong&gt;：用 &lt;strong&gt;GitHub App&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;两者都需要&lt;/strong&gt;：通常建两个应用，一个负责身份，一个负责仓库写入。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一个 GitHub App 能不能全做&lt;/strong&gt;：可以。GitHub App 也支持用户授权登录，但配置更复杂；如果只是登录 + 机器人写入，拆成两个应用通常更清晰。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一句话理解：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;OAuth App 回答「这个用户是谁」。&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;GitHub App 回答「这个应用被安装到了哪些仓库，能以应用身份做什么」。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="1-它们解决的不是同一个问题"&gt;1. 它们解决的不是同一个问题
+&lt;/h2&gt;&lt;h3 id="oauth-app代表用户"&gt;OAuth App：代表用户
+&lt;/h3&gt;&lt;p&gt;OAuth App 走的是标准 OAuth 2.0 授权码流程。用户点击「使用 GitHub 登录」后，你的应用拿到一个用户访问令牌，可以读取这个用户的公开资料、邮箱等。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代表&lt;strong&gt;用户&lt;/strong&gt;行动。&lt;/li&gt;
+&lt;li&gt;使用 OAuth scopes，权限相对粗粒度。&lt;/li&gt;
+&lt;li&gt;不需要安装到仓库。&lt;/li&gt;
+&lt;li&gt;只有一个 Authorization callback URL。&lt;/li&gt;
+&lt;li&gt;适合登录、读取用户资料。&lt;/li&gt;
+&lt;li&gt;如果申请 &lt;code&gt;repo&lt;/code&gt; scope，也能读写用户有权限的仓库，但这等于拿到了用户级权限，不适合做后台自动化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="github-app代表应用安装"&gt;GitHub App：代表应用安装
+&lt;/h3&gt;&lt;p&gt;GitHub App 需要被安装到账号或仓库。安装后，你的服务端可以用 App 私钥签发 JWT，再换取 installation access token，以「应用机器人」的身份调用 API。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代表&lt;strong&gt;应用安装&lt;/strong&gt;行动。&lt;/li&gt;
+&lt;li&gt;使用细粒度权限，可以精确到 Issues、Pull requests、Contents 等。&lt;/li&gt;
+&lt;li&gt;必须安装，安装时选择仓库范围。&lt;/li&gt;
+&lt;li&gt;支持 Webhook。&lt;/li&gt;
+&lt;li&gt;Callback URL 最多 10 个。&lt;/li&gt;
+&lt;li&gt;适合机器人评论、创建 PR、同步内容、接收事件。&lt;/li&gt;
+&lt;li&gt;评论作者通常显示为 &lt;code&gt;Your App[bot]&lt;/code&gt;，不是登录用户。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="2-一张表看懂差异"&gt;2. 一张表看懂差异
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;维度&lt;/th&gt;
+&lt;th&gt;GitHub OAuth App&lt;/th&gt;
+&lt;th&gt;GitHub App&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;主要目的&lt;/td&gt;
+&lt;td&gt;用户身份与授权&lt;/td&gt;
+&lt;td&gt;应用安装与仓库自动化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;代表谁&lt;/td&gt;
+&lt;td&gt;用户&lt;/td&gt;
+&lt;td&gt;应用安装&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;是否要安装&lt;/td&gt;
+&lt;td&gt;不需要&lt;/td&gt;
+&lt;td&gt;需要安装到账号/仓库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Token 类型&lt;/td&gt;
+&lt;td&gt;用户 access token&lt;/td&gt;
+&lt;td&gt;installation access token&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Token 有效期&lt;/td&gt;
+&lt;td&gt;通常长期，直到用户撤销&lt;/td&gt;
+&lt;td&gt;约 1 小时，需要缓存/刷新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;权限模型&lt;/td&gt;
+&lt;td&gt;OAuth scopes，较粗&lt;/td&gt;
+&lt;td&gt;细粒度 repository / organization / user permissions&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;回调地址&lt;/td&gt;
+&lt;td&gt;1 个&lt;/td&gt;
+&lt;td&gt;最多 10 个&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Webhook&lt;/td&gt;
+&lt;td&gt;不是核心能力&lt;/td&gt;
+&lt;td&gt;原生支持&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;典型场景&lt;/td&gt;
+&lt;td&gt;登录、读取用户资料&lt;/td&gt;
+&lt;td&gt;Issue 评论、PR、内容同步、Webhook&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;评论身份&lt;/td&gt;
+&lt;td&gt;用户本人&lt;/td&gt;
+&lt;td&gt;应用机器人&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="3-什么时候选-oauth-app"&gt;3. 什么时候选 OAuth App
+&lt;/h2&gt;&lt;p&gt;适合：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网站需要「使用 GitHub 登录」。&lt;/li&gt;
+&lt;li&gt;只需要读取用户公开资料、头像、用户名。&lt;/li&gt;
+&lt;li&gt;需要读取用户已验证邮箱。&lt;/li&gt;
+&lt;li&gt;不希望应用拥有仓库写权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;典型 scope：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;read:user user:email
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这两个 scope 只能读取身份和邮箱，不会让应用获得仓库权限。&lt;/p&gt;
+&lt;p&gt;如果你只需要登录，OAuth App 是最简单、最少配置的选择。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="4-什么时候选-github-app"&gt;4. 什么时候选 GitHub App
+&lt;/h2&gt;&lt;p&gt;适合：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代表应用在 Issue 里发评论。&lt;/li&gt;
+&lt;li&gt;创建分支、提交文件、创建 Pull Request。&lt;/li&gt;
+&lt;li&gt;定时同步仓库内容。&lt;/li&gt;
+&lt;li&gt;接收 &lt;code&gt;push&lt;/code&gt;、&lt;code&gt;issues&lt;/code&gt;、&lt;code&gt;issue_comment&lt;/code&gt; 等 Webhook。&lt;/li&gt;
+&lt;li&gt;需要把权限限制在少数几个仓库。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GitHub App 的权限是安装时授予的。即使用户是仓库管理员，应用也只能做安装时批准过的事情。&lt;/p&gt;
+&lt;p&gt;常见权限：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;需求&lt;/th&gt;
+&lt;th&gt;权限&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;读取仓库内容&lt;/td&gt;
+&lt;td&gt;Contents: Read&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;创建分支、提交、PR&lt;/td&gt;
+&lt;td&gt;Contents: Write + Pull requests: Write&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;读写 Issue 评论&lt;/td&gt;
+&lt;td&gt;Issues: Read &amp;amp; write&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;读取仓库元数据&lt;/td&gt;
+&lt;td&gt;Metadata: Read（强制）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="5-只用一个-github-app-做登录可以吗"&gt;5. 只用一个 GitHub App 做登录可以吗？
+&lt;/h2&gt;&lt;p&gt;可以。&lt;/p&gt;
+&lt;p&gt;GitHub App 除了 installation token，也支持 user-to-server token。大致流程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 GitHub App 设置里填写 &lt;strong&gt;Callback URL&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;用 App 的 &lt;strong&gt;Client ID / Client Secret&lt;/strong&gt; 走 OAuth Web Flow。&lt;/li&gt;
+&lt;li&gt;给 App 的 User permissions 增加 &lt;code&gt;Email addresses: Read&lt;/code&gt;（如果要读邮箱）。&lt;/li&gt;
+&lt;li&gt;用拿到的 user token 调用 &lt;code&gt;GET /user&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但要注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GitHub App 使用权限模型，不要照搬 OAuth App 的 &lt;code&gt;scope&lt;/code&gt; 参数。&lt;/li&gt;
+&lt;li&gt;GitHub App 的用户 token 通常是短期的，可能需要 refresh token。&lt;/li&gt;
+&lt;li&gt;一个 App 同时承担「登录身份」和「仓库机器人」，权限边界会变大，排查问题也更复杂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以多数项目会选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OAuth App 负责登录&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub App 负责自动化&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="6-创建-oauth-app字段怎么填"&gt;6. 创建 OAuth App：字段怎么填
+&lt;/h2&gt;&lt;p&gt;GitHub → Settings → Developer settings → OAuth Apps → New OAuth App。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Application name&lt;/td&gt;
+&lt;td&gt;应用名称&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;My Site&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Homepage URL&lt;/td&gt;
+&lt;td&gt;应用主页，不是回调地址&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://example.com&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Authorization callback URL&lt;/td&gt;
+&lt;td&gt;用户授权后返回的地址&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://example.com/api/auth/github/callback&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;关键点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OAuth App 只有一个 Authorization callback URL。&lt;/li&gt;
+&lt;li&gt;这个地址必须和代码里的 &lt;code&gt;redirect_uri&lt;/code&gt; 完全一致。&lt;/li&gt;
+&lt;li&gt;协议、域名、路径、大小写都要一致。&lt;/li&gt;
+&lt;li&gt;末尾不要多加 &lt;code&gt;/&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;生产环境必须使用 HTTPS。&lt;/li&gt;
+&lt;li&gt;本地开发通常需要单独创建一个 OAuth App，因为 localhost 和生产域名不能同时填在一个回调地址里。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建后你会得到：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client Secret
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Client Secret 只能放在服务端环境变量里，不能出现在前端代码或日志中。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="7-创建-github-app字段怎么填"&gt;7. 创建 GitHub App：字段怎么填
+&lt;/h2&gt;&lt;p&gt;GitHub → Settings → Developer settings → GitHub Apps → New GitHub App。&lt;/p&gt;
+&lt;h3 id="71-基本信息"&gt;7.1 基本信息
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GitHub App name&lt;/td&gt;
+&lt;td&gt;全 GitHub 唯一，例如 &lt;code&gt;My Site Bot&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Homepage URL&lt;/td&gt;
+&lt;td&gt;应用主页，例如 &lt;code&gt;https://example.com&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Description&lt;/td&gt;
+&lt;td&gt;可选&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="72-callback-url"&gt;7.2 Callback URL
+&lt;/h3&gt;&lt;p&gt;Callback URL 是&lt;strong&gt;用户授权 GitHub App 后&lt;/strong&gt;的返回地址。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果你用独立的 OAuth App 做登录，这里可以留空。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果你要让 GitHub App 自己处理登录，这里填：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://example.com/api/auth/github/callback
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GitHub App 最多可以配置 10 个 callback URL，适合生产、预发布、本地等多个环境。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Callback URL 不是 Webhook URL，两者不要混。&lt;/p&gt;
+&lt;h3 id="73-setup-url"&gt;7.3 Setup URL
+&lt;/h3&gt;&lt;p&gt;Setup URL 是用户&lt;strong&gt;安装完 GitHub App 后&lt;/strong&gt;跳转的地址。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果只是做 GitHub 登录，Setup URL 通常不需要，可以留空。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果你想让用户安装完成后回到设置页，可以填：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://example.com/settings/integrations
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="74-webhook"&gt;7.4 Webhook
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Active&lt;/td&gt;
+&lt;td&gt;是否启用 Webhook&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Webhook URL&lt;/td&gt;
+&lt;td&gt;GitHub 推送事件的地址，例如 &lt;code&gt;https://example.com/api/webhooks/github&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Secret&lt;/td&gt;
+&lt;td&gt;用于签名校验的随机字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SSL verification&lt;/td&gt;
+&lt;td&gt;生产环境启用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Webhook secret 要同时配置在 GitHub App 和服务端环境变量中。服务端用 &lt;code&gt;X-Hub-Signature-256&lt;/code&gt; 校验请求确实来自 GitHub。&lt;/p&gt;
+&lt;h3 id="75-权限"&gt;7.5 权限
+&lt;/h3&gt;&lt;p&gt;按最小权限原则选择。常见组合：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;权限&lt;/th&gt;
+&lt;th&gt;级别&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Contents&lt;/td&gt;
+&lt;td&gt;Read and write&lt;/td&gt;
+&lt;td&gt;读取内容、创建分支和提交&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Issues&lt;/td&gt;
+&lt;td&gt;Read and write&lt;/td&gt;
+&lt;td&gt;读写 Issue 评论&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pull requests&lt;/td&gt;
+&lt;td&gt;Read and write&lt;/td&gt;
+&lt;td&gt;创建 PR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Metadata&lt;/td&gt;
+&lt;td&gt;Read-only&lt;/td&gt;
+&lt;td&gt;强制项&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;如果只做评论，Contents 可以只给 Read；如果还要创建 PR，就需要 Write。&lt;/p&gt;
+&lt;h3 id="76-事件"&gt;7.6 事件
+&lt;/h3&gt;&lt;p&gt;常用事件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Push
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Issues
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Issue comment
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Installation
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果你还要处理 PR 事件，再勾 &lt;code&gt;Pull request&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id="77-安装"&gt;7.7 安装
+&lt;/h3&gt;&lt;p&gt;创建 App 只是注册，&lt;strong&gt;不会自动获得仓库权限&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;创建完成后：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;记录 &lt;strong&gt;App ID&lt;/strong&gt;（数字，不是 Client ID）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击 &lt;strong&gt;Generate a private key&lt;/strong&gt;，下载 &lt;code&gt;.pem&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击 &lt;strong&gt;Install App&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择账号/组织。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只选择需要访问的仓库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，浏览器地址类似：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://github.com/settings/installations/12345678
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最后的 &lt;code&gt;12345678&lt;/code&gt; 就是 &lt;code&gt;GITHUB_INSTALLATION_ID&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="8-oauth-登录流程"&gt;8. OAuth 登录流程
+&lt;/h2&gt;&lt;p&gt;OAuth App 的标准流程是授权码 + PKCE。&lt;/p&gt;
+&lt;h3 id="81-跳转到-github"&gt;8.1 跳转到 GitHub
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ts" data-lang="ts"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://github.com/login/oauth/authorize&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;client_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;env&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;GITHUB_CLIENT_ID&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;redirect_uri&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;CALLBACK_URL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;scope&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;read:user user:email&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;state&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;code_challenge&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;challenge&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;searchParams&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;code_challenge_method&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;S256&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toString&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;state&lt;/code&gt; 是随机值，用来防 CSRF；要存进 HttpOnly Cookie。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;code_verifier&lt;/code&gt; 是随机值，服务端保存。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;code_challenge&lt;/code&gt; 是 &lt;code&gt;SHA-256(code_verifier)&lt;/code&gt; 的 Base64URL 编码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="82-回调校验并换-token"&gt;8.2 回调校验并换 Token
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ts" data-lang="ts"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://github.com/login/oauth/access_token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;method&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;body&lt;/span&gt;: &lt;span class="kt"&gt;JSON.stringify&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;client_id&lt;/span&gt;: &lt;span class="kt"&gt;process.env.GITHUB_CLIENT_ID&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;client_secret&lt;/span&gt;: &lt;span class="kt"&gt;process.env.GITHUB_CLIENT_SECRET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;code&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;redirect_uri&lt;/span&gt;: &lt;span class="kt"&gt;CALLBACK_URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;code_verifier&lt;/span&gt;: &lt;span class="kt"&gt;verifier&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;access_token&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;json&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;回调时要做：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;校验 &lt;code&gt;state&lt;/code&gt; 与 Cookie 中的值一致。&lt;/li&gt;
+&lt;li&gt;校验 &lt;code&gt;code&lt;/code&gt; 存在且未使用。&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;code_verifier&lt;/code&gt; 换 token。&lt;/li&gt;
+&lt;li&gt;调用 &lt;code&gt;GET /user&lt;/code&gt; 获取用户资料。&lt;/li&gt;
+&lt;li&gt;如需邮箱，调用 &lt;code&gt;GET /user/emails&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;建立自己的 Session，不要把 GitHub token 直接放进浏览器 Cookie。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="9-github-app-服务端调用流程"&gt;9. GitHub App 服务端调用流程
+&lt;/h2&gt;&lt;p&gt;GitHub App 不直接使用固定 Token，而是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用 App 私钥签发 JWT。&lt;/li&gt;
+&lt;li&gt;用 JWT 换取 installation access token。&lt;/li&gt;
+&lt;li&gt;用 installation token 调用 GitHub API。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="91-jwt-的关键字段"&gt;9.1 JWT 的关键字段
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;iss&lt;/code&gt;：GitHub App ID&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iat&lt;/code&gt;：当前时间减 60 秒&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exp&lt;/code&gt;：当前时间加 10 分钟以内&lt;/li&gt;
+&lt;li&gt;算法：&lt;code&gt;RS256&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;签名：App 私钥&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="92-换取-installation-token"&gt;9.2 换取 installation token
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;POST /app/installations/{installation_id}/access_tokens
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Authorization: Bearer &amp;lt;JWT&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Accept: application/vnd.github+json
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;X-GitHub-Api-Version: 2022-11-28
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;返回结果里有：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;ghs_...&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;expires_at&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;2026-01-01T00:00:00Z&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;installation token 大约 1 小时后过期，应该缓存到接近过期再刷新，不要每个请求都重新换。&lt;/p&gt;
+&lt;h3 id="93-用-octokit-简化"&gt;9.3 用 Octokit 简化
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ts" data-lang="ts"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;createAppAuth&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="kr"&gt;from&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;@octokit/auth-app&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;auth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;createAppAuth&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;appId&lt;/span&gt;: &lt;span class="kt"&gt;process.env.GITHUB_APP_ID&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;privateKey&lt;/span&gt;: &lt;span class="kt"&gt;process.env.GITHUB_APP_PRIVATE_KEY&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\\n/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;\n&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;installationId&lt;/span&gt;: &lt;span class="kt"&gt;process.env.GITHUB_INSTALLATION_ID&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;token&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt; &lt;span class="kr"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;installation&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;拿到 token 后就可以用 Octokit 调 API：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ts" data-lang="ts"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;octokit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;issues&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createComment&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;owner&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;issue_number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;评论会以 App 机器人身份出现，例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;My Site Bot[bot]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="10-webhook-怎么校验"&gt;10. Webhook 怎么校验
+&lt;/h2&gt;&lt;p&gt;Webhook 请求体是原始 JSON。服务端必须用&lt;strong&gt;原始请求体&lt;/strong&gt;计算 HMAC，不能先用框架解析再序列化。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ts" data-lang="ts"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;createHmac&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;timingSafeEqual&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="kr"&gt;from&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;node:crypto&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;export&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;verifyWebhook&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;rawBody&lt;/span&gt;: &lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;signature&lt;/span&gt;: &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;secret&lt;/span&gt;: &lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;signature&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;startsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;sha256=&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;expected&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sb"&gt;`sha256=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;createHmac&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;sha256&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;rawBody&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;digest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;hex&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Buffer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;signature&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Buffer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;expected&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;timingSafeEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;建议同时做：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;X-GitHub-Delivery&lt;/code&gt; 做幂等去重。&lt;/li&gt;
+&lt;li&gt;验签失败直接返回 401。&lt;/li&gt;
+&lt;li&gt;尽快返回 2xx，把耗时任务放进队列。&lt;/li&gt;
+&lt;li&gt;记录事件类型、仓库、delivery ID，方便排查。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="11-callback-url-与环境"&gt;11. Callback URL 与环境
+&lt;/h2&gt;&lt;p&gt;这是最容易出错的地方。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;出现在&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Homepage URL&lt;/td&gt;
+&lt;td&gt;OAuth App / GitHub App&lt;/td&gt;
+&lt;td&gt;应用主页，不是回调&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Authorization callback URL&lt;/td&gt;
+&lt;td&gt;OAuth App&lt;/td&gt;
+&lt;td&gt;登录后返回，只有一个&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Callback URL&lt;/td&gt;
+&lt;td&gt;GitHub App&lt;/td&gt;
+&lt;td&gt;用户授权后返回，可多个&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Setup URL&lt;/td&gt;
+&lt;td&gt;GitHub App&lt;/td&gt;
+&lt;td&gt;安装完成后跳转&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Webhook URL&lt;/td&gt;
+&lt;td&gt;GitHub App&lt;/td&gt;
+&lt;td&gt;事件推送地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;实践建议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;生产&lt;/strong&gt;：使用稳定域名，例如 &lt;code&gt;https://example.com&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;本地&lt;/strong&gt;：单独创建 OAuth App，回调填 &lt;code&gt;http://localhost:3000/...&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Preview&lt;/strong&gt;：不要使用每次部署都会变的临时域名；要么禁用登录，要么使用独立 OAuth App，要么改用 GitHub App 的多 Callback URL。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;回调地址&lt;/strong&gt;：必须完全匹配，包括协议、域名、路径和末尾斜杠。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;环境变量&lt;/strong&gt;：&lt;code&gt;GITHUB_REDIRECT_URI&lt;/code&gt; 按环境分别设置，不要生产、Preview、本地共用一个值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="12-常见错误"&gt;12. 常见错误
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;现象&lt;/th&gt;
+&lt;th&gt;常见原因&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;redirect_uri_mismatch&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;GitHub 回调地址和代码里的 &lt;code&gt;redirect_uri&lt;/code&gt; 不一致&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;bad_verification_code&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;code 已过期、已使用，或 redirect_uri 不匹配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Resource not accessible by integration&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;GitHub App 权限不足，或安装未批准新权限&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;API 404&lt;/td&gt;
+&lt;td&gt;仓库名错误、App 未安装到该仓库、Issue 编号不存在&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Webhook 401&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;X-Hub-Signature-256&lt;/code&gt; 校验失败，secret 不一致&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;评论作者是 &lt;code&gt;xxx[bot]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;使用的是 installation token，这是正常行为&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;私钥解析失败&lt;/td&gt;
+&lt;td&gt;PEM 换行丢失，或把 Client Secret 当成私钥&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;把 App ID 当 Client ID&lt;/td&gt;
+&lt;td&gt;App ID 是数字，Client ID 是另一串字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;OAuth App 无法写仓库&lt;/td&gt;
+&lt;td&gt;OAuth App 没有安装令牌；仓库自动化应使用 GitHub App&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Preview 登录失败&lt;/td&gt;
+&lt;td&gt;Preview 域名变化导致回调地址不匹配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="13-安全清单"&gt;13. 安全清单
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; OAuth Client Secret 只放服务端环境变量。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; GitHub App 私钥只放服务端，不提交仓库。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Webhook secret 使用随机值，并同时配置在 GitHub 和服务端。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; GitHub App 只申请必要权限。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; App 只安装到需要的仓库。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 修改权限后，确认安装方已重新批准。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; OAuth 使用 &lt;code&gt;state&lt;/code&gt; + PKCE。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Session Cookie 不保存 GitHub access token。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Webhook 验签 + delivery ID 幂等。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 记录失败事件，便于重试和对账。&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 泄露后立即轮换 Client Secret、私钥和 Webhook secret。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="14-推荐落地顺序"&gt;14. 推荐落地顺序
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;先确定是否需要仓库写入。&lt;/li&gt;
+&lt;li&gt;只登录：创建 OAuth App。&lt;/li&gt;
+&lt;li&gt;需要评论/PR/Webhook：创建 GitHub App。&lt;/li&gt;
+&lt;li&gt;配置回调地址和 Webhook URL。&lt;/li&gt;
+&lt;li&gt;安装 GitHub App 到目标仓库。&lt;/li&gt;
+&lt;li&gt;配置环境变量并部署。&lt;/li&gt;
+&lt;li&gt;测试登录。&lt;/li&gt;
+&lt;li&gt;测试 Issue 评论或 PR。&lt;/li&gt;
+&lt;li&gt;检查 401/403/404 日志。&lt;/li&gt;
+&lt;li&gt;收紧权限，关闭不必要的 scope。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app" target="_blank" rel="noopener"
+&gt;Creating an OAuth app&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app" target="_blank" rel="noopener"
+&gt;Registering a GitHub App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/about-the-user-authorization-callback-url" target="_blank" rel="noopener"
+&gt;About the user authorization callback URL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/choosing-permissions-for-a-github-app" target="_blank" rel="noopener"
+&gt;Choosing permissions for a GitHub App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app" target="_blank" rel="noopener"
+&gt;Generating a JSON Web Token for a GitHub App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app" target="_blank" rel="noopener"
+&gt;Generating an installation access token&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.cnblogs.com/jzssuanfa/p/22652615" title="发布于 2026-08-24 12:05"
+target="_blank" rel="noopener"
+&gt;GitHub OAuth 登录对接全流程指南：从配置到生产部署&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

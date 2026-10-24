@@ -1,0 +1,419 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本文从二维码的历史讲起，解释它如何把链接、文本及其他数据编码成黑白方块，再通过 Python 实现二维码的生成、识别、纠错和自定义美化。"><title>从黑白方块到信息世界：二维码的原理、历史与 Python 实战</title><link rel=canonical href=https://blog.zwzhang.com/p/%E4%BB%8E%E9%BB%91%E7%99%BD%E6%96%B9%E5%9D%97%E5%88%B0%E4%BF%A1%E6%81%AF%E4%B8%96%E7%95%8C%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9A%84%E5%8E%9F%E7%90%86%E5%8E%86%E5%8F%B2%E4%B8%8E-python-%E5%AE%9E%E6%88%98/><link rel=stylesheet href=/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css><meta property='og:title' content="从黑白方块到信息世界：二维码的原理、历史与 Python 实战"><meta property='og:description' content="本文从二维码的历史讲起，解释它如何把链接、文本及其他数据编码成黑白方块，再通过 Python 实现二维码的生成、识别、纠错和自定义美化。"><meta property='og:url' content='https://blog.zwzhang.com/p/%E4%BB%8E%E9%BB%91%E7%99%BD%E6%96%B9%E5%9D%97%E5%88%B0%E4%BF%A1%E6%81%AF%E4%B8%96%E7%95%8C%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9A%84%E5%8E%9F%E7%90%86%E5%8E%86%E5%8F%B2%E4%B8%8E-python-%E5%AE%9E%E6%88%98/'><meta property='og:site_name' content='酒中仙'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='QR Code'><meta property='article:tag' content='编码原理'><meta property='article:tag' content='Python'><meta property='article:published_time' content='2026-10-23T14:34:25+08:00'><meta property='article:modified_time' content='2026-10-23T14:34:25+08:00'><meta name=twitter:title content="从黑白方块到信息世界：二维码的原理、历史与 Python 实战"><meta name=twitter:description content="本文从二维码的历史讲起，解释它如何把链接、文本及其他数据编码成黑白方块，再通过 Python 实现二维码的生成、识别、纠错和自定义美化。"><link rel="shortcut icon" href=/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_446bb777e4bcbb8a.jpg width=300 height=169 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>酒中仙</a></h1><h2 class=site-description>仰天大笑出門去，我輩豈是蓬蒿人！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Hanguangwu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/%E5%8F%8B%E9%93%BE/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://blog.zwzhang.com/en/>English</option><option value=https://blog.zwzhang.com/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一二维码是什么>一、二维码是什么？</a></li><li><a href=#二二维码的起源一项来自日本汽车工业的发明>二、二维码的起源：一项来自日本汽车工业的发明</a><ol><li><a href=#21-从条形码的局限说起>2.1 从条形码的局限说起</a></li><li><a href=#22-1994-年qr-code-正式问世>2.2 1994 年：QR Code 正式问世</a></li><li><a href=#23-从工厂走向全世界>2.3 从工厂走向全世界</a></li></ol></li><li><a href=#三二维码究竟如何存储数据>三、二维码究竟如何存储数据？</a><ol><li><a href=#31-黑白方块如何表示信息>3.1 黑白方块如何表示信息？</a></li><li><a href=#32-数据编码的完整流程>3.2 数据编码的完整流程</a></li><li><a href=#33-二维码可以存储哪些类型的数据>3.3 二维码可以存储哪些类型的数据？</a></li><li><a href=#34-二维码最多能存储多少数据>3.4 二维码最多能存储多少数据？</a></li></ol></li><li><a href=#四二维码为什么被遮挡后仍然可以识别>四、二维码为什么被遮挡后仍然可以识别？</a><ol><li><a href=#41-reedsolomon-纠错>4.1 Reed–Solomon 纠错</a></li><li><a href=#42-为什么二维码中间可以放一个-logo>4.2 为什么二维码中间可以放一个 Logo？</a></li></ol></li><li><a href=#五使用-python-自制二维码>五、使用 Python 自制二维码</a><ol><li><a href=#51-安装-python-依赖>5.1 安装 Python 依赖</a></li><li><a href=#52-示例一生成最简单的网址二维码>5.2 示例一：生成最简单的网址二维码</a></li><li><a href=#53-示例二自定义颜色尺寸和纠错等级>5.3 示例二：自定义颜色、尺寸和纠错等级</a></li><li><a href=#54-示例三生成包含中文的二维码>5.4 示例三：生成包含中文的二维码</a></li><li><a href=#55-示例四生成-wi-fi-二维码>5.5 示例四：生成 Wi-Fi 二维码</a></li><li><a href=#56-示例五读取二维码并还原原始内容>5.6 示例五：读取二维码并还原原始内容</a></li><li><a href=#57-示例六把生成保存和验证整合起来>5.7 示例六：把生成、保存和验证整合起来</a></li></ol></li><li><a href=#六进一步理解二维码不等于链接链接也不等于网页>六、进一步理解：二维码不等于链接，链接也不等于网页</a></li><li><a href=#七二维码有哪些安全风险>七、二维码有哪些安全风险？</a><ol><li><a href=#71-恶意链接>7.1 恶意链接</a></li><li><a href=#72-敏感信息泄露>7.2 敏感信息泄露</a></li><li><a href=#73-二维码不是加密技术>7.3 二维码不是加密技术</a></li><li><a href=#74-不要盲目相信付款码>7.4 不要盲目相信付款码</a></li></ol></li><li><a href=#八常见问题>八、常见问题</a></li><li><a href=#九总结>九、总结</a></li><li><a href=#参考资料>参考资料</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E7%BC%96%E7%A8%8B/>编程
+</a><a href=/categories/%E6%8A%80%E6%9C%AF%E7%A7%91%E6%99%AE/>技术科普
+</a><a href=/categories/aigc/>AIGC</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/%E4%BB%8E%E9%BB%91%E7%99%BD%E6%96%B9%E5%9D%97%E5%88%B0%E4%BF%A1%E6%81%AF%E4%B8%96%E7%95%8C%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9A%84%E5%8E%9F%E7%90%86%E5%8E%86%E5%8F%B2%E4%B8%8E-python-%E5%AE%9E%E6%88%98/>从黑白方块到信息世界：二维码的原理、历史与 Python 实战</a></h2><h3 class=article-subtitle>本文从二维码的历史讲起，解释它如何把链接、文本及其他数据编码成黑白方块，再通过 Python 实现二维码的生成、识别、纠错和自定义美化。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Oct 23, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 15 分钟</time></div></footer></div></header><section class=article-content><h1 id=从黑白方块到信息世界二维码的原理历史与-python-实战>从黑白方块到信息世界：二维码的原理、历史与 Python 实战</h1><h2 id=一二维码是什么>一、二维码是什么？</h2><p>二维码（QR Code，Quick Response Code，快速响应码）是一种二维条码。它通过在平面上排列深色和浅色模块，将文本、网址、数字以及其他二进制数据编码为机器可以识别的图案。</p><p>我们每天都会遇到二维码：</p><ul><li><p>扫描二维码，打开一个网页。</p></li><li><p>扫描付款码，发起支付。</p></li><li><p>扫描 Wi-Fi 二维码，自动填写网络名称和密码。</p></li><li><p>扫描电子名片，导入联系人。</p></li><li><p>扫描产品标签，查询商品信息。</p></li></ul><p>这些二维码看起来很相似，但它们存储的内容可能完全不同。</p><p>例如，一个二维码的实际内容可以是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://example.com
+</span></span></code></pre></td></tr></table></div></div><p>也可以是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>你好，世界！
+</span></span></code></pre></td></tr></table></div></div><p>还可以是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>WIFI:T:WPA;S:MyHomeWiFi;P:MyPassword123;;
+</span></span></code></pre></td></tr></table></div></div><p>甚至可以是经过特定格式编码的联系人信息、设备配置或一段二进制数据。</p><p>最重要的认识：二维码本身通常不是一个网页，也不是一个数据库，而是数据的一种机器可读表示形式。</p><p>如果二维码存储的是网址，扫码后打开网页的过程通常是：</p><ol><li><p>摄像头获取二维码图像。</p></li><li><p>解码程序定位并识别二维码。</p></li><li><p>解析二维码中的数据，得到网址。</p></li><li><p>手机浏览器根据网址访问互联网。</p></li></ol><p>其中，第 1～3 步属于二维码识别与解码；第 4 步才是网络访问。</p><p>二维码也可以直接存储文本而不访问互联网。因此，扫码后是否需要联网，取决于二维码中存储的内容以及使用它的应用程序。</p><h2 id=二二维码的起源一项来自日本汽车工业的发明>二、二维码的起源：一项来自日本汽车工业的发明</h2><p><img src="https://images.openai.com/static-rsc-4/dKk2Z9VkjKYsb-SaIRLC1ULrbd5_r8KvuF_bTIP9ow973ASONQ2Hr9OBirIqj4xvdnQtv3KmdyU1o3LdcR-5Qy5oaAv9D8gCDg1jDf2qNq-oVqPhYbm-9RNNKB0WikNpPrhmUfY8XekN2mFsJEIlrYsyX0vTJoETZK-kvQrn8UQ?purpose=inline" loading=lazy alt="QRコードを生み出した技術者、原昌宏。ヒントは囲碁だった【世界が尊敬する日本人】 | ニューズウィーク日本版 オフィシャルサイト"></p><p><a class=link href=https://www.newsweekjapan.jp/stories/technology/2021/08/post-96818.php target=_blank rel=noopener>newsweekjapan.jp</a></p><p>二维码并不是互联网时代才出现的技术。我们今天熟悉的 QR Code，诞生于日本制造业对生产效率的实际需求。</p><h3 id=21-从条形码的局限说起>2.1 从条形码的局限说起</h3><p>20 世纪后期，条形码已经广泛用于零售、物流和工业生产。传统条形码通过不同宽度的线条及间隔来表示数据，读取设备通常沿着一个方向扫描。</p><p>但随着制造业需要管理的零部件、型号和生产记录越来越多，传统条形码的容量和读取效率开始显得不足。</p><p>当时的日本汽车零部件生产现场，需要处理大量产品信息。开发人员希望设计一种编码，能够：</p><ul><li><p>在有限空间中存储更多信息。</p></li><li><p>同时支持数字、字母和日文字符。</p></li><li><p>能够快速识别，减少重复扫描。</p></li><li><p>即使部分区域受到污损，也尽可能恢复数据。</p></li></ul><p>这些需求推动了新型二维编码的研发。</p><h3 id=22-1994-年qr-code-正式问世>2.2 1994 年：QR Code 正式问世</h3><p>1992 年前后，DENSO 的工程师开始探索新的二维编码方案。以原昌宏（Masahiro Hara）为代表的开发团队，最终设计出了今天广泛使用的 QR Code。</p><p>1994 年，DENSO WAVE（当时属于 DENSO 的一个事业部门）正式发布 QR Code。</p><p>QR 是英文 Quick Response 的缩写，强调快速读取和响应。</p><p>二维码设计中的一个关键创新，是三个角上的大型定位图案。</p><p><img src="https://images.openai.com/static-rsc-4/UXCL5hMDPZQgQ2LeXZhI6cqLlOi6tdJDy0St5r5dRDTX4swC3DfZW8zYg4-h_qqzsRqJ5V6FIEVodMZ1Gt21Pvt7a3fBaP_L2ZJx_s22kXHpmZvxJ4AgisU_Ih-XcG6kG6y8o5eOLsWpZMqb29kBawjYWYP-CzO9CwjRarSigzE?purpose=inline" loading=lazy alt="What is QR Code? 2026 Guide to Uses and Security"></p><p><img src=https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261023192914439.png loading=lazy></p><p><img src="https://images.openai.com/static-rsc-4/gMZM32uziCQVSzsERzpiypr6zejuNT5VrUOmqLTwK5pHzFPnSu-nozvhF3_iklycR61qcg25xJXRrkdbI_BCbbRbJA2ypcPkghPKl4aRsgsJWM0xz48Z2IfPQbm4P2W9CElTcXo6OlPtOuXd9ZFhluU0cWWaNFoxjtSlAhtZT4M?purpose=inline" loading=lazy alt="QR code’s structure 1. Finder Pattern: It is detecting position of QR… | Download Scientific Diagram"></p><p>这些图案帮助扫描器判断二维码的位置、方向和尺度，使设备即使在二维码旋转或倾斜时，也能更可靠地识别它。</p><p>另一个重要特点是纠错能力：二维码不只记录原始数据，还包含用于恢复数据的冗余信息。即使一部分图案被污损，解码器仍可能恢复原始内容。</p><h3 id=23-从工厂走向全世界>2.3 从工厂走向全世界</h3><p>二维码最初主要服务于汽车制造和生产管理。随着标准化和手机摄像头识别能力的发展，它逐渐进入商品追踪、票务、广告、支付和个人信息交换等场景。</p><p>2000 年，QR Code 被纳入国际标准 ISO/IEC 18004，进一步促进了它的广泛应用。</p><p>二维码的成功不仅在于技术本身，也在于它是一种可广泛使用的开放编码技术。任何开发者都可以利用兼容的规范和工具生成、读取二维码，而不必依赖某家公司的专有扫码系统。</p><h2 id=三二维码究竟如何存储数据>三、二维码究竟如何存储数据？</h2><p>这是理解二维码最重要的一部分。</p><h3 id=31-黑白方块如何表示信息>3.1 黑白方块如何表示信息？</h3><p>二维码由许多小方格组成，这些方格称为模块（module）。在常见的黑白二维码中，每个模块呈现为深色或浅色。</p><p>但需要注意：一个黑色方块不一定代表数字 1，一个白色方块也不一定代表数字 0。</p><p>这是因为二维码的图案中包含多种结构：</p><ul><li><p>定位图案：帮助识别二维码的位置和方向。</p></li><li><p>校正与同步图案：帮助读取器判断模块排列、倾斜和尺度。</p></li><li><p>格式及版本信息：说明如何解读二维码。</p></li><li><p>数据区域：承载编码后的数据。</p></li><li><p>纠错信息：帮助恢复因污损或遮挡而丢失的数据。</p></li></ul><p>因此，不能简单地把整张二维码当成一串从左到右、从上到下的二进制数字直接阅读。</p><h3 id=32-数据编码的完整流程>3.2 数据编码的完整流程</h3><p>以生成一个网址二维码为例，整个过程可以抽象成以下流水线。</p><p>① 原始数据</p><p><a class=link href="https://example.com/?utm_source=chatgpt.com" target=_blank rel=noopener>https://example.com</a></p><p>② 字符编码与数据模式选择</p><p>将文本转换成适合 QR Code 规则的位序列</p><p>③ 生成纠错数据</p><p>使用 Reed–Solomon 纠错编码增加冗余信息</p><p>④ 构建二维码矩阵</p><p>放置定位图案、格式信息、数据模块等</p><p>⑤ 输出图像</p><p>PNG、SVG 或其他适合显示和打印的格式</p><p>不同编码模式的容量不同。标准 QR Code 可以使用数字模式、字母数字模式、字节模式和汉字模式等来存储数据。实际容量还取决于二维码版本、纠错等级以及数据内容。</p><h3 id=33-二维码可以存储哪些类型的数据>3.3 二维码可以存储哪些类型的数据？</h3><div class=table-wrapper><table><thead><tr><th>数据类型</th><th>存储示例</th><th>扫码后的典型行为</th></tr></thead><tbody><tr><td>网址</td><td><code>https://example.com</code></td><td>浏览器打开网页</td></tr><tr><td>普通文本</td><td><code>你好，世界！</code></td><td>显示文本</td></tr><tr><td>联系人</td><td><code>BEGIN:VCARD...</code></td><td>提示添加联系人</td></tr><tr><td>Wi-Fi 配置</td><td><code>WIFI:T:WPA;S:Home;P:...;;</code></td><td>提示连接网络</td></tr><tr><td>邮件信息</td><td><code>mailto:hello@example.com</code></td><td>打开邮件应用</td></tr><tr><td>电话号码</td><td><code>tel:+8613800000000</code></td><td>提示拨打电话</td></tr><tr><td>二进制数据</td><td>文件片段或应用专用数据</td><td>需要对应程序解读</td></tr></tbody></table></div><p>表中的内容并不都属于 QR Code 标准自带的特殊功能。例如，Wi-Fi 配置和联系人信息通常是按照约定的文本格式存入二维码，再由手机识别这些格式。</p><p>因此，二维码负责存储和传递数据，应用程序负责理解数据的具体含义。</p><h3 id=34-二维码最多能存储多少数据>3.4 二维码最多能存储多少数据？</h3><p>标准 QR Code 的最大容量取决于编码模式。以最高版本、最低纠错等级等适合获得最大容量的条件为例，官方资料列出的典型上限如下。</p><div class=table-wrapper><table><thead><tr><th>编码模式</th><th>最大容量（约）</th></tr></thead><tbody><tr><td>纯数字</td><td>7,089 个数字字符</td></tr><tr><td>字母数字</td><td>4,296 个字符</td></tr><tr><td>8-bit 字节</td><td>2,953 个字节</td></tr><tr><td>日文汉字模式</td><td>1,817 个字符</td></tr></tbody></table></div><p>这些是特定条件下的理论上限，并不意味着任何二维码都能存储这么多内容。</p><p>例如，中文文本通常需要按 UTF-8 等编码转换成多个字节，一个汉字往往占用 3 个 UTF-8 字节。二维码版本越大，图案中的模块越多，打印和识别时对清晰度的要求也可能更高。</p><p>如果希望分享一篇很长的文章，通常存储文章网址比把全文塞进二维码更方便。</p><h2 id=四二维码为什么被遮挡后仍然可以识别>四、二维码为什么被遮挡后仍然可以识别？</h2><p>二维码最值得注意的技术之一，是纠错编码。</p><h3 id=41-reedsolomon-纠错>4.1 Reed–Solomon 纠错</h3><p>QR Code 使用 Reed–Solomon（里德–所罗门）纠错码，在原始数据之外添加冗余信息。</p><p>可以把它理解为给数据增加一份有数学规律的校验信息。即使部分数据受到破坏，解码器仍然可以根据剩余数据和纠错信息，恢复一定范围内的错误。</p><p>二维码通常提供四种纠错等级：</p><div class=table-wrapper><table><thead><tr><th>等级</th><th>常见标记</th><th>大致可恢复的码字比例</th><th>特点</th></tr></thead><tbody><tr><td>L</td><td>Low</td><td>约 7%</td><td>容量相对较大</td></tr><tr><td>M</td><td>Medium</td><td>约 15%</td><td>常见的折中选择</td></tr><tr><td>Q</td><td>Quartile</td><td>约 25%</td><td>更强的纠错能力</td></tr><tr><td>H</td><td>High</td><td>约 30%</td><td>纠错能力更强</td></tr></tbody></table></div><p>这些百分比是标准资料给出的近似值，并不是二维码图像允许随意遮挡的面积比例。实际可恢复程度取决于损坏的位置、分布和解码条件。</p><h3 id=42-为什么二维码中间可以放一个-logo>4.2 为什么二维码中间可以放一个 Logo？</h3><p><img src="https://images.openai.com/static-rsc-4/HV1lbgBHmdVIR2A8LpDCQS12oWF6ONMjlWB8pm-hL-dBf4-ZLnE7AlYsUI2b0Cifcx9rT5SEQ2wo0as_ibvKYz0P_y7YyDHtn-vjqCSu7mhpEr4OB7EgDVa2lnpgj_gHAyEVj3XmR460u8Hzdra3mvo9WDVAyIK85CpWi2z0nvo?purpose=inline" loading=lazy alt=브런치></p><p>有些品牌二维码会在中央放置 Logo。这并不是因为 Logo 本身是二维码的一部分，而是因为纠错能力允许部分数据受损时仍有机会完成解码。</p><p>但这不意味着可以随意覆盖二维码：</p><ul><li><p>Logo 可能遮住数据模块或关键定位结构。</p></li><li><p>图像压缩、低分辨率和印刷误差也会消耗纠错余量。</p></li><li><p>即使设置 H 级纠错，也无法保证任意遮挡下都能识别。</p></li></ul><p>实用原则是：尽量保持三个角的定位图案完整，Logo 尺寸适中，并使用真实手机或扫码器反复测试。</p><h2 id=五使用-python-自制二维码>五、使用 Python 自制二维码</h2><p>接下来，我们从零搭建一个可以在本地运行的二维码生成程序。</p><p>整个过程不需要连接二维码生成网站。生成的内容可以保留在本地电脑上，适合制作个人博客链接、项目主页、联系方式和 Wi-Fi 配置码。</p><h3 id=51-安装-python-依赖>5.1 安装 Python 依赖</h3><p>建议使用 Python 3.10 或更新版本。在 Windows PowerShell 或 WSL2 终端中执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>python -m venv .venv
+</span></span></code></pre></td></tr></table></div></div><p>激活虚拟环境。</p><p>Windows PowerShell：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>.\.venv\Scripts\Activate.ps1
+</span></span></code></pre></td></tr></table></div></div><p>Linux / WSL2：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>source .venv/bin/activate
+</span></span></code></pre></td></tr></table></div></div><p>安装二维码生成和图像处理库：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>python -m pip install &#34;qrcode[pil]&#34; pillow
+</span></span></code></pre></td></tr></table></div></div><p>如果还希望用 Python 直接识别二维码，可以额外安装 OpenCV：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>python -m pip install opencv-python
+</span></span></code></pre></td></tr></table></div></div><p>其中：</p><ul><li><p><code>qrcode</code>：生成符合 QR Code 规范的二维码。</p></li><li><p><code>Pillow</code>：处理和保存图像。</p></li><li><p><code>opencv-python</code>：读取图像、检测二维码并解码内容。</p></li></ul><h3 id=52-示例一生成最简单的网址二维码>5.2 示例一：生成最简单的网址二维码</h3><p>新建文件 <code>generate_qr.py</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>qrcode</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 二维码中真正存储的内容</span>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=s2>&#34;https://example.com&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 生成二维码</span>
+</span></span><span class=line><span class=cl><span class=n>qr</span> <span class=o>=</span> <span class=n>qrcode</span><span class=o>.</span><span class=n>QRCode</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>version</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>  <span class=c1># 自动选择合适的二维码版本</span>
+</span></span><span class=line><span class=cl>    <span class=n>error_correction</span><span class=o>=</span><span class=n>qrcode</span><span class=o>.</span><span class=n>constants</span><span class=o>.</span><span class=n>ERROR_CORRECT_M</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>box_size</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>   <span class=c1># 每个模块对应的像素大小</span>
+</span></span><span class=line><span class=cl>    <span class=n>border</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>      <span class=c1># 保留四个模块宽度的边框</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>add_data</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>fit</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 转换为黑白图像并保存</span>
+</span></span><span class=line><span class=cl><span class=n>img</span> <span class=o>=</span> <span class=n>qr</span><span class=o>.</span><span class=n>make_image</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill_color</span><span class=o>=</span><span class=s2>&#34;black&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>back_color</span><span class=o>=</span><span class=s2>&#34;white&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;my_qr.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;二维码已保存为 my_qr.png&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>python generate_qr.py
+</span></span></code></pre></td></tr></table></div></div><p>程序会在当前目录生成 <code>my_qr.png</code>。</p><p>你可以用手机扫描图片，检查是否得到 <code>https://example.com</code>。</p><p>这里有几个值得理解的参数：</p><ul><li><p><code>version=None</code>：让库根据数据量自动选择版本。</p></li><li><p><code>ERROR_CORRECT_M</code>：使用 M 级纠错。</p></li><li><p><code>box_size=10</code>：每个模块绘制成约 10 × 10 像素的方块。</p></li><li><p><code>border=4</code>：保留四个模块宽度的静区，帮助扫码器区分二维码与周围背景。</p></li></ul><p><code>qr.add_data()</code> 接收的是待编码内容。对于普通网址，不需要自己手动将每个字符转换为二进制，也不需要自行绘制定位图案；这些工作由二维码库完成。</p><h3 id=53-示例二自定义颜色尺寸和纠错等级>5.3 示例二：自定义颜色、尺寸和纠错等级</h3><p>二维码不一定只能是纯黑白色。只要对比度足够，通常也可以使用其他前景色和背景色。</p><p>新建 <code>custom_qr.py</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>qrcode</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>qrcode.constants</span> <span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>ERROR_CORRECT_H</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=s2>&#34;https://example.com/my-project&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span> <span class=o>=</span> <span class=n>qrcode</span><span class=o>.</span><span class=n>QRCode</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>version</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>error_correction</span><span class=o>=</span><span class=n>ERROR_CORRECT_H</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>box_size</span><span class=o>=</span><span class=mi>12</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>border</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>add_data</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>fit</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span> <span class=o>=</span> <span class=n>qr</span><span class=o>.</span><span class=n>make_image</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill_color</span><span class=o>=</span><span class=s2>&#34;#17324D&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>back_color</span><span class=o>=</span><span class=s2>&#34;#FFFFFF&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;custom_qr.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已生成 custom_qr.png&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>这里使用 H 级纠错，适合希望后续尝试添加小型 Logo 的场景，但它会带来容量方面的权衡：相同版本下，可用于原始数据的空间会受到纠错数据的影响。</p><p>实际应用中，深色前景与浅色背景通常更可靠。不要随意使用低对比度配色、渐变、复杂背景或过度圆角化的模块。</p><h3 id=54-示例三生成包含中文的二维码>5.4 示例三：生成包含中文的二维码</h3><p>二维码也可以直接存储中文文本。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>qrcode</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>text</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;你好，世界！
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>这是我使用 Python 生成的二维码。
+</span></span></span><span class=line><span class=cl><span class=s2>它可以直接存储文本，不需要访问网站。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span> <span class=o>=</span> <span class=n>qrcode</span><span class=o>.</span><span class=n>QRCode</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>version</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>error_correction</span><span class=o>=</span><span class=n>qrcode</span><span class=o>.</span><span class=n>constants</span><span class=o>.</span><span class=n>ERROR_CORRECT_M</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>box_size</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>border</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>add_data</span><span class=p>(</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>fit</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span> <span class=o>=</span> <span class=n>qr</span><span class=o>.</span><span class=n>make_image</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill_color</span><span class=o>=</span><span class=s2>&#34;black&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>back_color</span><span class=o>=</span><span class=s2>&#34;white&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;chinese_text_qr.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已生成 chinese_text_qr.png&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>扫码后，兼容的扫码器可以直接显示中文内容。</p><p>这里需要区分两件事：</p><ol><li><p>二维码的数据编码：将字符转换成二维码协议规定的位序列。</p></li><li><p>字符集解码：将恢复出来的字节还原成中文字符串。</p></li></ol><p>如果你要存储的是中文、Emoji 或其他 Unicode 字符，使用成熟的二维码库通常比手动拼接二进制数据可靠得多。</p><h3 id=55-示例四生成-wi-fi-二维码>5.5 示例四：生成 Wi-Fi 二维码</h3><p>手机可以通过约定的文本格式读取 Wi-Fi 名称、加密方式和密码。</p><p>例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>qrcode</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>ssid</span> <span class=o>=</span> <span class=s2>&#34;MyHomeWiFi&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>password</span> <span class=o>=</span> <span class=s2>&#34;MyPassword123&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>wifi_data</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=sa>f</span><span class=s2>&#34;WIFI:T:WPA;S:</span><span class=si>{</span><span class=n>ssid</span><span class=si>}</span><span class=s2>;P:</span><span class=si>{</span><span class=n>password</span><span class=si>}</span><span class=s2>;;&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span> <span class=o>=</span> <span class=n>qrcode</span><span class=o>.</span><span class=n>QRCode</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>error_correction</span><span class=o>=</span><span class=n>qrcode</span><span class=o>.</span><span class=n>constants</span><span class=o>.</span><span class=n>ERROR_CORRECT_M</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>box_size</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>border</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>add_data</span><span class=p>(</span><span class=n>wifi_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>fit</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>qr</span><span class=o>.</span><span class=n>make_image</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill_color</span><span class=o>=</span><span class=s2>&#34;black&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>back_color</span><span class=o>=</span><span class=s2>&#34;white&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;wifi_qr.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已生成 wifi_qr.png&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>这类格式通常适用于常见的 WPA/WPA2 等 Wi-Fi 配置，但具体识别行为取决于手机系统和扫码应用。</p><p>安全提醒： Wi-Fi 二维码可能直接包含明文密码。不要把它发布到公开网站、社交媒体或容易被他人获取的场所；生成的图片也应按敏感信息妥善保管。</p><p>如果 SSID 或密码中包含分号、反斜杠等特殊字符，还需要根据对应的 Wi-Fi 二维码格式规则进行转义，不能总是直接拼接字符串。</p><h3 id=56-示例五读取二维码并还原原始内容>5.6 示例五：读取二维码并还原原始内容</h3><p>只会生成二维码还不够。我们还可以用 Python 验证二维码能否被读取，以及解码后是否与原始内容一致。</p><p>新建 <code>read_qr.py</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>image_path</span> <span class=o>=</span> <span class=s2>&#34;my_qr.png&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 读取二维码图片</span>
+</span></span><span class=line><span class=cl><span class=n>image</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>imread</span><span class=p>(</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>image</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>raise</span> <span class=ne>FileNotFoundError</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=sa>f</span><span class=s2>&#34;找不到图片文件：</span><span class=si>{</span><span class=n>image_path</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建二维码检测器</span>
+</span></span><span class=line><span class=cl><span class=n>detector</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>QRCodeDetector</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检测并解码</span>
+</span></span><span class=line><span class=cl><span class=n>data</span><span class=p>,</span> <span class=n>points</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=n>detector</span><span class=o>.</span><span class=n>detectAndDecode</span><span class=p>(</span><span class=n>image</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;二维码解码成功！&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;原始内容：&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;未能识别二维码。&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>python read_qr.py
+</span></span></code></pre></td></tr></table></div></div><p>如果读取的是前面生成的网址二维码，终端应该输出类似结果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>二维码解码成功！
+</span></span><span class=line><span class=cl>原始内容： https://example.com
+</span></span></code></pre></td></tr></table></div></div><p>这里使用 OpenCV 的 <code>QRCodeDetector</code>，它负责定位二维码、识别图案并解码数据。</p><p>注意：如果二维码中存储的是网址，OpenCV 通常只返回网址字符串，不会自动访问网页。如果二维码存储的是 Wi-Fi 配置，也不会自动替你连接网络。</p><h3 id=57-示例六把生成保存和验证整合起来>5.7 示例六：把生成、保存和验证整合起来</h3><p>实际项目中，我们可以把生成和验证写在同一个脚本里，减少手动检查的工作。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pathlib</span> <span class=kn>import</span> <span class=n>Path</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>qrcode</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>qrcode.constants</span> <span class=kn>import</span> <span class=n>ERROR_CORRECT_M</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>generate_qr</span><span class=p>(</span><span class=n>data</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>output_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;生成二维码并保存为 PNG 图片。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>qr</span> <span class=o>=</span> <span class=n>qrcode</span><span class=o>.</span><span class=n>QRCode</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>version</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>error_correction</span><span class=o>=</span><span class=n>ERROR_CORRECT_M</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>box_size</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>border</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>qr</span><span class=o>.</span><span class=n>add_data</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>qr</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>fit</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>img</span> <span class=o>=</span> <span class=n>qr</span><span class=o>.</span><span class=n>make_image</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>fill_color</span><span class=o>=</span><span class=s2>&#34;black&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>back_color</span><span class=o>=</span><span class=s2>&#34;white&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=n>output_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decode_qr</span><span class=p>(</span><span class=n>image_path</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;读取二维码图片并返回解码内容。&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>image</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>imread</span><span class=p>(</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>image</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>raise</span> <span class=ne>FileNotFoundError</span><span class=p>(</span><span class=n>image_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>detector</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>QRCodeDetector</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>,</span> <span class=n>points</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=n>detector</span><span class=o>.</span><span class=n>detectAndDecode</span><span class=p>(</span><span class=n>image</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;二维码解码失败&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>data</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>original_data</span> <span class=o>=</span> <span class=s2>&#34;https://example.com/my-project&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>output_path</span> <span class=o>=</span> <span class=s2>&#34;my_project_qr.png&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>generate_qr</span><span class=p>(</span><span class=n>original_data</span><span class=p>,</span> <span class=n>output_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>decoded_data</span> <span class=o>=</span> <span class=n>decode_qr</span><span class=p>(</span><span class=n>output_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;图片位置：</span><span class=si>{</span><span class=n>Path</span><span class=p>(</span><span class=n>output_path</span><span class=p>)</span><span class=o>.</span><span class=n>resolve</span><span class=p>()</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;原始数据：</span><span class=si>{</span><span class=n>original_data</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;解码数据：</span><span class=si>{</span><span class=n>decoded_data</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>decoded_data</span> <span class=o>==</span> <span class=n>original_data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;验证通过：解码结果与原始数据一致。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;验证失败：解码结果不一致。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个小程序实现了一个完整的闭环：</p><blockquote><p>输入原始数据（网址、文本或其他适合编码的字符串）——>生成二维码（编码、纠错、构建矩阵、保存图像）——>重新读取（通过图像识别恢复编码内容）——>自动校验（比较原始数据与解码数据是否一致）</p></blockquote><h2 id=六进一步理解二维码不等于链接链接也不等于网页>六、进一步理解：二维码不等于链接，链接也不等于网页</h2><p>二维码的应用中，有三个经常被混淆的概念。</p><div class=table-wrapper><table><thead><tr><th>概念</th><th>实际含义</th></tr></thead><tbody><tr><td>二维码</td><td>数据的图形化编码</td></tr><tr><td>URL（网址）</td><td>标识网络资源的地址</td></tr><tr><td>网页或服务</td><td>URL 所指向的实际资源</td></tr></tbody></table></div><p>例如，你可以生成一个存储 <code>https://example.com</code> 的二维码，但这不代表二维码内部已经保存了该网站的全部 HTML、图片和数据库。</p><p>它通常只存储网址文本。手机扫描后再通过网络请求取得网页。</p><p>反过来，如果你把一段 500 字的文章直接编码进二维码，扫码器就可以在不访问网站的情况下恢复这段文章，前提是数据量在容量限制内，且扫码器能正确解码对应内容。</p><p>这也解释了为什么二维码生成网站经常会区分两类二维码：</p><ul><li><p>静态二维码：直接存储最终内容。内容通常无法在不重新生成二维码的情况下修改。</p></li><li><p>动态二维码：存储一个可控的短链接或重定向地址。服务端可以改变它最终指向的资源。</p></li></ul><p>所谓动态二维码并不是一种会自动变化的特殊图案。它的动态性通常来自二维码背后的服务器服务。</p><h2 id=七二维码有哪些安全风险>七、二维码有哪些安全风险？</h2><p>二维码本身并不等于安全或危险。风险主要取决于其中存储的数据，以及扫码之后发生的操作。</p><h3 id=71-恶意链接>7.1 恶意链接</h3><p>攻击者可以把钓鱼网站的网址编码成二维码，诱导用户输入账号、密码或支付信息。</p><p>防范方式：扫描后先检查域名，不要因为二维码看起来正规就直接相信其内容。</p><h3 id=72-敏感信息泄露>7.2 敏感信息泄露</h3><p>二维码可能直接存储 Wi-Fi 密码、联系人信息、个人资料，甚至某些业务系统的访问令牌。</p><p>防范方式：将二维码当作承载原始数据的文件管理。只要别人能够读取二维码，就可能获得其中存储的信息。</p><h3 id=73-二维码不是加密技术>7.3 二维码不是加密技术</h3><p>普通二维码的编码过程不提供保密性。任何兼容的扫码器都可能读取其中的内容。</p><p>如果需要保护机密数据，应当先使用适当的加密方案，再将加密后的数据编码进二维码；同时考虑密钥管理、数据长度和扫码环境等限制。</p><h3 id=74-不要盲目相信付款码>7.4 不要盲目相信付款码</h3><p>二维码可以表示收款地址、付款链接或其他交易参数，但它本身不证明交易对象真实可信。</p><p>付款前应确认收款人、金额及支付应用显示的交易信息。</p><h2 id=八常见问题>八、常见问题</h2><p>Q1：二维码为什么是正方形？</p><p>正方形矩阵便于将数据模块排列在两个维度中，并放置定位、同步和校正结构。QR Code 的标准版本也通过增加模块数量来扩展容量。</p><p>Q2：二维码能不能存储图片、PDF 或整个文件？</p><p>从编码原理上说，二维码可以存储二进制数据，但单个标准 QR Code 的容量有限。完整图片或 PDF 通常更适合存放在服务器或文件中，再通过二维码提供访问地址。也可以采用分片或多二维码方案，但需要专门的重组程序。</p><p>Q3：二维码破损后为什么还能识别？</p><p>因为 QR Code 添加了纠错冗余，可以恢复一定范围内丢失或错误的数据。不过，破损位置、程度和图像质量都会影响识别结果。</p><p>Q4：自己生成的二维码会过期吗？</p><p>静态二维码本身通常没有内置过期时间。只要图案完好且解码器兼容，它就可以继续被读取。但其中的网址可能失效，服务器可能关闭，或者动态二维码背后的服务可能停止运行。</p><p>Q5：二维码中存储的数据会自动上传到生成网站吗？</p><p>不一定。本文的 Python 程序在本地生成图像，不需要上传数据到二维码生成网站。但在线二维码服务可能处理你提交的内容，使用之前应检查其隐私政策。</p><h2 id=九总结>九、总结</h2><p>二维码看起来只是由黑白方块组成的图案，但它背后包含字符编码、二进制表示、纠错编码、矩阵布局和图像识别等多个技术环节。</p><p>回顾全文，可以记住以下五点：</p><ol><li><p>QR Code 于 1994 年由日本 DENSO WAVE 发布，其研发源于工业生产中对更高容量、更快读取速度的需求。</p></li><li><p>二维码通过二维模块布局表示编码数据，而不是简单地把每个黑白方块对应成一个独立的字符。</p></li><li><p>二维码可以存储网址、普通文本、二进制数据，以及按照约定格式组织的联系人和 Wi-Fi 信息。</p></li><li><p>Reed–Solomon 纠错技术使二维码具备一定的数据恢复能力，但不能保证任意遮挡后仍然可读。</p></li><li><p>借助 Python 的 <code>qrcode</code> 和 OpenCV 库，我们可以在本地完成二维码生成、保存、解码和校验。</p></li></ol><p>从程序员的视角来看，二维码是一个很好的学习案例：它把抽象的数据编码与现实世界的图像识别连接起来，也展示了一个成熟技术标准如何在容量、可靠性、读取速度和使用便利性之间取得平衡。</p><p>如果你想进一步学习，可以尝试自己实现一个更完整的二维码工具：支持网址、文本、Wi-Fi 和联系人等模板，提供纠错等级和颜色选择，并在生成后自动解码验证。</p><h2 id=参考资料>参考资料</h2><ol><li><p>DENSO WAVE，<a class=link href="https://www.qrcode.com/zh/history/?utm_source=chatgpt.com" target=_blank rel=noopener>QR 码的成功之路：二维码的起源与发展</a>。</p></li><li><p>DENSO WAVE，<a class=link href="https://www.qrcode.com/en/about/standards.html/error_correction.html?utm_source=chatgpt.com" target=_blank rel=noopener>QR Code Standardization：二维码规范与纠错能力</a>。</p></li><li><p>DENSO，<a class=link href="https://www.denso.com/global/en/technology/qrcode/?utm_source=chatgpt.com" target=_blank rel=noopener>QR Code® invented by DENSO：二维码的发明与标准化</a>。</p></li><li><p>Python <code>qrcode</code> 项目，<a class=link href="https://github.com/lincolnloop/python-qrcode?utm_source=chatgpt.com" target=_blank rel=noopener>python-qrcode：二维码生成库的源代码与使用说明</a>。</p></li><li><p>OpenCV 官方文档，<a class=link href="https://docs.opencv.org/?utm_source=chatgpt.com" target=_blank rel=noopener>OpenCV：计算机视觉与图像识别</a>。</p></li></ol></section><footer class=article-footer><section class=article-tags><a href=/tags/qr-code/>QR Code</a>
+<a href=/tags/%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86/>编码原理</a>
+<a href=/tags/python/>Python</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/%E7%94%A8-python-%E5%90%8C%E6%AD%A5-jira-%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/><div class=article-details><h2 class=article-title>用 Python 同步 JIRA 数据到本地：从入门到实战</h2></div></a></article><article><a href=/p/ldap-%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98/><div class=article-details><h2 class=article-title>LDAP 系统原理与企业实战</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/><div class=article-details><h2 class=article-title>使用Python获取中国历史资料</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/><div class=article-details><h2 class=article-title>使用Python实现文本加密</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8E%E6%8B%BC%E9%9F%B3%E8%BD%AC%E6%8D%A2/><div class=article-details><h2 class=article-title>使用Python处理文件名与拼音转换</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 hanguangwu</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
