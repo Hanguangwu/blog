@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>主定理 on 酒中仙</title><link>https://blog.zwzhang.com/tags/%E4%B8%BB%E5%AE%9A%E7%90%86/</link><description>Recent content in 主定理 on 酒中仙</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>hanguangwu</copyright><lastBuildDate>Tue, 27 Oct 2026 12:34:25 +0800</lastBuildDate><atom:link href="https://blog.zwzhang.com/tags/%E4%B8%BB%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml"/><item><title>算法分析中的主定理：原理、三种情况与实际应用</title><link>https://blog.zwzhang.com/p/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%AD%E7%9A%84%E4%B8%BB%E5%AE%9A%E7%90%86%E5%8E%9F%E7%90%86%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8/</link><pubDate>Tue, 27 Oct 2026 12:34:25 +0800</pubDate><guid>https://blog.zwzhang.com/p/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%AD%E7%9A%84%E4%B8%BB%E5%AE%9A%E7%90%86%E5%8E%9F%E7%90%86%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="算法分析中的主定理原理三种情况与实际应用"&gt;算法分析中的主定理：原理、三种情况与实际应用
+&lt;/h1&gt;&lt;h2 id="一引言"&gt;一、引言
+&lt;/h2&gt;&lt;p&gt;在算法设计中，分治法是一种非常重要的思想。它将一个规模较大的问题拆分成若干个规模较小的子问题，分别求解后，再将子问题的结果合并，从而得到原问题的解。&lt;/p&gt;
+&lt;p&gt;归并排序、二分查找以及快速傅里叶变换等经典算法，都可以通过递归思想进行分析。&lt;/p&gt;
+&lt;p&gt;然而，当我们分析分治算法的时间复杂度时，往往需要求解一个递归方程。例如，归并排序的时间复杂度可以表示为：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;如何从这样的递归方程中直接求出渐近时间复杂度？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主定理，Master Theorem&lt;/strong&gt;，就是解决这一问题的重要数学工具。它通过比较递归结构产生的工作量与每层额外工作量的增长速度，帮助我们快速求出一类递归算法的渐近复杂度。&lt;/p&gt;
+&lt;p&gt;本文将介绍主定理的基本形式、三种情况、典型算法应用、适用条件以及常见误区。&lt;/p&gt;
+&lt;h2 id="二从分治算法建立递归方程"&gt;二、从分治算法建立递归方程
+&lt;/h2&gt;&lt;p&gt;主定理主要用于分析具有特定递归结构的算法。其标准形式为：&lt;/p&gt;
+$$ T(n)=aT\left(\frac{n}{b}\right)+f(n) $$&lt;p&gt;其中，各个符号的含义如下。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$T(n)$&lt;/td&gt;
+&lt;td&gt;输入规模为 $n$ 时的运行时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a$&lt;/td&gt;
+&lt;td&gt;每次递归产生的子问题数量，通常为正整数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$b$&lt;/td&gt;
+&lt;td&gt;子问题规模缩小的倍数，满足 $b&amp;gt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$n/b$&lt;/td&gt;
+&lt;td&gt;每个子问题的规模&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$f(n)$&lt;/td&gt;
+&lt;td&gt;当前层除递归调用外的额外工作量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;例如，归并排序将数组分成两个规模约为原来一半的子数组，递归排序后再进行线性时间的合并，因此其递归方程为：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;二分查找每次只递归处理一个规模约为原来一半的子问题，并且每层只需要常数时间的额外操作，因此其递归方程为：&lt;/p&gt;
+$$ T(n)=T\left(\frac{n}{2}\right)+\Theta(1) $$&lt;p&gt;这两种算法都符合主定理的基本结构。&lt;/p&gt;
+&lt;h2 id="三主定理的核心思想"&gt;三、主定理的核心思想
+&lt;/h2&gt;&lt;p&gt;对于递归方程：&lt;/p&gt;
+$$ T(n)=aT\left(\frac{n}{b}\right)+f(n) $$&lt;p&gt;定义一个关键参数：&lt;/p&gt;
+$$ p=\log_b a $$&lt;p&gt;由此得到基准函数：&lt;/p&gt;
+$$ n^p=n^{\log_b a} $$&lt;p&gt;这个函数反映了递归树的规模增长情况。&lt;/p&gt;
+&lt;p&gt;假设每个节点产生 $a$ 个子节点，而每个子问题的规模缩小为原来的 $1/b$。递归树的高度约为：&lt;/p&gt;
+$$ h=\log_b n $$&lt;p&gt;因此，递归树最底层的叶子节点数量约为：&lt;/p&gt;
+$$ a^h=a^{\log_b n}=n^{\log_b a} $$&lt;p&gt;也就是说，递归结构本身会产生约 $n^{\log_b a}$ 个叶子节点。&lt;/p&gt;
+&lt;p&gt;证明如图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261027211123409.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;p&gt;主定理的核心就是比较 $f(n)$ 与 $n^{\log_b a}$ 的增长速度，判断总运行时间主要由哪一部分决定。&lt;/p&gt;
+&lt;p&gt;需要注意的是，叶子节点数量并不总能单独决定总运行时间。不同层级的额外工作量也可能成为主要成本，这正是主定理需要区分不同情况的原因。&lt;/p&gt;
+&lt;h2 id="四主定理的三种情况"&gt;四、主定理的三种情况
+&lt;/h2&gt;&lt;p&gt;主定理存在不同的表述版本。为了避免混淆，本文先介绍算法课程中常见的&lt;strong&gt;原版三情况主定理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;令：&lt;/p&gt;
+$$ p=\log_b a $$&lt;p&gt;对于递归方程：&lt;/p&gt;
+$$ T(n)=aT\left(\frac{n}{b}\right)+f(n) $$&lt;p&gt;以下三种情况互相区分，但并不覆盖所有可能的函数形式。&lt;/p&gt;
+&lt;h3 id="41-情况一额外工作量多项式级地更小"&gt;4.1 情况一：额外工作量多项式级地更小
+&lt;/h3&gt;&lt;p&gt;如果存在常数 $\varepsilon&amp;gt;0$，使得：&lt;/p&gt;
+$$ f(n)=O\left(n^{p-\varepsilon}\right) $$&lt;p&gt;那么：&lt;/p&gt;
+$$ T(n)=\Theta\left(n^p\right) $$&lt;p&gt;这意味着，当前层的额外工作量比基准函数 $n^p$ 至少低一个多项式阶。此时，总运行时间由递归结构主导。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(1) $$&lt;p&gt;首先计算：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;因此，基准函数为 $n$，而额外工作量为常数级：&lt;/p&gt;
+$$ f(n)=\Theta(1)=O\left(n^{1-\varepsilon}\right) $$&lt;p&gt;例如，取 $\varepsilon=1/2$，即可满足条件。&lt;/p&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n)} $$&lt;p&gt;直观地看，每个递归节点只执行常数时间的额外操作，而整个递归树的节点数量为线性数量级，因此总时间复杂度为线性级。&lt;/p&gt;
+&lt;h3 id="42-情况二额外工作量与基准函数同阶"&gt;4.2 情况二：额外工作量与基准函数同阶
+&lt;/h3&gt;&lt;p&gt;如果：&lt;/p&gt;
+$$ f(n)=\Theta\left(n^p\right) $$&lt;p&gt;那么：&lt;/p&gt;
+$$ T(n)=\Theta\left(n^p\log n\right) $$&lt;p&gt;此时，每一层递归的额外工作量处于同一渐近数量级，递归树的多个层级共同累积成本，因此总运行时间比单层成本多出一个对数因子。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例：归并排序&lt;/strong&gt;&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;计算得到：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;因此：&lt;/p&gt;
+$$ f(n)=\Theta(n)=\Theta\left(n^p\right) $$&lt;p&gt;符合情况二，最终得到：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n\log n)} $$&lt;p&gt;从递归树的角度来看，每一层所有子问题的合并成本之和都是线性级，而递归树的高度为对数级，因此总成本为线性对数级。&lt;/p&gt;
+&lt;h3 id="43-情况三额外工作量多项式级地更大"&gt;4.3 情况三：额外工作量多项式级地更大
+&lt;/h3&gt;&lt;p&gt;如果存在常数 $\varepsilon&amp;gt;0$，使得：&lt;/p&gt;
+$$ f(n)=\Omega\left(n^{p+\varepsilon}\right) $$&lt;p&gt;并且满足正则性条件：存在常数 $c&amp;lt;1$，使得对充分大的 $n$ 有：&lt;/p&gt;
+$$ af\left(\frac{n}{b}\right)\leq cf(n) $$&lt;p&gt;那么：&lt;/p&gt;
+$$ T(n)=\Theta\left(f(n)\right) $$&lt;p&gt;这意味着，当前层的额外工作量比基准函数至少高一个多项式阶，并且随着递归规模缩小，所有子问题的额外工作量之和能够被当前层的工作量以固定比例控制。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n^2) $$&lt;p&gt;首先计算：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;额外工作量为：&lt;/p&gt;
+$$ f(n)=\Theta(n^2) $$&lt;p&gt;它比基准函数 $n$ 增长得更快，满足多项式级差距。&lt;/p&gt;
+&lt;p&gt;再检查正则性条件。若取 $f(n)=n^2$，则：&lt;/p&gt;
+$$ 2f\left(\frac{n}{2}\right)=2\left(\frac{n}{2}\right)^2=\frac{n^2}{2} $$&lt;p&gt;因此可以取 $c=1/2$，满足 $c&amp;lt;1$ 的要求。&lt;/p&gt;
+&lt;p&gt;最终得到：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n^2)} $$&lt;p&gt;此时，当前层的额外工作量占主导地位，递归调用所产生的总成本不会改变最终的渐近数量级。&lt;/p&gt;
+&lt;h2 id="五三种情况的对比总结"&gt;五、三种情况的对比总结
+&lt;/h2&gt;&lt;p&gt;主定理的判断关键不是简单地比较函数是否相等，而是检查其增长速度，以及对应情况所要求的附加条件。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;情况&lt;/th&gt;
+&lt;th&gt;条件&lt;/th&gt;
+&lt;th&gt;时间复杂度&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;情况一&lt;/td&gt;
+&lt;td&gt;$f(n)=O(n^{p-\varepsilon})$&lt;/td&gt;
+&lt;td&gt;$\Theta(n^p)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;情况二&lt;/td&gt;
+&lt;td&gt;$f(n)=\Theta(n^p)$&lt;/td&gt;
+&lt;td&gt;$\Theta(n^p\log n)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;情况三&lt;/td&gt;
+&lt;td&gt;$f(n)=\Omega(n^{p+\varepsilon})$，且满足正则性条件&lt;/td&gt;
+&lt;td&gt;$\Theta(f(n))$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其中，$p=\log_b a$，而 $\varepsilon&amp;gt;0$ 为常数。&lt;/p&gt;
+&lt;p&gt;需要特别强调：&lt;strong&gt;情况一和情况三要求多项式级的增长差距，而不是简单的低阶或高阶关系。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如，$n/\log n$ 虽然比 $n$ 小，但并不满足 $O(n^{1-\varepsilon})$ 的条件；同样，$n\log n$ 虽然比 $n$ 大，也不满足 $\Omega(n^{1+\varepsilon})$ 的条件。&lt;/p&gt;
+&lt;p&gt;这类边界情形不能直接套用上述三种情况。&lt;/p&gt;
+&lt;h2 id="六主定理的扩展形式带对数因子的情况"&gt;六、主定理的扩展形式：带对数因子的情况
+&lt;/h2&gt;&lt;p&gt;在一些教材和算法分析资料中，还会看到更一般的主定理表述。其中，情况二被扩展为：&lt;/p&gt;
+$$ f(n)=\Theta\left(n^p\log^k n\right) $$&lt;p&gt;在满足相应扩展定理的条件时：&lt;/p&gt;
+$$ T(n)=\Theta\left(n^p\log^{k+1}n\right) $$&lt;p&gt;这里 $k\geq 0$ 为常数。&lt;/p&gt;
+&lt;p&gt;这个形式可以看作原版情况二的推广。当 $k=0$ 时：&lt;/p&gt;
+$$ f(n)=\Theta(n^p) $$&lt;p&gt;便得到：&lt;/p&gt;
+$$ T(n)=\Theta\left(n^p\log n\right) $$&lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n\log n) $$&lt;p&gt;这里：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;并且：&lt;/p&gt;
+$$ f(n)=\Theta(n\log n) $$&lt;p&gt;因此，$k=1$，最终得到：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n\log^2 n)} $$&lt;p&gt;这一扩展形式非常实用，但应当注意，它属于更一般的主定理表述，不应与原版三情况表述不加区分地混在一起。&lt;/p&gt;
+&lt;p&gt;对于 $k&amp;lt;0$ 或者其他不符合相应扩展条件的情形，仍然需要进一步分析，不能仅凭形式相似就直接套用结论。&lt;/p&gt;
+&lt;h2 id="七主定理在经典算法中的应用"&gt;七、主定理在经典算法中的应用
+&lt;/h2&gt;&lt;h3 id="71-二分查找"&gt;7.1 二分查找
+&lt;/h3&gt;&lt;p&gt;二分查找每次将搜索范围缩小为原来的一半，并只递归处理一个子问题。&lt;/p&gt;
+&lt;p&gt;递归方程为：&lt;/p&gt;
+$$ T(n)=T\left(\frac{n}{2}\right)+\Theta(1) $$&lt;p&gt;因此：&lt;/p&gt;
+$$ a=1,\quad b=2,\quad p=\log_2 1=0 $$&lt;p&gt;额外工作量为：&lt;/p&gt;
+$$ f(n)=\Theta(1)=\Theta(n^0) $$&lt;p&gt;符合情况二，最终得到：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(\log n)} $$&lt;h3 id="72-归并排序"&gt;7.2 归并排序
+&lt;/h3&gt;&lt;p&gt;归并排序将数组分为两个规模约为原来一半的子数组，并用线性时间合并结果。&lt;/p&gt;
+&lt;p&gt;递归方程为：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;因为：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;且 $f(n)=\Theta(n)$，所以符合情况二：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n\log n)} $$&lt;h3 id="73-多个子问题的递归算法"&gt;7.3 多个子问题的递归算法
+&lt;/h3&gt;&lt;p&gt;考虑递归方程：&lt;/p&gt;
+$$ T(n)=3T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;计算基准指数：&lt;/p&gt;
+$$ p=\log_2 3\approx 1.585 $$&lt;p&gt;由于额外工作量 $n$ 比 $n^{\log_2 3}$ 低一个多项式阶，因此符合情况一：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta\left(n^{\log_2 3}\right)} $$&lt;p&gt;这个例子表明，即使每层额外工作量仍然是线性级，子问题数量的变化也可能显著影响算法的整体复杂度。&lt;/p&gt;
+&lt;h3 id="74-额外工作量占主导的递归算法"&gt;7.4 额外工作量占主导的递归算法
+&lt;/h3&gt;&lt;p&gt;考虑：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n^2) $$&lt;p&gt;由于：&lt;/p&gt;
+$$ p=\log_2 2=1 $$&lt;p&gt;而额外工作量为 $n^2$，因此符合情况三，并且正则性条件成立。&lt;/p&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n^2)} $$&lt;p&gt;这说明，如果每层的分解、合并或其他额外操作成本过高，即使子问题规模不断减小，算法的整体复杂度仍可能由额外工作量决定。&lt;/p&gt;
+&lt;h2 id="八主定理的使用步骤"&gt;八、主定理的使用步骤
+&lt;/h2&gt;&lt;p&gt;在实际算法分析中，可以按照以下流程求解递归方程。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;建立递归方程。&lt;/strong&gt; 明确子问题数量、子问题规模和额外工作量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;确定参数。&lt;/strong&gt; 找出 $a$、$b$ 和 $f(n)$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;计算基准指数。&lt;/strong&gt; 求出 $p=\log_b a$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;比较增长速度。&lt;/strong&gt; 判断 $f(n)$ 与 $n^p$ 之间的关系。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证附加条件。&lt;/strong&gt; 情况三必须检查正则性条件；对于扩展形式，还要检查相应定理的适用要求。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;得出渐近复杂度。&lt;/strong&gt; 根据适用的情况，写出 $T(n)$ 的渐近界。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以将判断流程概括为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;T(n) = aT(n/b) + f(n)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; v
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 计算 p = log_b(a)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; v
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 比较 f(n) 与 n^p
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; +------+------+
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; | | |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 更小 同阶 更大
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; | | |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 情况一 情况二 情况三
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; | | |
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Θ(n^p) Θ(n^p log n) Θ(f(n))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上图仅展示原版三情况主定理的基本判断思路。对于不满足多项式级差距的边界情况，不能强行归入情况一或情况三。&lt;/p&gt;
+&lt;p&gt;四种情况图示：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdn.jsdelivr.net/gh/Hanguangwu/MyImageBed01/img/20261027211700583.png"
+loading="lazy"
+&gt;&lt;/p&gt;
+&lt;h2 id="九主定理的局限性与常见误区"&gt;九、主定理的局限性与常见误区
+&lt;/h2&gt;&lt;h3 id="91-子问题规模不符合标准形式"&gt;9.1 子问题规模不符合标准形式
+&lt;/h3&gt;&lt;p&gt;例如：&lt;/p&gt;
+$$ T(n)=T(n-1)+\Theta(1) $$&lt;p&gt;由于子问题规模是 $n-1$，而不是 $n/b$，因此不能直接使用标准主定理。&lt;/p&gt;
+&lt;p&gt;展开递归方程可知，递归深度为线性级，所以：&lt;/p&gt;
+$$ \boxed{T(n)=\Theta(n)} $$&lt;h3 id="92-忽略多项式级差距"&gt;9.2 忽略多项式级差距
+&lt;/h3&gt;&lt;p&gt;考虑：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta\left(\frac{n}{\log n}\right) $$&lt;p&gt;此时 $p=1$，但：&lt;/p&gt;
+$$ f(n)=\Theta\left(\frac{n}{\log n}\right) $$&lt;p&gt;它并不满足情况一要求的多项式级差距，也不满足原版情况二的同阶条件。&lt;/p&gt;
+&lt;p&gt;通过递归树分析，可以将各层额外工作量相加，得到：&lt;/p&gt;
+$$ T(n)=\Theta(n\log\log n) $$&lt;p&gt;这说明主定理并不是所有递归方程的通用解法。遇到边界情形时，需要采用递归树法、代入法或更一般的递归分析定理。&lt;/p&gt;
+&lt;h3 id="93-忽略正则性条件"&gt;9.3 忽略正则性条件
+&lt;/h3&gt;&lt;p&gt;对于情况三，仅仅证明 $f(n)$ 比 $n^p$ 增长得更快还不够，还需要验证：&lt;/p&gt;
+$$ af\left(\frac{n}{b}\right)\leq cf(n),\qquad c&lt;1 $$&lt;p&gt;如果额外工作量存在剧烈振荡，或者不能满足固定比例约束，就不能直接使用情况三的结论。&lt;/p&gt;
+&lt;h3 id="94-混淆大-o-与-theta"&gt;9.4 混淆大 O 与 Theta
+&lt;/h3&gt;&lt;p&gt;$O(n\log n)$ 表示渐近上界，而 $\Theta(n\log n)$ 表示渐近紧确界。&lt;/p&gt;
+&lt;p&gt;当我们已经证明算法运行时间与 $n\log n$ 同阶时，应优先使用：&lt;/p&gt;
+$$ T(n)=\Theta(n\log n) $$&lt;p&gt;而不是仅仅写成 $O(n\log n)$。&lt;/p&gt;
+&lt;h3 id="95-忽略基础情形"&gt;9.5 忽略基础情形
+&lt;/h3&gt;&lt;p&gt;递归方程还需要终止条件。例如：&lt;/p&gt;
+$$ T(1)=\Theta(1) $$&lt;p&gt;标准主定理的常见应用通常默认基础情形具有常数级成本，并且输入规模能够按照给定的递归结构逐渐缩小。&lt;/p&gt;
+&lt;h2 id="十主定理之外的递归分析方法"&gt;十、主定理之外的递归分析方法
+&lt;/h2&gt;&lt;p&gt;当递归方程不符合主定理的条件时，可以考虑以下方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;递归树法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将递归方程展开为树形结构，逐层计算工作量，再对所有层的成本求和。这种方法直观、灵活，适合分析主定理无法直接处理的边界情况。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代入法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先猜测时间复杂度，再利用数学归纳法证明猜测成立。该方法需要合理的猜测和严谨的上下界证明。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Akra–Bazzi 定理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;对于子问题规模不相同的某些递归方程，例如：&lt;/p&gt;
+$$ T(n)=T\left(\frac{n}{2}\right)+T\left(\frac{n}{3}\right)+g(n) $$&lt;p&gt;标准主定理无法直接使用，而 Akra–Bazzi 定理可以处理更广泛的一类递归关系。&lt;/p&gt;
+&lt;p&gt;实际分析时，建议优先检查主定理的适用条件；如果不满足，再根据递归结构选择更合适的分析工具。&lt;/p&gt;
+&lt;h2 id="十一练习题"&gt;十一、练习题
+&lt;/h2&gt;&lt;h3 id="练习一"&gt;练习一
+&lt;/h3&gt;&lt;p&gt;求解：&lt;/p&gt;
+$$ T(n)=4T\left(\frac{n}{2}\right)+\Theta(n) $$&lt;p&gt;提示：计算 $p=\log_2 4$，再比较 $n$ 与基准函数。&lt;/p&gt;
+&lt;h3 id="练习二"&gt;练习二
+&lt;/h3&gt;&lt;p&gt;求解：&lt;/p&gt;
+$$ T(n)=T\left(\frac{n}{3}\right)+\Theta(1) $$&lt;p&gt;提示：注意每次只产生一个子问题。&lt;/p&gt;
+&lt;h3 id="练习三"&gt;练习三
+&lt;/h3&gt;&lt;p&gt;求解：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n^2) $$&lt;p&gt;提示：检查情况三的正则性条件。&lt;/p&gt;
+&lt;h3 id="练习四"&gt;练习四
+&lt;/h3&gt;&lt;p&gt;求解：&lt;/p&gt;
+$$ T(n)=2T\left(\frac{n}{2}\right)+\Theta(n\log n) $$&lt;p&gt;提示：使用带对数因子的扩展主定理。&lt;/p&gt;
+&lt;h3 id="参考答案"&gt;参考答案
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题目&lt;/th&gt;
+&lt;th&gt;时间复杂度&lt;/th&gt;
+&lt;th&gt;适用情况&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;练习一&lt;/td&gt;
+&lt;td&gt;$\Theta(n^2)$&lt;/td&gt;
+&lt;td&gt;情况一&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;练习二&lt;/td&gt;
+&lt;td&gt;$\Theta(\log n)$&lt;/td&gt;
+&lt;td&gt;情况二&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;练习三&lt;/td&gt;
+&lt;td&gt;$\Theta(n^2)$&lt;/td&gt;
+&lt;td&gt;情况三&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;练习四&lt;/td&gt;
+&lt;td&gt;$\Theta(n\log^2 n)$&lt;/td&gt;
+&lt;td&gt;扩展情况二&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="十二总结"&gt;十二、总结
+&lt;/h2&gt;&lt;p&gt;主定理是算法分析中处理分治递归方程的重要工具。其基本形式为：&lt;/p&gt;
+$$ T(n)=aT\left(\frac{n}{b}\right)+f(n) $$&lt;p&gt;核心基准函数为：&lt;/p&gt;
+$$ n^{\log_b a} $$&lt;p&gt;在原版三情况主定理中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;当 $f(n)$ 比基准函数多项式级地更小时，递归结构主导，总复杂度为 $\Theta(n^{\log_b a})$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当 $f(n)$ 与基准函数同阶时，各层成本累积，总复杂度为 $\Theta(n^{\log_b a}\log n)$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当 $f(n)$ 比基准函数多项式级地更大，且满足正则性条件时，额外工作量主导，总复杂度为 $\Theta(f(n))$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要牢记的是，三种情况有各自严格的适用条件，不能仅凭函数增长速度的粗略比较就直接套用公式。对于边界情形和更复杂的递归结构，应当进一步使用递归树法、代入法或更一般的递归分析定理。&lt;/p&gt;
+&lt;p&gt;真正掌握主定理，不只是记住三个公式，更重要的是理解递归树的结构、各层工作量的累积方式，以及数学结论背后的适用条件。这样才能在分析算法和设计高效程序时，正确地运用这一经典工具。&lt;/p&gt;
+&lt;h2 id="参考资料"&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.luogu.com.cn/article/w3avh1ku" target="_blank" rel="noopener"
+&gt;重谈主定理（master定理）及其证明&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
